@@ -52,4 +52,4 @@ if all_products:
         df = df[columns]
 
     # Create output folder and file
-    today = datetime.utcnow().strftime("%Y%m%d
+    today = datetime.utcnow().strftime("%Y%m%d)
