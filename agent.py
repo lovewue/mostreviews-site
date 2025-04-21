@@ -1,10 +1,10 @@
-# agent.py
+# agent.py (save file to /data)
+import os
+from datetime import datetime
 import requests
 import pandas as pd
-from datetime import datetime
-import os
 
-API_TOKEN = os.getenv("FEEFO_API_TOKEN")  # Securely loaded from GitHub Secrets
+API_TOKEN = os.getenv("FEEFO_API_TOKEN")
 
 url = "https://api.feefo.com/api/20/products/ratings"
 params = {
@@ -40,7 +40,8 @@ while True:
 if all_products:
     df = pd.DataFrame(all_products)
     today = datetime.utcnow().strftime("%Y%m%d")
-    output_file = f"feefo_product_ratings_week_{today}.xlsx"
+    os.makedirs("data", exist_ok=True)
+    output_file = f"data/feefo_product_ratings_week_{today}.xlsx"
     df.to_excel(output_file, index=False)
     print(f"✅ Data saved to {output_file}")
 else:
