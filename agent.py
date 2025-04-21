@@ -52,4 +52,11 @@ if all_products:
         df = df[columns]
 
     # Create output folder and file
-    today = datetime.utcnow().strftime("%Y%m%d)
+    today = datetime.utcnow().strftime("%Y%m%d")
+    os.makedirs("data", exist_ok=True)
+    output_file = f"data/feefo_product_ratings_week_{today}.xlsx"
+    df.to_excel(output_file, index=False)
+
+    print(f"✅ Data saved to {output_file}")
+else:
+    print("⚠️ No product data found.")
