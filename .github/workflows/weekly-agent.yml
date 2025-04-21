@@ -3,7 +3,7 @@ name: Weekly Feefo Report Agent
 on:
   schedule:
     - cron: '0 0 * * 1'  # Every Monday at 00:00 UTC
-  workflow_dispatch:
+  workflow_dispatch:      # Allows manual triggering
 
 jobs:
   run-agent:
@@ -28,12 +28,12 @@ jobs:
       - name: Run AI Agent
         run: python agent.py
 
-              - name: Commit Excel report to repo
+      - name: Commit Excel report to repo
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+          git pull
           git add data/*.xlsx
           timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           git commit -m "Add Feefo report for $timestamp" || echo "No changes to commit"
           git push
-
