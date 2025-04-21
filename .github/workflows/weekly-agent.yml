@@ -3,7 +3,7 @@ name: Weekly Feefo Report Agent
 on:
   schedule:
     - cron: '0 0 * * 1'  # Every Monday at 00:00 UTC
-  workflow_dispatch:      # Manual run option
+  workflow_dispatch:
 
 jobs:
   run-agent:
@@ -27,10 +27,3 @@ jobs:
 
       - name: Run AI Agent
         run: python agent.py
-
-      - name: Upload report as artifact
-uses: actions/upload-artifact@v3
-with:
-  name: feefo-report
-  path: '**/feefo_product_ratings_week_*.xlsx'
-
