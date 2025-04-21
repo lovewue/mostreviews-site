@@ -1,11 +1,12 @@
-# agent.py (save file to /data)
-import os
-from datetime import datetime
 import requests
 import pandas as pd
+import os
+from datetime import datetime
 
+# Load API token securely
 API_TOKEN = os.getenv("FEEFO_API_TOKEN")
 
+# Feefo API endpoint and query parameters
 url = "https://api.feefo.com/api/20/products/ratings"
 params = {
     "review_count": "true",
@@ -19,6 +20,7 @@ headers = {
     "Authorization": f"Token {API_TOKEN}"
 }
 
+# Collect product data
 all_products = []
 page = 1
 
@@ -34,15 +36,20 @@ while True:
         all_products.extend(products)
         page += 1
     else:
-        print(f"Error {response.status_code}: {response.text}")
+        print(f"❌ Error {response.status_code}: {response.text}")
         break
 
+# Process and save to Excel
 if all_products:
     df = pd.DataFrame(all_products)
-    today = datetime.utcnow().strftime("%Y%m%d")
-    os.makedirs("data", exist_ok=True)
-    output_file = f"data/feefo_product_ratings_week_{today}.xlsx"
-    df.to_excel(output_file, index=False)
-    print(f"✅ Data saved to {output_file}")
-else:
-    print("⚠️ No product data found.")
+
+    # ✅ Rename "SKU" to "Product Code"
+    df.rename(columns={"SKU": "Product Code"}, inplace=True)
+
+    # ✅ Move "Product Code" column to the front
+    if "Product Code" in df.columns:
+        columns = ["Product Code"] + [col for col in df.columns if col != "Product Code"]
+        df = df[columns]
+
+    # Create output folder and file
+    today = datetime.utcnow().strftime("%Y%m%d
