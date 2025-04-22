@@ -3,13 +3,13 @@ name: Weekly Feefo Report Agent
 on:
   schedule:
     - cron: '0 0 * * 1'  # Every Monday at 00:00 UTC
-  workflow_dispatch:
+  workflow_dispatch:      # Also allows manual trigger
 
 jobs:
   run-agent:
     runs-on: ubuntu-latest
 
-    permissions:  # ⬅️ CRITICAL for push to work
+    permissions:
       contents: write
 
     env:
@@ -27,15 +27,20 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+          pip install selenium webdriver-manager openpyxl
 
-      - name: Run AI Agent
+      - name: Run Feefo API Agent
         run: python agent.py
 
-      - name: Commit and push report to repo
+      - name: Run Enrichment Scraper
+        run: python enrich_with_reviews.py
+
+      - name: Commit enriched reports
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add data/*.xlsx || echo "Nothing to add"
+          git pull
+          git add data/*.xlsx
           timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          git commit -m "Add Feefo report for $timestamp" || echo "No changes to commit"
+          git commit -m "Update Feefo and Review reports for $timestamp" || echo "No changes to commit"
           git push
