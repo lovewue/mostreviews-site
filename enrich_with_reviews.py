@@ -6,12 +6,10 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from urllib.parse import urlparse
-from datetime import datetime, timedelta
 import time
 import os
 
 # --------- SETTINGS ---------
-REVIEW_LOOKBACK_DAYS = 30
 DELAY_BETWEEN_PRODUCTS = 2  # seconds
 OUTPUT_FILE = "data/recent_reviews_web_ready.xlsx"
 SELLER_NAME_FILE = "data/seller_names.xlsx"
@@ -30,7 +28,7 @@ try:
     seller_df = pd.read_excel(SELLER_NAME_FILE)
     SELLER_NAME_LOOKUP = dict(zip(seller_df["slug"], seller_df["store_name"]))
 except Exception as e:
-    print(f"⚠️ Could not load seller_names.xlsx, fallback only mode: {e}")
+    print(f"⚠️ Could not load seller_names.xlsx, continuing with empty lookup: {e}")
     SELLER_NAME_LOOKUP = {}
 
 # Set up headless browser
@@ -73,33 +71,22 @@ for _, row in df.iterrows():
         except:
             noths_url = ""
 
-        # Seller: use slug from NOTHS URL
-        seller = ""
+        # Seller slug + friendly name (from lookup only)
         seller_slug = ""
+        seller = ""
         if noths_url:
             try:
                 path_parts = urlparse(noths_url).path.split('/')
                 seller_slug = path_parts[1] if len(path_parts) > 1 else ""
-                seller = SELLER_NAME_LOOKUP.get(seller_slug, "")
+                seller = SELLER_NAME_LOOKUP.get(seller_slug, "")  # blank if unknown
             except:
                 pass
-
-        # 🔁 If not found in master list, scrape live from NOTHS product page
-        if not seller and noths_url:
-            try:
-                driver.get(noths_url)
-                time.sleep(2)
-
-                # New selector that looks for seller in the product header
-                seller_element = driver.find_element(By.CSS_SELECTOR, 'a[href^="/"][class*="PartnerLink"], a[href^="/"]:not([href*="/product/"])')
-                seller = seller_element.text.strip()
-            except:
-                seller = ""
 
         results.append({
             "Product Code": product_code,
             "Product Title": title,
             "Seller": seller,
+            "Seller Slug": seller_slug,
             "Review Count": review_count,
             "NOTHS URL": noths_url,
             "Feefo URL": feefo_url
@@ -112,7 +99,7 @@ for _, row in df.iterrows():
 
 driver.quit()
 
-# Save to Excel
+# Save results to Excel
 output_df = pd.DataFrame(results)
 os.makedirs("data", exist_ok=True)
 output_df.to_excel(OUTPUT_FILE, index=False)
