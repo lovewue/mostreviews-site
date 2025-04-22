@@ -6,13 +6,14 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from urllib.parse import urlparse
+from datetime import datetime, timedelta
 import time
 import os
 
 # --------- SETTINGS ---------
+REVIEW_LOOKBACK_DAYS = 30
 DELAY_BETWEEN_PRODUCTS = 2  # seconds
-OUTPUT_FILE = "data/product_metadata.xlsx"
-SELLER_NAME_FILE = "data/seller_names.xlsx"
+OUTPUT_FILE = "data/recent_reviews_web_ready.xlsx"
 # ----------------------------
 
 # ✅ Find the most recent Feefo report automatically
@@ -23,14 +24,6 @@ if files:
 else:
     raise FileNotFoundError("❌ No Feefo product rating files found in /data/")
 
-# ✅ Load friendly seller name lookup from spreadsheet
-try:
-    seller_df = pd.read_excel(SELLER_NAME_FILE)
-    SELLER_NAME_LOOKUP = dict(zip(seller_df["slug"], seller_df["store_name"]))
-except Exception as e:
-    print(f"❌ Could not load seller names: {e}")
-    SELLER_NAME_LOOKUP = {}
-
 # Set up headless browser
 options = Options()
 options.add_argument("--headless")
@@ -39,9 +32,9 @@ options.add_argument("--disable-dev-shm-usage")
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-# Load Feefo report
+# Load Feefo product report
 df = pd.read_excel(INPUT_FILE)
-df = df[df["review_count"] > 1]  # Filter products with more than 1 review
+df = df[df["review_count"] > 1]  # Only products with more than 1 review
 
 results = []
 
@@ -71,13 +64,16 @@ for _, row in df.iterrows():
         except:
             noths_url = ""
 
-        # Seller slug and friendly name
-        try:
-            path_parts = urlparse(noths_url).path.split('/')
-            seller_slug = path_parts[1] if len(path_parts) > 1 else ""
-            seller = SELLER_NAME_LOOKUP.get(seller_slug, seller_slug)
-        except:
-            seller = ""
+        # 🆕 Seller name from NOTHS product page
+        seller = ""
+        if noths_url:
+            try:
+                driver.get(noths_url)
+                time.sleep(2)
+                seller_element = driver.find_element(By.CSS_SELECTOR, 'a[href^="/"]')
+                seller = seller_element.text.strip()
+            except:
+                seller = ""
 
         results.append({
             "Product Code": product_code,
@@ -95,7 +91,7 @@ for _, row in df.iterrows():
 
 driver.quit()
 
-# Save results
+# Save results to Excel
 output_df = pd.DataFrame(results)
 os.makedirs("data", exist_ok=True)
 output_df.to_excel(OUTPUT_FILE, index=False)
