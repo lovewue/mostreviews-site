@@ -5,14 +5,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from datetime import datetime, timedelta
 import time
 import os
 
 # --------- SETTINGS ---------
-REVIEW_LOOKBACK_DAYS = 30
 DELAY_BETWEEN_PRODUCTS = 2  # seconds
-OUTPUT_FILE = "data/recent_reviews_web_ready.xlsx"
+OUTPUT_FILE = "data/product_metadata.xlsx"
 # ----------------------------
 
 # ✅ Find the most recent Feefo report automatically
@@ -40,7 +38,6 @@ df = df[df["review_count"] > 1]
 results = []
 
 for _, row in df.iterrows():
-    # ✅ Clean up Product Code: remove decimals
     product_code = str(int(row["Product Code"]))
     print(f"🔍 Processing Product Code: {product_code}")
 
@@ -71,35 +68,13 @@ for _, row in df.iterrows():
         except:
             seller = ""
 
-        # Product image URL
-        try:
-            img = driver.find_element(By.CSS_SELECTOR, "img").get_attribute("src")
-        except:
-            img = ""
-
-        # All reviews + dates
-        reviews = driver.find_elements(By.CSS_SELECTOR, '[data-aqa-id="customer-comment-container"]')
-        dates = driver.find_elements(By.CSS_SELECTOR, '[data-aqa-id="feedback-purchased-date"]')
-
-        for i in range(min(len(reviews), len(dates))):
-            review_text = reviews[i].text.strip()
-            date_text = dates[i].text.strip().replace("Date of purchase: ", "")
-
-            try:
-                purchase_date = datetime.strptime(date_text, "%d/%m/%Y")
-                if purchase_date >= datetime.today() - timedelta(days=REVIEW_LOOKBACK_DAYS):
-                    results.append({
-                        "Product Code": product_code,
-                        "Product Title": title,
-                        "Seller": seller,
-                        "Review Date": purchase_date.strftime("%Y-%m-%d"),
-                        "Review Text": review_text,
-                        "Product Image": img,
-                        "NOTHS URL": noths_url,
-                        "Feefo URL": feefo_url
-                    })
-            except:
-                continue
+        results.append({
+            "Product Code": product_code,
+            "Product Title": title,
+            "Seller": seller,
+            "NOTHS URL": noths_url,
+            "Feefo URL": feefo_url
+        })
 
     except Exception as e:
         print(f"❌ Error processing {product_code}: {e}")
@@ -108,11 +83,9 @@ for _, row in df.iterrows():
 
 driver.quit()
 
-# ✅ Save results to file (even if empty)
+# Save to Excel
 output_df = pd.DataFrame(results)
 os.makedirs("data", exist_ok=True)
 output_df.to_excel(OUTPUT_FILE, index=False)
 
-print(f"\n🧾 Finished! Processed {len(df)} products.")
-print(f"🟢 Found {len(results)} recent reviews.")
-print(f"✅ Saved output to: {OUTPUT_FILE}")
+print(f"\n✅ Saved metadata for {len(results)} products to {OUTPUT_FILE}")
