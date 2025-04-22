@@ -41,7 +41,7 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), opti
 
 # Load product report
 df = pd.read_excel(INPUT_FILE)
-df = df[df["review_count"] > 1]
+df = df[df["review_count"] > 0]
 
 results = []
 
