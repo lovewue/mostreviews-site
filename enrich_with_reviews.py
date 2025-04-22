@@ -5,13 +5,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from urllib.parse import urlparse
 from datetime import datetime, timedelta
 import time
 import os
 
 # --------- SETTINGS ---------
-REVIEW_LOOKBACK_DAYS = 7
+REVIEW_LOOKBACK_DAYS = 30
 DELAY_BETWEEN_PRODUCTS = 2  # seconds
 OUTPUT_FILE = "data/recent_reviews_web_ready.xlsx"
 # ----------------------------
@@ -41,7 +40,8 @@ df = df[df["review_count"] > 1]
 results = []
 
 for _, row in df.iterrows():
-    product_code = row["Product Code"]
+    # ✅ Clean up Product Code: remove decimals
+    product_code = str(int(row["Product Code"]))
     print(f"🔍 Processing Product Code: {product_code}")
 
     feefo_url = (
@@ -73,7 +73,7 @@ for _, row in df.iterrows():
 
         # Product image URL
         try:
-            img = driver.find_element(By.CSS_SELECTOR, "img").getAttribute("src")
+            img = driver.find_element(By.CSS_SELECTOR, "img").get_attribute("src")
         except:
             img = ""
 
@@ -108,11 +108,11 @@ for _, row in df.iterrows():
 
 driver.quit()
 
-# Save to Excel
-if results:
-    output_df = pd.DataFrame(results)
-    os.makedirs("data", exist_ok=True)
-    output_df.to_excel(OUTPUT_FILE, index=False)
-    print(f"✅ Saved enriched review data to {OUTPUT_FILE}")
-else:
-    print("⚠️ No recent reviews found to save.")
+# ✅ Save results to file (even if empty)
+output_df = pd.DataFrame(results)
+os.makedirs("data", exist_ok=True)
+output_df.to_excel(OUTPUT_FILE, index=False)
+
+print(f"\n🧾 Finished! Processed {len(df)} products.")
+print(f"🟢 Found {len(results)} recent reviews.")
+print(f"✅ Saved output to: {OUTPUT_FILE}")
