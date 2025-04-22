@@ -1,14 +1,14 @@
-name: Scrape Product Metadata
+name: Enrich Reviews From Feefo
 
 on:
-  workflow_dispatch:  # 👈 allows manual triggering in GitHub
+  workflow_dispatch:  # ✅ Allows manual run from GitHub
 
 jobs:
-  run-scraper:
+  run-enrichment:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write
+      contents: write  # ✅ Allows the workflow to commit files
 
     steps:
       - name: Checkout repo
@@ -24,15 +24,15 @@ jobs:
           pip install -r requirements.txt
           pip install selenium webdriver-manager openpyxl
 
-      - name: Run scrape_product_metadata.py
-        run: python scrape_product_metadata.py
+      - name: Run enrich_with_reviews.py
+        run: python enrich_with_reviews.py
 
       - name: Commit output to repo
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git pull
-          git add data/product_metadata.xlsx
+          git add data/recent_reviews_web_ready.xlsx
           timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          git commit -m "Add product metadata report for $timestamp" || echo "No changes to commit"
+          git commit -m "Add enriched review report for $timestamp" || echo "No changes to commit"
           git push
