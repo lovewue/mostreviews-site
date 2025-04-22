@@ -1,0 +1,38 @@
+name: Scrape Product Metadata
+
+on:
+  workflow_dispatch:  # 👈 allows manual triggering in GitHub
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install selenium webdriver-manager openpyxl
+
+      - name: Run scrape_product_metadata.py
+        run: python scrape_product_metadata.py
+
+      - name: Commit output to repo
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git pull
+          git add data/product_metadata.xlsx
+          timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          git commit -m "Add product metadata report for $timestamp" || echo "No changes to commit"
+          git push
