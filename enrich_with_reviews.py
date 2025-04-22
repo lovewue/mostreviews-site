@@ -1,4 +1,5 @@
 import pandas as pd
+import glob
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -10,11 +11,18 @@ import time
 import os
 
 # --------- SETTINGS ---------
-INPUT_FILE = "data/feefo_product_ratings_week_20240422.xlsx"  # <-- replace with your actual file
-OUTPUT_FILE = "data/recent_reviews_web_ready.xlsx"
 REVIEW_LOOKBACK_DAYS = 7
 DELAY_BETWEEN_PRODUCTS = 2  # seconds
+OUTPUT_FILE = "data/recent_reviews_web_ready.xlsx"
 # ----------------------------
+
+# ✅ Find the most recent Feefo report automatically
+files = sorted(glob.glob("data/feefo_product_ratings_week_*.xlsx"), reverse=True)
+if files:
+    INPUT_FILE = files[0]
+    print(f"📄 Using latest Feefo report: {INPUT_FILE}")
+else:
+    raise FileNotFoundError("❌ No Feefo product rating files found in /data/")
 
 # Set up headless browser
 options = Options()
@@ -65,7 +73,7 @@ for _, row in df.iterrows():
 
         # Product image URL
         try:
-            img = driver.find_element(By.CSS_SELECTOR, "img").get_attribute("src")
+            img = driver.find_element(By.CSS_SELECTOR, "img").getAttribute("src")
         except:
             img = ""
 
