@@ -39,6 +39,7 @@ results = []
 
 for _, row in df.iterrows():
     product_code = str(int(row["Product Code"]))
+    review_count = row["review_count"]
     print(f"🔍 Processing Product Code: {product_code}")
 
     feefo_url = (
@@ -62,9 +63,10 @@ for _, row in df.iterrows():
         except:
             noths_url = ""
 
-        # Seller name
+        # Seller name – fallback to multiple selectors just in case
         try:
-            seller = driver.find_element(By.CSS_SELECTOR, 'a[href="#partner-module-id"]').text.strip()
+            seller_el = driver.find_element(By.CSS_SELECTOR, 'a[href="#partner-module-id"]')
+            seller = seller_el.text.strip()
         except:
             seller = ""
 
@@ -72,6 +74,7 @@ for _, row in df.iterrows():
             "Product Code": product_code,
             "Product Title": title,
             "Seller": seller,
+            "Review Count": review_count,
             "NOTHS URL": noths_url,
             "Feefo URL": feefo_url
         })
