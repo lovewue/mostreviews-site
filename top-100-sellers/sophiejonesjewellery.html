@@ -1,28 +1,43 @@
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Sophie Jones Jewellery - NOTHS Seller</title>
-        <style>
-            body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
-            img { max-width: 300px; height: auto; margin-bottom: 20px; }
-            a.button {
-                display: inline-block;
-                padding: 10px 20px;
-                background-color: #0073e6;
-                color: white;
-                text-decoration: none;
-                border-radius: 4px;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Sophie Jones Jewellery</h1>
-        <img src="/Seller_Logo/sophiejonesjewellery.jpg" alt="Sophie Jones Jewellery logo">
-        <p><strong>Joined:</strong> Jun 2010</p>
-        <p><strong>Total Reviews:</strong> 7,338</p>
-        <p><a href="https://www.notonthehighstreet.com/sophiejonesjewellery" target="_blank" class="button">View on NOTHS</a></p>
-    </body>
-    </html>
-    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sophiejonesjewellery - NOTHS Seller</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
+        img { max-width: 300px; height: auto; margin-bottom: 20px; }
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0073e6;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>sophiejonesjewellery</h1>
+    <img src="/Seller_Logo/sophiejonesjewellery.jpg" alt="sophiejonesjewellery logo">
+    <p><strong>Joined:</strong> Dec 2010</p>
+    <p><strong>Total Reviews:</strong> --</p>
+    <p>
+        <a href="#" class="button product-link"
+           data-regular="https://www.notonthehighstreet.com/sophiejonesjewellery"
+           data-awin="https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A//www.notonthehighstreet.com/sophiejonesjewellery">
+           View on NOTHS
+        </a>
+    </p>
+    <script>
+        const links = document.querySelectorAll(".product-link");
+        links.forEach(link => {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            const isMobile = /android|iphone|ipad|iPod|windows phone/i.test(userAgent.toLowerCase());
+            const mobileLink = link.getAttribute("data-regular");
+            const desktopLink = link.getAttribute("data-awin");
+            link.setAttribute("href", isMobile ? mobileLink : desktopLink);
+        });
+    </script>
+</body>
+</html>
