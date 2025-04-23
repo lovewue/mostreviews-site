@@ -1,4 +1,4 @@
-name: Update Seller Review Counts
+name: Update Seller Review Counts via PR
 
 on:
   schedule:
@@ -25,15 +25,17 @@ jobs:
       - name: Run review updater script 🍪
         run: python update_sellers_json.py
 
-      - name: Push changes with token-auth remote 🍪
+      - name: Commit and create PR 🍪
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git remote add auth-origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
+          BRANCH=update/review-counts-$(date +%s)
+          git checkout -b $BRANCH
           mv data/sellers_updated.json data/sellers.json
           git add data/sellers.json
-          git commit -m "🔄 Auto-update review counts" || echo "No changes to commit"
-          git pull auth-origin main --rebase
-          git push auth-origin HEAD:main
+          git commit -m "🔄 Auto-update review counts"
+          git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }} $BRANCH
+          gh pr create --title "🔄 Auto-update review counts" --body "This PR updates the seller review counts via scheduled GitHub Action." --base main --head $BRANCH
+        shell: bash
