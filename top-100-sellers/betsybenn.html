@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Betsy Benn - NOTHS Seller</title>
+    <title>NOTHS Seller</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; }
         img { max-width: 300px; height: auto; margin-bottom: 20px; }
@@ -18,26 +18,33 @@
     </style>
 </head>
 <body>
-    <h1>Betsy Benn</h1>
-    <img src="/Seller_Logo/betsybenn.jpg" alt="Betsy Benn logo">
-    <p><strong>Joined:</strong> Jul 2010</p>
-    <p><strong>Total Reviews:</strong> 5,369</p>
-    <p>
-        <a href="#" class="button product-link"
-           data-regular="https://www.notonthehighstreet.com/betsybenn"
-           data-awin="https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A//www.notonthehighstreet.com/betsybenn">
-           View on NOTHS
-        </a>
-    </p>
+    <div id="seller-content">Loading...</div>
+
     <script>
-        const links = document.querySelectorAll(".product-link");
-        links.forEach(link => {
+        const slug = window.location.pathname.split('/').pop().replace('.html', '');
+
+        fetch('/data/sellers.json')
+          .then(response => response.json())
+          .then(data => {
+            const seller = data.find(s => s.slug === slug);
+            if (!seller) {
+              document.getElementById("seller-content").innerHTML = "<p>Seller not found.</p>";
+              return;
+            }
+
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
             const isMobile = /android|iphone|ipad|iPod|windows phone/i.test(userAgent.toLowerCase());
-            const mobileLink = link.getAttribute("data-regular");
-            const desktopLink = link.getAttribute("data-awin");
-            link.setAttribute("href", isMobile ? mobileLink : desktopLink);
-        });
+            const link = isMobile ? seller.url : seller.awin;
+
+            document.title = seller.name + " - NOTHS Seller";
+            document.getElementById("seller-content").innerHTML = `
+              <h1>${seller.name}</h1>
+              <img src="/Seller_Logo/${seller.slug}.jpg" alt="${seller.name} logo">
+              <p><strong>Joined:</strong> ${seller.since}</p>
+              <p><strong>Total Reviews:</strong> ${seller.reviews}</p>
+              <p><a href="${link}" class="button" target="_blank">View on NOTHS</a></p>
+            `;
+          });
     </script>
 </body>
 </html>
