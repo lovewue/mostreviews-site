@@ -1,4 +1,4 @@
-name: Update Seller Review Counts via PR
+name: Update Seller Review Counts via PR (API)
 
 on:
   schedule:
@@ -29,9 +29,10 @@ jobs:
       - name: Run review updater script 🍪
         run: python update_sellers_json.py
 
-      - name: Commit and create PR with CLI auth 🍪
+      - name: Commit, push branch, and create PR using REST API 🍪
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          REPO: ${{ github.repository }}
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
@@ -40,8 +41,6 @@ jobs:
           mv data/sellers_updated.json data/sellers.json
           git add data/sellers.json
           git commit -m "🔄 Auto-update review counts"
-          git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }} $BRANCH
+          git push https://x-access-token:${GH_TOKEN}@github.com/${REPO} $BRANCH
 
-          echo "${GH_TOKEN}" | gh auth login --with-token
-          gh pr create --title "🔄 Auto-update review counts" --body "This PR updates the seller review counts via scheduled GitHub Action." --base main --head $BRANCH
-        shell: bash
+          curl -X POST https://api.github.com/repos/${REPO}/pulls             -H "Authorization: token ${GH_TOKEN}"             -H "Accept: application/vnd.github+json"             -d '{"title":"🔄 Auto-update review counts","body":"This PR updates the seller review counts via scheduled GitHub Action.","head":"'"$BRANCH"'","base":"main"}'
