@@ -25,7 +25,7 @@ jobs:
       - name: Run review updater script 🍪
         run: python update_sellers_json.py
 
-      - name: Commit and create PR 🍪
+      - name: Commit and create PR with CLI auth 🍪
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
@@ -37,5 +37,7 @@ jobs:
           git add data/sellers.json
           git commit -m "🔄 Auto-update review counts"
           git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }} $BRANCH
+
+          echo "${GH_TOKEN}" | gh auth login --with-token
           gh pr create --title "🔄 Auto-update review counts" --body "This PR updates the seller review counts via scheduled GitHub Action." --base main --head $BRANCH
         shell: bash
