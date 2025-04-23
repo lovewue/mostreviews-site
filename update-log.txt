@@ -1,0 +1,111 @@
+🔍 Changes:
+diff --git a/data/sellers.json b/data/sellers.json
+index 54b2b58..5e9ac38 100644
+--- a/data/sellers.json
++++ b/data/sellers.json
+@@ -24 +24 @@
+-    "reviews": "22,638"
++    "reviews": "22,639"
+@@ -32 +32 @@
+-    "reviews": "22,453"
++    "reviews": "22,455"
+@@ -56 +56 @@
+-    "reviews": "15,087"
++    "reviews": "15,090"
+@@ -64 +64 @@
+-    "reviews": "14,853"
++    "reviews": "14,857"
+@@ -88 +88 @@
+-    "reviews": "12,603"
++    "reviews": "12,604"
+@@ -128 +128 @@
+-    "reviews": "11,007"
++    "reviews": "11,010"
+@@ -168 +168 @@
+-    "reviews": "10,525"
++    "reviews": "10,527"
+@@ -192 +192 @@
+-    "reviews": "9,093"
++    "reviews": "9,094"
+@@ -200 +200 @@
+-    "reviews": "8,984"
++    "reviews": "8,986"
+@@ -224 +224 @@
+-    "reviews": "8,674"
++    "reviews": "8,675"
+@@ -240 +240 @@
+-    "reviews": "8,469"
++    "reviews": "8,474"
+@@ -256 +256 @@
+-    "reviews": "8,276"
++    "reviews": "8,277"
+@@ -288 +288 @@
+-    "reviews": "7,950"
++    "reviews": "--"
+@@ -304 +304 @@
+-    "reviews": "7,749"
++    "reviews": "7,751"
+@@ -312 +312 @@
+-    "reviews": "7,713"
++    "reviews": "7,717"
+@@ -328 +328 @@
+-    "reviews": "7,338"
++    "reviews": "7,342"
+@@ -336 +336 @@
+-    "reviews": "7,199"
++    "reviews": "7,200"
+@@ -376 +376 @@
+-    "reviews": "6,748"
++    "reviews": "--"
+@@ -384 +384 @@
+-    "reviews": "6,694"
++    "reviews": "--"
+@@ -392 +392 @@
+-    "reviews": "6,451"
++    "reviews": "6,452"
+@@ -456 +456 @@
+-    "reviews": "6,021"
++    "reviews": "6,023"
+@@ -552 +552 @@
+-    "reviews": "5,143"
++    "reviews": "5,144"
+@@ -592 +592 @@
+-    "reviews": "4,980"
++    "reviews": "4,981"
+@@ -600 +600 @@
+-    "reviews": "4,956"
++    "reviews": "4,958"
+@@ -608 +608 @@
+-    "reviews": "4,908"
++    "reviews": "4,912"
+@@ -616 +616 @@
+-    "reviews": "4,822"
++    "reviews": "4,824"
+@@ -632 +632 @@
+-    "reviews": "4,370"
++    "reviews": "4,371"
+@@ -640 +640 @@
+-    "reviews": "4,336"
++    "reviews": "--"
+@@ -680 +680 @@
+-    "reviews": "4,143"
++    "reviews": "4,145"
+@@ -696 +696 @@
+-    "reviews": "4,021"
++    "reviews": "4,022"
+@@ -720 +720 @@
+-    "reviews": "3,943"
++    "reviews": "--"
+@@ -752 +752 @@
+-    "reviews": "3,787"
++    "reviews": "3,788"
+@@ -784 +784 @@
+-    "reviews": "3,666"
++    "reviews": "--"
+@@ -792 +792 @@
+-    "reviews": "3,635"
++    "reviews": "3,636"
+@@ -802 +802 @@
+-]
++]
+\ No newline at end of file
