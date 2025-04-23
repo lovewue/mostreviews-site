@@ -25,7 +25,7 @@ jobs:
       - name: Run review updater script 🍪
         run: python update_sellers_json.py
 
-      - name: Push changes with biscuit-safe remote 🍪
+      - name: Push changes with token-auth remote 🍪
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
