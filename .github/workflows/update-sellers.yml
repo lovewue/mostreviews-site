@@ -1,4 +1,4 @@
-name: Update Seller Review Counts via PR (API)
+name: Update Seller Review Counts via PR (Auto-Merge + Log)
 
 on:
   schedule:
@@ -36,11 +36,41 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+
           BRANCH=update/review-counts-$(date +%s)
           git checkout -b $BRANCH
           mv data/sellers_updated.json data/sellers.json
-          git add data/sellers.json
+
+          echo "🔍 Changes:" > update-log.txt
+          git diff --minimal --unified=0 data/sellers.json >> update-log.txt
+
+          git add data/sellers.json update-log.txt
           git commit -m "🔄 Auto-update review counts"
           git push https://x-access-token:${GH_TOKEN}@github.com/${REPO} $BRANCH
 
-          curl -X POST https://api.github.com/repos/${REPO}/pulls             -H "Authorization: token ${GH_TOKEN}"             -H "Accept: application/vnd.github+json"             -d '{"title":"🔄 Auto-update review counts","body":"This PR updates the seller review counts via scheduled GitHub Action.","head":"'"$BRANCH"'","base":"main"}'
+          PR_RESPONSE=$(curl -s -X POST https://api.github.com/repos/${REPO}/pulls \
+            -H "Authorization: token ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            -d @- <<EOF
+{
+  "title": "🔄 Auto-update review counts",
+  "body": "This PR updates the seller review counts via scheduled GitHub Action.",
+  "head": "$BRANCH",
+  "base": "main"
+}
+EOF
+          )
+
+          PR_URL=$(echo "$PR_RESPONSE" | grep '"html_url":' | cut -d '"' -f 4)
+          PR_NUMBER=$(echo "$PR_RESPONSE" | grep '"number":' | head -1 | grep -o '[0-9]\+')
+
+          echo "📦 PR created: $PR_URL"
+
+          if [ -n "$PR_NUMBER" ]; then
+            curl -X PUT https://api.github.com/repos/${REPO}/pulls/$PR_NUMBER/merge \
+              -H "Authorization: token ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              -d '{"merge_method":"squash"}'
+          else
+            echo "⚠️ No PR number found. Merge skipped."
+          fi
