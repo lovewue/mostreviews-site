@@ -36,4 +36,4 @@ jobs:
           git add data/sellers.json
           git commit -m "🔄 Auto-update review counts" || echo "No changes to commit"
           git pull auth-origin main --rebase
-          git push auth-origin main
+          git push auth-origin HEAD:main
