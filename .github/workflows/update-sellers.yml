@@ -1,4 +1,4 @@
-name: Update Seller Review Counts via PR (Auto-Merge + Log)
+name: Update Seller Review Counts via PR (Debug PR Creation)
 
 on:
   schedule:
@@ -48,7 +48,7 @@ jobs:
           git commit -m "🔄 Auto-update review counts"
           git push https://x-access-token:${GH_TOKEN}@github.com/${REPO} $BRANCH
 
-          # Create JSON payload for PR
+          # Create PR JSON payload
           echo '{
             "title": "🔄 Auto-update review counts",
             "body": "This PR updates the seller review counts via scheduled GitHub Action.",
@@ -60,6 +60,8 @@ jobs:
             -H "Authorization: token ${GH_TOKEN}" \
             -H "Accept: application/vnd.github+json" \
             -d @pr.json)
+
+          echo "🪵 PR Response: $PR_RESPONSE"
 
           PR_URL=$(echo "$PR_RESPONSE" | grep '"html_url":' | cut -d '"' -f 4)
           PR_NUMBER=$(echo "$PR_RESPONSE" | grep '"number":' | head -1 | grep -o '[0-9]\+')
