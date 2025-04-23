@@ -1,9 +1,11 @@
 import json
 import requests
 from bs4 import BeautifulSoup
+from pathlib import Path
 
-# --- Load sellers.json ---
-with open("sellers.json", "r", encoding="utf-8") as f:
+# --- Load sellers.json from data folder ---
+data_path = Path("data/sellers.json")
+with data_path.open("r", encoding="utf-8") as f:
     sellers = json.load(f)
 
 # --- Scrape function to get updated review count ---
@@ -30,7 +32,8 @@ for seller in sellers:
     print(f"{updated}")
 
 # --- Save updated file ---
-with open("sellers_updated.json", "w", encoding="utf-8") as f:
+updated_path = Path("data/sellers_updated.json")
+with updated_path.open("w", encoding="utf-8") as f:
     json.dump(sellers, f, indent=2)
 
 print("\n✅ Done! sellers_updated.json has been updated.")
