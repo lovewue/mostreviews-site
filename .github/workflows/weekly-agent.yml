@@ -27,9 +27,14 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          pip install selenium webdriver-manager openpyxl
+          pip install selenium webdriver-manager openpyxl requests pandas
 
       - name: Run Feefo API Agent
-        run: python agent.py
+        run: python review-pull/Feefo-Reviews-Last-Week-CT.py
 
-
+      - name: Upload output file as artifact
+        if: success()  # Only upload if the previous step was successful
+        uses: actions/upload-artifact@v3
+        with:
+          name: feefo-product-ratings
+          path: data/feefo_product_ratings_week_CT_*.xlsx  # Adjust path as necessary
