@@ -12,7 +12,7 @@ params = {
     "review_count": "true",
     "since_period": "week",
     "page_size": 1000,
-    "merchant_identifier": "notonthehighstreet-com"
+    "merchant_identifier": "ct-shirts-uk"
 }
 
 headers = {
