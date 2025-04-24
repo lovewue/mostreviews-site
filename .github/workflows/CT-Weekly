@@ -1,23 +1,23 @@
-iew-pullname: Weekly Feefo Report Agent CT
+name: Weekly Feefo Report Agent CT
 
 on:
   schedule:
-    - cron: '0 0 * * 1'  # Every Monday at 00:00 UTC (cron syntax)
-  workflow_dispatch:      # Allows manual trigger
+    - cron: '0 0 * * 1'  # Every Monday at 00:00 UTC
+  workflow_dispatch:      # Also allows manual trigger
 
 jobs:
   run-agent:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write  # Adjust permissions as necessary
+      contents: write
 
     env:
-      FEEFO_API_TOKEN: ${{ secrets.FEEFO_API_TOKEN }}  # Use the stored secret
+      FEEFO_API_TOKEN: ${{ secrets.FEEFO_API_TOKEN }}
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3  # Check out the repository
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -30,4 +30,4 @@ jobs:
           pip install selenium webdriver-manager openpyxl
 
       - name: Run Feefo API Agent
-        run: python review-pull/Feefo-Reviews-Last-Week-CT.py  # Run your Python script
+        run: python review-pull/Feefo-Reviews-Last-Week-CT.py  # Adjusted path
