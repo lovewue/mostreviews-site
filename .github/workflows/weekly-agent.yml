@@ -27,14 +27,20 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          pip install selenium webdriver-manager openpyxl requests pandas
+          pip install selenium webdriver-manager openpyxl
 
       - name: Run Feefo API Agent
-        run: python review-pull/Feefo-Reviews-Last-Week-CT.py
+        run: python agent.py
 
-      - name: Upload output file as artifact
-        if: success()  # Only upload if the previous step was successful
-        uses: actions/upload-artifact@v3
-        with:
-          name: feefo-product-ratings
-          path: data/feefo_product_ratings_week_CT_*.xlsx  # Adjust path as necessary
+      - name: Run Enrichment Scraper
+        run: python enrich_with_reviews.py
+
+      - name: Commit enriched reports
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git pull
+          git add data/*.xlsx
+          timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          git commit -m "Update Feefo and Review reports for $timestamp" || echo "No changes to commit"
+          git push
