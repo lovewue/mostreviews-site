@@ -1,4 +1,4 @@
-name: Weekly Feefo Report Agent CT
+iew-pullname: Weekly Feefo Report Agent CT
 
 on:
   schedule:
@@ -30,4 +30,4 @@ jobs:
           pip install selenium webdriver-manager openpyxl
 
       - name: Run Feefo API Agent
-        run: python Feefo-Reviews-Last-Week-CT.py  # Run your Python script
+        run: python review-pull/Feefo-Reviews-Last-Week-CT.py  # Run your Python script
