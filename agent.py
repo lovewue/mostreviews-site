@@ -12,7 +12,7 @@ params = {
     "review_count": "true",
     "since_period": "week",
     "page_size": 1000,
-    "merchant_identifier": "ct-shirts-uk"
+    "merchant_identifier": "notonthehighstreet-com"
 }
 
 headers = {
@@ -63,7 +63,7 @@ if all_products:
     # Create output folder and file
     today = datetime.utcnow().strftime("%Y%m%d")
     os.makedirs("data", exist_ok=True)
-    output_file = f"data/feefo_product_ratings_week_CT_{today}.xlsx"
+    output_file = f"data/feefo_product_ratings_week_{today}.xlsx"
     df.to_excel(output_file, index=False)
 
     print(f"✅ Data saved to {output_file}")
