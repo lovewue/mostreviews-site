@@ -19,7 +19,7 @@ header {
 }
 
 .logo {
-    width: 300px;
+    width: 200px;
 }
 
 nav ul {
@@ -31,7 +31,7 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: #333;
+    color: #183C59;
     font-weight: bold;
 }
 
@@ -43,7 +43,7 @@ nav a {
 
 .hero h1 {
     font-size: 2.5rem;
-    color: #333;
+    color: #183C59;
 }
 
 .cta-button {
@@ -68,7 +68,7 @@ section {
 }
 
 footer {
-    background-color: #333;
+    background-color: #183C59;
     color: #fff;
     padding: 20px;
     text-align: center;
