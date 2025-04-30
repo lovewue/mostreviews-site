@@ -2,7 +2,7 @@ name: Monthly Feefo Report Agent
 
 on:
   schedule:
-    - cron: '0 0 * * 1'  # Every Monday at 00:00 UTC
+    - cron: '0 0 1 * *'  # At 00:00 on the 1st of every month
   workflow_dispatch:      # Also allows manual trigger
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
           pip install selenium webdriver-manager openpyxl
 
       - name: Run Feefo API Agent
-        run: python agent.py
+        run: python month-agent.py
 
       - name: Commit agent output
         run: |
