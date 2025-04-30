@@ -10,7 +10,7 @@ API_TOKEN = os.getenv("FEEFO_API_TOKEN")
 url = "https://api.feefo.com/api/20/products/ratings"
 params = {
     "review_count": "true",
-    "since_period": "month",
+    "since_period": "week",
     "page_size": 1000,
     "merchant_identifier": "notonthehighstreet-com"
 }
