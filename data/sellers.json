@@ -157,7 +157,7 @@
     "url": "https://www.notonthehighstreet.com/my1styears",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A//www.notonthehighstreet.com/my1styears",
     "since": "Mar 2011",
-    "reviews": "10,577"
+    "reviews": "ERROR: HTTPSConnectionPool(host='www.notonthehighstreet.com', port=443): Read timed out."
   },
   {
     "slug": "sparksanddaughters",
@@ -253,7 +253,7 @@
     "url": "https://www.notonthehighstreet.com/twentyseven",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A//www.notonthehighstreet.com/twentyseven",
     "since": "Sep 2012",
-    "reviews": "8,279"
+    "reviews": "ERROR: HTTPSConnectionPool(host='www.notonthehighstreet.com', port=443): Read timed out. (read timeout=10)"
   },
   {
     "slug": "lucysworld",
