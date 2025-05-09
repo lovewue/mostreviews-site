@@ -1,11 +1,113 @@
 🔍 Changes:
 diff --git a/data/sellers.json b/data/sellers.json
-index c41170f..1510124 100644
+index 1510124..fb12649 100644
 --- a/data/sellers.json
 +++ b/data/sellers.json
+@@ -8 +8 @@
+-    "reviews": "41,990"
++    "reviews": "41,993"
+@@ -24 +24 @@
+-    "reviews": "22,649"
++    "reviews": "22,652"
+@@ -32 +32 @@
+-    "reviews": "22,461"
++    "reviews": "22,465"
+@@ -48 +48 @@
+-    "reviews": "16,290"
++    "reviews": "16,291"
+@@ -64 +64 @@
+-    "reviews": "14,868"
++    "reviews": "14,869"
+@@ -80 +80 @@
+-    "reviews": "13,696"
++    "reviews": "13,698"
+@@ -88 +88 @@
+-    "reviews": "12,612"
++    "reviews": "12,613"
+@@ -112 +112 @@
+-    "reviews": "11,938"
++    "reviews": "11,940"
+@@ -128 +128 @@
+-    "reviews": "11,021"
++    "reviews": "11,024"
+@@ -136 +136 @@
+-    "reviews": "10,922"
++    "reviews": "10,924"
 @@ -160 +160 @@
--    "reviews": "10,577"
-+    "reviews": "ERROR: HTTPSConnectionPool(host='www.notonthehighstreet.com', port=443): Read timed out."
+-    "reviews": "ERROR: HTTPSConnectionPool(host='www.notonthehighstreet.com', port=443): Read timed out."
++    "reviews": "10,577"
+@@ -192 +192 @@
+-    "reviews": "9,102"
++    "reviews": "9,105"
+@@ -200 +200 @@
+-    "reviews": "8,995"
++    "reviews": "8,997"
+@@ -240 +240 @@
+-    "reviews": "8,505"
++    "reviews": "8,511"
 @@ -256 +256 @@
--    "reviews": "8,279"
-+    "reviews": "ERROR: HTTPSConnectionPool(host='www.notonthehighstreet.com', port=443): Read timed out. (read timeout=10)"
+-    "reviews": "ERROR: HTTPSConnectionPool(host='www.notonthehighstreet.com', port=443): Read timed out. (read timeout=10)"
++    "reviews": "8,280"
+@@ -280 +280 @@
+-    "reviews": "7,981"
++    "reviews": "7,982"
+@@ -296 +296 @@
+-    "reviews": "7,942"
++    "reviews": "7,946"
+@@ -304 +304 @@
+-    "reviews": "7,765"
++    "reviews": "7,771"
+@@ -312 +312 @@
+-    "reviews": "7,729"
++    "reviews": "7,730"
+@@ -328 +328 @@
+-    "reviews": "7,353"
++    "reviews": "7,356"
+@@ -360 +360 @@
+-    "reviews": "6,855"
++    "reviews": "6,856"
+@@ -400 +400 @@
+-    "reviews": "6,326"
++    "reviews": "6,327"
+@@ -424 +424 @@
+-    "reviews": "6,251"
++    "reviews": "6,252"
+@@ -472 +472 @@
+-    "reviews": "5,729"
++    "reviews": "5,731"
+@@ -520 +520 @@
+-    "reviews": "5,374"
++    "reviews": "5,376"
+@@ -536 +536 @@
+-    "reviews": "5,326"
++    "reviews": "5,327"
+@@ -560 +560 @@
+-    "reviews": "5,095"
++    "reviews": "5,096"
+@@ -584 +584 @@
+-    "reviews": "4,991"
++    "reviews": "4,994"
+@@ -600 +600 @@
+-    "reviews": "4,960"
++    "reviews": "4,961"
+@@ -608 +608 @@
+-    "reviews": "4,925"
++    "reviews": "4,929"
+@@ -656 +656 @@
+-    "reviews": "4,274"
++    "reviews": "4,276"
+@@ -664 +664 @@
+-    "reviews": "4,242"
++    "reviews": "4,243"
+@@ -688 +688 @@
+-    "reviews": "4,096"
++    "reviews": "4,097"
+@@ -712 +712 @@
+-    "reviews": "3,982"
++    "reviews": "3,984"
+@@ -728 +728 @@
+-    "reviews": "3,918"
++    "reviews": "3,919"
+@@ -752 +752 @@
+-    "reviews": "3,793"
++    "reviews": "3,796"
