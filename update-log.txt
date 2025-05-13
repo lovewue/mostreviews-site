@@ -1,59 +1,38 @@
 🔍 Changes:
 diff --git a/data/sellers.json b/data/sellers.json
-index 44806d4..0dd05e8 100644
+index 0dd05e8..c1dbfa3 100644
 --- a/data/sellers.json
 +++ b/data/sellers.json
-@@ -8 +8 @@
--    "reviews": "41,993"
-+    "reviews": "41,995"
 @@ -24 +24 @@
--    "reviews": "22,653"
-+    "reviews": "22,654"
-@@ -48 +48 @@
--    "reviews": "16,291"
-+    "reviews": "16,292"
-@@ -80 +80 @@
--    "reviews": "13,700"
-+    "reviews": "13,702"
-@@ -136 +136 @@
--    "reviews": "10,925"
-+    "reviews": "10,926"
-@@ -200 +200 @@
--    "reviews": "9,000"
-+    "reviews": "9,001"
+-    "reviews": "22,654"
++    "reviews": "22,655"
 @@ -240 +240 @@
--    "reviews": "8,515"
-+    "reviews": "8,516"
+-    "reviews": "8,516"
++    "reviews": "8,517"
 @@ -256 +256 @@
--    "reviews": "8,280"
-+    "reviews": "8,281"
-@@ -272 +272 @@
--    "reviews": "8,214"
-+    "reviews": "8,215"
-@@ -280 +280 @@
--    "reviews": "7,982"
-+    "reviews": "7,983"
-@@ -296 +296 @@
--    "reviews": "7,946"
-+    "reviews": "7,948"
+-    "reviews": "8,281"
++    "reviews": "8,282"
 @@ -304 +304 @@
--    "reviews": "7,776"
-+    "reviews": "7,779"
-@@ -328 +328 @@
--    "reviews": "7,356"
-+    "reviews": "7,357"
-@@ -400 +400 @@
--    "reviews": "6,327"
-+    "reviews": "6,328"
-@@ -480 +480 @@
--    "reviews": "5,685"
-+    "reviews": "5,686"
-@@ -496 +496 @@
--    "reviews": "5,542"
-+    "reviews": "5,543"
-@@ -632 +632 @@
--    "reviews": "4,373"
-+    "reviews": "4,374"
-@@ -760 +760 @@
--    "reviews": "3,720"
-+    "reviews": "3,721"
+-    "reviews": "7,779"
++    "reviews": "7,780"
+@@ -336 +336 @@
+-    "reviews": "7,201"
++    "reviews": "7,202"
+@@ -512 +512 @@
+-    "reviews": "5,472"
++    "reviews": "5,473"
+@@ -552 +552 @@
+-    "reviews": "5,148"
++    "reviews": "5,149"
+@@ -560 +560 @@
+-    "reviews": "5,096"
++    "reviews": "5,097"
+@@ -600 +600 @@
+-    "reviews": "4,962"
++    "reviews": "4,963"
+@@ -608 +608 @@
+-    "reviews": "4,929"
++    "reviews": "4,930"
+@@ -752 +752 @@
+-    "reviews": "3,796"
++    "reviews": "3,797"
