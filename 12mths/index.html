@@ -30,14 +30,21 @@
 <script>
 $(document).ready(function() {
     $('#sellersTable').DataTable({
-        "ajax": "top-sellers.json",
+        "ajax": {
+            "url": "top-sellers.json",
+            "dataType": "json",
+            "error": function(xhr, error, thrown) {
+                console.error("❌ Error loading JSON:", error, xhr.status, xhr.statusText);
+                alert("Could not load data. Check your browser console and file paths.");
+            }
+        },
         "columns": [
             { "data": "rank" },
             { 
-              "data": "shop_name",
-              "render": function(data, type, row) {
-                  return '<a href="' + row.affiliate_link + '" target="_blank">' + data + '</a>';
-              }
+                "data": "shop_name",
+                "render": function(data, type, row) {
+                    return '<a href="' + row.affiliate_link + '" target="_blank" rel="noopener">' + data + '</a>';
+                }
             }
         ],
         "order": [[0, "asc"]]
