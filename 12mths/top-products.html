@@ -27,7 +27,7 @@
 </table>
 
 <script>
-fetch('top-products.json')
+fetch('/12mths/top-products.json?v=20240516')
     .then(response => response.json())
     .then(data => {
         const tbody = document.getElementById('productsTable').querySelector('tbody');
