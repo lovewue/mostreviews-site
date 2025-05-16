@@ -2,54 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Top Sellers Table</title>
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <title>Top Sellers Table (Pure)</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
-        table { width: 100%; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; border: 1px solid #ddd; text-align: left; }
+        a { color: #0073e6; text-decoration: none; }
     </style>
 </head>
 <body>
 
 <h2>Top Sellers</h2>
-<table id="sellersTable" class="display">
+<table id="sellersTable">
     <thead>
         <tr>
             <th>Rank</th>
             <th>Shop Name</th>
         </tr>
     </thead>
+    <tbody>
+        <tr><td colspan="2">Loading...</td></tr>
+    </tbody>
 </table>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<!-- DataTables JS -->
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-
 <script>
-$(document).ready(function() {
-    $('#sellersTable').DataTable({
-        "ajax": {
-            "url": "top-sellers.json",
-            "dataType": "json",
-            "error": function(xhr, error, thrown) {
-                console.error("❌ Error loading JSON:", error, xhr.status, xhr.statusText);
-                alert("Could not load data. Check your browser console and file paths.");
-            }
-        },
-        "columns": [
-            { "data": "rank" },
-            { 
-                "data": "shop_name",
-                "render": function(data, type, row) {
-                    return '<a href="' + row.affiliate_link + '" target="_blank" rel="noopener">' + data + '</a>';
-                }
-            }
-        ],
-        "order": [[0, "asc"]]
+fetch('top-sellers.json')
+    .then(response => response.json())
+    .then(data => {
+        const tbody = document.getElementById('sellersTable').querySelector('tbody');
+        tbody.innerHTML = ''; // Clear loading message
+
+        data.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.rank}</td>
+                <td><a href="${item.affiliate_link}" target="_blank" rel="noopener">${item.shop_name}</a></td>
+            `;
+            tbody.appendChild(row);
+        });
+    })
+    .catch(error => {
+        console.error('❌ Error loading JSON:', error);
+        document.getElementById('sellersTable').querySelector('tbody').innerHTML = '<tr><td colspan="2">Failed to load data.</td></tr>';
     });
-});
 </script>
 
 </body>
