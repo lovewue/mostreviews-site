@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Top Sellers Table</title>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; }
+    </style>
+</head>
+<body>
+
+<h2>Top Sellers</h2>
+<table id="sellersTable" class="display">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Shop Name</th>
+        </tr>
+    </thead>
+</table>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#sellersTable').DataTable({
+        "ajax": "top-sellers.json",
+        "columns": [
+            { "data": "rank" },
+            { 
+              "data": "shop_name",
+              "render": function(data, type, row) {
+                  return '<a href="' + row.affiliate_link + '" target="_blank">' + data + '</a>';
+              }
+            }
+        ],
+        "order": [[0, "asc"]]
+    });
+});
+</script>
+
+</body>
+</html>
