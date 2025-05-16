@@ -2,32 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Most Reviewed on NOTHS</title>
+    <title>Top Reviewed Products</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 40px; text-align: center; }
-        h1 { font-size: 2em; margin-bottom: 40px; }
-        a.button {
-            display: inline-block;
-            margin: 20px;
-            padding: 15px 30px;
-            background-color: #0073e6;
-            color: white;
-            text-decoration: none;
-            font-size: 1.2em;
-            border-radius: 6px;
-        }
-        a.button:hover {
-            background-color: #005bb5;
-        }
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; border: 1px solid #ddd; text-align: left; }
+        a { color: #0073e6; text-decoration: none; }
     </style>
 </head>
 <body>
 
-<h1>Most Reviewed on NOTHS</h1>
+<h2>Top Reviewed Products</h2>
+<table id="productsTable">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Product</th>
+            <th>Reviews</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td colspan="3">Loading...</td></tr>
+    </tbody>
+</table>
 
-<a href="top-sellers.html" class="button">Top Sellers</a>
-<a href="top-products.html" class="button">Top Products</a>
+<script>
+fetch('top-products.json')
+    .then(response => response.json())
+    .then(data => {
+        const tbody = document.getElementById('productsTable').querySelector('tbody');
+        tbody.innerHTML = '';
+
+        data.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.rank}</td>
+                <td><a href="${item.affiliate_link}" target="_blank" rel="noopener">${item.product_name}</a></td>
+                <td>${item.review_count}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    })
+    .catch(error => {
+        console.error('❌ Error loading JSON:', error);
+        document.getElementById('productsTable').querySelector('tbody').innerHTML = '<tr><td colspan="3">Failed to load data.</td></tr>';
+    });
+</script>
 
 </body>
 </html>
-
