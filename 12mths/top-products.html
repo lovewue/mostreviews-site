@@ -1519,6 +1519,10 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+        .container {
+            max-width: 1200px; /* Set your preferred max width */
+            margin: auto;      /* Center the container */
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -1550,7 +1554,7 @@
     </style>
 </head>
 <body>
-
+<div class="container">
 <h2>Top 250 Products on NOTHS (Last 12 Months)</h2>
 <table id="productsTable">
     <thead>
@@ -1564,7 +1568,7 @@
         <tr><td colspan="3">Loading...</td></tr>
     </tbody>
 </table>
-
+</div>
 <script>
 const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 const isMobile = /android|iphone|ipad|iPod|windows phone/i.test(userAgent.toLowerCase());
