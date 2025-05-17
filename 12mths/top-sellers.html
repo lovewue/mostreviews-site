@@ -1517,15 +1517,32 @@
     </script>
 
     
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 8px; border: 1px solid #ddd; text-align: left; }
-        a { color: #0073e6; text-decoration: none; }
-    </style>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    .container {
+        max-width: 1200px;
+        margin: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+    a {
+        color: #0073e6;
+        text-decoration: none;
+    }
+</style>
 </head>
 <body>
-
+<div class="container">
 <h2>Top 250 NOTHS Partners (Last 12 Months)</h2>
 <table id="sellersTable">
     <thead>
@@ -1539,7 +1556,7 @@
         <tr><td colspan="3">Loading...</td></tr>
     </tbody>
 </table>
-
+</div>
 <script>
 // Simple mobile detection
 const userAgent = navigator.userAgent || navigator.vendor || window.opera;
