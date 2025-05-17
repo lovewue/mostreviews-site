@@ -1539,12 +1539,12 @@
         color: #0073e6;
         text-decoration: none;
     }
-    .partner {
+    .shop-name {
         display: block;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 250px;
+        max-width: 250px; /* Or adjust based on your table */
     }
 </style>
 </head>
@@ -1580,7 +1580,11 @@ fetch('/12mths/top-sellers.json?v=20240516')
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${item.rank}</td>
-                <td><a href="${link}" target="_blank" rel="noopener" class="shop-name" title="${item.shop_name}">${item.shop_name}</a></td>
+                <td>
+                    <a href="${link}" target="_blank" rel="noopener" class="shop-name" title="${item.shop_name}">
+                    ${item.shop_name}
+                    </a>
+                </td>
                 <td>${item.total_reviews}</td>
             `;
             tbody.appendChild(row);
