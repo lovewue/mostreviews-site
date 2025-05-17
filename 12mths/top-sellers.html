@@ -1539,6 +1539,13 @@
         color: #0073e6;
         text-decoration: none;
     }
+    .partner {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 250px;
+    }
 </style>
 </head>
 <body>
@@ -1573,7 +1580,7 @@ fetch('/12mths/top-sellers.json?v=20240516')
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${item.rank}</td>
-                <td><a href="${link}" target="_blank" rel="noopener">${item.shop_name}</a></td>
+                <td><a href="${link}" target="_blank" rel="noopener" class="shop-name" title="${item.shop_name}">${item.shop_name}</a></td>
                 <td>${item.total_reviews}</td>
             `;
             tbody.appendChild(row);
