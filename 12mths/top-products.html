@@ -18,7 +18,7 @@
         <tr>
             <th>Rank</th>
             <th>Product</th>
-            <th>Reviews</th>
+            <th>Partner</th>
         </tr>
     </thead>
     <tbody>
@@ -43,7 +43,7 @@ fetch('/12mths/top-products.json?v=20240516')
             row.innerHTML = `
                 <td>${item.rank}</td>
                 <td><a href="${link}" target="_blank" rel="noopener">${item.product_name}</a></td>
-                <td>${item.review_count}</td>
+                <td>${item.partner}</td>
             `;
             tbody.appendChild(row);
         });
