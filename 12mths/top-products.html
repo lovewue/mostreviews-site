@@ -1515,15 +1515,43 @@
 }
     </script>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 8px; border: 1px solid #ddd; text-align: left; }
-        a { color: #0073e6; text-decoration: none; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+            vertical-align: top;
+        }
+        .product-name {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 300px; /* Adjust this width as needed */
+        }
+        a {
+            color: #0073e6;
+            text-decoration: none;
+        }
+
+        /* Optional: Make table mobile-friendly (optional, keeps it clean) */
+        @media (max-width: 600px) {
+            .product-name {
+                max-width: 200px;
+            }
+        }
     </style>
 </head>
 <body>
 
-<h2>Top 250 Products on NOTHS (Last 12 Months</h2>
+<h2>Top 250 Products on NOTHS (Last 12 Months)</h2>
 <table id="productsTable">
     <thead>
         <tr>
@@ -1538,7 +1566,6 @@
 </table>
 
 <script>
-// Simple mobile detection
 const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 const isMobile = /android|iphone|ipad|iPod|windows phone/i.test(userAgent.toLowerCase());
 
@@ -1553,7 +1580,11 @@ fetch('/12mths/top-products.json?v=20240516')
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${item.rank}</td>
-                <td><a href="${link}" target="_blank" rel="noopener">${item.product_name}</a></td>
+                <td>
+                    <a href="${link}" target="_blank" rel="noopener" class="product-name" title="${item.product_name}">
+                        ${item.product_name}
+                    </a>
+                </td>
                 <td>${item.partner}</td>
             `;
             tbody.appendChild(row);
