@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Top Sellers Table (Pure)</title>
+    <title>Top Sellers</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
         table { width: 100%; border-collapse: collapse; }
@@ -18,32 +18,39 @@
         <tr>
             <th>Rank</th>
             <th>Shop Name</th>
+            <th>Reviews</th>
         </tr>
     </thead>
     <tbody>
-        <tr><td colspan="2">Loading...</td></tr>
+        <tr><td colspan="3">Loading...</td></tr>
     </tbody>
 </table>
 
 <script>
-fetch('top-sellers.json')
+// Simple mobile detection
+const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+const isMobile = /android|iphone|ipad|iPod|windows phone/i.test(userAgent.toLowerCase());
+
+fetch('/12mths/top-sellers.json?v=20240516')
     .then(response => response.json())
     .then(data => {
         const tbody = document.getElementById('sellersTable').querySelector('tbody');
-        tbody.innerHTML = ''; // Clear loading message
+        tbody.innerHTML = '';
 
         data.forEach(item => {
+            const link = isMobile ? item.link : item.affiliate_link;
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${item.rank}</td>
-                <td><a href="${item.affiliate_link}" target="_blank" rel="noopener">${item.shop_name}</a></td>
+                <td><a href="${link}" target="_blank" rel="noopener">${item.shop_name}</a></td>
+                <td>${item.total_reviews}</td>
             `;
             tbody.appendChild(row);
         });
     })
     .catch(error => {
         console.error('❌ Error loading JSON:', error);
-        document.getElementById('sellersTable').querySelector('tbody').innerHTML = '<tr><td colspan="2">Failed to load data.</td></tr>';
+        document.getElementById('sellersTable').querySelector('tbody').innerHTML = '<tr><td colspan="3">Failed to load data.</td></tr>';
     });
 </script>
 
