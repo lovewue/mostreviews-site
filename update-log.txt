@@ -1,95 +1,128 @@
 🔍 Changes:
 diff --git a/data/sellers.json b/data/sellers.json
-index e3729a9..965d031 100644
+index 965d031..cd0e5c9 100644
 --- a/data/sellers.json
 +++ b/data/sellers.json
 @@ -8 +8 @@
--    "reviews": "42,008"
-+    "reviews": "42,009"
-@@ -24 +24 @@
--    "reviews": "22,661"
-+    "reviews": "22,662"
+-    "reviews": "42,009"
++    "reviews": "42,012"
 @@ -32 +32 @@
--    "reviews": "22,473"
-+    "reviews": "22,474"
+-    "reviews": "22,474"
++    "reviews": "22,478"
 @@ -48 +48 @@
--    "reviews": "16,295"
-+    "reviews": "16,296"
+-    "reviews": "16,296"
++    "reviews": "16,299"
 @@ -56 +56 @@
--    "reviews": "15,116"
-+    "reviews": "15,117"
+-    "reviews": "15,117"
++    "reviews": "15,120"
 @@ -64 +64 @@
--    "reviews": "14,878"
-+    "reviews": "14,879"
+-    "reviews": "14,879"
++    "reviews": "14,880"
+@@ -72 +72 @@
+-    "reviews": "13,787"
++    "reviews": "13,789"
+@@ -80 +80 @@
+-    "reviews": "13,710"
++    "reviews": "13,711"
 @@ -88 +88 @@
--    "reviews": "12,622"
-+    "reviews": "12,623"
+-    "reviews": "12,623"
++    "reviews": "12,626"
+@@ -96 +96 @@
+-    "reviews": "12,496"
++    "reviews": "12,498"
 @@ -104 +104 @@
--    "reviews": "12,447"
-+    "reviews": "12,448"
-@@ -112 +112 @@
--    "reviews": "11,951"
-+    "reviews": "11,953"
+-    "reviews": "12,448"
++    "reviews": "12,449"
 @@ -128 +128 @@
--    "reviews": "11,047"
-+    "reviews": "11,052"
+-    "reviews": "11,052"
++    "reviews": "11,054"
 @@ -136 +136 @@
--    "reviews": "10,926"
-+    "reviews": "10,927"
+-    "reviews": "10,927"
++    "reviews": "10,928"
+@@ -144 +144 @@
+-    "reviews": "10,748"
++    "reviews": "10,749"
+@@ -192 +192 @@
+-    "reviews": "9,114"
++    "reviews": "9,116"
 @@ -200 +200 @@
--    "reviews": "9,007"
-+    "reviews": "9,010"
-@@ -232 +232 @@
--    "reviews": "8,503"
-+    "reviews": "8,505"
+-    "reviews": "9,010"
++    "reviews": "9,011"
+@@ -208 +208 @@
+-    "reviews": "8,831"
++    "reviews": "8,832"
+@@ -240 +240 @@
+-    "reviews": "8,539"
++    "reviews": "8,541"
 @@ -264 +264 @@
--    "reviews": "8,282"
-+    "reviews": "8,283"
-@@ -280 +280 @@
--    "reviews": "7,986"
-+    "reviews": "7,987"
+-    "reviews": "8,283"
++    "reviews": "8,286"
 @@ -296 +296 @@
--    "reviews": "7,953"
-+    "reviews": "7,957"
+-    "reviews": "7,957"
++    "reviews": "7,959"
 @@ -304 +304 @@
--    "reviews": "7,803"
-+    "reviews": "7,807"
+-    "reviews": "7,807"
++    "reviews": "7,810"
 @@ -312 +312 @@
--    "reviews": "7,742"
-+    "reviews": "7,745"
+-    "reviews": "7,745"
++    "reviews": "7,748"
 @@ -328 +328 @@
--    "reviews": "7,370"
-+    "reviews": "7,371"
+-    "reviews": "7,371"
++    "reviews": "7,372"
+@@ -360 +360 @@
+-    "reviews": "6,856"
++    "reviews": "6,857"
+@@ -392 +392 @@
+-    "reviews": "6,453"
++    "reviews": "6,454"
 @@ -408 +408 @@
--    "reviews": "6,273"
-+    "reviews": "6,274"
+-    "reviews": "6,274"
++    "reviews": "6,277"
+@@ -416 +416 @@
+-    "reviews": "6,260"
++    "reviews": "6,261"
 @@ -432 +432 @@
--    "reviews": "6,139"
-+    "reviews": "6,140"
-@@ -464 +464 @@
--    "reviews": "5,766"
-+    "reviews": "5,768"
+-    "reviews": "6,140"
++    "reviews": "6,141"
+@@ -456 +456 @@
+-    "reviews": "6,032"
++    "reviews": "6,033"
+@@ -472 +472 @@
+-    "reviews": "5,732"
++    "reviews": "5,733"
+@@ -488 +488 @@
+-    "reviews": "5,662"
++    "reviews": "5,663"
 @@ -520 +520 @@
--    "reviews": "5,379"
-+    "reviews": "5,381"
-@@ -552 +552 @@
--    "reviews": "5,151"
-+    "reviews": "5,152"
+-    "reviews": "5,381"
++    "reviews": "5,382"
+@@ -536 +536 @@
+-    "reviews": "5,332"
++    "reviews": "5,334"
+@@ -544 +544 @@
+-    "reviews": "5,248"
++    "reviews": "5,249"
+@@ -568 +568 @@
+-    "reviews": "5,013"
++    "reviews": "5,014"
 @@ -584 +584 @@
--    "reviews": "5,000"
-+    "reviews": "5,001"
+-    "reviews": "5,001"
++    "reviews": "5,002"
 @@ -592 +592 @@
--    "reviews": "4,997"
-+    "reviews": "4,998"
+-    "reviews": "4,998"
++    "reviews": "4,999"
 @@ -608 +608 @@
--    "reviews": "4,941"
-+    "reviews": "4,945"
+-    "reviews": "4,945"
++    "reviews": "4,946"
 @@ -632 +632 @@
--    "reviews": "4,375"
-+    "reviews": "4,376"
-@@ -648 +648 @@
--    "reviews": "4,284"
-+    "reviews": "4,285"
-@@ -704 +704 @@
--    "reviews": "3,987"
-+    "reviews": "3,988"
+-    "reviews": "4,376"
++    "reviews": "4,377"
+@@ -664 +664 @@
+-    "reviews": "4,244"
++    "reviews": "4,245"
+@@ -680 +680 @@
+-    "reviews": "4,150"
++    "reviews": "4,151"
+@@ -728 +728 @@
+-    "reviews": "3,920"
++    "reviews": "3,921"
