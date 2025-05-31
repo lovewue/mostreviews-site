@@ -1,101 +1,92 @@
 🔍 Changes:
 diff --git a/data/sellers.json b/data/sellers.json
-index cd0e5c9..fb9d85a 100644
+index fb9d85a..0823d85 100644
 --- a/data/sellers.json
 +++ b/data/sellers.json
 @@ -8 +8 @@
--    "reviews": "42,012"
-+    "reviews": "42,016"
+-    "reviews": "42,016"
++    "reviews": "42,017"
 @@ -32 +32 @@
--    "reviews": "22,478"
-+    "reviews": "22,479"
+-    "reviews": "22,479"
++    "reviews": "22,480"
 @@ -48 +48 @@
--    "reviews": "16,299"
-+    "reviews": "16,302"
+-    "reviews": "16,302"
++    "reviews": "16,304"
 @@ -56 +56 @@
--    "reviews": "15,120"
-+    "reviews": "15,121"
+-    "reviews": "15,121"
++    "reviews": "15,126"
 @@ -64 +64 @@
--    "reviews": "14,880"
-+    "reviews": "14,881"
+-    "reviews": "14,881"
++    "reviews": "14,883"
+@@ -96 +96 @@
+-    "reviews": "12,498"
++    "reviews": "12,500"
+@@ -104 +104 @@
+-    "reviews": "12,449"
++    "reviews": "12,450"
+@@ -112 +112 @@
+-    "reviews": "11,953"
++    "reviews": "11,954"
 @@ -128 +128 @@
--    "reviews": "11,054"
-+    "reviews": "11,056"
+-    "reviews": "11,056"
++    "reviews": "11,059"
 @@ -136 +136 @@
--    "reviews": "10,928"
-+    "reviews": "10,929"
-@@ -144 +144 @@
--    "reviews": "10,749"
-+    "reviews": "10,750"
+-    "reviews": "10,929"
++    "reviews": "10,930"
+@@ -176 +176 @@
+-    "reviews": "10,494"
++    "reviews": "10,495"
 @@ -200 +200 @@
--    "reviews": "9,011"
-+    "reviews": "9,013"
-@@ -232 +232 @@
--    "reviews": "8,505"
-+    "reviews": "8,506"
+-    "reviews": "9,013"
++    "reviews": "9,014"
 @@ -240 +240 @@
--    "reviews": "8,541"
-+    "reviews": "8,542"
+-    "reviews": "8,542"
++    "reviews": "8,544"
+@@ -264 +264 @@
+-    "reviews": "8,286"
++    "reviews": "8,288"
+@@ -296 +296 @@
+-    "reviews": "7,959"
++    "reviews": "7,960"
 @@ -304 +304 @@
--    "reviews": "7,810"
-+    "reviews": "7,811"
+-    "reviews": "7,811"
++    "reviews": "7,813"
 @@ -312 +312 @@
--    "reviews": "7,748"
-+    "reviews": "7,750"
+-    "reviews": "7,750"
++    "reviews": "7,751"
 @@ -320 +320 @@
--    "reviews": "7,595"
-+    "reviews": "7,596"
+-    "reviews": "7,596"
++    "reviews": "7,597"
 @@ -328 +328 @@
--    "reviews": "7,372"
-+    "reviews": "7,374"
-@@ -408 +408 @@
--    "reviews": "6,277"
-+    "reviews": "6,278"
+-    "reviews": "7,374"
++    "reviews": "7,376"
 @@ -416 +416 @@
--    "reviews": "6,261"
-+    "reviews": "6,262"
-@@ -424 +424 @@
--    "reviews": "6,257"
-+    "reviews": "6,258"
+-    "reviews": "6,262"
++    "reviews": "6,263"
 @@ -464 +464 @@
--    "reviews": "5,768"
-+    "reviews": "5,771"
-@@ -488 +488 @@
--    "reviews": "5,663"
-+    "reviews": "5,664"
-@@ -552 +552 @@
--    "reviews": "5,152"
-+    "reviews": "5,153"
-@@ -560 +560 @@
--    "reviews": "5,100"
-+    "reviews": "5,101"
+-    "reviews": "5,771"
++    "reviews": "5,772"
+@@ -496 +496 @@
+-    "reviews": "5,543"
++    "reviews": "5,544"
+@@ -504 +504 @@
+-    "reviews": "5,535"
++    "reviews": "5,536"
+@@ -544 +544 @@
+-    "reviews": "5,249"
++    "reviews": "5,252"
 @@ -592 +592 @@
--    "reviews": "4,999"
-+    "reviews": "5,000"
+-    "reviews": "5,000"
++    "reviews": "5,002"
 @@ -600 +600 @@
--    "reviews": "4,966"
-+    "reviews": "4,967"
+-    "reviews": "4,967"
++    "reviews": "4,968"
 @@ -608 +608 @@
--    "reviews": "4,946"
-+    "reviews": "4,947"
-@@ -616 +616 @@
--    "reviews": "4,827"
-+    "reviews": "4,828"
-@@ -664 +664 @@
--    "reviews": "4,245"
-+    "reviews": "4,247"
-@@ -680 +680 @@
--    "reviews": "4,151"
-+    "reviews": "4,152"
+-    "reviews": "4,947"
++    "reviews": "4,948"
+@@ -624 +624 @@
+-    "reviews": "4,558"
++    "reviews": "4,559"
 @@ -688 +688 @@
--    "reviews": "4,101"
-+    "reviews": "4,102"
-@@ -696 +696 @@
--    "reviews": "4,026"
-+    "reviews": "4,027"
-@@ -712 +712 @@
--    "reviews": "3,985"
-+    "reviews": "3,986"
-@@ -728 +728 @@
--    "reviews": "3,921"
-+    "reviews": "3,922"
+-    "reviews": "4,102"
++    "reviews": "4,103"
