@@ -1,47 +1,44 @@
 🔍 Changes:
 diff --git a/data/sellers.json b/data/sellers.json
-index ac96b87..1fc2cb2 100644
+index 1fc2cb2..c3530c5 100644
 --- a/data/sellers.json
 +++ b/data/sellers.json
 @@ -8 +8 @@
--    "reviews": "42,103"
-+    "reviews": "42,106"
-@@ -24 +24 @@
--    "reviews": "22,703"
-+    "reviews": "22,704"
+-    "reviews": "42,106"
++    "reviews": "42,107"
+@@ -32 +32 @@
+-    "reviews": "22,519"
++    "reviews": "22,520"
 @@ -56 +56 @@
--    "reviews": "15,168"
-+    "reviews": "15,170"
+-    "reviews": "15,170"
++    "reviews": "15,171"
 @@ -64 +64 @@
--    "reviews": "14,923"
-+    "reviews": "14,924"
-@@ -80 +80 @@
--    "reviews": "13,749"
-+    "reviews": "13,750"
-@@ -88 +88 @@
--    "reviews": "12,653"
-+    "reviews": "12,655"
-@@ -128 +128 @@
--    "reviews": "11,119"
-+    "reviews": "11,120"
-@@ -144 +144 @@
--    "reviews": "10,761"
-+    "reviews": "10,762"
+-    "reviews": "14,924"
++    "reviews": "14,926"
+@@ -176 +176 @@
+-    "reviews": "10,502"
++    "reviews": "10,503"
 @@ -240 +240 @@
--    "reviews": "8,588"
-+    "reviews": "8,589"
+-    "reviews": "8,589"
++    "reviews": "8,590"
 @@ -304 +304 @@
--    "reviews": "7,899"
-+    "reviews": "7,900"
+-    "reviews": "7,900"
++    "reviews": "7,903"
 @@ -312 +312 @@
--    "reviews": "7,800"
-+    "reviews": "7,801"
+-    "reviews": "7,801"
++    "reviews": "7,802"
 @@ -328 +328 @@
--    "reviews": "7,430"
-+    "reviews": "7,433"
+-    "reviews": "7,433"
++    "reviews": "7,434"
 @@ -464 +464 @@
--    "reviews": "5,787"
-+    "reviews": "5,788"
-@@ -728 +728 @@
--    "reviews": "3,931"
-+    "reviews": "3,932"
+-    "reviews": "5,788"
++    "reviews": "5,790"
+@@ -488 +488 @@
+-    "reviews": "5,685"
++    "reviews": "5,686"
+@@ -624 +624 @@
+-    "reviews": "4,565"
++    "reviews": "4,566"
+@@ -688 +688 @@
+-    "reviews": "4,118"
++    "reviews": "4,119"
