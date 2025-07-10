@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 # Load seller data
-with open("sellers.json", "r", encoding="utf-8") as f:
+with open("data/sellers.json", "r", encoding="utf-8") as f:
     sellers = json.load(f)
 
 # Output folder (local build)
