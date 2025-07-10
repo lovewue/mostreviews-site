@@ -1,14 +1,14 @@
 name: Generate Seller Pages
 
 on:
-  workflow_dispatch:  # Manual trigger from the Actions tab
+  workflow_dispatch:  # Manually triggered from GitHub Actions UI
 
 jobs:
   generate:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 📦 Checkout code
+    - name: 📦 Checkout repository
       uses: actions/checkout@v3
 
     - name: 🐍 Set up Python
@@ -16,7 +16,7 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: 🧪 Install dependencies
+    - name: 🧪 Install Python dependencies
       run: pip install beautifulsoup4 requests
 
     - name: 🚀 Run seller page generator
@@ -34,5 +34,5 @@ jobs:
           echo "🟡 No changes to commit"
         else
           git commit -m "Auto-update seller pages"
-          git push
+          git push origin HEAD
         fi
