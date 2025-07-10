@@ -1,0 +1,31 @@
+name: Generate Seller Pages
+
+on:
+  workflow_dispatch:  # Manual trigger from GitHub UI
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: pip install beautifulsoup4 requests
+
+    - name: Run the seller generator
+      run: python "Seller Page Generator.py"
+
+    - name: Commit changes
+      run: |
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git add sellers/
+        git commit -m "Update seller pages"
+        git push
