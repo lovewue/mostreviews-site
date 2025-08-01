@@ -23,3 +23,35 @@ import shutil
 
 # Copy static assets into output/static/
 shutil.copytree('static', 'output/static', dirs_exist_ok=True)
+
+import json
+
+def render_seller_pages():
+    # Load seller data
+    with open('data/sellers.json', 'r', encoding='utf-8') as f:
+        sellers = json.load(f)
+
+    # Make sure output folder exists
+    os.makedirs('output/sellers', exist_ok=True)
+
+    # Load the seller template
+    template = env.get_template('sellers/seller.html')
+
+    for seller in sellers:
+        html = template.render(
+            slug=seller['slug'],
+            name=seller['name'],
+            url=seller['url'],
+            since=seller.get('since', 'Unknown'),
+            reviews=seller.get('reviews', 0),
+            product_count=seller.get('product_count', 0)
+        )
+
+        output_path = f"output/sellers/{seller['slug']}.html"
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(html)
+
+    print(f"✅ Rendered {len(sellers)} seller pages to /output/sellers/")
+
+render_seller_pages()
+
