@@ -1,14 +1,27 @@
 {% extends "base.html" %}
 
-{% block title %}{{ name }} – NOTHS Seller Profile{% endblock %}
+{% block title %}NOTHS Sellers A–Z Directory{% endblock %}
 
 {% block content %}
-  <section class="seller-profile">
-    <h1>{{ name }}</h1>
-    <p><strong>Since:</strong> {{ since }}</p>
-    <p><strong>Reviews:</strong> {{ reviews }}</p>
-    <p><strong>Products:</strong> {{ product_count }}</p>
-    <p><a href="{{ url }}" target="_blank" rel="noopener">View on NOTHS →</a></p>
+  <section class="seller-directory">
+    <h1>NOTHS Sellers A–Z</h1>
+
+    <nav class="az-nav">
+      {% for letter in letters %}
+        <a href="#{{ letter }}">{{ letter }}</a>
+      {% endfor %}
+    </nav>
+
+    {% for letter, group in sellers_by_letter.items() %}
+      <h2 id="{{ letter }}">{{ letter }}</h2>
+      <ul>
+        {% for seller in group %}
+          <li>
+            <a href="/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
+            <span>({{ seller.reviews }} reviews)</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
   </section>
 {% endblock %}
-
