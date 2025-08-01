@@ -56,6 +56,35 @@ def render_seller_pages():
 
     print(f"✅ Rendered {count} seller pages into /output/sellers/[a-z]/")
 
+def render_seller_index():
+    # Load seller data
+    with open('data/sellers.json', 'r', encoding='utf-8') as f:
+        sellers = json.load(f)
+
+    # Sort and group sellers by first letter
+    from collections import defaultdict
+    grouped = defaultdict(list)
+
+    for seller in sorted(sellers, key=lambda s: s['name'].lower()):
+        first_letter = seller['slug'][0].upper()
+        grouped[first_letter].append(seller)
+
+    # Prepare data for template
+    context = {
+        "letters": sorted(grouped.keys()),
+        "sellers_by_letter": dict(grouped)
+    }
+
+    # Render the template
+    template = env.get_template('sellers/index.html')
+    os.makedirs('output/sellers', exist_ok=True)
+
+    with open('output/sellers/index.html', 'w', encoding='utf-8') as f:
+        f.write(template.render(context))
+
+    print(f"📇 Rendered sellers/index.html with {len(sellers)} sellers.")
+
 
 render_seller_pages()
+render_seller_index()
 
