@@ -18,3 +18,8 @@ with open('output/index.html', 'w', encoding='utf-8') as f:
     f.write(rendered_html)
 
 print("✅ Rendered index.html to output/index.html")
+
+import shutil
+
+# Copy static assets into output/static/
+shutil.copytree('static', 'output/static', dirs_exist_ok=True)
