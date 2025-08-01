@@ -31,6 +31,8 @@ def render_seller_pages():
 
     template = env.get_template('sellers/seller.html')
     count = 0
+    updated = 0
+
     print("📦 Rendering seller pages...")
 
     for seller in sellers:
@@ -53,16 +55,24 @@ def render_seller_pages():
             product_count=seller.get('product_count', 0)
         )
 
-        with open(output_path, 'w', encoding='utf-8') as f:
-            f.write(html)
+        # Only overwrite if changed
+        existing_html = ''
+        if os.path.exists(output_path):
+            with open(output_path, 'r', encoding='utf-8') as f:
+                existing_html = f.read()
+
+        if html != existing_html:
+            with open(output_path, 'w', encoding='utf-8') as f:
+                f.write(html)
+            updated += 1
+            if updated <= 10 or updated % 500 == 0:
+                print(f"  ✅ Updated: {output_path}")
 
         count += 1
-        if count <= 10 or count % 500 == 0:
-            print(f"  ✅ {slug} → {output_path}")
 
-    print(f"✅ Rendered {count} seller pages into /output/sellers/[a-z]/")
+    print(f"✅ Rendered {count} seller pages into /output/sellers/[a-z]/ ({updated} updated)")
 
-# Render A–Z seller index
+# Render A–Z seller index page
 def render_seller_index():
     with open('data/sellers.json', 'r', encoding='utf-8') as f:
         sellers = json.load(f)
@@ -79,7 +89,7 @@ def render_seller_index():
         if not first_letter.isalpha():
             first_letter = '#'
 
-        s['slug'] = slug  # ensure slug is lowercased for link
+        s['slug'] = slug
         grouped[first_letter].append(s)
 
     sorted_grouped = {
@@ -95,12 +105,22 @@ def render_seller_index():
     template = env.get_template('sellers/index.html')
     os.makedirs('output/sellers', exist_ok=True)
 
-    with open('output/sellers/index.html', 'w', encoding='utf-8') as f:
-        f.write(template.render(context))
+    output_path = 'output/sellers/index.html'
+    html = template.render(context)
 
-    print(f"📇 Rendered sellers/index.html with {sum(len(g) for g in sorted_grouped.values())} sellers.")
+    existing_html = ''
+    if os.path.exists(output_path):
+        with open(output_path, 'r', encoding='utf-8') as f:
+            existing_html = f.read()
 
-# Run everything
+    if html != existing_html:
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(html)
+        print(f"📇 Updated sellers/index.html")
+    else:
+        print(f"📇 sellers/index.html unchanged")
+
+# Run all
 render_homepage()
 copy_static_assets()
 render_seller_pages()
