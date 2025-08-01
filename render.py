@@ -4,10 +4,10 @@ import json
 import shutil
 from collections import defaultdict
 
-# Setup Jinja2 environment to read from 'templates' folder
+# Setup Jinja2 environment
 env = Environment(loader=FileSystemLoader('templates'))
 
-# Render the homepage
+# Render homepage
 def render_homepage():
     template = env.get_template('index.html')
     os.makedirs('output', exist_ok=True)
@@ -34,16 +34,19 @@ def render_seller_pages():
     print("📦 Rendering seller pages...")
 
     for seller in sellers:
-        slug = seller['slug']
-        first_letter = slug[0].lower()
+        slug = str(seller.get('slug', '')).strip().lower()
+        if not slug:
+            continue
+
+        first_letter = slug[0]
         output_dir = f"output/sellers/{first_letter}"
         os.makedirs(output_dir, exist_ok=True)
 
         output_path = f"{output_dir}/{slug}.html"
         html = template.render(
             slug=slug,
-            name=seller['name'],
-            url=seller['url'],
+            name=seller.get('name', 'Unknown'),
+            url=seller.get('url', '#'),
             since=seller.get('since', 'Unknown'),
             reviews=seller.get('reviews', 0),
             product_count=seller.get('product_count', 0)
@@ -58,21 +61,25 @@ def render_seller_pages():
 
     print(f"✅ Rendered {count} seller pages into /output/sellers/[a-z]/")
 
-# Render the A–Z seller directory
+# Render A–Z index page
 def render_seller_index():
     with open('data/sellers.json', 'r', encoding='utf-8') as f:
         sellers = json.load(f)
 
-    # Group sellers by first letter
     grouped = defaultdict(list)
+
     for s in sellers:
         name = str(s.get('name', '')).strip()
-        if not name:
-            continue  # skip if no name
-        first_letter = s['slug'][0].upper()
+        slug = str(s.get('slug', '')).strip().lower()
+        if not name or not slug:
+            continue
+
+        first_letter = name[0].upper()
+        if not first_letter.isalpha():
+            first_letter = '#'
+
         grouped[first_letter].append(s)
 
-    # Sort groups and sellers inside each group
     sorted_grouped = {
         letter: sorted(group, key=lambda s: str(s.get('name', '')).lower())
         for letter, group in sorted(grouped.items())
