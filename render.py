@@ -31,13 +31,15 @@ def render_seller_pages():
     with open('data/sellers.json', 'r', encoding='utf-8') as f:
         sellers = json.load(f)
 
-    # Make sure output folder exists
-    os.makedirs('output/sellers', exist_ok=True)
-
-    # Load the seller template
     template = env.get_template('sellers/seller.html')
+    count = 0
 
     for seller in sellers:
+        first_letter = seller['slug'][0].lower()
+        output_dir = f"output/sellers/{first_letter}"
+        os.makedirs(output_dir, exist_ok=True)
+
+        output_path = f"{output_dir}/{seller['slug']}.html"
         html = template.render(
             slug=seller['slug'],
             name=seller['name'],
@@ -47,11 +49,13 @@ def render_seller_pages():
             product_count=seller.get('product_count', 0)
         )
 
-        output_path = f"output/sellers/{seller['slug']}.html"
         with open(output_path, 'w', encoding='utf-8') as f:
             f.write(html)
 
-    print(f"✅ Rendered {len(sellers)} seller pages to /output/sellers/")
+        count += 1
+
+    print(f"✅ Rendered {count} seller pages into /output/sellers/[a-z]/")
+
 
 render_seller_pages()
 
