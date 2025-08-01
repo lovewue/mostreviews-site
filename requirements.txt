@@ -5,3 +5,4 @@ selenium
 webdriver-manager
 flask
 flask-login
+jinja2
