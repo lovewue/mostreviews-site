@@ -120,8 +120,32 @@ def render_seller_index():
     else:
         print(f"📇 sellers/index.html unchanged")
 
+def render_top_100(metric):
+    with open('data/sellers.json', 'r', encoding='utf-8') as f:
+        sellers = json.load(f)
+
+    # Clean and parse numeric fields
+    for seller in sellers:
+        try:
+            seller[metric] = int(str(seller.get(metric, 0)).replace(",", ""))
+        except:
+            seller[metric] = 0
+
+    top_100 = sorted(sellers, key=lambda s: s[metric], reverse=True)[:100]
+
+    template = env.get_template(f"top/top-{metric}.html")
+    os.makedirs("output/top", exist_ok=True)
+    html = template.render(sellers=top_100, metric=metric)
+
+    with open(f"output/top/top-{metric}.html", "w", encoding="utf-8") as f:
+        f.write(html)
+
+    print(f"🏆 Rendered top 100 by {metric} → output/top/top-{metric}.html")
+
 # Run all
 render_homepage()
 copy_static_assets()
 render_seller_pages()
 render_seller_index()
+render_top_100("reviews")
+render_top_100("products")
