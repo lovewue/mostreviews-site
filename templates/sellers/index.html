@@ -1,1 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ name }} – NOTHS Seller Profile{% endblock %}
+
+{% block content %}
+  <section class="seller-profile">
+    <h1>{{ name }}</h1>
+    <p><strong>Since:</strong> {{ since }}</p>
+    <p><strong>Reviews:</strong> {{ reviews }}</p>
+    <p><strong>Products:</strong> {{ product_count }}</p>
+    <p><a href="{{ url }}" target="_blank" rel="noopener">View on NOTHS →</a></p>
+  </section>
+{% endblock %}
 
