@@ -52,7 +52,7 @@ def render_seller_pages():
             url=seller.get('url', '#'),
             since=seller.get('since', 'Unknown'),
             reviews=seller.get('reviews', 0),
-            product_count=seller.get('product_count', 0)
+            product_count=seller.get('products', 0)
         )
 
         # Only overwrite if changed
