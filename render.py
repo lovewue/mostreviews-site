@@ -35,7 +35,8 @@ def render_seller_pages():
 
     for seller in sellers:
         slug = str(seller.get('slug', '')).strip().lower()
-        if not slug:
+        name = str(seller.get('name', '')).strip()
+        if not slug or not name:
             continue
 
         first_letter = slug[0]
@@ -45,7 +46,7 @@ def render_seller_pages():
         output_path = f"{output_dir}/{slug}.html"
         html = template.render(
             slug=slug,
-            name=seller.get('name', 'Unknown'),
+            name=name,
             url=seller.get('url', '#'),
             since=seller.get('since', 'Unknown'),
             reviews=seller.get('reviews', 0),
@@ -61,7 +62,7 @@ def render_seller_pages():
 
     print(f"✅ Rendered {count} seller pages into /output/sellers/[a-z]/")
 
-# Render A–Z index page
+# Render A–Z seller index
 def render_seller_index():
     with open('data/sellers.json', 'r', encoding='utf-8') as f:
         sellers = json.load(f)
@@ -78,6 +79,7 @@ def render_seller_index():
         if not first_letter.isalpha():
             first_letter = '#'
 
+        s['slug'] = slug  # ensure slug is lowercased for link
         grouped[first_letter].append(s)
 
     sorted_grouped = {
