@@ -142,6 +142,47 @@ def render_top_100(metric):
 
     print(f"🏆 Rendered top 100 by {metric} → output/top/top-{metric}.html")
 
+def render_seller_by_year():
+    with open('data/sellers.json', 'r', encoding='utf-8') as f:
+        sellers = json.load(f)
+
+    grouped = defaultdict(list)
+
+    for s in sellers:
+        since = s.get("since", "").strip()
+        slug = s.get("slug", "").strip().lower()
+        name = s.get("name", "").strip()
+
+        if not since or not slug or not name:
+            continue
+
+        # Extract year, fallback to "Unknown"
+        try:
+            year = since[-4:] if since[-4:].isdigit() else "Unknown"
+        except:
+            year = "Unknown"
+
+        grouped[year].append(s)
+
+    # Sort sellers in each year alphabetically
+    sorted_grouped = {
+        year: sorted(group, key=lambda s: s["name"].lower())
+        for year, group in sorted(grouped.items(), reverse=True)
+    }
+
+    context = {
+        "sellers_by_year": sorted_grouped
+    }
+
+    template = env.get_template('sellers/by-year.html')
+    os.makedirs('output/sellers', exist_ok=True)
+
+    with open('output/sellers/by-year.html', 'w', encoding='utf-8') as f:
+        f.write(template.render(context))
+
+    print(f"📅 Rendered sellers by year → output/sellers/by-year.html")
+
+
 # Run all
 render_homepage()
 copy_static_assets()
@@ -149,3 +190,5 @@ render_seller_pages()
 render_seller_index()
 render_top_100("reviews")
 render_top_100("products")
+render_seller_by_year()
+
