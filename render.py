@@ -52,7 +52,7 @@ def render_seller_pages():
             url=seller.get('url', '#'),
             since=seller.get('since', 'Unknown'),
             reviews=seller.get('reviews', 0),
-            product_count=seller.get('products', 0)
+            product_count = int(float(seller.get('product_count', 0)))
         )
 
         # Only overwrite if changed
@@ -149,7 +149,8 @@ def render_seller_by_year():
     grouped = defaultdict(list)
 
     for s in sellers:
-        since = s.get("since", "").strip()
+        since_raw = s.get("since", "")
+        since = str(since_raw).strip()
         slug = s.get("slug", "").strip().lower()
         name = s.get("name", "").strip()
 
