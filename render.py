@@ -190,6 +190,6 @@ copy_static_assets()
 render_seller_pages()
 render_seller_index()
 render_top_100("reviews")
-render_top_100("products")
+render_top_100("product_count")
 render_seller_by_year()
 
