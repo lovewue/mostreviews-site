@@ -125,11 +125,12 @@ def render_top_100(metric):
         sellers = json.load(f)
 
     # Clean and parse numeric fields
-    for seller in sellers:
-        try:
-            seller[metric] = int(str(seller.get(metric, 0)).replace(",", ""))
-        except:
-            seller[metric] = 0
+for seller in sellers:
+    try:
+        seller["products"] = int(str(seller.get("product_count", 0)).replace(",", ""))
+    except:
+        seller["products"] = 0
+
 
     top_100 = sorted(sellers, key=lambda s: s[metric], reverse=True)[:100]
 
