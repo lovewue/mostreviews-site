@@ -52,10 +52,9 @@ def render_seller_pages():
             url=seller.get('url', '#'),
             since=seller.get('since', 'Unknown'),
             reviews=seller.get('reviews', 0),
-            product_count = int(float(seller.get('product_count', 0)))
+            product_count=int(float(seller.get('product_count', 0)))
         )
 
-        # Only overwrite if changed
         existing_html = ''
         if os.path.exists(output_path):
             with open(output_path, 'r', encoding='utf-8') as f:
@@ -120,17 +119,23 @@ def render_seller_index():
     else:
         print(f"📇 sellers/index.html unchanged")
 
+# Render Top 100 by metric
 def render_top_100(metric):
     with open('data/sellers.json', 'r', encoding='utf-8') as f:
         sellers = json.load(f)
 
-    # Clean and parse numeric fields
-for seller in sellers:
-    try:
-        seller["products"] = int(str(seller.get("product_count", 0)).replace(",", ""))
-    except:
-        seller["products"] = 0
-
+    if metric == "products":
+        for seller in sellers:
+            try:
+                seller["products"] = int(str(seller.get("product_count", 0)).replace(",", ""))
+            except:
+                seller["products"] = 0
+    else:
+        for seller in sellers:
+            try:
+                seller[metric] = int(str(seller.get(metric, 0)).replace(",", ""))
+            except:
+                seller[metric] = 0
 
     top_100 = sorted(sellers, key=lambda s: s[metric], reverse=True)[:100]
 
@@ -138,11 +143,12 @@ for seller in sellers:
     os.makedirs("output/top", exist_ok=True)
     html = template.render(sellers=top_100, metric=metric)
 
-    with open(f"output/top/top-{metric}.html", "w", encoding="utf-8") as f:
+    with open(f"output/top/top-{metric}.html", "w", encoding='utf-8') as f:
         f.write(html)
 
     print(f"🏆 Rendered top 100 by {metric} → output/top/top-{metric}.html")
 
+# Render seller index by year
 def render_seller_by_year():
     with open('data/sellers.json', 'r', encoding='utf-8') as f:
         sellers = json.load(f)
@@ -158,7 +164,6 @@ def render_seller_by_year():
         if not since or not slug or not name:
             continue
 
-        # Extract year, fallback to "Unknown"
         try:
             year = since[-4:] if since[-4:].isdigit() else "Unknown"
         except:
@@ -166,7 +171,6 @@ def render_seller_by_year():
 
         grouped[year].append(s)
 
-    # Sort sellers in each year alphabetically
     sorted_grouped = {
         year: sorted(group, key=lambda s: s["name"].lower())
         for year, group in sorted(grouped.items(), reverse=True)
@@ -184,13 +188,11 @@ def render_seller_by_year():
 
     print(f"📅 Rendered sellers by year → output/sellers/by-year.html")
 
-
 # Run all
 render_homepage()
 copy_static_assets()
 render_seller_pages()
 render_seller_index()
 render_top_100("reviews")
-render_top_100("product")
+render_top_100("products")
 render_seller_by_year()
-
