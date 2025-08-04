@@ -47494,5 +47494,17 @@
     "name": "Zesty Lemons",
     "url": "https://www.notonthehighstreet.com/zestylemons",
     "active": true
+  },
+  {
+    "slug": "snapswing",
+    "name": "SnapSwing",
+    "url": "https://www.notonthehighstreet.com/snapswing",
+    "active": true
+  },
+  {
+    "slug": "scouseafricansweetery",
+    "name": "Scouse African Sweetery",
+    "url": "https://www.notonthehighstreet.com/scouseafricansweetery",
+    "active": true
   }
 ]
