@@ -119,25 +119,24 @@ def render_seller_index():
     else:
         print(f"📇 sellers/index.html unchanged")
 
-# Render Top 100 by metric
 def render_top_100(metric):
     with open('data/sellers.json', 'r', encoding='utf-8') as f:
         sellers = json.load(f)
 
-    if metric == "products":
-        for seller in sellers:
-            try:
-                seller["products"] = int(str(seller.get("product_count", 0)).replace(",", ""))
-            except:
-                seller["products"] = 0
-    else:
-        for seller in sellers:
-            try:
-                seller[metric] = int(str(seller.get(metric, 0)).replace(",", ""))
-            except:
-                seller[metric] = 0
+    # Filter only active sellers
+    active_sellers = [s for s in sellers if s.get("active", True)]
 
-    top_100 = sorted(sellers, key=lambda s: s[metric], reverse=True)[:100]
+    # Clean and parse numeric fields
+    for seller in active_sellers:
+        try:
+            if metric == "products":
+                seller["products"] = int(str(seller.get("product_count", 0)).replace(",", ""))
+            else:
+                seller[metric] = int(str(seller.get(metric, 0)).replace(",", ""))
+        except:
+            seller[metric] = 0
+
+    top_100 = sorted(active_sellers, key=lambda s: s[metric], reverse=True)[:100]
 
     template = env.get_template(f"top/top-{metric}.html")
     os.makedirs("output/top", exist_ok=True)
