@@ -43,3 +43,69 @@
 .nav-right a:hover {
   color: #000;
 }
+
+.seller-directory {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+.seller-directory h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.az-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.az-nav a {
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 4px;
+  background: #f2f2f2;
+  color: #333;
+}
+
+.az-nav a:hover {
+  background: #ddd;
+}
+
+.letter-group {
+  margin-top: 40px;
+}
+
+.letter-group h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 4px;
+}
+
+.seller-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.seller-tile {
+  display: block;
+  padding: 12px;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
+  border-radius: 6px;
+  background: white;
+  transition: all 0.2s;
+}
+
+.seller-tile:hover {
+  background: #f7f7f7;
+  border-color: #ccc;
+}

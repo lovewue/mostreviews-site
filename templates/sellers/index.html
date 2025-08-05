@@ -5,6 +5,7 @@
 {% block content %}
   <section class="seller-directory">
     <h1>NOTHS Sellers A–Z</h1>
+    <p>Select a letter below to browse sellers alphabetically.</p>
 
     <nav class="az-nav">
       {% for letter in letters %}
@@ -13,15 +14,16 @@
     </nav>
 
     {% for letter, group in sellers_by_letter.items() %}
-      <h2 id="{{ letter }}">{{ letter }}</h2>
-      <ul>
-        {% for seller in group %}
-          <li>
-            <a href="/output/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
-            <span>({{ seller.reviews }} reviews)</span>
-          </li>
-        {% endfor %}
-      </ul>
+      <section class="letter-group" id="{{ letter }}">
+        <h2>{{ letter }}</h2>
+        <div class="seller-grid">
+          {% for seller in group %}
+            <a href="/output/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html" class="seller-tile">
+              {{ seller.name }}
+            </a>
+          {% endfor %}
+        </div>
+      </section>
     {% endfor %}
   </section>
 {% endblock %}
