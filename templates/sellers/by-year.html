@@ -1,22 +1,30 @@
 {% extends "base.html" %}
 
-{% block title %}NOTHS Sellers by Join Year{% endblock %}
+{% block title %}NOTHS Sellers by Year{% endblock %}
 
 {% block content %}
-  <section class="seller-directory">
-    <h1>Sellers by Year Joined</h1>
+<section class="seller-directory">
+  <h1>NOTHS Sellers by Year</h1>
 
-    {% for year, group in sellers_by_year.items() %}
-      <h2>{{ year }}</h2>
-      <ul>
+  <!-- Year navigation -->
+  <nav class="az-nav">
+    {% for year in sellers_by_year.keys() %}
+      <a href="#{{ year }}">{{ year }}</a>
+    {% endfor %}
+  </nav>
+
+  <!-- Sellers grouped by year -->
+  {% for year, group in sellers_by_year.items() %}
+    <section class="letter-block" id="{{ year }}">
+      <h2 class="letter-title">{{ year }}</h2>
+      <ul class="seller-columns">
         {% for seller in group %}
           <li>
             <a href="/output/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
-            <span>({{ seller.reviews }} reviews)</span>
           </li>
         {% endfor %}
       </ul>
-    {% endfor %}
-  </section>
+    </section>
+  {% endfor %}
+</section>
 {% endblock %}
-
