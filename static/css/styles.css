@@ -64,41 +64,39 @@
 }
 
 /* ========== A–Z and By-Year Navigation Menus ========== */
+/* A–Z or Year nav bar */
 .az-nav,
 .persistent-nav {
-  position: sticky;
-  top: 60px;
-  z-index: 10;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 6px;
-  background: #fff;
-  border: 2px solid #000;
-  padding: 10px;
+  padding: 12px 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   margin-bottom: 40px;
+  gap: 0;
   list-style: none;
 }
 
 .az-nav a,
 .persistent-nav a {
-  display: inline-block;
-  font-weight: bold;
   text-decoration: none;
   color: #000;
-  padding: 6px 12px;
-  border: 1px solid #000;
-  border-radius: 0;
-  background-color: #fff;
-  transition: 0.2s;
-  min-width: 32px;
-  text-align: center;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-left: 1px solid #ccc;
+  display: inline-block;
+}
+
+.az-nav a:first-child,
+.persistent-nav a:first-child {
+  border-left: none;
 }
 
 .az-nav a:hover,
 .persistent-nav a:hover {
-  background-color: #f2f2f2;
+  background-color: #f5f5f5;
+  color: #000;
 }
 
 .az-nav a.active,
@@ -106,6 +104,53 @@
   background-color: #000;
   color: #fff;
 }
+
+/* Seller columns (grid layout) */
+.seller-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.seller-columns li {
+  margin: 0;
+  padding: 0;
+}
+
+.seller-columns a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.seller-columns a:hover {
+  color: #007185;
+  text-decoration: underline;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .seller-columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .seller-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .az-nav a,
+  .persistent-nav a {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+}
+
 
 /* ========== Seller Lists ========== */
 .letter-block,
@@ -122,66 +167,3 @@
   padding-bottom: 6px;
 }
 
-.seller-columns {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px 20px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.seller-columns li {
-  margin-bottom: 8px;
-}
-
-.seller-columns a {
-  text-decoration: none;
-  color: #000;
-  font-weight: 500;
-}
-
-.seller-columns a:hover {
-  text-decoration: underline;
-}
-
-/* ========== Footer ========== */
-.site-footer {
-  background: #f8f8f8;
-  padding: 20px 0;
-  font-size: 14px;
-  color: #777;
-  text-align: center;
-  margin-top: 60px;
-}
-
-/* ========== Responsive ========== */
-@media (max-width: 768px) {
-  .seller-columns {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .az-nav,
-  .persistent-nav {
-    top: 50px;
-    padding: 8px;
-  }
-
-  .az-nav a,
-  .persistent-nav a {
-    padding: 5px 8px;
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 480px) {
-  .seller-columns {
-    grid-template-columns: 1fr;
-  }
-
-  .az-nav a,
-  .persistent-nav a {
-    padding: 4px 6px;
-    font-size: 12px;
-  }
-}

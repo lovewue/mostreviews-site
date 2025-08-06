@@ -3,31 +3,28 @@
 {% block title %}NOTHS Sellers A–Z Directory{% endblock %}
 
 {% block content %}
-<section class="seller-directory">
-  <h1>NOTHS Sellers A–Z</h1>
+  <section class="seller-directory">
+    <h1>NOTHS Sellers A–Z</h1>
 
-<!-- A–Z nav bar -->
-<nav class="az-nav sticky-nav">
-  <ul class="az-bar">
-    {% for letter in letters %}
-      <li><a href="#{{ letter }}">{{ letter }}</a></li>
+    <!-- A–Z Navigation -->
+    <nav class="az-nav">
+      {% for letter in letters %}
+        <a href="#{{ letter }}">{{ letter }}</a>
+      {% endfor %}
+    </nav>
+
+    <!-- Sellers Grouped by Letter -->
+    {% for letter, group in sellers_by_letter.items() %}
+      <section class="letter-block" id="{{ letter }}">
+        <h2 class="letter-title">{{ letter }}</h2>
+        <ul class="seller-columns">
+          {% for seller in group %}
+            <li>
+              <a href="/output/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
     {% endfor %}
-  </ul>
-</nav>
-
-
-  <!-- Sellers grouped by letter -->
-  {% for letter, group in sellers_by_letter.items() %}
-    <section class="letter-block" id="{{ letter }}">
-      <h2 class="letter-title">{{ letter }}</h2>
-      <ul class="seller-columns">
-        {% for seller in group %}
-          <li>
-            <a href="/output/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% endfor %}
-</section>
+  </section>
 {% endblock %}
