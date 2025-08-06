@@ -227,3 +227,15 @@ html {
   scroll-padding-top: 120px;
   scroll-behavior: smooth;
 }
+
+.sticky-nav {
+  position: sticky;
+  top: 60px;
+  background: #fff;
+  z-index: 90;
+}
+
+html {
+  scroll-padding-top: 120px;
+  scroll-behavior: smooth;
+}

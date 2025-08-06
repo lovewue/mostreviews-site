@@ -6,11 +6,13 @@
   <section class="seller-directory">
     <h1>NOTHS Sellers A–Z</h1>
 
-    <!-- A–Z Navigation -->
-    <nav class="az-nav">
-      {% for letter in letters %}
-        <a href="#{{ letter }}">{{ letter }}</a>
-      {% endfor %}
+    <!-- A–Z Sticky Nav -->
+    <nav class="az-nav sticky-nav">
+      <ul class="az-bar">
+        {% for letter in letters %}
+          <li><a href="#{{ letter }}">{{ letter }}</a></li>
+        {% endfor %}
+      </ul>
     </nav>
 
     <!-- Sellers Grouped by Letter -->
