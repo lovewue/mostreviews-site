@@ -6,7 +6,7 @@
 <section class="seller-directory">
   <h1>NOTHS Sellers by Year Joined</h1>
 
-  <!-- Sticky Year Nav -->
+  <!-- Year Navigation Bar -->
   <nav class="az-nav sticky-nav">
     <ul class="az-bar">
       {% for year in sellers_by_year.keys() %}
@@ -15,7 +15,7 @@
     </ul>
   </nav>
 
-  <!-- Sellers grouped by year -->
+  <!-- Sellers Grouped by Year -->
   {% for year, group in sellers_by_year.items() %}
     <section class="year-block" id="{{ year }}">
       <h2 class="year-title">{{ year }}</h2>

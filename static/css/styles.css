@@ -3,7 +3,7 @@
   position: sticky;
   top: 0;
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   padding: 10px 0;
   z-index: 100;
 }
@@ -49,15 +49,7 @@
   color: #000;
 }
 
-.sticky-nav {
-  position: sticky;
-  top: 60px; /* adjust to match your header height */
-  background: #fff;
-  z-index: 90;
-}
-
-
-/* ========== Seller Directory ========== */
+/* ========== Seller Directory Shared ========== */
 .seller-directory {
   max-width: 1200px;
   margin: 0 auto;
@@ -71,52 +63,61 @@
   text-align: center;
 }
 
-/* ========== A–Z / By-Year Submenu ========== */
+/* ========== A–Z and Year Nav Bar ========== */
 .az-nav,
 .persistent-nav {
+  position: sticky;
+  top: 60px;
+  background: #fff;
+  z-index: 99;
+  padding: 12px 0;
+  margin-bottom: 40px;
+  border: 1px solid #ccc;
+}
+
+.az-bar {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 12px 0;
-  border: 1px solid #ccc; /* ADDED — was just top/bottom before */
-  margin-bottom: 40px;
-  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.az-bar li {
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
-
-.az-nav a,
-.persistent-nav a {
-  display: inline-block;
-  padding: 10px 14px;
+.az-bar a {
   text-decoration: none;
   color: #000;
   font-weight: 600;
+  padding: 8px 14px;
   border-left: 1px solid #ccc;
-  font-size: 14px;
+  display: inline-block;
 }
 
-.az-nav a:first-child,
-.persistent-nav a:first-child {
+.az-bar a:first-child {
   border-left: none;
 }
 
-.az-nav a:hover,
-.persistent-nav a:hover {
+.az-bar a:hover {
   background-color: #f5f5f5;
   color: #000;
 }
 
-.az-nav a.active,
-.persistent-nav a.active {
+.az-bar a.active {
   background-color: #000;
   color: #fff;
 }
 
-/* ========== Seller List Blocks ========== */
+/* ========== Seller Lists ========== */
 .letter-block,
 .year-block {
   margin-bottom: 48px;
+  scroll-margin-top: 100px;
 }
 
 .letter-title,
@@ -128,6 +129,7 @@
   padding-bottom: 6px;
 }
 
+/* ========== Seller Grid ========== */
 .seller-columns {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -169,6 +171,13 @@
   .seller-columns {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .az-bar a {
+    flex: 1 0 12.5%; /* ~8 items per row */
+    text-align: center;
+    font-size: 14px;
+    padding: 6px 10px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -176,109 +185,7 @@
     grid-template-columns: 1fr;
   }
 
-  .az-nav a,
-  .persistent-nav a {
-    padding: 6px 10px;
-    font-size: 14px;
-  }
-}
-
-/* Fix for .az-bar list formatting */
-.az-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-}
-
-.az-bar li {
-  margin: 0;
-  padding: 0;
-  border-left: 1px solid #ccc;
-}
-
-.az-bar li:first-child {
-  border-left: none;
-}
-
-.az-bar a {
-  display: block;
-  padding: 10px 14px;
-  text-decoration: none;
-  color: #000;
-  font-weight: 600;
-}
-
-.az-bar a:hover {
-  background-color: #f5f5f5;
-}
-
-.az-bar a.active {
-  background-color: #000;
-  color: #fff;
-}
-
-/* Ensure headings don't hide under sticky menu */
-html {
-  scroll-padding-top: 120px;
-  scroll-behavior: smooth;
-}
-
-.sticky-nav {
-  position: sticky;
-  top: 60px;
-  background: #fff;
-  z-index: 90;
-}
-
-html {
-  scroll-padding-top: 120px;
-  scroll-behavior: smooth;
-}
-
-.az-nav .az-bar,
-.persistent-nav .az-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.az-nav .az-bar li,
-.persistent-nav .az-bar li {
-  list-style: none;
-  margin: 0;
-}
-
-.az-nav .az-bar a,
-.persistent-nav .az-bar a {
-  text-decoration: none;
-  color: #000;
-  font-weight: 600;
-  padding: 8px 14px;
-  border-left: 1px solid #ccc;
-  display: inline-block;
-}
-
-.az-nav .az-bar a:first-child,
-.persistent-nav .az-bar a:first-child {
-  border-left: none;
-}
-
-@media (max-width: 768px) {
-  .az-bar {
-    flex-wrap: wrap;
-  }
-
   .az-bar a {
-    flex: 1 0 12.5%; /* ~8 letters per row */
-    text-align: center;
-    border-bottom: 1px solid #ccc;
+    flex: 1 0 25%; /* 4 items per row */
   }
 }
