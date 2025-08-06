@@ -63,7 +63,7 @@
   text-align: center;
 }
 
-/* ========== A–Z / By-Year Submenu (Selfridges-style) ========== */
+/* ========== A–Z / By-Year Submenu ========== */
 .az-nav,
 .persistent-nav {
   display: flex;
@@ -174,3 +174,43 @@
     font-size: 14px;
   }
 }
+
+/* Fix for .az-bar list formatting */
+.az-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.az-bar li {
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid #ccc;
+}
+
+.az-bar li:first-child {
+  border-left: none;
+}
+
+.az-bar a {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+}
+
+.az-bar a:hover {
+  background-color: #f5f5f5;
+}
+
+.az-bar a.active {
+  background-color: #000;
+  color: #fff;
+}
+
