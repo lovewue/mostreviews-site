@@ -50,6 +50,7 @@ def render_seller_pages():
             slug=slug,
             name=name,
             url=seller.get('url', '#'),
+            awin=seller.get('awin', '#'),
             since=seller.get('since', 'Unknown'),
             reviews=seller.get('reviews', 0),
             product_count=int(float(seller.get('product_count', 0)))
