@@ -117,7 +117,7 @@
 .letter-block,
 .year-block {
   margin-bottom: 48px;
-  scroll-margin-top: 120px;
+  scroll-margin-top: 140px;
 }
 
 .letter-title,
@@ -191,6 +191,6 @@
 }
 
 .year-block {
-  scroll-margin-top: 120px;  /* adjust to your header height */
+  scroll-margin-top: 140px;  /* adjust to your header height */
 }
 
