@@ -7,13 +7,14 @@
   <h1>NOTHS Sellers by Year Joined</h1>
 
   <!-- Year navigation bar -->
-  <nav class="az-nav">
-    <ul class="az-bar">
-      {% for year in sellers_by_year.keys() %}
-        <li><a href="#{{ year }}">{{ year }}</a></li>
-      {% endfor %}
-    </ul>
-  </nav>
+<nav class="az-nav sticky-nav">
+  <ul class="az-bar">
+    {% for year in sellers_by_year.keys() %}
+      <li><a href="#{{ year }}">{{ year }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>
+
 
   <!-- Sellers grouped by year -->
   {% for year, group in sellers_by_year.items() %}

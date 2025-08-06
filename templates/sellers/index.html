@@ -6,14 +6,15 @@
 <section class="seller-directory">
   <h1>NOTHS Sellers A–Z</h1>
 
-  <!-- A–Z nav bar -->
-  <nav class="az-nav">
-    <ul class="az-bar">
-      {% for letter in letters %}
-        <li><a href="#{{ letter }}">{{ letter }}</a></li>
-      {% endfor %}
-    </ul>
-  </nav>
+<!-- A–Z nav bar -->
+<nav class="az-nav sticky-nav">
+  <ul class="az-bar">
+    {% for letter in letters %}
+      <li><a href="#{{ letter }}">{{ letter }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>
+
 
   <!-- Sellers grouped by letter -->
   {% for letter, group in sellers_by_letter.items() %}
