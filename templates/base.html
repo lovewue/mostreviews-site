@@ -58,7 +58,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     const observerOptions = {
       root: null,
-      rootMargin: "0px 0px -80% 0px", // triggers when top of section is 20% from top
+      rootMargin: "0px 0px -80% 0px", // trigger when top 20% of viewport
       threshold: 0
     };
 
@@ -77,8 +77,20 @@
     }, observerOptions);
 
     sections.forEach(section => observer.observe(section));
+
+    // ✅ Force check on load (for anchor-linked pages)
+    setTimeout(() => {
+      const fromHash = window.location.hash;
+      if (fromHash) {
+        const target = document.querySelector(fromHash);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }, 100);
   });
 </script>
+
 
 </body>
 </html>
