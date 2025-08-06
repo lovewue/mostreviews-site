@@ -1,3 +1,8 @@
+/* ========== Global ========== */
+html {
+  scroll-behavior: smooth;
+}
+
 /* ========== Header ========== */
 .site-header {
   position: sticky;
@@ -64,9 +69,13 @@
 }
 
 /* ========== A–Z and By-Year Navigation Menus ========== */
-/* A–Z or Year nav bar */
 .az-nav,
 .persistent-nav {
+  position: sticky;
+  top: 60px;
+  background: #fff;
+  z-index: 99;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -105,14 +114,14 @@
   color: #fff;
 }
 
-/* Seller columns (grid layout) */
+/* ========== Seller Columns Grid ========== */
 .seller-columns {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px 20px;
   padding: 0;
   margin: 0;
-  list-style: none;
+  list-style-type: none;
 }
 
 .seller-columns li {
@@ -132,7 +141,32 @@
   text-decoration: underline;
 }
 
-/* Responsive tweaks */
+/* ========== Letter & Year Block Sections ========== */
+.letter-block,
+.year-block {
+  margin-bottom: 48px;
+}
+
+.letter-title,
+.year-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 6px;
+}
+
+/* ========== Footer ========== */
+.site-footer {
+  background: #f8f8f8;
+  padding: 20px 0;
+  font-size: 14px;
+  color: #777;
+  text-align: center;
+  margin-top: 60px;
+}
+
+/* ========== Responsive Tweaks ========== */
 @media (max-width: 768px) {
   .seller-columns {
     grid-template-columns: repeat(2, 1fr);
@@ -150,20 +184,3 @@
     font-size: 14px;
   }
 }
-
-
-/* ========== Seller Lists ========== */
-.letter-block,
-.year-block {
-  margin-bottom: 48px;
-}
-
-.letter-title,
-.year-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 16px;
-  border-bottom: 2px solid #000;
-  padding-bottom: 6px;
-}
-
