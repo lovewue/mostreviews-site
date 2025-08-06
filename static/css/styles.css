@@ -49,6 +49,14 @@
   color: #000;
 }
 
+.sticky-nav {
+  position: sticky;
+  top: 60px; /* adjust to match your header height */
+  background: #fff;
+  z-index: 90;
+}
+
+
 /* ========== Seller Directory ========== */
 .seller-directory {
   max-width: 1200px;
@@ -212,4 +220,10 @@
 .az-bar a.active {
   background-color: #000;
   color: #fff;
+}
+
+/* Ensure headings don't hide under sticky menu */
+html {
+  scroll-padding-top: 120px;
+  scroll-behavior: smooth;
 }
