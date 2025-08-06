@@ -78,12 +78,12 @@
   flex-wrap: wrap;
   justify-content: center;
   padding: 12px 0;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border: 1px solid #ccc; /* ADDED — was just top/bottom before */
   margin-bottom: 40px;
-  background-color: #fff;
   gap: 0;
+  list-style: none;
 }
+
 
 .az-nav a,
 .persistent-nav a {
@@ -238,4 +238,47 @@ html {
 html {
   scroll-padding-top: 120px;
   scroll-behavior: smooth;
+}
+
+.az-nav .az-bar,
+.persistent-nav .az-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.az-nav .az-bar li,
+.persistent-nav .az-bar li {
+  list-style: none;
+  margin: 0;
+}
+
+.az-nav .az-bar a,
+.persistent-nav .az-bar a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-left: 1px solid #ccc;
+  display: inline-block;
+}
+
+.az-nav .az-bar a:first-child,
+.persistent-nav .az-bar a:first-child {
+  border-left: none;
+}
+
+@media (max-width: 768px) {
+  .az-bar {
+    flex-wrap: wrap;
+  }
+
+  .az-bar a {
+    flex: 1 0 12.5%; /* ~8 letters per row */
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+  }
 }
