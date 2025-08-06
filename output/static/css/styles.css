@@ -1,7 +1,4 @@
-/* =======================
-   HEADER & NAVIGATION
-========================== */
-
+/* Site Header */
 .site-header {
   background: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -48,10 +45,7 @@
   color: #000;
 }
 
-/* =======================
-   SELLER DIRECTORY
-========================== */
-
+/* Seller Directory Section */
 .seller-directory {
   max-width: 1200px;
   margin: 0 auto;
@@ -65,6 +59,50 @@
   text-align: center;
 }
 
+/* Persistent Horizontal A-Z or Year Submenu */
+.persistent-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: flex-start;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  margin-bottom: 40px;
+  scrollbar-width: none;
+}
+
+.persistent-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.persistent-nav a {
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+  border-right: 1px solid #ccc;
+  transition: background 0.2s, color 0.2s;
+}
+
+.persistent-nav a:last-child {
+  border-right: none;
+}
+
+.persistent-nav a:hover,
+.persistent-nav a.active {
+  background: #f5f5f5;
+  color: #000;
+}
+
+/* Section Blocks */
 .letter-block {
   margin-bottom: 48px;
 }
@@ -100,89 +138,23 @@
   text-decoration: underline;
 }
 
-/* =======================
-   A–Z / YEAR NAVIGATION
-========================== */
-
-.az-nav {
-  overflow-x: auto;
-  margin-bottom: 20px;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  background: #f9f9f9;
-}
-
-.az-bar {
-  display: flex;
-  flex-wrap: nowrap;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  justify-content: center;
-  white-space: nowrap;
-}
-
-.az-bar li {
-  border-left: 1px solid #ccc;
-}
-
-.az-bar li:first-child {
-  border-left: none;
-}
-
-.az-bar a {
-  display: block;
-  padding: 12px 14px;
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #000;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 4px;
   text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  font-size: 0.9rem;
-}
-
-.az-bar a:hover {
-  background: #eee;
-  color: #000;
-}
-
-/* Make the nav sticky at the top */
-.sticky-nav {
-  position: sticky;
-  top: 0;
-  background: #fff;
-  z-index: 1000;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  padding: 8px 0;
-}
-
-/* Flex layout for A–Z bar */
-.az-bar {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: 0; /* remove spacing between items */
-}
-
-/* Letter link items */
-.az-bar li {
-  border-right: 1px solid #ccc;
-  padding: 0 12px;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 14px;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  z-index: 999;
 }
 
-.az-bar li:last-child {
-  border-right: none;
-}
-
-.az-bar a {
-  text-decoration: none;
-  color: #333;
-}
-
-.az-bar a:hover {
-  text-decoration: underline;
+.back-to-top:hover {
+  opacity: 1;
 }
