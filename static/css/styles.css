@@ -63,6 +63,7 @@
 /* A–Z or Year nav bar */
 .az-nav,
 .persistent-nav {
+  positon: sticky;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
