@@ -1,9 +1,10 @@
-/* ========== HEADER ========== */
+/* ========== Header ========== */
 .site-header {
   background: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   padding: 10px 0;
 }
+
 .header-inner {
   display: flex;
   align-items: center;
@@ -12,13 +13,16 @@
   margin: 0 auto;
   padding: 0 16px;
 }
+
 .header-logo {
   flex: 0 0 auto;
   text-align: center;
 }
+
 .nav-left, .nav-right {
   flex: 1;
 }
+
 .nav-left ul,
 .nav-right ul {
   display: flex;
@@ -27,6 +31,7 @@
   padding: 0;
   margin: 0;
 }
+
 .nav-left a,
 .nav-right a {
   text-decoration: none;
@@ -34,35 +39,29 @@
   font-weight: 500;
   font-size: 14px;
 }
+
 .nav-left a:hover,
 .nav-right a:hover {
   color: #000;
 }
 
-/* ========== FOOTER ========== */
-.site-footer {
-  background: #f8f8f8;
-  padding: 20px 0;
-  text-align: center;
-  font-size: 14px;
-  color: #777;
-}
-
-/* ========== SELLER DIRECTORY ========== */
+/* ========== Seller Directory (Shared by A–Z and By-Year) ========== */
 .seller-directory {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   font-family: sans-serif;
 }
+
 .seller-directory h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
   text-align: center;
 }
 
-/* ========== A–Z NAVIGATION ========== */
-.az-nav {
+/* A–Z or Year nav bar */
+.az-nav,
+.persistent-nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -71,7 +70,9 @@
   margin-bottom: 40px;
   gap: 6px;
 }
-.az-nav a {
+
+.az-nav a,
+.persistent-nav a {
   font-weight: bold;
   text-decoration: none;
   color: #000;
@@ -80,20 +81,27 @@
   border: 1px solid transparent;
   transition: 0.2s;
 }
-.az-nav a:hover {
+
+.az-nav a:hover,
+.persistent-nav a:hover {
   border-color: #000;
   background: #f2f2f2;
 }
-.az-nav a.active {
-  background: #000;
+
+.az-nav a.active,
+.persistent-nav a.active {
+  background-color: #000;
   color: #fff;
 }
 
-/* ========== LETTER BLOCKS ========== */
-.letter-block, .year-block {
+/* Seller blocks */
+.letter-block,
+.year-block {
   margin-bottom: 48px;
 }
-.letter-title, .year-title {
+
+.letter-title,
+.year-title {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 16px;
@@ -101,7 +109,6 @@
   padding-bottom: 6px;
 }
 
-/* ========== SELLER GRID ========== */
 .seller-columns {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -110,64 +117,40 @@
   padding: 0;
   margin: 0;
 }
+
 .seller-columns li {
   margin-bottom: 8px;
 }
+
 .seller-columns a {
   text-decoration: none;
   color: #000;
   font-weight: 500;
 }
+
 .seller-columns a:hover {
   text-decoration: underline;
 }
 
-/* ========== RESPONSIVE ========== */
+/* ========== Footer ========== */
+.site-footer {
+  background: #f8f8f8;
+  padding: 20px 0;
+  font-size: 14px;
+  color: #777;
+  text-align: center;
+  margin-top: 60px;
+}
+
+/* ========== Responsive ========== */
 @media (max-width: 768px) {
   .seller-columns {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media (max-width: 480px) {
   .seller-columns {
     grid-template-columns: 1fr;
   }
-  .az-nav,
-  .persistent-nav {
-    gap: 6px;
-    padding: 8px 6px;
-  }
-  .az-nav a,
-  .persistent-nav a {
-    font-size: 12px;
-    padding: 4px 8px;
-  }
-}
-
-/* ========== PERSISTENT NAV (e.g. for Year Index) ========== */
-.persistent-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 12px;
-  margin: 0 auto 40px;
-  border-top: 2px solid #ccc;
-  border-bottom: 2px solid #ccc;
-  gap: 10px;
-  max-width: 1200px;
-}
-.persistent-nav a {
-  font-weight: bold;
-  text-decoration: none;
-  color: #000;
-  padding: 6px 12px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-}
-.persistent-nav a:hover {
-  background: #f2f2f2;
-}
-.persistent-nav a.active {
-  background: #000;
-  color: #fff;
 }
