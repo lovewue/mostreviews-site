@@ -54,6 +54,31 @@
     updateActiveNav();
   });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px 0px -80% 0px", // triggers when top of section is 20% from top
+      threshold: 0
+    };
+
+    const sections = document.querySelectorAll(".letter-block, .year-block");
+    const navLinks = document.querySelectorAll(".az-nav a");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+          navLinks.forEach(link => {
+            link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+  });
+</script>
 
 </body>
 </html>
