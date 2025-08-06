@@ -4,13 +4,15 @@
 
 {% block content %}
 <section class="seller-directory">
-  <h1>NOTHS Sellers by Year</h1>
+  <h1>NOTHS Sellers by Year Joined</h1>
 
-  <!-- Year navigation -->
+  <!-- Year navigation bar -->
   <nav class="az-nav">
-    {% for year in sellers_by_year.keys() %}
-      <a href="#{{ year }}">{{ year }}</a>
-    {% endfor %}
+    <ul class="az-bar">
+      {% for year in sellers_by_year.keys() %}
+        <li><a href="#{{ year }}">{{ year }}</a></li>
+      {% endfor %}
+    </ul>
   </nav>
 
   <!-- Sellers grouped by year -->

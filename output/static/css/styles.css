@@ -1,3 +1,7 @@
+/* =======================
+   HEADER & NAVIGATION
+========================== */
+
 .site-header {
   background: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -44,6 +48,10 @@
   color: #000;
 }
 
+/* =======================
+   SELLER DIRECTORY
+========================== */
+
 .seller-directory {
   max-width: 1200px;
   margin: 0 auto;
@@ -55,31 +63,6 @@
   font-size: 2rem;
   margin-bottom: 1rem;
   text-align: center;
-}
-
-.az-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  border: 2px solid #000;
-  padding: 12px;
-  margin-bottom: 40px;
-  gap: 6px;
-}
-
-.az-nav a {
-  font-weight: bold;
-  text-decoration: none;
-  color: #000;
-  padding: 6px 12px;
-  border-radius: 4px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-}
-
-.az-nav a:hover {
-  border-color: #000;
-  background: #f2f2f2;
 }
 
 .letter-block {
@@ -115,4 +98,48 @@
 
 .seller-columns a:hover {
   text-decoration: underline;
+}
+
+/* =======================
+   A–Z / YEAR NAVIGATION
+========================== */
+
+.az-nav {
+  overflow-x: auto;
+  margin-bottom: 20px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  background: #f9f9f9;
+}
+
+.az-bar {
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.az-bar li {
+  border-left: 1px solid #ccc;
+}
+
+.az-bar li:first-child {
+  border-left: none;
+}
+
+.az-bar a {
+  display: block;
+  padding: 12px 14px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.az-bar a:hover {
+  background: #eee;
+  color: #000;
 }

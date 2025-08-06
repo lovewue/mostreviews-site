@@ -8,9 +8,11 @@
 
   <!-- A–Z nav bar -->
   <nav class="az-nav">
-    {% for letter in letters %}
-      <a href="#{{ letter }}">{{ letter }}</a>
-    {% endfor %}
+    <ul class="az-bar">
+      {% for letter in letters %}
+        <li><a href="#{{ letter }}">{{ letter }}</a></li>
+      {% endfor %}
+    </ul>
   </nav>
 
   <!-- Sellers grouped by letter -->
