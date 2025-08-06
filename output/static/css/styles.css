@@ -1,11 +1,8 @@
-/* ===== Site Header ===== */
+/* ========== HEADER ========== */
 .site-header {
   background: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
 .header-inner {
   display: flex;
@@ -42,7 +39,16 @@
   color: #000;
 }
 
-/* ===== Seller Directory Layout ===== */
+/* ========== FOOTER ========== */
+.site-footer {
+  background: #f8f8f8;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+}
+
+/* ========== SELLER DIRECTORY ========== */
 .seller-directory {
   max-width: 1200px;
   margin: 0 auto;
@@ -51,56 +57,43 @@
 }
 .seller-directory h1 {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 
-/* ===== Persistent A–Z Nav Bar ===== */
-.az-nav,
-.persistent-nav {
+/* ========== A–Z NAVIGATION ========== */
+.az-nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background: #fff;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  padding: 12px 0;
-  gap: 10px;
+  border: 2px solid #000;
+  padding: 12px;
   margin-bottom: 40px;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  overflow-x: auto;
-  scrollbar-width: none;
+  gap: 6px;
 }
-.az-nav::-webkit-scrollbar,
-.persistent-nav::-webkit-scrollbar {
-  display: none;
-}
-.az-nav a,
-.persistent-nav a {
+.az-nav a {
   font-weight: bold;
   text-decoration: none;
   color: #000;
   padding: 6px 12px;
-  border-right: 1px solid #ccc;
-  white-space: nowrap;
-  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: 0.2s;
 }
-.az-nav a:last-child,
-.persistent-nav a:last-child {
-  border-right: none;
-}
-.az-nav a:hover,
-.persistent-nav a:hover {
+.az-nav a:hover {
+  border-color: #000;
   background: #f2f2f2;
 }
+.az-nav a.active {
+  background: #000;
+  color: #fff;
+}
 
-/* ===== Letter Sections ===== */
-.letter-block {
+/* ========== LETTER BLOCKS ========== */
+.letter-block, .year-block {
   margin-bottom: 48px;
 }
-.letter-title {
+.letter-title, .year-title {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 16px;
@@ -108,10 +101,10 @@
   padding-bottom: 6px;
 }
 
-/* ===== 4-Column Grid for Sellers ===== */
+/* ========== SELLER GRID ========== */
 .seller-columns {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px 20px;
   list-style: none;
   padding: 0;
@@ -129,10 +122,52 @@
   text-decoration: underline;
 }
 
-/* ===== Footer (optional) ===== */
-.footer {
-  text-align: center;
-  font-size: 14px;
-  padding: 30px 0;
-  color: #888;
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .seller-columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .seller-columns {
+    grid-template-columns: 1fr;
+  }
+  .az-nav,
+  .persistent-nav {
+    gap: 6px;
+    padding: 8px 6px;
+  }
+  .az-nav a,
+  .persistent-nav a {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}
+
+/* ========== PERSISTENT NAV (e.g. for Year Index) ========== */
+.persistent-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 12px;
+  margin: 0 auto 40px;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  gap: 10px;
+  max-width: 1200px;
+}
+.persistent-nav a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.persistent-nav a:hover {
+  background: #f2f2f2;
+}
+.persistent-nav a.active {
+  background: #000;
+  color: #fff;
 }
