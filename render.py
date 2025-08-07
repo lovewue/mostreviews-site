@@ -42,7 +42,7 @@ def render_seller_pages():
             continue
 
         first_letter = slug[0]
-        output_dir = f"output/nothssellers/{first_letter}"
+        output_dir = f"output/noths/sellers/{first_letter}"
         os.makedirs(output_dir, exist_ok=True)
 
         output_path = f"{output_dir}/{slug}.html"
@@ -70,7 +70,7 @@ def render_seller_pages():
 
         count += 1
 
-    print(f"✅ Rendered {count} seller pages into /output/nothssellers/[a-z]/ ({updated} updated)")
+    print(f"✅ Rendered {count} seller pages into /output/noths/sellers/[a-z]/ ({updated} updated)")
 
 # Render A–Z seller index page
 def render_seller_index():
@@ -103,9 +103,9 @@ def render_seller_index():
     }
 
     template = env.get_template('sellers/index.html')
-    os.makedirs('output/nothssellers', exist_ok=True)
+    os.makedirs('output/noths/sellers', exist_ok=True)
 
-    output_path = 'output/nothssellers/index.html'
+    output_path = 'output/noths/sellers/index.html'
     html = template.render(context)
 
     existing_html = ''
@@ -181,9 +181,9 @@ def render_seller_by_year():
     }
 
     template = env.get_template('sellers/by-year.html')
-    os.makedirs('output/nothssellers', exist_ok=True)
+    os.makedirs('output/noths/sellers', exist_ok=True)
 
-    with open('output/nothssellers/by-year.html', 'w', encoding='utf-8') as f:
+    with open('output/noths/sellers/by-year.html', 'w', encoding='utf-8') as f:
         f.write(template.render(context))
 
     print(f"📅 Rendered sellers by year →output/noths/sellers/by-year.html")
