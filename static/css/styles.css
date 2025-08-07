@@ -49,7 +49,7 @@
   color: #000;
 }
 
-/* ========== Seller Directory ========== */
+/* ========== Seller Directory Shared ========== */
 .seller-directory {
   max-width: 1200px;
   margin: 0 auto;
@@ -63,43 +63,43 @@
   text-align: center;
 }
 
-/* ========== Sticky A–Z or Year Nav ========== */
+/* ========== Sticky A–Z or Year Nav Bar ========== */
 .az-nav,
 .persistent-nav {
   position: sticky;
   top: 60px;
   background: #fff;
   z-index: 99;
-  border: 0px solid #ccc;
   margin-bottom: 40px;
-  margin-top: 40px; 
-  padding: 12px 0;
 }
 
 .az-bar {
   display: grid;
-  grid-template-columns: repeat(28, 1fr); /* one column per character */
+  grid-template-columns: repeat(28, 1fr); /* 26 letters + # */
   list-style: none;
   margin: 0;
   padding: 0;
-  border: 0px solid #ccc;
-  border-collapse: collapse;
+  border: 1px solid #ccc;
 }
 
 .az-bar li {
   border: 1px solid #ccc;
-  margin: 0;
-  padding: 0;
-  text-align: center;
+  border-top: none;
+  border-left: none;
+}
+
+.az-bar li:nth-child(27n + 1) {
+  border-left: 1px solid #ccc;
 }
 
 .az-bar a {
   display: block;
-  padding: 10px;
-  font-weight: 600;
-  color: #000;
+  text-align: center;
   text-decoration: none;
-  transition: background 0.2s ease;
+  color: #000;
+  font-weight: 600;
+  padding: 10px 0;
+  transition: background-color 0.2s ease;
 }
 
 .az-bar a:hover {
@@ -109,41 +109,6 @@
 .az-bar a.active {
   background-color: #000;
   color: #fff;
-}
-
-
-/* ========== Seller Lists ========== */
-.letter-block,
-.year-block {
-  margin-bottom: 48px;
-  scroll-margin-top: 200px;
-}
-
-.letter-title,
-.year-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 16px;
-  border-bottom: 2px solid #000;
-  padding-bottom: 6px;
-}
-
-/* Offsets for anchor scroll */
-.letter-block::before,
-.year-block::before {
-  content: "";
-  display: block;
-  height: 180px;
-  margin-top: -180px;
-  pointer-events: none;
-}
-
-@media (max-width: 768px) {
-  .letter-block::before,
-  .year-block::before {
-    height: 140px;
-    margin-top: -140px;
-  }
 }
 
 /* ========== Seller Grid ========== */
@@ -173,6 +138,40 @@
   text-decoration: underline;
 }
 
+/* ========== Section Titles ========== */
+.letter-block,
+.year-block {
+  margin-bottom: 48px;
+  scroll-margin-top: 160px; /* For scroll alignment */
+}
+
+.letter-title,
+.year-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 6px;
+}
+
+/* Prevent section titles from being hidden under sticky navs */
+.letter-block::before,
+.year-block::before {
+  content: "";
+  display: block;
+  height: 140px;
+  margin-top: -140px;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .letter-block::before,
+  .year-block::before {
+    height: 100px;
+    margin-top: -100px;
+  }
+}
+
 /* ========== Footer ========== */
 .site-footer {
   background: #f8f8f8;
@@ -183,30 +182,7 @@
   margin-top: 60px;
 }
 
-/* ========== Responsive ========== */
-@media (max-width: 768px) {
-  .seller-columns {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .az-bar a {
-    flex: 1 0 12.5%;
-    text-align: center;
-    font-size: 14px;
-    padding: 6px 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .seller-columns {
-    grid-template-columns: 1fr;
-  }
-
-  .az-bar a {
-    flex: 1 0 25%;
-  }
-}
-
+/* ========== Responsive Layout ========== */
 @media (max-width: 1024px) {
   .az-bar {
     grid-template-columns: repeat(9, 1fr);
@@ -217,10 +193,16 @@
   .az-bar {
     grid-template-columns: repeat(6, 1fr);
   }
+  .seller-columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 480px) {
   .az-bar {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .seller-columns {
+    grid-template-columns: 1fr;
   }
 }
