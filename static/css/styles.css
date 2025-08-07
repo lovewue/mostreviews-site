@@ -111,6 +111,19 @@
   color: #fff;
 }
 
+@media (max-width: 768px) {
+.az-nav,
+.persistent-nav {
+  position: sticky;
+  top: 40px;
+  background: #fff;
+  z-index: 99;
+  border: 0px solid #ccc;
+  margin-bottom: 40px;
+  margin-top: 40px; 
+  padding: 12px 0;
+}
+}
 
 /* ========== Seller Lists ========== */
 .letter-block,
