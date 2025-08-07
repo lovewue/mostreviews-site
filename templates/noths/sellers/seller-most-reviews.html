@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Top 100 NOTHS Sellers – {{ metric|capitalize }}{% endblock %}
+
+{% block content %}
+  <section class="top-sellers">
+    <h1>Top 100 Sellers by {{ metric|capitalize }}</h1>
+    <ol>
+      {% for seller in sellers %}
+        <li>
+          <a href="/output/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
+          <span>({{ seller[metric] }} {{ metric }})</span>
+        </li>
+      {% endfor %}
+    </ol>
+  </section>
+{% endblock %}
