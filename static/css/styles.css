@@ -194,3 +194,21 @@
   scroll-margin-top: 240px;  /* adjust to your header height */
 }
 
+/* Prevent anchor link from being hidden under sticky nav */
+.year-block::before,
+.letter-block::before {
+  content: "";
+  display: block;
+  height: 120px; /* space above the heading */
+  margin-top: -120px;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .year-block::before,
+  .letter-block::before {
+    height: 100px;
+    margin-top: -100px;
+  }
+}
+
