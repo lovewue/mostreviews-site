@@ -141,8 +141,8 @@
 @media (max-width: 768px) {
   .letter-block::before,
   .year-block::before {
-    height: 140px;
-    margin-top: -140px;
+    height: 160px;
+    margin-top: -160px;
   }
 }
 
