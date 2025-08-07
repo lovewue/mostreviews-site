@@ -115,7 +115,7 @@
 .az-nav,
 .persistent-nav {
   position: sticky;
-  top: 80px;
+  top: 84px;
   background: #fff;
   z-index: 99;
   border: 0px solid #ccc;
