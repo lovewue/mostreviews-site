@@ -19,7 +19,7 @@ def render_noths_index():
 # === Copy static assets ===
 def copy_static_assets():
     if os.path.exists('static'):
-        shutil.copytree('static', 'output/static', dirs_exist_ok=True)
+        shutil.copytree('static', 'output/noths/static', dirs_exist_ok=True)
         print("✅ Copied static assets → output/static/")
     else:
         print("⚠️  Skipped static assets: 'static/' folder not found.")
