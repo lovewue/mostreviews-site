@@ -10,14 +10,24 @@
     <nav class="az-nav sticky-nav">
       <ul class="az-bar">
         {% for letter in letters %}
+  	  {% if letter == "#" %}
+    	  <li><a href="#letter-hash">#</a></li>
+        {% else %}
           <li><a href="#{{ letter }}">{{ letter }}</a></li>
+        {% endif %}
         {% endfor %}
+
       </ul>
     </nav>
 
     <!-- Sellers Grouped by Letter -->
-    {% for letter, group in sellers_by_letter.items() %}
-      <section class="letter-block" id="{{ letter }}">
+{% for letter, group in sellers_by_letter.items() %}
+  {% if letter == "#" %}
+    <section class="letter-block" id="letter-hash">
+  {% else %}
+    <section class="letter-block" id="{{ letter }}">
+  {% endif %}
+
         <h2 class="letter-title">{{ letter }}</h2>
         <ul class="seller-columns">
           {% for seller in group %}

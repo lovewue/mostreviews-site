@@ -49,7 +49,7 @@
   color: #000;
 }
 
-/* ========== Seller Directory Shared ========== */
+/* ========== Seller Directory ========== */
 .seller-directory {
   max-width: 1200px;
   margin: 0 auto;
@@ -63,49 +63,47 @@
   text-align: center;
 }
 
-/* ========== A–Z and Year Nav Bar ========== */
+/* ========== Sticky A–Z or Year Nav ========== */
 .az-nav,
 .persistent-nav {
   position: sticky;
   top: 60px;
   background: #fff;
   z-index: 99;
-  padding: 12px 0;
+  border: 0px solid #ccc;
   margin-bottom: 40px;
-  border: 1px solid #ccc;
+  margin-top: 40px; 
+  padding: 12px 0;
 }
 
 .az-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(28, 1fr); /* one column per character */
   list-style: none;
   margin: 0;
   padding: 0;
+  border: 0px solid #ccc;
+  border-collapse: collapse;
 }
 
 .az-bar li {
+  border: 1px solid #ccc;
   margin: 0;
   padding: 0;
-  list-style: none;
+  text-align: center;
 }
 
 .az-bar a {
-  text-decoration: none;
-  color: #000;
+  display: block;
+  padding: 10px;
   font-weight: 600;
-  padding: 8px 14px;
-  border-left: 1px solid #ccc;
-  display: inline-block;
-}
-
-.az-bar a:first-child {
-  border-left: none;
+  color: #000;
+  text-decoration: none;
+  transition: background 0.2s ease;
 }
 
 .az-bar a:hover {
   background-color: #f5f5f5;
-  color: #000;
 }
 
 .az-bar a.active {
@@ -113,11 +111,12 @@
   color: #fff;
 }
 
+
 /* ========== Seller Lists ========== */
 .letter-block,
 .year-block {
   margin-bottom: 48px;
-  scroll-margin-top: 140px;
+  scroll-margin-top: 60px;
 }
 
 .letter-title,
@@ -127,6 +126,24 @@
   margin-bottom: 16px;
   border-bottom: 2px solid #000;
   padding-bottom: 6px;
+}
+
+/* Offsets for anchor scroll */
+.letter-block::before,
+.year-block::before {
+  content: "";
+  display: block;
+  height: 60px;
+  margin-top: -60px;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .letter-block::before,
+  .year-block::before {
+    height: 140px;
+    margin-top: -140px;
+  }
 }
 
 /* ========== Seller Grid ========== */
@@ -173,7 +190,7 @@
   }
 
   .az-bar a {
-    flex: 1 0 12.5%; /* ~8 items per row */
+    flex: 1 0 12.5%;
     text-align: center;
     font-size: 14px;
     padding: 6px 10px;
@@ -186,11 +203,24 @@
   }
 
   .az-bar a {
-    flex: 1 0 25%; /* 4 items per row */
+    flex: 1 0 25%;
   }
 }
 
-.year-block {
-  scroll-margin-top: 240px;  /* adjust to your header height */
+@media (max-width: 1024px) {
+  .az-bar {
+    grid-template-columns: repeat(9, 1fr);
+  }
 }
 
+@media (max-width: 768px) {
+  .az-bar {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .az-bar {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
