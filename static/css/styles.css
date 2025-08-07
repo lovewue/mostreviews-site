@@ -116,7 +116,7 @@
 .letter-block,
 .year-block {
   margin-bottom: 48px;
-  scroll-margin-top: 100px;
+  scroll-margin-top: 0px;
 }
 
 .letter-title,
