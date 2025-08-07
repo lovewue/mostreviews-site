@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}Top 100 NOTHS Sellers – Most Reviews{% endblock %}
+{% block title %}Top 100 NOTHS Sellers – Most Products{% endblock %}
 
 {% block content %}
   <section class="top-sellers">
-    <h1>Top 100 Sellers by Reviews</h1>
+    <h1>Top 100 Sellers by Product Count</h1>
     <ol>
       {% for seller in sellers %}
         <li>
           <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
-          <span>({{ seller.reviews }} reviews)</span>
+          <span>({{ seller.product_count }} products)</span>
         </li>
       {% endfor %}
     </ol>
