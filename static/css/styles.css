@@ -78,51 +78,28 @@
 
 .az-bar {
   display: grid;
-  grid-template-columns: repeat(27, 1fr); /* Default: all letters in one row */
+  grid-template-columns: repeat(27, 1fr); /* one column per character */
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  background: #fff;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
 }
 
-
-
 .az-bar li {
+  border: 1px solid #ccc;
   margin: 0;
   padding: 0;
-  list-style: none;
+  text-align: center;
 }
 
 .az-bar a {
   display: block;
-  text-align: center;
-  text-decoration: none;
-  color: #000;
+  padding: 10px;
   font-weight: 600;
-  padding: 10px 0;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-}
-
-.az-bar a:first-child {
-  border-left: none;
-}
-
-.az-bar a:hover {
-  background-color: #f5f5f5;
   color: #000;
-}
-
-.az-bar a.active {
-  background-color: #000;
-  color: #fff;
-}
-
-
-.az-bar a:first-child {
-  border-left: none;
+  text-decoration: none;
+  transition: background 0.2s ease;
 }
 
 .az-bar a:hover {
@@ -133,6 +110,7 @@
   background-color: #000;
   color: #fff;
 }
+
 
 /* ========== Seller Lists ========== */
 .letter-block,
@@ -231,18 +209,18 @@
 
 @media (max-width: 1024px) {
   .az-bar {
-    grid-template-columns: repeat(9, 1fr); /* 9 letters per row */
+    grid-template-columns: repeat(9, 1fr);
   }
 }
 
 @media (max-width: 768px) {
   .az-bar {
-    grid-template-columns: repeat(6, 1fr); /* 6 per row on tablets */
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 
 @media (max-width: 480px) {
   .az-bar {
-    grid-template-columns: repeat(4, 1fr); /* 4 per row on phones */
+    grid-template-columns: repeat(4, 1fr);
   }
 }
