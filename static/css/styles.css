@@ -78,7 +78,7 @@
 
 .az-bar {
   display: grid;
-  grid-template-columns: repeat(27, 1fr); /* one column per character */
+  grid-template-columns: repeat(28, 1fr); /* one column per character */
   list-style: none;
   margin: 0;
   padding: 0;
