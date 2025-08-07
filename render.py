@@ -1,17 +1,20 @@
+
 from jinja2 import Environment, FileSystemLoader
 import os
 import json
 import shutil
 from collections import defaultdict
 
-# === Jinja2 setup ===
+# Setup Jinja2 environment
 env = Environment(loader=FileSystemLoader('templates'))
 
-# === Render NOTHS Index ===
+STATIC_PATH = "/output/noths/static"
+
+# === Render Homepage ===
 def render_noths_index():
     template = env.get_template('noths/index.html')
     os.makedirs('output/noths', exist_ok=True)
-    html = template.render(title="NOTHS Sellers and Products")
+    html = template.render(title="NOTHS Sellers and Products", static_path=STATIC_PATH)
     with open('output/noths/index.html', 'w', encoding='utf-8') as f:
         f.write(html)
     print("✅ Rendered NOTHS index → output/noths/index.html")
@@ -20,9 +23,9 @@ def render_noths_index():
 def copy_static_assets():
     if os.path.exists('static'):
         shutil.copytree('static', 'output/noths/static', dirs_exist_ok=True)
-        print("✅ Copied static assets → output/static/")
+        print("✅ Copied static assets → output/noths/static/css")
     else:
-        print("⚠️  Skipped static assets: 'static/' folder not found.")
+        print("⚠️  Skipped static assets: 'static/css' folder not found.")
 
 # === Render individual seller pages ===
 def render_seller_pages():
@@ -52,7 +55,8 @@ def render_seller_pages():
             awin=seller.get('awin', '#'),
             since=seller.get('since', 'Unknown'),
             reviews=seller.get('reviews', 0),
-            product_count=int(float(seller.get('product_count', 0)))
+            product_count=int(float(seller.get('product_count', 0))),
+            static_path=STATIC_PATH
         )
 
         existing_html = ''
@@ -95,7 +99,8 @@ def render_seller_index():
 
     context = {
         "letters": sorted(sorted_grouped.keys()),
-        "sellers_by_letter": sorted_grouped
+        "sellers_by_letter": sorted_grouped,
+        "static_path": STATIC_PATH
     }
 
     template = env.get_template('noths/sellers/index.html')
@@ -137,7 +142,8 @@ def render_seller_by_year():
     }
 
     context = {
-        "sellers_by_year": sorted_grouped
+        "sellers_by_year": sorted_grouped,
+        "static_path": STATIC_PATH
     }
 
     template = env.get_template('noths/sellers/by-year.html')
@@ -163,7 +169,7 @@ def render_seller_most_reviews():
     template = env.get_template("noths/sellers/seller-most-reviews.html")
     os.makedirs("output/noths/sellers", exist_ok=True)
     with open("output/noths/sellers/seller-most-reviews.html", "w", encoding="utf-8") as f:
-        f.write(template.render(sellers=top_100))
+        f.write(template.render(sellers=top_100, static_path=STATIC_PATH))
     print("🏆 Rendered seller-most-reviews.html")
 
 # === Render Top Sellers by Product Count ===
@@ -183,7 +189,7 @@ def render_seller_most_products():
     template = env.get_template("noths/sellers/seller-most-products.html")
     os.makedirs("output/noths/sellers", exist_ok=True)
     with open("output/noths/sellers/seller-most-products.html", "w", encoding='utf-8') as f:
-        f.write(template.render(sellers=top_100))
+        f.write(template.render(sellers=top_100, static_path=STATIC_PATH))
     print("📦 Rendered seller-most-products.html")
 
 # === Run All ===
