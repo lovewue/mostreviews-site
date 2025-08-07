@@ -78,8 +78,7 @@
 
 .az-bar {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
-  gap: 0;
+  grid-template-columns: repeat(27, 1fr); /* Default: all letters in one row */
   list-style: none;
   margin: 0;
   padding: 0;
@@ -87,6 +86,7 @@
   border-bottom: 1px solid #ccc;
   background: #fff;
 }
+
 
 
 .az-bar li {
@@ -226,5 +226,23 @@
 
   .az-bar a {
     flex: 1 0 25%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .az-bar {
+    grid-template-columns: repeat(9, 1fr); /* 9 letters per row */
+  }
+}
+
+@media (max-width: 768px) {
+  .az-bar {
+    grid-template-columns: repeat(6, 1fr); /* 6 per row on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .az-bar {
+    grid-template-columns: repeat(4, 1fr); /* 4 per row on phones */
   }
 }
