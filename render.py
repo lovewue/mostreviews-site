@@ -12,15 +12,15 @@ def render_homepage():
     template = env.get_template('index.html')
     os.makedirs('output', exist_ok=True)
     rendered_html = template.render(title="Most Reviewed Products")
-    with open('output/index.html', 'w', encoding='utf-8') as f:
+    with open('output/nothsindex.html', 'w', encoding='utf-8') as f:
         f.write(rendered_html)
-    print("✅ Rendered index.html to output/index.html")
+    print("✅ Rendered index.html to output/nothsnothsindex.html")
 
 # Copy static assets
 def copy_static_assets():
     if os.path.exists('static'):
-        shutil.copytree('static', 'output/static', dirs_exist_ok=True)
-        print("✅ Copied static assets to output/static/")
+        shutil.copytree('static', 'output/nothsstatic', dirs_exist_ok=True)
+        print("✅ Copied static assets to output/nothsstatic/")
     else:
         print("⚠️  Skipped static assets: 'static/' folder not found.")
 
@@ -42,7 +42,7 @@ def render_seller_pages():
             continue
 
         first_letter = slug[0]
-        output_dir = f"output/sellers/{first_letter}"
+        output_dir = f"output/nothssellers/{first_letter}"
         os.makedirs(output_dir, exist_ok=True)
 
         output_path = f"{output_dir}/{slug}.html"
@@ -70,7 +70,7 @@ def render_seller_pages():
 
         count += 1
 
-    print(f"✅ Rendered {count} seller pages into /output/sellers/[a-z]/ ({updated} updated)")
+    print(f"✅ Rendered {count} seller pages into /output/nothssellers/[a-z]/ ({updated} updated)")
 
 # Render A–Z seller index page
 def render_seller_index():
@@ -103,9 +103,9 @@ def render_seller_index():
     }
 
     template = env.get_template('sellers/index.html')
-    os.makedirs('output/sellers', exist_ok=True)
+    os.makedirs('output/nothssellers', exist_ok=True)
 
-    output_path = 'output/sellers/index.html'
+    output_path = 'output/nothssellers/index.html'
     html = template.render(context)
 
     existing_html = ''
@@ -140,13 +140,13 @@ def render_top_100(metric):
     top_100 = sorted(active_sellers, key=lambda s: s[metric], reverse=True)[:100]
 
     template = env.get_template(f"top/top-{metric}.html")
-    os.makedirs("output/top", exist_ok=True)
+    os.makedirs("output/nothstop", exist_ok=True)
     html = template.render(sellers=top_100, metric=metric)
 
-    with open(f"output/top/top-{metric}.html", "w", encoding='utf-8') as f:
+    with open(f"output/nothstop/top-{metric}.html", "w", encoding='utf-8') as f:
         f.write(html)
 
-    print(f"🏆 Rendered top 100 by {metric} → output/top/top-{metric}.html")
+    print(f"🏆 Rendered top 100 by {metric} →output/noths/top/top-{metric}.html")
 
 # Render seller index by year
 def render_seller_by_year():
@@ -181,12 +181,12 @@ def render_seller_by_year():
     }
 
     template = env.get_template('sellers/by-year.html')
-    os.makedirs('output/sellers', exist_ok=True)
+    os.makedirs('output/nothssellers', exist_ok=True)
 
-    with open('output/sellers/by-year.html', 'w', encoding='utf-8') as f:
+    with open('output/nothssellers/by-year.html', 'w', encoding='utf-8') as f:
         f.write(template.render(context))
 
-    print(f"📅 Rendered sellers by year → output/sellers/by-year.html")
+    print(f"📅 Rendered sellers by year →output/noths/sellers/by-year.html")
 
 # Run all
 render_homepage()
