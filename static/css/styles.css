@@ -133,8 +133,8 @@
 .year-block::before {
   content: "";
   display: block;
-  height: 140px;
-  margin-top: -140px;
+  height: 200px;
+  margin-top: -200px;
   pointer-events: none;
 }
 
