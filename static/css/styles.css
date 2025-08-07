@@ -49,7 +49,7 @@
   color: #000;
 }
 
-/* ========== Seller Directory Shared ========== */
+/* ========== Seller Directory ========== */
 .seller-directory {
   max-width: 1200px;
   margin: 0 auto;
@@ -63,16 +63,16 @@
   text-align: center;
 }
 
-/* ========== A–Z and Year Nav Bar ========== */
+/* ========== Sticky A–Z or Year Nav ========== */
 .az-nav,
 .persistent-nav {
   position: sticky;
   top: 60px;
   background: #fff;
   z-index: 99;
-  padding: 12px 0;
-  margin-bottom: 40px;
   border: 1px solid #ccc;
+  margin-bottom: 40px;
+  padding: 12px 0;
 }
 
 .az-bar {
@@ -105,7 +105,6 @@
 
 .az-bar a:hover {
   background-color: #f5f5f5;
-  color: #000;
 }
 
 .az-bar a.active {
@@ -117,7 +116,7 @@
 .letter-block,
 .year-block {
   margin-bottom: 48px;
-  scroll-margin-top: 140px;
+  scroll-margin-top: 200px;
 }
 
 .letter-title,
@@ -127,6 +126,24 @@
   margin-bottom: 16px;
   border-bottom: 2px solid #000;
   padding-bottom: 6px;
+}
+
+/* Offsets for anchor scroll */
+.letter-block::before,
+.year-block::before {
+  content: "";
+  display: block;
+  height: 180px;
+  margin-top: -180px;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .letter-block::before,
+  .year-block::before {
+    height: 140px;
+    margin-top: -140px;
+  }
 }
 
 /* ========== Seller Grid ========== */
@@ -173,7 +190,7 @@
   }
 
   .az-bar a {
-    flex: 1 0 12.5%; /* ~8 items per row */
+    flex: 1 0 12.5%;
     text-align: center;
     font-size: 14px;
     padding: 6px 10px;
@@ -186,29 +203,6 @@
   }
 
   .az-bar a {
-    flex: 1 0 25%; /* 4 items per row */
+    flex: 1 0 25%;
   }
 }
-
-.year-block {
-  scroll-margin-top: 240px;  /* adjust to your header height */
-}
-
-/* Prevent anchor link from being hidden under sticky nav */
-.year-block::before,
-.letter-block::before {
-  content: "";
-  display: block;
-  height: 120px; /* space above the heading */
-  margin-top: -120px;
-  pointer-events: none;
-}
-
-@media (max-width: 768px) {
-  .year-block::before,
-  .letter-block::before {
-    height: 100px;
-    margin-top: -100px;
-  }
-}
-
