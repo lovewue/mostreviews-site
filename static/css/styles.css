@@ -75,12 +75,12 @@ height: 100px;
 .az-nav, .sticky-nav {
   position: sticky !important;
   top: 124px !important; /* Adjust to match header height */
-  z-index: 101 !important;
+  z-index: 99 !important;
   background: #fff !important;
   border: 0px solid #ccc;
   margin-bottom: 40px;
   margin-top: 40px; 
-  padding: 12px 0;
+  padding: 20px 0;
 }
 
 .az-bar {
