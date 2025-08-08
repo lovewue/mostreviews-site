@@ -1,3 +1,4 @@
+/* Force overflow: visible on all parents */
 body, html, main, .seller-directory {
   overflow: visible !important;
 }
@@ -71,16 +72,11 @@ height: 100px;
 
 /* ========== Sticky A–Z or Year Nav ========== */
 .az-nav,
-.persistent-nav {
-  position: sticky;
-  top: 400px;
-  background: #fff;
-  z-index: 101;
-  border: 0px solid #ccc;
-  margin-bottom: 40px;
-  margin-top: 40px; 
-  padding: 12px 0;
-  border: 2px solid red; /* Remove after testing */
+.az-nav, .sticky-nav {
+  position: sticky !important;
+  top: 120px !important; /* Adjust to match header height */
+  z-index: 101 !important;
+  background: #fff !important;
 }
 
 .az-bar {
@@ -161,16 +157,16 @@ height: 100px;
 @media (max-width: 768px) {
   .letter-block::before,
   .year-block::before {
-    height: 200px;
-    margin-top: -200px;
+    height: 260px;
+    margin-top: -260px;
   }
 }
 
 @media (max-width: 480px) {
   .letter-block::before,
   .year-block::before {
-    height: 260px;
-    margin-top: -260px;
+    height: 320px;
+    margin-top: -320px;
   }
 }
 
@@ -253,30 +249,7 @@ height: 100px;
   }
 }
 
-/* ========== Sticky Nav Debug Fix ========== */
-/* Force overflow: visible on all parents */
-body, html, main, .seller-directory {
-  overflow: visible !important;
-}
 
-/* Ensure .az-nav is sticky */
-.az-nav, .sticky-nav {
-  position: sticky !important;
-  top: 120px !important; /* Adjust to match header height */
-  z-index: 101 !important;
-  background: #fff !important;
-  border: 2px solid red !important; /* Remove after confirming sticky works */
-}
 
-/* Responsive sticky adjustments */
-@media (max-width: 768px) {
-  .az-nav, .sticky-nav {
-    top: 74px !important;
-  }
-}
 
-@media (max-width: 480px) {
-  .az-nav, .sticky-nav {
-    top: 0 !important;
-  }
-}
+
