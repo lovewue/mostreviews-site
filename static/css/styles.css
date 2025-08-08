@@ -252,3 +252,31 @@ height: 100px;
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+/* ========== Sticky Nav Debug Fix ========== */
+/* Force overflow: visible on all parents */
+body, html, main, .seller-directory {
+  overflow: visible !important;
+}
+
+/* Ensure .az-nav is sticky */
+.az-nav, .sticky-nav {
+  position: sticky !important;
+  top: 100px !important; /* Adjust to match header height */
+  z-index: 101 !important;
+  background: #fff !important;
+  border: 2px solid red !important; /* Remove after confirming sticky works */
+}
+
+/* Responsive sticky adjustments */
+@media (max-width: 768px) {
+  .az-nav, .sticky-nav {
+    top: 74px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .az-nav, .sticky-nav {
+    top: 0 !important;
+  }
+}
