@@ -1,3 +1,8 @@
+body, html, main, .seller-directory {
+  overflow: visible !important;
+}
+
+
 /* ========== Header ========== */
 .site-header {
   position: sticky;
