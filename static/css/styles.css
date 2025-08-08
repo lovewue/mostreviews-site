@@ -75,6 +75,7 @@ height: 100px;
   margin-bottom: 40px;
   margin-top: 40px; 
   padding: 12px 0;
+  border: 2px solid red; /* Remove after testing */
 }
 
 .az-bar {
