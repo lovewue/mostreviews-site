@@ -192,6 +192,24 @@ def render_seller_most_products():
         f.write(template.render(sellers=top_100, static_path=STATIC_PATH))
     print("📦 Rendered seller-most-products.html")
 
+# === Render Top Product Count ===
+
+def render_product_list(filename, template_name, output_name):
+    with open(f"data/{filename}", 'r', encoding='utf-8') as f:
+        products = json.load(f)
+
+    template = env.get_template(f"noths/products/{template_name}")
+    os.makedirs("output/noths/products", exist_ok=True)
+    output_path = f"output/noths/products/{output_name}"
+
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(template.render(products=products))
+
+    print(f"🛍️ Rendered {output_name}")
+
+
+    
+
 # === Run All ===
 render_noths_index()
 copy_static_assets()
@@ -200,3 +218,7 @@ render_seller_index()
 render_seller_by_year()
 render_seller_most_reviews()
 render_seller_most_products()
+render_product_list("products_all_time.json", "products-all-time.html", "products-all-time.html")
+render_product_list("products_last_12_months.json", "products-last-12-months.html", "products-last-12-months.html")
+render_product_list("products_last_month.json", "products-last-month.html", "products-last-month.html")
+

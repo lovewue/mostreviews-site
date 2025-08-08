@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}NOTHS Most Reivewed Products Last Month{% endblock %}
+{% block title %}Most Reviewed NOTHS Products – Last Month{% endblock %}
 
 {% block content %}
-<section class="seller-directory">
-  <h1>NOTHS Sellers by Year</h1>
-  <p>This will list the most reviewed products in the last month.</p>
+<section class="top-sellers">
+  <h1>Most Reviewed Products – All Time</h1>
+  <ol>
+    {% for product in products %}
+      <li>
+        <a href="{{ product.url }}">{{ product.name }}</a>
+        <span>({{ product.reviews }} reviews)</span>
+      </li>
+    {% endfor %}
+  </ol>
 </section>
 {% endblock %}

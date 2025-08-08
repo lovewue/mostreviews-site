@@ -1,13 +1,29 @@
-{% extends "base.html" %}
-
-{% block title %}{{ name }} – NOTHS Seller Profile{% endblock %}
-
-{% block content %}
-  <section class="seller-profile">
-    <h1>{{ name }}</h1>
-    <p><strong>Since:</strong> {{ since }}</p>
-    <p><strong>Reviews:</strong> {{ reviews }}</p>
-    <p><strong>Products:</strong> {{ product_count }}</p>
-    <p><a href="{{ awin }}" target="_blank" rel="nofollow noopener">View on NOTHS →</a></p>
-  </section>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ name }} - NOTHS Seller</title>
+  <meta name="description" content="{{ name }} has {{ reviews }} reviews on Not On The High Street.">
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; }
+    img { max-width: 250px; margin-bottom: 20px; }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #0073e6;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>{{ name }}</h1>
+  <img src="/Seller_Logo/{{ slug }}.jpg" alt="{{ name }} logo" onerror="this.style.display='none';">
+  <p><strong>Joined:</strong> {{ since }}</p>
+  <p><strong>Total Reviews:</strong> {{ reviews }}</p>
+  <p><strong>Product Count:</strong> {{ products }}</p>
+  <a href="{{ awin }}" target="_blank" class="button">View on NOTHS</a>
+</body>
+</html>
