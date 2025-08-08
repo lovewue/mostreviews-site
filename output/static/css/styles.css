@@ -74,7 +74,7 @@ height: 100px;
 .az-nav,
 .az-nav, .sticky-nav {
   position: sticky !important;
-  top: 120px !important; /* Adjust to match header height */
+  top: 124px !important; /* Adjust to match header height */
   z-index: 101 !important;
   background: #fff !important;
   border: 0px solid #ccc;
