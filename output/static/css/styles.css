@@ -1,11 +1,17 @@
+body, html, main, .seller-directory {
+  overflow: visible !important;
+}
+
+
 /* ========== Header ========== */
 .site-header {
   position: sticky;
   top: 0;
+height: 100px;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   padding: 10px 0;
-  z-index: 200;
+  z-index: 100;
 }
 
 .header-inner {
@@ -67,13 +73,14 @@
 .az-nav,
 .persistent-nav {
   position: sticky;
-  top: 60px;
+  top: 400px;
   background: #fff;
-  z-index: 150;
+  z-index: 101;
   border: 0px solid #ccc;
   margin-bottom: 40px;
   margin-top: 40px; 
   padding: 12px 0;
+  border: 2px solid red; /* Remove after testing */
 }
 
 .az-bar {
@@ -243,5 +250,33 @@
 @media (max-width: 480px) {
   .az-bar {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ========== Sticky Nav Debug Fix ========== */
+/* Force overflow: visible on all parents */
+body, html, main, .seller-directory {
+  overflow: visible !important;
+}
+
+/* Ensure .az-nav is sticky */
+.az-nav, .sticky-nav {
+  position: sticky !important;
+  top: 100px !important; /* Adjust to match header height */
+  z-index: 101 !important;
+  background: #fff !important;
+  border: 2px solid red !important; /* Remove after confirming sticky works */
+}
+
+/* Responsive sticky adjustments */
+@media (max-width: 768px) {
+  .az-nav, .sticky-nav {
+    top: 74px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .az-nav, .sticky-nav {
+    top: 0 !important;
   }
 }
