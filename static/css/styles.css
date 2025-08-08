@@ -2,10 +2,11 @@
 .site-header {
   position: sticky;
   top: 0;
+height: 100px;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   padding: 10px 0;
-  z-index: 200;
+  z-index: 100;
 }
 
 .header-inner {
@@ -67,9 +68,9 @@
 .az-nav,
 .persistent-nav {
   position: sticky;
-  top: 60px;
+  top: 100px;
   background: #fff;
-  z-index: 150;
+  z-index: 99;
   border: 0px solid #ccc;
   margin-bottom: 40px;
   margin-top: 40px; 
