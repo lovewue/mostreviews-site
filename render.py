@@ -154,41 +154,41 @@ def render_seller_by_year():
 
 # === Render Top Sellers by Reviews ===
 
-def render_seller_most_reviews():
+def render_seller_most_reviews_grouped():
     with open('data/sellers.json', 'r', encoding='utf-8') as f:
         sellers = json.load(f)
 
-    # Convert reviews to integer and filter active
-    active_sellers = []
-    for s in sellers:
+    # Filter and clean
+    active_sellers = [s for s in sellers if s.get("active", True)]
+    for s in active_sellers:
         try:
             s["reviews"] = int(str(s.get("reviews", 0)).replace(",", ""))
         except:
             s["reviews"] = 0
-        if s.get("active", True) and s["reviews"] >= 1000:
-            active_sellers.append(s)
+        s["slug"] = s.get("slug", "").strip().lower()
+        s["name"] = s.get("name", "").strip()
 
-    # Define review bands
-    bands = [30000, 20000, 10000, 5000, 1000]
-    grouped = defaultdict(list)
+    # Define bands (in descending order)
+    review_bands = [30000, 20000, 10000, 5000, 2500, 1000]
 
+    sellers_by_band = {band: [] for band in review_bands}
     for seller in active_sellers:
-        for band in bands:
+        for band in review_bands:
             if seller["reviews"] >= band:
-                grouped[str(band)].append(seller)
+                sellers_by_band[band].append(seller)
                 break
 
-    # Sort sellers within each band
-    for band in grouped:
-        grouped[band] = sorted(grouped[band], key=lambda s: s["reviews"], reverse=True)
+    # Sort each group alphabetically by name
+    for band in review_bands:
+        sellers_by_band[band] = sorted(sellers_by_band[band], key=lambda s: s["name"].lower())
 
     template = env.get_template("noths/sellers/seller-most-reviews.html")
     os.makedirs("output/noths/sellers", exist_ok=True)
-
     with open("output/noths/sellers/seller-most-reviews.html", "w", encoding="utf-8") as f:
-        f.write(template.render(review_groups=grouped))
+        f.write(template.render(bands=review_bands, sellers_by_band=sellers_by_band))
 
     print("🏆 Rendered seller-most-reviews.html (grouped by bands)")
+
 
 
 # === Render Top Sellers by Product Count ===
@@ -244,7 +244,7 @@ copy_static_assets()
 render_seller_pages()
 render_seller_index()
 render_seller_by_year()
-render_seller_most_reviews()
+render_seller_most_reviews_grouped()
 render_seller_most_products()
 render_product_list("products_all_time.json", "products-all-time.html", "products-all-time.html")
 render_product_list("products_last_12_months.json", "products-last-12-months.html", "products-last-12-months.html")

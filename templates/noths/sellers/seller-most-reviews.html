@@ -1,29 +1,29 @@
 {% extends "base.html" %}
 
-{% block title %}Most Reviewed NOTHS Sellers{% endblock %}
+{% block title %}NOTHS Sellers – Most Reviews{% endblock %}
 
 {% block content %}
   <section class="seller-directory">
-    <h1>NOTHS Sellers by Total Reviews</h1>
+    <h1>NOTHS Sellers – Most Reviews</h1>
 
-    <!-- Sticky Navigation -->
+    <!-- Sticky Review Band Navigation -->
     <nav class="az-nav sticky-nav">
       <ul class="az-bar">
-        {% for band in review_groups.keys() %}
-          <li><a href="#reviews-{{ band }}">{{ band }}+</a></li>
+        {% for band in bands %}
+          <li><a href="#reviews-{{ band }}">{{ "{:,}".format(band) }}+</a></li>
         {% endfor %}
       </ul>
     </nav>
 
-    <!-- Grouped Sellers -->
-    {% for band, sellers in review_groups.items() %}
+    <!-- Sellers Grouped by Review Band -->
+    {% for band in bands %}
       <section class="letter-block" id="reviews-{{ band }}">
-        <h2 class="letter-title">{{ band }}+ Reviews</h2>
+        <h2 class="letter-title">{{ "{:,}".format(band) }}+ Reviews</h2>
         <ul class="seller-columns">
-          {% for seller in sellers %}
+          {% for seller in sellers_by_band[band] %}
             <li>
               <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
-              <span>({{ "{:,}".format(seller.reviews) }} reviews)</span>
+              <span>({{ "{:,}".format(seller.reviews) }})</span>
             </li>
           {% endfor %}
         </ul>
