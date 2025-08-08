@@ -207,6 +207,15 @@ def render_product_list(filename, template_name, output_name):
 
     print(f"🛍️ Rendered {output_name}")
 
+# === Render Home Page ===    
+
+def render_site_homepage():
+    template = env.get_template('home.html')
+    os.makedirs('output', exist_ok=True)
+    html = template.render()
+    with open('output/index.html', 'w', encoding='utf-8') as f:
+        f.write(html)
+    print("🏠 Rendered main site homepage → output/index.html")
 
     
 
@@ -221,4 +230,6 @@ render_seller_most_products()
 render_product_list("products_all_time.json", "products-all-time.html", "products-all-time.html")
 render_product_list("products_last_12_months.json", "products-last-12-months.html", "products-last-12-months.html")
 render_product_list("products_last_month.json", "products-last-month.html", "products-last-month.html")
+render_site_homepage()
+
 
