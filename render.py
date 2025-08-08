@@ -153,24 +153,43 @@ def render_seller_by_year():
     print("📅 Rendered sellers/by-year.html")
 
 # === Render Top Sellers by Reviews ===
+
 def render_seller_most_reviews():
     with open('data/sellers.json', 'r', encoding='utf-8') as f:
         sellers = json.load(f)
 
-    active_sellers = [s for s in sellers if s.get("active", True)]
-    for s in active_sellers:
+    # Convert reviews to integer and filter active
+    active_sellers = []
+    for s in sellers:
         try:
             s["reviews"] = int(str(s.get("reviews", 0)).replace(",", ""))
         except:
             s["reviews"] = 0
+        if s.get("active", True) and s["reviews"] >= 1000:
+            active_sellers.append(s)
 
-    top_100 = sorted(active_sellers, key=lambda s: s["reviews"], reverse=True)[:100]
+    # Define review bands
+    bands = [30000, 20000, 10000, 5000, 1000]
+    grouped = defaultdict(list)
+
+    for seller in active_sellers:
+        for band in bands:
+            if seller["reviews"] >= band:
+                grouped[str(band)].append(seller)
+                break
+
+    # Sort sellers within each band
+    for band in grouped:
+        grouped[band] = sorted(grouped[band], key=lambda s: s["reviews"], reverse=True)
 
     template = env.get_template("noths/sellers/seller-most-reviews.html")
     os.makedirs("output/noths/sellers", exist_ok=True)
+
     with open("output/noths/sellers/seller-most-reviews.html", "w", encoding="utf-8") as f:
-        f.write(template.render(sellers=top_100, static_path=STATIC_PATH))
-    print("🏆 Rendered seller-most-reviews.html")
+        f.write(template.render(review_groups=grouped))
+
+    print("🏆 Rendered seller-most-reviews.html (grouped by bands)")
+
 
 # === Render Top Sellers by Product Count ===
 def render_seller_most_products():
