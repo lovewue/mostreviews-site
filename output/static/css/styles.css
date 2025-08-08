@@ -8,82 +8,39 @@
   z-index: 100;
 }
 
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-.header-logo {
-  flex: 0 0 auto;
-  text-align: center;
-}
-
-.nav-left,
-.nav-right {
-  flex: 1;
-}
-
-.nav-left ul,
-.nav-right ul {
-  display: flex;
-  gap: 24px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-left a,
-.nav-right a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  font-size: 14px;
-}
-
-.nav-left a:hover,
-.nav-right a:hover {
-  color: #000;
-}
-
-/* ========== Seller Directory ========== */
-.seller-directory {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  font-family: sans-serif;
-}
-
-.seller-directory h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-/* ========== Sticky A–Z or Year Nav ========== */
+/* ========== Sticky Nav A–Z / Year ========== */
 .az-nav,
 .persistent-nav {
   position: sticky;
-  top: 60px;
+  top: 80px; /* Make sure this matches actual .site-header height */
   background: #fff;
   z-index: 99;
-  border: 0px solid #ccc;
-  margin-bottom: 40px;
-  margin-top: 40px; 
+  margin: 40px 0;
   padding: 12px 0;
 }
 
+/* Responsive top offset */
+@media (max-width: 768px) {
+  .az-nav,
+  .persistent-nav {
+    top: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .az-nav,
+  .persistent-nav {
+    top: 130px;
+  }
+}
+
+/* ========== A–Z Grid ========== */
 .az-bar {
   display: grid;
-  grid-template-columns: repeat(28, 1fr); /* one column per character */
+  grid-template-columns: repeat(27, 1fr); /* A–Z + # */
   list-style: none;
   margin: 0;
   padding: 0;
-  border: 0px solid #ccc;
-  border-collapse: collapse;
 }
 
 .az-bar li {
@@ -111,123 +68,7 @@
   color: #fff;
 }
 
-@media (max-width: 768px) {
-.az-nav,
-.persistent-nav {
-  position: sticky;
-  top: 74px;
-  background: #fff;
-  z-index: 99;
-  border: 0px solid #ccc;
-  margin-bottom: 40px;
-  margin-top: 40px; 
-  padding: 20px 0;
-}
-}
-
-/* ========== Seller Lists ========== */
-.letter-block,
-.year-block {
-  margin-bottom: 48px;
-  scroll-margin-top: 60px;
-}
-
-.letter-title,
-.year-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 16px;
-  border-bottom: 2px solid #000;
-  padding-bottom: 6px;
-}
-
-/* Offsets for anchor scroll */
-.letter-block::before,
-.year-block::before {
-  content: "";
-  display: block;
-  height: 60px;
-  margin-top: -60px;
-  pointer-events: none;
-}
-
-@media (max-width: 768px) {
-  .letter-block::before,
-  .year-block::before {
-    height: 200px;
-    margin-top: -200px;
-  }
-}
-
-@media (max-width: 480px) {
-  .letter-block::before,
-  .year-block::before {
-    height: 260px;
-    margin-top: -260px;
-  }
-}
-
-/* ========== Seller Grid ========== */
-.seller-columns {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px 20px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.seller-columns li {
-  margin: 0;
-  padding: 0;
-}
-
-.seller-columns a {
-  text-decoration: none;
-  color: #000;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.seller-columns a:hover {
-  color: #007185;
-  text-decoration: underline;
-}
-
-/* ========== Footer ========== */
-.site-footer {
-  background: #f8f8f8;
-  padding: 20px 0;
-  font-size: 14px;
-  color: #777;
-  text-align: center;
-  margin-top: 60px;
-}
-
-/* ========== Responsive ========== */
-@media (max-width: 768px) {
-  .seller-columns {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .az-bar a {
-    flex: 1 0 12.5%;
-    text-align: center;
-    font-size: 14px;
-    padding: 6px 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .seller-columns {
-    grid-template-columns: 1fr;
-  }
-
-  .az-bar a {
-    flex: 1 0 25%;
-  }
-}
-
+/* Collapse for smaller screens */
 @media (max-width: 1024px) {
   .az-bar {
     grid-template-columns: repeat(9, 1fr);
@@ -243,5 +84,26 @@
 @media (max-width: 480px) {
   .az-bar {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ========== Scroll Target Offsets ========== */
+.letter-block,
+.year-block {
+  margin-bottom: 48px;
+  scroll-margin-top: 160px;
+}
+
+@media (max-width: 768px) {
+  .letter-block,
+  .year-block {
+    scroll-margin-top: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .letter-block,
+  .year-block {
+    scroll-margin-top: 260px;
   }
 }

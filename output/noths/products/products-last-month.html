@@ -97,10 +97,10 @@
   });
 </script>
 
+  <!-- Sticky Scroll + Active Nav Script -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const path = window.location.pathname;
-
       const shouldRunScript =
         path.includes("/sellers/index.html") || path.includes("/sellers/by-year.html");
 
@@ -118,9 +118,15 @@
         }
       });
 
+      function getOffsetBuffer() {
+        if (window.innerWidth <= 480) return 260;
+        if (window.innerWidth <= 768) return 200;
+        return 160;
+      }
+
       function updateActiveNav() {
         let currentId = null;
-        const scrollPosition = window.scrollY + 140;
+        const scrollPosition = window.scrollY + getOffsetBuffer();
 
         for (let i = 0; i < sections.length; i++) {
           const { id, section } = sections[i];
@@ -142,7 +148,7 @@
       window.addEventListener("scroll", updateActiveNav);
       updateActiveNav();
 
-      // Optional smooth scroll if loaded with hash
+      // Optional: smooth scroll when page loads with hash
       if (window.location.hash) {
         const target = document.querySelector(window.location.hash);
         if (target) {
