@@ -68,7 +68,7 @@ height: 100px;
 .az-nav,
 .persistent-nav {
   position: sticky;
-  top: 100px;
+  top: 400px;
   background: #fff;
   z-index: 101;
   border: 0px solid #ccc;
