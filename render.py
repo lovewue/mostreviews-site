@@ -213,9 +213,9 @@ def render_site_homepage():
     template = env.get_template('home.html')
     os.makedirs('output', exist_ok=True)
     html = template.render()
-    with open('output/index.html', 'w', encoding='utf-8') as f:
+    with open('output/home.html', 'w', encoding='utf-8') as f:
         f.write(html)
-    print("🏠 Rendered main site homepage → output/index.html")
+    print("🏠 Rendered main site homepage → output/home.html")
 
     
 
