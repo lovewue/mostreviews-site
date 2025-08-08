@@ -192,24 +192,36 @@ def render_seller_most_reviews_grouped():
 
 
 # === Render Top Sellers by Product Count ===
-def render_seller_most_products():
+def render_seller_most_products_grouped():
     with open('data/sellers.json', 'r', encoding='utf-8') as f:
         sellers = json.load(f)
 
-    active_sellers = [s for s in sellers if s.get("active", True)]
-    for s in active_sellers:
+    active = [s for s in sellers if s.get("active", True)]
+    for s in active:
         try:
             s["product_count"] = int(str(s.get("product_count", 0)).replace(",", ""))
         except:
             s["product_count"] = 0
 
-    top_100 = sorted(active_sellers, key=lambda s: s["product_count"], reverse=True)[:100]
+    bands = [3000, 2000, 1000, 500, 250]
+    sellers_by_band = {b: [] for b in bands}
+
+    for s in active:
+        for b in bands:
+            if s["product_count"] >= b:
+                sellers_by_band[b].append(s)
+                break
+
+    for b in bands:
+        sellers_by_band[b].sort(key=lambda s: s["name"].lower())
 
     template = env.get_template("noths/sellers/seller-most-products.html")
     os.makedirs("output/noths/sellers", exist_ok=True)
     with open("output/noths/sellers/seller-most-products.html", "w", encoding='utf-8') as f:
-        f.write(template.render(sellers=top_100, static_path=STATIC_PATH))
-    print("📦 Rendered seller-most-products.html")
+        f.write(template.render(bands=bands, sellers_by_band=sellers_by_band))
+
+    print("📦 Rendered grouped seller-most-products.html")
+
 
 # === Render Top Product Count ===
 
@@ -245,7 +257,7 @@ render_seller_pages()
 render_seller_index()
 render_seller_by_year()
 render_seller_most_reviews_grouped()
-render_seller_most_products()
+render_seller_most_products_grouped()
 render_product_list("products_all_time.json", "products-all-time.html", "products-all-time.html")
 render_product_list("products_last_12_months.json", "products-last-12-months.html", "products-last-12-months.html")
 render_product_list("products_last_month.json", "products-last-month.html", "products-last-month.html")

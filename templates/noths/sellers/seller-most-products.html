@@ -1,17 +1,32 @@
 {% extends "base.html" %}
 
-{% block title %}Top 100 NOTHS Sellers – Most Products{% endblock %}
+{% block title %}NOTHS Sellers – Most Products{% endblock %}
 
 {% block content %}
-  <section class="top-sellers">
-    <h1>Top 100 Sellers by Product Count</h1>
-    <ol>
-      {% for seller in sellers %}
-        <li>
-          <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
-          <span>({{ seller.product_count }} products)</span>
-        </li>
-      {% endfor %}
-    </ol>
+  <section class="seller-directory">
+    <h1>NOTHS Sellers – Most Products</h1>
+
+    <!-- Sticky Band Navigation -->
+    <nav class="az-nav sticky-nav">
+      <ul class="az-bar">
+        {% for band in bands %}
+          <li><a href="#products-{{ band }}">{{ "{:,}".format(band) }}+</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <!-- Sellers Grouped by Product Count Band -->
+    {% for band in bands %}
+      <section class="letter-block" id="products-{{ band }}">
+        <h2 class="letter-title">{{ "{:,}".format(band) }}+ Products</h2>
+        <ul class="seller-columns">
+          {% for seller in sellers_by_band[band] %}
+            <li>
+              <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endfor %}
   </section>
 {% endblock %}
