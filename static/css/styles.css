@@ -304,6 +304,90 @@ height: 100px;
   font-size: 0.95rem;
 }
 
+/* ========== Seller Profile Page ========== */
+.seller-profile {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 20px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.seller-header {
+  margin-bottom: 20px;
+}
+
+.seller-logo {
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+.seller-info {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.seller-info li {
+  margin-bottom: 8px;
+}
+
+.seller-link {
+  display: inline-block;
+  background-color: #0073e6;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.seller-link:hover {
+  background-color: #005bb5;
+}
+
+.seller-products {
+  margin-top: 40px;
+  text-align: left;
+}
+
+.seller-products h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.top-products-list {
+  list-style: decimal inside;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+.top-products-list li {
+  margin-bottom: 14px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.top-products-list a {
+  color: #007185;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.top-products-list a:hover {
+  text-decoration: underline;
+}
+
+.top-products-list .review-count {
+  margin-left: 10px;
+  color: #777;
+  font-size: 0.95rem;
+}
 
 
 

@@ -1,39 +1,34 @@
 {% extends "base.html" %}
 
-{% block title %}{{ name }} - NOTHS Seller{% endblock %}
+{% block title %}{{ name }} – NOTHS Seller{% endblock %}
 
 {% block content %}
-<section class="seller-profile" style="max-width: 700px; margin: 40px auto; font-family: Arial, sans-serif;">
-  <h1>{{ name }}</h1>
-  <img src="/Seller_Logo/{{ slug }}.jpg" alt="{{ name }} logo" style="max-width: 250px; margin-bottom: 20px;" onerror="this.style.display='none';">
+<section class="seller-profile">
+  <div class="seller-header">
+    <img src="/Seller_Logo/{{ slug }}.jpg" alt="{{ name }} logo" class="seller-logo" onerror="this.style.display='none';">
+    <h1>{{ name }}</h1>
+  </div>
 
-  <p><strong>Joined:</strong> {{ since }}</p>
-  <p><strong>Total Reviews:</strong> {{ reviews }}</p>
-  <p><strong>Product Count:</strong> {{ product_count }}</p>
+  <ul class="seller-info">
+    <li><strong>Joined:</strong> {{ since }}</li>
+    <li><strong>Total Reviews:</strong> {{ reviews }}</li>
+    <li><strong>Product Count:</strong> {{ product_count }}</li>
+  </ul>
 
-  <a href="{{ awin }}" target="_blank" class="button" style="
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #0073e6;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    margin-top: 20px;">View on NOTHS</a>
+  <a href="{{ awin }}" target="_blank" class="seller-link">View on NOTHS</a>
 </section>
 
 {% if top_products %}
-  <section class="top-products">
+  <section class="seller-products">
     <h2>Top Products</h2>
-    <ol>
+    <ol class="top-products-list">
       {% for p in top_products %}
         <li>
           <a href="{{ p.product_url }}" target="_blank">{{ p.name }}</a>
-          <span>({{ p.review_count }} reviews)</span>
+          <span class="review-count">({{ p.review_count }} reviews)</span>
         </li>
       {% endfor %}
     </ol>
   </section>
 {% endif %}
-
-
 {% endblock %}
