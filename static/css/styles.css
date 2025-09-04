@@ -253,49 +253,55 @@ height: 100px;
   }
 }
 
-/* ========== Top Products Section ========== */
-.top-products {
-  max-width: 700px;
+/* ========== Product Directory (Top Products Page) ========== */
+.product-directory {
+  max-width: 800px;
   margin: 60px auto;
   padding: 0 20px;
   font-family: sans-serif;
 }
 
-.top-products h2 {
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  text-align: left;
-  border-bottom: 2px solid #000;
-  padding-bottom: 8px;
+.product-directory h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
-.top-products ol {
+.top-products-list {
   list-style: decimal inside;
   padding-left: 0;
   margin: 0;
 }
 
-.top-products li {
-  margin-bottom: 10px;
+.top-products-list li {
+  margin-bottom: 14px;
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-.top-products a {
+.top-products-list a {
   color: #007185;
   text-decoration: none;
   font-weight: 500;
 }
 
-.top-products a:hover {
+.top-products-list a:hover {
   text-decoration: underline;
 }
 
-.top-products span {
-  color: #555;
+.top-products-list .seller-name {
+  display: inline-block;
+  margin-left: 10px;
+  color: #333;
+  font-weight: normal;
   font-size: 0.95rem;
-  margin-left: 8px;
+}
+
+.top-products-list .review-count {
+  margin-left: 10px;
+  color: #777;
+  font-size: 0.95rem;
 }
 
 
