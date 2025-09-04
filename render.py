@@ -252,6 +252,35 @@ def render_site_homepage():
         f.write(html)
     print("🏠 Rendered main site homepage → output/home.html")
 
+
+# === Render Top Sellers Last 12 Months ===
+def render_top_sellers_12_months():
+    with open('data/top_products_last_12_months.json', 'r', encoding='utf-8') as f:
+        products = json.load(f)
+
+    seller_totals = defaultdict(lambda: {'name': '', 'slug': '', 'total_reviews': 0})
+
+    for p in products:
+        slug = p.get("seller_slug", "").strip().lower()
+        name = p.get("seller_name", "").strip()
+        reviews = int(p.get("review_count", 0))
+
+        if slug and name:
+            seller_totals[slug]['slug'] = slug
+            seller_totals[slug]['name'] = name
+            seller_totals[slug]['total_reviews'] += reviews
+
+    top_sellers = sorted(seller_totals.values(), key=lambda x: x["total_reviews"], reverse=True)[:100]
+
+    template = env.get_template('noths/sellers/top-sellers-12-months.html')
+    os.makedirs('output/noths/sellers', exist_ok=True)
+
+    with open('output/noths/sellers/top-sellers-12-months.html', 'w', encoding='utf-8') as f:
+        f.write(template.render(sellers=top_sellers))
+
+    print("📈 Rendered top-sellers-12-months.html")
+
+
 # === Run Everything ===
 render_noths_index()
 copy_static_assets()
@@ -262,3 +291,5 @@ render_seller_most_reviews_grouped()
 render_seller_most_products_grouped()
 render_top_100_products()
 render_site_homepage()
+render_top_sellers_12_months()
+
