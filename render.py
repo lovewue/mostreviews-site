@@ -31,6 +31,16 @@ def render_seller_pages():
     with open('data/sellers.json', 'r', encoding='utf-8') as f:
         sellers = json.load(f)
 
+    with open('data/top_products_last_12_months.json', 'r', encoding='utf-8') as f:
+        all_products = json.load(f)
+
+    # Group top products by seller_slug
+    products_by_seller = defaultdict(list)
+    for p in all_products:
+        slug = p.get("seller_slug", "").lower().strip()
+        if slug:
+            products_by_seller[slug].append(p)
+
     template = env.get_template('noths/sellers/seller.html')
     count, updated = 0, 0
 
@@ -41,6 +51,8 @@ def render_seller_pages():
         name = str(seller.get('name', '')).strip()
         if not slug or not name:
             continue
+
+        top_products = sorted(products_by_seller.get(slug, []), key=lambda p: p.get("review_count", 0), reverse=True)[:5]
 
         first_letter = slug[0]
         output_dir = f"output/noths/sellers/{first_letter}"
@@ -55,6 +67,7 @@ def render_seller_pages():
             since=seller.get('since', 'Unknown'),
             reviews=seller.get('reviews', 0),
             product_count=int(float(seller.get('product_count', 0))),
+            top_products=top_products,
             static_path=STATIC_PATH
         )
 
@@ -73,6 +86,7 @@ def render_seller_pages():
         count += 1
 
     print(f"✅ Rendered {count} seller pages → /output/noths/sellers/[a-z]/ ({updated} updated)")
+
 
 # === Render A–Z index ===
 def render_seller_index():
