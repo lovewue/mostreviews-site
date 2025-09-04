@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}Most Reviewed NOTHS Products – Last 12 Months (Sep 2024- Aug 2025){% endblock %}
+{% block title %}Most Reviewed NOTHS Products – Last 12 Months{% endblock %}
 
 {% block content %}
-<section class="product-directory">
-  <h1>Top 100 Most Reviewed Products – Last 12 Months</h1>
+<section class="top-products-page">
+  <h1>Most Reviewed Products – Last 12 Months</h1>
+
   <ol class="top-products-list">
     {% for product in products %}
       <li>
         <a href="{{ product.product_url }}" target="_blank">{{ product.name }}</a>
-        <span class="seller-name">by <a href="/noths/sellers/{{ product.seller_slug[0] }}/{{ product.seller_slug }}.html">{{ product.seller_name }}</a></span>
+        <span class="seller-name">by {{ product.seller_name }}</span>
         <span class="review-count">({{ product.review_count }} reviews)</span>
       </li>
     {% endfor %}
   </ol>
 </section>
 {% endblock %}
-
