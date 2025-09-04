@@ -20,4 +20,20 @@
     border-radius: 4px;
     margin-top: 20px;">View on NOTHS</a>
 </section>
+
+{% if top_products %}
+  <section class="top-products">
+    <h2>Top Products</h2>
+    <ol>
+      {% for p in top_products %}
+        <li>
+          <a href="{{ p.product_url }}" target="_blank">{{ p.name }}</a>
+          <span>({{ p.review_count }} reviews)</span>
+        </li>
+      {% endfor %}
+    </ol>
+  </section>
+{% endif %}
+
+
 {% endblock %}
