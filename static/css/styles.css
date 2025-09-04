@@ -253,6 +253,50 @@ height: 100px;
   }
 }
 
+/* ========== Top Products Section ========== */
+.top-products {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 0 20px;
+  font-family: sans-serif;
+}
+
+.top-products h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: left;
+  border-bottom: 2px solid #000;
+  padding-bottom: 8px;
+}
+
+.top-products ol {
+  list-style: decimal inside;
+  padding-left: 0;
+  margin: 0;
+}
+
+.top-products li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.top-products a {
+  color: #007185;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.top-products a:hover {
+  text-decoration: underline;
+}
+
+.top-products span {
+  color: #555;
+  font-size: 0.95rem;
+  margin-left: 8px;
+}
 
 
 
