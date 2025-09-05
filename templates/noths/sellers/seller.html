@@ -1,34 +1,42 @@
 {% extends "base.html" %}
 
-{% block title %}{{ name }} – NOTHS Seller{% endblock %}
+{% block title %}{{ name }} - NOTHS Seller{% endblock %}
 
 {% block content %}
-<section class="seller-profile">
-  <div class="seller-header">
-    <img src="/Seller_Logo/{{ slug }}.jpg" alt="{{ name }} logo" class="seller-logo" onerror="this.style.display='none';">
-    <h1>{{ name }}</h1>
+<section class="seller-detail-page">
+  <div class="seller-columns-container">
+
+    <!-- Column 1: Seller Profile -->
+    <div class="seller-profile">
+      <div class="seller-header">
+        <img src="/Seller_Logo/{{ slug }}.jpg" alt="{{ name }} logo" class="seller-logo" onerror="this.style.display='none';">
+        <h1>{{ name }}</h1>
+      </div>
+
+      <ul class="seller-info">
+        <li><strong>Joined:</strong> {{ since }}</li>
+        <li><strong>Total Reviews:</strong> {{ reviews }}</li>
+        <li><strong>Product Count:</strong> {{ product_count }}</li>
+      </ul>
+
+      <a href="{{ awin }}" target="_blank" class="seller-link">View on NOTHS</a>
+    </div>
+
+    <!-- Column 2: Top Products -->
+    {% if top_products %}
+      <div class="seller-products">
+        <h2>Most Reviewed Products<br><small>(Sep 2024 – Aug 2025)</small></h2>
+        <ol class="top-products-list">
+          {% for p in top_products %}
+            <li>
+              <a href="{{ p.product_url }}" target="_blank">{{ p.name }}</a>
+              <span class="review-count">({{ p.review_count }} reviews)</span>
+            </li>
+          {% endfor %}
+        </ol>
+      </div>
+    {% endif %}
+
   </div>
-
-  <ul class="seller-info">
-    <li><strong>Joined:</strong> {{ since }}</li>
-    <li><strong>Total Reviews:</strong> {{ reviews }}</li>
-    <li><strong>Product Count:</strong> {{ product_count }}</li>
-  </ul>
-
-  <a href="{{ awin }}" target="_blank" class="seller-link">View on NOTHS</a>
 </section>
-
-{% if top_products %}
-  <section class="seller-products">
-    <h2>Most Reviewed Products</h2>
-    <ol class="top-products-list">
-      {% for p in top_products %}
-        <li>
-          <a href="{{ p.product_url }}" target="_blank">{{ p.name }}</a>
-          <span class="review-count">({{ p.review_count }} reviews)</span>
-        </li>
-      {% endfor %}
-    </ol>
-  </section>
-{% endif %}
 {% endblock %}

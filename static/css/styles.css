@@ -304,90 +304,102 @@ height: 100px;
   font-size: 0.95rem;
 }
 
-/* ========== Seller Profile Page ========== */
-.seller-profile {
-  max-width: 800px;
-  margin: 60px auto;
-  padding: 0 20px;
+/* ========== Seller Detail Page ========== */
+.seller-detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
   font-family: sans-serif;
-  text-align: center;
+}
+
+.seller-columns-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.seller-profile {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
 }
 
 .seller-header {
+  text-align: center;
   margin-bottom: 20px;
 }
 
 .seller-logo {
   max-width: 200px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .seller-info {
   list-style: none;
   padding: 0;
-  margin: 0 0 30px 0;
+  margin: 20px 0;
   font-size: 16px;
-  color: #333;
+  line-height: 1.6;
 }
 
-.seller-info li {
-  margin-bottom: 8px;
+.seller-info li strong {
+  display: inline-block;
+  width: 140px;
+  font-weight: 600;
 }
 
 .seller-link {
   display: inline-block;
-  background-color: #0073e6;
+  background: #0073e6;
   color: white;
-  text-decoration: none;
   padding: 10px 20px;
   border-radius: 4px;
-  font-weight: bold;
-  transition: background 0.2s ease;
-}
-
-.seller-link:hover {
-  background-color: #005bb5;
-}
-
-.seller-products {
-  margin-top: 40px;
-  text-align: left;
+  text-decoration: none;
+  margin-top: 10px;
+  text-align: center;
 }
 
 .seller-products h2 {
   font-size: 1.5rem;
-  margin-bottom: 20px;
-  text-align: center;
+  margin-bottom: 16px;
 }
 
 .top-products-list {
   list-style: decimal inside;
-  padding: 0;
-  margin: 0 auto;
-  max-width: 700px;
+  padding-left: 0;
+  font-size: 16px;
 }
 
 .top-products-list li {
-  margin-bottom: 14px;
-  font-size: 1rem;
-  line-height: 1.6;
+  margin-bottom: 12px;
 }
 
 .top-products-list a {
-  color: #007185;
+  font-weight: 600;
+  color: #000;
   text-decoration: none;
-  font-weight: 500;
 }
 
 .top-products-list a:hover {
   text-decoration: underline;
 }
 
-.top-products-list .review-count {
-  margin-left: 10px;
+.review-count {
+  margin-left: 6px;
   color: #777;
-  font-size: 0.95rem;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .seller-columns-container {
+    grid-template-columns: 1fr;
+  }
+  .seller-header {
+    text-align: left;
+  }
+}
+
 
 /* ========== Top Products Page ========== */
 .top-products-page {
