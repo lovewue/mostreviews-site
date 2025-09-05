@@ -29,8 +29,9 @@
         <ol class="top-products-list">
           {% for p in top_products %}
             <li>
-              <a href="{{ p.product_url }}" target="_blank">{{ p.name }}</a>
-              <span class="review-count">({{ p.review_count }} reviews)</span>
+              <a href="https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued={{ p.product_url | urlencode }}" target="_blank">
+                {{ p.name }}
+              </a>
             </li>
           {% endfor %}
         </ol>

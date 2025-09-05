@@ -280,6 +280,17 @@ def render_top_sellers_12_months():
 
     print("📈 Rendered top-sellers-12-months.html")
 
+# === Render About Page ===
+
+def render_about_page():
+    template = env.get_template("about.html")
+    os.makedirs("output", exist_ok=True)
+    with open("output/about.html", "w", encoding="utf-8") as f:
+        f.write(template.render())
+    print("📖 Rendered about.html")
+
+   
+
 
 # === Run Everything ===
 render_noths_index()
@@ -292,4 +303,6 @@ render_seller_most_products_grouped()
 render_top_100_products()
 render_site_homepage()
 render_top_sellers_12_months()
+render_about_page()
+
 
