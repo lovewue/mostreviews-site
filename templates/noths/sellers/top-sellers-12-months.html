@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Top Sellers – Last 12 Months{% endblock %}
+{% block title %}Top 100 Sellers – Last 12 Months{% endblock %}
 
 {% block content %}
   <section class="top-sellers">
@@ -8,11 +8,7 @@
     <ol>
       {% for seller in sellers %}
         <li>
-          {% if seller.active %}
-            <a href="/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
-          {% else %}
-            {{ seller.name }}
-          {% endif %}
+          <a href="/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
           <span>({{ seller.total_reviews }} reviews)</span>
         </li>
       {% endfor %}

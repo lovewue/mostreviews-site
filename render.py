@@ -259,19 +259,43 @@ def render_site_homepage():
 
 # === Render Top Sellers Last 12 Months ===
 def render_top_sellers_last_12_months():
+    # Load data
+    with open("data/top_products_last_12_months.json", "r", encoding="utf-8") as f:
+        products = json.load(f)
     with open("data/sellers.json", "r", encoding="utf-8") as f:
-        sellers = json.load(f)
+        all_sellers = json.load(f)
 
-    sellers = [s for s in sellers if s.get("active", True)]
+    # Build seller lookup
+    seller_lookup = {s["slug"]: s for s in all_sellers if s.get("active", True)}
 
+    # Count reviews by seller_slug
+    review_totals = {}
+    for p in products:
+        slug = p.get("seller_slug")
+        if slug and slug in seller_lookup:
+            review_totals[slug] = review_totals.get(slug, 0) + int(p.get("review_count", 0))
+
+    # Build list of top sellers with review counts
+    top_sellers = []
+    for slug, count in review_totals.items():
+        s = seller_lookup[slug]
+        top_sellers.append({
+            "slug": slug,
+            "name": s.get("name"),
+            "total_reviews": count,
+        })
+
+    # Sort and take top 100
+    top_sellers = sorted(top_sellers, key=lambda x: x["total_reviews"], reverse=True)[:100]
+
+    # Render
     template = env.get_template("noths/sellers/top-sellers-12-months.html")
-    output_path = "output/noths/sellers/top-sellers-12-months.html"
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    os.makedirs("output/noths/sellers", exist_ok=True)
+    with open("output/noths/sellers/top-sellers-12-months.html", "w", encoding="utf-8") as f:
+        f.write(template.render(sellers=top_sellers))
 
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(template.render(sellers=sellers))
+    print("🔝 Rendered top-sellers-12-months.html (Top 100 only)")
 
-    print("🔝 Rendered top-sellers-12-months.html (active sellers only)")
 
 # === Render About Page ===
 def render_about_page():
