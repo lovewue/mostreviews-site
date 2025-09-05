@@ -34,7 +34,6 @@ def render_seller_pages():
     with open('data/top_products_last_12_months.json', 'r', encoding='utf-8') as f:
         all_products = json.load(f)
 
-    # Group top products by seller_slug
     products_by_seller = defaultdict(list)
     for p in all_products:
         slug = p.get("seller_slug", "").lower().strip()
@@ -47,6 +46,9 @@ def render_seller_pages():
     print("📦 Rendering seller pages...")
 
     for seller in sellers:
+        if not seller.get("active", True):
+            continue
+
         slug = str(seller.get('slug', '')).strip().lower()
         name = str(seller.get('name', '')).strip()
         if not slug or not name:
@@ -87,11 +89,12 @@ def render_seller_pages():
 
     print(f"✅ Rendered {count} seller pages → /output/noths/sellers/[a-z]/ ({updated} updated)")
 
-
 # === Render A–Z index ===
 def render_seller_index():
     with open('data/sellers.json', 'r', encoding='utf-8') as f:
         sellers = json.load(f)
+
+    sellers = [s for s in sellers if s.get("active", True)]
 
     grouped = defaultdict(list)
     for s in sellers:
@@ -137,6 +140,8 @@ def render_seller_index():
 def render_seller_by_year():
     with open('data/sellers.json', 'r', encoding='utf-8') as f:
         sellers = json.load(f)
+
+    sellers = [s for s in sellers if s.get("active", True)]
 
     grouped = defaultdict(list)
     for s in sellers:
@@ -252,45 +257,29 @@ def render_site_homepage():
         f.write(html)
     print("🏠 Rendered main site homepage → output/home.html")
 
-
 # === Render Top Sellers Last 12 Months ===
-def render_top_sellers_12_months():
-    with open('data/top_products_last_12_months.json', 'r', encoding='utf-8') as f:
-        products = json.load(f)
+def render_top_sellers_last_12_months():
+    with open("data/sellers.json", "r", encoding="utf-8") as f:
+        sellers = json.load(f)
 
-    seller_totals = defaultdict(lambda: {'name': '', 'slug': '', 'total_reviews': 0})
+    sellers = [s for s in sellers if s.get("active", True)]
 
-    for p in products:
-        slug = p.get("seller_slug", "").strip().lower()
-        name = p.get("seller_name", "").strip()
-        reviews = int(p.get("review_count", 0))
+    template = env.get_template("noths/sellers/top-sellers-12-months.html")
+    output_path = "output/noths/sellers/top-sellers-12-months.html"
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
-        if slug and name:
-            seller_totals[slug]['slug'] = slug
-            seller_totals[slug]['name'] = name
-            seller_totals[slug]['total_reviews'] += reviews
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(template.render(sellers=sellers))
 
-    top_sellers = sorted(seller_totals.values(), key=lambda x: x["total_reviews"], reverse=True)[:100]
-
-    template = env.get_template('noths/sellers/top-sellers-12-months.html')
-    os.makedirs('output/noths/sellers', exist_ok=True)
-
-    with open('output/noths/sellers/top-sellers-12-months.html', 'w', encoding='utf-8') as f:
-        f.write(template.render(sellers=top_sellers))
-
-    print("📈 Rendered top-sellers-12-months.html")
+    print("🔝 Rendered top-sellers-12-months.html (active sellers only)")
 
 # === Render About Page ===
-
 def render_about_page():
     template = env.get_template("about.html")
     os.makedirs("output", exist_ok=True)
     with open("output/about.html", "w", encoding="utf-8") as f:
         f.write(template.render())
     print("📖 Rendered about.html")
-
-   
-
 
 # === Run Everything ===
 render_noths_index()
@@ -302,7 +291,5 @@ render_seller_most_reviews_grouped()
 render_seller_most_products_grouped()
 render_top_100_products()
 render_site_homepage()
-render_top_sellers_12_months()
+render_top_sellers_last_12_months()
 render_about_page()
-
-

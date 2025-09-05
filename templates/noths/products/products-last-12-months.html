@@ -10,7 +10,15 @@
     {% for product in products %}
       <li>
         <a href="{{ product.product_url }}" target="_blank">{{ product.name }}</a>
-        <span class="seller-name">by {{ product.seller_name }}</span>
+        <span class="seller-name">
+  	  by
+  	  {% if product.active %}
+    	    <a href="/sellers/{{ product.seller_slug[0] }}/{{ product.seller_slug }}.html">{{ product.seller_name }}</a>
+  	  {% else %}
+    	    {{ product.seller_name }}
+    {% endif %}
+</span>
+
         <span class="review-count">({{ product.review_count }} reviews)</span>
       </li>
     {% endfor %}

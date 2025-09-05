@@ -8,7 +8,11 @@
     <ol>
       {% for seller in sellers %}
         <li>
-          <a href="/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
+          {% if seller.active %}
+            <a href="/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
+          {% else %}
+            {{ seller.name }}
+          {% endif %}
           <span>({{ seller.total_reviews }} reviews)</span>
         </li>
       {% endfor %}
