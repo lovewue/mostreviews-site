@@ -1,12 +1,25 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>Most Reviews → NOTHS</title>
-  <meta http-equiv="refresh" content="0; url=/output/noths/index.html">
-  <link rel="canonical" href="/output/noths/index.html">
+  <link rel="canonical" href="/output/noths/index.html" />
+
+  <!-- Instant redirect with no flash -->
+  <script>
+    (function () {
+      var target = "/output/noths/index.html";
+      if (location.pathname !== target) location.replace(target);
+    })();
+  </script>
+
+  <!-- Fallback for no-JS browsers -->
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=/output/noths/index.html" />
+  </noscript>
+
+  <!-- Prevent any visible paint before redirect -->
+  <style>html,body{background:#fff;margin:0;}</style>
 </head>
-<body>
-  <p>If you’re not redirected, <a href="/output/noths/index.html">continue to NOTHS</a>.</p>
-</body>
+<body></body>
 </html>
