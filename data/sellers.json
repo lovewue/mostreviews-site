@@ -1,7 +1,7 @@
 [
   {
     "slug": "lindleywood",
-    "name": "lindleywood",
+    "name": "Lindleywood",
     "url": "https://www.notonthehighstreet.com/partners/lindleywood",
     "product_count": 45,
     "active": true,
@@ -14,7 +14,7 @@
   },
   {
     "slug": "marinadesigns",
-    "name": "marinadesigns",
+    "name": "Marina Designs",
     "url": "https://www.notonthehighstreet.com/partners/marinadesigns",
     "product_count": 54,
     "active": true,
@@ -27,7 +27,7 @@
   },
   {
     "slug": "elizaastajewellery",
-    "name": "elizaastajewellery",
+    "name": "Eliza Asta Jewellery",
     "url": "https://www.notonthehighstreet.com/partners/elizaastajewellery",
     "product_count": 16,
     "active": true,
@@ -40,7 +40,7 @@
   },
   {
     "slug": "simplykaty",
-    "name": "simplykaty",
+    "name": "Partner Name",
     "url": "https://www.notonthehighstreet.com/partners/simplykaty",
     "product_count": 11,
     "active": true,
@@ -53,7 +53,7 @@
   },
   {
     "slug": "turtlebags",
-    "name": "turtlebags",
+    "name": "Turtle Bags",
     "url": "https://www.notonthehighstreet.com/partners/turtlebags",
     "product_count": 15,
     "active": true,
@@ -66,7 +66,7 @@
   },
   {
     "slug": "savageandrose",
-    "name": "savageandrose",
+    "name": "Savage and Rose",
     "url": "https://www.notonthehighstreet.com/partners/savageandrose",
     "product_count": 4,
     "active": true,
@@ -92,7 +92,7 @@
   },
   {
     "slug": "budhibudha",
-    "name": "budhibudha",
+    "name": "Partner Name",
     "url": "https://www.notonthehighstreet.com/partners/budhibudha",
     "product_count": 5,
     "active": true,
@@ -105,7 +105,7 @@
   },
   {
     "slug": "mysmarthomehub",
-    "name": "mysmarthomehub",
+    "name": "Partner Name",
     "url": "https://www.notonthehighstreet.com/partners/mysmarthomehub",
     "product_count": 3,
     "active": true,
@@ -144,7 +144,7 @@
   },
   {
     "slug": "pinkbamboo",
-    "name": "pinkbamboo",
+    "name": "Partner Name",
     "url": "https://www.notonthehighstreet.com/partners/pinkbamboo",
     "product_count": 1,
     "active": true,
@@ -222,7 +222,7 @@
   },
   {
     "slug": "sevenandsixgifts",
-    "name": "sevenandsixgifts",
+    "name": "Seven and Six Gifts",
     "url": "https://www.notonthehighstreet.com/partners/sevenandsixgifts",
     "product_count": 21,
     "active": true,
@@ -235,7 +235,7 @@
   },
   {
     "slug": "indianpoppy",
-    "name": "indianpoppy",
+    "name": "Indian Poppy",
     "url": "https://www.notonthehighstreet.com/partners/indianpoppy",
     "product_count": 10,
     "active": true,
@@ -248,7 +248,7 @@
   },
   {
     "slug": "jwldesigns",
-    "name": "jwldesigns",
+    "name": "JWL Designs",
     "url": "https://www.notonthehighstreet.com/partners/jwldesigns",
     "product_count": 11,
     "active": true,
@@ -261,7 +261,7 @@
   },
   {
     "slug": "thewirksworthpotterycompany",
-    "name": "thewirksworthpotterycompany",
+    "name": "The Wirksworth Pottery Company",
     "url": "https://www.notonthehighstreet.com/partners/thewirksworthpotterycompany",
     "product_count": 73,
     "active": true,
@@ -274,7 +274,7 @@
   },
   {
     "slug": "kelhamtreasures",
-    "name": "kelhamtreasures",
+    "name": "KELHAM TREASURES",
     "url": "https://www.notonthehighstreet.com/partners/kelhamtreasures",
     "product_count": 27,
     "active": true,
@@ -287,7 +287,7 @@
   },
   {
     "slug": "alloftheprint",
-    "name": "alloftheprint",
+    "name": "All Of The Print",
     "url": "https://www.notonthehighstreet.com/partners/alloftheprint",
     "product_count": 8,
     "active": true,
@@ -300,7 +300,7 @@
   },
   {
     "slug": "milasmomentsltd",
-    "name": "milasmomentsltd",
+    "name": "Mila’s Moments Ltd",
     "url": "https://www.notonthehighstreet.com/partners/milasmomentsltd",
     "product_count": 10,
     "active": true,
@@ -313,7 +313,7 @@
   },
   {
     "slug": "frecklesandfern",
-    "name": "frecklesandfern",
+    "name": "Freckles & Fern",
     "url": "https://www.notonthehighstreet.com/partners/frecklesandfern",
     "product_count": 21,
     "active": true,
@@ -326,7 +326,7 @@
   },
   {
     "slug": "archtwainglobal",
-    "name": "archtwainglobal",
+    "name": "archtwain global",
     "url": "https://www.notonthehighstreet.com/partners/archtwainglobal",
     "product_count": 29,
     "active": true,
@@ -1170,19 +1170,6 @@
     "canonical_slug": "carlamariejewellery"
   },
   {
-    "slug": "cufandco",
-    "name": "CuF & Co.",
-    "url": "https://www.notonthehighstreet.com/partners/cufandco",
-    "product_count": 14,
-    "active": true,
-    "since": "May 2025",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fcufandco",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "cufandco"
-  },
-  {
     "slug": "bloomskin",
     "name": "Bloom Skin",
     "url": "https://www.notonthehighstreet.com/partners/bloomskin",
@@ -1314,7 +1301,7 @@
   },
   {
     "slug": "etrinkglobal",
-    "name": "E-TRINK GLOBAL",
+    "name": "ANATOLIACRAFT",
     "url": "https://www.notonthehighstreet.com/partners/etrinkglobal",
     "product_count": 453,
     "active": true,
@@ -1418,7 +1405,7 @@
   },
   {
     "slug": "lizzyrosejewellery",
-    "name": "Lizzy & Rose",
+    "name": "Lizzy Rose",
     "url": "https://www.notonthehighstreet.com/partners/lizzyrosejewellery",
     "product_count": 38,
     "active": true,
@@ -2056,19 +2043,6 @@
     "canonical_slug": "mycottagecosmetics"
   },
   {
-    "slug": "indycofeeguide",
-    "name": "Indy CoFee Guide",
-    "url": "https://www.notonthehighstreet.com/partners/indycofeeguide",
-    "product_count": 5,
-    "active": true,
-    "since": "Mar 2025",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Findycofeeguide",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "indycofeeguide"
-  },
-  {
     "slug": "watchesforweddings",
     "name": "Watches For Weddings",
     "url": "https://www.notonthehighstreet.com/partners/watchesforweddings",
@@ -2639,19 +2613,6 @@
     "aliases": [],
     "review_count": 0,
     "canonical_slug": "bijouxdemimi"
-  },
-  {
-    "slug": "rjfarhi",
-    "name": "Rita Farhi",
-    "url": "https://www.notonthehighstreet.com/partners/rjfarhi",
-    "product_count": 104,
-    "active": true,
-    "since": "Jan 2025",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Frjfarhi",
-    "review_count": 2,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "rjfarhi"
   },
   {
     "slug": "gagakidz",
@@ -3396,7 +3357,7 @@
   },
   {
     "slug": "yummygummy",
-    "name": "Yummy Gummy",
+    "name": "Inclusi",
     "url": "https://www.notonthehighstreet.com/partners/yummygummy",
     "product_count": 82,
     "active": true,
@@ -3653,19 +3614,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "fearlessalice"
-  },
-  {
-    "slug": "peelofprintco",
-    "name": "Peel OF Print Co.",
-    "url": "https://www.notonthehighstreet.com/partners/peelofprintco",
-    "product_count": 16,
-    "active": true,
-    "since": "Nov 2024",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fpeelofprintco",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "peelofprintco"
   },
   {
     "slug": "fyneherbs",
@@ -4420,19 +4368,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "beccisbridaldesigns"
-  },
-  {
-    "slug": "onlythegoodstufuk",
-    "name": "Only The Good StuF UK/ OTGSUK",
-    "url": "https://www.notonthehighstreet.com/partners/onlythegoodstufuk",
-    "product_count": 17,
-    "active": true,
-    "since": "Oct 2024",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fonlythegoodstufuk",
-    "review_count": 6,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "onlythegoodstufuk"
   },
   {
     "slug": "chucklesoaps",
@@ -5369,19 +5304,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "favouriteplaceprints"
-  },
-  {
-    "slug": "socksandstuf",
-    "name": "Socks + StuF",
-    "url": "https://www.notonthehighstreet.com/partners/socksandstuf",
-    "product_count": 40,
-    "active": true,
-    "since": "Jul 2024",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsocksandstuf",
-    "review_count": 2,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "socksandstuf"
   },
   {
     "slug": "mamabearandcubs",
@@ -6658,19 +6580,6 @@
     "canonical_slug": "shiresupplycompany"
   },
   {
-    "slug": "blackkofee",
-    "name": "Black KoFee",
-    "url": "https://www.notonthehighstreet.com/partners/blackkofee",
-    "product_count": 11,
-    "active": true,
-    "since": "Mar 2024",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fblackkofee",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "blackkofee"
-  },
-  {
     "slug": "theartistssocks",
     "name": "The Artists' Socks",
     "url": "https://www.notonthehighstreet.com/partners/theartistssocks",
@@ -7425,19 +7334,6 @@
     "canonical_slug": "easthopestudio"
   },
   {
-    "slug": "thelittlecofeecompany",
-    "name": "The Little CoFee Company",
-    "url": "https://www.notonthehighstreet.com/partners/thelittlecofeecompany",
-    "product_count": 8,
-    "active": true,
-    "since": "Dec 2023",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fthelittlecofeecompany",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "thelittlecofeecompany"
-  },
-  {
     "slug": "344",
     "name": "34.4°",
     "url": "https://www.notonthehighstreet.com/partners/344",
@@ -7813,19 +7709,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "bricks4bees"
-  },
-  {
-    "slug": "stifeditgolf",
-    "name": "StiFed It Golf",
-    "url": "https://www.notonthehighstreet.com/partners/stifeditgolf",
-    "product_count": 11,
-    "active": true,
-    "since": "Nov 2023",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fstifeditgolf",
-    "review_count": 6,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "stifeditgolf"
   },
   {
     "slug": "crwst",
@@ -9440,19 +9323,6 @@
     "canonical_slug": "talltalesmysteries"
   },
   {
-    "slug": "noflestudios",
-    "name": "NoFle Studios",
-    "url": "https://www.notonthehighstreet.com/partners/noflestudios",
-    "product_count": 2,
-    "active": true,
-    "since": "Jun 2023",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fnoflestudios",
-    "review_count": 3,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "noflestudios"
-  },
-  {
     "slug": "gorillaspiritsco",
     "name": "Gorilla Spirits Co",
     "url": "https://www.notonthehighstreet.com/partners/gorillaspiritsco",
@@ -9711,19 +9581,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "pipinggoodbiscuits"
-  },
-  {
-    "slug": "prettytifin",
-    "name": "Pretty TiFin",
-    "url": "https://www.notonthehighstreet.com/partners/prettytifin",
-    "product_count": 27,
-    "active": true,
-    "since": "Apr 2023",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fprettytifin",
-    "review_count": 3,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "prettytifin"
   },
   {
     "slug": "juliadeklerk",
@@ -11158,19 +11015,6 @@
     "canonical_slug": "ladyahealth"
   },
   {
-    "slug": "rountoncofeeroasters",
-    "name": "Rounton CoFee Roasters",
-    "url": "https://www.notonthehighstreet.com/partners/rountoncofeeroasters",
-    "product_count": 5,
-    "active": true,
-    "since": "Dec 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Frountoncofeeroasters",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "rountoncofeeroasters"
-  },
-  {
     "slug": "sevenfiftytwo",
     "name": "Seven Fiftytwo",
     "url": "https://www.notonthehighstreet.com/partners/sevenfiftytwo",
@@ -11925,19 +11769,6 @@
     "canonical_slug": "brawliquorclub"
   },
   {
-    "slug": "neighbourhoodcofeeroasters",
-    "name": "Neighbourhood CoFee Roasters",
-    "url": "https://www.notonthehighstreet.com/partners/neighbourhoodcofeeroasters",
-    "product_count": 6,
-    "active": true,
-    "since": "Nov 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fneighbourhoodcofeeroasters",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "neighbourhoodcofeeroasters"
-  },
-  {
     "slug": "glaize",
     "name": "Glaize",
     "url": "https://www.notonthehighstreet.com/partners/glaize",
@@ -12380,19 +12211,6 @@
     "canonical_slug": "halcyondazestore"
   },
   {
-    "slug": "pactcofee",
-    "name": "Pact CoFee",
-    "url": "https://www.notonthehighstreet.com/partners/pactcofee",
-    "product_count": 15,
-    "active": true,
-    "since": "Oct 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fpactcofee",
-    "review_count": 2,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "pactcofee"
-  },
-  {
     "slug": "thelittlesilverkiln",
     "name": "The Little Silver Kiln",
     "url": "https://www.notonthehighstreet.com/partners/thelittlesilverkiln",
@@ -12653,19 +12471,6 @@
     "canonical_slug": "lillypuds"
   },
   {
-    "slug": "pufinco",
-    "name": "PuFin Co",
-    "url": "https://www.notonthehighstreet.com/partners/pufinco",
-    "product_count": 4,
-    "active": true,
-    "since": "Oct 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fpufinco",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "pufinco"
-  },
-  {
     "slug": "flogolife",
     "name": "Flogo Life",
     "url": "https://www.notonthehighstreet.com/partners/flogolife",
@@ -12731,19 +12536,6 @@
     "canonical_slug": "theannexaccessories"
   },
   {
-    "slug": "bluegoosecofee",
-    "name": "Blue Goose CoFee",
-    "url": "https://www.notonthehighstreet.com/partners/bluegoosecofee",
-    "product_count": 2,
-    "active": true,
-    "since": "Oct 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fbluegoosecofee",
-    "review_count": 1,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "bluegoosecofee"
-  },
-  {
     "slug": "piwiscrafts",
     "name": "Piwi's Crafts",
     "url": "https://www.notonthehighstreet.com/partners/piwiscrafts",
@@ -12768,19 +12560,6 @@
     "aliases": [],
     "review_count": 0,
     "canonical_slug": "122group"
-  },
-  {
-    "slug": "cofeecapsuleuk",
-    "name": "CoFee Capsule UK",
-    "url": "https://www.notonthehighstreet.com/partners/cofeecapsuleuk",
-    "product_count": 1,
-    "active": true,
-    "since": "Oct 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fcofeecapsuleuk",
-    "review_count": 5,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "cofeecapsuleuk"
   },
   {
     "slug": "madehappy",
@@ -13109,7 +12888,7 @@
   },
   {
     "slug": "thebakingroomatcharlwood",
-    "name": "The Baking Room, Surrey",
+    "name": "The Baking Room, Surrey Ltd",
     "url": "https://www.notonthehighstreet.com/partners/thebakingroomatcharlwood",
     "product_count": 16,
     "active": true,
@@ -13678,19 +13457,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "clairepaulillustration"
-  },
-  {
-    "slug": "roseanddaf",
-    "name": "Rose + DaF",
-    "url": "https://www.notonthehighstreet.com/partners/roseanddaf",
-    "product_count": 18,
-    "active": true,
-    "since": "Aug 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Froseanddaf",
-    "review_count": 1,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "roseanddaf"
   },
   {
     "slug": "bobbipearl",
@@ -14655,19 +14421,6 @@
     "canonical_slug": "dalitgoodsco"
   },
   {
-    "slug": "somethingabitdiferent",
-    "name": "Something a bit diFerent",
-    "url": "https://www.notonthehighstreet.com/partners/somethingabitdiferent",
-    "product_count": 5,
-    "active": true,
-    "since": "Jul 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsomethingabitdiferent",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "somethingabitdiferent"
-  },
-  {
     "slug": "bristoldrygin",
     "name": "Bristol Dry Gin",
     "url": "https://www.notonthehighstreet.com/partners/bristoldrygin",
@@ -14913,19 +14666,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "happypaul"
-  },
-  {
-    "slug": "scratchofmaps",
-    "name": "Scratch oF Maps",
-    "url": "https://www.notonthehighstreet.com/partners/scratchofmaps",
-    "product_count": 3,
-    "active": true,
-    "since": "Jul 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fscratchofmaps",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "scratchofmaps"
   },
   {
     "slug": "humaniteavegantealattes",
@@ -17089,7 +16829,7 @@
   },
   {
     "slug": "earthtoearthorganics",
-    "name": "Earth To Earth Organics",
+    "name": "Earths Farm Skincare",
     "url": "https://www.notonthehighstreet.com/partners/earthtoearthorganics",
     "product_count": 6,
     "active": true,
@@ -17190,19 +16930,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "noonieearth"
-  },
-  {
-    "slug": "cofeeandkin",
-    "name": "CoFee & Kin",
-    "url": "https://www.notonthehighstreet.com/partners/cofeeandkin",
-    "product_count": 0,
-    "active": false,
-    "since": "Apr 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fcofeeandkin",
-    "review_count": 0,
-    "fail_count": 1,
-    "aliases": [],
-    "canonical_slug": "cofeeandkin"
   },
   {
     "slug": "dinosuit",
@@ -17931,19 +17658,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "kentrusticdesigns"
-  },
-  {
-    "slug": "trwfl",
-    "name": "TrwFl",
-    "url": "https://www.notonthehighstreet.com/partners/trwfl",
-    "product_count": 8,
-    "active": true,
-    "since": "Mar 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Ftrwfl",
-    "review_count": 2,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "trwfl"
   },
   {
     "slug": "solastaskin",
@@ -19300,19 +19014,6 @@
     "canonical_slug": "justmytype"
   },
   {
-    "slug": "thecuflinkman",
-    "name": "Bennies",
-    "url": "https://www.notonthehighstreet.com/partners/thecuflinkman",
-    "product_count": 33,
-    "active": true,
-    "since": "Jan 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fthecuflinkman",
-    "review_count": 18,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "thecuflinkman"
-  },
-  {
     "slug": "thecolouremporium",
     "name": "The Colour Emporium",
     "url": "https://www.notonthehighstreet.com/partners/thecolouremporium",
@@ -19353,7 +19054,7 @@
   },
   {
     "slug": "apdesigns",
-    "name": "AP designs",
+    "name": "amy.illustrates",
     "url": "https://www.notonthehighstreet.com/partners/apdesigns",
     "product_count": 17,
     "active": true,
@@ -19924,19 +19625,6 @@
     "canonical_slug": "theaspinallfoundation"
   },
   {
-    "slug": "hackneyrascalcofee",
-    "name": "Rascal CoFee",
-    "url": "https://www.notonthehighstreet.com/partners/hackneyrascalcofee",
-    "product_count": 1,
-    "active": true,
-    "since": "Jan 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fhackneyrascalcofee",
-    "review_count": 2,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "hackneyrascalcofee"
-  },
-  {
     "slug": "cgbgiftware",
     "name": "CGB Giftware",
     "url": "https://www.notonthehighstreet.com/partners/cgbgiftware",
@@ -20234,19 +19922,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "heritagegeneve"
-  },
-  {
-    "slug": "efortlesstradingco",
-    "name": "EFortless Trading Co",
-    "url": "https://www.notonthehighstreet.com/partners/efortlesstradingco",
-    "product_count": 15,
-    "active": true,
-    "since": "Dec 2021",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fefortlesstradingco",
-    "review_count": 4,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "efortlesstradingco"
   },
   {
     "slug": "shhbysadie",
@@ -21055,19 +20730,6 @@
     "canonical_slug": "adventhorizon"
   },
   {
-    "slug": "sufolkstyle",
-    "name": "SuFolk Style",
-    "url": "https://www.notonthehighstreet.com/partners/sufolkstyle",
-    "product_count": 20,
-    "active": true,
-    "since": "Nov 2021",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsufolkstyle",
-    "review_count": 8,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "sufolkstyle"
-  },
-  {
     "slug": "jenlithgo",
     "name": "Jen Lithgo",
     "url": "https://www.notonthehighstreet.com/partners/jenlithgo",
@@ -21147,7 +20809,7 @@
   },
   {
     "slug": "littleyorkshirepaperco",
-    "name": "Paper Attic",
+    "name": "Wylde Paperie",
     "url": "https://www.notonthehighstreet.com/partners/littleyorkshirepaperco",
     "product_count": 49,
     "active": true,
@@ -22069,19 +21731,6 @@
     "canonical_slug": "pegs"
   },
   {
-    "slug": "girafecocktails",
-    "name": "GiraFe Cocktails",
-    "url": "https://www.notonthehighstreet.com/partners/girafecocktails",
-    "product_count": 3,
-    "active": true,
-    "since": "Nov 2021",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fgirafecocktails",
-    "review_count": 3,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "girafecocktails"
-  },
-  {
     "slug": "thefeltstudio",
     "name": "The Felt Studio",
     "url": "https://www.notonthehighstreet.com/partners/thefeltstudio",
@@ -22945,7 +22594,7 @@
     "slug": "choctilyoudrop",
     "name": "Choc Til You Drop",
     "url": "https://www.notonthehighstreet.com/partners/choctilyoudrop",
-    "product_count": 40,
+    "product_count": 42,
     "active": true,
     "since": "Oct 2021",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fchoctilyoudrop",
@@ -24035,7 +23684,7 @@
   },
   {
     "slug": "houseofgallus",
-    "name": "nude organics",
+    "name": "Thornes",
     "url": "https://www.notonthehighstreet.com/partners/houseofgallus",
     "product_count": 107,
     "active": true,
@@ -25048,19 +24697,6 @@
     "canonical_slug": "gudrumclassics"
   },
   {
-    "slug": "flufandcrumble",
-    "name": "FluF & Crumble",
-    "url": "https://www.notonthehighstreet.com/partners/flufandcrumble",
-    "product_count": 17,
-    "active": true,
-    "since": "Sep 2021",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fflufandcrumble",
-    "review_count": 6,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "flufandcrumble"
-  },
-  {
     "slug": "yugenbonsai",
     "name": "Yugen Bonsai",
     "url": "https://www.notonthehighstreet.com/partners/yugenbonsai",
@@ -25893,19 +25529,6 @@
     "canonical_slug": "headintclouds"
   },
   {
-    "slug": "flufypeaksdesigns",
-    "name": "FluFy Peaks Designs",
-    "url": "https://www.notonthehighstreet.com/partners/flufypeaksdesigns",
-    "product_count": 1,
-    "active": true,
-    "since": "Sep 2021",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fflufypeaksdesigns",
-    "fail_count": 0,
-    "aliases": [],
-    "review_count": 0,
-    "canonical_slug": "flufypeaksdesigns"
-  },
-  {
     "slug": "sepiaartandcartographie",
     "name": "Sepia Art & Cartographie",
     "url": "https://www.notonthehighstreet.com/partners/sepiaartandcartographie",
@@ -26050,7 +25673,7 @@
   },
   {
     "slug": "thenorthernillustrator",
-    "name": "The Northern Illustrator",
+    "name": "Hollie Newton Studio",
     "url": "https://www.notonthehighstreet.com/partners/thenorthernillustrator",
     "product_count": 129,
     "active": true,
@@ -26530,19 +26153,6 @@
     "canonical_slug": "absoluteorganicwine"
   },
   {
-    "slug": "aryaoficiale",
-    "name": "Arya OFiciale",
-    "url": "https://www.notonthehighstreet.com/partners/aryaoficiale",
-    "product_count": 7,
-    "active": true,
-    "since": "Aug 2021",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Faryaoficiale",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "aryaoficiale"
-  },
-  {
     "slug": "kentecreatives",
     "name": "Kente Creatives",
     "url": "https://www.notonthehighstreet.com/partners/kentecreatives",
@@ -26661,7 +26271,7 @@
   },
   {
     "slug": "zellie",
-    "name": "Bowerbox",
+    "name": "Whirlybird",
     "url": "https://www.notonthehighstreet.com/partners/zellie",
     "product_count": 7,
     "active": true,
@@ -26765,7 +26375,7 @@
   },
   {
     "slug": "sozarri",
-    "name": "Sozarri",
+    "name": "Sozarri Fiber Art",
     "url": "https://www.notonthehighstreet.com/partners/sozarri",
     "product_count": 7,
     "active": true,
@@ -27077,7 +26687,7 @@
   },
   {
     "slug": "ohjocreative",
-    "name": "Oh Jo! Creative",
+    "name": "Oh Jo Creative",
     "url": "https://www.notonthehighstreet.com/partners/ohjocreative",
     "product_count": 24,
     "active": true,
@@ -27674,19 +27284,6 @@
     "canonical_slug": "kerenparmley"
   },
   {
-    "slug": "summerafirms",
-    "name": "SUMMER AFIRMS",
-    "url": "https://www.notonthehighstreet.com/partners/summerafirms",
-    "product_count": 7,
-    "active": true,
-    "since": "Jul 2021",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsummerafirms",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "summerafirms"
-  },
-  {
     "slug": "artioskincare",
     "name": "Artio Skincare",
     "url": "https://www.notonthehighstreet.com/partners/artioskincare",
@@ -27870,7 +27467,7 @@
   },
   {
     "slug": "thefluxreview",
-    "name": "FLUX Art and Home",
+    "name": "Aubrey and Ivory",
     "url": "https://www.notonthehighstreet.com/partners/thefluxreview",
     "product_count": 12,
     "active": true,
@@ -29094,7 +28691,7 @@
     "slug": "collectiviste",
     "name": "Collectiviste",
     "url": "https://www.notonthehighstreet.com/partners/collectiviste",
-    "product_count": 21,
+    "product_count": 20,
     "active": true,
     "since": "May 2021",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fcollectiviste",
@@ -32627,19 +32224,6 @@
     "canonical_slug": "maisonjuli"
   },
   {
-    "slug": "clocofee",
-    "name": "CLO CoFee",
-    "url": "https://www.notonthehighstreet.com/partners/clocofee",
-    "product_count": 9,
-    "active": true,
-    "since": "Dec 2020",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fclocofee",
-    "review_count": 21,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "clocofee"
-  },
-  {
     "slug": "marlowlondon",
     "name": "Marlow London",
     "url": "https://www.notonthehighstreet.com/partners/marlowlondon",
@@ -34369,19 +33953,6 @@
     "canonical_slug": "againstthegrain"
   },
   {
-    "slug": "risecofeebox",
-    "name": "RiSE coFee box",
-    "url": "https://www.notonthehighstreet.com/partners/risecofeebox",
-    "product_count": 4,
-    "active": true,
-    "since": "Aug 2020",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Frisecofeebox",
-    "review_count": 1,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "risecofeebox"
-  },
-  {
     "slug": "becleanco",
     "name": "Be Clean Co.",
     "url": "https://www.notonthehighstreet.com/partners/becleanco",
@@ -34484,19 +34055,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "boucle"
-  },
-  {
-    "slug": "parafleembroidery",
-    "name": "ParaFle Embroidery",
-    "url": "https://www.notonthehighstreet.com/partners/parafleembroidery",
-    "product_count": 63,
-    "active": true,
-    "since": "Jul 2020",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fparafleembroidery",
-    "review_count": 29,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "parafleembroidery"
   },
   {
     "slug": "sparrowandplumb",
@@ -34770,19 +34328,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "nelsonandpops"
-  },
-  {
-    "slug": "dogandhatcofee",
-    "name": "Dog and Hat CoFee",
-    "url": "https://www.notonthehighstreet.com/partners/dogandhatcofee",
-    "product_count": 1,
-    "active": true,
-    "since": "Jul 2020",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fdogandhatcofee",
-    "review_count": 2,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "dogandhatcofee"
   },
   {
     "slug": "downwardduck",
@@ -35292,19 +34837,6 @@
     "canonical_slug": "artisanne"
   },
   {
-    "slug": "batchcofee",
-    "name": "Batch CoFee",
-    "url": "https://www.notonthehighstreet.com/partners/batchcofee",
-    "product_count": 2,
-    "active": true,
-    "since": "May 2020",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fbatchcofee",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "batchcofee"
-  },
-  {
     "slug": "collardmanson",
     "name": "Maitri",
     "url": "https://www.notonthehighstreet.com/partners/collardmanson",
@@ -35358,7 +34890,7 @@
   },
   {
     "slug": "theconscious",
-    "name": "The Conscious",
+    "name": "studio thie",
     "url": "https://www.notonthehighstreet.com/partners/theconscious",
     "product_count": 83,
     "active": true,
@@ -35553,7 +35085,7 @@
   },
   {
     "slug": "meslin",
-    "name": "SaF & Sass",
+    "name": "Saff & Sass",
     "url": "https://www.notonthehighstreet.com/partners/meslin",
     "product_count": 45,
     "active": true,
@@ -36034,7 +35566,7 @@
   },
   {
     "slug": "britishhoneycompany",
-    "name": "Keepr's Spirits",
+    "name": "Keeprs & Two Birds",
     "url": "https://www.notonthehighstreet.com/partners/britishhoneycompany",
     "product_count": 12,
     "active": true,
@@ -36473,19 +36005,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "janconstantine"
-  },
-  {
-    "slug": "bufjewellery",
-    "name": "BuF Jewellery",
-    "url": "https://www.notonthehighstreet.com/partners/bufjewellery",
-    "product_count": 22,
-    "active": true,
-    "since": "Nov 2018",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fbufjewellery",
-    "review_count": 54,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "bufjewellery"
   },
   {
     "slug": "thejamtart",
@@ -37008,19 +36527,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "12casacala"
-  },
-  {
-    "slug": "bluecofeebox",
-    "name": "Blue CoFee Box",
-    "url": "https://www.notonthehighstreet.com/partners/bluecofeebox",
-    "product_count": 16,
-    "active": true,
-    "since": "May 2018",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fbluecofeebox",
-    "review_count": 57,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "bluecofeebox"
   },
   {
     "slug": "thenomadsociety",
@@ -37595,19 +37101,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "percyandco"
-  },
-  {
-    "slug": "twochimpscofee",
-    "name": "Two Chimps CoFee",
-    "url": "https://www.notonthehighstreet.com/partners/twochimpscofee",
-    "product_count": 39,
-    "active": true,
-    "since": "Nov 2017",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Ftwochimpscofee",
-    "review_count": 67,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "twochimpscofee"
   },
   {
     "slug": "emilycarter",
@@ -38260,19 +37753,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "rosmillar"
-  },
-  {
-    "slug": "turfootballart",
-    "name": "Turf Football Art",
-    "url": "https://www.notonthehighstreet.com/partners/turfootballart",
-    "product_count": 37,
-    "active": true,
-    "since": "Aug 2017",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fturfootballart",
-    "review_count": 540,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "turfootballart"
   },
   {
     "slug": "lovinglyhandmadecrochet",
@@ -41577,19 +41057,6 @@
     "canonical_slug": "graystarlingdesigns"
   },
   {
-    "slug": "rubbastuf",
-    "name": "rubbastuF",
-    "url": "https://www.notonthehighstreet.com/partners/rubbastuf",
-    "product_count": 34,
-    "active": true,
-    "since": "Oct 2016",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Frubbastuf",
-    "review_count": 43,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "rubbastuf"
-  },
-  {
     "slug": "littlepaisleydesigns",
     "name": "Little Paisley Designs",
     "url": "https://www.notonthehighstreet.com/partners/littlepaisleydesigns",
@@ -41604,7 +41071,7 @@
   },
   {
     "slug": "snakpack",
-    "name": "EDEN TREAT COLLECTION",
+    "name": "EDEN & CO.",
     "url": "https://www.notonthehighstreet.com/partners/snakpack",
     "product_count": 49,
     "active": true,
@@ -43449,19 +42916,6 @@
     "canonical_slug": "tinytreatboutique"
   },
   {
-    "slug": "jordanneclife",
-    "name": "Jordanne CliFe",
-    "url": "https://www.notonthehighstreet.com/partners/jordanneclife",
-    "product_count": 7,
-    "active": true,
-    "since": "Jul 2016",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fjordanneclife",
-    "review_count": 1,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "jordanneclife"
-  },
-  {
     "slug": "ozerlat",
     "name": "Ozerlat",
     "url": "https://www.notonthehighstreet.com/partners/ozerlat",
@@ -43551,19 +43005,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "thewildkitchen"
-  },
-  {
-    "slug": "baileyofshefield",
-    "name": "Bailey of SheField",
-    "url": "https://www.notonthehighstreet.com/partners/baileyofshefield",
-    "product_count": 4,
-    "active": true,
-    "since": "Jul 2016",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fbaileyofshefield",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "baileyofshefield"
   },
   {
     "slug": "jdcruzbags",
@@ -43710,7 +43151,7 @@
   },
   {
     "slug": "laurenradley",
-    "name": "Lauren Radley LTD",
+    "name": "Lauren Radley Illustration",
     "url": "https://www.notonthehighstreet.com/partners/laurenradley",
     "product_count": 82,
     "active": true,
@@ -44372,19 +43813,6 @@
     "canonical_slug": "theuptoncheyneychillicompany"
   },
   {
-    "slug": "sandyleafarm",
-    "name": "Sandy Leaf Farm",
-    "url": "https://www.notonthehighstreet.com/partners/sandyleafarm",
-    "product_count": 4,
-    "active": true,
-    "since": "May 2016",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsandyleafarm",
-    "review_count": 307,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "sandyleafarm"
-  },
-  {
     "slug": "charnwoodforestalpacas",
     "name": "Charnwood Forest Alpacas",
     "url": "https://www.notonthehighstreet.com/partners/charnwoodforestalpacas",
@@ -44825,19 +44253,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "ruthhollypaperandhome"
-  },
-  {
-    "slug": "silverstufjewellery",
-    "name": "Silver StuF Jewellery",
-    "url": "https://www.notonthehighstreet.com/partners/silverstufjewellery",
-    "product_count": 23,
-    "active": true,
-    "since": "Feb 2016",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsilverstufjewellery",
-    "review_count": 37,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "silverstufjewellery"
   },
   {
     "slug": "theenglishrosebakery",
@@ -45683,19 +45098,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "glittereyes"
-  },
-  {
-    "slug": "anelforchristmas",
-    "name": "Big Little Toys",
-    "url": "https://www.notonthehighstreet.com/partners/anelforchristmas",
-    "product_count": 9,
-    "active": true,
-    "since": "Sep 2015",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fanelforchristmas",
-    "review_count": 35,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "anelforchristmas"
   },
   {
     "slug": "umbrellabella",
@@ -47052,19 +46454,6 @@
     "canonical_slug": "hideandhome"
   },
   {
-    "slug": "squifyprint",
-    "name": "SquiFy Print",
-    "url": "https://www.notonthehighstreet.com/partners/squifyprint",
-    "product_count": 19,
-    "active": true,
-    "since": "May 2015",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsquifyprint",
-    "review_count": 96,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "squifyprint"
-  },
-  {
     "slug": "layertree",
     "name": "LayerTree",
     "url": "https://www.notonthehighstreet.com/partners/layertree",
@@ -47154,19 +46543,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "bskincare"
-  },
-  {
-    "slug": "thesnaflingpigco",
-    "name": "SnaFling Pig",
-    "url": "https://www.notonthehighstreet.com/partners/thesnaflingpigco",
-    "product_count": 2,
-    "active": true,
-    "since": "May 2015",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fthesnaflingpigco",
-    "review_count": 951,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "thesnaflingpigco"
   },
   {
     "slug": "rennuk",
@@ -49524,19 +48900,6 @@
     "canonical_slug": "kathleenhills"
   },
   {
-    "slug": "grifinandsinclair",
-    "name": "Pintail studios",
-    "url": "https://www.notonthehighstreet.com/partners/grifinandsinclair",
-    "product_count": 27,
-    "active": true,
-    "since": "Oct 2014",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fgrifinandsinclair",
-    "review_count": 48,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "grifinandsinclair"
-  },
-  {
     "slug": "theneweden",
     "name": "The New Eden",
     "url": "https://www.notonthehighstreet.com/partners/theneweden",
@@ -49681,7 +49044,7 @@
   },
   {
     "slug": "bowerbox",
-    "name": "Bump of Joy",
+    "name": "Pip & Mallow",
     "url": "https://www.notonthehighstreet.com/partners/bowerbox",
     "product_count": 10,
     "active": true,
@@ -50655,19 +50018,6 @@
     "canonical_slug": "magpiedecor"
   },
   {
-    "slug": "jenrofe",
-    "name": "Jen RoFe",
-    "url": "https://www.notonthehighstreet.com/partners/jenrofe",
-    "product_count": 21,
-    "active": true,
-    "since": "May 2014",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fjenrofe",
-    "review_count": 85,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "jenrofe"
-  },
-  {
     "slug": "pinkbiscuits",
     "name": "Pink Biscuits",
     "url": "https://www.notonthehighstreet.com/partners/pinkbiscuits",
@@ -50812,7 +50162,7 @@
   },
   {
     "slug": "charlottefilshie",
-    "name": "Dinosaurs Doing StuF",
+    "name": "Dinosaurs Doing Stuff",
     "url": "https://www.notonthehighstreet.com/partners/charlottefilshie",
     "product_count": 134,
     "active": true,
@@ -51537,19 +50887,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "littleletter"
-  },
-  {
-    "slug": "snafles",
-    "name": "SnaFleS",
-    "url": "https://www.notonthehighstreet.com/partners/snafles",
-    "product_count": 8,
-    "active": true,
-    "since": "Feb 2014",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsnafles",
-    "review_count": 21,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "snafles"
   },
   {
     "slug": "theweddinggarterco",
@@ -56168,7 +55505,7 @@
   },
   {
     "slug": "walldecalsukbygemdesigns",
-    "name": "Wall Art Quotes & Designs By Gemma DuFy",
+    "name": "Wall Art Quotes & Designs By Gemma Duffy",
     "url": "https://www.notonthehighstreet.com/partners/walldecalsukbygemdesigns",
     "product_count": 13,
     "active": true,
@@ -56909,7 +56246,7 @@
   },
   {
     "slug": "mixpixie",
-    "name": "MixPixie",
+    "name": "The Gift Edit",
     "url": "https://www.notonthehighstreet.com/partners/mixpixie",
     "product_count": 96,
     "active": true,
@@ -57114,19 +56451,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "jessicairenasmithglass"
-  },
-  {
-    "slug": "englishcuflinks",
-    "name": "English CuFlinks",
-    "url": "https://www.notonthehighstreet.com/partners/englishcuflinks",
-    "product_count": 26,
-    "active": true,
-    "since": "Oct 2012",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fenglishcuflinks",
-    "review_count": 197,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "englishcuflinks"
   },
   {
     "slug": "cabbiekids",
@@ -57896,19 +57220,6 @@
     "canonical_slug": "hokolo"
   },
   {
-    "slug": "cofeefactory",
-    "name": "CoFee Factory ltd",
-    "url": "https://www.notonthehighstreet.com/partners/cofeefactory",
-    "product_count": 3,
-    "active": true,
-    "since": "Aug 2012",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fcofeefactory",
-    "review_count": 204,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "cofeefactory"
-  },
-  {
     "slug": "deservedlyso",
     "name": "Deservedly-So",
     "url": "https://www.notonthehighstreet.com/partners/deservedlyso",
@@ -58364,19 +57675,6 @@
     "canonical_slug": "sweetpeadesign"
   },
   {
-    "slug": "tofeemoon",
-    "name": "ToFee Moon",
-    "url": "https://www.notonthehighstreet.com/partners/tofeemoon",
-    "product_count": 209,
-    "active": true,
-    "since": "May 2012",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Ftofeemoon",
-    "review_count": 341,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "tofeemoon"
-  },
-  {
     "slug": "jujutreasures",
     "name": "Juju Treasures",
     "url": "https://www.notonthehighstreet.com/partners/jujutreasures",
@@ -58780,19 +58078,6 @@
     "canonical_slug": "artpause"
   },
   {
-    "slug": "diamondafair",
-    "name": "Diamond AFair",
-    "url": "https://www.notonthehighstreet.com/partners/diamondafair",
-    "product_count": 297,
-    "active": true,
-    "since": "Mar 2012",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fdiamondafair",
-    "review_count": 243,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "diamondafair"
-  },
-  {
     "slug": "meandmysport",
     "name": "Me and My Sport",
     "url": "https://www.notonthehighstreet.com/partners/meandmysport",
@@ -59116,19 +58401,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "sparksanddaughters"
-  },
-  {
-    "slug": "beckagrifinillustration",
-    "name": "Becka GriFin Illustration",
-    "url": "https://www.notonthehighstreet.com/partners/beckagrifinillustration",
-    "product_count": 281,
-    "active": true,
-    "since": "Jan 2012",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fbeckagrifinillustration",
-    "review_count": 2751,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "beckagrifinillustration"
   },
   {
     "slug": "undertherose",
@@ -60782,19 +60054,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "veryberyl"
-  },
-  {
-    "slug": "artstuf",
-    "name": "artstuF",
-    "url": "https://www.notonthehighstreet.com/partners/artstuf",
-    "product_count": 23,
-    "active": true,
-    "since": "Aug 2011",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fartstuf",
-    "review_count": 85,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "artstuf"
   },
   {
     "slug": "impulsepurchase",
@@ -65603,7 +64862,7 @@
     "slug": "kikivoltaire",
     "name": "Kiki Voltaire",
     "url": "https://www.notonthehighstreet.com/partners/kikivoltaire",
-    "product_count": 7,
+    "product_count": 6,
     "active": true,
     "since": "Apr 2009",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fkikivoltaire",
@@ -65806,19 +65065,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "catherinetough"
-  },
-  {
-    "slug": "messagemufins",
-    "name": "Message MuFins",
-    "url": "https://www.notonthehighstreet.com/partners/messagemufins",
-    "product_count": 17,
-    "active": true,
-    "since": "Mar 2009",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fmessagemufins",
-    "review_count": 256,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "messagemufins"
   },
   {
     "slug": "edamay",
@@ -66693,7 +65939,7 @@
   },
   {
     "slug": "icescream",
-    "name": "Flowery WhiF",
+    "name": "Flowery Whiff",
     "url": "https://www.notonthehighstreet.com/partners/icescream",
     "product_count": 24,
     "active": true,
@@ -66732,7 +65978,7 @@
   },
   {
     "slug": "scarlettjewellery",
-    "name": "Scarlett OF The Map Jewellery",
+    "name": "Scarlett Off The Map Jewellery",
     "url": "https://www.notonthehighstreet.com/partners/scarlettjewellery",
     "product_count": 215,
     "active": true,
@@ -67761,12 +67007,12 @@
   },
   {
     "slug": "allthingsbrightonbeautiful",
-    "name": "Abode Home & Gifts",
-    "url": "https://www.notonthehighstreet.com/partners/abodehomeandgifts",
+    "name": "Abode Home & GiftsProducts",
+    "url": "https://www.notonthehighstreet.com/partners/allthingsbrightonbeautiful",
     "active": true,
     "product_count": 889,
     "since": "Dec 2010",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fabodehomeandgifts",
+    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fallthingsbrightonbeautiful",
     "fail_count": 0,
     "aliases": [],
     "review_count": 6273,
@@ -67786,26 +67032,13 @@
     "canonical_slug": "argentoflondon"
   },
   {
-    "slug": "aroamacofee",
-    "name": "Aroama",
-    "url": "https://www.notonthehighstreet.com/partners/aroamacofee",
-    "active": true,
-    "product_count": 6,
-    "since": "Jul 2025",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Faroamacofee",
-    "review_count": 0,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "aroamacofee"
-  },
-  {
     "slug": "atlondonjewels",
-    "name": "Alexander Thurlow",
-    "url": "https://www.notonthehighstreet.com/partners/alexanderthurlow",
+    "name": "Alexander ThurlowProducts",
+    "url": "https://www.notonthehighstreet.com/partners/atlondonjewels",
     "active": true,
     "product_count": 297,
     "since": "Sep 2007",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Falexanderthurlow",
+    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fatlondonjewels",
     "review_count": 675,
     "fail_count": 0,
     "aliases": [],
@@ -67849,19 +67082,6 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "badgersbadgers"
-  },
-  {
-    "slug": "beaniesflavouredcofee",
-    "name": "Beanies Flavoured CoFee",
-    "url": "https://www.notonthehighstreet.com/partners/beaniesflavouredcofee",
-    "active": true,
-    "product_count": 0,
-    "since": "Feb 2023",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fbeaniesflavouredcofee",
-    "review_count": 1,
-    "fail_count": 0,
-    "aliases": [],
-    "canonical_slug": "beaniesflavouredcofee"
   },
   {
     "slug": "belfastbowcompany",
@@ -68047,12 +67267,12 @@
   },
   {
     "slug": "coldclayco",
-    "name": "Flora & Brass",
-    "url": "https://www.notonthehighstreet.com/partners/blooming",
+    "name": "Flora & BrassProducts",
+    "url": "https://www.notonthehighstreet.com/partners/coldclayco",
     "active": true,
     "product_count": 7,
     "since": "Feb 2023",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fblooming",
+    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fcoldclayco",
     "review_count": 36,
     "fail_count": 0,
     "aliases": [],
@@ -68125,12 +67345,12 @@
   },
   {
     "slug": "eka",
-    "name": "Ace Of Wands",
-    "url": "https://www.notonthehighstreet.com/partners/aceofwands",
+    "name": "Ace Of WandsProducts",
+    "url": "https://www.notonthehighstreet.com/partners/eka",
     "active": true,
     "product_count": 31,
     "since": "Nov 2010",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Faceofwands",
+    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Feka",
     "review_count": 383,
     "fail_count": 0,
     "aliases": [],
@@ -68255,12 +67475,12 @@
   },
   {
     "slug": "freehandfreemind",
-    "name": "Willow & Hue",
-    "url": "https://www.notonthehighstreet.com/partners/willowandhue",
+    "name": "Willow & HueProducts",
+    "url": "https://www.notonthehighstreet.com/partners/freehandfreemind",
     "active": true,
     "product_count": 80,
     "since": "Jun 2018",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fwillowandhue",
+    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Ffreehandfreemind",
     "review_count": 136,
     "fail_count": 0,
     "aliases": [],
@@ -68437,12 +67657,12 @@
   },
   {
     "slug": "letteroom",
-    "name": "The Department Of Gifting",
-    "url": "https://www.notonthehighstreet.com/partners/thedepartmentofgifting",
+    "name": "The Department Of GiftingProducts",
+    "url": "https://www.notonthehighstreet.com/partners/letteroom",
     "active": true,
     "product_count": 559,
     "since": "Nov 2009",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fthedepartmentofgifting",
+    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fletteroom",
     "fail_count": 0,
     "aliases": [],
     "review_count": 11232,
@@ -68463,12 +67683,12 @@
   },
   {
     "slug": "lilyandwonder",
-    "name": "Evansly Lane",
-    "url": "https://www.notonthehighstreet.com/partners/evanslylane",
+    "name": "Evansly LaneProducts",
+    "url": "https://www.notonthehighstreet.com/partners/lilyandwonder",
     "active": true,
     "product_count": 88,
     "since": "May 2015",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fevanslylane",
+    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Flilyandwonder",
     "review_count": 628,
     "fail_count": 0,
     "aliases": [],
@@ -68528,12 +67748,12 @@
   },
   {
     "slug": "malarocks",
-    "name": "Spiritual Gifts",
-    "url": "https://www.notonthehighstreet.com/partners/spiritualjewellery",
+    "name": "Spiritual GiftsProducts",
+    "url": "https://www.notonthehighstreet.com/partners/malarocks",
     "active": true,
     "product_count": 1005,
     "since": "Oct 2017",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fspiritualjewellery",
+    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fmalarocks",
     "review_count": 61,
     "fail_count": 0,
     "aliases": [],
@@ -68827,12 +68047,12 @@
   },
   {
     "slug": "studioone48",
-    "name": "Boldly Whittle",
-    "url": "https://www.notonthehighstreet.com/partners/boldlywhittle",
+    "name": "Boldly WhittleProducts",
+    "url": "https://www.notonthehighstreet.com/partners/studioone48",
     "active": true,
     "product_count": 985,
     "since": "Apr 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fboldlywhittle",
+    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fstudioone48",
     "fail_count": 0,
     "aliases": [],
     "review_count": 121,
@@ -68931,12 +68151,12 @@
   },
   {
     "slug": "thelittleboysroom",
-    "name": "HELLO LOVELY",
-    "url": "https://www.notonthehighstreet.com/partners/hellolovely",
+    "name": "HELLO LOVELYProducts",
+    "url": "https://www.notonthehighstreet.com/partners/thelittleboysroom",
     "active": true,
     "product_count": 1051,
     "since": "Oct 2011",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fhellolovely",
+    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fthelittleboysroom",
     "fail_count": 0,
     "aliases": [],
     "review_count": 7228,
@@ -69035,12 +68255,12 @@
   },
   {
     "slug": "twiststationery",
-    "name": "Paper Scene",
-    "url": "https://www.notonthehighstreet.com/partners/paperscene",
+    "name": "Paper SceneProducts",
+    "url": "https://www.notonthehighstreet.com/partners/twiststationery",
     "active": true,
     "product_count": 2529,
     "since": "Oct 2021",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fpaperscene",
+    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Ftwiststationery",
     "review_count": 864,
     "fail_count": 0,
     "aliases": [],
@@ -69048,12 +68268,12 @@
   },
   {
     "slug": "twoforjoyheadbands",
-    "name": "Petal & Pearl Accessories",
-    "url": "https://www.notonthehighstreet.com/partners/petalandpearlaccessories",
+    "name": "Petal & Pearl AccessoriesProducts",
+    "url": "https://www.notonthehighstreet.com/partners/twoforjoyheadbands",
     "active": true,
     "product_count": 209,
     "since": "Feb 2022",
-    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fpetalandpearlaccessories",
+    "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Ftwoforjoyheadbands",
     "review_count": 8,
     "fail_count": 0,
     "aliases": [],
@@ -69139,7 +68359,7 @@
   },
   {
     "slug": "messagemuffins",
-    "name": "Messagemuffins",
+    "name": "Message Muffins",
     "url": "https://www.notonthehighstreet.com/partners/messagemuffins",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fmessagemuffins",
     "since": "Mar 2009",
@@ -69152,7 +68372,7 @@
   },
   {
     "slug": "artstuff",
-    "name": "Artstuff",
+    "name": "artstuff",
     "url": "https://www.notonthehighstreet.com/partners/artstuff",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fartstuff",
     "since": "Aug 2011",
@@ -69165,7 +68385,7 @@
   },
   {
     "slug": "beckagriffinillustration",
-    "name": "Beckagriffinillustration",
+    "name": "Becka Griffin Illustration",
     "url": "https://www.notonthehighstreet.com/partners/beckagriffinillustration",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fbeckagriffinillustration",
     "since": "Jan 2012",
@@ -69178,7 +68398,7 @@
   },
   {
     "slug": "diamondaffair",
-    "name": "Diamondaffair",
+    "name": "Diamond Affair",
     "url": "https://www.notonthehighstreet.com/partners/diamondaffair",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fdiamondaffair",
     "since": "Mar 2012",
@@ -69191,7 +68411,7 @@
   },
   {
     "slug": "toffeemoon",
-    "name": "Toffeemoon",
+    "name": "Toffee Moon",
     "url": "https://www.notonthehighstreet.com/partners/toffeemoon",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Ftoffeemoon",
     "since": "May 2012",
@@ -69204,7 +68424,7 @@
   },
   {
     "slug": "englishcufflinks",
-    "name": "Englishcufflinks",
+    "name": "English Cufflinks",
     "url": "https://www.notonthehighstreet.com/partners/englishcufflinks",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fenglishcufflinks",
     "since": "Oct 2012",
@@ -69217,7 +68437,7 @@
   },
   {
     "slug": "snaffles",
-    "name": "Snaffles",
+    "name": "SnaffleS",
     "url": "https://www.notonthehighstreet.com/partners/snaffles",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsnaffles",
     "since": "Feb 2014",
@@ -69230,7 +68450,7 @@
   },
   {
     "slug": "coffeefactory",
-    "name": "Coffeefactory",
+    "name": "Coffee Factory ltd",
     "url": "https://www.notonthehighstreet.com/partners/coffeefactory",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fcoffeefactory",
     "since": "Aug 2012",
@@ -69243,7 +68463,7 @@
   },
   {
     "slug": "jenroffe",
-    "name": "Jenroffe",
+    "name": "Jen Roffe",
     "url": "https://www.notonthehighstreet.com/partners/jenroffe",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fjenroffe",
     "since": "May 2014",
@@ -69256,7 +68476,7 @@
   },
   {
     "slug": "griffinandsinclair",
-    "name": "Griffinandsinclair",
+    "name": "Pintail studios",
     "url": "https://www.notonthehighstreet.com/partners/griffinandsinclair",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fgriffinandsinclair",
     "since": "Oct 2014",
@@ -69269,7 +68489,7 @@
   },
   {
     "slug": "anelfforchristmas",
-    "name": "Anelfforchristmas",
+    "name": "Big Little Toys",
     "url": "https://www.notonthehighstreet.com/partners/anelfforchristmas",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fanelfforchristmas",
     "since": "Sep 2015",
@@ -69282,7 +68502,7 @@
   },
   {
     "slug": "silverstuffjewellery",
-    "name": "Silverstuffjewellery",
+    "name": "Silver Stuff Jewellery",
     "url": "https://www.notonthehighstreet.com/partners/silverstuffjewellery",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsilverstuffjewellery",
     "since": "Feb 2016",
@@ -69295,7 +68515,7 @@
   },
   {
     "slug": "thesnafflingpigco",
-    "name": "Thesnafflingpigco",
+    "name": "Snaffling Pig",
     "url": "https://www.notonthehighstreet.com/partners/thesnafflingpigco",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fthesnafflingpigco",
     "since": "May 2015",
@@ -69308,7 +68528,7 @@
   },
   {
     "slug": "jordannecliffe",
-    "name": "Jordannecliffe",
+    "name": "Jordanne Cliffe",
     "url": "https://www.notonthehighstreet.com/partners/jordannecliffe",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fjordannecliffe",
     "since": "Jul 2016",
@@ -69321,7 +68541,7 @@
   },
   {
     "slug": "baileyofsheffield",
-    "name": "Baileyofsheffield",
+    "name": "Bailey of Sheffield",
     "url": "https://www.notonthehighstreet.com/partners/baileyofsheffield",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fbaileyofsheffield",
     "since": "Jul 2016",
@@ -69334,7 +68554,7 @@
   },
   {
     "slug": "rubbastuff",
-    "name": "Rubbastuff",
+    "name": "rubbastuff",
     "url": "https://www.notonthehighstreet.com/partners/rubbastuff",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Frubbastuff",
     "since": "Oct 2016",
@@ -69347,7 +68567,7 @@
   },
   {
     "slug": "turffootballart",
-    "name": "Turffootballart",
+    "name": "Turf Football Art",
     "url": "https://www.notonthehighstreet.com/partners/turffootballart",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fturffootballart",
     "since": "Aug 2017",
@@ -69360,7 +68580,7 @@
   },
   {
     "slug": "twochimpscoffee",
-    "name": "Twochimpscoffee",
+    "name": "Two Chimps Coffee",
     "url": "https://www.notonthehighstreet.com/partners/twochimpscoffee",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Ftwochimpscoffee",
     "since": "Nov 2017",
@@ -69373,7 +68593,7 @@
   },
   {
     "slug": "squiffyprint",
-    "name": "Squiffyprint",
+    "name": "Squiffy Print",
     "url": "https://www.notonthehighstreet.com/partners/squiffyprint",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsquiffyprint",
     "since": "May 2015",
@@ -69386,7 +68606,7 @@
   },
   {
     "slug": "bluecoffeebox",
-    "name": "Bluecoffeebox",
+    "name": "Blue Coffee Box",
     "url": "https://www.notonthehighstreet.com/partners/bluecoffeebox",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fbluecoffeebox",
     "since": "May 2018",
@@ -69399,7 +68619,7 @@
   },
   {
     "slug": "buffjewellery",
-    "name": "Buffjewellery",
+    "name": "Buff Jewellery",
     "url": "https://www.notonthehighstreet.com/partners/buffjewellery",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fbuffjewellery",
     "since": "Nov 2018",
@@ -69412,7 +68632,7 @@
   },
   {
     "slug": "batchcoffee",
-    "name": "Batchcoffee",
+    "name": "Batch Coffee",
     "url": "https://www.notonthehighstreet.com/partners/batchcoffee",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fbatchcoffee",
     "since": "May 2020",
@@ -69425,7 +68645,7 @@
   },
   {
     "slug": "dogandhatcoffee",
-    "name": "Dogandhatcoffee",
+    "name": "Dog and Hat Coffee",
     "url": "https://www.notonthehighstreet.com/partners/dogandhatcoffee",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fdogandhatcoffee",
     "since": "Jul 2020",
@@ -69438,7 +68658,7 @@
   },
   {
     "slug": "paraffleembroidery",
-    "name": "Paraffleembroidery",
+    "name": "Paraffle Embroidery",
     "url": "https://www.notonthehighstreet.com/partners/paraffleembroidery",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fparaffleembroidery",
     "since": "Jul 2020",
@@ -69451,7 +68671,7 @@
   },
   {
     "slug": "risecoffeebox",
-    "name": "Risecoffeebox",
+    "name": "RiSE coffee box",
     "url": "https://www.notonthehighstreet.com/partners/risecoffeebox",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Frisecoffeebox",
     "since": "Aug 2020",
@@ -69464,7 +68684,7 @@
   },
   {
     "slug": "clocoffee",
-    "name": "Clocoffee",
+    "name": "CLO Coffee",
     "url": "https://www.notonthehighstreet.com/partners/clocoffee",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fclocoffee",
     "since": "Dec 2020",
@@ -69477,7 +68697,7 @@
   },
   {
     "slug": "fluffandcrumble",
-    "name": "Fluffandcrumble",
+    "name": "Fluff & Crumble",
     "url": "https://www.notonthehighstreet.com/partners/fluffandcrumble",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Ffluffandcrumble",
     "since": "Sep 2021",
@@ -69490,7 +68710,7 @@
   },
   {
     "slug": "aryaofficiale",
-    "name": "Aryaofficiale",
+    "name": "Arya Officiale",
     "url": "https://www.notonthehighstreet.com/partners/aryaofficiale",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Faryaofficiale",
     "since": "Aug 2021",
@@ -69503,7 +68723,7 @@
   },
   {
     "slug": "somethingabitdifferent",
-    "name": "Somethingabitdifferent",
+    "name": "Something a bit different",
     "url": "https://www.notonthehighstreet.com/partners/somethingabitdifferent",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsomethingabitdifferent",
     "since": "Jul 2022",
@@ -69516,7 +68736,7 @@
   },
   {
     "slug": "suffolkstyle",
-    "name": "Suffolkstyle",
+    "name": "Suffolk Style",
     "url": "https://www.notonthehighstreet.com/partners/suffolkstyle",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsuffolkstyle",
     "since": "Nov 2021",
@@ -69529,7 +68749,7 @@
   },
   {
     "slug": "hackneyrascalcoffee",
-    "name": "Hackneyrascalcoffee",
+    "name": "Rascal Coffee",
     "url": "https://www.notonthehighstreet.com/partners/hackneyrascalcoffee",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fhackneyrascalcoffee",
     "since": "Jan 2022",
@@ -69542,7 +68762,7 @@
   },
   {
     "slug": "effortlesstradingco",
-    "name": "Effortlesstradingco",
+    "name": "Effortless Trading Co",
     "url": "https://www.notonthehighstreet.com/partners/effortlesstradingco",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Feffortlesstradingco",
     "since": "Dec 2021",
@@ -69561,8 +68781,8 @@
     "since": "Unknown",
     "review_count": 0,
     "product_count": 0,
-    "active": true,
-    "fail_count": 2,
+    "active": false,
+    "fail_count": 3,
     "aliases": [],
     "canonical_slug": "fluffypeaksdesigns"
   },
@@ -69581,7 +68801,7 @@
   },
   {
     "slug": "coffeeandkin",
-    "name": "Coffeeandkin",
+    "name": "Coffee & Kin",
     "url": "https://www.notonthehighstreet.com/partners/coffeeandkin",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fcoffeeandkin",
     "since": "Apr 2022",
@@ -69594,7 +68814,7 @@
   },
   {
     "slug": "scratchoffmaps",
-    "name": "Scratchoffmaps",
+    "name": "Scratch off Maps",
     "url": "https://www.notonthehighstreet.com/partners/scratchoffmaps",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fscratchoffmaps",
     "since": "Jul 2022",
@@ -69607,7 +68827,7 @@
   },
   {
     "slug": "roseanddaff",
-    "name": "Roseanddaff",
+    "name": "Rose + Daff",
     "url": "https://www.notonthehighstreet.com/partners/roseanddaff",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Froseanddaff",
     "since": "Aug 2022",
@@ -69620,7 +68840,7 @@
   },
   {
     "slug": "bluegoosecoffee",
-    "name": "Bluegoosecoffee",
+    "name": "Blue Goose Coffee",
     "url": "https://www.notonthehighstreet.com/partners/bluegoosecoffee",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fbluegoosecoffee",
     "since": "Oct 2022",
@@ -69633,7 +68853,7 @@
   },
   {
     "slug": "puffinco",
-    "name": "Puffinco",
+    "name": "Puffin Co",
     "url": "https://www.notonthehighstreet.com/partners/puffinco",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fpuffinco",
     "since": "Oct 2022",
@@ -69646,7 +68866,7 @@
   },
   {
     "slug": "neighbourhoodcoffeeroasters",
-    "name": "Neighbourhoodcoffeeroasters",
+    "name": "Neighbourhood Coffee Roasters",
     "url": "https://www.notonthehighstreet.com/partners/neighbourhoodcoffeeroasters",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fneighbourhoodcoffeeroasters",
     "since": "Nov 2022",
@@ -69659,7 +68879,7 @@
   },
   {
     "slug": "giraffecocktails",
-    "name": "Giraffecocktails",
+    "name": "Giraffe Cocktails",
     "url": "https://www.notonthehighstreet.com/partners/giraffecocktails",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fgiraffecocktails",
     "since": "Nov 2021",
@@ -69672,7 +68892,7 @@
   },
   {
     "slug": "rountoncoffeeroasters",
-    "name": "Rountoncoffeeroasters",
+    "name": "Rounton Coffee Roasters",
     "url": "https://www.notonthehighstreet.com/partners/rountoncoffeeroasters",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Frountoncoffeeroasters",
     "since": "Dec 2022",
@@ -69685,7 +68905,7 @@
   },
   {
     "slug": "thecufflinkman",
-    "name": "Thecufflinkman",
+    "name": "Bennies",
     "url": "https://www.notonthehighstreet.com/partners/thecufflinkman",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fthecufflinkman",
     "since": "Jan 2022",
@@ -69698,7 +68918,7 @@
   },
   {
     "slug": "prettytiffin",
-    "name": "Prettytiffin",
+    "name": "Pretty Tiffin",
     "url": "https://www.notonthehighstreet.com/partners/prettytiffin",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fprettytiffin",
     "since": "Apr 2023",
@@ -69711,7 +68931,7 @@
   },
   {
     "slug": "summeraffirms",
-    "name": "Summeraffirms",
+    "name": "SUMMER AFFIRMS",
     "url": "https://www.notonthehighstreet.com/partners/summeraffirms",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsummeraffirms",
     "since": "Jul 2021",
@@ -69724,7 +68944,7 @@
   },
   {
     "slug": "coffeecapsuleuk",
-    "name": "Coffeecapsuleuk",
+    "name": "Coffee Capsule UK",
     "url": "https://www.notonthehighstreet.com/partners/coffeecapsuleuk",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fcoffeecapsuleuk",
     "since": "Oct 2022",
@@ -69737,7 +68957,7 @@
   },
   {
     "slug": "stiffeditgolf",
-    "name": "Stiffeditgolf",
+    "name": "Stiffed It Golf",
     "url": "https://www.notonthehighstreet.com/partners/stiffeditgolf",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fstiffeditgolf",
     "since": "Nov 2023",
@@ -69750,7 +68970,7 @@
   },
   {
     "slug": "thelittlecoffeecompany",
-    "name": "Thelittlecoffeecompany",
+    "name": "The Little Coffee Company",
     "url": "https://www.notonthehighstreet.com/partners/thelittlecoffeecompany",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fthelittlecoffeecompany",
     "since": "Dec 2023",
@@ -69763,7 +68983,7 @@
   },
   {
     "slug": "blackkoffee",
-    "name": "Blackkoffee",
+    "name": "Black Koffee",
     "url": "https://www.notonthehighstreet.com/partners/blackkoffee",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fblackkoffee",
     "since": "Mar 2024",
@@ -69776,7 +68996,7 @@
   },
   {
     "slug": "socksandstuff",
-    "name": "Socksandstuff",
+    "name": "Socks + Stuff",
     "url": "https://www.notonthehighstreet.com/partners/socksandstuff",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsocksandstuff",
     "since": "Jul 2024",
@@ -69789,7 +69009,7 @@
   },
   {
     "slug": "nofflestudios",
-    "name": "Nofflestudios",
+    "name": "Noffle Studios",
     "url": "https://www.notonthehighstreet.com/partners/nofflestudios",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fnofflestudios",
     "since": "Jun 2023",
@@ -69802,7 +69022,7 @@
   },
   {
     "slug": "pactcoffee",
-    "name": "Pactcoffee",
+    "name": "Pact Coffee",
     "url": "https://www.notonthehighstreet.com/partners/pactcoffee",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fpactcoffee",
     "since": "Oct 2022",
@@ -69815,7 +69035,7 @@
   },
   {
     "slug": "onlythegoodstuffuk",
-    "name": "Onlythegoodstuffuk",
+    "name": "Only The Good Stuff UK/ OTGSUK",
     "url": "https://www.notonthehighstreet.com/partners/onlythegoodstuffuk",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fonlythegoodstuffuk",
     "since": "Oct 2024",
@@ -69828,7 +69048,7 @@
   },
   {
     "slug": "peeloffprintco",
-    "name": "Peeloffprintco",
+    "name": "Peel Off Print Co.",
     "url": "https://www.notonthehighstreet.com/partners/peeloffprintco",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fpeeloffprintco",
     "since": "Nov 2024",
@@ -69841,7 +69061,7 @@
   },
   {
     "slug": "indycoffeeguide",
-    "name": "Indycoffeeguide",
+    "name": "Indy Coffee Guide",
     "url": "https://www.notonthehighstreet.com/partners/indycoffeeguide",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Findycoffeeguide",
     "since": "Mar 2025",
@@ -69854,7 +69074,7 @@
   },
   {
     "slug": "rjffarhi",
-    "name": "Rjffarhi",
+    "name": "Rita Farhi",
     "url": "https://www.notonthehighstreet.com/partners/rjffarhi",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Frjffarhi",
     "since": "Jan 2025",
@@ -69867,7 +69087,7 @@
   },
   {
     "slug": "cuffandco",
-    "name": "Cuffandco",
+    "name": "Cuff & Co.",
     "url": "https://www.notonthehighstreet.com/partners/cuffandco",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fcuffandco",
     "since": "May 2025",
@@ -69880,7 +69100,7 @@
   },
   {
     "slug": "aroamacoffee",
-    "name": "Aroamacoffee",
+    "name": "Aroama",
     "url": "https://www.notonthehighstreet.com/partners/aroamacoffee",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Faroamacoffee",
     "since": "Jul 2025",
@@ -69893,7 +69113,7 @@
   },
   {
     "slug": "sandyleaffarm",
-    "name": "Sandyleaffarm",
+    "name": "Sandy Leaf Farm",
     "url": "https://www.notonthehighstreet.com/partners/sandyleaffarm",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fsandyleaffarm",
     "since": "May 2016",
@@ -69906,7 +69126,7 @@
   },
   {
     "slug": "beaniesflavouredcoffee",
-    "name": "Beaniesflavouredcoffee",
+    "name": "Beanies Flavoured Coffee",
     "url": "https://www.notonthehighstreet.com/partners/beaniesflavouredcoffee",
     "awin": "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=https%3A%2F%2Fwww.notonthehighstreet.com%2Fpartners%2Fbeaniesflavouredcoffee",
     "since": "Feb 2023",
