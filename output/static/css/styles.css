@@ -8,7 +8,8 @@ body, html, main, .seller-directory {
 .site-header {
   position: sticky;
   top: 0;
-height: 100px;
+  /* Avoid fixed height so the logo size controls the header naturally */
+  /* height: 100px;  <-- remove this */
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   padding: 10px 0;
@@ -18,43 +19,48 @@ height: 100px;
 .header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 24px;           /* space between logo and menu */
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
 }
 
-.header-logo {
-  flex: 0 0 auto;
-  text-align: center;
+/* Logo */
+.header-logo { flex: 0 0 auto; }
+.header-logo img {
+  display: block;
+  height: 60px;        /* adjust as needed */
 }
 
-.nav-left,
-.nav-right {
-  flex: 1;
+/* Single combined nav to the right of the logo */
+.main-nav { 
+  margin-left: auto;   /* pushes nav to the right */
 }
 
-.nav-left ul,
-.nav-right ul {
+.main-nav ul {
   display: flex;
   gap: 24px;
   list-style: none;
   padding: 0;
   margin: 0;
+  flex-wrap: wrap;     /* wraps nicely on smaller widths */
 }
 
-.nav-left a,
-.nav-right a {
+.main-nav a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
   font-size: 14px;
 }
 
-.nav-left a:hover,
-.nav-right a:hover {
-  color: #000;
+.main-nav a:hover { color: #000; }
+
+/* Optional: mobile tweaks */
+@media (max-width: 768px) {
+  .header-logo img { height: 48px; }
+  .main-nav ul { gap: 16px; }
 }
+
 
 /* ========== Seller Directory ========== */
 .seller-directory {
