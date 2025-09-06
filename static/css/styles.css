@@ -514,5 +514,73 @@ body, html, main, .seller-directory {
   font-size: 0.95rem;
 }
 
+/* ========== NOTHS Index ========== */
 
+.page-hero {
+  max-width: 900px;
+  margin: 32px auto 16px;
+  padding: 0 16px;
+  text-align: left;
+}
+.page-hero h1 {
+  margin: 0 0 8px;
+  font-size: clamp(24px, 3vw, 36px);
+}
+.page-hero .lead {
+  margin: 0;
+  color: #555;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  max-width: 1200px;
+  margin: 24px auto 48px;
+  padding: 0 16px;
+}
+.card-grid .card {
+  grid-column: span 12;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.card-grid .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  border-color: #e5e5e5;
+}
+.card-body h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+.card-body p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.card-cta {
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #111;
+}
+
+/* Responsive columns: 2-up on tablet, 3-up on desktop */
+@media (min-width: 640px) {
+  .card-grid .card { grid-column: span 6; }
+}
+@media (min-width: 1024px) {
+  .card-grid .card { grid-column: span 4; }
+}
 
