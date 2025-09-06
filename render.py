@@ -67,7 +67,7 @@ def render_seller_pages():
             url=seller.get('url', '#'),
             awin=seller.get('awin', '#'),
             since=seller.get('since', 'Unknown'),
-            reviews=seller.get('reviews', 0),
+            reviews=seller.get('review_count', 0),
             product_count=int(float(seller.get('product_count', 0))),
             top_products=top_products,
             static_path=STATIC_PATH
@@ -178,9 +178,9 @@ def render_seller_most_reviews_grouped():
     active_sellers = [s for s in sellers if s.get("active", True)]
     for s in active_sellers:
         try:
-            s["reviews"] = int(str(s.get("reviews", 0)).replace(",", ""))
+            s["review_count"] = int(str(s.get("review_count", 0)).replace(",", ""))
         except:
-            s["reviews"] = 0
+            s["review_count"] = 0
         s["slug"] = s.get("slug", "").strip().lower()
         s["name"] = s.get("name", "").strip()
 
@@ -189,7 +189,7 @@ def render_seller_most_reviews_grouped():
 
     for seller in active_sellers:
         for band in review_bands:
-            if seller["reviews"] >= band:
+            if seller["review_count"] >= band:
                 sellers_by_band[band].append(seller)
                 break
 
