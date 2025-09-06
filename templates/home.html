@@ -1,59 +1,12 @@
-{% extends "base.html" %}
-
-{% block title %}Most Reviews – Find Top Sellers & Products{% endblock %}
-
-{% block content %}
-
-<section class="hero">
-  <h1>Discover the Most Reviewed Products & Sellers</h1>
-  <p>We track the top-rated products and most prolific sellers across independent marketplaces.</p>
-  <a class="cta" href="/output/noths/index.html">Explore NOTHS →</a>
-</section>
-
-<section class="marketplaces">
-  <h2>Marketplaces</h2>
-  <div class="marketplace-grid">
-    <a class="marketplace-card" href="/output/noths/index.html">
-      <img src="/static/img/noths-logo.webp" alt="Not On The High Street">
-      <h3>Not On The High Street</h3>
-      <p>Explore sellers, products, and review trends.</p>
-    </a>
-    <!-- Future marketplace cards here -->
-  </div>
-</section>
-
-<section class="quick-links">
-  <h2>Quick Links – NOTHS</h2>
-  <ul class="link-grid">
-    <li><a href="/output/noths/sellers/index.html">🔤 A–Z Sellers</a></li>
-    <li><a href="/output/noths/sellers/by-year.html">📅 Sellers by Year</a></li>
-    <li><a href="/output/noths/sellers/seller-most-reviews.html">🏆 Most Reviews</a></li>
-    <li><a href="/output/noths/sellers/seller-most-products.html">📦 Most Products</a></li>
-    <li><a href="/output/noths/products/products-last-12-months.html">🛍 Products – Last 12 Months</a></li>
-    <li><a href="/output/noths/products/products-all-time.html">📜 Products – All Time</a></li>
-  </ul>
-</section>
-
-<section class="featured">
-  <h2>Featured This Month</h2>
-  <div class="featured-grid">
-    <div>
-      <h3>Top Sellers by Reviews</h3>
-      <ul>
-        {% for seller in top_sellers %}
-        <li><a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div>
-      <h3>Top Products – 12 Months</h3>
-      <ul>
-        {% for product in top_products %}
-        <li>{{ product.name }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-</section>
-
-{% endblock %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Most Reviews → NOTHS</title>
+  <meta http-equiv="refresh" content="0; url=/output/noths/index.html">
+  <link rel="canonical" href="/output/noths/index.html">
+</head>
+<body>
+  <p>If you’re not redirected, <a href="/output/noths/index.html">continue to NOTHS</a>.</p>
+</body>
+</html>
