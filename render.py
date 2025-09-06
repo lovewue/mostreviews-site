@@ -67,7 +67,7 @@ def render_seller_pages():
             url=seller.get('url', '#'),
             awin=seller.get('awin', '#'),
             since=seller.get('since', 'Unknown'),
-            reviews=seller.get('review_count', 0),
+            review_count=seller.get('review_count', 0),
             product_count=int(float(seller.get('product_count', 0))),
             top_products=top_products,
             static_path=STATIC_PATH
