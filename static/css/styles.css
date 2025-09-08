@@ -1,16 +1,11 @@
-/* Force overflow: visible on all parents */
-body, html, main, .seller-directory {
-  overflow: visible !important;
-}
-
 /* =========================
    HEADER + MENU (FINAL)
    ========================= */
 
 /* Control logo sizes here */
 :root{
-  --logo-desktop: 96px;   /* ← set your desktop logo height */
-  --logo-mobile: 48px;    /* ← mobile logo height */
+  --logo-desktop: 96px;   /* desktop logo height */
+  --logo-mobile: 48px;    /* mobile logo height */
 }
 
 /* Header container */
@@ -20,7 +15,7 @@ body, html, main, .seller-directory {
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   padding: 10px 0;
-  z-index: 100;
+  z-index: 1100; /* ↑ ABOVE drawer(1000) & backdrop(999) so burger is clickable */
 }
 
 .header-inner {
@@ -129,7 +124,8 @@ body.no-scroll { overflow: hidden; }
   /* Force burger visible on mobile, above backdrop */
   .hamburger{
     display: inline-flex !important;
-    z-index: 1001;
+    position: relative;  /* ensure z-index applies */
+    z-index: 1101;
   }
 
   /* Drawer nav shows vertical list */
@@ -149,6 +145,11 @@ body.no-scroll { overflow: hidden; }
     padding: 0;
   }
   .nav-backdrop{ display: none; }
+}
+
+/* Ensure menu is visible on desktop even if the element has [hidden] */
+@media (min-width: 901px){
+  nav.nav-drawer[hidden]{ display: block !important; }
 }
 
 /* CRITICAL: ensure menu is visible on desktop even if the element has [hidden] */
