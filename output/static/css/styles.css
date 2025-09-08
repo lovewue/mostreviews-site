@@ -584,3 +584,73 @@ body, html, main, .seller-directory {
   .card-grid .card { grid-column: span 4; }
 }
 
+/* === Hamburger Button === */
+.hamburger {
+  display: none; /* hidden by default */
+  flex-direction: column;
+  gap: 6px;
+  width: 36px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #111;
+  transition: transform .25s, opacity .25s;
+}
+
+/* === Drawer Menu === */
+.nav-drawer {
+  position: fixed;
+  top: 0; right: 0;
+  height: 100vh;
+  width: 80vw; max-width: 320px;
+  background: #fff;
+  box-shadow: -8px 0 24px rgba(0,0,0,.1);
+  transform: translateX(100%);
+  transition: transform .25s ease;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+.nav-backdrop {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+  z-index: 999;
+}
+
+/* === Open state === */
+.nav-open .nav-drawer { transform: translateX(0); }
+.nav-open .nav-backdrop { opacity: 1; pointer-events: auto; }
+
+/* Hamburger to X */
+.hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+/* Prevent body scroll when nav open */
+body.no-scroll { overflow: hidden; }
+
+/* === Responsive === */
+@media (max-width: 900px) {
+  .hamburger { display: inline-flex; }
+  .main-nav ul { flex-direction: column; gap: 12px; }
+}
+@media (min-width: 901px) {
+  .hamburger { display: none; }
+  .nav-drawer { position: static; transform: none; height: auto; width: auto;
+                box-shadow: none; padding: 0; }
+  .nav-backdrop { display: none; }
+}
+

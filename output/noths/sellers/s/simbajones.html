@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simba Jones - NOTHS Seller</title>
   <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+  <!-- Your global styles (add the burger/drawer CSS to this file) -->
   <link rel="stylesheet" href="/output/static/css/styles.css">
 </head>
 <body>
@@ -12,13 +13,21 @@
   <header class="site-header">
   <div class="header-inner container">
 
+    <!-- Logo -->
     <div class="header-logo">
       <a href="/output/home.html">
         <img src="/static/img/Most-Reviews-Logo.webp" alt="Most Reviews logo" height="100">
       </a>
     </div>
 
-    <nav class="main-nav">
+    <!-- Hamburger button (mobile only) -->
+    <button class="hamburger" data-mobile-menu-toggle="menu"
+            aria-controls="menu" aria-expanded="false" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Navigation drawer -->
+    <nav id="menu" class="main-nav nav-drawer" hidden>
       <ul>
         <li><a href="/output/noths/sellers/index.html">A–Z Sellers</a></li>
         <li><a href="/output/noths/sellers/by-year.html">Sellers by Year</a></li>
@@ -30,6 +39,9 @@
 
   </div>
 </header>
+
+<!-- Backdrop (sits just before </body>) -->
+<div class="nav-backdrop" aria-hidden="true"></div>
 
   <main>
     
@@ -114,7 +126,10 @@
   });
 </script>
 
-  <!-- Sticky Scroll + Active Nav Script -->
+  <!-- Backdrop for mobile drawer (one per page, shared here) -->
+  <div class="nav-backdrop" aria-hidden="true"></div>
+
+  <!-- Sticky Scroll + Active Nav Script (unchanged) -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const path = window.location.pathname;
@@ -177,5 +192,7 @@
     });
   </script>
 
+  <!-- 🔗 Shared site JS (add the burger/drawer JS here) -->
+  <script src="/static/js/site.js"></script>
 </body>
 </html>

@@ -1,13 +1,21 @@
 <header class="site-header">
   <div class="header-inner container">
 
+    <!-- Logo -->
     <div class="header-logo">
       <a href="/output/home.html">
         <img src="/static/img/Most-Reviews-Logo.webp" alt="Most Reviews logo" height="100">
       </a>
     </div>
 
-    <nav class="main-nav">
+    <!-- Hamburger button (mobile only) -->
+    <button class="hamburger" data-mobile-menu-toggle="menu"
+            aria-controls="menu" aria-expanded="false" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Navigation drawer -->
+    <nav id="menu" class="main-nav nav-drawer" hidden>
       <ul>
         <li><a href="/output/noths/sellers/index.html">A–Z Sellers</a></li>
         <li><a href="/output/noths/sellers/by-year.html">Sellers by Year</a></li>
@@ -19,3 +27,6 @@
 
   </div>
 </header>
+
+<!-- Backdrop (sits just before </body>) -->
+<div class="nav-backdrop" aria-hidden="true"></div>
