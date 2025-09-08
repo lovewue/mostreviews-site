@@ -585,40 +585,36 @@ body, html, main, .seller-directory {
 }
 
 /* === Hamburger Button === */
-.hamburger {
-  display: none; /* hidden by default */
-  flex-direction: column;
-  gap: 6px;
-  width: 36px;
-  height: 28px;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
-.hamburger span {
-  display: block;
-  width: 100%;
-  height: 3px;
-  background: #111;
-  transition: transform .25s, opacity .25s;
+/* Mobile: show burger, shrink logo */
+@media (max-width: 900px) {
+  .hamburger { display: inline-flex; }
+  .header-logo img { height: 56px; } /* smaller logo on mobile */
 }
 
-/* === Drawer Menu === */
+/* Desktop reset */
+@media (min-width: 901px) {
+  .hamburger { display: none; }
+  .nav-drawer { position: static; transform: none; height: auto; width: auto; box-shadow: none; padding: 0; }
+  .nav-backdrop { display: none; }
+}
+
+/* Left-side drawer */
 .nav-drawer {
   position: fixed;
-  top: 0; right: 0;
+  top: 0; left: 0;               /* ⬅️ left instead of right */
   height: 100vh;
   width: 80vw; max-width: 320px;
   background: #fff;
-  box-shadow: -8px 0 24px rgba(0,0,0,.1);
-  transform: translateX(100%);
+  box-shadow: 8px 0 24px rgba(0,0,0,.1);
+  transform: translateX(-100%);  /* start off-screen to the left */
   transition: transform .25s ease;
   padding: 20px;
   overflow-y: auto;
   z-index: 1000;
 }
+.nav-open .nav-drawer { transform: translateX(0); }
+
+/* Backdrop (unchanged) */
 .nav-backdrop {
   content: "";
   position: fixed;
@@ -629,28 +625,30 @@ body, html, main, .seller-directory {
   transition: opacity .2s;
   z-index: 999;
 }
-
-/* === Open state === */
-.nav-open .nav-drawer { transform: translateX(0); }
 .nav-open .nav-backdrop { opacity: 1; pointer-events: auto; }
 
-/* Hamburger to X */
+/* Hamburger icon -> X when open */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px; width: 36px; height: 28px;
+  align-items: center; justify-content: center;
+  border: 0; background: transparent; cursor: pointer;
+}
+.hamburger span {
+  display: block; width: 100%; height: 3px; background: #111;
+  transition: transform .25s, opacity .25s;
+}
 .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
 .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-/* Prevent body scroll when nav open */
+/* Prevent body scroll when open */
 body.no-scroll { overflow: hidden; }
 
-/* === Responsive === */
-@media (max-width: 900px) {
-  .hamburger { display: inline-flex; }
-  .main-nav ul { flex-direction: column; gap: 12px; }
+/* Close button inside drawer */
+.drawer-close {
+  position: absolute; top: 10px; right: 12px;
+  font-size: 28px; line-height: 1;
+  border: none; background: transparent; cursor: pointer;
 }
-@media (min-width: 901px) {
-  .hamburger { display: none; }
-  .nav-drawer { position: static; transform: none; height: auto; width: auto;
-                box-shadow: none; padding: 0; }
-  .nav-backdrop { display: none; }
-}
-

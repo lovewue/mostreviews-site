@@ -13,6 +13,12 @@
   <header class="site-header">
   <div class="header-inner container">
 
+    <!-- Hamburger (left) -->
+    <button class="hamburger" data-mobile-menu-toggle="menu"
+            aria-controls="menu" aria-expanded="false" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
     <!-- Logo -->
     <div class="header-logo">
       <a href="/output/home.html">
@@ -20,14 +26,10 @@
       </a>
     </div>
 
-    <!-- Hamburger button (mobile only) -->
-    <button class="hamburger" data-mobile-menu-toggle="menu"
-            aria-controls="menu" aria-expanded="false" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-
-    <!-- Navigation drawer -->
+    <!-- Drawer Nav -->
     <nav id="menu" class="main-nav nav-drawer" hidden>
+      <!-- Close button inside drawer -->
+      <button class="drawer-close" aria-label="Close menu">&times;</button>
       <ul>
         <li><a href="/output/noths/sellers/index.html">A–Z Sellers</a></li>
         <li><a href="/output/noths/sellers/by-year.html">Sellers by Year</a></li>
@@ -39,9 +41,6 @@
 
   </div>
 </header>
-
-<!-- Backdrop (sits just before </body>) -->
-<div class="nav-backdrop" aria-hidden="true"></div>
 
   <main>
     
