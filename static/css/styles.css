@@ -207,10 +207,10 @@ body, html, main, .seller-directory {
 
 /* ========== Footer ========== */
 .site-footer {
-  background: #000000;
+  background: #FFFFFF;
   padding: 20px 0;
   font-size: 14px;
-  color: #777;
+  color: #000000;
   text-align: center;
   margin-top: 60px;
 }
