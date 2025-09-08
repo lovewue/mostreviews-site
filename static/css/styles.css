@@ -584,29 +584,65 @@ body, html, main, .seller-directory {
   .card-grid .card { grid-column: span 4; }
 }
 
-/* === Hamburger Button === */
-/* Mobile: show burger, shrink logo */
-@media (max-width: 900px) {
-  .hamburger { display: inline-flex; }
-  .header-logo img { height: 56px; } /* smaller logo on mobile */
+/* Header layout: logo left, burger right */
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* Desktop reset */
+/* === Mobile: show burger, shrink logo === */
+@media (max-width: 900px) {
+  .hamburger {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 36px;
+    height: 28px;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  .hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #111;
+    transition: transform .25s, opacity .25s;
+  }
+  .header-logo img { height: 56px; } /* smaller logo on mobile */
+
+  /* Optional: vertical nav list when in drawer */
+  .main-nav ul { display: flex; flex-direction: column; gap: 12px; }
+}
+
+/* === Desktop reset === */
 @media (min-width: 901px) {
   .hamburger { display: none; }
-  .nav-drawer { position: static; transform: none; height: auto; width: auto; box-shadow: none; padding: 0; }
+  .nav-drawer {
+    position: static;
+    transform: none;
+    height: auto;
+    width: auto;
+    box-shadow: none;
+    padding: 0;
+  }
   .nav-backdrop { display: none; }
 }
 
-/* Left-side drawer */
+/* === Right-side drawer === */
 .nav-drawer {
   position: fixed;
-  top: 0; left: 0;               /* ⬅️ left instead of right */
+  top: 0;
+  right: 0;                 /* ➜ attach to the right */
   height: 100vh;
-  width: 80vw; max-width: 320px;
+  width: 80vw;
+  max-width: 320px;
   background: #fff;
-  box-shadow: 8px 0 24px rgba(0,0,0,.1);
-  transform: translateX(-100%);  /* start off-screen to the left */
+  box-shadow: -8px 0 24px rgba(0,0,0,.1); /* shadow on left edge */
+  transform: translateX(100%);            /* start off-screen to the right */
   transition: transform .25s ease;
   padding: 20px;
   overflow-y: auto;
@@ -614,7 +650,7 @@ body, html, main, .seller-directory {
 }
 .nav-open .nav-drawer { transform: translateX(0); }
 
-/* Backdrop (unchanged) */
+/* Backdrop */
 .nav-backdrop {
   content: "";
   position: fixed;
@@ -628,17 +664,6 @@ body, html, main, .seller-directory {
 .nav-open .nav-backdrop { opacity: 1; pointer-events: auto; }
 
 /* Hamburger icon -> X when open */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 6px; width: 36px; height: 28px;
-  align-items: center; justify-content: center;
-  border: 0; background: transparent; cursor: pointer;
-}
-.hamburger span {
-  display: block; width: 100%; height: 3px; background: #111;
-  transition: transform .25s, opacity .25s;
-}
 .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
 .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
@@ -648,7 +673,12 @@ body.no-scroll { overflow: hidden; }
 
 /* Close button inside drawer */
 .drawer-close {
-  position: absolute; top: 10px; right: 12px;
-  font-size: 28px; line-height: 1;
-  border: none; background: transparent; cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 28px;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
