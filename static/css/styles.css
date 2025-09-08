@@ -9,8 +9,8 @@ body, html, main, .seller-directory {
 
 /* Control logo sizes here */
 :root{
-  --logo-desktop: 96px;   /* ← set the exact desktop height you want */
-  --logo-mobile: 48px;    /* ← mobile height */
+  --logo-desktop: 96px;   /* ← set your desktop logo height */
+  --logo-mobile: 48px;    /* ← mobile logo height */
 }
 
 /* Header container */
@@ -18,7 +18,7 @@ body, html, main, .seller-directory {
   position: sticky;
   top: 0;
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   padding: 10px 0;
   z-index: 100;
 }
@@ -30,11 +30,11 @@ body, html, main, .seller-directory {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
-  gap: 24px;
+  gap: 24px; /* space between logo and nav */
 }
 
-/* Logo sizes – hard set so HTML height doesn't win */
-.site-header .header-logo img{
+/* Hard-set logo sizes so HTML height attr can't override */
+.site-header .header-logo img {
   height: var(--logo-desktop) !important;
   width: auto !important;
   max-height: none !important;
@@ -58,7 +58,7 @@ body, html, main, .seller-directory {
 }
 .main-nav a:hover { color: #000; }
 
-/* Burger button (hidden by default) */
+/* Burger button (hidden by default on desktop) */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -71,7 +71,7 @@ body, html, main, .seller-directory {
   display: block; width: 100%; height: 3px; background: #111;
   transition: transform .25s, opacity .25s;
 }
-/* Burger morph to X when open */
+/* Burger morph into X when open */
 .hamburger[aria-expanded="true"] span:nth-child(1){ transform: translateY(9px) rotate(45deg); }
 .hamburger[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
 .hamburger[aria-expanded="true"] span:nth-child(3){ transform: translateY(-9px) rotate(-45deg); }
@@ -107,7 +107,7 @@ body, html, main, .seller-directory {
 .nav-open .nav-backdrop { opacity: 1; pointer-events: auto; }
 
 /* Close button inside drawer */
-.drawer-close{
+.drawer-close {
   position: absolute; top: 10px; right: 12px;
   font-size: 28px; line-height: 1;
   border: none; background: transparent; cursor: pointer;
@@ -126,13 +126,13 @@ body.no-scroll { overflow: hidden; }
     height: var(--logo-mobile) !important;
   }
 
-  /* Force burger visible on mobile */
+  /* Force burger visible on mobile, above backdrop */
   .hamburger{
     display: inline-flex !important;
-    z-index: 1001; /* keep above backdrop */
+    z-index: 1001;
   }
 
-  /* Drawer nav list vertical on mobile */
+  /* Drawer nav shows vertical list */
   .main-nav ul{ display: flex; flex-direction: column; gap: 12px; }
 }
 
@@ -154,12 +154,12 @@ body.no-scroll { overflow: hidden; }
 /* CRITICAL: ensure menu is visible on desktop even if the element has [hidden] */
 @media (min-width: 901px){
   nav.nav-drawer[hidden]{
-    display: block !important; /* overrides the UA stylesheet for [hidden] */
+    display: block !important; /* override UA stylesheet for [hidden] */
   }
 }
 
 /* =========================
-   (Everything below is your original page styling)
+   (Everything below is your existing page styling)
    ========================= */
 
 /* ========== Seller Directory ========== */
@@ -317,7 +317,7 @@ body.no-scroll { overflow: hidden; }
   margin-top: 60px;
 }
 
-/* ========== Responsive (Seller grids & A–Z) ========== */
+/* ========== Responsive ========== */
 @media (max-width: 768px) {
   .seller-columns {
     grid-template-columns: repeat(2, 1fr);
