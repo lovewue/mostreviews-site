@@ -1,15 +1,19 @@
-/* Force overflow: visible on all parents */
-body, html, main, .seller-directory {
-  overflow: visible !important;
+/* =========================
+   HEADER + MENU (FINAL)
+   ========================= */
+
+/* Control logo sizes here */
+:root{
+  --logo-desktop: 96px;   /* ← set the exact desktop height you want */
+  --logo-mobile: 48px;    /* ← mobile height */
 }
 
-
-/* ========== Header ========== */
+/* Header container */
 .site-header {
   position: sticky;
   top: 0;
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,.05);
   padding: 10px 0;
   z-index: 100;
 }
@@ -17,27 +21,23 @@ body, html, main, .seller-directory {
 .header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* logo left, burger right */
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
-  gap: 24px; /* space between logo and nav */
+  gap: 24px;
 }
 
-.header-logo {
-  flex: 0 0 auto;
+/* Logo sizes – hard set so HTML height doesn't win */
+.site-header .header-logo img{
+  height: var(--logo-desktop) !important;
+  width: auto !important;
+  max-height: none !important;
+  display: block;
 }
 
-.header-logo img {
-  display: block; /* only reset default inline spacing */
-  height: auto;   /* respect whatever is set in the HTML */
-}
-
-/* Single nav to the right */
-.main-nav {
-  margin-left: auto;
-}
-
+/* Desktop menu (inline) */
+.main-nav { margin-left: auto; }
 .main-nav ul {
   display: flex;
   gap: 24px;
@@ -45,614 +45,49 @@ body, html, main, .seller-directory {
   margin: 0;
   padding: 0;
 }
-
 .main-nav a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
   font-size: 14px;
 }
-
-.main-nav a:hover {
-  color: #000;
-}
-
-
-
-
-/* ========== Seller Directory ========== */
-.seller-directory {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  font-family: sans-serif;
-}
-
-.seller-directory h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-/* ========== Sticky A–Z or Year Nav ========== */
-.az-nav,
-.az-nav, .sticky-nav {
-  position: sticky !important;
-  top: 120px !important; /* Adjust to match header height */
-  z-index: 99 !important;
-  background: #fff !important;
-  border: 0px solid #ccc;
-  margin-bottom: 40px;
-  margin-top: 40px; 
-  padding: 20px 0;
-}
-
-.az-bar {
-  display: grid;
-  grid-template-columns: repeat(28, 1fr); /* one column per character */
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border: 0px solid #ccc;
-  border-collapse: collapse;
-}
-
-.az-bar li {
-  border: 1px solid #ccc;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-.az-bar a {
-  display: block;
-  padding: 10px;
-  font-weight: 600;
-  color: #000;
-  text-decoration: none;
-  transition: background 0.2s ease;
-}
-
-.az-bar a:hover {
-  background-color: #f5f5f5;
-}
-
-.az-bar a.active {
-  background-color: #000;
-  color: #fff;
-}
-
-@media (max-width: 768px) {
-.az-nav,
-.persistent-nav {
-  position: sticky;
-  top: 74px;
-  background: #fff;
-  z-index: 99;
-  border: 0px solid #ccc;
-  margin-bottom: 40px;
-  margin-top: 40px; 
-  padding: 20px 0;
-}
-}
-
-/* ========== Seller Lists ========== */
-.letter-block,
-.year-block {
-  margin-bottom: 48px;
-  scroll-margin-top: 60px;
-}
-
-.letter-title,
-.year-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 16px;
-  border-bottom: 2px solid #000;
-  padding-bottom: 6px;
-}
-
-/* Offsets for anchor scroll */
-.letter-block::before,
-.year-block::before {
-  content: "";
-  display: block;
-  height: 130px;
-  margin-top: -130px;
-  pointer-events: none;
-}
-
-@media (max-width: 768px) {
-  .letter-block::before,
-  .year-block::before {
-    height: 260px;
-    margin-top: -260px;
-  }
-}
-
-@media (max-width: 480px) {
-  .letter-block::before,
-  .year-block::before {
-    height: 300px;
-    margin-top: -300px;
-  }
-}
-
-/* ========== Seller Grid ========== */
-.seller-columns {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px 20px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.seller-columns li {
-  margin: 0;
-  padding: 0;
-}
-
-.seller-columns a {
-  text-decoration: none;
-  color: #000;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.seller-columns a:hover {
-  color: #007185;
-  text-decoration: underline;
-}
-
-/* ========== Footer ========== */
-.site-footer {
-  background: #FFFFFF;
-  padding: 20px 0;
-  font-size: 14px;
-  color: #000000;
-  text-align: center;
-  margin-top: 60px;
-}
-
-/* ========== Responsive ========== */
-@media (max-width: 768px) {
-  .seller-columns {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .az-bar a {
-    flex: 1 0 12.5%;
-    text-align: center;
-    font-size: 14px;
-    padding: 6px 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .seller-columns {
-    grid-template-columns: 1fr;
-  }
-
-  .az-bar a {
-    flex: 1 0 25%;
-  }
-}
-
-@media (max-width: 1024px) {
-  .az-bar {
-    grid-template-columns: repeat(9, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .az-bar {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .az-bar {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* ========== Product Directory (Top Products Page) ========== */
-.product-directory {
-  max-width: 800px;
-  margin: 60px auto;
-  padding: 0 20px;
-  font-family: sans-serif;
-}
-
-.product-directory h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.top-products-list {
-  list-style: decimal inside;
-  padding-left: 0;
-  margin: 0;
-}
-
-.top-products-list li {
-  margin-bottom: 14px;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.top-products-list a {
-  color: #007185;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.top-products-list a:hover {
-  text-decoration: underline;
-}
-
-.top-products-list .seller-name {
-  display: inline-block;
-  margin-left: 10px;
-  color: #333;
-  font-weight: normal;
-  font-size: 0.95rem;
-}
-
-.top-products-list .review-count {
-  margin-left: 10px;
-  color: #777;
-  font-size: 0.95rem;
-}
-
-/* ========== Seller Detail Page ========== */
-.seller-detail-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  font-family: sans-serif;
-}
-
-.seller-columns-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 40px;
-  align-items: start;
-}
-
-.seller-profile {
-  background: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.seller-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.seller-logo {
-  max-width: 200px;
-  margin-bottom: 10px;
-}
-
-.seller-info {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.seller-info li strong {
-  display: inline-block;
-  width: 140px;
-  font-weight: 600;
-}
-
-.seller-link {
-  display: inline-block;
-  background: #0073e6;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 4px;
-  text-decoration: none;
-  margin-top: 10px;
-  text-align: center;
-}
-
-.seller-products h2 {
-  font-size: 1.5rem;
-  margin-bottom: 16px;
-}
-
-.top-products-list {
-  list-style: decimal inside;
-  padding-left: 0;
-  font-size: 16px;
-}
-
-.top-products-list li {
-  margin-bottom: 12px;
-}
-
-.top-products-list a {
-  font-weight: 600;
-  color: #000;
-  text-decoration: none;
-}
-
-.top-products-list a:hover {
-  text-decoration: underline;
-}
-
-.review-count {
-  margin-left: 6px;
-  color: #777;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .seller-columns-container {
-    grid-template-columns: 1fr;
-  }
-  .seller-header {
-    text-align: left;
-  }
-}
-
-
-/* ========== Top Products Page ========== */
-.top-products-page {
-  max-width: 900px;
-  margin: 60px auto;
-  padding: 0 20px;
-  font-family: sans-serif;
-}
-
-.top-products-page h1 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.top-products-list {
-  list-style: decimal inside;
-  padding: 0;
-  margin: 0;
-}
-
-.top-products-list li {
-  margin-bottom: 18px;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.top-products-list a {
-  color: #007185;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.top-products-list a:hover {
-  text-decoration: underline;
-}
-
-.top-products-list .seller-name {
-  margin-left: 10px;
-  color: #444;
-  font-size: 0.95rem;
-  font-style: italic;
-}
-
-.top-products-list .review-count {
-  margin-left: 10px;
-  color: #777;
-  font-size: 0.95rem;
-}
-
-.about-page {
-  max-width: 800px;
-  margin: 60px auto;
-  padding: 20px;
-  font-family: sans-serif;
-  line-height: 1.7;
-}
-
-.about-page h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.about-content p {
-  margin-bottom: 1rem;
-}
-
-/* ========== Top Sellers List ========== */
-
-.top-sellers {
-  max-width: 800px;
-  margin: 40px auto;
-  font-family: sans-serif;
-  padding: 0 20px;
-}
-
-.top-sellers h1 {
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.top-sellers ol {
-  list-style: decimal;
-  padding-left: 20px;
-}
-
-.top-sellers li {
-  margin-bottom: 16px;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-.top-sellers a {
-  font-weight: 600;
-  color: #0073e6;
-  text-decoration: none;
-}
-
-.top-sellers a:hover {
-  text-decoration: underline;
-}
-
-.top-sellers span {
-  margin-left: 8px;
-  color: #555;
-  font-size: 0.95rem;
-}
-
-/* ========== NOTHS Index ========== */
-
-.page-hero {
-  max-width: 900px;
-  margin: 32px auto 16px;
-  padding: 0 16px;
-  text-align: left;
-}
-.page-hero h1 {
-  margin: 0 0 8px;
-  font-size: clamp(24px, 3vw, 36px);
-}
-.page-hero .lead {
-  margin: 0;
-  color: #555;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 16px;
-  max-width: 1200px;
-  margin: 24px auto 48px;
-  padding: 0 16px;
-}
-.card-grid .card {
-  grid-column: span 12;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 16px;
-  padding: 20px;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 2px 8px rgba(0,0,0,.04);
-  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-}
-.card-grid .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
-  border-color: #e5e5e5;
-}
-.card-body h2 {
-  margin: 0 0 6px;
-  font-size: 18px;
-}
-.card-body p {
-  margin: 0;
-  color: #666;
-  font-size: 14px;
-  line-height: 1.5;
-}
-.card-cta {
-  margin-top: 12px;
-  font-weight: 600;
-  font-size: 14px;
-  color: #111;
-}
-
-/* Responsive columns: 2-up on tablet, 3-up on desktop */
-@media (min-width: 640px) {
-  .card-grid .card { grid-column: span 6; }
-}
-@media (min-width: 1024px) {
-  .card-grid .card { grid-column: span 4; }
-}
-
-/* Header layout: logo left, burger right */
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* === Mobile: show burger, shrink logo === */
-@media (max-width: 900px) {
-  .hamburger {
-    display: inline-flex;
-    flex-direction: column;
-    gap: 6px;
-    width: 36px;
-    height: 28px;
-    align-items: center;
-    justify-content: center;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-  }
-  .hamburger span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background: #111;
-    transition: transform .25s, opacity .25s;
-  }
-  .header-logo img { height: 56px; } /* smaller logo on mobile */
-
-  /* Optional: vertical nav list when in drawer */
-  .main-nav ul { display: flex; flex-direction: column; gap: 12px; }
-}
-
-/* === Desktop reset === */
-@media (min-width: 901px) {
-  .hamburger { display: none; }
-  .nav-drawer {
-    position: static;
-    transform: none;
-    height: auto;
-    width: auto;
-    box-shadow: none;
-    padding: 0;
-  }
-  .nav-backdrop { display: none; }
-}
-
-/* === Right-side drawer === */
+.main-nav a:hover { color: #000; }
+
+/* Burger button (hidden by default) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  width: 36px; height: 28px;
+  align-items: center; justify-content: center;
+  border: 0; background: transparent; cursor: pointer;
+}
+.hamburger span {
+  display: block; width: 100%; height: 3px; background: #111;
+  transition: transform .25s, opacity .25s;
+}
+/* Burger morph to X when open */
+.hamburger[aria-expanded="true"] span:nth-child(1){ transform: translateY(9px) rotate(45deg); }
+.hamburger[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
+.hamburger[aria-expanded="true"] span:nth-child(3){ transform: translateY(-9px) rotate(-45deg); }
+
+/* Drawer (mobile) – slides in from the RIGHT to match burger on right */
 .nav-drawer {
   position: fixed;
-  top: 0;
-  right: 0;                 /* ➜ attach to the right */
+  top: 0; right: 0;
   height: 100vh;
-  width: 80vw;
-  max-width: 320px;
+  width: 80vw; max-width: 320px;
   background: #fff;
-  box-shadow: -8px 0 24px rgba(0,0,0,.1); /* shadow on left edge */
-  transform: translateX(100%);            /* start off-screen to the right */
+  box-shadow: -8px 0 24px rgba(0,0,0,.1);
+  transform: translateX(100%);
   transition: transform .25s ease;
   padding: 20px;
   overflow-y: auto;
   z-index: 1000;
 }
-.nav-open .nav-drawer { transform: translateX(0); }
 
-/* Backdrop */
+/* Backdrop behind drawer */
 .nav-backdrop {
-  content: "";
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,.28);
@@ -661,55 +96,59 @@ body, html, main, .seller-directory {
   transition: opacity .2s;
   z-index: 999;
 }
+
+/* Open state */
+.nav-open .nav-drawer { transform: translateX(0); }
 .nav-open .nav-backdrop { opacity: 1; pointer-events: auto; }
 
-/* Hamburger icon -> X when open */
-.hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-.hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-.hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+/* Close button inside drawer */
+.drawer-close{
+  position: absolute; top: 10px; right: 12px;
+  font-size: 28px; line-height: 1;
+  border: none; background: transparent; cursor: pointer;
+}
 
-/* Prevent body scroll when open */
+/* Lock body scroll when drawer open */
 body.no-scroll { overflow: hidden; }
 
-/* Close button inside drawer */
-.drawer-close {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  font-size: 28px;
-  line-height: 1;
-  border: none;
-  background: transparent;
-  cursor: pointer;
+/* =========================
+   RESPONSIVE BEHAVIOUR
+   ========================= */
+
+@media (max-width: 900px){
+  /* Smaller logo on mobile */
+  .site-header .header-logo img{
+    height: var(--logo-mobile) !important;
+  }
+
+  /* Force burger visible on mobile */
+  .hamburger{
+    display: inline-flex !important;
+    z-index: 1001; /* keep above backdrop */
+  }
+
+  /* Drawer nav list vertical on mobile */
+  .main-nav ul{ display: flex; flex-direction: column; gap: 12px; }
 }
 
-/* Ensure header layout */
-.header-inner { display:flex; align-items:center; justify-content:space-between; }
+/* Desktop reset */
+@media (min-width: 901px){
+  .hamburger{ display: none; }
 
-/* Mobile fixes */
-@media (max-width: 900px) {
-  .hamburger {
-    display: inline-flex !important;  /* force it to show */
-    flex-direction: column;
-    gap: 6px;
-    width: 36px; height: 28px;
-    align-items: center; justify-content: center;
-    border: 0; background: transparent; cursor: pointer;
-    z-index: 1001; /* above the drawer/backdrop */
+  /* Make drawer behave like normal inline nav on desktop */
+  .nav-drawer{
+    position: static;
+    transform: none;
+    height: auto; width: auto;
+    box-shadow: none;
+    padding: 0;
   }
-  .hamburger span {
-    display:block; width:100%; height:3px; background:#111;
-    transition: transform .25s, opacity .25s;
-  }
-
-  /* Logo truly smaller */
-  .header-logo img {
-    max-height: 56px !important;
-    height: auto !important;
-    width: auto; 
-  }
+  .nav-backdrop{ display: none; }
 }
 
-/* Drawer layering so the button stays clickable */
-.nav-drawer { z-index: 1000; }
-.nav-backdrop { z-index: 999; }
+/* CRITICAL: ensure menu is visible on desktop even if the element has [hidden] */
+@media (min-width: 901px){
+  nav.nav-drawer[hidden]{
+    display: block !important; /* overrides the UA stylesheet for [hidden] */
+  }
+}
