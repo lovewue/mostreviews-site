@@ -1,17 +1,33 @@
-{% extends "base.html" %}
+<section class="top-sellers page-wrap">
+  <h1>Top Sellers (Last 12 Months)</h1>
 
-{% block title %}Top 100 Sellers – Last 12 Months{% endblock %}
-
-{% block content %}
-  <section class="top-sellers">
-    <h1>Top 100 Sellers – Last 12 Months</h1>
-    <ol>
-      {% for seller in sellers %}
-        <li>
-          <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
-          <span>({{ seller.total_reviews }} reviews)</span>
-        </li>
-      {% endfor %}
-    </ol>
-  </section>
-{% endblock %}
+  <div class="mr-table-wrap">
+    <table class="mr-table">
+      <caption class="visually-hidden">
+        Top sellers by reviews in the last 12 months
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col" class="col-rank">Rank</th>
+          <th scope="col" class="col-partner">Partner</th>
+          <th scope="col" class="col-reviews">Reviews</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in top_sellers_last_12_months %}
+        <tr>
+          <td class="col-rank" data-label="Rank">{{ loop.index }}</td>
+          <td class="col-partner" data-label="Partner">
+            <a href="/output/noths/sellers/{{ s.slug[0] }}/{{ s.slug }}.html">
+              {{ s.name }}
+            </a>
+          </td>
+          <td class="col-reviews" data-label="Reviews">
+            {{ "{:,}".format(s.reviews) }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
