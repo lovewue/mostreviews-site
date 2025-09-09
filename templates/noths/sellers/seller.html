@@ -9,7 +9,9 @@
     <!-- Column 1: Seller Profile -->
     <div class="seller-profile">
       <div class="seller-header">
-        <img src="/Seller_Logo/{{ slug }}.jpg" alt="{{ name }} logo" class="seller-logo" onerror="this.style.display='none';">
+        {% if logo %}
+  		<img src="{{ logo }}" alt="{{ name }} logo" class="seller-logo">
+	{% endif %}
         <h1>{{ name }}</h1>
       </div>
 

@@ -240,10 +240,24 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* ========== Seller Lists ========== */
+/* Section blocks should stop just below header + sticky bar */
+:root{
+  --sticky-bar-height: 48px; /* tweak to your A–Z / sticky bar height */
+}
+
 .letter-block,
 .year-block {
   margin-bottom: 48px;
-  scroll-margin-top: 60px;
+  /* Desktop/tablet: align anchors just under the sticky header + bar */
+  scroll-margin-top: calc(var(--header-desktop) + var(--sticky-bar-height)-12px);
+}
+
+@media (max-width: 768px){
+  .letter-block,
+  .year-block {
+    /* Mobile: use mobile header height */
+    scroll-margin-top: calc(var(--header-mobile) + var(--sticky-bar-height)-12px);
+  }
 }
 
 .letter-title,
@@ -255,31 +269,8 @@ body.no-scroll { overflow: hidden; }
   padding-bottom: 6px;
 }
 
-/* Offsets for anchor scroll */
-.letter-block::before,
-.year-block::before {
-  content: "";
-  display: block;
-  height: 130px;
-  margin-top: -130px;
-  pointer-events: none;
-}
+/* Removed the ::before offset hack */
 
-@media (max-width: 768px) {
-  .letter-block::before,
-  .year-block::before {
-    height: 260px;
-    margin-top: -260px;
-  }
-}
-
-@media (max-width: 480px) {
-  .letter-block::before,
-  .year-block::before {
-    height: 300px;
-    margin-top: -300px;
-  }
-}
 
 /* ========== Seller Grid ========== */
 .seller-columns {

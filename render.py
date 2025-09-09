@@ -4,6 +4,19 @@ import json
 import shutil
 from collections import defaultdict
 
+# Find logo URL
+
+def find_logo_url(slug: str) -> str | None:
+    """Find the first matching logo file for a seller slug."""
+    logo_dir = "Seller_Logo"   # adjust if yours is /static/Seller_Logo
+    # Extensions to check in order
+    for ext in ("jpg", "jpeg", "png", "webp", "svg"):
+        local_path = os.path.join(logo_dir, f"{slug}.{ext}")
+        if os.path.exists(local_path):
+            return f"/{logo_dir}/{slug}.{ext}"
+    return None
+
+
 # Setup Jinja2 environment
 env = Environment(loader=FileSystemLoader('templates'))
 
@@ -54,7 +67,14 @@ def render_seller_pages():
         if not slug or not name:
             continue
 
-        top_products = sorted(products_by_seller.get(slug, []), key=lambda p: p.get("review_count", 0), reverse=True)[:5]
+        top_products = sorted(
+            products_by_seller.get(slug, []),
+            key=lambda p: p.get("review_count", 0),
+            reverse=True
+        )[:5]
+
+        # NEW: find a logo for any supported extension
+        logo = find_logo_url(slug)
 
         first_letter = slug[0]
         output_dir = f"output/noths/sellers/{first_letter}"
@@ -70,7 +90,8 @@ def render_seller_pages():
             review_count=seller.get('review_count', 0),
             product_count=int(float(seller.get('product_count', 0))),
             top_products=top_products,
-            static_path=STATIC_PATH
+            static_path=STATIC_PATH,
+            logo=logo,  # ← pass to template
         )
 
         existing_html = ''
