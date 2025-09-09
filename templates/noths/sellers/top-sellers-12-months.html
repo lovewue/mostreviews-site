@@ -6,29 +6,17 @@
 <section class="top-sellers page-wrap">
   <h1>Top 100 Sellers – Last 12 Months</h1>
 
-  <div class="mr-table-wrap">
-    <table class="mr-table">
-      <thead>
-        <tr>
-          <th scope="col">Rank</th>
-          <th scope="col">Partner</th>
-          <th scope="col">Reviews</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for seller in sellers %}
-        <tr>
-          <td>{{ loop.index }}</td>
-          <td>
-            <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">
-              {{ seller.name }}
-            </a>
-          </td>
-          <td>{{ "{:,}".format(seller.total_reviews) }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+  <ol class="top-sellers-list">
+    {% for seller in sellers %}
+      <li>
+        <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">
+          {{ seller.name }}
+        </a>
+        <span class="review-count">
+          ({{ "{:,}".format(seller.total_reviews) }} reviews)
+        </span>
+      </li>
+    {% endfor %}
+  </ol>
 </section>
 {% endblock %}

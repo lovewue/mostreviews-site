@@ -1,42 +1,30 @@
 {% extends "base.html" %}
 
-{% block title %}Most Reviewed NOTHS Products – Last 12 Months{% endblock %}
+{% block title %}Top 100 Products – Last 12 Months{% endblock %}
 
 {% block content %}
-<section class="top-products page-wrap">
+<section class="top-products-page">
   <h1>Top 100 Most Reviewed Products – Last 12 Months (Sep 2024 – Aug 2025)</h1>
 
-  <div class="mr-table-wrap">
-    <table class="mr-table">
-      <thead>
-        <tr>
-          <th scope="col">Rank</th>
-          <th scope="col">Product</th>
-          <th scope="col">Partner</th>
-          <th scope="col">Reviews</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for product in products %}
-        <tr>
-          <td data-label="Rank">{{ loop.index }}</td>
-          <td data-label="Product">
-            <a href="{{ product.product_url }}" target="_blank">{{ product.name }}</a>
-          </td>
-          <td data-label="Partner">
-            {% if product.active %}
-              <a href="/output/noths/sellers/{{ product.seller_slug[0] }}/{{ product.seller_slug }}.html">
-                {{ product.seller_name }}
-              </a>
-            {% else %}
+  <ol class="top-products-list">
+    {% for product in products %}
+      <li>
+        <a href="{{ product.product_url }}" target="_blank">{{ product.name }}</a>
+        <span class="seller-name">
+          by
+          {% if product.active %}
+            <a href="/output/noths/sellers/{{ product.seller_slug[0] }}/{{ product.seller_slug }}.html">
               {{ product.seller_name }}
-            {% endif %}
-          </td>
-          <td data-label="Reviews">{{ "{:,}".format(product.review_count) }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+            </a>
+          {% else %}
+            {{ product.seller_name }}
+          {% endif %}
+        </span>
+        <span class="review-count">
+          ({{ "{:,}".format(product.review_count) }} reviews)
+        </span>
+      </li>
+    {% endfor %}
+  </ol>
 </section>
 {% endblock %}

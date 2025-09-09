@@ -490,70 +490,72 @@ body.no-scroll { overflow: hidden; }
   .mr-table .col-reviews { text-align: left; }
 }
 
-/* =========================
-   RESPONSIVE TABLES (Top Sellers & Products)
-   ========================= */
+/* ===== Tables (Top Sellers / Top Products) ===== */
 
 .mr-table-wrap {
   width: 100%;
-  overflow-x: auto; /* safety net for very narrow screens */
+  overflow-x: auto; /* safety for very narrow screens */
 }
 
 .mr-table {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
   font-size: 15px;
+  line-height: 1.5;
 }
 
 .mr-table th,
 .mr-table td {
-  border: 1px solid #ddd;
-  padding: 10px;
+  padding: 10px 12px;
   text-align: left;
+  border-bottom: 1px solid #eee;
 }
 
 .mr-table th {
-  background: #f8f8f8;
   font-weight: 600;
+  background: #fafafa;
 }
 
-/* Mobile stacked layout */
+.mr-table td a {
+  color: #0073e6;
+  text-decoration: none;
+}
+.mr-table td a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive (stacked) */
 @media (max-width: 768px) {
   .mr-table thead {
-    display: none; /* hide headers */
-  }
-
-  .mr-table,
-  .mr-table tbody,
-  .mr-table tr,
-  .mr-table td {
-    display: block;
-    width: 100%;
+    display: none; /* hide header row */
   }
 
   .mr-table tr {
-    margin-bottom: 16px;
+    display: block;
     border: 1px solid #ddd;
+    margin-bottom: 12px;
     border-radius: 6px;
-    padding: 10px;
     background: #fff;
+    padding: 8px 10px;
   }
 
   .mr-table td {
-    border: none;
+    display: flex;
+    justify-content: space-between;
     padding: 6px 0;
+    border: none;
+    font-size: 14px;
   }
 
   .mr-table td::before {
-    content: attr(data-label) ": ";
+    content: attr(data-label);
     font-weight: 600;
-    display: inline-block;
-    min-width: 90px;
-    color: #333;
+    color: #555;
+    margin-right: 8px;
   }
 
-  .mr-table td a {
-    word-break: break-word; /* prevent long text from overflowing */
+  /* Align numbers right for reviews */
+  .mr-table .col-reviews {
+    justify-content: flex-end;
   }
 }
