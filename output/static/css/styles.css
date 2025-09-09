@@ -231,17 +231,27 @@ body.no-scroll { overflow: hidden; }
   pointer-events:none;
 }
 
+/* =========================
+   MOBILE ANCHOR OFFSET FIX
+   ========================= */
 @media (max-width: 768px){
+  /* Reduce the scroll offset so headers appear ~4 lines higher */
   .seller-directory .letter-block[id],
   .seller-directory .year-block[id]{
-    scroll-margin-top: calc(var(--header-mobile) + var(--sticky-bar-height-mobile) + var(--anchor-cushion-mobile)) !important;
+    scroll-margin-top: calc(
+      var(--header-mobile) +
+      var(--sticky-bar-height-mobile) -
+      40px   /* pull up by ~4 lines (≈ 40px) */
+    ) !important;
   }
+
   .seller-directory .letter-block[id]::before,
   .seller-directory .year-block[id]::before{
-    height: calc(var(--header-mobile) + var(--sticky-bar-height-mobile) + var(--anchor-cushion-mobile));
-    margin-top: calc(-1 * (var(--header-mobile) + var(--sticky-bar-height-mobile) + var(--anchor-cushion-mobile)));
+    height: calc(var(--header-mobile) + var(--sticky-bar-height-mobile) - 40px);
+    margin-top: calc(-1 * (var(--header-mobile) + var(--sticky-bar-height-mobile) - 40px));
   }
 }
+
 
 /* =========================
    SELLER DIRECTORY + LISTS
