@@ -6,30 +6,33 @@ body, html, main, .seller-directory {
 }
 
 /* =========================
-   HEADER + MENU (FINAL)
+   VARIABLES
    ========================= */
 :root{
   --logo-desktop: 64px;
   --logo-mobile: 48px;
 
-  /* header total height = logo + vertical padding */
-  --header-desktop: calc(var(--logo-desktop) + 28px); /* +8px from before */
+  /* Header heights = logo + vertical padding */
+  --header-desktop: calc(var(--logo-desktop) + 28px);
   --header-mobile:  calc(var(--logo-mobile)  + 20px);
 
   --sticky-bar-height-desktop: 32px;
   --sticky-bar-height-mobile:  36px;
 
-  /* Anchors: negative pulls titles UP */
-  --anchor-cushion-desktop: -59px;
-  --anchor-cushion-mobile:  36px; /* was -56px → pull ~4 lines more */
+  /* Anchor offsets (one system) */
+  --anchor-offset-desktop: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) + 0px);
+  --anchor-offset-mobile:  calc(var(--header-mobile)  + var(--sticky-bar-height-mobile)  + 8px);
 }
 
+/* =========================
+   HEADER + MENU
+   ========================= */
 .site-header {
   position: sticky;
   top: 0;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  padding: 18px 0 10px 0; /* ↑ added 8px top padding */
+  padding: 18px 0 10px 0;
   z-index: 1100;
 }
 
@@ -138,7 +141,7 @@ body.no-scroll { overflow: hidden; }
   .main-nav ul{ display: flex; flex-direction: column; gap: 12px; }
 }
 
-/* Desktop reset */
+/* Desktop reset for drawer */
 @media (min-width: 901px){
   .hamburger{ display: none; }
   .nav-drawer{
@@ -158,10 +161,10 @@ body.no-scroll { overflow: hidden; }
 .sticky-nav,
 .persistent-nav{
   position: sticky !important;
-  top: calc(var(--header-desktop) + 0px) !important; /* +0px gap above sticky */
+  top: calc(var(--header-desktop) + 0px) !important;
   z-index: 1050 !important;
   background: #fff !important;
-  padding: 8px 24px !important; /* padding around sticky menu */
+  padding: 8px 24px !important;
   box-sizing: border-box;
 }
 
@@ -216,41 +219,19 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* =========================
-   ANCHOR POSITIONING
+   ANCHOR POSITIONING (ONE SYSTEM)
    ========================= */
-.seller-directory .letter-block[id],
-.seller-directory .year-block[id]{
-  scroll-margin-top: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) + var(--anchor-cushion-desktop)) !important;
-}
-.seller-directory .letter-block[id]::before,
-.seller-directory .year-block[id]::before{
-  content:"";
-  display:block;
-  height: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) + var(--anchor-cushion-desktop));
-  margin-top: calc(-1 * (var(--header-desktop) + var(--sticky-bar-height-desktop) + var(--anchor-cushion-desktop)));
-  pointer-events:none;
+/* Default (desktop & larger) */
+.seller-directory [id]{
+  scroll-margin-top: var(--anchor-offset-desktop) !important;
 }
 
-/* =========================
-   MOBILE ANCHOR OFFSET FIX
-   ========================= */
+/* Mobile override */
 @media (max-width: 768px){
-
-  /* Option A — rely only on scroll-margin-top (simplest & most reliable) */
-  .seller-directory .letter-block[id],
-  .seller-directory .year-block[id]{
-    /* Pull headers UP by ~4 lines (≈ 64px) relative to your existing offset */
-    scroll-margin-top: calc(var(--anchor-offset-mobile) - 10px) !important;
-  }
-
-  /* Disable the spacer hack on mobile so it can't fight the new value */
-  .seller-directory .letter-block[id]::before,
-  .seller-directory .year-block[id]::before{
-    height: 0 !important;
-    margin-top: 0 !important;
+  .seller-directory [id]{
+    scroll-margin-top: var(--anchor-offset-mobile) !important;
   }
 }
-
 
 /* =========================
    SELLER DIRECTORY + LISTS
@@ -384,6 +365,7 @@ body.no-scroll { overflow: hidden; }
 }
 .page-hero h1 { margin: 0 0 8px; font-size: clamp(24px, 3vw, 36px); }
 .page-hero .lead { margin: 0; color: #555; font-size: 16px; line-height: 1.6; }
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -412,7 +394,9 @@ body.no-scroll { overflow: hidden; }
 @media (min-width: 640px){  .card-grid .card { grid-column: span 6; } }
 @media (min-width: 1024px){ .card-grid .card { grid-column: span 4; } }
 
-/* === Top Sellers (12 months) table === */
+/* =========================
+   TOP SELLERS TABLE
+   ========================= */
 .page-wrap { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
 
 .mr-table-wrap {
@@ -421,10 +405,8 @@ body.no-scroll { overflow: hidden; }
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  overflow-x: auto; /* horizontal scroll on tiny screens */
 }
-
-/* horizontal scroll on tiny screens without breaking layout */
-.mr-table-wrap { overflow-x: auto; }
 
 .mr-table {
   width: 100%;
@@ -440,7 +422,7 @@ body.no-scroll { overflow: hidden; }
   padding: 14px 16px;
   font-weight: 700;
   position: sticky;
-  top: 0;                 /* sticky header inside wrapper */
+  top: 0;
   z-index: 1;
 }
 
@@ -450,9 +432,7 @@ body.no-scroll { overflow: hidden; }
   vertical-align: middle;
 }
 
-.mr-table tbody tr:hover {
-  background: #fcfcfc;
-}
+.mr-table tbody tr:hover { background: #fcfcfc; }
 
 .mr-table .col-rank {
   width: 84px;
@@ -487,7 +467,7 @@ body.no-scroll { overflow: hidden; }
   white-space: nowrap;
 }
 
-/* Mobile: stack labels for super-small screens if needed */
+/* Mobile stacked table */
 @media (max-width: 520px) {
   .mr-table thead { display: none; }
   .mr-table, .mr-table tbody, .mr-table tr, .mr-table td { display: block; width: 100%; }
@@ -506,21 +486,3 @@ body.no-scroll { overflow: hidden; }
   .mr-table .col-rank,
   .mr-table .col-reviews { text-align: left; }
 }
-
-/* ===== FINAL: Anchor offset fix for mobile (headings with IDs) ===== */
-@media (max-width: 768px){
-  /* Match h1/h2/h3/section/div that carry the anchor id */
-  .seller-directory :is(h1,h2,h3,section,div)[id]{
-    /* Pull headers UP by ~4 lines; tweak -64px to taste */
-    scroll-margin-top: calc(
-      var(--header-mobile) + var(--sticky-bar-height-mobile) - 48px
-    ) !important;
-  }
-
-  /* Kill any older spacer hack on mobile so it can't fight this */
-  .seller-directory :is(h1,h2,h3,section,div)[id]::before{
-    height: 0 !important;
-    margin-top: 0 !important;
-  }
-}
-
