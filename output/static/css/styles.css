@@ -20,7 +20,7 @@ body, html, main, .seller-directory {
   --sticky-bar-height-mobile:  36px;
 
   /* Anchor offsets (one system) */
-  --anchor-offset-desktop: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) + 0px);
+  --anchor-offset-desktop: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) - 10px);
   --anchor-offset-mobile: calc(
   var(--header-mobile) + var(--sticky-bar-height-mobile) + 32px
 );
