@@ -513,7 +513,7 @@ body.no-scroll { overflow: hidden; }
   .seller-directory :is(h1,h2,h3,section,div)[id]{
     /* Pull headers UP by ~4 lines; tweak -64px to taste */
     scroll-margin-top: calc(
-      var(--header-mobile) + var(--sticky-bar-height-mobile) - 64px
+      var(--header-mobile) + var(--sticky-bar-height-mobile) - 48px
     ) !important;
   }
 
