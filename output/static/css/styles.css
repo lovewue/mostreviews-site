@@ -21,7 +21,7 @@ body, html, main, .seller-directory {
 
   /* Anchor offsets (one system) */
   --anchor-offset-desktop: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) + 0px);
-  --anchor-offset-mobile:  calc(var(--header-mobile)  + var(--sticky-bar-height-mobile)  + 24px);
+  --anchor-offset-mobile:  calc(var(--header-mobile)  + var(--sticky-bar-height-mobile)  + 100px);
 }
 
 /* =========================
