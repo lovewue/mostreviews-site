@@ -1,50 +1,34 @@
 {% extends "base.html" %}
 
-{% block title %}Top Sellers (Last 12 Months){% endblock %}
+{% block title %}Top 100 Sellers – Last 12 Months{% endblock %}
 
 {% block content %}
 <section class="top-sellers page-wrap">
-  <h1>Top Sellers (Last 12 Months)</h1>
+  <h1>Top 100 Sellers – Last 12 Months</h1>
 
   <div class="mr-table-wrap">
     <table class="mr-table">
-      <caption class="visually-hidden">
-        Top sellers by reviews in the last 12 months
-      </caption>
       <thead>
         <tr>
-          <th scope="col" class="col-rank">Rank</th>
-          <th scope="col" class="col-partner">Partner</th>
-          <th scope="col" class="col-reviews">Reviews</th>
+          <th scope="col">Rank</th>
+          <th scope="col">Partner</th>
+          <th scope="col">Reviews</th>
         </tr>
       </thead>
       <tbody>
-        {% if top_sellers_last_12_months is defined and top_sellers_last_12_months %}
-          {% for s in top_sellers_last_12_months %}
-          <tr>
-            <td class="col-rank" data-label="Rank">{{ loop.index }}</td>
-            <td class="col-partner" data-label="Partner">
-              {% if s.url %}
-                <a href="{{ s.url }}">{{ s.name }}</a>
-              {% else %}
-                <a href="/output/noths/sellers/{{ s.slug[0]|lower }}/{{ s.slug }}.html">{{ s.name }}</a>
-              {% endif %}
-            </td>
-            <td class="col-reviews" data-label="Reviews">{{ s.reviews|int }}</td>
-          </tr>
-          {% endfor %}
-        {% else %}
-          <tr>
-            <td colspan="3" style="text-align:center; padding:16px;">
-              No data passed to template
-              (<code>top_sellers_last_12_months</code> is undefined or empty).
-            </td>
-          </tr>
-        {% endif %}
+        {% for seller in sellers %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>
+            <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">
+              {{ seller.name }}
+            </a>
+          </td>
+          <td>{{ "{:,}".format(seller.total_reviews) }}</td>
+        </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>
-
-  <!-- DEBUG: {{ top_sellers_last_12_months|length if top_sellers_last_12_months is defined else 'undefined' }} -->
 </section>
 {% endblock %}
