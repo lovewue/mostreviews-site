@@ -507,3 +507,20 @@ body.no-scroll { overflow: hidden; }
   .mr-table .col-reviews { text-align: left; }
 }
 
+/* ===== FINAL: Anchor offset fix for mobile (headings with IDs) ===== */
+@media (max-width: 768px){
+  /* Match h1/h2/h3/section/div that carry the anchor id */
+  .seller-directory :is(h1,h2,h3,section,div)[id]{
+    /* Pull headers UP by ~4 lines; tweak -64px to taste */
+    scroll-margin-top: calc(
+      var(--header-mobile) + var(--sticky-bar-height-mobile) - 64px
+    ) !important;
+  }
+
+  /* Kill any older spacer hack on mobile so it can't fight this */
+  .seller-directory :is(h1,h2,h3,section,div)[id]::before{
+    height: 0 !important;
+    margin-top: 0 !important;
+  }
+}
+

@@ -1,3 +1,8 @@
+{% extends "base.html" %}
+
+{% block title %}Top Sellers (Last 12 Months){% endblock %}
+
+{% block content %}
 <section class="top-sellers page-wrap">
   <h1>Top Sellers (Last 12 Months)</h1>
 
@@ -14,20 +19,32 @@
         </tr>
       </thead>
       <tbody>
-        {% for s in top_sellers_last_12_months %}
-        <tr>
-          <td class="col-rank" data-label="Rank">{{ loop.index }}</td>
-          <td class="col-partner" data-label="Partner">
-            <a href="/output/noths/sellers/{{ s.slug[0] }}/{{ s.slug }}.html">
-              {{ s.name }}
-            </a>
-          </td>
-          <td class="col-reviews" data-label="Reviews">
-            {{ "{:,}".format(s.reviews) }}
-          </td>
-        </tr>
-        {% endfor %}
+        {% if top_sellers_last_12_months is defined and top_sellers_last_12_months %}
+          {% for s in top_sellers_last_12_months %}
+          <tr>
+            <td class="col-rank" data-label="Rank">{{ loop.index }}</td>
+            <td class="col-partner" data-label="Partner">
+              {% if s.url %}
+                <a href="{{ s.url }}">{{ s.name }}</a>
+              {% else %}
+                <a href="/output/noths/sellers/{{ s.slug[0]|lower }}/{{ s.slug }}.html">{{ s.name }}</a>
+              {% endif %}
+            </td>
+            <td class="col-reviews" data-label="Reviews">{{ s.reviews|int }}</td>
+          </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan="3" style="text-align:center; padding:16px;">
+              No data passed to template
+              (<code>top_sellers_last_12_months</code> is undefined or empty).
+            </td>
+          </tr>
+        {% endif %}
       </tbody>
     </table>
   </div>
+
+  <!-- DEBUG: {{ top_sellers_last_12_months|length if top_sellers_last_12_months is defined else 'undefined' }} -->
 </section>
+{% endblock %}
