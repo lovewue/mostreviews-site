@@ -249,14 +249,14 @@ body.no-scroll { overflow: hidden; }
 .year-block {
   margin-bottom: 48px;
   /* Desktop/tablet: align anchors just under the sticky header + bar */
-  scroll-margin-top: calc(var(--header-desktop) + var(--sticky-bar-height)-12px);
+  scroll-margin-top: calc(var(--header-desktop) + var(--sticky-bar-height)-8px);
 }
 
 @media (max-width: 768px){
   .letter-block,
   .year-block {
     /* Mobile: use mobile header height */
-    scroll-margin-top: calc(var(--header-mobile) + var(--sticky-bar-height)-12px);
+    scroll-margin-top: calc(var(--header-mobile) + var(--sticky-bar-height)-8px);
   }
 }
 
@@ -674,4 +674,12 @@ body.no-scroll { overflow: hidden; }
 }
 @media (min-width: 1024px) {
   .card-grid .card { grid-column: span 4; }
+}
+
+/* ========== Top Products Page Heading ========== */
+.top-products-page h1 {
+  font-size: clamp(22px, 3vw, 32px); /* scales smoothly: 22px mobile → 32px desktop */
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
 }
