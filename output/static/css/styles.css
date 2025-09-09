@@ -203,19 +203,51 @@ body.no-scroll { overflow: hidden; }
   border: 0;
   border-collapse: collapse;
 }
-.az-bar li { border: 1px solid #ccc; margin: 0; padding: 0; text-align: center; }
+.az-bar li {
+  border: 1px solid #ccc;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
 .az-bar a {
-  display: block; padding: 10px;
-  font-weight: 600; color: #000; text-decoration: none;
+  display: block;
+  padding: 10px;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
   transition: background 0.2s ease;
 }
 .az-bar a:hover { background-color: #f5f5f5; }
 .az-bar a.active { background-color: #000; color: #fff; }
 
 /* Grid responsivity for A–Z bar */
-@media (max-width: 1024px){ .az-bar { grid-template-columns: repeat(9, 1fr); } }
-@media (max-width: 768px){  .az-bar { grid-template-columns: repeat(6, 1fr); } }
-@media (max-width: 480px){  .az-bar { grid-template-columns: repeat(4, 1fr); } }
+/* Desktop: plenty of room */
+@media (max-width: 1024px){
+  .az-bar { grid-template-columns: repeat(13, 1fr); }
+}
+
+/* Tablet: shrink font + padding, fit in 3 rows */
+@media (max-width: 768px){
+  .az-bar {
+    grid-template-columns: repeat(9, 1fr); /* 26 letters ≈ 3 rows */
+  }
+  .az-bar a {
+    font-size: 13px;
+    padding: 6px 4px;
+  }
+}
+
+/* Mobile: even tighter, still max 3 rows */
+@media (max-width: 480px){
+  .az-bar {
+    grid-template-columns: repeat(9, 1fr);
+  }
+  .az-bar a {
+    font-size: 11px;
+    padding: 4px 3px;
+  }
+}
+
 
 /* =========================
    ANCHOR POSITIONING (A–Z / YEAR SECTIONS)
