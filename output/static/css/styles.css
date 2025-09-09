@@ -158,7 +158,7 @@ body.no-scroll { overflow: hidden; }
 .sticky-nav,
 .persistent-nav{
   position: sticky !important;
-  top: calc(var(--header-desktop) + 2px) !important; /* +2px gap above sticky */
+  top: calc(var(--header-desktop) + 0px) !important; /* +0px gap above sticky */
   z-index: 1050 !important;
   background: #fff !important;
   padding: 8px 24px !important; /* padding around sticky menu */
@@ -240,7 +240,7 @@ body.no-scroll { overflow: hidden; }
   .seller-directory .letter-block[id],
   .seller-directory .year-block[id]{
     /* Pull headers UP by ~4 lines (≈ 64px) relative to your existing offset */
-    scroll-margin-top: calc(var(--anchor-offset-mobile) - 58px) !important;
+    scroll-margin-top: calc(var(--anchor-offset-mobile) - 48px) !important;
   }
 
   /* Disable the spacer hack on mobile so it can't fight the new value */
