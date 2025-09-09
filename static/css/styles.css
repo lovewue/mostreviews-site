@@ -489,3 +489,71 @@ body.no-scroll { overflow: hidden; }
   .mr-table .col-rank,
   .mr-table .col-reviews { text-align: left; }
 }
+
+/* =========================
+   RESPONSIVE TABLES (Top Sellers & Products)
+   ========================= */
+
+.mr-table-wrap {
+  width: 100%;
+  overflow-x: auto; /* safety net for very narrow screens */
+}
+
+.mr-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 15px;
+}
+
+.mr-table th,
+.mr-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.mr-table th {
+  background: #f8f8f8;
+  font-weight: 600;
+}
+
+/* Mobile stacked layout */
+@media (max-width: 768px) {
+  .mr-table thead {
+    display: none; /* hide headers */
+  }
+
+  .mr-table,
+  .mr-table tbody,
+  .mr-table tr,
+  .mr-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .mr-table tr {
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    background: #fff;
+  }
+
+  .mr-table td {
+    border: none;
+    padding: 6px 0;
+  }
+
+  .mr-table td::before {
+    content: attr(data-label) ": ";
+    font-weight: 600;
+    display: inline-block;
+    min-width: 90px;
+    color: #333;
+  }
+
+  .mr-table td a {
+    word-break: break-word; /* prevent long text from overflowing */
+  }
+}
