@@ -478,7 +478,7 @@ body.no-scroll { overflow: hidden; }
 :root{
   --HEADER: 84px;  /* header total height = logo + 20px padding (64 + 20 = 84) */
   --STICKY: 32px;  /* actual height of the A–Z sticky band (adjust!) */
-  --CUSHION: 0px;  /* extra breathing room under sticky; start at 0 */
+  --CUSHION: -64px;  /* extra breathing room under sticky; start at 0 */
 }
 
 /* Make the sticky band sit directly under the header */
@@ -488,7 +488,7 @@ body.no-scroll { overflow: hidden; }
   position: sticky !important;
   top: var(--HEADER) !important;
   margin: 0 !important;          /* kill extra vertical gaps */
-  padding: 8px 0 !important;     /* keep it slim; adjust if needed */
+  padding: 8px !important;     /* keep it slim; adjust if needed */
   z-index: 1050 !important;      /* below header(1100), above content */
   background: #fff !important;
 }
