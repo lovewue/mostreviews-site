@@ -478,7 +478,7 @@ body.no-scroll { overflow: hidden; }
 :root{
   --HEADER: 84px;  /* header total height = logo + 20px padding (64 + 20 = 84) */
   --STICKY: 32px;  /* actual height of the A–Z sticky band (adjust!) */
-  --CUSHION: -64px;  /* extra breathing room under sticky; start at 0 */
+  --CUSHION: -58px;  /* extra breathing room under sticky; start at 0 */
 }
 
 /* Make the sticky band sit directly under the header */
@@ -515,6 +515,6 @@ body.no-scroll { overflow: hidden; }
     /* if your mobile header is 48 logo + 20 padding = 68px */
     --HEADER: 68px;
     --STICKY: 36px; /* if the A–Z bar is taller on mobile, bump this */
-    --CUSHION: 0px;
+    --CUSHION: 20px;
   }
 }
