@@ -20,8 +20,8 @@ body, html, main, .seller-directory {
   --sticky-bar-height-mobile:  36px;
 
   /* Anchors: negative pulls titles UP */
-  --anchor-cushion-desktop: -64px;
-  --anchor-cushion-mobile:  -92px; /* was -56px → pull ~4 lines more */
+  --anchor-cushion-desktop: -59px;
+  --anchor-cushion-mobile:  36px; /* was -56px → pull ~4 lines more */
 }
 
 .site-header {
@@ -169,7 +169,7 @@ body.no-scroll { overflow: hidden; }
   .az-nav,
   .sticky-nav,
   .persistent-nav{
-    top: var(--header-mobile) !important;
+    top: calc(var(--header-mobile) + 8px) !important;
     padding: 5px 12px !important;
   }
 }
