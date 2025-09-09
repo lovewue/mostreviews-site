@@ -240,7 +240,7 @@ body.no-scroll { overflow: hidden; }
   .seller-directory .letter-block[id],
   .seller-directory .year-block[id]{
     /* Pull headers UP by ~4 lines (≈ 64px) relative to your existing offset */
-    scroll-margin-top: calc(var(--anchor-offset-mobile) - 48px) !important;
+    scroll-margin-top: calc(var(--anchor-offset-mobile) - 30px) !important;
   }
 
   /* Disable the spacer hack on mobile so it can't fight the new value */
