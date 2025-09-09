@@ -161,7 +161,7 @@ body.no-scroll { overflow: hidden; }
   top: calc(var(--header-desktop) + 5px) !important; /* +5px gap above sticky */
   z-index: 1050 !important;
   background: #fff !important;
-  padding: 10px 24px !important; /* padding around sticky menu */
+  padding: 14px 24px !important; /* padding around sticky menu */
   box-sizing: border-box;
 }
 
