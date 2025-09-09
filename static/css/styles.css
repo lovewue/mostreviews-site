@@ -235,20 +235,19 @@ body.no-scroll { overflow: hidden; }
    MOBILE ANCHOR OFFSET FIX
    ========================= */
 @media (max-width: 768px){
-  /* Reduce the scroll offset so headers appear ~4 lines higher */
+
+  /* Option A — rely only on scroll-margin-top (simplest & most reliable) */
   .seller-directory .letter-block[id],
   .seller-directory .year-block[id]{
-    scroll-margin-top: calc(
-      var(--header-mobile) +
-      var(--sticky-bar-height-mobile) -
-      40px   /* pull up by ~4 lines (≈ 40px) */
-    ) !important;
+    /* Pull headers UP by ~4 lines (≈ 64px) relative to your existing offset */
+    scroll-margin-top: calc(var(--anchor-offset-mobile) - 64px) !important;
   }
 
+  /* Disable the spacer hack on mobile so it can't fight the new value */
   .seller-directory .letter-block[id]::before,
   .seller-directory .year-block[id]::before{
-    height: calc(var(--header-mobile) + var(--sticky-bar-height-mobile) - 40px);
-    margin-top: calc(-1 * (var(--header-mobile) + var(--sticky-bar-height-mobile) - 40px));
+    height: 0 !important;
+    margin-top: 0 !important;
   }
 }
 
