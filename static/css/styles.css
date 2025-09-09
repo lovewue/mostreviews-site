@@ -1,4 +1,13 @@
 /* =========================
+   GLOBAL / BASICS
+   ========================= */
+
+/* (Optional) If any parent previously forced hidden overflow */
+body, html, main, .seller-directory {
+  overflow: visible !important;
+}
+
+/* =========================
    HEADER + MENU (FINAL)
    ========================= */
 
@@ -6,6 +15,21 @@
 :root{
   --logo-desktop: 64px;   /* desktop logo height */
   --logo-mobile: 48px;    /* mobile logo height */
+
+  /* header total height = logo + 20px (10px top + 10px bottom padding) */
+  --header-desktop: calc(var(--logo-desktop, 64px) + 20px);
+  --header-mobile:  calc(var(--logo-mobile, 48px)  + 20px);
+
+  /* Sticky bar heights (measure in DevTools and tweak if needed) */
+  --sticky-bar-height-desktop: 56px;
+  --sticky-bar-height-mobile:  56px;
+
+  /* Small cushion so anchored titles never tuck under */
+  --anchor-cushion: 12px;
+
+  /* Precomputed offsets (used by anchors) */
+  --anchor-offset-desktop: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) + var(--anchor-cushion));
+  --anchor-offset-mobile:  calc(var(--header-mobile)  + var(--sticky-bar-height-mobile)  + var(--anchor-cushion));
 }
 
 /* Header container */
@@ -15,7 +39,7 @@
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   padding: 10px 0;
-  z-index: 1100; /* ↑ ABOVE drawer(1000) & backdrop(999) so burger is clickable */
+  z-index: 1100; /* ABOVE drawer(1000) & backdrop(999) so burger is clickable */
 }
 
 .header-inner {
@@ -25,10 +49,10 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
-  gap: 24px; /* space between logo and nav */
+  gap: 24px;
 }
 
-/* Hard-set logo sizes so HTML height attr can't override */
+/* Logo sizing (HTML height attr cannot override) */
 .site-header .header-logo img {
   height: var(--logo-desktop) !important;
   width: auto !important;
@@ -53,7 +77,7 @@
 }
 .main-nav a:hover { color: #000; }
 
-/* Burger button (hidden by default on desktop) */
+/* Burger button (hidden on desktop) */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -71,7 +95,7 @@
 .hamburger[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
 .hamburger[aria-expanded="true"] span:nth-child(3){ transform: translateY(-9px) rotate(-45deg); }
 
-/* Drawer (mobile) – slides in from the RIGHT to match burger on right */
+/* Drawer (mobile) – slides from RIGHT */
 .nav-drawer {
   position: fixed;
   top: 0; right: 0;
@@ -101,7 +125,7 @@
 .nav-open .nav-drawer { transform: translateX(0); }
 .nav-open .nav-backdrop { opacity: 1; pointer-events: auto; }
 
-/* Close button inside drawer */
+/* Close button inside drawer (if you keep it) */
 .drawer-close {
   position: absolute; top: 10px; right: 12px;
   font-size: 28px; line-height: 1;
@@ -111,24 +135,18 @@
 /* Lock body scroll when drawer open */
 body.no-scroll { overflow: hidden; }
 
-/* =========================
-   RESPONSIVE BEHAVIOUR
-   ========================= */
-
+/* Mobile behaviour */
 @media (max-width: 900px){
-  /* Smaller logo on mobile */
-  .site-header .header-logo img{
-    height: var(--logo-mobile) !important;
-  }
+  .site-header .header-logo img{ height: var(--logo-mobile) !important; }
 
-  /* Force burger visible on mobile, above backdrop */
+  /* Ensure burger sits above backdrop */
   .hamburger{
     display: inline-flex !important;
-    position: relative;  /* ensure z-index applies */
+    position: relative;
     z-index: 1101;
   }
 
-  /* Drawer nav shows vertical list */
+  /* Drawer nav vertical list */
   .main-nav ul{ display: flex; flex-direction: column; gap: 12px; }
 }
 
@@ -136,7 +154,7 @@ body.no-scroll { overflow: hidden; }
 @media (min-width: 901px){
   .hamburger{ display: none; }
 
-  /* Make drawer behave like normal inline nav on desktop */
+  /* Drawer behaves as inline nav on desktop */
   .nav-drawer{
     position: static;
     transform: none;
@@ -152,18 +170,88 @@ body.no-scroll { overflow: hidden; }
   nav.nav-drawer[hidden]{ display: block !important; }
 }
 
-/* CRITICAL: ensure menu is visible on desktop even if the element has [hidden] */
-@media (min-width: 901px){
-  nav.nav-drawer[hidden]{
-    display: block !important; /* override UA stylesheet for [hidden] */
+/* =========================
+   STICKY NAV (A–Z / YEAR BANDS)
+   ========================= */
+
+/* Sticky bars sit right under the header, above content */
+.az-nav,
+.sticky-nav,
+.persistent-nav{
+  position: sticky !important;
+  top: var(--header-desktop) !important;
+  z-index: 1050 !important;  /* header is 1100 */
+  background: #fff !important;
+}
+
+@media (max-width: 768px){
+  .az-nav,
+  .sticky-nav,
+  .persistent-nav{
+    top: var(--header-mobile) !important;
+    z-index: 1050 !important;
+  }
+}
+
+/* A–Z bar visuals */
+.az-bar {
+  display: grid;
+  grid-template-columns: repeat(28, 1fr);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-collapse: collapse;
+}
+.az-bar li { border: 1px solid #ccc; margin: 0; padding: 0; text-align: center; }
+.az-bar a {
+  display: block; padding: 10px;
+  font-weight: 600; color: #000; text-decoration: none;
+  transition: background 0.2s ease;
+}
+.az-bar a:hover { background-color: #f5f5f5; }
+.az-bar a.active { background-color: #000; color: #fff; }
+
+/* Grid responsivity for A–Z bar */
+@media (max-width: 1024px){ .az-bar { grid-template-columns: repeat(9, 1fr); } }
+@media (max-width: 768px){  .az-bar { grid-template-columns: repeat(6, 1fr); } }
+@media (max-width: 480px){  .az-bar { grid-template-columns: repeat(4, 1fr); } }
+
+/* =========================
+   ANCHOR POSITIONING (A–Z / YEAR SECTIONS)
+   ========================= */
+
+/* Apply offset to the element that has the id (your <section class="letter-block" id="A">) */
+.seller-directory .letter-block[id],
+.seller-directory .year-block[id]{
+  /* CSS way */
+  scroll-margin-top: var(--anchor-offset-desktop) !important;
+}
+
+/* Fallback spacer for absolute reliability across browsers */
+.seller-directory .letter-block[id]::before,
+.seller-directory .year-block[id]::before{
+  content:"";
+  display:block;
+  height: var(--anchor-offset-desktop);
+  margin-top: calc(-1 * var(--anchor-offset-desktop));
+  pointer-events:none;
+}
+
+@media (max-width: 768px){
+  .seller-directory .letter-block[id],
+  .seller-directory .year-block[id]{ scroll-margin-top: var(--anchor-offset-mobile) !important; }
+  .seller-directory .letter-block[id]::before,
+  .seller-directory .year-block[id]::before{
+    height: var(--anchor-offset-mobile);
+    margin-top: calc(-1 * var(--anchor-offset-mobile));
   }
 }
 
 /* =========================
-   (Everything below is your existing page styling)
+   SELLER DIRECTORY + LISTS
    ========================= */
 
-/* ========== Seller Directory ========== */
 .seller-directory {
   max-width: 1200px;
   margin: 0 auto;
@@ -177,89 +265,7 @@ body.no-scroll { overflow: hidden; }
   text-align: center;
 }
 
-/* ========== Sticky A–Z or Year Nav ========== */
-.az-nav,
-.az-nav, .sticky-nav {
-  position: sticky !important;
-  top: 84px !important; /* Adjust to match header height */
-  z-index: 99 !important;
-  background: #fff !important;
-  border: 0px solid #ccc;
-  margin-bottom: 40px;
-  margin-top: 40px; 
-  padding: 20px 0;
-}
-
-.az-bar {
-  display: grid;
-  grid-template-columns: repeat(28, 1fr); /* one column per character */
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border: 0px solid #ccc;
-  border-collapse: collapse;
-}
-
-.az-bar li {
-  border: 1px solid #ccc;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-.az-bar a {
-  display: block;
-  padding: 10px;
-  font-weight: 600;
-  color: #000;
-  text-decoration: none;
-  transition: background 0.2s ease;
-}
-
-.az-bar a:hover {
-  background-color: #f5f5f5;
-}
-
-.az-bar a.active {
-  background-color: #000;
-  color: #fff;
-}
-
-@media (max-width: 768px) {
-  .az-nav,
-  .persistent-nav {
-    position: sticky;
-    top: 68px;
-    background: #fff;
-    z-index: 99;
-    border: 0px solid #ccc;
-    margin-bottom: 40px;
-    margin-top: 40px; 
-    padding: 20px 0;
-  }
-}
-
-/* ========== Seller Lists ========== */
-/* Section blocks should stop just below header + sticky bar */
-:root{
-  --sticky-bar-height: 48px; /* tweak to your A–Z / sticky bar height */
-}
-
-.letter-block,
-.year-block {
-  margin-bottom: 48px;
-  /* Desktop/tablet: align anchors just under the sticky header + bar */
-  scroll-margin-top: calc(var(--header-desktop) + var(--sticky-bar-height)-50px);
-}
-
-@media (max-width: 768px){
-  .letter-block,
-  .year-block {
-    /* Mobile: use mobile header height */
-    scroll-margin-top: calc(var(--header-mobile) + var(--sticky-bar-height)-50px);
-  }
-}
-
+/* Section titles */
 .letter-title,
 .year-title {
   font-size: 1.5rem;
@@ -269,10 +275,11 @@ body.no-scroll { overflow: hidden; }
   padding-bottom: 6px;
 }
 
-/* Removed the ::before offset hack */
+/* Section spacing */
+.letter-block,
+.year-block { margin-bottom: 48px; }
 
-
-/* ========== Seller Grid ========== */
+/* Seller grid */
 .seller-columns {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -281,25 +288,21 @@ body.no-scroll { overflow: hidden; }
   margin: 0;
   list-style: none;
 }
-
-.seller-columns li {
-  margin: 0;
-  padding: 0;
-}
-
+.seller-columns li { margin: 0; padding: 0; }
 .seller-columns a {
-  text-decoration: none;
-  color: #000;
-  font-weight: 500;
+  text-decoration: none; color: #000; font-weight: 500;
   transition: color 0.2s ease;
 }
+.seller-columns a:hover { color: #007185; text-decoration: underline; }
 
-.seller-columns a:hover {
-  color: #007185;
-  text-decoration: underline;
-}
+/* Responsive seller grid */
+@media (max-width: 768px){ .seller-columns { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px){ .seller-columns { grid-template-columns: 1fr; } }
 
-/* ========== Footer ========== */
+/* =========================
+   FOOTER
+   ========================= */
+
 .site-footer {
   background: #FFFFFF;
   padding: 20px 0;
@@ -309,49 +312,10 @@ body.no-scroll { overflow: hidden; }
   margin-top: 60px;
 }
 
-/* ========== Responsive ========== */
-@media (max-width: 768px) {
-  .seller-columns {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* =========================
+   PRODUCT DIRECTORY (Top Products Page)
+   ========================= */
 
-  .az-bar a {
-    flex: 1 0 12.5%;
-    text-align: center;
-    font-size: 14px;
-    padding: 6px 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .seller-columns {
-    grid-template-columns: 1fr;
-  }
-
-  .az-bar a {
-    flex: 1 0 25%;
-  }
-}
-
-@media (max-width: 1024px) {
-  .az-bar {
-    grid-template-columns: repeat(9, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .az-bar {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .az-bar {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* ========== Product Directory (Top Products Page) ========== */
 .product-directory {
   max-width: 800px;
   margin: 60px auto;
@@ -371,38 +335,16 @@ body.no-scroll { overflow: hidden; }
   padding-left: 0;
   margin: 0;
 }
+.top-products-list li { margin-bottom: 14px; font-size: 1rem; line-height: 1.6; }
+.top-products-list a { color: #007185; text-decoration: none; font-weight: 500; }
+.top-products-list a:hover { text-decoration: underline; }
+.top-products-list .seller-name { display: inline-block; margin-left: 10px; color: #333; font-weight: normal; font-size: 0.95rem; }
+.top-products-list .review-count { margin-left: 10px; color: #777; font-size: 0.95rem; }
 
-.top-products-list li {
-  margin-bottom: 14px;
-  font-size: 1rem;
-  line-height: 1.6;
-}
+/* =========================
+   SELLER DETAIL PAGE
+   ========================= */
 
-.top-products-list a {
-  color: #007185;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.top-products-list a:hover {
-  text-decoration: underline;
-}
-
-.top-products-list .seller-name {
-  display: inline-block;
-  margin-left: 10px;
-  color: #333;
-  font-weight: normal;
-  font-size: 0.95rem;
-}
-
-.top-products-list .review-count {
-  margin-left: 10px;
-  color: #777;
-  font-size: 0.95rem;
-}
-
-/* ========== Seller Detail Page ========== */
 .seller-detail-page {
   max-width: 1200px;
   margin: 0 auto;
@@ -423,15 +365,8 @@ body.no-scroll { overflow: hidden; }
   border-radius: 8px;
 }
 
-.seller-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.seller-logo {
-  max-width: 200px;
-  margin-bottom: 10px;
-}
+.seller-header { text-align: center; margin-bottom: 20px; }
+.seller-logo { max-width: 200px; margin-bottom: 10px; }
 
 .seller-info {
   list-style: none;
@@ -440,7 +375,6 @@ body.no-scroll { overflow: hidden; }
   font-size: 16px;
   line-height: 1.6;
 }
-
 .seller-info li strong {
   display: inline-block;
   width: 140px;
@@ -458,47 +392,24 @@ body.no-scroll { overflow: hidden; }
   text-align: center;
 }
 
-.seller-products h2 {
-  font-size: 1.5rem;
-  margin-bottom: 16px;
-}
+.seller-products h2 { font-size: 1.5rem; margin-bottom: 16px; }
 
-.top-products-list {
-  list-style: decimal inside;
-  padding-left: 0;
-  font-size: 16px;
-}
-
-.top-products-list li {
-  margin-bottom: 12px;
-}
-
-.top-products-list a {
-  font-weight: 600;
-  color: #000;
-  text-decoration: none;
-}
-
-.top-products-list a:hover {
-  text-decoration: underline;
-}
-
-.review-count {
-  margin-left: 6px;
-  color: #777;
-}
+.top-products-list { list-style: decimal inside; padding-left: 0; font-size: 16px; }
+.top-products-list li { margin-bottom: 12px; }
+.top-products-list a { font-weight: 600; color: #000; text-decoration: none; }
+.top-products-list a:hover { text-decoration: underline; }
+.review-count { margin-left: 6px; color: #777; }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .seller-columns-container {
-    grid-template-columns: 1fr;
-  }
-  .seller-header {
-    text-align: left;
-  }
+@media (max-width: 768px){
+  .seller-columns-container { grid-template-columns: 1fr; }
+  .seller-header { text-align: left; }
 }
 
-/* ========== Top Products Page ========== */
+/* =========================
+   TOP PRODUCTS PAGE WRAPPER
+   ========================= */
+
 .top-products-page {
   max-width: 900px;
   margin: 60px auto;
@@ -506,124 +417,27 @@ body.no-scroll { overflow: hidden; }
   font-family: sans-serif;
 }
 
+/* If you want a smaller H1 on this page, uncomment:
 .top-products-page h1 {
-  font-size: 2rem;
-  margin-bottom: 30px;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700;
+  margin-bottom: 24px;
   text-align: center;
 }
+*/
 
-.top-products-list {
-  list-style: decimal inside;
-  padding: 0;
-  margin: 0;
-}
+/* =========================
+   NOTHS INDEX CARDS
+   ========================= */
 
-.top-products-list li {
-  margin-bottom: 18px;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.top-products-list a {
-  color: #007185;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.top-products-list a:hover {
-  text-decoration: underline;
-}
-
-.top-products-list .seller-name {
-  margin-left: 10px;
-  color: #444;
-  font-size: 0.95rem;
-  font-style: italic;
-}
-
-.top-products-list .review-count {
-  margin-left: 10px;
-  color: #777;
-  font-size: 0.95rem;
-}
-
-/* ========== About Page ========== */
-.about-page {
-  max-width: 800px;
-  margin: 60px auto;
-  padding: 20px;
-  font-family: sans-serif;
-  line-height: 1.7;
-}
-
-.about-page h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.about-content p {
-  margin-bottom: 1rem;
-}
-
-/* ========== Top Sellers List ========== */
-.top-sellers {
-  max-width: 800px;
-  margin: 40px auto;
-  font-family: sans-serif;
-  padding: 0 20px;
-}
-
-.top-sellers h1 {
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.top-sellers ol {
-  list-style: decimal;
-  padding-left: 20px;
-}
-
-.top-sellers li {
-  margin-bottom: 16px;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-.top-sellers a {
-  font-weight: 600;
-  color: #0073e6;
-  text-decoration: none;
-}
-
-.top-sellers a:hover {
-  text-decoration: underline;
-}
-
-.top-sellers span {
-  margin-left: 8px;
-  color: #555;
-  font-size: 0.95rem;
-}
-
-/* ========== NOTHS Index ========== */
 .page-hero {
   max-width: 900px;
   margin: 32px auto 16px;
   padding: 0 16px;
   text-align: left;
 }
-.page-hero h1 {
-  margin: 0 0 8px;
-  font-size: clamp(24px, 3vw, 36px);
-}
-.page-hero .lead {
-  margin: 0;
-  color: #555;
-  font-size: 16px;
-  line-height: 1.6;
-}
+.page-hero h1 { margin: 0 0 8px; font-size: clamp(24px, 3vw, 36px); }
+.page-hero .lead { margin: 0; color: #555; font-size: 16px; line-height: 1.6; }
 
 .card-grid {
   display: grid;
@@ -651,29 +465,10 @@ body.no-scroll { overflow: hidden; }
   box-shadow: 0 6px 18px rgba(0,0,0,.08);
   border-color: #e5e5e5;
 }
-.card-body h2 {
-  margin: 0 0 6px;
-  font-size: 18px;
-}
-.card-body p {
-  margin: 0;
-  color: #666;
-  font-size: 14px;
-  line-height: 1.5;
-}
-.card-cta {
-  margin-top: 12px;
-  font-weight: 600;
-  font-size: 14px;
-  color: #111;
-}
+.card-body h2 { margin: 0 0 6px; font-size: 18px; }
+.card-body p { margin: 0; color: #666; font-size: 14px; line-height: 1.5; }
+.card-cta { margin-top: 12px; font-weight: 600; font-size: 14px; color: #111; }
 
 /* Responsive columns: 2-up on tablet, 3-up on desktop */
-@media (min-width: 640px) {
-  .card-grid .card { grid-column: span 6; }
-}
-@media (min-width: 1024px) {
-  .card-grid .card { grid-column: span 4; }
-}
-
-
+@media (min-width: 640px){  .card-grid .card { grid-column: span 6; } }
+@media (min-width: 1024px){ .card-grid .card { grid-column: span 4; } }
