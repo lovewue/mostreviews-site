@@ -1,8 +1,6 @@
 /* =========================
    GLOBAL / BASICS
    ========================= */
-
-/* (Optional) If any parent previously forced hidden overflow */
 body, html, main, .seller-directory {
   overflow: visible !important;
 }
@@ -10,50 +8,41 @@ body, html, main, .seller-directory {
 /* =========================
    HEADER + MENU (FINAL)
    ========================= */
-
-/* Control logo sizes + derived measurements */
 :root{
-  --logo-desktop: 64px;    /* desktop logo height */
-  --logo-mobile: 48px;     /* mobile logo height */
+  --logo-desktop: 64px;
+  --logo-mobile: 48px;
 
-  /* header total height = logo + 20px (10 top + 10 bottom padding) */
-  --header-desktop: calc(var(--logo-desktop) + 20px);
+  /* header total height = logo + vertical padding */
+  --header-desktop: calc(var(--logo-desktop) + 28px); /* +8px from before */
   --header-mobile:  calc(var(--logo-mobile)  + 20px);
 
-  /* Sticky bar heights (measure in DevTools → Computed → height) */
   --sticky-bar-height-desktop: 32px;
   --sticky-bar-height-mobile:  36px;
 
-  /* Negative pulls anchored titles UP; ~3 lines ≈ -60 to -72px */
+  /* Anchors: negative pulls titles UP */
   --anchor-cushion-desktop: -64px;
-  --anchor-cushion-mobile:  -56px;
-
-  /* Precomputed offsets (header + sticky + cushion) */
-  --anchor-offset-desktop: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) + var(--anchor-cushion-desktop));
-  --anchor-offset-mobile:  calc(var(--header-mobile)  + var(--sticky-bar-height-mobile)  + var(--anchor-cushion-mobile));
+  --anchor-cushion-mobile:  -92px; /* was -56px → pull ~4 lines more */
 }
 
-/* Header container */
 .site-header {
   position: sticky;
   top: 0;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  padding: 10px 0;
-  z-index: 1100; /* ABOVE drawer(1000) & backdrop(999) so burger is clickable */
+  padding: 18px 0 10px 0; /* ↑ added 8px top padding */
+  z-index: 1100;
 }
 
 .header-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* logo left, burger right */
+  justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
   gap: 24px;
 }
 
-/* Logo sizing (HTML height attr cannot override) */
 .site-header .header-logo img {
   height: var(--logo-desktop) !important;
   width: auto !important;
@@ -126,7 +115,7 @@ body, html, main, .seller-directory {
 .nav-open .nav-drawer { transform: translateX(0); }
 .nav-open .nav-backdrop { opacity: 1; pointer-events: auto; }
 
-/* Close button inside drawer (if you keep it) */
+/* Close button inside drawer */
 .drawer-close {
   position: absolute; top: 10px; right: 12px;
   font-size: 28px; line-height: 1;
@@ -140,22 +129,18 @@ body.no-scroll { overflow: hidden; }
 @media (max-width: 900px){
   .site-header .header-logo img{ height: var(--logo-mobile) !important; }
 
-  /* Ensure burger sits above backdrop */
   .hamburger{
     display: inline-flex !important;
     position: relative;
     z-index: 1101;
   }
 
-  /* Drawer nav vertical list */
   .main-nav ul{ display: flex; flex-direction: column; gap: 12px; }
 }
 
 /* Desktop reset */
 @media (min-width: 901px){
   .hamburger{ display: none; }
-
-  /* Drawer behaves as inline nav on desktop */
   .nav-drawer{
     position: static;
     transform: none;
@@ -166,65 +151,49 @@ body.no-scroll { overflow: hidden; }
   .nav-backdrop{ display: none; }
 }
 
-/* Ensure menu is visible on desktop even if the element has [hidden] */
-@media (min-width: 901px){
-  nav.nav-drawer[hidden]{ display: block !important; }
-}
-
 /* =========================
    STICKY NAV (A–Z / YEAR BANDS)
    ========================= */
-
-/* Sticky bars sit right under the header, align with content, and have 5px padding */
 .az-nav,
 .sticky-nav,
 .persistent-nav{
   position: sticky !important;
-  top: var(--header-desktop) !important;
-  z-index: 1050 !important;     /* header is 1100 */
+  top: calc(var(--header-desktop) + 5px) !important; /* +5px gap above sticky */
+  z-index: 1050 !important;
   background: #fff !important;
-  padding: 5px 20px !important; /* ✅ 5px all round (match content side padding) */
+  padding: 5px 20px !important; /* padding around sticky menu */
   box-sizing: border-box;
 }
 
-/* Mobile sticky offset + padding */
 @media (max-width: 768px){
   .az-nav,
   .sticky-nav,
   .persistent-nav{
     top: var(--header-mobile) !important;
-    padding: 5px 16px !important; /* mobile content side padding */
+    padding: 5px 12px !important;
   }
 }
 
-/* Center the inner grid to align with content width */
 .az-nav .az-bar,
 .sticky-nav .az-bar,
-.persistent-nav .az-bar,
-.az-nav > ul,
-.sticky-nav > ul,
-.persistent-nav > ul{
-  max-width: 1200px;  /* match .seller-directory */
+.persistent-nav .az-bar{
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
 }
 
 /* A–Z bar visuals */
-.az-bar{
+.az-bar {
   display: grid;
   grid-template-columns: repeat(28, 1fr);
   list-style: none;
   margin: 0;
   padding: 0;
   border: 0;
+  border-collapse: collapse;
 }
-.az-bar li{
-  border: 1px solid #ccc;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-.az-bar a{
+.az-bar li { border: 1px solid #ccc; margin: 0; padding: 0; text-align: center; }
+.az-bar a {
   display: block;
   padding: 10px;
   font-weight: 600;
@@ -232,70 +201,62 @@ body.no-scroll { overflow: hidden; }
   text-decoration: none;
   transition: background 0.2s ease;
 }
-.az-bar a:hover{ background-color: #f5f5f5; }
-.az-bar a.active{ background-color: #000; color: #fff; }
+.az-bar a:hover { background-color: #f5f5f5; }
+.az-bar a.active { background-color: #000; color: #fff; }
 
-/* Grid responsivity – ensure max ~3 rows on mobile */
-@media (max-width: 1024px){
-  .az-bar{ grid-template-columns: repeat(13, 1fr); }
-}
+/* Grid responsivity */
+@media (max-width: 1024px){ .az-bar { grid-template-columns: repeat(13, 1fr); } }
 @media (max-width: 768px){
-  .az-bar{ grid-template-columns: repeat(9, 1fr); }  /* ~9+9+8 = 3 rows */
-  .az-bar a{ font-size: 13px; padding: 6px 4px; }
+  .az-bar { grid-template-columns: repeat(9, 1fr); }
+  .az-bar a { font-size: 13px; padding: 6px 4px; }
 }
 @media (max-width: 480px){
-  .az-bar{ grid-template-columns: repeat(9, 1fr); }
-  .az-bar a{ font-size: 11px; padding: 4px 3px; }
+  .az-bar { grid-template-columns: repeat(9, 1fr); }
+  .az-bar a { font-size: 11px; padding: 4px 3px; }
 }
 
 /* =========================
-   ANCHOR POSITIONING (A–Z / YEAR SECTIONS)
+   ANCHOR POSITIONING
    ========================= */
-
-/* Apply offset to the element that has the id (your <section class="letter-block" id="A">) */
 .seller-directory .letter-block[id],
 .seller-directory .year-block[id]{
-  scroll-margin-top: var(--anchor-offset-desktop) !important;
+  scroll-margin-top: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) + var(--anchor-cushion-desktop)) !important;
 }
-
-/* Fallback spacer for absolute reliability across browsers */
 .seller-directory .letter-block[id]::before,
 .seller-directory .year-block[id]::before{
   content:"";
   display:block;
-  height: var(--anchor-offset-desktop);
-  margin-top: calc(-1 * var(--anchor-offset-desktop));
+  height: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) + var(--anchor-cushion-desktop));
+  margin-top: calc(-1 * (var(--header-desktop) + var(--sticky-bar-height-desktop) + var(--anchor-cushion-desktop)));
   pointer-events:none;
 }
 
 @media (max-width: 768px){
   .seller-directory .letter-block[id],
-  .seller-directory .year-block[id]{ scroll-margin-top: var(--anchor-offset-mobile) !important; }
+  .seller-directory .year-block[id]{
+    scroll-margin-top: calc(var(--header-mobile) + var(--sticky-bar-height-mobile) + var(--anchor-cushion-mobile)) !important;
+  }
   .seller-directory .letter-block[id]::before,
   .seller-directory .year-block[id]::before{
-    height: var(--anchor-offset-mobile);
-    margin-top: calc(-1 * var(--anchor-offset-mobile));
+    height: calc(var(--header-mobile) + var(--sticky-bar-height-mobile) + var(--anchor-cushion-mobile));
+    margin-top: calc(-1 * (var(--header-mobile) + var(--sticky-bar-height-mobile) + var(--anchor-cushion-mobile)));
   }
 }
 
 /* =========================
    SELLER DIRECTORY + LISTS
    ========================= */
-
 .seller-directory {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   font-family: sans-serif;
 }
-
 .seller-directory h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
   text-align: center;
 }
-
-/* Section titles */
 .letter-title,
 .year-title {
   font-size: 1.5rem;
@@ -304,12 +265,8 @@ body.no-scroll { overflow: hidden; }
   border-bottom: 2px solid #000;
   padding-bottom: 6px;
 }
-
-/* Section spacing */
 .letter-block,
 .year-block { margin-bottom: 48px; }
-
-/* Seller grid */
 .seller-columns {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -324,15 +281,12 @@ body.no-scroll { overflow: hidden; }
   transition: color 0.2s ease;
 }
 .seller-columns a:hover { color: #007185; text-decoration: underline; }
-
-/* Responsive seller grid */
 @media (max-width: 768px){ .seller-columns { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px){ .seller-columns { grid-template-columns: 1fr; } }
 
 /* =========================
    FOOTER
    ========================= */
-
 .site-footer {
   background: #FFFFFF;
   padding: 20px 0;
@@ -343,23 +297,20 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* =========================
-   PRODUCT DIRECTORY (Top Products Page)
+   PRODUCT DIRECTORY
    ========================= */
-
 .product-directory {
   max-width: 800px;
   margin: 60px auto;
   padding: 0 20px;
   font-family: sans-serif;
 }
-
 .product-directory h1 {
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 30px;
   text-align: center;
 }
-
 .top-products-list {
   list-style: decimal inside;
   padding-left: 0;
@@ -368,69 +319,36 @@ body.no-scroll { overflow: hidden; }
 .top-products-list li { margin-bottom: 14px; font-size: 1rem; line-height: 1.6; }
 .top-products-list a { color: #007185; text-decoration: none; font-weight: 500; }
 .top-products-list a:hover { text-decoration: underline; }
-.top-products-list .seller-name { display: inline-block; margin-left: 10px; color: #333; font-weight: normal; font-size: 0.95rem; }
+.top-products-list .seller-name { margin-left: 10px; color: #333; font-weight: normal; font-size: 0.95rem; }
 .top-products-list .review-count { margin-left: 10px; color: #777; font-size: 0.95rem; }
 
 /* =========================
    SELLER DETAIL PAGE
    ========================= */
-
 .seller-detail-page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   font-family: sans-serif;
 }
-
 .seller-columns-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 40px;
   align-items: start;
 }
-
-.seller-profile {
-  background: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-}
-
+.seller-profile { background: #f9f9f9; padding: 20px; border-radius: 8px; }
 .seller-header { text-align: center; margin-bottom: 20px; }
 .seller-logo { max-width: 200px; margin-bottom: 10px; }
-
-.seller-info {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-  font-size: 16px;
-  line-height: 1.6;
-}
-.seller-info li strong {
-  display: inline-block;
-  width: 140px;
-  font-weight: 600;
-}
-
-.seller-link {
-  display: inline-block;
-  background: #0073e6;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 4px;
-  text-decoration: none;
-  margin-top: 10px;
-  text-align: center;
-}
-
+.seller-info { list-style: none; padding: 0; margin: 20px 0; font-size: 16px; line-height: 1.6; }
+.seller-info li strong { display: inline-block; width: 140px; font-weight: 600; }
+.seller-link { display: inline-block; background: #0073e6; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px; text-align: center; }
 .seller-products h2 { font-size: 1.5rem; margin-bottom: 16px; }
-
 .top-products-list { list-style: decimal inside; padding-left: 0; font-size: 16px; }
 .top-products-list li { margin-bottom: 12px; }
 .top-products-list a { font-weight: 600; color: #000; text-decoration: none; }
 .top-products-list a:hover { text-decoration: underline; }
 .review-count { margin-left: 6px; color: #777; }
-
-/* Responsive */
 @media (max-width: 768px){
   .seller-columns-container { grid-template-columns: 1fr; }
   .seller-header { text-align: left; }
@@ -439,7 +357,6 @@ body.no-scroll { overflow: hidden; }
 /* =========================
    TOP PRODUCTS PAGE WRAPPER
    ========================= */
-
 .top-products-page {
   max-width: 900px;
   margin: 60px auto;
@@ -447,19 +364,9 @@ body.no-scroll { overflow: hidden; }
   font-family: sans-serif;
 }
 
-/* Optional smaller H1 for this page
-.top-products-page h1 {
-  font-size: clamp(22px, 3vw, 32px);
-  font-weight: 700;
-  margin-bottom: 24px;
-  text-align: center;
-}
-*/
-
 /* =========================
    NOTHS INDEX CARDS
    ========================= */
-
 .page-hero {
   max-width: 900px;
   margin: 32px auto 16px;
@@ -468,7 +375,6 @@ body.no-scroll { overflow: hidden; }
 }
 .page-hero h1 { margin: 0 0 8px; font-size: clamp(24px, 3vw, 36px); }
 .page-hero .lead { margin: 0; color: #555; font-size: 16px; line-height: 1.6; }
-
 .card-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -490,15 +396,9 @@ body.no-scroll { overflow: hidden; }
   box-shadow: 0 2px 8px rgba(0,0,0,.04);
   transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
 }
-.card-grid .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
-  border-color: #e5e5e5;
-}
+.card-grid .card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.08); border-color: #e5e5e5; }
 .card-body h2 { margin: 0 0 6px; font-size: 18px; }
 .card-body p { margin: 0; color: #666; font-size: 14px; line-height: 1.5; }
 .card-cta { margin-top: 12px; font-weight: 600; font-size: 14px; color: #111; }
-
-/* Responsive columns: 2-up on tablet, 3-up on desktop */
 @media (min-width: 640px){  .card-grid .card { grid-column: span 6; } }
 @media (min-width: 1024px){ .card-grid .card { grid-column: span 4; } }
