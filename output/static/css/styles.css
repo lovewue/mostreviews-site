@@ -249,14 +249,14 @@ body.no-scroll { overflow: hidden; }
 .year-block {
   margin-bottom: 48px;
   /* Desktop/tablet: align anchors just under the sticky header + bar */
-  scroll-margin-top: calc(var(--header-desktop) + var(--sticky-bar-height)+16px);
+  scroll-margin-top: calc(var(--header-desktop) + var(--sticky-bar-height)-50px);
 }
 
 @media (max-width: 768px){
   .letter-block,
   .year-block {
     /* Mobile: use mobile header height */
-    scroll-margin-top: calc(var(--header-mobile) + var(--sticky-bar-height)+16px);
+    scroll-margin-top: calc(var(--header-mobile) + var(--sticky-bar-height)-50px);
   }
 }
 
