@@ -19,9 +19,12 @@ body, html, main, .seller-directory {
   --sticky-bar-height-desktop: 32px;
   --sticky-bar-height-mobile:  36px;
 
-  /* Anchor offsets (scroll-margin-top only) */
-  --anchor-offset-desktop: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) + 8px);
-  --anchor-offset-mobile:  calc(var(--header-mobile)  + var(--sticky-bar-height-mobile)  + 16px);
+  /* Anchor offsets (one system) */
+  --anchor-offset-desktop: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) + 0px);
+  --anchor-offset-mobile: calc(
+  var(--header-mobile) + var(--sticky-bar-height-mobile) + 32px
+);
+
 }
 
 /* =========================
@@ -219,22 +222,17 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* =========================
-   ANCHOR POSITIONING
+   ANCHOR POSITIONING (ONE SYSTEM)
    ========================= */
-/* Desktop */
+/* Default (desktop & larger) */
 .seller-directory [id]{
   scroll-margin-top: var(--anchor-offset-desktop) !important;
 }
 
-/* Mobile */
+/* Mobile override */
 @media (max-width: 768px){
   .seller-directory [id]{
     scroll-margin-top: var(--anchor-offset-mobile) !important;
-  }
-  .seller-directory [id]::before{
-    content: none !important;
-    height: 0 !important;
-    margin-top: 0 !important;
   }
 }
 
