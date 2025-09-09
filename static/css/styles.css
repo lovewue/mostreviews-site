@@ -4,7 +4,7 @@
 
 /* Control logo sizes here */
 :root{
-  --logo-desktop: 96px;   /* desktop logo height */
+  --logo-desktop: 64px;   /* desktop logo height */
   --logo-mobile: 48px;    /* mobile logo height */
 }
 
