@@ -676,10 +676,4 @@ body.no-scroll { overflow: hidden; }
   .card-grid .card { grid-column: span 4; }
 }
 
-/* ========== Top Products Page Heading ========== */
-.top-products-page h1 {
-  font-size: clamp(22px, 3vw, 32px); /* scales smoothly: 22px mobile → 32px desktop */
-  font-weight: 700;
-  margin-bottom: 24px;
-  text-align: center;
-}
+
