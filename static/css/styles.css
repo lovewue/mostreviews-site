@@ -11,25 +11,26 @@ body, html, main, .seller-directory {
    HEADER + MENU (FINAL)
    ========================= */
 
-/* Control logo sizes here */
+/* Control logo sizes + derived measurements */
 :root{
-  --logo-desktop: 64px;   /* desktop logo height */
-  --logo-mobile: 48px;    /* mobile logo height */
+  --logo-desktop: 64px;    /* desktop logo height */
+  --logo-mobile: 48px;     /* mobile logo height */
 
-  /* header total height = logo + 20px (10px top + 10px bottom padding) */
-  --header-desktop: calc(var(--logo-desktop, 64px) + 20px);
-  --header-mobile:  calc(var(--logo-mobile, 48px)  + 20px);
+  /* header total height = logo + 20px (10 top + 10 bottom padding) */
+  --header-desktop: calc(var(--logo-desktop) + 20px);
+  --header-mobile:  calc(var(--logo-mobile)  + 20px);
 
-  /* Sticky bar heights (measure in DevTools and tweak if needed) */
-  --sticky-bar-height-desktop: 56px;
-  --sticky-bar-height-mobile:  56px;
+  /* Sticky bar heights (measure in DevTools → Computed → height) */
+  --sticky-bar-height-desktop: 32px;
+  --sticky-bar-height-mobile:  36px;
 
-  /* Small cushion so anchored titles never tuck under */
-  --anchor-cushion: 12px;
+  /* Negative pulls anchored titles UP; ~3 lines ≈ -60 to -72px */
+  --anchor-cushion-desktop: -64px;
+  --anchor-cushion-mobile:  -56px;
 
-  /* Precomputed offsets (used by anchors) */
-  --anchor-offset-desktop: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) + var(--anchor-cushion));
-  --anchor-offset-mobile:  calc(var(--header-mobile)  + var(--sticky-bar-height-mobile)  + var(--anchor-cushion));
+  /* Precomputed offsets (header + sticky + cushion) */
+  --anchor-offset-desktop: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) + var(--anchor-cushion-desktop));
+  --anchor-offset-mobile:  calc(var(--header-mobile)  + var(--sticky-bar-height-mobile)  + var(--anchor-cushion-mobile));
 }
 
 /* Header container */
@@ -174,42 +175,56 @@ body.no-scroll { overflow: hidden; }
    STICKY NAV (A–Z / YEAR BANDS)
    ========================= */
 
-/* Sticky bars sit right under the header, above content */
+/* Sticky bars sit right under the header, align with content, and have 5px padding */
 .az-nav,
 .sticky-nav,
 .persistent-nav{
   position: sticky !important;
   top: var(--header-desktop) !important;
-  z-index: 1050 !important;  /* header is 1100 */
+  z-index: 1050 !important;     /* header is 1100 */
   background: #fff !important;
+  padding: 5px 20px !important; /* ✅ 5px all round (match content side padding) */
+  box-sizing: border-box;
 }
 
+/* Mobile sticky offset + padding */
 @media (max-width: 768px){
   .az-nav,
   .sticky-nav,
   .persistent-nav{
     top: var(--header-mobile) !important;
-    z-index: 1050 !important;
+    padding: 5px 16px !important; /* mobile content side padding */
   }
 }
 
+/* Center the inner grid to align with content width */
+.az-nav .az-bar,
+.sticky-nav .az-bar,
+.persistent-nav .az-bar,
+.az-nav > ul,
+.sticky-nav > ul,
+.persistent-nav > ul{
+  max-width: 1200px;  /* match .seller-directory */
+  margin: 0 auto;
+  width: 100%;
+}
+
 /* A–Z bar visuals */
-.az-bar {
+.az-bar{
   display: grid;
   grid-template-columns: repeat(28, 1fr);
   list-style: none;
   margin: 0;
   padding: 0;
   border: 0;
-  border-collapse: collapse;
 }
-.az-bar li {
+.az-bar li{
   border: 1px solid #ccc;
   margin: 0;
   padding: 0;
   text-align: center;
 }
-.az-bar a {
+.az-bar a{
   display: block;
   padding: 10px;
   font-weight: 600;
@@ -217,37 +232,21 @@ body.no-scroll { overflow: hidden; }
   text-decoration: none;
   transition: background 0.2s ease;
 }
-.az-bar a:hover { background-color: #f5f5f5; }
-.az-bar a.active { background-color: #000; color: #fff; }
+.az-bar a:hover{ background-color: #f5f5f5; }
+.az-bar a.active{ background-color: #000; color: #fff; }
 
-/* Grid responsivity for A–Z bar */
-/* Desktop: plenty of room */
+/* Grid responsivity – ensure max ~3 rows on mobile */
 @media (max-width: 1024px){
-  .az-bar { grid-template-columns: repeat(13, 1fr); }
+  .az-bar{ grid-template-columns: repeat(13, 1fr); }
 }
-
-/* Tablet: shrink font + padding, fit in 3 rows */
 @media (max-width: 768px){
-  .az-bar {
-    grid-template-columns: repeat(9, 1fr); /* 26 letters ≈ 3 rows */
-  }
-  .az-bar a {
-    font-size: 13px;
-    padding: 6px 4px;
-  }
+  .az-bar{ grid-template-columns: repeat(9, 1fr); }  /* ~9+9+8 = 3 rows */
+  .az-bar a{ font-size: 13px; padding: 6px 4px; }
 }
-
-/* Mobile: even tighter, still max 3 rows */
 @media (max-width: 480px){
-  .az-bar {
-    grid-template-columns: repeat(9, 1fr);
-  }
-  .az-bar a {
-    font-size: 11px;
-    padding: 4px 3px;
-  }
+  .az-bar{ grid-template-columns: repeat(9, 1fr); }
+  .az-bar a{ font-size: 11px; padding: 4px 3px; }
 }
-
 
 /* =========================
    ANCHOR POSITIONING (A–Z / YEAR SECTIONS)
@@ -256,7 +255,6 @@ body.no-scroll { overflow: hidden; }
 /* Apply offset to the element that has the id (your <section class="letter-block" id="A">) */
 .seller-directory .letter-block[id],
 .seller-directory .year-block[id]{
-  /* CSS way */
   scroll-margin-top: var(--anchor-offset-desktop) !important;
 }
 
@@ -449,7 +447,7 @@ body.no-scroll { overflow: hidden; }
   font-family: sans-serif;
 }
 
-/* If you want a smaller H1 on this page, uncomment:
+/* Optional smaller H1 for this page
 .top-products-page h1 {
   font-size: clamp(22px, 3vw, 32px);
   font-weight: 700;
@@ -504,49 +502,3 @@ body.no-scroll { overflow: hidden; }
 /* Responsive columns: 2-up on tablet, 3-up on desktop */
 @media (min-width: 640px){  .card-grid .card { grid-column: span 6; } }
 @media (min-width: 1024px){ .card-grid .card { grid-column: span 4; } }
-
-/* ======== FINAL OVERRIDES (paste at the very end) ======== */
-/* Measure once in DevTools (Computed -> height) and tweak these: */
-:root{
-  --HEADER: 84px;  /* header total height = logo + 20px padding (64 + 20 = 84) */
-  --STICKY: 32px;  /* actual height of the A–Z sticky band (adjust!) */
-  --CUSHION: -58px;  /* extra breathing room under sticky; start at 0 */
-}
-
-/* Make the sticky band sit directly under the header */
-.az-nav,
-.sticky-nav,
-.persistent-nav{
-  position: sticky !important;
-  top: var(--HEADER) !important;
-  margin: 0 !important;          /* kill extra vertical gaps */
-  padding: 8px !important;     /* keep it slim; adjust if needed */
-  z-index: 1050 !important;      /* below header(1100), above content */
-  background: #fff !important;
-}
-
-/* Anchor the section exactly below the sticky band */
-.seller-directory .letter-block[id],
-.seller-directory .year-block[id]{
-  scroll-margin-top: calc(var(--HEADER) + var(--STICKY) + var(--CUSHION)) !important;
-}
-
-/* Bulletproof spacer (covers browsers that ignore scroll-margin-top) */
-.seller-directory .letter-block[id]::before,
-.seller-directory .year-block[id]::before{
-  content: "";
-  display: block;
-  height: calc(var(--HEADER) + var(--STICKY) + var(--CUSHION));
-  margin-top: calc(-1 * (var(--HEADER) + var(--STICKY) + var(--CUSHION)));
-  pointer-events: none;
-}
-
-/* Mobile: usually a slightly smaller header or taller sticky; adjust if needed */
-@media (max-width: 768px){
-  :root{
-    /* if your mobile header is 48 logo + 20 padding = 68px */
-    --HEADER: 68px;
-    --STICKY: 36px; /* if the A–Z bar is taller on mobile, bump this */
-    --CUSHION: 20px;
-  }
-}
