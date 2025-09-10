@@ -8,7 +8,7 @@
 
   <div class="card-grid">
     {% for product in products %}
-      <a href="{{ product.url }}" class="rank-card">
+      <a href="{{ product.awin or product.product_url }}" class="rank-card" target="_blank" rel="noopener">
         <div class="rank-number">#{{ loop.index }}</div>
         <div class="rank-body">
           <h2 class="rank-name">{{ product.name }}</h2>
