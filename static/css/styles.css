@@ -711,3 +711,22 @@ body.no-scroll { overflow: hidden; }
   font-weight: normal;
 }
 
+/* =========================
+   TOP LIST GRID RESPONSIVE
+   ========================= */
+.rank-card {
+  grid-column: span 12;  /* default = 1 per row */
+}
+
+@media (min-width: 640px) {
+  .rank-card { grid-column: span 6; }  /* 2 per row */
+}
+
+@media (min-width: 900px) {
+  .rank-card { grid-column: span 4; }  /* 3 per row */
+}
+
+@media (min-width: 1200px) {
+  .rank-card { grid-column: span 3; }  /* 4 per row */
+}
+
