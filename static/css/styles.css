@@ -731,28 +731,64 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* Product card images */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
 .rank-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   text-decoration: none;
   color: inherit;
   border: 1px solid #eee;
   border-radius: 12px;
   overflow: hidden;
   transition: box-shadow 0.2s ease;
+  background: #fff;
+  padding: 1rem;
 }
 
 .rank-card:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.rank-body {
-  padding: 0.75rem;
-  text-align: center;
-}
-
 .rank-image {
   width: 100%;
-  height: 200px;        /* consistent size */
-  object-fit: cover;    /* crop without distortion */
-  display: block;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.rank-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #222;
+  margin: 0.25rem 0;
+}
+
+.rank-divider {
+  width: 40px;
+  height: 2px;
+  background: #ddd;
+  margin: 0.5rem auto;
+}
+
+.rank-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.rank-meta {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.seller-name {
+  font-weight: 500;
 }
