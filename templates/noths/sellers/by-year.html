@@ -12,9 +12,6 @@
       {% for year in sellers_by_year.keys() if year != "Unknown" %}
         <li><a href="#year-{{ year }}">{{ year }}</a></li>
       {% endfor %}
-      {% if "Unknown" in sellers_by_year %}
-        <li><a href="#year-Unknown">Unknown</a></li>
-      {% endif %}
     </ul>
   </nav>
 
@@ -25,27 +22,17 @@
       <ul class="seller-columns">
         {% for seller in group %}
           <li>
-            <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
+            <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">
+              {{ seller.name }}
+            </a>
           </li>
         {% endfor %}
       </ul>
     </section>
   {% endfor %}
-
-  {% if "Unknown" in sellers_by_year %}
-    <section class="year-block" id="year-Unknown">
-      <h2 class="year-title">Unknown</h2>
-      <ul class="seller-columns">
-        {% for seller in sellers_by_year["Unknown"] %}
-          <li>
-            <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% endif %}
 </section>
 {% endblock %}
+
 
 {% block scripts %}
 <script>
