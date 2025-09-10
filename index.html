@@ -1,25 +1,41 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Most Reviews → NOTHS</title>
-  <link rel="canonical" href="/noths/index.html" />
+  <meta charset="utf-8">
+  <title>Most Reviews – Maintenance</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Instant redirect with no flash -->
-  <script>
-    (function () {
-      var target = "/noths/index.html";
-      if (location.pathname !== target) location.replace(target);
-    })();
-  </script>
-
-  <!-- Fallback for no-JS browsers -->
-  <noscript>
-    <meta http-equiv="refresh" content="0; url=/output/noths/index.html" />
-  </noscript>
-
-  <!-- Prevent any visible paint before redirect -->
-  <style>html,body{background:#fff;margin:0;}</style>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #fafafa;
+      color: #333;
+      text-align: center;
+      padding: 5rem 1rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #666;
+    }
+    .notice {
+      display: inline-block;
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+  </style>
 </head>
-<body></body>
+<body>
+  <div class="notice">
+    <h1>🔧 Site Under Maintenance</h1>
+    <p>Most Reviews is currently offline for updates.<br>
+    Please check back shortly.</p>
+  </div>
+</body>
 </html>
