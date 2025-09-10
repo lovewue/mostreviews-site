@@ -1,0 +1,732 @@
+/* =========================
+   GLOBAL / BASICS
+   ========================= */
+body, html, main, .seller-directory {
+  overflow: visible !important;
+}
+
+/* =========================
+   VARIABLES
+   ========================= */
+:root{
+  --logo-desktop: 64px;
+  --logo-mobile: 48px;
+
+  /* Header heights = logo + vertical padding */
+  --header-desktop: calc(var(--logo-desktop) + 28px);
+  --header-mobile:  calc(var(--logo-mobile)  + 20px);
+
+  --sticky-bar-height-desktop: 32px;
+  --sticky-bar-height-mobile:  36px;
+
+  /* Anchor offsets (one system) */
+  --anchor-offset-desktop: calc(var(--header-desktop) + var(--sticky-bar-height-desktop) + 28px);
+  --anchor-offset-mobile: calc(
+  var(--header-mobile) + var(--sticky-bar-height-mobile) + 88px
+);
+
+}
+
+/* =========================
+   GLOBAL FONT + TEXT STYLES
+   ========================= */
+
+/* Use a serif stack similar to Times New Roman */
+body {
+  font-family: "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+  color: #000;          /* all text black */
+  background-color: #fff;
+  line-height: 1.6;     /* better readability */
+}
+
+/* Headings: slightly tighter line height */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+  font-weight: bold;
+  color: #000;
+  line-height: 1.3;
+  margin: 1em 0 0.5em;
+}
+
+/* Paragraphs and other text elements */
+p, li, blockquote, td, th {
+  color: #000;
+}
+
+/* Links */
+a {
+  color: #000;
+  text-decoration: none;      /* no underline by default */
+  transition: all 0.2s ease;  /* smooth hover effect */
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline; /* underline on hover/focus */
+  color: #000;                /* keep black */
+}
+
+/* =========================
+   HEADER + MENU
+   ========================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 18px 0 10px 0;
+  z-index: 1100;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  gap: 24px;
+}
+
+.site-header .header-logo img {
+  height: var(--logo-desktop) !important;
+  width: auto !important;
+  max-height: none !important;
+  display: block;
+}
+
+/* Desktop menu (inline) */
+.main-nav { margin-left: auto; }
+.main-nav ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.main-nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+}
+.main-nav a:hover { color: #000; }
+
+/* Burger button (hidden on desktop) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  width: 36px; height: 28px;
+  align-items: center; justify-content: center;
+  border: 0; background: transparent; cursor: pointer;
+}
+.hamburger span {
+  display: block; width: 100%; height: 3px; background: #111;
+  transition: transform .25s, opacity .25s;
+}
+/* Burger morph into X when open */
+.hamburger[aria-expanded="true"] span:nth-child(1){ transform: translateY(9px) rotate(45deg); }
+.hamburger[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
+.hamburger[aria-expanded="true"] span:nth-child(3){ transform: translateY(-9px) rotate(-45deg); }
+
+/* Drawer (mobile) – slides from RIGHT */
+.nav-drawer {
+  position: fixed;
+  top: 0; right: 0;
+  height: 100vh;
+  width: 80vw; max-width: 320px;
+  background: #fff;
+  box-shadow: -8px 0 24px rgba(0,0,0,.1);
+  transform: translateX(100%);
+  transition: transform .25s ease;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* Backdrop behind drawer */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+  z-index: 999;
+}
+
+/* Open state */
+.nav-open .nav-drawer { transform: translateX(0); }
+.nav-open .nav-backdrop { opacity: 1; pointer-events: auto; }
+
+/* Close button inside drawer */
+.drawer-close {
+  position: absolute; top: 10px; right: 12px;
+  font-size: 28px; line-height: 1;
+  border: none; background: transparent; cursor: pointer;
+}
+
+/* Lock body scroll when drawer open */
+body.no-scroll { overflow: hidden; }
+
+/* Mobile behaviour */
+@media (max-width: 900px){
+  .site-header .header-logo img{ height: var(--logo-mobile) !important; }
+
+  .hamburger{
+    display: inline-flex !important;
+    position: relative;
+    z-index: 1101;
+  }
+
+  .main-nav ul{ display: flex; flex-direction: column; gap: 12px; }
+}
+
+/* Desktop reset */
+@media (min-width: 901px) {
+  .hamburger { display: none; }
+
+  .main-nav {
+    margin-left: auto;
+    flex: 0 0 auto;       /* shrink to fit content */
+    overflow: visible;    /* don’t clip links */
+  }
+
+  .nav-drawer {
+    position: static;
+    transform: none;
+    height: auto; width: auto;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .nav-drawer ul {
+    display: flex;
+    flex-direction: row;  /* inline row */
+    flex-wrap: nowrap;    /* don’t wrap */
+    gap: 32px;            /* spacing between items */
+    justify-content: flex-end; /* cluster to the right */
+    align-items: center;  /* vertical align with logo */
+    white-space: nowrap;  /* prevent “Sellers by Year” breaking */
+  }
+
+  .nav-backdrop { display: none; }
+  .drawer-close { display: none; }
+}
+
+
+
+
+/* =========================
+   STICKY NAV (A–Z / YEAR BANDS)
+   ========================= */
+.az-nav,
+.sticky-nav,
+.persistent-nav{
+  position: sticky !important;
+  top: calc(var(--header-desktop) + 0px) !important;
+  z-index: 1050 !important;
+  background: #fff !important;
+  padding: 8px 24px !important;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px){
+  .az-nav,
+  .sticky-nav,
+  .persistent-nav{
+    top: calc(var(--header-mobile) + 8px) !important;
+    padding: 5px 12px !important;
+  }
+}
+
+.az-nav .az-bar,
+.sticky-nav .az-bar,
+.persistent-nav .az-bar{
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* A–Z bar visuals */
+.az-bar {
+  display: grid;
+  grid-template-columns: repeat(28, 1fr);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-collapse: collapse;
+}
+.az-bar li { border: 1px solid #ccc; margin: 0; padding: 0; text-align: center; }
+.az-bar a {
+  display: block;
+  padding: 10px;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.az-bar a:hover { background-color: #f5f5f5; }
+.az-bar a.active { background-color: #000; color: #fff; }
+
+/* Grid responsivity */
+@media (max-width: 1024px){ .az-bar { grid-template-columns: repeat(13, 1fr); } }
+@media (max-width: 768px){
+  .az-bar { grid-template-columns: repeat(9, 1fr); }
+  .az-bar a { font-size: 13px; padding: 6px 4px; }
+}
+@media (max-width: 480px){
+  .az-bar { grid-template-columns: repeat(9, 1fr); }
+  .az-bar a { font-size: 11px; padding: 4px 3px; }
+}
+
+/* =========================
+   ANCHOR POSITIONING (ONE SYSTEM)
+   ========================= */
+/* Default (desktop & larger) */
+.seller-directory [id]{
+  scroll-margin-top: var(--anchor-offset-desktop) !important;
+}
+
+/* Mobile override */
+@media (max-width: 768px){
+  .seller-directory [id]{
+    scroll-margin-top: var(--anchor-offset-mobile) !important;
+  }
+}
+
+/* =========================
+   SELLER DIRECTORY + LISTS
+   ========================= */
+.seller-directory {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: sans-serif;
+}
+.seller-directory h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.letter-title,
+.year-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 6px;
+}
+.letter-block,
+.year-block {
+  margin-bottom: 48px;
+  scroll-margin-top: 180px; /* match sticky header height */
+}
+.seller-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.seller-columns li { margin: 0; padding: 0; }
+.seller-columns a {
+  text-decoration: none; color: #000; font-weight: 500;
+  transition: color 0.2s ease;
+}
+.seller-columns a:hover { color: #007185; text-decoration: underline; }
+@media (max-width: 768px){ .seller-columns { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px){ .seller-columns { grid-template-columns: 1fr; } }
+
+/* =========================
+   FOOTER
+   ========================= */
+.site-footer {
+  background: #FFFFFF;
+  padding: 20px 0;
+  font-size: 14px;
+  color: #000000;
+  text-align: center;
+  margin-top: 60px;
+}
+
+/* =========================
+   PRODUCT DIRECTORY
+   ========================= */
+.product-directory {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 20px;
+  font-family: sans-serif;
+}
+.product-directory h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.top-products-list {
+  list-style: decimal inside;
+  padding-left: 0;
+  margin: 0;
+}
+.top-products-list li { margin-bottom: 14px; font-size: 1rem; line-height: 1.6; }
+.top-products-list a { color: #007185; text-decoration: none; font-weight: 500; }
+.top-products-list a:hover { text-decoration: underline; }
+.top-products-list .review-count { margin-left: 10px; color: #777; font-size: 0.95rem; }
+.top-products-list .seller-name {
+  display: block;        /* forces a new line */
+  margin: 2px 0 0 0;     /* small gap above, no left indent */
+  color: #333;
+  font-weight: normal;
+  font-size: 0.9rem;
+}
+
+
+/* =========================
+   SELLER DETAIL PAGE
+   ========================= */
+.seller-detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: sans-serif;
+}
+.seller-columns-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  align-items: start;
+}
+.seller-profile { background: #f9f9f9; padding: 20px; border-radius: 8px; }
+.seller-header { text-align: center; margin-bottom: 20px; }
+.seller-logo { max-width: 200px; margin-bottom: 10px; }
+.seller-info { list-style: none; padding: 0; margin: 20px 0; font-size: 16px; line-height: 1.6; }
+.seller-info li strong { display: inline-block; width: 140px; font-weight: 600; }
+.seller-link { display: inline-block; background: #0073e6; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px; text-align: center; }
+.seller-products h2 { font-size: 1.5rem; margin-bottom: 16px; }
+.top-products-list { list-style: decimal inside; padding-left: 0; font-size: 16px; }
+.top-products-list li { margin-bottom: 12px; }
+.top-products-list a { font-weight: 600; color: #000; text-decoration: none; }
+.top-products-list a:hover { text-decoration: underline; }
+.review-count { margin-left: 6px; color: #777; }
+@media (max-width: 768px){
+  .seller-columns-container { grid-template-columns: 1fr; }
+  .seller-header { text-align: left; }
+}
+
+/* =========================
+   TOP PRODUCTS PAGE WRAPPER
+   ========================= */
+.top-products-page {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+  font-family: sans-serif;
+}
+
+/* =========================
+   NOTHS INDEX CARDS
+   ========================= */
+.page-hero {
+  max-width: 900px;
+  margin: 32px auto 16px;
+  padding: 0 16px;
+  text-align: left;
+}
+.page-hero h1 { margin: 0 0 8px; font-size: clamp(24px, 3vw, 36px); }
+.page-hero .lead { margin: 0; color: #555; font-size: 16px; line-height: 1.6; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  max-width: 1200px;
+  margin: 24px auto 48px;
+  padding: 0 16px;
+}
+.card-grid .card {
+  grid-column: span 12;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.card-grid .card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.08); border-color: #e5e5e5; }
+.card-body h2 { margin: 0 0 6px; font-size: 18px; }
+.card-body p { margin: 0; color: #666; font-size: 14px; line-height: 1.5; }
+.card-cta { margin-top: 12px; font-weight: 600; font-size: 14px; color: #111; }
+@media (min-width: 640px){  .card-grid .card { grid-column: span 6; } }
+@media (min-width: 1024px){ .card-grid .card { grid-column: span 4; } }
+
+/* =========================
+   TOP SELLERS TABLE
+   ========================= */
+.page-wrap { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+.mr-table-wrap {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  overflow-x: auto; /* horizontal scroll on tiny screens */
+}
+
+.mr-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.mr-table thead th {
+  text-align: left;
+  background: #fafafa;
+  border-bottom: 1px solid #e9e9e9;
+  padding: 14px 16px;
+  font-weight: 700;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mr-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+
+.mr-table tbody tr:hover { background: #fcfcfc; }
+
+.mr-table .col-rank {
+  width: 84px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.mr-table .col-partner a {
+  color: #111;
+  text-decoration: none;
+  font-weight: 600;
+}
+.mr-table .col-partner a:hover { text-decoration: underline; }
+
+.mr-table .col-reviews {
+  width: 140px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* tight header above table */
+.top-sellers h1 {
+  font-size: clamp(22px, 3vw, 32px);
+  margin: 0 0 16px;
+  text-align: left;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden; clip: rect(1px,1px,1px,1px);
+  white-space: nowrap;
+}
+
+/* Mobile stacked table */
+@media (max-width: 520px) {
+  .mr-table thead { display: none; }
+  .mr-table, .mr-table tbody, .mr-table tr, .mr-table td { display: block; width: 100%; }
+  .mr-table tr { border-bottom: 1px solid #f0f0f0; }
+  .mr-table td {
+    padding: 10px 16px;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 10px;
+  }
+  .mr-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #555;
+  }
+  .mr-table .col-rank,
+  .mr-table .col-reviews { text-align: left; }
+}
+
+/* ===== Tables (Top Sellers / Top Products) ===== */
+
+.mr-table-wrap {
+  width: 100%;
+  overflow-x: auto; /* safety for very narrow screens */
+}
+
+.mr-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.mr-table th,
+.mr-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.mr-table th {
+  font-weight: 600;
+  background: #fafafa;
+}
+
+.mr-table td a {
+  color: #0073e6;
+  text-decoration: none;
+}
+.mr-table td a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive (stacked) */
+@media (max-width: 768px) {
+  .mr-table thead {
+    display: none; /* hide header row */
+  }
+
+  .mr-table tr {
+    display: block;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    background: #fff;
+    padding: 8px 10px;
+  }
+
+  .mr-table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border: none;
+    font-size: 14px;
+  }
+
+  .mr-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #555;
+    margin-right: 8px;
+  }
+
+  /* Align numbers right for reviews */
+  .mr-table .col-reviews {
+    justify-content: flex-end;
+  }
+}
+
+/* Hide "Unknown" year on mobile — section + nav link */
+@media (max-width: 900px) {
+  /* Section (matches .../year-Unknown OR .../year-unknown) */
+  section[id$="-Unknown"],
+  section[id$="-unknown"] {
+    display: none !important;
+  }
+
+  /* Sticky nav link pointing to Unknown */
+  .az-bar a[href$="-Unknown"],
+  .az-bar a[href$="-unknown"] {
+    display: none !important;
+  }
+}
+
+/* =========================
+   TOP SELLERS / PRODUCTS GRID
+   ========================= */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  max-width: 1200px;
+  margin: 24px auto 48px;
+  padding: 0 16px;
+}
+
+.rank-card {
+  grid-column: span 12;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 6px rgba(0,0,0,.04);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.rank-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  border-color: #e5e5e5;
+}
+
+.rank-number {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.rank-name {
+  font-size: 16px;
+  margin: 0 0 4px;
+  font-weight: 600;
+}
+
+.rank-meta {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Responsive columns */
+@media (min-width: 640px) { .rank-card { grid-column: span 6; } }   /* 2 per row */
+@media (min-width: 900px) { .rank-card { grid-column: span 4; } }   /* 3 per row */
+@media (min-width: 1200px){ .rank-card { grid-column: span 3; } }   /* 4 per row */
+
+/* Extra styling for Top Products */
+.rank-meta .seller-name {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  color: #333;
+  font-weight: normal;
+}
+
+/* =========================
+   TOP LIST GRID RESPONSIVE
+   ========================= */
+.rank-card {
+  grid-column: span 12;  /* default = 1 per row */
+}
+
+@media (min-width: 640px) {
+  .rank-card { grid-column: span 6; }  /* 2 per row */
+}
+
+@media (min-width: 900px) {
+  .rank-card { grid-column: span 4; }  /* 3 per row */
+}
+
+@media (min-width: 1200px) {
+  .rank-card { grid-column: span 3; }  /* 4 per row */
+}
+
