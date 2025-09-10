@@ -362,8 +362,15 @@ body.no-scroll { overflow: hidden; }
 .top-products-list li { margin-bottom: 14px; font-size: 1rem; line-height: 1.6; }
 .top-products-list a { color: #007185; text-decoration: none; font-weight: 500; }
 .top-products-list a:hover { text-decoration: underline; }
-.top-products-list .seller-name { margin-left: 10px; color: #333; font-weight: normal; font-size: 0.95rem; }
 .top-products-list .review-count { margin-left: 10px; color: #777; font-size: 0.95rem; }
+.top-products-list .seller-name {
+  display: block;        /* forces a new line */
+  margin: 2px 0 0 0;     /* small gap above, no left indent */
+  color: #333;
+  font-weight: normal;
+  font-size: 0.9rem;
+}
+
 
 /* =========================
    SELLER DETAIL PAGE

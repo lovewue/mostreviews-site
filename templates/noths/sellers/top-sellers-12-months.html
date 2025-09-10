@@ -1,20 +1,23 @@
 {% extends "base.html" %}
 
-{% block title %}Top 100 Sellers – Last 12 Months{% endblock %}
+{% block title %}Top 100 Products – Last 12 Months{% endblock %}
 
 {% block content %}
-<section class="top-sellers page-wrap">
-  <h1>Top 100 Sellers – Last 12 Months</h1>
+<section class="top-products page-wrap">
+  <h1>Top 100 Products – Last 12 Months</h1>
 
-  <ol class="top-sellers-list">
-    {% for seller in sellers %}
+  <ol class="top-products-list">
+    {% for product in products %}
       <li>
-        <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">
-          {{ seller.name }}
+        <a href="{{ product.url }}">
+          {{ product.name }}
         </a>
         <span class="review-count">
-          ({{ "{:,}".format(seller.total_reviews) }} reviews)
+          ({{ "{:,}".format(product.review_count) }} reviews)
         </span>
+        <div class="seller-name">
+          {{ product.seller_name }}
+        </div>
       </li>
     {% endfor %}
   </ol>
