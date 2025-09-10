@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rocket & Rose - NOTHS Seller</title>
   <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
-  <!-- Your global styles (add the burger/drawer CSS to this file) -->
-  <link rel="stylesheet" href="/output/static/css/styles.css">
+
+  <!-- Global stylesheet -->
+  <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
 
@@ -114,10 +115,10 @@
   });
 </script>
 
-  <!-- Backdrop for mobile drawer (one per page, shared here) -->
+  <!-- Backdrop for mobile drawer -->
   <div class="nav-backdrop" aria-hidden="true"></div>
 
-  <!-- Sticky Scroll + Active Nav Script (unchanged) -->
+  <!-- Sticky Scroll + Active Nav Script -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const path = window.location.pathname;
@@ -148,14 +149,11 @@
         let currentId = null;
         const scrollPosition = window.scrollY + getOffsetBuffer();
 
-        for (let i = 0; i < sections.length; i++) {
-          const { id, section } = sections[i];
+        sections.forEach(({ id, section }) => {
           if (section.offsetTop <= scrollPosition) {
             currentId = id;
-          } else {
-            break;
           }
-        }
+        });
 
         navLinks.forEach(link => {
           link.classList.remove("active");
@@ -180,9 +178,10 @@
     });
   </script>
 
-  <!-- 🔗 Shared site JS (add the burger/drawer JS here) -->
-  <script src="/output/static/js/site.js"></script>
-  <!-- Inline fallback to bulletproof burger binding -->
+  <!-- Global site JS -->
+  <script src="/static/js/site.js"></script>
+
+  <!-- Inline fallback for burger/drawer -->
   <script>
   (function(){
     const btn = document.querySelector('[data-mobile-menu-toggle="menu"]');
@@ -220,4 +219,3 @@
   </script>
 </body>
 </html>
-
