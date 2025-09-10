@@ -3,23 +3,23 @@
 {% block title %}Top 100 Products – Last 12 Months{% endblock %}
 
 {% block content %}
-<section class="top-products page-wrap">
+<section class="page-wrap top-list">
   <h1>Top 100 Products – Last 12 Months</h1>
 
-  <ol class="top-products-list">
+  <div class="card-grid">
     {% for product in products %}
-      <li>
-        <a href="{{ product.url }}">
-          {{ product.name }}
-        </a>
-        <span class="review-count">
-          ({{ "{:,}".format(product.review_count) }} reviews)
-        </span>
-        <div class="seller-name">
-          {{ product.seller_name }}
+      <a href="{{ product.url }}" class="rank-card">
+        <div class="rank-number">#{{ loop.index }}</div>
+        <div class="rank-body">
+          <h2 class="rank-name">{{ product.name }}</h2>
+          <p class="rank-meta">
+            {{ "{:,}".format(product.review_count) }} reviews
+            <br>
+            <span class="seller-name">{{ product.seller_name }}</span>
+          </p>
         </div>
-      </li>
+      </a>
     {% endfor %}
-  </ol>
+  </div>
 </section>
 {% endblock %}

@@ -702,3 +702,12 @@ body.no-scroll { overflow: hidden; }
 @media (min-width: 900px) { .rank-card { grid-column: span 4; } }   /* 3 per row */
 @media (min-width: 1200px){ .rank-card { grid-column: span 3; } }   /* 4 per row */
 
+/* Extra styling for Top Products */
+.rank-meta .seller-name {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  color: #333;
+  font-weight: normal;
+}
+
