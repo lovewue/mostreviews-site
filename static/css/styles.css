@@ -189,8 +189,7 @@ body.no-scroll { overflow: hidden; }
 
   .main-nav {
     margin-left: auto;
-    flex: 1 1 auto;     /* let nav use remaining space next to logo */
-    min-width: 0;       /* prevent horizontal scrollbar */
+    flex: 0 0 auto;     /* shrink to fit links, don’t stretch */
   }
 
   .nav-drawer {
@@ -204,24 +203,24 @@ body.no-scroll { overflow: hidden; }
 
   .nav-drawer ul {
     display: flex;
-    flex-direction: row;    /* inline on desktop */
-    gap: 32px;              /* adjust spacing between items */
-    justify-content: flex-end; /* keep them clustered right */
-    white-space: nowrap;    /* prevent wrapping */
-    align-items: center;    /* vertical centering with logo */
+    flex-direction: row;
+    gap: 32px;              /* space between items */
+    justify-content: flex-start; /* keep links in natural order */
+    align-items: center;    /* vertical centering */
   }
 
   .main-nav a {
-    line-height: 1;         /* tighter alignment with logo */
+    line-height: 1;
     display: flex;
     align-items: center;
-    font-size: 15px;        /* slightly larger for balance */
+    font-size: 15px;
     font-weight: 500;
   }
 
   .nav-backdrop { display: none; }
   .drawer-close { display: none; }
 }
+
 
 
 
