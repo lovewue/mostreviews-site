@@ -58,7 +58,10 @@ def render_seller_pages():
 
     print("📦 Rendering seller pages...")
 
-    for seller in sellers:
+    # Cache for logo lookups
+    logo_cache = {}
+
+    for i, seller in enumerate(sellers, start=1):
         if not seller.get("active", True):
             continue
 
@@ -73,8 +76,10 @@ def render_seller_pages():
             reverse=True
         )[:5]
 
-        # NEW: find a logo for any supported extension
-        logo = find_logo_url(slug)
+        # Cached logo lookup
+        if slug not in logo_cache:
+            logo_cache[slug] = find_logo_url(slug)
+        logo = logo_cache[slug]
 
         first_letter = slug[0]
         output_dir = f"docs/noths/sellers/{first_letter}"
@@ -91,7 +96,7 @@ def render_seller_pages():
             product_count=int(float(seller.get('product_count', 0))),
             top_products=top_products,
             static_path=STATIC_PATH,
-            logo=logo,  # ← pass to template
+            logo=logo,
         )
 
         existing_html = ''
@@ -107,6 +112,10 @@ def render_seller_pages():
                 print(f"  ✅ Updated: {output_path}")
 
         count += 1
+
+        # Print progress every 500 sellers
+        if i % 500 == 0:
+            print(f"  ⏳ Processed {i}/{len(sellers)} sellers...")
 
     print(f"✅ Rendered {count} seller pages → /docs/noths/sellers/[a-z]/ ({updated} updated)")
 
