@@ -20,22 +20,22 @@ def find_logo_url(slug: str) -> str | None:
 # Setup Jinja2 environment
 env = Environment(loader=FileSystemLoader('templates'))
 
-STATIC_PATH = "/output/noths/static"
+STATIC_PATH = "/docs/noths/static"
 
 # === Render Homepage ===
 def render_noths_index():
     template = env.get_template('noths/index.html')
-    os.makedirs('output/noths', exist_ok=True)
+    os.makedirs('docs/noths', exist_ok=True)
     html = template.render(title="NOTHS Sellers and Products", static_path=STATIC_PATH)
-    with open('output/noths/index.html', 'w', encoding='utf-8') as f:
+    with open('docs/noths/index.html', 'w', encoding='utf-8') as f:
         f.write(html)
-    print("✅ Rendered NOTHS index → output/noths/index.html")
+    print("✅ Rendered NOTHS index → docs/noths/index.html")
 
 # === Copy static assets ===
 def copy_static_assets():
     if os.path.exists('static'):
-        shutil.copytree('static', 'output/static', dirs_exist_ok=True)
-        print("✅ Copied static assets → output/static/css")
+        shutil.copytree('static', 'docs/static', dirs_exist_ok=True)
+        print("✅ Copied static assets → docs/static/css")
     else:
         print("⚠️  Skipped static assets: 'static/css' folder not found.")
 
@@ -77,7 +77,7 @@ def render_seller_pages():
         logo = find_logo_url(slug)
 
         first_letter = slug[0]
-        output_dir = f"output/noths/sellers/{first_letter}"
+        output_dir = f"docs/noths/sellers/{first_letter}"
         os.makedirs(output_dir, exist_ok=True)
 
         output_path = f"{output_dir}/{slug}.html"
@@ -108,7 +108,7 @@ def render_seller_pages():
 
         count += 1
 
-    print(f"✅ Rendered {count} seller pages → /output/noths/sellers/[a-z]/ ({updated} updated)")
+    print(f"✅ Rendered {count} seller pages → /docs/noths/sellers/[a-z]/ ({updated} updated)")
 
 # === Render A–Z index ===
 def render_seller_index():
@@ -141,8 +141,8 @@ def render_seller_index():
     }
 
     template = env.get_template('noths/sellers/index.html')
-    os.makedirs('output/noths/sellers', exist_ok=True)
-    output_path = 'output/noths/sellers/index.html'
+    os.makedirs('docs/noths/sellers', exist_ok=True)
+    output_path = 'docs/noths/sellers/index.html'
     html = template.render(context)
 
     existing_html = ''
@@ -186,8 +186,8 @@ def render_seller_by_year():
     }
 
     template = env.get_template('noths/sellers/by-year.html')
-    os.makedirs('output/noths/sellers', exist_ok=True)
-    with open('output/noths/sellers/by-year.html', 'w', encoding='utf-8') as f:
+    os.makedirs('docs/noths/sellers', exist_ok=True)
+    with open('docs/noths/sellers/by-year.html', 'w', encoding='utf-8') as f:
         f.write(template.render(context))
     print("📅 Rendered sellers/by-year.html")
 
@@ -218,8 +218,8 @@ def render_seller_most_reviews_grouped():
         sellers_by_band[band] = sorted(sellers_by_band[band], key=lambda s: s["name"].lower())
 
     template = env.get_template("noths/sellers/seller-most-reviews.html")
-    os.makedirs("output/noths/sellers", exist_ok=True)
-    with open("output/noths/sellers/seller-most-reviews.html", "w", encoding="utf-8") as f:
+    os.makedirs("docs/noths/sellers", exist_ok=True)
+    with open("docs/noths/sellers/seller-most-reviews.html", "w", encoding="utf-8") as f:
         f.write(template.render(bands=review_bands, sellers_by_band=sellers_by_band))
 
     print("🏆 Rendered seller-most-reviews.html (grouped by bands)")
@@ -249,8 +249,8 @@ def render_seller_most_products_grouped():
         sellers_by_band[b].sort(key=lambda s: s["name"].lower())
 
     template = env.get_template("noths/sellers/seller-most-products.html")
-    os.makedirs("output/noths/sellers", exist_ok=True)
-    with open("output/noths/sellers/seller-most-products.html", "w", encoding='utf-8') as f:
+    os.makedirs("docs/noths/sellers", exist_ok=True)
+    with open("docs/noths/sellers/seller-most-products.html", "w", encoding='utf-8') as f:
         f.write(template.render(bands=bands, sellers_by_band=sellers_by_band))
 
     print("📦 Rendered grouped seller-most-products.html")
@@ -263,8 +263,8 @@ def render_top_100_products():
     top_100 = sorted(products, key=lambda x: x.get("review_count", 0), reverse=True)[:100]
 
     template = env.get_template("noths/products/products-last-12-months.html")
-    os.makedirs("output/noths/products", exist_ok=True)
-    with open("output/noths/products/products-last-12-months.html", "w", encoding="utf-8") as f:
+    os.makedirs("docs/noths/products", exist_ok=True)
+    with open("docs/noths/products/products-last-12-months.html", "w", encoding="utf-8") as f:
         f.write(template.render(products=top_100))
 
     print("🔝 Rendered products-last-12-months.html (Top 100 only)")
@@ -274,9 +274,9 @@ def render_site_homepage():
     template = env.get_template('home.html')
     os.makedirs('output', exist_ok=True)
     html = template.render()
-    with open('output/home.html', 'w', encoding='utf-8') as f:
+    with open('docs/home.html', 'w', encoding='utf-8') as f:
         f.write(html)
-    print("🏠 Rendered main site homepage → output/home.html")
+    print("🏠 Rendered main site homepage →docs//home.html")
 
 # === Render Top Sellers Last 12 Months ===
 def render_top_sellers_last_12_months():
@@ -311,8 +311,8 @@ def render_top_sellers_last_12_months():
 
     # Render
     template = env.get_template("noths/sellers/top-sellers-12-months.html")
-    os.makedirs("output/noths/sellers", exist_ok=True)
-    with open("output/noths/sellers/top-sellers-12-months.html", "w", encoding="utf-8") as f:
+    os.makedirs("docs/noths/sellers", exist_ok=True)
+    with open("docs/noths/sellers/top-sellers-12-months.html", "w", encoding="utf-8") as f:
         f.write(template.render(sellers=top_sellers))
 
     print("🔝 Rendered top-sellers-12-months.html (Top 100 only)")
@@ -322,7 +322,7 @@ def render_top_sellers_last_12_months():
 def render_about_page():
     template = env.get_template("about.html")
     os.makedirs("output", exist_ok=True)
-    with open("output/about.html", "w", encoding="utf-8") as f:
+    with open("docs/about.html", "w", encoding="utf-8") as f:
         f.write(template.render())
     print("📖 Rendered about.html")
 
