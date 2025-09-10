@@ -184,8 +184,9 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* Desktop reset for drawer */
-@media (min-width: 901px){
+@media (min-width: 901px) {
   .hamburger { display: none; }
+
   .nav-drawer {
     position: static;
     transform: none;
@@ -194,14 +195,17 @@ body.no-scroll { overflow: hidden; }
     box-shadow: none;
     padding: 0;
   }
+
+  .nav-drawer ul {
+    flex-direction: row;  /* row ONLY on desktop */
+    gap: 24px;
+    white-space: nowrap;  /* keeps items from squashing/wrapping */
+  }
+
   .nav-backdrop { display: none; }
   .drawer-close { display: none; } /* hide the X close button on desktop */
 }
 
-  .nav-drawer ul {
-    flex-direction: row; /* <— critical, otherwise they stay stacked */
-    gap: 24px;           /* space between items */
-  }
 
 /* =========================
    STICKY NAV (A–Z / YEAR BANDS)
