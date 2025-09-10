@@ -15,6 +15,9 @@
         <span class="review-count">
           ({{ "{:,}".format(product.review_count) }} reviews)
         </span>
+        <div class="seller-name">
+          {{ product.seller_name }}
+        </div>
       </li>
     {% endfor %}
   </ol>
