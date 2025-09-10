@@ -183,47 +183,37 @@ body.no-scroll { overflow: hidden; }
   .main-nav ul{ display: flex; flex-direction: column; gap: 12px; }
 }
 
-/* Desktop reset for drawer */
+/* Desktop reset */
 @media (min-width: 901px) {
   .hamburger { display: none; }
 
   .main-nav {
     margin-left: auto;
-    flex: 1 1 auto;   /* allow nav to expand into remaining space */
-    min-width: 0;     /* prevent flexbox from forcing overflow */
+    flex: 0 0 auto;       /* shrink to fit content */
+    overflow: visible;    /* don’t clip links */
   }
 
   .nav-drawer {
     position: static;
     transform: none;
-    height: auto;
-    width: auto;
+    height: auto; width: auto;
     box-shadow: none;
     padding: 0;
   }
 
   .nav-drawer ul {
     display: flex;
-    flex-direction: row;
-    gap: 32px;
+    flex-direction: row;  /* inline row */
+    flex-wrap: nowrap;    /* don’t wrap */
+    gap: 32px;            /* spacing between items */
     justify-content: flex-end; /* cluster to the right */
-    align-items: center;
-    flex-wrap: nowrap;
-  }
-
-  .main-nav a {
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    font-size: 15px;
-    font-weight: 500;
-    white-space: nowrap;  /* stops “Sellers by Year” from breaking mid-word */
+    align-items: center;  /* vertical align with logo */
+    white-space: nowrap;  /* prevent “Sellers by Year” breaking */
   }
 
   .nav-backdrop { display: none; }
   .drawer-close { display: none; }
 }
-
 
 
 
