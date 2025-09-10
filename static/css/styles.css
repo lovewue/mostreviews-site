@@ -189,7 +189,8 @@ body.no-scroll { overflow: hidden; }
 
   .main-nav {
     margin-left: auto;
-    flex: 0 0 auto;     /* shrink to fit links, don’t stretch */
+    flex: 1 1 auto;   /* allow nav to expand into remaining space */
+    min-width: 0;     /* prevent flexbox from forcing overflow */
   }
 
   .nav-drawer {
@@ -204,9 +205,10 @@ body.no-scroll { overflow: hidden; }
   .nav-drawer ul {
     display: flex;
     flex-direction: row;
-    gap: 32px;              /* space between items */
-    justify-content: flex-start; /* keep links in natural order */
-    align-items: center;    /* vertical centering */
+    gap: 32px;
+    justify-content: flex-end; /* cluster to the right */
+    align-items: center;
+    flex-wrap: nowrap;
   }
 
   .main-nav a {
@@ -215,11 +217,13 @@ body.no-scroll { overflow: hidden; }
     align-items: center;
     font-size: 15px;
     font-weight: 500;
+    white-space: nowrap;  /* stops “Sellers by Year” from breaking mid-word */
   }
 
   .nav-backdrop { display: none; }
   .drawer-close { display: none; }
 }
+
 
 
 
