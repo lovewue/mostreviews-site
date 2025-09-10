@@ -731,12 +731,21 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* Product card images */
-.card-grid {
+/* Index page grid (3 columns on desktop) */
+.index-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
+/* Top products grid (4 columns on desktop) */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+/* Shared card styles (keep as-is) */
 .rank-card {
   display: flex;
   flex-direction: column;
@@ -791,4 +800,15 @@ body.no-scroll { overflow: hidden; }
 
 .seller-name {
   font-weight: 500;
+}
+
+/* Responsive tweaks */
+@media (max-width: 1024px) {
+  .index-grid { grid-template-columns: repeat(2, 1fr); }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .index-grid,
+  .products-grid { grid-template-columns: 1fr; }
 }
