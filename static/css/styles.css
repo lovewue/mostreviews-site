@@ -627,3 +627,12 @@ body.no-scroll { overflow: hidden; }
     justify-content: flex-end;
   }
 }
+
+/* Hide "Unknown" section on mobile */
+@media (max-width: 900px) {
+  #year-Unknown,
+  .az-bar li a[href="#year-Unknown"] {
+    display: none !important;
+  }
+}
+
