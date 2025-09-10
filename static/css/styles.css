@@ -198,6 +198,10 @@ body.no-scroll { overflow: hidden; }
   .drawer-close { display: none; } /* hide the X close button on desktop */
 }
 
+  .nav-drawer ul {
+    flex-direction: row; /* <— critical, otherwise they stay stacked */
+    gap: 24px;           /* space between items */
+  }
 
 /* =========================
    STICKY NAV (A–Z / YEAR BANDS)

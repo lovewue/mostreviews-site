@@ -3,23 +3,15 @@
 {% block title %}Top 100 Products – Last 12 Months{% endblock %}
 
 {% block content %}
-<section class="top-products-page">
-  <h1>Top 100 Most Reviewed Products – Last 12 Months (Sep 2024 – Aug 2025)</h1>
+<section class="top-products page-wrap">
+  <h1>Top 100 Products – Last 12 Months</h1>
 
   <ol class="top-products-list">
     {% for product in products %}
       <li>
-        <a href="{{ product.product_url }}" target="_blank">{{ product.name }}</a>
-        <span class="seller-name">
-          by
-          {% if product.active %}
-            <a href="/output/noths/sellers/{{ product.seller_slug[0] }}/{{ product.seller_slug }}.html">
-              {{ product.seller_name }}
-            </a>
-          {% else %}
-            {{ product.seller_name }}
-          {% endif %}
-        </span>
+        <a href="{{ product.url }}">
+          {{ product.name }}
+        </a>
         <span class="review-count">
           ({{ "{:,}".format(product.review_count) }} reviews)
         </span>
