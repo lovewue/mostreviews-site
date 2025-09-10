@@ -3,20 +3,20 @@
 {% block title %}Top 100 Sellers – Last 12 Months{% endblock %}
 
 {% block content %}
-<section class="top-sellers page-wrap">
+<section class="page-wrap top-list">
   <h1>Top 100 Sellers – Last 12 Months</h1>
 
-  <ol class="top-sellers-list">
+  <div class="card-grid">
     {% for seller in sellers %}
-      <li>
-        <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">
-          {{ seller.name }}
-        </a>
-        <span class="review-count">
-          ({{ "{:,}".format(seller.total_reviews) }} reviews)
-        </span>
-      </li>
+      <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html"
+         class="rank-card">
+        <div class="rank-number">#{{ loop.index }}</div>
+        <div class="rank-body">
+          <h2 class="rank-name">{{ seller.name }}</h2>
+          <p class="rank-meta">{{ "{:,}".format(seller.total_reviews) }} reviews</p>
+        </div>
+      </a>
     {% endfor %}
-  </ol>
+  </div>
 </section>
 {% endblock %}
