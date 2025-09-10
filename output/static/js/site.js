@@ -10,14 +10,11 @@
   function openNav() {
     btn.setAttribute('aria-expanded', 'true');
     document.body.classList.add('nav-open', 'no-scroll');
-    const firstFocusable = drawer.querySelector('a, button, [tabindex]:not([tabindex="-1"])');
-    firstFocusable && firstFocusable.focus({ preventScroll: true });
   }
 
   function closeNav() {
     btn.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('nav-open', 'no-scroll');
-    btn.focus({ preventScroll: true });
   }
 
   function toggleNav(e) {
@@ -25,7 +22,6 @@
     (btn.getAttribute('aria-expanded') === 'true') ? closeNav() : openNav();
   }
 
-  // Event bindings
   btn.addEventListener('click', toggleNav);
   backdrop?.addEventListener('click', closeNav);
   closeBtn?.addEventListener('click', closeNav);

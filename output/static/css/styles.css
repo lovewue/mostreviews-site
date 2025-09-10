@@ -28,6 +28,45 @@ body, html, main, .seller-directory {
 }
 
 /* =========================
+   GLOBAL FONT + TEXT STYLES
+   ========================= */
+
+/* Use a serif stack similar to Times New Roman */
+body {
+  font-family: "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+  color: #000;          /* all text black */
+  background-color: #fff;
+  line-height: 1.6;     /* better readability */
+}
+
+/* Headings: slightly tighter line height */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+  font-weight: bold;
+  color: #000;
+  line-height: 1.3;
+  margin: 1em 0 0.5em;
+}
+
+/* Paragraphs and other text elements */
+p, li, blockquote, td, th {
+  color: #000;
+}
+
+/* Links */
+a {
+  color: #000;
+  text-decoration: none;      /* no underline by default */
+  transition: all 0.2s ease;  /* smooth hover effect */
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline; /* underline on hover/focus */
+  color: #000;                /* keep black */
+}
+
+/* =========================
    HEADER + MENU
    ========================= */
 .site-header {
@@ -146,16 +185,19 @@ body.no-scroll { overflow: hidden; }
 
 /* Desktop reset for drawer */
 @media (min-width: 901px){
-  .hamburger{ display: none; }
-  .nav-drawer{
+  .hamburger { display: none; }
+  .nav-drawer {
     position: static;
     transform: none;
-    height: auto; width: auto;
+    height: auto;
+    width: auto;
     box-shadow: none;
     padding: 0;
   }
-  .nav-backdrop{ display: none; }
+  .nav-backdrop { display: none; }
+  .drawer-close { display: none; } /* hide the X close button on desktop */
 }
+
 
 /* =========================
    STICKY NAV (A–Z / YEAR BANDS)
