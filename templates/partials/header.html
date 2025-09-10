@@ -1,15 +1,16 @@
 <header class="site-header">
   <div class="header-inner container">
 
-    <!-- Logo (left) -->
+    <!-- Logo -->
     <div class="header-logo">
       <a href="/output/home.html">
         <img src="/static/img/Most-Reviews-Logo.webp" alt="Most Reviews logo" height="100">
       </a>
     </div>
 
-    <!-- Drawer Nav -->
-    <nav id="menu" class="main-nav nav-drawer" hidden>
+    <!-- Nav (works desktop + mobile) -->
+    <nav id="menu" class="main-nav nav-drawer">
+      <button class="drawer-close" aria-label="Close menu">×</button>
       <ul>
         <li><a href="/output/noths/sellers/index.html">A–Z Sellers</a></li>
         <li><a href="/output/noths/sellers/by-year.html">Sellers by Year</a></li>
@@ -19,11 +20,13 @@
       </ul>
     </nav>
 
-    <!-- Hamburger (right) -->
-    <button class="hamburger" data-mobile-menu-toggle="menu"
-            aria-controls="menu" aria-expanded="false" aria-label="Open menu">
+    <!-- Hamburger -->
+    <button class="hamburger" aria-controls="menu" aria-expanded="false" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
 
   </div>
 </header>
+
+<!-- Backdrop -->
+<div class="nav-backdrop"></div>
