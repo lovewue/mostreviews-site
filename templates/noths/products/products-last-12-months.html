@@ -8,20 +8,29 @@
 
   <div class="card-grid">
     {% for product in products %}
-      <a href="{{ product.awin or product.product_url }}" class="rank-card" target="_blank" rel="noopener">
-        <img src="/Product_Images/{{ product.sku }}.jpg"
-             alt="{{ product.name }}"
-             class="rank-image">
+      <a href="{{ product.awin or product.product_url }}"
+   class="rank-card" target="_blank" rel="noopener">
 
-        <div class="rank-number">#{{ loop.index }}</div>
-        <div class="rank-divider"></div>
+  <!-- IMAGE FIRST -->
+  <img
+    src="/Product_Images/{{ product.sku }}.jpg"
+    alt="{{ product.name }}"
+    class="rank-image"
+    loading="lazy"
+    onerror="this.src='/static/fallbacks/no-image.jpg'">
 
-        <h2 class="rank-name">{{ product.name }}</h2>
-        <p class="rank-meta">
-          <span class="seller-name">{{ product.seller_name }}</span><br>
-          {{ "{:,}".format(product.review_count) }} reviews
-        </p>
-      </a>
+  <div class="rank-number">#{{ loop.index }}</div>
+  <div class="rank-divider"></div>
+
+  <div class="rank-body">
+    <h2 class="rank-name">{{ product.name }}</h2>
+    <p class="rank-meta">
+      {{ "{:,}".format(product.review_count) }} reviews<br>
+      <span class="seller-name">{{ product.seller_name }}</span>
+    </p>
+  </div>
+</a>
+
     {% endfor %}
   </div>
 </section>
