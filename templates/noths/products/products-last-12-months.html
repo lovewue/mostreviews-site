@@ -11,6 +11,9 @@
       <a href="{{ product.awin or product.product_url }}" class="rank-card" target="_blank" rel="noopener">
         <div class="rank-number">#{{ loop.index }}</div>
         <div class="rank-body">
+          <img src="/Product_Images/{{ product.sku }}.jpg"
+               alt="{{ product.name }}"
+               class="rank-image">
           <h2 class="rank-name">{{ product.name }}</h2>
           <p class="rank-meta">
             {{ "{:,}".format(product.review_count) }} reviews
