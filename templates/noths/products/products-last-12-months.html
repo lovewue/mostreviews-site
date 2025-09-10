@@ -12,19 +12,13 @@
          class="rank-card" target="_blank" rel="noopener">
 
         <!-- IMAGE FIRST -->
-        {% if product.has_image %}
-          <img
-            src="/Product_Images/{{ product.sku }}.jpg"
-            alt="{{ product.name }}"
-            class="rank-image"
-            loading="lazy">
-        {% else %}
-          <img
-            src="/static/fallbacks/no-image.jpg"
-            alt="{{ product.name }}"
-            class="rank-image"
-            loading="lazy">
-        {% endif %}
+        <img
+  src="/Product_Images/{{ product.sku }}.jpg"
+  alt="{{ product.name }}"
+  class="rank-image"
+  loading="lazy"
+  onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
+
 
         <div class="rank-number">#{{ loop.index }}</div>
         <div class="rank-divider"></div>
