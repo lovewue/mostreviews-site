@@ -712,40 +712,31 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* =========================
-   TOP LIST GRID RESPONSIVE
+   GRID LAYOUTS FOR INDEX / PRODUCTS / SELLERS
    ========================= */
-.rank-card {
-  grid-column: span 12;  /* default = 1 per row */
-}
 
-@media (min-width: 640px) {
-  .rank-card { grid-column: span 6; }  /* 2 per row */
-}
-
-@media (min-width: 900px) {
-  .rank-card { grid-column: span 4; }  /* 3 per row */
-}
-
-@media (min-width: 1200px) {
-  .rank-card { grid-column: span 3; }  /* 4 per row */
-}
-
-/* Product card images */
-/* Index page grid (3 columns on desktop) */
+/* Index page grid – 3 columns on desktop */
 .index-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
-/* Top products grid (4 columns on desktop) */
+/* Top products grid – 4 columns on desktop */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 
-/* Shared card styles (keep as-is) */
+/* Top sellers grid – 3 columns on desktop */
+.sellers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* Shared card styles */
 .rank-card {
   display: flex;
   flex-direction: column;
@@ -806,9 +797,13 @@ body.no-scroll { overflow: hidden; }
 @media (max-width: 1024px) {
   .index-grid { grid-template-columns: repeat(2, 1fr); }
   .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .sellers-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 600px) {
   .index-grid,
-  .products-grid { grid-template-columns: 1fr; }
+  .products-grid,
+  .sellers-grid {
+    grid-template-columns: 1fr;
+  }
 }
