@@ -19,7 +19,11 @@
 
   function toggleNav(e) {
     e?.preventDefault();
-    (btn.getAttribute('aria-expanded') === 'true') ? closeNav() : openNav();
+    if (document.body.classList.contains('nav-open')) {
+      closeNav();
+    } else {
+      openNav();
+    }
   }
 
   btn.addEventListener('click', toggleNav);
