@@ -320,7 +320,9 @@ body.no-scroll { overflow: hidden; }
   padding-bottom: 6px;
 }
 .letter-block,
-.year-block { margin-bottom: 48px; }
+.year-block {
+  margin-bottom: 48px;
+  scroll-margin-top: 180px; /* match sticky header height */
 .seller-columns {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -628,10 +630,17 @@ body.no-scroll { overflow: hidden; }
   }
 }
 
-/* Hide "Unknown" section on mobile */
+/* Hide "Unknown" year on mobile — section + nav link */
 @media (max-width: 900px) {
-  #year-Unknown,
-  .az-bar li a[href="#year-Unknown"] {
+  /* Section (matches .../year-Unknown OR .../year-unknown) */
+  section[id$="-Unknown"],
+  section[id$="-unknown"] {
+    display: none !important;
+  }
+
+  /* Sticky nav link pointing to Unknown */
+  .az-bar a[href$="-Unknown"],
+  .az-bar a[href$="-unknown"] {
     display: none !important;
   }
 }

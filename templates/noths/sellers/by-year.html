@@ -65,14 +65,12 @@
       let currentId = null;
       const scrollPosition = window.scrollY + (window.innerWidth > 768 ? 180 : 120);
 
-      for (let i = 0; i < sections.length; i++) {
-        const { id, section } = sections[i];
+      // ✅ check all sections instead of breaking early
+      sections.forEach(({ id, section }) => {
         if (section.offsetTop <= scrollPosition) {
           currentId = id;
-        } else {
-          break;
         }
-      }
+      });
 
       navLinks.forEach(link => {
         link.classList.remove("active");
