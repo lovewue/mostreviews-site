@@ -630,18 +630,5 @@ body.no-scroll { overflow: hidden; }
   }
 }
 
-/* Hide "Unknown" year on mobile — section + nav link */
-@media (max-width: 900px) {
-  /* Section (matches .../year-Unknown OR .../year-unknown) */
-  section[id$="-Unknown"],
-  section[id$="-unknown"] {
-    display: none !important;
-  }
 
-  /* Sticky nav link pointing to Unknown */
-  .az-bar a[href$="-Unknown"],
-  .az-bar a[href$="-unknown"] {
-    display: none !important;
-  }
-}
 
