@@ -8,6 +8,8 @@
 
   <!-- Global stylesheet -->
   <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 <body>
 
@@ -24,10 +26,10 @@
     <!-- Nav -->
     <nav id="menu" class="main-nav nav-drawer">
        <ul>
-        <li><a href="/noths/sellers/index.html">A–Z Sellers</a></li>
-        <li><a href="/noths/sellers/by-year.html">Sellers by Year</a></li>
-        <li><a href="/noths/sellers/seller-most-reviews.html">Top Reviews</a></li>
-        <li><a href="/noths/sellers/seller-most-products.html">Top Products</a></li>
+        <li><a href="/noths/partners/index.html">A–Z partners</a></li>
+        <li><a href="/noths/partners/by-year.html">partners by Year</a></li>
+        <li><a href="/noths/partners/partner-most-reviews.html">Top Reviews</a></li>
+        <li><a href="/noths/partners/partner-most-products.html">Top Products</a></li>
         <li><a href="/about.html">About</a></li>
       </ul>
     </nav>
@@ -2504,7 +2506,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       const path = window.location.pathname;
       const shouldRunScript =
-        path.includes("/sellers/index.html") || path.includes("/sellers/by-year.html");
+        path.includes("/partners/index.html") || path.includes("/partners/by-year.html");
 
       if (!shouldRunScript) return;
 

@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}NOTHS Sellers – Most Products{% endblock %}
+{% block title %}NOTHS Partners – Most Products{% endblock %}
 
 {% block content %}
-  <section class="seller-directory">
-    <h1>NOTHS Sellers – Most Products</h1>
+  <section class="partner-directory">
+    <h1>NOTHS Partners – Most Products</h1>
 
     <!-- Sticky Band Navigation -->
     <nav class="az-nav sticky-nav">
@@ -15,14 +15,14 @@
       </ul>
     </nav>
 
-    <!-- Sellers Grouped by Product Count Band -->
+    <!-- Partners Grouped by Product Count Band -->
     {% for band in bands %}
       <section class="letter-block" id="products-{{ band }}">
         <h2 class="letter-title">{{ "{:,}".format(band) }}+ Products</h2>
-        <ul class="seller-columns">
-          {% for seller in sellers_by_band[band] %}
+        <ul class="partner-columns">
+          {% for partner in partners_by_band[band] %}
             <li>
-              <a href="/output/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
+              <a href="/output/noths/partners/{{ partner.slug[0] }}/{{ partner.slug }}.html">{{ partner.name }}</a>
             </li>
           {% endfor %}
         </ul>

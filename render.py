@@ -274,7 +274,7 @@ def render_site_homepage():
 def render_top_partners_last_12_months():
     with open("data/top_products_last_12_months.json", "r", encoding="utf-8") as f:
         products = json.load(f)
-    with open("partners_merged.json", "r", encoding="utf-8") as f:
+    with open("data/partners_merged.json", "r", encoding="utf-8") as f:
         all_partners = json.load(f)
 
     partner_lookup = {p["slug"]: p for p in all_partners if p.get("active", True)}
