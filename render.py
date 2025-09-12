@@ -37,7 +37,7 @@ def copy_static_assets():
 
 # === Render individual partner pages ===
 def render_partner_pages():
-    with open("partners_merged.json", "r", encoding="utf-8") as f:
+    with open("data/partners_merged.json", "r", encoding="utf-8") as f:
         partners = json.load(f)
 
     with open("data/top_products_last_12_months.json", "r", encoding="utf-8") as f:
@@ -105,7 +105,7 @@ def render_partner_pages():
 
 # === Render A–Z index ===
 def render_partner_index():
-    with open("partners_merged.json", "r", encoding="utf-8") as f:
+    with open("data/partners_merged.json", "r", encoding="utf-8") as f:
         partners = json.load(f)
 
     partners = [p for p in partners if p.get("active", True)]
@@ -152,7 +152,7 @@ def render_partner_index():
 
 # === Render by year index ===
 def render_partner_by_year():
-    with open("partners_merged.json", "r", encoding="utf-8") as f:
+    with open("data/partners_merged.json", "r", encoding="utf-8") as f:
         partners = json.load(f)
 
     partners = [p for p in partners if p.get("active", True)]
@@ -183,7 +183,7 @@ def render_partner_by_year():
 
 # === Render grouped by reviews ===
 def render_partner_most_reviews_grouped():
-    with open("partners_merged.json", "r", encoding="utf-8") as f:
+    with open("data/partners_merged.json", "r", encoding="utf-8") as f:
         partners = json.load(f)
 
     active_partners = [p for p in partners if p.get("active", True)]
@@ -218,7 +218,7 @@ def render_partner_most_reviews_grouped():
 
 # === Render grouped by product count ===
 def render_partner_most_products_grouped():
-    with open("partners_merged.json", "r", encoding="utf-8") as f:
+    with open("data/partners_merged.json", "r", encoding="utf-8") as f:
         partners = json.load(f)
 
     active = [p for p in partners if p.get("active", True)]
