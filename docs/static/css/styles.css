@@ -848,57 +848,19 @@ body.no-scroll { overflow: hidden; }
   color: #fff;
 }
 
-/* === Mobile/Desktop Nav Behavior === */
+/* =========================
+   Product Grid Mobile 1 product then 2
+   ========================= */
 
-/* Mobile first: hide nav until burger opens it */
-.main-nav.nav-drawer {
-  display: none;
-}
 
-body.nav-open .main-nav.nav-drawer {
-  display: block;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 80%;
-  max-width: 300px;
-  background: #fff;
-  box-shadow: -2px 0 8px rgba(0,0,0,0.2);
-  padding: 1rem;
-  z-index: 1000;
-}
-
-/* Backdrop for drawer */
-.nav-backdrop {
-  display: none;
-}
-
-body.nav-open .nav-backdrop {
-  display: block;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 900;
-}
-
-/* Desktop: nav always visible, burger hidden */
-@media (min-width: 768px) {
-  .main-nav.nav-drawer {
-    display: block;
-    position: static;
-    width: auto;
-    max-width: none;
-    box-shadow: none;
-    padding: 0;
+/* Mobile layout tweak: first card full width, rest 2 per row */
+@media (max-width: 640px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2-column grid */
   }
 
-  .hamburger {
-    display: none;
-  }
-
-  .nav-backdrop {
-    display: none !important;
+  .card-grid .rank-card:first-child {
+    grid-column: 1 / -1; /* span across both columns */
   }
 }
 
