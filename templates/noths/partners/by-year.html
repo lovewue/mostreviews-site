@@ -1,29 +1,29 @@
 {% extends "base.html" %}
 
-{% block title %}NOTHS Sellers by Year{% endblock %}
+{% block title %}NOTHS Partners by Year{% endblock %}
 
 {% block content %}
-<section class="seller-directory">
-  <h1>NOTHS Sellers by Year Joined</h1>
+<section class="partner-directory">
+  <h1>NOTHS Partners by Year Joined</h1>
 
   <!-- Year Navigation Bar -->
   <nav class="az-nav sticky-nav">
     <ul class="az-bar">
-      {% for year in sellers_by_year.keys() if year != "Unknown" %}
+      {% for year in partners_by_year.keys() if year != "Unknown" %}
         <li><a href="#year-{{ year }}">{{ year }}</a></li>
       {% endfor %}
     </ul>
   </nav>
 
-  <!-- Sellers Grouped by Year -->
-  {% for year, group in sellers_by_year.items() if year != "Unknown" %}
+  <!-- Partners Grouped by Year -->
+  {% for year, group in partners_by_year.items() if year != "Unknown" %}
     <section class="year-block" id="year-{{ year }}">
       <h2 class="year-title">{{ year }}</h2>
-      <ul class="seller-columns">
-        {% for seller in group %}
+      <ul class="partner-columns">
+        {% for partner in group %}
           <li>
-            <a href="/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">
-              {{ seller.name }}
+            <a href="/noths/partners/{{ partner.slug[0] }}/{{ partner.slug }}.html">
+              {{ partner.name }}
             </a>
           </li>
         {% endfor %}
