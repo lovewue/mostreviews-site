@@ -9,8 +9,8 @@
     <!-- Column 1: Partner Profile -->
     <div class="partner-profile">
       <div class="partner-header">
-        {% if logo %}
-          <img src="{{ logo }}" alt="{{ partner.name }} logo" class="partner-logo">
+        {% if partner.logo %}
+          <img src="{{ partner.logo }}" alt="{{ partner.name }} logo" class="partner-logo">
         {% endif %}
         <h1>{{ partner.name }}</h1>
       </div>
@@ -23,37 +23,36 @@
 
       <a href="{{ partner.awin }}" target="_blank" class="partner-link">View on NOTHS</a>
 
-{% if partner.paid %}
-  {% if partner.website or partner.facebook or partner.instagram or partner.twitter or partner.x or partner.youtube or partner.tiktok %}
-  <div class="partner-links">
-    <h2>Connect</h2>
-    <ul class="social-icons">
-      {% if partner.website %}
-        <li><a href="{{ partner.website }}" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i></a></li>
+      {% if partner.paid %}
+        {% if partner.website or partner.facebook or partner.instagram or partner.twitter or partner.x or partner.youtube or partner.tiktok %}
+        <div class="partner-links">
+          <h2>Connect</h2>
+          <ul class="social-icons">
+            {% if partner.website %}
+              <li><a href="{{ partner.website }}" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i></a></li>
+            {% endif %}
+            {% if partner.facebook %}
+              <li><a href="{{ partner.facebook }}" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a></li>
+            {% endif %}
+            {% if partner.instagram %}
+              <li><a href="{{ partner.instagram }}" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a></li>
+            {% endif %}
+            {% if partner.twitter %}
+              <li><a href="{{ partner.twitter }}" target="_blank" rel="noopener"><i class="fa-brands fa-twitter"></i></a></li>
+            {% endif %}
+            {% if partner.x %}
+              <li><a href="{{ partner.x }}" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a></li>
+            {% endif %}
+            {% if partner.youtube %}
+              <li><a href="{{ partner.youtube }}" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a></li>
+            {% endif %}
+            {% if partner.tiktok %}
+              <li><a href="{{ partner.tiktok }}" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a></li>
+            {% endif %}
+          </ul>
+        </div>
+        {% endif %}
       {% endif %}
-      {% if partner.facebook %}
-        <li><a href="{{ partner.facebook }}" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a></li>
-      {% endif %}
-      {% if partner.instagram %}
-        <li><a href="{{ partner.instagram }}" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a></li>
-      {% endif %}
-      {% if partner.twitter %}
-        <li><a href="{{ partner.twitter }}" target="_blank" rel="noopener"><i class="fa-brands fa-twitter"></i></a></li>
-      {% endif %}
-      {% if partner.x %}
-        <li><a href="{{ partner.x }}" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a></li>
-      {% endif %}
-      {% if partner.youtube %}
-        <li><a href="{{ partner.youtube }}" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a></li>
-      {% endif %}
-      {% if partner.tiktok %}
-        <li><a href="{{ partner.tiktok }}" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a></li>
-      {% endif %}
-    </ul>
-  </div>
-  {% endif %}
-{% endif %}
-
 
     </div>
 
