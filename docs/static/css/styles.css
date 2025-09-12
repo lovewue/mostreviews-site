@@ -848,3 +848,57 @@ body.no-scroll { overflow: hidden; }
   color: #fff;
 }
 
+/* === Mobile/Desktop Nav Behavior === */
+
+/* Mobile first: hide nav until burger opens it */
+.main-nav.nav-drawer {
+  display: none;
+}
+
+body.nav-open .main-nav.nav-drawer {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 80%;
+  max-width: 300px;
+  background: #fff;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+  padding: 1rem;
+  z-index: 1000;
+}
+
+/* Backdrop for drawer */
+.nav-backdrop {
+  display: none;
+}
+
+body.nav-open .nav-backdrop {
+  display: block;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 900;
+}
+
+/* Desktop: nav always visible, burger hidden */
+@media (min-width: 768px) {
+  .main-nav.nav-drawer {
+    display: block;
+    position: static;
+    width: auto;
+    max-width: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .nav-backdrop {
+    display: none !important;
+  }
+}
+
