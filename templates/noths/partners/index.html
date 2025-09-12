@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}NOTHS Sellers A–Z Directory{% endblock %}
+{% block title %}NOTHS Partners A–Z Directory{% endblock %}
 
 {% block content %}
-  <section class="seller-directory">
-    <h1>NOTHS Sellers A–Z</h1>
+  <section class="partner-directory">
+    <h1>NOTHS Partners A–Z</h1>
 
     <!-- A–Z Sticky Nav -->
     <nav class="az-nav sticky-nav">
@@ -20,8 +20,8 @@
       </ul>
     </nav>
 
-    <!-- Sellers Grouped by Letter -->
-{% for letter, group in sellers_by_letter.items() %}
+    <!-- Partners Grouped by Letter -->
+{% for letter, group in partners_by_letter.items() %}
   {% if letter == "#" %}
     <section class="letter-block" id="letter-hash">
   {% else %}
@@ -29,10 +29,10 @@
   {% endif %}
 
         <h2 class="letter-title">{{ letter }}</h2>
-        <ul class="seller-columns">
-          {% for seller in group %}
+        <ul class="partner-columns">
+          {% for partner in group %}
             <li>
-              <a href="/noths/sellers/{{ seller.slug[0] }}/{{ seller.slug }}.html">{{ seller.name }}</a>
+              <a href="/noths/partners/{{ partner.slug[0] }}/{{ partner.slug }}.html">{{ partner.name }}</a>
             </li>
           {% endfor %}
         </ul>
