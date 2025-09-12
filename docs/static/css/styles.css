@@ -1,7 +1,7 @@
 /* =========================
    GLOBAL / BASICS
    ========================= */
-body, html, main, .seller-directory {
+body, html, main, .partner-directory {
   overflow: visible !important;
 }
 
@@ -213,7 +213,7 @@ body.no-scroll { overflow: hidden; }
     gap: 32px;            /* spacing between items */
     justify-content: flex-end; /* cluster to the right */
     align-items: center;  /* vertical align with logo */
-    white-space: nowrap;  /* prevent “Sellers by Year” breaking */
+    white-space: nowrap;  /* prevent “partners by Year” breaking */
   }
 
   .nav-backdrop { display: none; }
@@ -291,27 +291,27 @@ body.no-scroll { overflow: hidden; }
    ANCHOR POSITIONING (ONE SYSTEM)
    ========================= */
 /* Default (desktop & larger) */
-.seller-directory [id]{
+.partner-directory [id]{
   scroll-margin-top: var(--anchor-offset-desktop) !important;
 }
 
 /* Mobile override */
 @media (max-width: 768px){
-  .seller-directory [id]{
+  .partner-directory [id]{
     scroll-margin-top: var(--anchor-offset-mobile) !important;
   }
 }
 
 /* =========================
-   SELLER DIRECTORY + LISTS
+   partner DIRECTORY + LISTS
    ========================= */
-.seller-directory {
+.partner-directory {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   font-family: sans-serif;
 }
-.seller-directory h1 {
+.partner-directory h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
   text-align: center;
@@ -329,7 +329,7 @@ body.no-scroll { overflow: hidden; }
   margin-bottom: 48px;
   scroll-margin-top: 180px; /* match sticky header height */
 }
-.seller-columns {
+.partner-columns {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px 20px;
@@ -337,14 +337,14 @@ body.no-scroll { overflow: hidden; }
   margin: 0;
   list-style: none;
 }
-.seller-columns li { margin: 0; padding: 0; }
-.seller-columns a {
+.partner-columns li { margin: 0; padding: 0; }
+.partner-columns a {
   text-decoration: none; color: #000; font-weight: 500;
   transition: color 0.2s ease;
 }
-.seller-columns a:hover { color: #007185; text-decoration: underline; }
-@media (max-width: 768px){ .seller-columns { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px){ .seller-columns { grid-template-columns: 1fr; } }
+.partner-columns a:hover { color: #007185; text-decoration: underline; }
+@media (max-width: 768px){ .partner-columns { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px){ .partner-columns { grid-template-columns: 1fr; } }
 
 /* =========================
    FOOTER
@@ -382,7 +382,7 @@ body.no-scroll { overflow: hidden; }
 .top-products-list a { color: #007185; text-decoration: none; font-weight: 500; }
 .top-products-list a:hover { text-decoration: underline; }
 .top-products-list .review-count { margin-left: 10px; color: #777; font-size: 0.95rem; }
-.top-products-list .seller-name {
+.top-products-list .partner-name {
   display: block;        /* forces a new line */
   margin: 2px 0 0 0;     /* small gap above, no left indent */
   color: #333;
@@ -392,35 +392,35 @@ body.no-scroll { overflow: hidden; }
 
 
 /* =========================
-   SELLER DETAIL PAGE
+   partner DETAIL PAGE
    ========================= */
-.seller-detail-page {
+.partner-detail-page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   font-family: sans-serif;
 }
-.seller-columns-container {
+.partner-columns-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 40px;
   align-items: start;
 }
-.seller-profile { background: #f9f9f9; padding: 20px; border-radius: 8px; }
-.seller-header { text-align: center; margin-bottom: 20px; }
-.seller-logo { max-width: 200px; margin-bottom: 10px; }
-.seller-info { list-style: none; padding: 0; margin: 20px 0; font-size: 16px; line-height: 1.6; }
-.seller-info li strong { display: inline-block; width: 140px; font-weight: 600; }
-.seller-link { display: inline-block; background: #0073e6; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px; text-align: center; }
-.seller-products h2 { font-size: 1.5rem; margin-bottom: 16px; }
+.partner-profile { background: #f9f9f9; padding: 20px; border-radius: 8px; }
+.partner-header { text-align: center; margin-bottom: 20px; }
+.partner-logo { max-width: 200px; margin-bottom: 10px; }
+.partner-info { list-style: none; padding: 0; margin: 20px 0; font-size: 16px; line-height: 1.6; }
+.partner-info li strong { display: inline-block; width: 140px; font-weight: 600; }
+.partner-link { display: inline-block; background: #0073e6; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px; text-align: center; }
+.partner-products h2 { font-size: 1.5rem; margin-bottom: 16px; }
 .top-products-list { list-style: decimal inside; padding-left: 0; font-size: 16px; }
 .top-products-list li { margin-bottom: 12px; }
 .top-products-list a { font-weight: 600; color: #000; text-decoration: none; }
 .top-products-list a:hover { text-decoration: underline; }
 .review-count { margin-left: 6px; color: #777; }
 @media (max-width: 768px){
-  .seller-columns-container { grid-template-columns: 1fr; }
-  .seller-header { text-align: left; }
+  .partner-columns-container { grid-template-columns: 1fr; }
+  .partner-header { text-align: left; }
 }
 
 /* =========================
@@ -474,7 +474,7 @@ body.no-scroll { overflow: hidden; }
 @media (min-width: 1024px){ .card-grid .card { grid-column: span 4; } }
 
 /* =========================
-   TOP SELLERS TABLE
+   TOP partnerS TABLE
    ========================= */
 .page-wrap { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
 
@@ -533,7 +533,7 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* tight header above table */
-.top-sellers h1 {
+.top-partners h1 {
   font-size: clamp(22px, 3vw, 32px);
   margin: 0 0 16px;
   text-align: left;
@@ -566,7 +566,7 @@ body.no-scroll { overflow: hidden; }
   .mr-table .col-reviews { text-align: left; }
 }
 
-/* ===== Tables (Top Sellers / Top Products) ===== */
+/* ===== Tables (Top partners / Top Products) ===== */
 
 .mr-table-wrap {
   width: 100%;
@@ -652,7 +652,7 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* =========================
-   TOP SELLERS / PRODUCTS GRID
+   TOP partnerS / PRODUCTS GRID
    ========================= */
 .card-grid {
   display: grid;
@@ -708,7 +708,7 @@ body.no-scroll { overflow: hidden; }
 @media (min-width: 1200px){ .rank-card { grid-column: span 3; } }   /* 4 per row */
 
 /* Extra styling for Top Products */
-.rank-meta .seller-name {
+.rank-meta .partner-name {
   display: block;
   margin-top: 2px;
   font-size: 13px;
@@ -717,7 +717,7 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* =========================
-   GRID LAYOUTS FOR INDEX / PRODUCTS / SELLERS
+   GRID LAYOUTS FOR INDEX / PRODUCTS / partnerS
    ========================= */
 
 /* Index page grid – 3 columns on desktop */
@@ -734,8 +734,8 @@ body.no-scroll { overflow: hidden; }
   gap: 1.5rem;
 }
 
-/* Top sellers grid – 3 columns on desktop */
-.sellers-grid {
+/* Top partners grid – 3 columns on desktop */
+.partners-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
@@ -794,7 +794,7 @@ body.no-scroll { overflow: hidden; }
   color: #666;
 }
 
-.seller-name {
+.partner-name {
   font-weight: 500;
 }
 
@@ -802,13 +802,13 @@ body.no-scroll { overflow: hidden; }
 @media (max-width: 1024px) {
   .index-grid { grid-template-columns: repeat(2, 1fr); }
   .products-grid { grid-template-columns: repeat(2, 1fr); }
-  .sellers-grid { grid-template-columns: repeat(2, 1fr); }
+  .partners-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 600px) {
   .index-grid,
   .products-grid,
-  .sellers-grid {
+  .partners-grid {
     grid-template-columns: 1fr;
   }
 }
