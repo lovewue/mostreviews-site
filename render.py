@@ -7,11 +7,14 @@ from collections import defaultdict
 # === Logo helper ===
 def find_logo_url(slug: str) -> str | None:
     """Find the first matching logo file for a partner slug."""
-    logo_dir = "Partner_Logo"   # adjust if your folder is still Seller_Logo
-    for ext in ("jpg", "jpeg", "png", "webp", "svg"):
-        local_path = os.path.join(logo_dir, f"{slug}.{ext}")
-        if os.path.exists(local_path):
-            return f"/{logo_dir}/{slug}.{ext}"
+    logo_dirs = ["Partner_Logo", "Seller_Logo"]  # check both
+    exts = ("jpg", "jpeg", "png", "webp", "svg")
+
+    for logo_dir in logo_dirs:
+        for ext in exts:
+            local_path = os.path.join(logo_dir, f"{slug}.{ext}")
+            if os.path.exists(local_path):
+                return f"/{logo_dir}/{slug}.{ext}"
     return None
 
 # === Jinja setup ===
@@ -34,6 +37,14 @@ def copy_static_assets():
         print("✅ Copied static assets → docs/static/css")
     else:
         print("⚠️  Skipped static assets: 'static/css' folder not found.")
+
+    # ✅ Copy logo folders too
+    for folder in ["Partner_Logo", "Seller_Logo"]:
+        if os.path.exists(folder):
+            shutil.copytree(folder, f"docs/{folder}", dirs_exist_ok=True)
+            print(f"✅ Copied {folder} → docs/{folder}")
+        else:
+            print(f"⚠️  Skipped {folder}: folder not found.")
 
 # === Render individual partner pages ===
 def render_partner_pages():
@@ -73,6 +84,9 @@ def render_partner_pages():
         if slug not in logo_cache:
             logo_cache[slug] = find_logo_url(slug)
         partner["logo"] = logo_cache[slug]
+
+        if not partner["logo"]:
+            print(f"⚠️  No logo found for partner: {slug}")
 
         first_letter = slug[0]
         output_dir = f"docs/noths/partners/{first_letter}"
