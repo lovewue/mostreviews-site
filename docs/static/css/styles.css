@@ -66,6 +66,11 @@ a:focus {
   color: #000;                /* keep black */
 }
 
+.page-hero .lead + .lead {
+  margin-top: 1rem; /* adjust spacing: 1rem ≈ 16px */
+}
+
+
 /* =========================
    HEADER + MENU
    ========================= */
