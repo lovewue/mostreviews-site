@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}{{ partner.name }} – NOTHS Partner{% endblock %}
+
+{% block content %}
+<section class="partner-detail-page">
+  <div class="partner-columns-container">
+
+    <!-- Column 1: Partner Profile -->
+    <div class="partner-profile">
+      <div class="partner-header">
+        {% if logo %}
+          <img src="{{ logo }}" alt="{{ partner.name }} logo" class="partner-logo">
+        {% endif %}
+        <h1>{{ partner.name }}</h1>
+      </div>
+
+      <ul class="partner-info">
+        <li><strong>Joined:</strong> {{ partner.since }}</li>
+        <li><strong>Total Reviews:</strong> {{ partner.review_count }}</li>
+        <li><strong>Product Count:</strong> {{ partner.product_count }}</li>
+      </ul>
+
+      <a href="{{ partner.awin }}" target="_blank" class="partner-link">View on NOTHS</a>
+
+{% if partner.paid %}
+  {% if partner.website or partner.facebook or partner.instagram or partner.twitter or partner.x or partner.youtube or partner.tiktok %}
+  <div class="partner-links">
+    <h2>Connect</h2>
+    <ul class="social-icons">
+      {% if partner.website %}
+        <li><a href="{{ partner.website }}" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i></a></li>
+      {% endif %}
+      {% if partner.facebook %}
+        <li><a href="{{ partner.facebook }}" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a></li>
+      {% endif %}
+      {% if partner.instagram %}
+        <li><a href="{{ partner.instagram }}" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a></li>
+      {% endif %}
+      {% if partner.twitter %}
+        <li><a href="{{ partner.twitter }}" target="_blank" rel="noopener"><i class="fa-brands fa-twitter"></i></a></li>
+      {% endif %}
+      {% if partner.x %}
+        <li><a href="{{ partner.x }}" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a></li>
+      {% endif %}
+      {% if partner.youtube %}
+        <li><a href="{{ partner.youtube }}" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a></li>
+      {% endif %}
+      {% if partner.tiktok %}
+        <li><a href="{{ partner.tiktok }}" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a></li>
+      {% endif %}
+    </ul>
+  </div>
+  {% endif %}
+{% endif %}
+
+
+    </div>
+
+    <!-- Column 2: Top Products -->
+    {% if top_products %}
+      <div class="partner-products">
+        <h2>Most Reviewed Products<br><small>(Sep 2024 – Aug 2025)</small></h2>
+        <ol class="top-products-list">
+          {% for p in top_products %}
+            <li>
+              <a href="https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued={{ p.product_url | urlencode }}" target="_blank">
+                {{ p.name }}
+              </a>
+            </li>
+          {% endfor %}
+        </ol>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}

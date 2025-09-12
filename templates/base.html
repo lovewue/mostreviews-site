@@ -8,6 +8,8 @@
 
   <!-- Global stylesheet -->
   <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 <body>
 
@@ -27,7 +29,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       const path = window.location.pathname;
       const shouldRunScript =
-        path.includes("/sellers/index.html") || path.includes("/sellers/by-year.html");
+        path.includes("/partners/index.html") || path.includes("/partners/by-year.html");
 
       if (!shouldRunScript) return;
 

@@ -4,265 +4,248 @@ import json
 import shutil
 from collections import defaultdict
 
-# Find logo URL
-
+# === Logo helper ===
 def find_logo_url(slug: str) -> str | None:
-    """Find the first matching logo file for a seller slug."""
-    logo_dir = "Seller_Logo"   # adjust if yours is /static/Seller_Logo
-    # Extensions to check in order
+    """Find the first matching logo file for a partner slug."""
+    logo_dir = "Partner_Logo"   # adjust if your folder is still Seller_Logo
     for ext in ("jpg", "jpeg", "png", "webp", "svg"):
         local_path = os.path.join(logo_dir, f"{slug}.{ext}")
         if os.path.exists(local_path):
             return f"/{logo_dir}/{slug}.{ext}"
     return None
 
-
-# Setup Jinja2 environment
-env = Environment(loader=FileSystemLoader('templates'))
-
+# === Jinja setup ===
+env = Environment(loader=FileSystemLoader("templates"))
 STATIC_PATH = "/docs/noths/static"
 
-# === Render Homepage ===
+# === Render NOTHS index ===
 def render_noths_index():
-    template = env.get_template('noths/index.html')
-    os.makedirs('docs/noths', exist_ok=True)
-    html = template.render(title="NOTHS Sellers and Products", static_path=STATIC_PATH)
-    with open('docs/noths/index.html', 'w', encoding='utf-8') as f:
+    template = env.get_template("noths/index.html")
+    os.makedirs("docs/noths", exist_ok=True)
+    html = template.render(title="NOTHS Partners and Products", static_path=STATIC_PATH)
+    with open("docs/noths/index.html", "w", encoding="utf-8") as f:
         f.write(html)
     print("✅ Rendered NOTHS index → docs/noths/index.html")
 
 # === Copy static assets ===
 def copy_static_assets():
-    if os.path.exists('static'):
-        shutil.copytree('static', 'docs/static', dirs_exist_ok=True)
+    if os.path.exists("static"):
+        shutil.copytree("static", "docs/static", dirs_exist_ok=True)
         print("✅ Copied static assets → docs/static/css")
     else:
         print("⚠️  Skipped static assets: 'static/css' folder not found.")
 
-# === Render individual seller pages ===
-def render_seller_pages():
-    with open('data/sellers.json', 'r', encoding='utf-8') as f:
-        sellers = json.load(f)
+# === Render individual partner pages ===
+def render_partner_pages():
+    with open("partners_merged.json", "r", encoding="utf-8") as f:
+        partners = json.load(f)
 
-    with open('data/top_products_last_12_months.json', 'r', encoding='utf-8') as f:
+    with open("data/top_products_last_12_months.json", "r", encoding="utf-8") as f:
         all_products = json.load(f)
 
-    products_by_seller = defaultdict(list)
+    products_by_partner = defaultdict(list)
     for p in all_products:
-        slug = p.get("seller_slug", "").lower().strip()
+        slug = (p.get("seller_slug") or "").lower().strip()
         if slug:
-            products_by_seller[slug].append(p)
+            products_by_partner[slug].append(p)
 
-    template = env.get_template('noths/sellers/seller.html')
+    template = env.get_template("noths/partners/partner.html")
     count, updated = 0, 0
-
-    print("📦 Rendering seller pages...")
-
-    # Cache for logo lookups
     logo_cache = {}
 
-    for i, seller in enumerate(sellers, start=1):
-        if not seller.get("active", True):
+    print("📦 Rendering partner pages...")
+
+    for i, partner in enumerate(partners, start=1):
+        if not partner.get("active", True):
             continue
 
-        slug = str(seller.get('slug', '')).strip().lower()
-        name = str(seller.get('name', '')).strip()
+        slug = str(partner.get("slug", "")).strip().lower()
+        name = str(partner.get("name", "")).strip()
         if not slug or not name:
             continue
 
         top_products = sorted(
-            products_by_seller.get(slug, []),
+            products_by_partner.get(slug, []),
             key=lambda p: p.get("review_count", 0),
-            reverse=True
+            reverse=True,
         )[:5]
 
-        # Cached logo lookup
         if slug not in logo_cache:
             logo_cache[slug] = find_logo_url(slug)
-        logo = logo_cache[slug]
+        partner["logo"] = logo_cache[slug]
 
         first_letter = slug[0]
-        output_dir = f"docs/noths/sellers/{first_letter}"
+        output_dir = f"docs/noths/partners/{first_letter}"
         os.makedirs(output_dir, exist_ok=True)
 
         output_path = f"{output_dir}/{slug}.html"
         html = template.render(
-            slug=slug,
-            name=name,
-            url=seller.get('url', '#'),
-            awin=seller.get('awin', '#'),
-            since=seller.get('since', 'Unknown'),
-            review_count=seller.get('review_count', 0),
-            product_count=int(float(seller.get('product_count', 0))),
+            partner=partner,
             top_products=top_products,
             static_path=STATIC_PATH,
-            logo=logo,
         )
 
-        existing_html = ''
+        existing_html = ""
         if os.path.exists(output_path):
-            with open(output_path, 'r', encoding='utf-8') as f:
+            with open(output_path, "r", encoding="utf-8") as f:
                 existing_html = f.read()
 
         if html != existing_html:
-            with open(output_path, 'w', encoding='utf-8') as f:
+            with open(output_path, "w", encoding="utf-8") as f:
                 f.write(html)
             updated += 1
             if updated <= 10 or updated % 500 == 0:
                 print(f"  ✅ Updated: {output_path}")
 
         count += 1
-
-        # Print progress every 500 sellers
         if i % 500 == 0:
-            print(f"  ⏳ Processed {i}/{len(sellers)} sellers...")
+            print(f"  ⏳ Processed {i}/{len(partners)} partners...")
 
-    print(f"✅ Rendered {count} seller pages → /docs/noths/sellers/[a-z]/ ({updated} updated)")
+    print(f"✅ Rendered {count} partner pages → /docs/noths/partners/[a-z]/ ({updated} updated)")
 
 # === Render A–Z index ===
-def render_seller_index():
-    with open('data/sellers.json', 'r', encoding='utf-8') as f:
-        sellers = json.load(f)
+def render_partner_index():
+    with open("partners_merged.json", "r", encoding="utf-8") as f:
+        partners = json.load(f)
 
-    sellers = [s for s in sellers if s.get("active", True)]
+    partners = [p for p in partners if p.get("active", True)]
 
     grouped = defaultdict(list)
-    for s in sellers:
-        name = str(s.get('name', '')).strip()
-        slug = str(s.get('slug', '')).strip().lower()
+    for p in partners:
+        name = str(p.get("name", "")).strip()
+        slug = str(p.get("slug", "")).strip().lower()
         if not name or not slug:
             continue
         first_letter = name[0].upper()
         if not first_letter.isalpha():
-            first_letter = '#'
-        s['slug'] = slug
-        grouped[first_letter].append(s)
+            first_letter = "#"
+        p["slug"] = slug
+        grouped[first_letter].append(p)
 
     sorted_grouped = {
-        letter: sorted(group, key=lambda s: str(s.get('name', '')).lower())
+        letter: sorted(group, key=lambda p: str(p.get("name", "")).lower())
         for letter, group in sorted(grouped.items())
     }
 
     context = {
         "letters": sorted(sorted_grouped.keys()),
-        "sellers_by_letter": sorted_grouped,
-        "static_path": STATIC_PATH
+        "partners_by_letter": sorted_grouped,
+        "static_path": STATIC_PATH,
     }
 
-    template = env.get_template('noths/sellers/index.html')
-    os.makedirs('docs/noths/sellers', exist_ok=True)
-    output_path = 'docs/noths/sellers/index.html'
+    template = env.get_template("noths/partners/index.html")
+    os.makedirs("docs/noths/partners", exist_ok=True)
+    output_path = "docs/noths/partners/index.html"
     html = template.render(context)
 
-    existing_html = ''
+    existing_html = ""
     if os.path.exists(output_path):
-        with open(output_path, 'r', encoding='utf-8') as f:
+        with open(output_path, "r", encoding="utf-8") as f:
             existing_html = f.read()
 
     if html != existing_html:
-        with open(output_path, 'w', encoding='utf-8') as f:
+        with open(output_path, "w", encoding="utf-8") as f:
             f.write(html)
-        print("📇 Updated sellers/index.html")
+        print("📇 Updated partners/index.html")
     else:
-        print("📇 sellers/index.html unchanged")
+        print("📇 partners/index.html unchanged")
 
 # === Render by year index ===
-def render_seller_by_year():
-    with open('data/sellers.json', 'r', encoding='utf-8') as f:
-        sellers = json.load(f)
+def render_partner_by_year():
+    with open("partners_merged.json", "r", encoding="utf-8") as f:
+        partners = json.load(f)
 
-    sellers = [s for s in sellers if s.get("active", True)]
+    partners = [p for p in partners if p.get("active", True)]
 
     grouped = defaultdict(list)
-    for s in sellers:
-        since_raw = s.get("since", "")
+    for p in partners:
+        since_raw = p.get("since", "")
         since = str(since_raw).strip()
-        slug = s.get("slug", "").strip().lower()
-        name = s.get("name", "").strip()
+        slug = p.get("slug", "").strip().lower()
+        name = p.get("name", "").strip()
         if not since or not slug or not name:
             continue
         year = since[-4:] if since[-4:].isdigit() else "Unknown"
-        grouped[year].append(s)
+        grouped[year].append(p)
 
     sorted_grouped = {
-        year: sorted(group, key=lambda s: s["name"].lower())
+        year: sorted(group, key=lambda p: p["name"].lower())
         for year, group in sorted(grouped.items(), reverse=True)
     }
 
-    context = {
-        "sellers_by_year": sorted_grouped,
-        "static_path": STATIC_PATH
-    }
+    context = {"partners_by_year": sorted_grouped, "static_path": STATIC_PATH}
 
-    template = env.get_template('noths/sellers/by-year.html')
-    os.makedirs('docs/noths/sellers', exist_ok=True)
-    with open('docs/noths/sellers/by-year.html', 'w', encoding='utf-8') as f:
+    template = env.get_template("noths/partners/by-year.html")
+    os.makedirs("docs/noths/partners", exist_ok=True)
+    with open("docs/noths/partners/by-year.html", "w", encoding="utf-8") as f:
         f.write(template.render(context))
-    print("📅 Rendered sellers/by-year.html")
+    print("📅 Rendered partners/by-year.html")
 
-# === Render Top Sellers by Reviews ===
-def render_seller_most_reviews_grouped():
-    with open('data/sellers.json', 'r', encoding='utf-8') as f:
-        sellers = json.load(f)
+# === Render grouped by reviews ===
+def render_partner_most_reviews_grouped():
+    with open("partners_merged.json", "r", encoding="utf-8") as f:
+        partners = json.load(f)
 
-    active_sellers = [s for s in sellers if s.get("active", True)]
-    for s in active_sellers:
+    active_partners = [p for p in partners if p.get("active", True)]
+    for p in active_partners:
         try:
-            s["review_count"] = int(str(s.get("review_count", 0)).replace(",", ""))
+            p["review_count"] = int(str(p.get("review_count", 0)).replace(",", ""))
         except:
-            s["review_count"] = 0
-        s["slug"] = s.get("slug", "").strip().lower()
-        s["name"] = s.get("name", "").strip()
+            p["review_count"] = 0
+        p["slug"] = p.get("slug", "").strip().lower()
+        p["name"] = p.get("name", "").strip()
 
     review_bands = [30000, 20000, 10000, 5000, 2500, 1000]
-    sellers_by_band = {band: [] for band in review_bands}
+    partners_by_band = {band: [] for band in review_bands}
 
-    for seller in active_sellers:
+    for partner in active_partners:
         for band in review_bands:
-            if seller["review_count"] >= band:
-                sellers_by_band[band].append(seller)
+            if partner["review_count"] >= band:
+                partners_by_band[band].append(partner)
                 break
 
     for band in review_bands:
-        sellers_by_band[band] = sorted(sellers_by_band[band], key=lambda s: s["name"].lower())
+        partners_by_band[band] = sorted(
+            partners_by_band[band], key=lambda p: p["name"].lower()
+        )
 
-    template = env.get_template("noths/sellers/seller-most-reviews.html")
-    os.makedirs("docs/noths/sellers", exist_ok=True)
-    with open("docs/noths/sellers/seller-most-reviews.html", "w", encoding="utf-8") as f:
-        f.write(template.render(bands=review_bands, sellers_by_band=sellers_by_band))
+    template = env.get_template("noths/partners/partner-most-reviews.html")
+    os.makedirs("docs/noths/partners", exist_ok=True)
+    with open("docs/noths/partners/partner-most-reviews.html", "w", encoding="utf-8") as f:
+        f.write(template.render(bands=review_bands, partners_by_band=partners_by_band))
 
-    print("🏆 Rendered seller-most-reviews.html (grouped by bands)")
+    print("🏆 Rendered partner-most-reviews.html (grouped by bands)")
 
-# === Render Top Sellers by Product Count ===
-def render_seller_most_products_grouped():
-    with open('data/sellers.json', 'r', encoding='utf-8') as f:
-        sellers = json.load(f)
+# === Render grouped by product count ===
+def render_partner_most_products_grouped():
+    with open("partners_merged.json", "r", encoding="utf-8") as f:
+        partners = json.load(f)
 
-    active = [s for s in sellers if s.get("active", True)]
-    for s in active:
+    active = [p for p in partners if p.get("active", True)]
+    for p in active:
         try:
-            s["product_count"] = int(str(s.get("product_count", 0)).replace(",", ""))
+            p["product_count"] = int(str(p.get("product_count", 0)).replace(",", ""))
         except:
-            s["product_count"] = 0
+            p["product_count"] = 0
 
     bands = [3000, 2000, 1000, 500, 250]
-    sellers_by_band = {b: [] for b in bands}
+    partners_by_band = {b: [] for b in bands}
 
-    for s in active:
+    for p in active:
         for b in bands:
-            if s["product_count"] >= b:
-                sellers_by_band[b].append(s)
+            if p["product_count"] >= b:
+                partners_by_band[b].append(p)
                 break
 
     for b in bands:
-        sellers_by_band[b].sort(key=lambda s: s["name"].lower())
+        partners_by_band[b].sort(key=lambda p: p["name"].lower())
 
-    template = env.get_template("noths/sellers/seller-most-products.html")
-    os.makedirs("docs/noths/sellers", exist_ok=True)
-    with open("docs/noths/sellers/seller-most-products.html", "w", encoding='utf-8') as f:
-        f.write(template.render(bands=bands, sellers_by_band=sellers_by_band))
+    template = env.get_template("noths/partners/partner-most-products.html")
+    os.makedirs("docs/noths/partners", exist_ok=True)
+    with open("docs/noths/partners/partner-most-products.html", "w", encoding="utf-8") as f:
+        f.write(template.render(bands=bands, partners_by_band=partners_by_band))
 
-    print("📦 Rendered grouped seller-most-products.html")
+    print("📦 Rendered partner-most-products.html")
 
 # === Render Top Products (Last 12 Months, Top 100) ===
 def render_top_100_products():
@@ -280,57 +263,50 @@ def render_top_100_products():
 
 # === Render Site Homepage ===
 def render_site_homepage():
-    template = env.get_template('home.html')
-    os.makedirs('output', exist_ok=True)
+    template = env.get_template("home.html")
+    os.makedirs("docs", exist_ok=True)
     html = template.render()
-    with open('docs/home.html', 'w', encoding='utf-8') as f:
+    with open("docs/home.html", "w", encoding="utf-8") as f:
         f.write(html)
-    print("🏠 Rendered main site homepage →docs//home.html")
+    print("🏠 Rendered main site homepage → docs/home.html")
 
-# === Render Top Sellers Last 12 Months ===
-def render_top_sellers_last_12_months():
-    # Load data
+# === Render Top Partners Last 12 Months ===
+def render_top_partners_last_12_months():
     with open("data/top_products_last_12_months.json", "r", encoding="utf-8") as f:
         products = json.load(f)
-    with open("data/sellers.json", "r", encoding="utf-8") as f:
-        all_sellers = json.load(f)
+    with open("partners_merged.json", "r", encoding="utf-8") as f:
+        all_partners = json.load(f)
 
-    # Build seller lookup
-    seller_lookup = {s["slug"]: s for s in all_sellers if s.get("active", True)}
+    partner_lookup = {p["slug"]: p for p in all_partners if p.get("active", True)}
 
-    # Count reviews by seller_slug
     review_totals = {}
     for p in products:
-        slug = p.get("seller_slug")
-        if slug and slug in seller_lookup:
+        slug = (p.get("seller_slug") or "").lower().strip()
+        if slug and slug in partner_lookup:
             review_totals[slug] = review_totals.get(slug, 0) + int(p.get("review_count", 0))
 
-    # Build list of top sellers with review counts
-    top_sellers = []
+    top_partners = []
     for slug, count in review_totals.items():
-        s = seller_lookup[slug]
-        top_sellers.append({
+        partner = partner_lookup[slug]
+        top_partners.append({
             "slug": slug,
-            "name": s.get("name"),
+            "name": partner.get("name"),
             "total_reviews": count,
         })
 
-    # Sort and take top 100
-    top_sellers = sorted(top_sellers, key=lambda x: x["total_reviews"], reverse=True)[:100]
+    top_partners = sorted(top_partners, key=lambda x: x["total_reviews"], reverse=True)[:100]
 
-    # Render
-    template = env.get_template("noths/sellers/top-sellers-12-months.html")
-    os.makedirs("docs/noths/sellers", exist_ok=True)
-    with open("docs/noths/sellers/top-sellers-12-months.html", "w", encoding="utf-8") as f:
-        f.write(template.render(sellers=top_sellers))
+    template = env.get_template("noths/partners/top-partners-12-months.html")
+    os.makedirs("docs/noths/partners", exist_ok=True)
+    with open("docs/noths/partners/top-partners-12-months.html", "w", encoding="utf-8") as f:
+        f.write(template.render(partners=top_partners))
 
-    print("🔝 Rendered top-sellers-12-months.html (Top 100 only)")
-
+    print("🔝 Rendered top-partners-12-months.html (Top 100 only)")
 
 # === Render About Page ===
 def render_about_page():
     template = env.get_template("about.html")
-    os.makedirs("output", exist_ok=True)
+    os.makedirs("docs", exist_ok=True)
     with open("docs/about.html", "w", encoding="utf-8") as f:
         f.write(template.render())
     print("📖 Rendered about.html")
@@ -338,12 +314,12 @@ def render_about_page():
 # === Run Everything ===
 render_noths_index()
 copy_static_assets()
-render_seller_pages()
-render_seller_index()
-render_seller_by_year()
-render_seller_most_reviews_grouped()
-render_seller_most_products_grouped()
+render_partner_pages()
+render_partner_index()
+render_partner_by_year()
+render_partner_most_reviews_grouped()
+render_partner_most_products_grouped()
 render_top_100_products()
 render_site_homepage()
-render_top_sellers_last_12_months()
+render_top_partners_last_12_months()
 render_about_page()
