@@ -1389,5 +1389,24 @@
     drawer.addEventListener('click', e => { if(e.target.closest('a')) closeNav(); });
   })();
   </script>
+
+
+
+  <!-- Standard Link for Mobile Devices -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // detect mobile user agent
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+      document.querySelectorAll('[data-product-url]').forEach(function(card) {
+        const plainUrl = card.getAttribute('data-product-url');
+        if (plainUrl) {
+          card.setAttribute('href', plainUrl);
+        }
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
