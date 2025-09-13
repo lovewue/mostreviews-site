@@ -869,13 +869,30 @@ body.no-scroll { overflow: hidden; }
   /* Normalise image sizing */
   .rank-image {
     width: 100%;
-    height: auto;            /* let height scale with width */
-    aspect-ratio: 4 / 3;     /* keeps proportional crop */
+    height: auto;
+    aspect-ratio: 4 / 3;   /* consistent proportions for grid cards */
     object-fit: cover;
   }
 
-  /* Make the first card’s image a bit taller (more visual impact) */
+  /* First card gets a taller, banner-like image */
   .card-grid .rank-card:first-child .rank-image {
-    aspect-ratio: 16 / 9; /* wide banner style */
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Text tweaks for mobile */
+  .rank-card {
+    padding: 12px; /* less padding inside cards */
+  }
+  .rank-card h2,
+  .rank-name {
+    font-size: 14px; /* smaller product name */
+  }
+  .rank-number {
+    font-size: 16px; /* smaller rank number */
+    margin-bottom: 4px;
+  }
+  .rank-meta {
+    font-size: 12px; /* smaller meta text */
   }
 }
+
