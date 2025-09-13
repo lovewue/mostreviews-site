@@ -38,33 +38,29 @@
     <div class="partner-products">
       <h2>Most Reviewed Products<br><small>(Sep 2024 – Aug 2025)</small></h2>
 
-<div class="card-grid">
-  {% for p in reviewed_top %}
-    <a href="https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued={{ p.product_url | urlencode }}"
-       class="rank-card"
-       target="_blank"
-       rel="noopener"
-       data-product-url="{{ p.product_url }}">
+      <div class="card-grid">
+        {% for p in reviewed_top %}
+          <a href="https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued={{ p.product_url | urlencode }}"
+             class="rank-card"
+             target="_blank"
+             rel="noopener"
+             data-product-url="{{ p.product_url }}">
 
-      <img src="/Product_Images/{{ p.sku }}.jpg"
-           alt="{{ p.name }}"
-           class="rank-image"
-           loading="lazy"
-           onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
+            <img src="/Product_Images/{{ p.sku }}.jpg"
+                 alt="{{ p.name }}"
+                 class="rank-image"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
 
-      <div class="rank-number">#{{ loop.index }}</div>
-      <div class="rank-divider"></div>
-
-      <div class="rank-body">
-        <h2 class="rank-name">{{ p.name }}</h2>
-        <p class="rank-meta">
-          {{ "{:,}".format(p.review_count) }} reviews
-        </p>
+            <div class="rank-body">
+              <h2 class="rank-name">{{ p.name }}</h2>
+              <p class="rank-meta">
+                {{ "{:,}".format(p.review_count) }} reviews
+              </p>
+            </div>
+          </a>
+        {% endfor %}
       </div>
-    </a>
-  {% endfor %}
-</div>
-
     </div>
   {% endif %}
 
