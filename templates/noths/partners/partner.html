@@ -40,18 +40,24 @@
 
       <div class="card-grid">
         {% for p in reviewed_top %}
-          <a href="https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued={{ p.product_url | urlencode }}"
+          <a href="{{ p.awin or p.product_url }}"
              class="rank-card"
              target="_blank"
              rel="noopener"
              data-product-url="{{ p.product_url }}">
 
+            <!-- Product Image -->
             <img src="/Product_Images/{{ p.sku }}.jpg"
                  alt="{{ p.name }}"
                  class="rank-image"
                  loading="lazy"
                  onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
 
+            <!-- Rank + Divider -->
+            <div class="rank-number">#{{ loop.index }}</div>
+            <div class="rank-divider"></div>
+
+            <!-- Product Body -->
             <div class="rank-body">
               <h2 class="rank-name">{{ p.name }}</h2>
               <p class="rank-meta">
@@ -71,7 +77,7 @@
       <ul class="top-products-list">
         {% for p in overflow %}
           <li>
-            <a href="https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued={{ p.product_url | urlencode }}"
+            <a href="{{ p.awin or p.product_url }}"
                target="_blank"
                data-product-url="{{ p.product_url }}">
               {{ p.name }}
@@ -90,7 +96,7 @@
       <ul class="top-products-list">
         {% for p in low_reviewed %}
           <li>
-            <a href="https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued={{ p.product_url | urlencode }}"
+            <a href="{{ p.awin or p.product_url }}"
                target="_blank"
                data-product-url="{{ p.product_url }}">
               {{ p.name }}
