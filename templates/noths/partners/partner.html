@@ -69,10 +69,10 @@
   {% endif %}
 
   <!-- Low-Reviewed Products (<5) -->
-{% if low_reviewed %}
-  <div class="partner-products low-reviewed">
-    <h2>Other Products (under 5 reviews)</h2>
-    <ul class="top-products-list">
+   {% if low_reviewed %}
+    <div class="partner-products low-reviewed">
+     <h2>Other Products (under 5 reviews)</h2>
+      <ul class="top-products-list">
       {% for p in low_reviewed[:5] %}
         <li>
           <a href="{{ p.awin or p.product_url }}"
