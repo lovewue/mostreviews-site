@@ -9,21 +9,15 @@
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBVJN61R8T"></script>
   <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-TBVJN61R8T', {
-    'anonymize_ip': true
-  });
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TBVJN61R8T', { 'anonymize_ip': true });
   </script>
-
-
 
   <!-- Global stylesheet -->
   <link rel="stylesheet" href="/static/css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
 </head>
 <body>
 
@@ -31438,58 +31432,55 @@
 
   <!-- Inline fallback for burger/drawer -->
   <script>
-  (function(){
-    const btn = document.querySelector('[data-mobile-menu-toggle="menu"]');
-    const drawer = document.getElementById('menu');
-    const backdrop = document.querySelector('.nav-backdrop');
-    const closeBtn = drawer ? drawer.querySelector('.drawer-close') : null;
+    (function(){
+      const btn = document.querySelector('[data-mobile-menu-toggle="menu"]');
+      const drawer = document.getElementById('menu');
+      const backdrop = document.querySelector('.nav-backdrop');
+      const closeBtn = drawer ? drawer.querySelector('.drawer-close') : null;
 
-    console.log('burger wired?', !!btn, !!drawer);
+      if(!btn || !drawer) return;
 
-    if(!btn || !drawer) return;
+      function openNav(){
+        btn.setAttribute('aria-expanded','true');
+        drawer.hidden = false;
+        document.body.classList.add('nav-open','no-scroll');
+      }
+      function closeNav(){
+        btn.setAttribute('aria-expanded','false');
+        document.body.classList.remove('nav-open','no-scroll');
+        setTimeout(()=>{ drawer.hidden = true; }, 250);
+      }
+      function toggle(e){
+        e?.preventDefault();
+        (btn.getAttribute('aria-expanded')==='true') ? closeNav() : openNav();
+      }
 
-    function openNav(){
-      btn.setAttribute('aria-expanded','true');
-      drawer.hidden = false;
-      document.body.classList.add('nav-open','no-scroll');
-    }
-    function closeNav(){
-      btn.setAttribute('aria-expanded','false');
-      document.body.classList.remove('nav-open','no-scroll');
-      setTimeout(()=>{ drawer.hidden = true; }, 250);
-    }
-    function toggle(e){
-      e?.preventDefault();
-      (btn.getAttribute('aria-expanded')==='true') ? closeNav() : openNav();
-    }
-
-    btn.addEventListener('click', toggle);
-    backdrop && backdrop.addEventListener('click', closeNav);
-    closeBtn && closeBtn.addEventListener('click', closeNav);
-    document.addEventListener('keydown', e => {
-      if(e.key==='Escape' && btn.getAttribute('aria-expanded')==='true') closeNav();
-    });
-    drawer.addEventListener('click', e => { if(e.target.closest('a')) closeNav(); });
-  })();
+      btn.addEventListener('click', toggle);
+      backdrop && backdrop.addEventListener('click', closeNav);
+      closeBtn && closeBtn.addEventListener('click', closeNav);
+      document.addEventListener('keydown', e => {
+        if(e.key==='Escape' && btn.getAttribute('aria-expanded')==='true') closeNav();
+      });
+      drawer.addEventListener('click', e => { if(e.target.closest('a')) closeNav(); });
+    })();
   </script>
 
-
-
-  <!-- Standard Link for Mobile Devices -->
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // detect mobile user agent
-    if (/Mobi|Android/i.test(navigator.userAgent)) {
-      document.querySelectorAll('[data-product-url]').forEach(function(card) {
-        const plainUrl = card.getAttribute('data-product-url');
-        if (plainUrl) {
-          card.setAttribute('href', plainUrl);
-        }
-      });
-    }
-  });
-</script>
+  <!-- Affiliate → plain URL swap on mobile -->
+  <script>
+    (function() {
+      var isMobile = /Mobi|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        document.addEventListener("DOMContentLoaded", function () {
+          document.querySelectorAll('[data-product-url]').forEach(function(card) {
+            var plainUrl = card.getAttribute('data-product-url');
+            if (plainUrl) {
+              card.setAttribute('href', plainUrl);
+            }
+          });
+        });
+      }
+    })();
+  </script>
 
 </body>
 </html>
