@@ -956,17 +956,13 @@ body.no-scroll { overflow: hidden; }
   font-weight: normal;
 }
 
-/* Force square product images on mobile */
+/* Force square product images on mobile (except the first card) */
 @media (max-width: 640px) {
-  .rank-image {
+  .card-grid .rank-card:not(:first-child) .rank-image {
     aspect-ratio: 1 / 1 !important;
     height: auto !important;
     object-fit: cover;
   }
-
-  /* Optional: make first card square too */
-  .card-grid .rank-card:first-child .rank-image {
-    aspect-ratio: 1 / 1 !important;
-  }
 }
+
 
