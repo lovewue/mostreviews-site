@@ -9,7 +9,11 @@
   <div class="card-grid">
     {% for product in products %}
       <a href="{{ product.awin or product.product_url }}"
-         class="rank-card" target="_blank" rel="noopener">
+   class="rank-card"
+   target="_blank"
+   rel="noopener"
+   data-product-url="{{ product.product_url }}">
+
 
         <!-- IMAGE FIRST -->
         <img
