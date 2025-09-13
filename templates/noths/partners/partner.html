@@ -28,18 +28,16 @@
     </a>
   </div>
 
-  <!-- Top Products Grid -->
+  <!-- All Products ≥5 Reviews -->
   {% set reviewed = top_products | selectattr("review_count", "ge", 5) | list %}
-  {% set reviewed_top = reviewed[:8] %}
-  {% set overflow = reviewed[8:] %}
   {% set low_reviewed = top_products | selectattr("review_count", "lt", 5) | list %}
 
-  {% if reviewed_top %}
+  {% if reviewed %}
     <div class="partner-products top-list">
       <h2>Most Reviewed Products<br><small>(Sep 2024 – Aug 2025)</small></h2>
 
       <div class="card-grid">
-        {% for p in reviewed_top %}
+        {% for p in reviewed %}
           <a href="{{ p.awin or p.product_url }}"
              class="rank-card"
              target="_blank"
@@ -67,25 +65,6 @@
           </a>
         {% endfor %}
       </div>
-    </div>
-  {% endif %}
-
-  <!-- Overflow Products (9th+ with >=5 reviews) -->
-  {% if overflow %}
-    <div class="partner-products overflow">
-      <h2>More Products (5+ reviews)</h2>
-      <ul class="top-products-list">
-        {% for p in overflow %}
-          <li>
-            <a href="{{ p.awin or p.product_url }}"
-               target="_blank"
-               data-product-url="{{ p.product_url }}">
-              {{ p.name }}
-            </a>
-            <span class="review-count">({{ p.review_count }} reviews)</span>
-          </li>
-        {% endfor %}
-      </ul>
     </div>
   {% endif %}
 

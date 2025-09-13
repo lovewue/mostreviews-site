@@ -79,7 +79,7 @@ def render_partner_pages():
             products_by_partner.get(slug, []),
             key=lambda p: p.get("review_count", 0),
             reverse=True,
-        )[:8]
+        )
 
         if slug not in logo_cache:
             logo_cache[slug] = find_logo_url(slug)
