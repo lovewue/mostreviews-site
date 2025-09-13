@@ -54,10 +54,12 @@
 
             <div class="rank-divider"></div>
 
-            <h2 class="rank-name">{{ p.name }}</h2>
-            <p class="rank-meta">
-              {{ "{:,}".format(p.review_count) }} reviews
-            </p>
+            <div class="rank-body">
+              <h2 class="rank-name">{{ p.name }}</h2>
+              <p class="rank-meta">
+                {{ "{:,}".format(p.review_count) }} reviews
+              </p>
+            </div>
           </a>
         {% endfor %}
       </div>
