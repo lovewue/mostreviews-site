@@ -21,7 +21,13 @@
         <li><strong>Product Count:</strong> {{ partner.product_count }}</li>
       </ul>
 
-      <a href="{{ partner.awin }}" target="_blank" class="partner-link">View on NOTHS</a>
+      <!-- Affiliate link → plain URL on mobile -->
+      <a href="{{ partner.awin }}"
+         target="_blank"
+         class="partner-link"
+         data-product-url="{{ partner.url }}">
+        View on NOTHS
+      </a>
 
       {% if partner.paid %}
         {% if partner.website or partner.facebook or partner.instagram or partner.twitter or partner.x or partner.youtube or partner.tiktok %}
@@ -63,7 +69,9 @@
         <ol class="top-products-list">
           {% for p in top_products %}
             <li>
-              <a href="https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued={{ p.product_url | urlencode }}" target="_blank">
+              <a href="https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued={{ p.product_url | urlencode }}"
+                 target="_blank"
+                 data-product-url="{{ p.product_url }}">
                 {{ p.name }}
               </a>
             </li>
