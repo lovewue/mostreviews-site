@@ -956,25 +956,6 @@ body.no-scroll { overflow: hidden; }
   font-weight: normal;
 }
 
-/* Force square product images on mobile (except the first card) */
-@media (max-width: 640px) {
-  .card-grid .rank-card:not(:first-child) .rank-image {
-    aspect-ratio: 1 / 1 !important;
-    height: auto !important;
-    object-fit: cover;
-  }
-}
 
-@media (max-width: 640px) {
-  .rank-name {
-    font-size: 0.95rem;
-  }
-  .rank-meta {
-    font-size: 0.8rem;
-  }
-  .rank-number {
-    font-size: 1.2rem;
-  }
-}
 
 
