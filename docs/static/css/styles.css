@@ -955,3 +955,15 @@ body.no-scroll { overflow: hidden; }
   color: #333;
   font-weight: normal;
 }
+
+/* Square product images on mobile only */
+@media (max-width: 640px) {
+  .rank-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;   /* force square on mobile */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    height: auto !important; /* override earlier rules */
+  }
+}
