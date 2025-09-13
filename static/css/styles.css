@@ -848,46 +848,42 @@ body.no-scroll { overflow: hidden; }
   color: #fff;
 }
 
-/* ============================
-   Card Grid Tweaks For Mobile
-   ============================ */
-
-/* Base styles (desktop/tablet) */
-.rank-name {
-  font-size: 1rem;       /* smaller than before */
-  line-height: 1.3;
-  margin: 0.4rem 0;
-}
-
-.rank-meta {
-  font-size: 0.85rem;
-  line-height: 1.3;
-  color: #555;
-}
-
-/* Mobile layout: first card full width, others two per row */
+/* =========================
+   MOBILE CARD FIXES
+   ========================= */
 @media (max-width: 640px) {
   .card-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
   }
 
-  /* First card spans both columns (big feature card) */
+  /* First card spans both columns */
   .card-grid .rank-card:first-child {
-    grid-column: 1 / -1;
+    grid-column: 1 / -1 !important;
   }
 
-  /* Normalise image sizing */
+  /* Image sizes */
   .rank-image {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 3;   /* consistent crop */
-    object-fit: cover;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 3 !important;
+    object-fit: cover !important;
   }
 
-  /* Make the first card’s image taller for impact */
+  /* First card image taller */
   .card-grid .rank-card:first-child .rank-image {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  /* Text sizes smaller */
+  .rank-name {
+    font-size: 0.95rem !important;
+    line-height: 1.3 !important;
+    margin: 0.3rem 0 !important;
+  }
+
+  .rank-meta {
+    font-size: 0.8rem !important;
+    line-height: 1.3 !important;
   }
 }
