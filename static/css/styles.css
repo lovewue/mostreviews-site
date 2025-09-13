@@ -853,37 +853,36 @@ body.no-scroll { overflow: hidden; }
    ========================= */
 @media (max-width: 640px) {
   .card-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 16px !important;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
   /* First card spans both columns */
   .card-grid .rank-card:first-child {
-    grid-column: 1 / -1 !important;
+    grid-column: 1 / -1;
   }
 
-  /* Image sizes */
+  /* Image proportions */
   .rank-image {
-    width: 100% !important;
-    height: auto !important;
-    aspect-ratio: 4 / 3 !important;
-    object-fit: cover !important;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;   /* consistent for grid cards */
+    object-fit: cover;
   }
 
-  /* First card image taller */
+  /* First card image taller for emphasis */
   .card-grid .rank-card:first-child .rank-image {
-    aspect-ratio: 16 / 9 !important;
+    aspect-ratio: 16 / 9;
   }
 
-  /* Text sizes smaller */
+  /* Text adjustments */
   .rank-name {
-    font-size: 0.95rem !important;
-    line-height: 1.3 !important;
-    margin: 0.3rem 0 !important;
+    font-size: 0.95rem;
+    line-height: 1.3;
   }
-
   .rank-meta {
-    font-size: 0.8rem !important;
-    line-height: 1.3 !important;
+    font-size: 0.8rem;
+    line-height: 1.3;
   }
 }
