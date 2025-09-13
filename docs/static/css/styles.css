@@ -853,7 +853,7 @@ body.no-scroll { overflow: hidden; }
    ========================= */
 
 
-/* Mobile layout: first card full width, others 2 per row */
+/* Mobile layout: first card full width, then 2 per row */
 @media (max-width: 640px) {
   .card-grid {
     display: grid;
@@ -861,38 +861,21 @@ body.no-scroll { overflow: hidden; }
     gap: 16px;
   }
 
-  /* First card spans both columns */
+  /* Make only the very first card span both columns */
   .card-grid .rank-card:first-child {
     grid-column: 1 / -1;
   }
 
-  /* Normalise image sizing */
+  /* Image sizing */
   .rank-image {
     width: 100%;
     height: auto;
-    aspect-ratio: 4 / 3;   /* consistent proportions for grid cards */
+    aspect-ratio: 4 / 3;  /* consistent crop */
     object-fit: cover;
   }
 
-  /* First card gets a taller, banner-like image */
+  /* Make the first card’s image taller for impact */
   .card-grid .rank-card:first-child .rank-image {
     aspect-ratio: 16 / 9;
   }
-
-  /* Text tweaks for mobile */
-  .rank-card {
-    padding: 12px; /* less padding inside cards */
-  }
-  .rank-card h2,
-  .rank-name {
-    font-size: 14px; /* smaller product name */
-  }
-  .rank-number {
-    font-size: 16px; /* smaller rank number */
-    margin-bottom: 4px;
-  }
-  .rank-meta {
-    font-size: 12px; /* smaller meta text */
-  }
 }
-
