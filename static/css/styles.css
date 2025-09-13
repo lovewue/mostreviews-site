@@ -853,14 +853,27 @@ body.no-scroll { overflow: hidden; }
    ========================= */
 
 
-/* Mobile layout tweak: first card full width, rest 2 per row */
+/* Mobile layout: first card full width, others 2 per row */
 @media (max-width: 640px) {
   .card-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2-column grid */
+    grid-template-columns: 1fr; /* start with single column */
+  }
+
+  /* Make rows after the first 2-column */
+  .card-grid .rank-card:not(:first-child) {
+    grid-column: span 1;
+    width: 100%;
+  }
+
+  /* Switch grid to 2 columns after the first card */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   .card-grid .rank-card:first-child {
-    grid-column: 1 / -1; /* span across both columns */
+    grid-column: 1 / -1; /* first card spans both */
   }
 }
+
 
