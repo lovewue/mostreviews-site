@@ -956,3 +956,21 @@ body.no-scroll { overflow: hidden; }
   font-weight: normal;
 }
 
+/* =========================
+   MOBILE CARD FIXES
+   ========================= */
+@media (max-width: 640px) {
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .card-grid .rank-card {
+    grid-column: auto / span 1;
+  }
+
+  .card-grid .rank-card:first-child {
+    grid-column: 1 / -1; /* first card spans both */
+  }
+}
