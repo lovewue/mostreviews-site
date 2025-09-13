@@ -956,14 +956,17 @@ body.no-scroll { overflow: hidden; }
   font-weight: normal;
 }
 
-/* Square product images on mobile only */
+/* Force square product images on mobile */
 @media (max-width: 640px) {
   .rank-image {
-    width: 100%;
-    aspect-ratio: 1 / 1;   /* force square on mobile */
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
     object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 0.75rem;
-    height: auto !important; /* override earlier rules */
+  }
+
+  /* Optional: make first card square too */
+  .card-grid .rank-card:first-child .rank-image {
+    aspect-ratio: 1 / 1 !important;
   }
 }
+
