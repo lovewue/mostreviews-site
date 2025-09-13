@@ -856,24 +856,26 @@ body.no-scroll { overflow: hidden; }
 /* Mobile layout: first card full width, others 2 per row */
 @media (max-width: 640px) {
   .card-grid {
-    grid-template-columns: 1fr; /* start with single column */
-  }
-
-  /* Make rows after the first 2-column */
-  .card-grid .rank-card:not(:first-child) {
-    grid-column: span 1;
-    width: 100%;
-  }
-
-  /* Switch grid to 2 columns after the first card */
-  .card-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 
+  /* First card spans both columns */
   .card-grid .rank-card:first-child {
-    grid-column: 1 / -1; /* first card spans both */
+    grid-column: 1 / -1;
+  }
+
+  /* Normalise image sizing */
+  .rank-image {
+    width: 100%;
+    height: auto;            /* let height scale with width */
+    aspect-ratio: 4 / 3;     /* keeps proportional crop */
+    object-fit: cover;
+  }
+
+  /* Make the first card’s image a bit taller (more visual impact) */
+  .card-grid .rank-card:first-child .rank-image {
+    aspect-ratio: 16 / 9; /* wide banner style */
   }
 }
-
-
