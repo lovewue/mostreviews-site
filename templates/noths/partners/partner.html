@@ -28,13 +28,14 @@
     </a>
   </div>
 
-  <!-- All Products ≥5 Reviews -->
+  <!-- Split products -->
   {% set reviewed = top_products | selectattr("review_count", "ge", 5) | list %}
   {% set low_reviewed = top_products | selectattr("review_count", "lt", 5) | list %}
 
+  <!-- Reviewed Products (≥5) -->
   {% if reviewed %}
     <div class="partner-products top-list">
-      <h2>Most Reviewed Products<br><small>(Sep 2024 – Aug 2025)</small></h2>
+      <h2>Most Reviewed Products<br><small>(Last 12 months)</small></h2>
 
       <div class="card-grid">
         {% for p in reviewed %}
@@ -66,27 +67,26 @@
         {% endfor %}
       </div>
     </div>
+  {% else %}
+    <!-- Low-Reviewed Products (<5) shown only if no reviewed products exist -->
+    {% if low_reviewed %}
+      <div class="partner-products low-reviewed">
+        <h2>Most Reviewed Products (last 12 months)</h2>
+        <ul class="top-products-list">
+          {% for p in low_reviewed %}
+            <li>
+              <a href="{{ p.awin or p.product_url }}"
+                 target="_blank"
+                 data-product-url="{{ p.product_url }}">
+                {{ p.name }}
+              </a>
+              <span class="review-count">({{ p.review_count }} reviews)</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
   {% endif %}
-
-  <!-- Low-Reviewed Products (<5) -->
-   {% if low_reviewed %}
-    <div class="partner-products low-reviewed">
-     <h2>Other Products (under 5 reviews)</h2>
-      <ul class="top-products-list">
-      {% for p in low_reviewed[:5] %}
-        <li>
-          <a href="{{ p.awin or p.product_url }}"
-             target="_blank"
-             data-product-url="{{ p.product_url }}">
-            {{ p.name }}
-          </a>
-          <span class="review-count">({{ p.review_count }} reviews)</span>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-{% endif %}
-
 
 </section>
 {% endblock %}
