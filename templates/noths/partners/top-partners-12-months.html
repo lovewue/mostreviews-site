@@ -1,16 +1,27 @@
 {% extends "base.html" %}
-
 {% block title %}Top 100 Partners – Last 12 Months{% endblock %}
-
 {% block content %}
-<section class="page-wrap top-list">
+<section class="page-hero">
   <h1>Top 100 Partners – Last 12 Months</h1>
+  <p class="lead">Discover the most popular partners based on customer reviews from the last 12 months</p>
+</section>
 
+<section class="page-wrap top-list">
   <div class="card-grid">
     {% for partner in partners %}
       <a href="/noths/partners/{{ partner.slug[0] }}/{{ partner.slug }}.html"
          class="rank-card">
+        
+        <!-- PARTNER LOGO -->
+        <img
+          src="/Partner_Logo/{{ partner.slug }}.webp"
+          alt="{{ partner.name }} logo"
+          class="rank-image partner-logo-image"
+          loading="lazy"
+          onerror="this.onerror=null; this.src='/Partner_Logo/{{ partner.slug }}.jpg'; this.onerror=function(){this.src='/Partner_Logo/{{ partner.slug }}.png'; this.onerror=function(){this.style.display='none';};};">
+        
         <div class="rank-number">#{{ loop.index }}</div>
+        <div class="rank-divider"></div>
         <div class="rank-body">
           <h2 class="rank-name">{{ partner.name }}</h2>
           <p class="rank-meta">{{ "{:,}".format(partner.total_reviews) }} reviews</p>
