@@ -28,6 +28,35 @@
     </a>
   </div>
 
+{% if partner.paid %}
+<div class="partner-links">
+  <h2>Connect</h2>
+  <ul class="social-icons">
+    {% if partner.website %}
+      <li><a href="{{ partner.website }}" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i></a></li>
+    {% endif %}
+    {% if partner.facebook %}
+      <li><a href="{{ partner.facebook }}" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a></li>
+    {% endif %}
+    {% if partner.instagram %}
+      <li><a href="{{ partner.instagram }}" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a></li>
+    {% endif %}
+    {% if partner.twitter %}
+      <li><a href="{{ partner.twitter }}" target="_blank" rel="noopener"><i class="fa-brands fa-twitter"></i></a></li>
+    {% endif %}
+    {% if partner.x %}
+      <li><a href="{{ partner.x }}" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a></li>
+    {% endif %}
+    {% if partner.youtube %}
+      <li><a href="{{ partner.youtube }}" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a></li>
+    {% endif %}
+    {% if partner.tiktok %}
+      <li><a href="{{ partner.tiktok }}" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a></li>
+    {% endif %}
+  </ul>
+</div>
+{% endif %}
+
   <!-- Split products -->
   {% set reviewed = top_products | selectattr("review_count", "ge", 5) | list %}
   {% set low_reviewed = top_products | selectattr("review_count", "lt", 5) | list %}
