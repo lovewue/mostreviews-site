@@ -1088,4 +1088,9 @@ body.no-scroll { overflow: hidden; }
   }
 }
 
-
+/* Nuclear option - override everything */
+@media (max-width: 640px) {
+  .rank-image:not(.card-grid .rank-card:first-child .rank-image) {
+    aspect-ratio: 1 / 1 !important;
+  }
+}
