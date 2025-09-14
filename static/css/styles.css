@@ -956,6 +956,35 @@ body.no-scroll { overflow: hidden; }
   font-weight: normal;
 }
 
+/* =========================
+   FORCE SQUARE PRODUCT IMAGES (MOBILE ONLY - EXCEPT FIRST)
+   ========================= */
 
+/* Mobile only: square images for all cards except the first one */
+@media (max-width: 640px) {
+  .card-grid .rank-card:not(:first-child) .rank-image,
+  .products-grid .rank-card:not(:first-child) .rank-image,
+  .partners-grid .rank-card:not(:first-child) .rank-image {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+    margin-bottom: 0.75rem !important;
+    display: block !important;
+  }
+
+  /* Fallback for older browsers that don't support aspect-ratio */
+  @supports not (aspect-ratio: 1 / 1) {
+    .card-grid .rank-card:not(:first-child) .rank-image,
+    .products-grid .rank-card:not(:first-child) .rank-image,
+    .partners-grid .rank-card:not(:first-child) .rank-image {
+      height: 150px !important;
+      width: 100% !important;
+    }
+  }
+}
+
+/* Desktop: keep existing image proportions (no changes) */
 
 
