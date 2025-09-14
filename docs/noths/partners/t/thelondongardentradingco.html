@@ -596,7 +596,7 @@ loadSellers().then(sellers => {
     if (e.key === "Enter") {
       let matches = showMatches(input.value);
       if (matches && matches.length > 0) {
-        window.location.href = `/noths/sellers/${matches[0].slug[0]}/${matches[0].slug}.html`;
+        window.location.href = `/noths/partners/${matches[0].slug[0]}/${matches[0].slug}.html`;
       }
     }
   });
