@@ -63,6 +63,18 @@
     
 <section class="page-hero">
   <h1>Notonthehighstreet – Partner Directory & Trends</h1>
+
+<div class="search-box">
+  <span class="search-icon">
+    <svg fill="none" viewBox="0 0 16 16">
+      <path d="M15,15l-4.67-4.67m1.56-3.89A5.44,5.44,0,1,1,6.44,1,5.44,5.44,0,0,1,11.89,6.44Z"
+            stroke="#000" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <input type="text" id="sellerSearch" placeholder="Search shops by brand" autocomplete="off">
+  <ul id="searchResults" class="search-results"></ul>
+</div>
+
   <p class="lead">
     Discover what’s trending on Not On The High Street. Explore the 
     <em>Top 100 most-reviewed products and partners</em>, browse the complete 
@@ -281,6 +293,46 @@
       }
     })();
   </script>
+
+<script>
+async function loadSellers() {
+  const res = await fetch("/data/partners_search.json"); // make sure this file exists
+  return res.json();
+}
+
+loadSellers().then(sellers => {
+  const input = document.getElementById("sellerSearch");
+  const results = document.getElementById("searchResults");
+
+  function showMatches(q) {
+    results.innerHTML = "";
+    if (!q) return;
+
+    let matches = sellers.filter(s => s.name.toLowerCase().includes(q.toLowerCase())).slice(0, 10);
+
+    matches.forEach(s => {
+      let li = document.createElement("li");
+      li.innerHTML = `<a href="/noths/sellers/${s.slug[0]}/${s.slug}.html">${s.name}</a>`;
+      results.appendChild(li);
+    });
+
+    return matches;
+  }
+
+  input.addEventListener("input", () => {
+    showMatches(input.value);
+  });
+
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      let matches = showMatches(input.value);
+      if (matches && matches.length > 0) {
+        window.location.href = `/noths/sellers/${matches[0].slug[0]}/${matches[0].slug}.html`;
+      }
+    }
+  });
+});
+</script>
 
 </body>
 </html>
