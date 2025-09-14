@@ -86,6 +86,8 @@
     </a>
   </div>
 
+
+
   <!-- Split products -->
   
   
@@ -452,7 +454,7 @@ async function loadSellers() {
   return res.json();
 }
 
-loadSellers().then(sellers => {
+loadSellers().then(partners => {
   const input = document.getElementById("sellerSearch");
   const results = document.getElementById("searchResults");
 
@@ -460,11 +462,11 @@ loadSellers().then(sellers => {
     results.innerHTML = "";
     if (!q) return;
 
-    let matches = sellers.filter(s => s.name.toLowerCase().includes(q.toLowerCase())).slice(0, 10);
+    let matches = partners.filter(s => s.name.toLowerCase().includes(q.toLowerCase())).slice(0, 10);
 
     matches.forEach(s => {
       let li = document.createElement("li");
-      li.innerHTML = `<a href="/noths/sellers/${s.slug[0]}/${s.slug}.html">${s.name}</a>`;
+      li.innerHTML = `<a href="/noths/partners/${s.slug[0]}/${s.slug}.html">${s.name}</a>`;
       results.appendChild(li);
     });
 

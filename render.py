@@ -325,19 +325,6 @@ def render_about_page():
         f.write(template.render())
     print("📖 Rendered about.html")
 
-# === Run Everything ===
-render_noths_index()
-copy_static_assets()
-render_partner_pages()
-render_partner_index()
-render_partner_by_year()
-render_partner_most_reviews_grouped()
-render_partner_most_products_grouped()
-render_top_100_products()
-render_site_homepage()
-render_top_partners_last_12_months()
-render_about_page()
-
 # === Create Sitemap ===
 
 
@@ -349,9 +336,9 @@ def render_sitemap():
     urls = [
         f"{BASE_URL}/",
         f"{BASE_URL}/noths/products/products-last-12-months.html",
-        f"{BASE_URL}/noths/sellers/index.html",
-        f"{BASE_URL}/noths/sellers/by-year.html",
-        f"{BASE_URL}/noths/sellers/seller-most-reviews.html",
+        f"{BASE_URL}/noths/partners/index.html",
+        f"{BASE_URL}/noths/partners/by-year.html",
+        f"{BASE_URL}/noths/partners/partner-most-reviews.html",
     ]
 
     # include all seller pages
@@ -361,7 +348,7 @@ def render_sitemap():
     for s in sellers:
         slug = s["slug"]
         first = slug[0].lower()
-        urls.append(f"{BASE_URL}/noths/sellers/{first}/{slug}.html")
+        urls.append(f"{BASE_URL}/noths/partners/{first}/{slug}.html")
 
     today = date.today().isoformat()
     xml = ['<?xml version="1.0" encoding="UTF-8"?>']
@@ -382,11 +369,23 @@ def render_sitemap():
         f.write("\n".join(xml))
 
     print(f"🗺️  Wrote sitemap.xml with {len(urls)} URLs")
+    
 
-# then in your main()
-if __name__ == "__main__":
-    render_seller_index()
-    render_seller_pages()
-    # ... other render calls ...
-    render_sitemap()
+# === Run Everything ===
+render_noths_index()
+copy_static_assets()
+render_partner_pages()
+render_partner_index()
+render_partner_by_year()
+render_partner_most_reviews_grouped()
+render_partner_most_products_grouped()
+render_top_100_products()
+render_site_homepage()
+render_top_partners_last_12_months()
+render_about_page()
+render_sitemap()
+
+
+
+
 
