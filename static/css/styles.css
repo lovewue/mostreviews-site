@@ -962,9 +962,11 @@ body.no-scroll { overflow: hidden; }
 
 /* Mobile only: square images for all cards except the first one */
 @media (max-width: 640px) {
+  /* Override your existing 4/3 aspect ratio rule */
   .card-grid .rank-card:not(:first-child) .rank-image,
   .products-grid .rank-card:not(:first-child) .rank-image,
-  .partners-grid .rank-card:not(:first-child) .rank-image {
+  .partners-grid .rank-card:not(:first-child) .rank-image,
+  .rank-card:not(:first-child) .rank-image {
     width: 100% !important;
     height: auto !important;
     aspect-ratio: 1 / 1 !important;
@@ -972,15 +974,25 @@ body.no-scroll { overflow: hidden; }
     border-radius: 8px !important;
     margin-bottom: 0.75rem !important;
     display: block !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  /* More aggressive override - target the specific existing rule */
+  .card-grid .rank-card:not(:first-child) .rank-image {
+    aspect-ratio: 1 / 1 !important;
   }
 
   /* Fallback for older browsers that don't support aspect-ratio */
   @supports not (aspect-ratio: 1 / 1) {
     .card-grid .rank-card:not(:first-child) .rank-image,
     .products-grid .rank-card:not(:first-child) .rank-image,
-    .partners-grid .rank-card:not(:first-child) .rank-image {
+    .partners-grid .rank-card:not(:first-child) .rank-image,
+    .rank-card:not(:first-child) .rank-image {
       height: 150px !important;
-      width: 100% !important;
+      width: 150px !important;
+      max-width: 150px !important;
+      margin: 0 auto 0.75rem !important;
     }
   }
 }
