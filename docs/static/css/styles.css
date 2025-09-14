@@ -987,4 +987,93 @@ body.no-scroll { overflow: hidden; }
 
 /* Desktop: keep existing image proportions (no changes) */
 
+/* =========================
+   PRODUCT CARD TEXT SIZING FIX
+   ========================= */
+
+/* Override existing text sizes for all product cards */
+.rank-card .rank-number {
+  font-size: 1.2rem !important;    /* reduced from 1.5rem */
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  margin: 0.2rem 0 0.4rem !important;
+}
+
+.rank-card .rank-name {
+  font-size: 0.95rem !important;   /* reduced from 1.1rem */
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  margin: 0.4rem 0 0.3rem !important;
+}
+
+.rank-card .rank-meta {
+  font-size: 0.8rem !important;    /* reduced from 0.9rem */
+  color: #666 !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+}
+
+.rank-card .rank-meta .seller-name,
+.rank-card .rank-meta .partner-name {
+  display: block !important;
+  margin-top: 3px !important;
+  font-size: 0.75rem !important;   /* slightly smaller for secondary info */
+  color: #555 !important;
+  font-weight: normal !important;
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 768px) {
+  .rank-card .rank-number {
+    font-size: 1rem !important;    /* even smaller on mobile */
+  }
+
+  .rank-card .rank-name {
+    font-size: 0.85rem !important; /* smaller on mobile */
+    line-height: 1.25 !important;
+  }
+
+  .rank-card .rank-meta {
+    font-size: 0.75rem !important; /* smaller on mobile */
+  }
+
+  .rank-card .rank-meta .seller-name,
+  .rank-card .rank-meta .partner-name {
+    font-size: 0.7rem !important;  /* very compact on mobile */
+  }
+}
+
+/* Extra small mobile screens */
+@media (max-width: 480px) {
+  .rank-card .rank-number {
+    font-size: 0.9rem !important;
+  }
+
+  .rank-card .rank-name {
+    font-size: 0.8rem !important;
+  }
+
+  .rank-card .rank-meta {
+    font-size: 0.7rem !important;
+  }
+
+  .rank-card .rank-meta .seller-name,
+  .rank-card .rank-meta .partner-name {
+    font-size: 0.65rem !important;
+  }
+}
+
+/* Adjust card padding to compensate for smaller text */
+@media (max-width: 768px) {
+  .rank-card {
+    padding: 0.8rem !important;    /* slightly tighter padding on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .rank-card {
+    padding: 0.7rem !important;    /* even tighter on very small screens */
+  }
+}
+
 
