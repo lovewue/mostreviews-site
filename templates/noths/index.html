@@ -47,8 +47,8 @@
 
   <!-- Most Reviewed Partners (last 12 months) -->
 <a class="card visual-card" href="/noths/partners/top-partners-12-months.html">
-  <div class="card-images logos">
-    {% for partner in top_partners[:3] %}
+  <div class="card-images">
+    {% for partner in top_partners %}
       <img src="/Partner_Logo/{{ partner.slug }}.jpg"
            alt="{{ partner.name }} logo">
     {% endfor %}
@@ -59,6 +59,7 @@
   </div>
   <span class="card-cta">View partners →</span>
 </a>
+
 
 
   <!-- Partners A–Z Directory -->
