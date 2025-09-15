@@ -23,23 +23,38 @@ STATIC_PATH = "/docs/noths/static"
 
 # === Render NOTHS index ===
 def render_noths_index():
-    # Load top products JSON
+    # Load top products (for product card & partner review counts)
     with open("data/top_products_last_12_months.json", "r", encoding="utf-8") as f:
         top_products = json.load(f)
 
-    # Load partners merged data
+    # Load partner metadata
     with open("data/partners_merged.json", "r", encoding="utf-8") as f:
-        partners = json.load(f)
+        all_partners = json.load(f)
 
-    # Sort partners by reviews (descending) and take top 3
-    top_partners = sorted(
-        partners, key=lambda p: int(p.get("reviews", 0)), reverse=True
-    )[:3]
+    partner_lookup = {p["slug"]: p for p in all_partners if p.get("active", True)}
 
-    # Get template
+    # Build review totals by partner
+    review_totals = {}
+    for p in top_products:
+        slug = (p.get("seller_slug") or "").lower().strip()
+        if slug and slug in partner_lookup:
+            review_totals[slug] = review_totals.get(slug, 0) + int(p.get("review_count", 0))
+
+    # Build partner list with counts
+    top_partners = []
+    for slug, count in review_totals.items():
+        partner = partner_lookup[slug]
+        top_partners.append({
+            "slug": slug,
+            "name": partner.get("name"),
+            "total_reviews": count,
+        })
+
+    # Take top 3 by reviews
+    top_partners = sorted(top_partners, key=lambda x: x["total_reviews"], reverse=True)[:3]
+
+    # Render template
     template = env.get_template("noths/index.html")
-
-    # Render with context
     html = template.render(
         title="NOTHS Partners and Products",
         static_path=STATIC_PATH,
@@ -47,13 +62,11 @@ def render_noths_index():
         top_partners=top_partners
     )
 
-    # Write to file
     os.makedirs("docs/noths", exist_ok=True)
     with open("docs/noths/index.html", "w", encoding="utf-8") as f:
         f.write(html)
 
     print("✅ Rendered NOTHS index → docs/noths/index.html")
-
 
 
 
