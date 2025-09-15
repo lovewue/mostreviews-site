@@ -63,13 +63,20 @@
 
 
   <!-- Partners A–Z Directory -->
-  <a class="card" href="/noths/partners/index.html">
-    <div class="card-body">
-      <h2>Partners A–Z Directory</h2>
-      <p>Browse every active NOTHS partner by name with quick jump letters.</p>
-    </div>
-    <span class="card-cta">Browse A–Z →</span>
-  </a>
+<a class="card visual-card" href="/noths/partners/index.html">
+  <div class="card-images">
+    {% for partner in az_partners %}
+      <img src="/Partner_Logo/{{ partner.slug }}.jpg"
+           alt="{{ partner.name }} logo">
+    {% endfor %}
+  </div>
+  <div class="card-body">
+    <h2>Partners A–Z Directory</h2>
+    <p>Browse every active NOTHS partner by name with quick jump letters.</p>
+  </div>
+  <span class="card-cta">Browse A–Z →</span>
+</a>
+
 
   <!-- Partners by Year Joined -->
 <a class="card visual-card" href="/noths/partners/by-year.html">

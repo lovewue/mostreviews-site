@@ -85,6 +85,25 @@ def render_noths_index():
         partners_with_counts, key=lambda x: x["product_count"], reverse=True
     )[:3]
 
+    # --- Pick 3 logos from A–Z directory (first, middle, last) ---
+    partners_sorted = sorted(
+        [p for p in all_partners if p.get("active", True)],
+        key=lambda p: p.get("name", "").lower()
+    )
+
+    az_partners = []
+    if partners_sorted:
+        az_partners.append(partners_sorted[0])  # first alphabetically
+    if len(partners_sorted) > 2:
+        az_partners.append(partners_sorted[len(partners_sorted)//2])  # middle
+    if len(partners_sorted) > 1:
+        az_partners.append(partners_sorted[-1])  # last alphabetically
+
+    print("Top partners:", [p["slug"] for p in top_partners])
+    print("2025 partners:", [p["slug"] for p in partners_2025])
+    print("Most products partners:", [p["slug"] for p in top_product_partners])
+    print("A–Z partners:", [p["slug"] for p in az_partners])
+
     # --- Render template ---
     template = env.get_template("noths/index.html")
     html = template.render(
@@ -93,7 +112,8 @@ def render_noths_index():
         top_products=top_products,            # full list for slicing in Jinja
         top_partners=top_partners,            # top 3 by reviews
         partners_2025=partners_2025,          # top 3 new joiners
-        top_product_partners=top_product_partners  # top 3 by product count
+        top_product_partners=top_product_partners,  # top 3 by product count
+        az_partners=az_partners               # first, middle, last alphabetically
     )
 
     # --- Write output ---
