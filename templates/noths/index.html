@@ -46,13 +46,20 @@
 
 
   <!-- Most Reviewed Partners (last 12 months) -->
-  <a class="card" href="/noths/partners/top-partners-12-months.html">
-    <div class="card-body">
-      <h2>Most Reviewed Partners (last 12 months)</h2>
-      <p>Which brands earned the most new reviews in the last 12 months.</p>
-    </div>
-    <span class="card-cta">View partners →</span>
-  </a>
+<a class="card visual-card" href="/noths/partners/top-partners-12-months.html">
+  <div class="card-images logos">
+    {% for partner in top_partners[:3] %}
+      <img src="/Partner_Logo/{{ partner.slug }}.jpg"
+           alt="{{ partner.name }} logo">
+    {% endfor %}
+  </div>
+  <div class="card-body">
+    <h2>Most Reviewed Partners (last 12 months)</h2>
+    <p>Which brands earned the most new reviews in the last 12 months.</p>
+  </div>
+  <span class="card-cta">View partners →</span>
+</a>
+
 
   <!-- Partners A–Z Directory -->
   <a class="card" href="/noths/partners/index.html">

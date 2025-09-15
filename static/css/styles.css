@@ -1240,3 +1240,23 @@ body.no-scroll { overflow: hidden; }
   object-fit: cover;
   display: block;
 }
+
+.card.visual-card .card-images.logos {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  background: #fafafa;
+  border-radius: 12px 12px 0 0;
+}
+
+.card.visual-card .card-images.logos img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 6px;
+}
+

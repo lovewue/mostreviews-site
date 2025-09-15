@@ -27,14 +27,19 @@ def render_noths_index():
     with open("data/top_products_last_12_months.json", "r", encoding="utf-8") as f:
         top_products = json.load(f)
 
+    # Load top partners JSON
+    with open("data/top_partners_last_12_months.json", "r", encoding="utf-8") as f:
+        top_partners = json.load(f)
+
     # Get template
     template = env.get_template("noths/index.html")
 
-    # Render with context (include top_products!)
+    # Render with context (include products + partners)
     html = template.render(
         title="NOTHS Partners and Products",
         static_path=STATIC_PATH,
-        top_products=top_products  # 👈 now available in Jinja
+        top_products=top_products,
+        top_partners=top_partners
     )
 
     # Write to file
@@ -43,6 +48,7 @@ def render_noths_index():
         f.write(html)
 
     print("✅ Rendered NOTHS index → docs/noths/index.html")
+
 
 
 # === Copy static assets ===
