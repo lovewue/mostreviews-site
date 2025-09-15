@@ -33,14 +33,13 @@ def render_noths_index():
 
     partner_lookup = {p["slug"]: p for p in all_partners if p.get("active", True)}
 
-    # Build review totals by partner
+    # --- Build review totals by partner (last 12 months) ---
     review_totals = {}
     for p in top_products:
         slug = (p.get("seller_slug") or "").lower().strip()
         if slug and slug in partner_lookup:
             review_totals[slug] = review_totals.get(slug, 0) + int(p.get("review_count", 0))
 
-    # Build partner list with counts
     top_partners = []
     for slug, count in review_totals.items():
         partner = partner_lookup[slug]
@@ -50,24 +49,31 @@ def render_noths_index():
             "total_reviews": count,
         })
 
-    # Take top 3 by reviews
+    # Top 3 partners by reviews in last 12 months
     top_partners = sorted(top_partners, key=lambda x: x["total_reviews"], reverse=True)[:3]
 
-    # Render template
+    # --- Pick 3 partners who joined in 2025 ---
+    partners_2025 = [
+        p for p in all_partners
+        if str(p.get("since")) == "2025" and p.get("active", True)
+    ][:3]
+
+    # --- Render template ---
     template = env.get_template("noths/index.html")
     html = template.render(
         title="NOTHS Partners and Products",
         static_path=STATIC_PATH,
-        top_products=top_products,
-        top_partners=top_partners
+        top_products=top_products,   # full list for slicing in Jinja
+        top_partners=top_partners,   # top 3 only
+        partners_2025=partners_2025  # 3 logos from 2025 joiners
     )
 
+    # --- Write output ---
     os.makedirs("docs/noths", exist_ok=True)
     with open("docs/noths/index.html", "w", encoding="utf-8") as f:
         f.write(html)
 
     print("✅ Rendered NOTHS index → docs/noths/index.html")
-
 
 
 # === Copy static assets ===

@@ -72,13 +72,20 @@
   </a>
 
   <!-- Partners by Year Joined -->
-  <a class="card" href="/noths/partners/by-year.html">
-    <div class="card-body">
-      <h2>Partners by Year Joined</h2>
-      <p>See when partners joined NOTHS and explore each cohort.</p>
-    </div>
-    <span class="card-cta">Browse by year →</span>
-  </a>
+<a class="card visual-card" href="/noths/partners/by-year.html">
+  <div class="card-images">
+    {% for partner in partners_2025 %}
+      <img src="/Partner_Logo/{{ partner.slug }}.jpg"
+           alt="{{ partner.name }} logo">
+    {% endfor %}
+  </div>
+  <div class="card-body">
+    <h2>Partners by Year Joined</h2>
+    <p>See when partners joined NOTHS and explore each cohort.</p>
+  </div>
+  <span class="card-cta">Browse by year →</span>
+</a>
+
 
   <!-- Partners with Most Products -->
   <a class="card" href="/noths/partners/partner-most-products.html">
