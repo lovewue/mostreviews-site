@@ -53,13 +53,20 @@ def render_noths_index():
     top_partners = sorted(top_partners, key=lambda x: x["total_reviews"], reverse=True)[:3]
 
     # --- Top 3 partners who joined in 2025, ranked by reviews ---
-    partners_2025 = [
-        p for p in all_partners
-        if str(p.get("since")) == "2025" and p.get("active", True)
-    ]
+    partners_2025 = []
+    for p in all_partners:
+        if not p.get("active", True):
+            continue
+        since_raw = str(p.get("since", "")).strip()
+        year = since_raw[-4:] if since_raw[-4:].isdigit() else "Unknown"
+        if year == "2025":
+            partners_2025.append(p)
+
     partners_2025 = sorted(
         partners_2025, key=lambda x: int(p.get("review_count", 0)), reverse=True
     )[:3]
+
+    print("2025 partners:", [p["slug"] for p in partners_2025])
 
     # --- Render template ---
     template = env.get_template("noths/index.html")
