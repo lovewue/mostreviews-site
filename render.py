@@ -52,11 +52,14 @@ def render_noths_index():
     # Top 3 partners by reviews in last 12 months
     top_partners = sorted(top_partners, key=lambda x: x["total_reviews"], reverse=True)[:3]
 
-    # --- Pick 3 partners who joined in 2025 ---
+    # --- Top 3 partners who joined in 2025, ranked by reviews ---
     partners_2025 = [
         p for p in all_partners
         if str(p.get("since")) == "2025" and p.get("active", True)
-    ][:3]
+    ]
+    partners_2025 = sorted(
+        partners_2025, key=lambda x: int(p.get("review_count", 0)), reverse=True
+    )[:3]
 
     # --- Render template ---
     template = env.get_template("noths/index.html")
@@ -65,7 +68,7 @@ def render_noths_index():
         static_path=STATIC_PATH,
         top_products=top_products,   # full list for slicing in Jinja
         top_partners=top_partners,   # top 3 only
-        partners_2025=partners_2025  # 3 logos from 2025 joiners
+        partners_2025=partners_2025  # top 3 by reviews from 2025 joiners
     )
 
     # --- Write output ---
@@ -74,7 +77,6 @@ def render_noths_index():
         f.write(html)
 
     print("✅ Rendered NOTHS index → docs/noths/index.html")
-
 
 # === Copy static assets ===
 def copy_static_assets():
