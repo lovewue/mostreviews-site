@@ -30,13 +30,20 @@
 
 <section class="card-grid">
   <!-- Most Reviewed Products (last 12 months) -->
-  <a class="card" href="/noths/products/products-last-12-months.html">
-    <div class="card-body">
-      <h2>Most Reviewed Products (last 12 months)</h2>
-      <p>The products customers reviewed the most in the last year — sortable leaderboards and deep dives.</p>
-    </div>
-    <span class="card-cta">View products →</span>
-  </a>
+<a class="card visual-card" href="/noths/products/products-last-12-months.html">
+  <div class="card-images">
+    {% for product in top_products[:3] %}
+      <img src="/Product_Images/{{ product.sku }}.jpg"
+           alt="{{ product.name }}">
+    {% endfor %}
+  </div>
+  <div class="card-body">
+    <h2>Most Reviewed Products (last 12 months)</h2>
+    <p>The products customers reviewed the most in the last year — sortable leaderboards and deep dives.</p>
+  </div>
+  <span class="card-cta">View products →</span>
+</a>
+
 
   <!-- Most Reviewed Partners (last 12 months) -->
   <a class="card" href="/noths/partners/top-partners-12-months.html">

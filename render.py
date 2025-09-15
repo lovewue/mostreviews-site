@@ -23,12 +23,27 @@ STATIC_PATH = "/docs/noths/static"
 
 # === Render NOTHS index ===
 def render_noths_index():
+    # Load top products JSON
+    with open("data/top_products_last_12_months.json", "r", encoding="utf-8") as f:
+        top_products = json.load(f)
+
+    # Get template
     template = env.get_template("noths/index.html")
+
+    # Render with context (include top_products!)
+    html = template.render(
+        title="NOTHS Partners and Products",
+        static_path=STATIC_PATH,
+        top_products=top_products  # 👈 now available in Jinja
+    )
+
+    # Write to file
     os.makedirs("docs/noths", exist_ok=True)
-    html = template.render(title="NOTHS Partners and Products", static_path=STATIC_PATH)
     with open("docs/noths/index.html", "w", encoding="utf-8") as f:
         f.write(html)
+
     print("✅ Rendered NOTHS index → docs/noths/index.html")
+
 
 # === Copy static assets ===
 def copy_static_assets():
