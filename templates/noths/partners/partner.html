@@ -26,7 +26,6 @@
        data-product-url="{{ partner.url }}">
        View on NOTHS
     </a>
-  </div>
 
 {% if partner.paid %}
 <div class="partner-links">
@@ -56,6 +55,7 @@
   </ul>
 </div>
 {% endif %}
+</div>
 
   <!-- Split products -->
   {% set reviewed = top_products | selectattr("review_count", "ge", 5) | list %}
