@@ -27,14 +27,19 @@ def render_noths_index():
     with open("data/top_products_last_12_months.json", "r", encoding="utf-8") as f:
         top_products = json.load(f)
 
-    # Load top partners JSON
-    with open("data/top_partners_last_12_months.json", "r", encoding="utf-8") as f:
-        top_partners = json.load(f)
+    # Load partners merged data
+    with open("data/partners_merged.json", "r", encoding="utf-8") as f:
+        partners = json.load(f)
+
+    # Sort partners by reviews (descending) and take top 3
+    top_partners = sorted(
+        partners, key=lambda p: int(p.get("reviews", 0)), reverse=True
+    )[:3]
 
     # Get template
     template = env.get_template("noths/index.html")
 
-    # Render with context (include products + partners)
+    # Render with context
     html = template.render(
         title="NOTHS Partners and Products",
         static_path=STATIC_PATH,
@@ -48,6 +53,7 @@ def render_noths_index():
         f.write(html)
 
     print("✅ Rendered NOTHS index → docs/noths/index.html")
+
 
 
 
