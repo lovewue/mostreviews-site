@@ -1200,22 +1200,27 @@ body.no-scroll { overflow: hidden; }
 .page-hero .stats {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   margin-top: 1.5rem;
-  flex-wrap: wrap; /* makes it wrap nicely on mobile */
+  flex-wrap: wrap;
 }
 
 .page-hero .stat {
+  background: #000;
+  color: #fff;
+  flex: 1 1 200px;   /* each grows/shrinks equally */
+  max-width: 240px;  /* stops them getting too wide on big screens */
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 1.1rem;
-  color: #333;
   text-align: center;
 }
 
 .page-hero .stat span {
   display: block;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 400;
-  color: #666;
+  margin-top: 0.25rem;
+  color: #eee;
 }
-
