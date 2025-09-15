@@ -1155,3 +1155,45 @@ body.no-scroll { overflow: hidden; }
   background: #f2f2f2;
 }
 
+
+/* === NOTHS index: hero polish (neutral, no brand color) === */
+.page-hero {
+  background: #fff;
+  color: #222;
+  text-align: center;
+  padding: 3rem 1rem 2.5rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.page-hero h1 {
+  font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+  line-height: 1.25;
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.page-hero .lead {
+  max-width: 780px;
+  margin: 0.75rem auto 0;
+  font-size: clamp(1rem, 2.2vw, 1.05rem);
+  color: #444;
+}
+
+.page-hero .byline {
+  margin-top: 0.75rem;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.page-hero a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.page-hero .search-box {
+  margin: 1.5rem auto 0;
+}
+
+
