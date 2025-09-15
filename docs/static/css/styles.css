@@ -1194,8 +1194,11 @@ body.no-scroll { overflow: hidden; }
 }
 
 .page-hero .search-box {
-  margin: 1.5rem auto 0;
+  max-width: 500px;
+  margin: 2rem auto 0; /* spacing above = 2rem after stats */
+  position: relative;
 }
+
 
 .page-hero .stats {
   display: flex;
