@@ -102,7 +102,7 @@
       <div class="partner-products low-reviewed">
         <h2>Most Reviewed Products (last 12 months)</h2>
         <ul class="top-products-list">
-          {% for p in low_reviewed %}
+          {% for p in low_reviewed[:5] %}
             <li>
               <a href="{{ p.awin or p.product_url }}"
                  target="_blank"
