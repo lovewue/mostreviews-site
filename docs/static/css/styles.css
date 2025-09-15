@@ -1161,7 +1161,7 @@ body.no-scroll { overflow: hidden; }
   background: #fff;
   color: #222;
   text-align: center;
-  padding: 1.5rem 1rem 2rem; /* reduced top padding */
+  padding: 1rem 1rem 2rem; /* reduced top padding */
   border-bottom: 1px solid #e5e5e5;
 }
 
