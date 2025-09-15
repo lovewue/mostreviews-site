@@ -66,16 +66,34 @@ def render_noths_index():
         partners_2025, key=lambda x: int(p.get("review_count", 0)), reverse=True
     )[:3]
 
-    print("2025 partners:", [p["slug"] for p in partners_2025])
+    # --- Top 3 partners with the most products ---
+    partners_with_counts = []
+    for p in all_partners:
+        if not p.get("active", True):
+            continue
+        try:
+            count = int(str(p.get("product_count", 0)).replace(",", ""))
+        except:
+            count = 0
+        partners_with_counts.append({
+            "slug": p.get("slug", "").strip().lower(),
+            "name": p.get("name", "").strip(),
+            "product_count": count,
+        })
+
+    top_product_partners = sorted(
+        partners_with_counts, key=lambda x: x["product_count"], reverse=True
+    )[:3]
 
     # --- Render template ---
     template = env.get_template("noths/index.html")
     html = template.render(
         title="NOTHS Partners and Products",
         static_path=STATIC_PATH,
-        top_products=top_products,   # full list for slicing in Jinja
-        top_partners=top_partners,   # top 3 only
-        partners_2025=partners_2025  # top 3 by reviews from 2025 joiners
+        top_products=top_products,            # full list for slicing in Jinja
+        top_partners=top_partners,            # top 3 by reviews
+        partners_2025=partners_2025,          # top 3 new joiners
+        top_product_partners=top_product_partners  # top 3 by product count
     )
 
     # --- Write output ---
@@ -84,6 +102,7 @@ def render_noths_index():
         f.write(html)
 
     print("✅ Rendered NOTHS index → docs/noths/index.html")
+
 
 # === Copy static assets ===
 def copy_static_assets():
