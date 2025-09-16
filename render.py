@@ -382,6 +382,8 @@ def render_top_100_products():
 
     print("🔝 Rendered products-last-12-months.html (Top 100 only)")
 
+import urllib.parse
+
 def render_top_christmas():
     # Load Christmas category SKUs
     with open("data/top_products_christmas.json", "r", encoding="utf-8") as f:
@@ -394,16 +396,26 @@ def render_top_christmas():
     # Index full dataset by SKU for quick lookup
     full_by_sku = {str(p.get("sku")): p for p in full_products}
 
-    # Enrich Christmas list with full product data
+    # Enrich Christmas list with full product data (AWIN fallback for missing)
     enriched = []
     for item in christmas_list:
         sku = str(item.get("sku"))
         base = full_by_sku.get(sku, {})
+
+        product_url = base.get("product_url", item.get("url"))
+        awin_link = base.get("awin")
+        if not awin_link and product_url:
+            awin_link = (
+                "https://www.awin1.com/cread.php?"
+                "awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued="
+                + urllib.parse.quote(product_url, safe="")
+            )
+
         merged = {
             "sku": sku,
             "name": item.get("name") or base.get("name", ""),
-            "product_url": base.get("product_url", item.get("url")),
-            "awin": base.get("awin", ""),
+            "product_url": product_url,
+            "awin": awin_link,
             "seller_name": base.get("seller_name", ""),
             "seller_slug": base.get("seller_slug", ""),
             "review_count": base.get("review_count", 0),
@@ -422,6 +434,7 @@ def render_top_christmas():
         f.write(template.render(products=enriched_sorted))
 
     print("🎄 Top 100 Christmas page rendered →", out_path)
+
 
 
    
