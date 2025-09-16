@@ -392,36 +392,150 @@ body.no-scroll { overflow: hidden; }
 
 
 /* =========================
-   partner DETAIL PAGE
+   PARTNER DETAIL PAGE
    ========================= */
 .partner-detail-page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
-  font-family: sans-serif;
+  font-family: sans-serif; /* keep site-consistent */
 }
+
+/* Two-column grid for top section */
 .partner-columns-container {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 40px;
   align-items: start;
 }
-.partner-profile { background: #f9f9f9; padding: 20px; border-radius: 8px; }
-.partner-header { text-align: center; margin-bottom: 20px; }
-.partner-logo { max-width: 200px; margin-bottom: 10px; }
-.partner-info { list-style: none; padding: 0; margin: 20px 0; font-size: 16px; line-height: 1.6; }
-.partner-info li strong { display: inline-block; width: 140px; font-weight: 600; }
-.partner-link { display: inline-block; background: #0073e6; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; margin-top: 10px; text-align: center; }
-.partner-products h2 { font-size: 1.5rem; margin-bottom: 16px; }
-.top-products-list { list-style: decimal inside; padding-left: 0; font-size: 16px; }
-.top-products-list li { margin-bottom: 12px; }
-.top-products-list a { font-weight: 600; color: #000; text-decoration: none; }
-.top-products-list a:hover { text-decoration: underline; }
-.review-count { margin-left: 6px; color: #777; }
-@media (max-width: 768px){
-  .partner-columns-container { grid-template-columns: 1fr; }
-  .partner-header { text-align: left; }
+
+/* Profile box */
+.partner-profile {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
 }
+
+/* Header area with logo + name */
+.partner-header {
+  margin-bottom: 20px;
+  text-align: left; /* default desktop left aligned */
+}
+
+.partner-logo {
+  max-width: 200px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Partner info list */
+.partner-info {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.partner-info li strong {
+  display: inline-block;
+  width: 140px;
+  font-weight: 600;
+}
+
+/* CTA button */
+.partner-link {
+  display: inline-block;
+  background: #000;        /* black button */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.partner-link:hover {
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+
+/* Products section */
+.partner-products h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+.top-products-list {
+  list-style: decimal inside;
+  padding-left: 0;
+  font-size: 16px;
+}
+
+.top-products-list li {
+  margin-bottom: 12px;
+}
+
+.top-products-list a {
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+}
+
+.top-products-list a:hover {
+  text-decoration: underline;
+}
+
+.review-count {
+  margin-left: 6px;
+  color: #777;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .partner-columns-container {
+    grid-template-columns: 1fr; /* single column */
+  }
+
+  .partner-header {
+    text-align: center; /* center logo + name */
+  }
+
+  .partner-logo {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 140px; /* slightly smaller for mobile */
+  }
+
+  .partner-info {
+    text-align: center; /* center stats list */
+  }
+
+  .partner-link {
+    display: block;
+    margin: 15px auto 0; /* centered CTA button */
+    width: fit-content;
+  }
+}
+
+/* Partner name heading */
+.partner-header h1 {
+  font-size: 1.75rem;     /* consistent with card titles */
+  font-weight: 700;       /* bold, matches site style */
+  margin: 0.5em 0;
+  font-family: sans-serif;
+  line-height: 1.3;
+}
+
+@media (max-width: 768px) {
+  .partner-header h1 {
+    font-size: 1.5rem;
+  }
+}
+
 
 /* =========================
    TOP PRODUCTS PAGE WRAPPER

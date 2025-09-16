@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /static/
+Disallow: /data/
+
+Sitemap: https://www.mostreviews.co.uk/sitemap.xml
