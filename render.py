@@ -382,6 +382,50 @@ def render_top_100_products():
 
     print("🔝 Rendered products-last-12-months.html (Top 100 only)")
 
+def render_top_christmas():
+    # Load Christmas category SKUs
+    with open("data/top_products_christmas.json", "r", encoding="utf-8") as f:
+        christmas_list = json.load(f)
+
+    # Load enriched full 12-months dataset
+    with open("data/top_products_last_12_months.json", "r", encoding="utf-8") as f:
+        full_products = json.load(f)
+
+    # Index full dataset by SKU for quick lookup
+    full_by_sku = {str(p.get("sku")): p for p in full_products}
+
+    # Enrich Christmas list with full product data
+    enriched = []
+    for item in christmas_list:
+        sku = str(item.get("sku"))
+        base = full_by_sku.get(sku, {})
+        merged = {
+            "sku": sku,
+            "name": item.get("name") or base.get("name", ""),
+            "product_url": base.get("product_url", item.get("url")),
+            "awin": base.get("awin", ""),
+            "seller_name": base.get("seller_name", ""),
+            "seller_slug": base.get("seller_slug", ""),
+            "review_count": base.get("review_count", 0),
+        }
+        enriched.append(merged)
+
+    # Sort enriched list by review_count
+    enriched_sorted = sorted(enriched, key=lambda x: x.get("review_count", 0), reverse=True)
+
+    # Render with same template as last-12-months
+    template = env.get_template("noths/products/products-last-12-months.html")
+    out_path = "docs/noths/products/top-100-christmas.html"
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(template.render(products=enriched_sorted))
+
+    print("🎄 Top 100 Christmas page rendered →", out_path)
+
+
+   
+
 # === Render Site Homepage ===
 def render_site_homepage():
     template = env.get_template("home.html")

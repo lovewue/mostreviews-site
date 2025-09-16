@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Top 100 Christmas Bestsellers{% endblock %}
+
+{% block content %}
+<section class="page-wrap top-list">
+  <h1>Top 100 Christmas Bestsellers</h1>
+
+  <div class="card-grid">
+    {% for product in products %}
+      <a href="{{ product.url }}"
+         class="rank-card"
+         target="_blank"
+         rel="noopener"
+         data-product-url="{{ product.url }}">
+
+        <!-- IMAGE FIRST -->
+        <img
+          src="/Product_Images/{{ product.sku }}.jpg"
+          alt="{{ product.name }}"
+          class="rank-image"
+          loading="lazy"
+          onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
+
+        <div class="rank-number">#{{ product.rank }}</div>
+        <div class="rank-divider"></div>
+
+        <div class="rank-body">
+          <h2 class="rank-name">{{ product.name }}</h2>
+          {% if product.seller_name %}
+          <p class="rank-meta">
+            <span class="seller-name">{{ product.seller_name }}</span>
+          </p>
+          {% endif %}
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
