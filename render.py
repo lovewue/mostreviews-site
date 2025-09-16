@@ -535,6 +535,7 @@ render_site_homepage()
 render_top_partners_last_12_months()
 render_about_page()
 render_sitemap()
+render_top_christmas()
 
 
 
