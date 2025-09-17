@@ -1,16 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ partner.name }} – NOTHS Partner{% endblock %}
+
+{% block content %}
 <section class="partner-detail-page">
 
   <!-- Partner Profile Block -->
   <div class="partner-columns-container top-block">
     
-    <!-- Left column: logo only -->
+    <!-- Left column: logo -->
     <div class="partner-header">
       {% if partner.logo %}
         <img src="{{ partner.logo }}" alt="{{ partner.name }} logo" class="partner-logo">
       {% endif %}
     </div>
 
-    <!-- Right column: partner info + CTAs -->
+    <!-- Right column: info + button + links -->
     <div class="partner-profile">
       <h1>{{ partner.name }}</h1>
       <ul class="partner-info">
@@ -27,7 +32,7 @@
          View on NOTHS
       </a>
 
-      <!-- Paid extra links -->
+      <!-- Paid social links -->
       {% if partner.paid %}
       <div class="partner-links">
         <ul class="social-icons">
@@ -58,3 +63,51 @@
     </div>
 
   </div> <!-- /partner-columns-container -->
+
+  <!-- Products (same as before) -->
+  {% set reviewed = top_products | selectattr("review_count", "ge", 5) | list %}
+  {% set low_reviewed = top_products | selectattr("review_count", "lt", 5) | list %}
+
+  {% if reviewed %}
+    <div class="partner-products top-list">
+      <h2>Most Reviewed Products<br><small>(Last 12 months)</small></h2>
+      <div class="card-grid">
+        {% for p in reviewed %}
+          <a href="{{ p.awin or p.product_url }}"
+             class="rank-card"
+             target="_blank"
+             rel="noopener"
+             data-product-url="{{ p.product_url }}">
+            <img src="/Product_Images/{{ p.sku }}.jpg"
+                 alt="{{ p.name }}"
+                 class="rank-image"
+                 loading="lazy"
+                 onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
+            <div class="rank-number">#{{ loop.index }}</div>
+            <div class="rank-divider"></div>
+            <div class="rank-body">
+              <h2 class="rank-name">{{ p.name }}</h2>
+              <p class="rank-meta">{{ "{:,}".format(p.review_count) }} reviews</p>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  {% elif low_reviewed %}
+    <div class="partner-products low-reviewed">
+      <h2>Most Reviewed Products (last 12 months)</h2>
+      <ul class="top-products-list">
+        {% for p in low_reviewed[:5] %}
+          <li>
+            <a href="{{ p.awin or p.product_url }}" target="_blank" data-product-url="{{ p.product_url }}">
+              {{ p.name }}
+            </a>
+            <span class="review-count">({{ p.review_count }} reviews)</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+</section>
+{% endblock %}
