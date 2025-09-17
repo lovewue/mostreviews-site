@@ -1398,7 +1398,6 @@ body.no-scroll { overflow: hidden; }
   .partner-links ul {
     justify-content: center;       /* center icons */
   }
-}
 
 /* === Avoid search box zoom === */
 .search-box input {
@@ -1406,7 +1405,7 @@ body.no-scroll { overflow: hidden; }
   line-height: 1.4;
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 0px solid #ccc;
   width: 100%;
   max-width: 400px;
 }
