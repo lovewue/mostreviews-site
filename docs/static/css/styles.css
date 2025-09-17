@@ -1400,10 +1400,7 @@ body.no-scroll { overflow: hidden; }
   }
 }
 
-}
-
 /* === Avoid search box zoom === */
-
 .search-box input {
   font-size: 16px;     /* prevent iOS Safari zoom */
   line-height: 1.4;
