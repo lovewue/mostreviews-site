@@ -1360,27 +1360,32 @@ body.no-scroll { overflow: hidden; }
 /* === Partner Page: visual card design === */
 
 .partner-columns-container {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.partner-header {
-  flex: 0 0 200px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.partner-logo {
-  max-width: 100%;
-  height: auto;
+  background: #f7f7f7;   /* light grey box */
+  padding: 1.5rem;
+  border-radius: 12px;   /* match card style */
 }
 
 .partner-profile {
-  flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+.partner-profile-header {
+  display: flex;
+  align-items: center; /* logo + name aligned */
+  gap: 1rem;
+}
+
+.partner-logo {
+  max-width: 100px;
+  height: auto;
+  border-radius: 12px;   /* rounded corners */
+}
+
+.partner-name {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
 }
 
 .partner-info {
@@ -1392,12 +1397,6 @@ body.no-scroll { overflow: hidden; }
 
 .partner-info li {
   margin: 0.25rem 0;
-  color: #444;
-}
-
-.partner-info strong {
-  font-weight: 600;
-  color: #000;
 }
 
 .partner-cta-block {
@@ -1410,51 +1409,18 @@ body.no-scroll { overflow: hidden; }
 }
 
 .partner-link {
-  background: #000; /* black button */
+  background: #000;
   color: #fff;
   padding: 0.75rem 1.25rem;
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
-  font-family: inherit; /* inherit your site font */
 }
 
 .partner-link:hover {
   background: #222;
 }
 
-.social-icons {
-  display: flex;
-  gap: 0.75rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.social-icons a {
-  font-size: 1.2rem;
-  color: #444;
-}
-
-.social-icons a:hover {
-  color: #000;
-}
-
-/* 📱 Mobile adjustments */
-@media (max-width: 768px) {
-  .partner-columns-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .partner-cta-block {
-    justify-content: center;
-  }
-  .partner-link {
-    width: 100%;
-    text-align: center;
-  }
-}
 
 
 /* === Avoid search box zoom === */
@@ -1463,7 +1429,7 @@ body.no-scroll { overflow: hidden; }
   line-height: 1.4;
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
-  border: 1px solid #ddd;  /* ✅ keep a subtle border */
+  border: 0px solid #ddd;  /* ✅ keep a subtle border */
   width: 100%;
   max-width: 400px;
   background: #fff;
