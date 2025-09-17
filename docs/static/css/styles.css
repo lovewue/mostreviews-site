@@ -1233,6 +1233,7 @@ body.no-scroll { overflow: hidden; }
   border-radius: 12px;
   margin-bottom: 2rem;
   align-items: start;
+  max-width: 1200px; 
 }
 
 .partner-col {
@@ -1323,15 +1324,18 @@ body.no-scroll { overflow: hidden; }
 /* 📱 Mobile: stack */
 @media (max-width: 900px) {
   .partner-columns-container {
-    grid-template-columns: 1fr; /* stack all columns */
+    grid-template-columns: 1fr;
     text-align: center;
+    padding: 1rem;
+    margin: 0 1rem 2rem; /* ✅ side gutters on small screens */
+    max-width: 100%;     /* don’t force extra width on mobile */
   }
   .col-info {
     margin-top: 1rem;
   }
   .social-icons {
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: 0 1rem 2rem;
   }
 }
 
