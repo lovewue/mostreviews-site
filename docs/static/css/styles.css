@@ -1414,3 +1414,28 @@ body.no-scroll { overflow: hidden; }
 .search-results li a:hover {
   background: #f2f2f2;
 }
+
+/* Hide empty search results */
+/* Search results dropdown hidden by default */
+#searchResults {
+  display: none;
+}
+
+/* Show only when results exist */
+#searchResults.has-results {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  background: #fff;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 1000;
+}
