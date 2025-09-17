@@ -1360,9 +1360,10 @@ body.no-scroll { overflow: hidden; }
 /* === Partner Page: visual card design === */
 
 .partner-columns-container {
-  background: #f7f7f7;   /* light grey box */
+  background: #f7f7f7;
   padding: 1.5rem;
-  border-radius: 12px;   /* match card style */
+  border-radius: 12px;
+  margin-bottom: 2rem;
 }
 
 .partner-profile {
@@ -1372,36 +1373,47 @@ body.no-scroll { overflow: hidden; }
 
 .partner-profile-header {
   display: flex;
-  align-items: flex-start; /* ⬅️ align text to the top of the logo */
-  gap: 1rem;
+  align-items: flex-start; /* align name block to top of logo */
+  gap: 1.5rem;
 }
 
 .partner-logo {
-  max-width: 100px;
+  max-width: 140px;   /* ✅ bigger logo */
   height: auto;
-  border-radius: 12px;   /* rounded corners */
+  border-radius: 12px; /* rounded corners */
+}
+
+.partner-heading {
+  display: flex;
+  flex-direction: column;
 }
 
 .partner-name {
-  margin: 0;
-  font-size: 1.75rem;
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
   font-weight: 700;
-  line-height: 1.2;       /* keeps height compact */
+  line-height: 1.2;
 }
 
 .partner-info {
-  margin: 1rem 0;
+  margin: 0;
   padding: 0;
   list-style: none;
   font-size: 0.95rem;
+  color: #444;
 }
 
 .partner-info li {
   margin: 0.25rem 0;
 }
 
+.partner-info strong {
+  font-weight: 600;
+  color: #000;
+}
+
 .partner-cta-block {
-  margin-top: auto;
+  margin-top: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1422,6 +1434,23 @@ body.no-scroll { overflow: hidden; }
   background: #222;
 }
 
+.social-icons {
+  display: flex;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.social-icons a {
+  font-size: 1.2rem;
+  color: #444;
+}
+
+.social-icons a:hover {
+  color: #000;
+}
+
 /* 📱 Mobile adjustments */
 @media (max-width: 768px) {
   .partner-columns-container {
@@ -1429,7 +1458,10 @@ body.no-scroll { overflow: hidden; }
   }
   .partner-profile-header {
     flex-direction: column;
-    align-items: center; /* stack logo + name nicely */
+    align-items: center;
+  }
+  .partner-heading {
+    align-items: center;
   }
   .partner-cta-block {
     justify-content: center;
@@ -1439,6 +1471,7 @@ body.no-scroll { overflow: hidden; }
     text-align: center;
   }
 }
+
 
 
 
