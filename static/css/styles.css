@@ -1227,7 +1227,7 @@ body.no-scroll { overflow: hidden; }
 .partner-columns-container {
   display: grid;
   grid-template-columns: 200px 1.5fr 1fr; /* logo/button | name/info | about/details */
-  grid-template-rows: auto auto;          /* first row: main, second row: socials */
+  grid-template-rows: auto auto;
   grid-template-areas:
     "logo info about"
     ". . socials";
@@ -1238,6 +1238,7 @@ body.no-scroll { overflow: hidden; }
   margin: 0 auto 2rem;
   max-width: 1200px;
   align-items: start;
+  box-sizing: border-box;
 }
 
 .partner-col {
@@ -1246,16 +1247,17 @@ body.no-scroll { overflow: hidden; }
   gap: 1rem;
 }
 
+/* Column 1: logo + button */
 .col-logo { 
-  grid-area: logo;
+  grid-area: logo; 
   align-items: center; 
   text-align: center; 
 }
-.partner-logo {
-  max-width: 160px;
-  border-radius: 12px;
-  height: auto;
-  margin-bottom: 0.5rem;
+.partner-logo { 
+  max-width: 160px; 
+  border-radius: 12px; 
+  height: auto; 
+  margin-bottom: 0.4rem; 
 }
 .partner-link {
   background: #000;
@@ -1268,12 +1270,10 @@ body.no-scroll { overflow: hidden; }
 }
 .partner-link:hover { background: #222; }
 
-.col-info { 
-  grid-area: info;
-  min-width: 240px;
-}
+/* Column 2: name + info */
+.col-info { grid-area: info; min-width: 240px; }
 .partner-name {
-  margin: 0 0 0.25rem 0;   /* tighter gap */
+  margin: 0 0 0.2rem 0; /* tight gap below */
   font-size: 2rem;
   font-weight: 700;
 }
@@ -1283,20 +1283,16 @@ body.no-scroll { overflow: hidden; }
   list-style: none;
   font-size: 0.95rem;
   color: #444;
-  line-height: 1.3;
+  line-height: 1.35; /* slightly tighter */
 }
 .partner-info li { margin: 0.15rem 0; }
 .partner-info strong { font-weight: 600; color: #000; }
 
-.col-about { 
-  grid-area: about; 
-  font-size: 0.95rem; 
-  color: #444; 
-}
+/* Column 3: optional about/details */
+.col-about { grid-area: about; font-size: 0.95rem; color: #444; }
 
+/* Social links row */
 .col-links { grid-area: socials; }
-
-/* Social icons */
 .social-icons {
   display: flex;
   flex-wrap: wrap;
@@ -1320,7 +1316,7 @@ body.no-scroll { overflow: hidden; }
 }
 .social-icons a:hover { background: #000; color: #fff; }
 
-/* 📱 Mobile: stack + scale socials */
+/* 📱 Mobile: stack */
 @media (max-width: 900px) {
   .partner-columns-container {
     grid-template-columns: 1fr;
@@ -1335,18 +1331,34 @@ body.no-scroll { overflow: hidden; }
     max-width: 100%;
   }
 
-  .col-info { margin-top: 1rem; }
-  .col-about { margin-top: 1rem; }
+  .partner-logo { margin-bottom: 0.25rem; }
+  .partner-link { margin-bottom: 0.4rem; }
 
+  /* Move Partner name closer on mobile */
+  .partner-name {
+    margin-top: 0.15rem;
+    margin-bottom: 0.25rem;
+    font-size: 1.6rem;
+  }
+
+  /* If no about/details block, socials move up directly below info */
+  .partner-columns-container:has(.col-about:empty) {
+    grid-template-areas:
+      "logo"
+      "info"
+      "socials";
+  }
+
+  /* Center socials + scale to fit 6 icons in 1 row */
   .social-icons {
     justify-content: center;
-    margin-top: 1rem;
-    flex-wrap: nowrap; /* force single row */
+    margin-top: 0.5rem;
+    flex-wrap: nowrap;
     gap: 0.4rem;
   }
   .social-icons a {
-    flex: 1;
-    max-width: 40px;
+    flex: 1 0 auto;
+    max-width: 16.5%; /* ~6 per row */
     aspect-ratio: 1 / 1;
     font-size: 14px;
   }
