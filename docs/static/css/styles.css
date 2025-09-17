@@ -1372,7 +1372,7 @@ body.no-scroll { overflow: hidden; }
 
 .partner-profile-header {
   display: flex;
-  align-items: center; /* logo + name aligned */
+  align-items: flex-start; /* ⬅️ align text to the top of the logo */
   gap: 1rem;
 }
 
@@ -1386,6 +1386,7 @@ body.no-scroll { overflow: hidden; }
   margin: 0;
   font-size: 1.75rem;
   font-weight: 700;
+  line-height: 1.2;       /* keeps height compact */
 }
 
 .partner-info {
@@ -1420,6 +1421,25 @@ body.no-scroll { overflow: hidden; }
 .partner-link:hover {
   background: #222;
 }
+
+/* 📱 Mobile adjustments */
+@media (max-width: 768px) {
+  .partner-columns-container {
+    text-align: center;
+  }
+  .partner-profile-header {
+    flex-direction: column;
+    align-items: center; /* stack logo + name nicely */
+  }
+  .partner-cta-block {
+    justify-content: center;
+  }
+  .partner-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 
 
 
