@@ -87,7 +87,7 @@ a:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 0 auto;
   padding: 0 16px;
   gap: 24px;
@@ -249,7 +249,7 @@ body.no-scroll { overflow: hidden; }
 .az-nav .az-bar,
 .sticky-nav .az-bar,
 .persistent-nav .az-bar{
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 0 auto;
   width: 100%;
 }
@@ -306,7 +306,7 @@ body.no-scroll { overflow: hidden; }
    partner DIRECTORY + LISTS
    ========================= */
 .partner-directory {
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 0 auto;
   padding: 40px 20px;
   font-family: sans-serif;
@@ -418,7 +418,7 @@ body.no-scroll { overflow: hidden; }
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 16px;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 24px auto 48px;
   padding: 0 16px;
 }
@@ -445,7 +445,7 @@ body.no-scroll { overflow: hidden; }
 /* =========================
    TOP partnerS TABLE
    ========================= */
-.page-wrap { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+.page-wrap { /* max-width: 1200px; */ margin: 0 auto; padding: 40px 20px; }
 
 .mr-table-wrap {
   background: #fff;
@@ -627,7 +627,7 @@ body.no-scroll { overflow: hidden; }
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 16px;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 24px auto 48px;
   padding: 0 16px;
 }
@@ -1213,15 +1213,22 @@ body.no-scroll { overflow: hidden; }
 
 
 /* =========================
-   PARTNER DETAIL PAGE WRAPPER
+   GLOBAL PAGE WRAPPER
    ========================= */
-.partner-detail-page {
+.page-wrap {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
-  font-family: sans-serif; /* consistent with site */
+  padding: 0 20px;   /* side gutters */
+  box-sizing: border-box;
 }
 
+/* =========================
+   PARTNER DETAIL PAGE
+   ========================= */
+.partner-detail-page {
+  font-family: sans-serif; /* keep consistent */
+  padding: 40px 0;         /* vertical spacing, no auto margins */
+}
 
 /* === Partner detail: layout === */
 .partner-columns-container {
@@ -1235,8 +1242,7 @@ body.no-scroll { overflow: hidden; }
   background: #f7f7f7;
   padding: 1.5rem;
   border-radius: 12px;
-  margin: 0 auto 2rem;
-  max-width: 1200px;
+  margin-bottom: 2rem;
   align-items: start;
   box-sizing: border-box;
 }
@@ -1248,17 +1254,8 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* Column 1: logo + button */
-.col-logo { 
-  grid-area: logo; 
-  align-items: center; 
-  text-align: center; 
-}
-.partner-logo { 
-  max-width: 160px; 
-  border-radius: 12px; 
-  height: auto; 
-  margin-bottom: 0.4rem; 
-}
+.col-logo { grid-area: logo; align-items: center; text-align: center; }
+.partner-logo { max-width: 160px; border-radius: 12px; height: auto; margin-bottom: 0.4rem; }
 .partner-link {
   background: #000;
   color: #fff;
@@ -1273,7 +1270,7 @@ body.no-scroll { overflow: hidden; }
 /* Column 2: name + info */
 .col-info { grid-area: info; min-width: 240px; }
 .partner-name {
-  margin: 0 0 0.2rem 0; /* tight gap below */
+  margin: 0 0 0.2rem 0;
   font-size: 2rem;
   font-weight: 700;
 }
@@ -1283,7 +1280,7 @@ body.no-scroll { overflow: hidden; }
   list-style: none;
   font-size: 0.95rem;
   color: #444;
-  line-height: 1.35; /* slightly tighter */
+  line-height: 1.35;
 }
 .partner-info li { margin: 0.15rem 0; }
 .partner-info strong { font-weight: 600; color: #000; }
@@ -1327,21 +1324,20 @@ body.no-scroll { overflow: hidden; }
       "socials";
     text-align: center;
     padding: 1rem;
-    margin: 0 1rem 2rem;
+    margin: 0 0 2rem;
     max-width: 100%;
   }
 
   .partner-logo { margin-bottom: 0.25rem; }
   .partner-link { margin-bottom: 0.4rem; }
 
-  /* Move Partner name closer on mobile */
   .partner-name {
     margin-top: 0.15rem;
     margin-bottom: 0.25rem;
     font-size: 1.6rem;
   }
 
-  /* If no about/details block, socials move up directly below info */
+  /* If no about/details block, socials move up */
   .partner-columns-container:has(.col-about:empty) {
     grid-template-areas:
       "logo"
@@ -1349,7 +1345,6 @@ body.no-scroll { overflow: hidden; }
       "socials";
   }
 
-  /* Center socials + scale to fit 6 icons in 1 row */
   .social-icons {
     justify-content: center;
     margin-top: 0.5rem;
@@ -1363,6 +1358,31 @@ body.no-scroll { overflow: hidden; }
     font-size: 14px;
   }
 }
+
+/* =========================
+   CARD GRID (TOP PRODUCTS / PARTNERS)
+   ========================= */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  margin: 24px 0 48px;
+}
+
+.rank-card {
+  grid-column: span 12;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 6px rgba(0,0,0,.04);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
 
 
 
