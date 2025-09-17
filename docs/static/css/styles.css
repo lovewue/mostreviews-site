@@ -1357,8 +1357,6 @@ body.no-scroll { overflow: hidden; }
 }
 
 
-/* === Partner Page: visual card design === */
-
 .partner-columns-container {
   background: #f7f7f7;
   padding: 1.5rem;
@@ -1373,30 +1371,26 @@ body.no-scroll { overflow: hidden; }
 
 .partner-profile-header {
   display: flex;
-  align-items: flex-start; /* align name block to top of logo */
+  align-items: center; /* logo + name aligned horizontally */
   gap: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .partner-logo {
-  max-width: 140px;   /* ✅ bigger logo */
+  max-width: 140px;
   height: auto;
-  border-radius: 12px; /* rounded corners */
-}
-
-.partner-heading {
-  display: flex;
-  flex-direction: column;
+  border-radius: 12px;
 }
 
 .partner-name {
-  margin: 0 0 0.5rem 0;
+  margin: 0;
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.2;
 }
 
 .partner-info {
-  margin: 0;
+  margin: 0 0 1rem 0;
   padding: 0;
   list-style: none;
   font-size: 0.95rem;
@@ -1413,7 +1407,7 @@ body.no-scroll { overflow: hidden; }
 }
 
 .partner-cta-block {
-  margin-top: 1.5rem;
+  margin-top: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1460,9 +1454,6 @@ body.no-scroll { overflow: hidden; }
     flex-direction: column;
     align-items: center;
   }
-  .partner-heading {
-    align-items: center;
-  }
   .partner-cta-block {
     justify-content: center;
   }
@@ -1471,6 +1462,7 @@ body.no-scroll { overflow: hidden; }
     text-align: center;
   }
 }
+
 
 
 
