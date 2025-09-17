@@ -139,13 +139,32 @@ def render_noths_index():
         partners_with_counts, key=lambda x: x["product_count"], reverse=True
     )[:3]
 
-    # --- Top 3 products from Christmas Top 100 ---
+    # --- Top 3 products from Christmas Top 100 (enriched with review counts) ---
     with open("data/top_products_christmas.json", "r", encoding="utf-8") as f:
         christmas_products = json.load(f)
 
+    enriched_christmas = []
+    for item in christmas_products:
+        sku = str(item.get("sku"))
+        base = full_by_sku.get(sku, {})
+        try:
+            review_count = int(str(base.get("review_count", 0)).replace(",", ""))
+        except:
+            review_count = 0
+
+        enriched_christmas.append({
+            "sku": sku,
+            "name": item.get("name") or base.get("name", ""),
+            "review_count": review_count,
+            "product_url": base.get("product_url", item.get("url")),
+            "awin": base.get("awin"),
+            "seller_name": base.get("seller_name", ""),
+            "seller_slug": base.get("seller_slug", ""),
+        })
+
     top_christmas_products = sorted(
-        christmas_products,
-        key=lambda x: int(str(x.get("review_count", 0)).replace(",", "")),
+        enriched_christmas,
+        key=lambda x: x["review_count"],
         reverse=True
     )[:3]
 
@@ -175,10 +194,11 @@ def render_noths_index():
     if z_partner:
         az_partners.append(z_partner)
 
+    # --- Debug prints ---
     print("Top partners:", [p["slug"] for p in top_partners])
     print("2025 partners:", [p["slug"] for p in partners_2025])
     print("Most products partners:", [p["slug"] for p in top_product_partners])
-    print("Christmas products:", [p.get("sku") for p in top_christmas_products])
+    print("Christmas products:", [(p["sku"], p["review_count"]) for p in top_christmas_products])
     print("A–Z partners:", [p["slug"] for p in az_partners])
 
     # --- Render template ---
@@ -190,7 +210,7 @@ def render_noths_index():
         top_partners=top_partners,                  # top 3 by reviews
         partners_2025=partners_2025,                # top 3 new joiners
         top_product_partners=top_product_partners,  # top 3 by product count
-        top_christmas_products=top_christmas_products,  # ✅ top 3 products, not partners
+        top_christmas_products=top_christmas_products,  # ✅ top 3 enriched Christmas products
         az_partners=az_partners                     # first A, middle, last Z
     )
 
@@ -200,6 +220,7 @@ def render_noths_index():
         f.write(html)
 
     print("✅ Rendered NOTHS index → docs/noths/index.html")
+
 
 
 
