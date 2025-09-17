@@ -391,151 +391,6 @@ body.no-scroll { overflow: hidden; }
 }
 
 
-/* =========================
-   PARTNER DETAIL PAGE
-   ========================= */
-.partner-detail-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  font-family: sans-serif; /* keep site-consistent */
-}
-
-/* Two-column grid for top section */
-.partner-columns-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 40px;
-  align-items: start;
-}
-
-/* Profile box */
-.partner-profile {
-  background: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-/* Header area with logo + name */
-.partner-header {
-  margin-bottom: 20px;
-  text-align: left; /* default desktop left aligned */
-}
-
-.partner-logo {
-  max-width: 200px;
-  margin-bottom: 10px;
-  display: block;
-}
-
-/* Partner info list */
-.partner-info {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.partner-info li strong {
-  display: inline-block;
-  width: 140px;
-  font-weight: 600;
-}
-
-/* CTA button */
-.partner-link {
-  display: inline-block;
-  background: #000;        /* black button */
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 6px;
-  text-decoration: none;
-  margin-top: 10px;
-  text-align: center;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-.partner-link:hover {
-  background: #fff;
-  color: #000;
-  border: 1px solid #000;
-}
-
-/* Products section */
-.partner-products h2 {
-  font-size: 1.5rem;
-  margin-bottom: 16px;
-}
-
-.top-products-list {
-  list-style: decimal inside;
-  padding-left: 0;
-  font-size: 16px;
-}
-
-.top-products-list li {
-  margin-bottom: 12px;
-}
-
-.top-products-list a {
-  font-weight: 600;
-  color: #000;
-  text-decoration: none;
-}
-
-.top-products-list a:hover {
-  text-decoration: underline;
-}
-
-.review-count {
-  margin-left: 6px;
-  color: #777;
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .partner-columns-container {
-    grid-template-columns: 1fr; /* single column */
-  }
-
-  .partner-header {
-    text-align: center; /* center logo + name */
-  }
-
-  .partner-logo {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 140px; /* slightly smaller for mobile */
-  }
-
-  .partner-info {
-    text-align: center; /* center stats list */
-  }
-
-  .partner-link {
-    display: block;
-    margin: 15px auto 0; /* centered CTA button */
-    width: fit-content;
-  }
-}
-
-/* Partner name heading */
-.partner-header h1 {
-  font-size: 1.75rem;     /* consistent with card titles */
-  font-weight: 700;       /* bold, matches site style */
-  margin: 0.5em 0;
-  font-family: sans-serif;
-  line-height: 1.3;
-}
-
-@media (max-width: 768px) {
-  .partner-header h1 {
-    font-size: 1.5rem;
-  }
-}
-
 
 /* =========================
    TOP PRODUCTS PAGE WRAPPER
@@ -1357,6 +1212,8 @@ body.no-scroll { overflow: hidden; }
 }
 
 
+/* === Partner detail: profile block === */
+
 .partner-columns-container {
   background: #f7f7f7;
   padding: 1.5rem;
@@ -1371,26 +1228,31 @@ body.no-scroll { overflow: hidden; }
 
 .partner-profile-header {
   display: flex;
-  align-items: center; /* logo + name aligned horizontally */
+  align-items: flex-start;
   gap: 1.5rem;
-  margin-bottom: 1rem;
 }
 
 .partner-logo {
   max-width: 140px;
   height: auto;
   border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.partner-heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .partner-name {
-  margin: 0;
+  margin: 0 0 0.5rem 0;
   font-size: 2rem;
   font-weight: 700;
-  line-height: 1.2;
 }
 
 .partner-info {
-  margin: 0 0 1rem 0;
+  margin: 0;
   padding: 0;
   list-style: none;
   font-size: 0.95rem;
@@ -1406,8 +1268,21 @@ body.no-scroll { overflow: hidden; }
   color: #000;
 }
 
+/* 📱 Mobile: stack logo above heading */
+@media (max-width: 768px) {
+  .partner-profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .partner-heading {
+    align-items: center;
+  }
+}
+
+/* === Partner detail: CTA block === */
 .partner-cta-block {
-  margin-top: auto;
+  margin-top: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1415,6 +1290,7 @@ body.no-scroll { overflow: hidden; }
   flex-wrap: wrap;
 }
 
+/* View on NOTHS button */
 .partner-link {
   background: #000;
   color: #fff;
@@ -1422,12 +1298,14 @@ body.no-scroll { overflow: hidden; }
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
+  transition: background 0.2s ease;
 }
 
 .partner-link:hover {
   background: #222;
 }
 
+/* Social icons */
 .social-icons {
   display: flex;
   gap: 0.75rem;
@@ -1436,33 +1314,44 @@ body.no-scroll { overflow: hidden; }
   margin: 0;
 }
 
+.social-icons li {
+  display: inline-block;
+}
+
 .social-icons a {
-  font-size: 1.2rem;
-  color: #444;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  color: #000;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
 }
 
 .social-icons a:hover {
-  color: #000;
+  background: #000;
+  color: #fff;
 }
 
 /* 📱 Mobile adjustments */
 @media (max-width: 768px) {
-  .partner-columns-container {
-    text-align: center;
-  }
-  .partner-profile-header {
+  .partner-cta-block {
     flex-direction: column;
     align-items: center;
   }
-  .partner-cta-block {
-    justify-content: center;
-  }
+
   .partner-link {
     width: 100%;
     text-align: center;
   }
+.social-icons {
+  justify-content: center;
 }
 
+}
 
 
 

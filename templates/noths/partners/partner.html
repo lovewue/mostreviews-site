@@ -11,18 +11,19 @@
 
       <!-- Header: logo + name -->
       <div class="partner-profile-header">
-        {% if partner.logo %}
-          <img src="{{ partner.logo }}" alt="{{ partner.name }} logo" class="partner-logo">
-        {% endif %}
-        <h1 class="partner-name">{{ partner.name }}</h1>
-      </div>
+  {% if partner.logo %}
+    <img src="{{ partner.logo }}" alt="{{ partner.name }} logo" class="partner-logo">
+  {% endif %}
+  <div class="partner-heading">
+    <h1 class="partner-name">{{ partner.name }}</h1>
+    <ul class="partner-info">
+      <li><strong>Joined:</strong> {{ partner.since }}</li>
+      <li><strong>Total Reviews:</strong> {{ partner.review_count }}</li>
+      <li><strong>Product Count:</strong> {{ partner.product_count }}</li>
+    </ul>
+  </div>
+</div>
 
-      <!-- Info: stats underneath -->
-      <ul class="partner-info">
-        <li><strong>Joined:</strong> {{ partner.since }}</li>
-        <li><strong>Total Reviews:</strong> {{ partner.review_count }}</li>
-        <li><strong>Product Count:</strong> {{ partner.product_count }}</li>
-      </ul>
 
       <!-- Footer block: View on NOTHS + social icons -->
       <div class="partner-cta-block">
