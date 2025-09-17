@@ -1212,37 +1212,33 @@ body.no-scroll { overflow: hidden; }
 }
 
 
-/* === Partner detail: profile block === */
-
+/* === Partner detail: 3-column layout === */
 .partner-columns-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* logo/button, name/info, links */
+  gap: 2rem;
   background: #f7f7f7;
   padding: 1.5rem;
   border-radius: 12px;
   margin-bottom: 2rem;
+  align-items: start;
 }
 
-.partner-profile {
+.partner-col {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
-.partner-profile-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
+.col-logo {
+  align-items: center;
+  text-align: center;
 }
 
 .partner-logo {
   max-width: 140px;
-  height: auto;
   border-radius: 12px;
-  flex-shrink: 0;
-}
-
-.partner-heading {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  height: auto;
 }
 
 .partner-name {
@@ -1258,37 +1254,8 @@ body.no-scroll { overflow: hidden; }
   font-size: 0.95rem;
   color: #444;
 }
-
-.partner-info li {
-  margin: 0.25rem 0;
-}
-
-.partner-info strong {
-  font-weight: 600;
-  color: #000;
-}
-
-/* 📱 Mobile: stack logo above heading */
-@media (max-width: 768px) {
-  .partner-profile-header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .partner-heading {
-    align-items: center;
-  }
-}
-
-/* === Partner detail: CTA block === */
-.partner-cta-block {
-  margin-top: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
+.partner-info li { margin: 0.25rem 0; }
+.partner-info strong { color: #000; }
 
 /* View on NOTHS button */
 .partner-link {
@@ -1300,24 +1267,18 @@ body.no-scroll { overflow: hidden; }
   font-weight: 600;
   transition: background 0.2s ease;
 }
-
-.partner-link:hover {
-  background: #222;
-}
+.partner-link:hover { background: #222; }
 
 /* Social icons */
 .social-icons {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.75rem;
+  justify-content: flex-end;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
-.social-icons li {
-  display: inline-block;
-}
-
 .social-icons a {
   display: inline-flex;
   justify-content: center;
@@ -1330,28 +1291,22 @@ body.no-scroll { overflow: hidden; }
   font-size: 16px;
   transition: all 0.2s ease-in-out;
 }
-
 .social-icons a:hover {
   background: #000;
   color: #fff;
 }
 
-/* 📱 Mobile adjustments */
-@media (max-width: 768px) {
-  .partner-cta-block {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .partner-link {
-    width: 100%;
+/* 📱 Mobile: stack */
+@media (max-width: 900px) {
+  .partner-columns-container {
+    grid-template-columns: 1fr; /* stack all columns */
     text-align: center;
   }
-.social-icons {
-  justify-content: center;
+  .social-icons {
+    justify-content: center;
+  }
 }
 
-}
 
 
 

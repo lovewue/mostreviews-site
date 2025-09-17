@@ -7,60 +7,59 @@
 
   <!-- Partner Profile Block -->
   <div class="partner-columns-container top-block">
-    <div class="partner-profile">
+    
+    <!-- Column 1: Logo + Button -->
+    <div class="partner-col col-logo">
+      {% if partner.logo %}
+        <img src="{{ partner.logo }}" alt="{{ partner.name }} logo" class="partner-logo">
+      {% endif %}
+      <a href="{{ partner.awin }}"
+         target="_blank"
+         class="partner-link"
+         data-product-url="{{ partner.url }}">
+         View on NOTHS
+      </a>
+    </div>
 
-      <!-- Header: logo + name -->
-      <div class="partner-profile-header">
-  {% if partner.logo %}
-    <img src="{{ partner.logo }}" alt="{{ partner.name }} logo" class="partner-logo">
-  {% endif %}
-  <div class="partner-heading">
-    <h1 class="partner-name">{{ partner.name }}</h1>
-    <ul class="partner-info">
-      <li><strong>Joined:</strong> {{ partner.since }}</li>
-      <li><strong>Total Reviews:</strong> {{ partner.review_count }}</li>
-      <li><strong>Product Count:</strong> {{ partner.product_count }}</li>
-    </ul>
-  </div>
-</div>
+    <!-- Column 2: Name + Info -->
+    <div class="partner-col col-info">
+      <h1 class="partner-name">{{ partner.name }}</h1>
+      <ul class="partner-info">
+        <li><strong>Joined:</strong> {{ partner.since }}</li>
+        <li><strong>Total Reviews:</strong> {{ partner.review_count }}</li>
+        <li><strong>Product Count:</strong> {{ partner.product_count }}</li>
+      </ul>
+    </div>
 
-
-      <!-- Footer block: View on NOTHS + social icons -->
-      <div class="partner-cta-block">
-        <a href="{{ partner.awin }}"
-           target="_blank"
-           class="partner-link"
-           data-product-url="{{ partner.url }}">
-           View on NOTHS
-        </a>
-
-        {% if partner.paid %}
+    <!-- Column 3: Premium links -->
+    <div class="partner-col col-links">
+      {% if partner.paid %}
         <ul class="social-icons">
           {% if partner.website %}
-            <li><a href="{{ partner.website }}" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i></a></li>
+            <li><a href="{{ partner.website }}" target="_blank"><i class="fa-solid fa-globe"></i></a></li>
           {% endif %}
           {% if partner.facebook %}
-            <li><a href="{{ partner.facebook }}" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a></li>
+            <li><a href="{{ partner.facebook }}" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
           {% endif %}
           {% if partner.instagram %}
-            <li><a href="{{ partner.instagram }}" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a></li>
+            <li><a href="{{ partner.instagram }}" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
           {% endif %}
           {% if partner.twitter %}
-            <li><a href="{{ partner.twitter }}" target="_blank" rel="noopener"><i class="fa-brands fa-twitter"></i></a></li>
+            <li><a href="{{ partner.twitter }}" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
           {% endif %}
           {% if partner.x %}
-            <li><a href="{{ partner.x }}" target="_blank" rel="noopener"><i class="fa-brands fa-x-twitter"></i></a></li>
+            <li><a href="{{ partner.x }}" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
           {% endif %}
           {% if partner.youtube %}
-            <li><a href="{{ partner.youtube }}" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a></li>
+            <li><a href="{{ partner.youtube }}" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
           {% endif %}
           {% if partner.tiktok %}
-            <li><a href="{{ partner.tiktok }}" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a></li>
+            <li><a href="{{ partner.tiktok }}" target="_blank"><i class="fa-brands fa-tiktok"></i></a></li>
           {% endif %}
         </ul>
-        {% endif %}
-      </div>
+      {% endif %}
     </div>
+
   </div> <!-- /partner-columns-container -->
 
   <!-- Products section -->
