@@ -519,7 +519,7 @@ def render_top_christmas():
     enriched_sorted = sorted(enriched, key=lambda x: x.get("review_count", 0), reverse=True)
 
     # Render with same template as last-12-months
-    template = env.get_template("noths/products/products-last-12-months.html")
+    template = env.get_template("noths/products/top-100-christmas.html")
     out_path = "docs/noths/products/top-100-christmas.html"
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
 
