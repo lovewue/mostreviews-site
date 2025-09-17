@@ -1356,3 +1356,60 @@ body.no-scroll { overflow: hidden; }
   display: block;
 }
 
+
+/* === Partner Page: visual card design === */
+
+.partner-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.partner-links {
+  margin-top: 1rem;
+}
+
+.partner-link {
+  align-self: flex-end;
+  margin-top: 1rem;
+  background: #7066E0;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.partner-link:hover {
+  background: #5a53c0;
+}
+
+/* 📱 Mobile layout adjustments */
+@media (max-width: 768px) {
+  .partner-profile {
+    align-items: center;           /* center contents horizontally */
+  }
+  .partner-link {
+    align-self: center;            /* center the button */
+    width: 100%;                   /* full width for easy tap */
+    text-align: center;
+  }
+  .partner-links ul {
+    justify-content: center;       /* center icons */
+  }
+}
+
+}
+
+/* === Avoid search box zoom === */
+
+.search-box input {
+  font-size: 16px;     /* prevent iOS Safari zoom */
+  line-height: 1.4;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 400px;
+}
