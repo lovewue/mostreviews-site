@@ -1355,15 +1355,62 @@ body.no-scroll { overflow: hidden; }
 
 
 
-/* === Avoid search box zoom === */
-.search-box input {
-  font-size: 16px;     /* prevent iOS Safari zoom */
-  line-height: 1.4;
-  padding: 0.5rem 0.75rem;
+/* === Search Box === */
+/* Container */
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
   border-radius: 6px;
-  border: 0px solid #ddd;  /* ✅ keep a subtle border */
+  padding: 6px 10px;
+  max-width: 500px;     /* ✅ overall control */
   width: 100%;
-  max-width: 400px;
+  margin: 1.5rem auto;
   background: #fff;
   box-sizing: border-box;
+}
+
+/* Input */
+.search-box input {
+  border: none;
+  outline: none;
+  flex: 1;              /* ✅ stretch to fill */
+  font-size: 16px;      /* prevents iOS zoom */
+  line-height: 1.4;
+  padding: 0.5rem 0.75rem;
+  background: #fff;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Dropdown results */
+.search-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  background: #fff;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;          /* ✅ match parent width */
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.search-results li a {
+  display: block;
+  padding: 6px 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+.search-results li a:hover {
+  background: #f2f2f2;
 }
