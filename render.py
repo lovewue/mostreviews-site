@@ -17,6 +17,57 @@ def find_logo_url(slug: str) -> str | None:
                 return f"/{logo_dir}/{slug}.{ext}"
     return None
 
+
+# === Reusable helper: get top N unique partners from a product list ===
+def get_top_partners_from_products(json_file: str, partner_lookup: dict, limit: int = 3, full_by_sku: dict | None = None):
+    """
+    Return up to `limit` unique partners from a product JSON file.
+    If `full_by_sku` is provided, use it to enrich/standardize review_count and
+    sort products by review_count desc to mirror the Top-100 page ordering.
+    """
+    with open(json_file, "r", encoding="utf-8") as f:
+        products = json.load(f)
+
+    # Enrich with review counts for consistent ranking (if available)
+    enriched = []
+    for p in products:
+        sku = str(p.get("sku") or "").strip()
+        # Prefer review_count from the full dataset if available
+        if full_by_sku and sku in full_by_sku:
+            rc = full_by_sku[sku].get("review_count", 0)
+        else:
+            rc = p.get("review_count", 0)
+        try:
+            rc_int = int(str(rc).replace(",", ""))
+        except:
+            rc_int = 0
+        enriched.append((p, rc_int))
+
+    # Sort by review_count desc
+    enriched.sort(key=lambda t: t[1], reverse=True)
+
+    seen_slugs = set()
+    partners = []
+    for p, _rc in enriched:
+        slug = (p.get("seller_slug") or "").lower().strip()
+        if not slug or slug in seen_slugs:
+            continue
+        if slug not in partner_lookup:
+            continue
+        seen_slugs.add(slug)
+        partner = partner_lookup[slug]
+        partners.append({
+            "slug": slug,
+            "name": partner.get("name", ""),
+            # Provide a ready-to-use logo path if the template wants it
+            "logo": find_logo_url(slug),
+        })
+        if len(partners) >= limit:
+            break
+
+    return partners
+
+
 # === Jinja setup ===
 env = Environment(loader=FileSystemLoader("templates"))
 STATIC_PATH = "/docs/noths/static"
@@ -26,6 +77,9 @@ def render_noths_index():
     # Load top products (for product card & partner review counts)
     with open("data/top_products_last_12_months.json", "r", encoding="utf-8") as f:
         top_products = json.load(f)
+
+    # Build a quick index by SKU for cross-list enrichment
+    full_by_sku = {str(p.get("sku")): p for p in top_products}
 
     # Load partner metadata
     with open("data/partners_merged.json", "r", encoding="utf-8") as f:
@@ -63,7 +117,7 @@ def render_noths_index():
             partners_2025.append(p)
 
     partners_2025 = sorted(
-        partners_2025, key=lambda x: int(p.get("review_count", 0)), reverse=True
+        partners_2025, key=lambda x: int(str(x.get("review_count", 0)).replace(",", "")), reverse=True
     )[:3]
 
     # --- Top 3 partners with the most products ---
@@ -83,6 +137,16 @@ def render_noths_index():
 
     top_product_partners = sorted(
         partners_with_counts, key=lambda x: x["product_count"], reverse=True
+    )[:3]
+
+    # --- Top 3 products from Christmas Top 100 ---
+    with open("data/top_products_christmas.json", "r", encoding="utf-8") as f:
+        christmas_products = json.load(f)
+
+    top_christmas_products = sorted(
+        christmas_products,
+        key=lambda x: int(str(x.get("review_count", 0)).replace(",", "")),
+        reverse=True
     )[:3]
 
     # --- Pick A, middle, and Z logos from A–Z directory ---
@@ -114,6 +178,7 @@ def render_noths_index():
     print("Top partners:", [p["slug"] for p in top_partners])
     print("2025 partners:", [p["slug"] for p in partners_2025])
     print("Most products partners:", [p["slug"] for p in top_product_partners])
+    print("Christmas products:", [p.get("sku") for p in top_christmas_products])
     print("A–Z partners:", [p["slug"] for p in az_partners])
 
     # --- Render template ---
@@ -121,11 +186,12 @@ def render_noths_index():
     html = template.render(
         title="NOTHS Partners and Products",
         static_path=STATIC_PATH,
-        top_products=top_products,            # full list for slicing in Jinja
-        top_partners=top_partners,            # top 3 by reviews
-        partners_2025=partners_2025,          # top 3 new joiners
+        top_products=top_products,                  # full list for slicing in Jinja
+        top_partners=top_partners,                  # top 3 by reviews
+        partners_2025=partners_2025,                # top 3 new joiners
         top_product_partners=top_product_partners,  # top 3 by product count
-        az_partners=az_partners               # first A, middle, last Z
+        top_christmas_products=top_christmas_products,  # ✅ top 3 products, not partners
+        az_partners=az_partners                     # first A, middle, last Z
     )
 
     # --- Write output ---
@@ -152,6 +218,7 @@ def copy_static_assets():
             print(f"✅ Copied {folder} → docs/{folder}")
         else:
             print(f"⚠️  Skipped {folder}: folder not found.")
+
 
 # === Render individual partner pages ===
 def render_partner_pages():
@@ -224,6 +291,7 @@ def render_partner_pages():
 
     print(f"✅ Rendered {count} partner pages → /docs/noths/partners/[a-z]/ ({updated} updated)")
 
+
 # === Render A–Z index ===
 def render_partner_index():
     with open("data/partners_merged.json", "r", encoding="utf-8") as f:
@@ -271,6 +339,7 @@ def render_partner_index():
     else:
         print("📇 partners/index.html unchanged")
 
+
 # === Render by year index ===
 def render_partner_by_year():
     with open("data/partners_merged.json", "r", encoding="utf-8") as f:
@@ -301,6 +370,7 @@ def render_partner_by_year():
     with open("docs/noths/partners/by-year.html", "w", encoding="utf-8") as f:
         f.write(template.render(context))
     print("📅 Rendered partners/by-year.html")
+
 
 # === Render grouped by reviews ===
 def render_partner_most_reviews_grouped():
@@ -337,6 +407,7 @@ def render_partner_most_reviews_grouped():
 
     print("🏆 Rendered partner-most-reviews.html (grouped by bands)")
 
+
 # === Render grouped by product count ===
 def render_partner_most_products_grouped():
     with open("data/partners_merged.json", "r", encoding="utf-8") as f:
@@ -367,6 +438,7 @@ def render_partner_most_products_grouped():
         f.write(template.render(bands=bands, partners_by_band=partners_by_band))
 
     print("📦 Rendered partner-most-products.html")
+
 
 # === Render Top Products (Last 12 Months, Top 100) ===
 def render_top_100_products():
@@ -436,9 +508,6 @@ def render_top_christmas():
     print("🎄 Top 100 Christmas page rendered →", out_path)
 
 
-
-   
-
 # === Render Site Homepage ===
 def render_site_homepage():
     template = env.get_template("home.html")
@@ -447,6 +516,7 @@ def render_site_homepage():
     with open("docs/home.html", "w", encoding="utf-8") as f:
         f.write(html)
     print("🏠 Rendered main site homepage → docs/home.html")
+
 
 # === Render Top Partners Last 12 Months ===
 def render_top_partners_last_12_months():
@@ -481,6 +551,7 @@ def render_top_partners_last_12_months():
 
     print("🔝 Rendered top-partners-12-months.html (Top 100 only)")
 
+
 # === Render About Page ===
 def render_about_page():
     template = env.get_template("about.html")
@@ -489,9 +560,8 @@ def render_about_page():
         f.write(template.render())
     print("📖 Rendered about.html")
 
+
 # === Create Sitemap ===
-
-
 def render_sitemap():
     import json
     from datetime import date
@@ -500,19 +570,23 @@ def render_sitemap():
     urls = [
         f"{BASE_URL}/",
         f"{BASE_URL}/noths/products/products-last-12-months.html",
+        f"{BASE_URL}/noths/products/top-100-christmas.html",  # NEW
         f"{BASE_URL}/noths/partners/index.html",
         f"{BASE_URL}/noths/partners/by-year.html",
         f"{BASE_URL}/noths/partners/partner-most-reviews.html",
     ]
 
-    # include all seller pages
-    with open("docs/data/partners_search.json", "r", encoding="utf-8") as f:
-        sellers = json.load(f)
-
-    for s in sellers:
-        slug = s["slug"]
-        first = slug[0].lower()
-        urls.append(f"{BASE_URL}/noths/partners/{first}/{slug}.html")
+    # include all seller pages (if search file exists)
+    search_json_path = "docs/data/partners_search.json"
+    try:
+        with open(search_json_path, "r", encoding="utf-8") as f:
+            sellers = json.load(f)
+        for s in sellers:
+            slug = s["slug"]
+            first = slug[0].lower()
+            urls.append(f"{BASE_URL}/noths/partners/{first}/{slug}.html")
+    except FileNotFoundError:
+        print(f"⚠️  Skipped seller URLs in sitemap: '{search_json_path}' not found.")
 
     today = date.today().isoformat()
     xml = ['<?xml version="1.0" encoding="UTF-8"?>']
@@ -533,7 +607,7 @@ def render_sitemap():
         f.write("\n".join(xml))
 
     print(f"🗺️  Wrote sitemap.xml with {len(urls)} URLs")
-    
+
 
 # === Run Everything ===
 render_noths_index()
@@ -549,8 +623,3 @@ render_top_partners_last_12_months()
 render_about_page()
 render_sitemap()
 render_top_christmas()
-
-
-
-
-
