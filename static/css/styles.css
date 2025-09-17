@@ -1359,45 +1359,103 @@ body.no-scroll { overflow: hidden; }
 
 /* === Partner Page: visual card design === */
 
-.partner-profile {
+.partner-columns-container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
 
-.partner-links {
-  margin-top: 1rem;
+.partner-header {
+  flex: 0 0 200px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.partner-logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.partner-profile {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.partner-info {
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.partner-info li {
+  margin: 0.25rem 0;
+  color: #444;
+}
+
+.partner-info strong {
+  font-weight: 600;
+  color: #000;
+}
+
+.partner-cta-block {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .partner-link {
-  align-self: flex-end;
-  margin-top: 1rem;
-  background: #7066E0;
+  background: #000; /* black button */
   color: #fff;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.25rem;
   border-radius: 6px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  font-family: inherit; /* inherit your site font */
 }
 
 .partner-link:hover {
-  background: #5a53c0;
+  background: #222;
 }
 
-/* 📱 Mobile layout adjustments */
+.social-icons {
+  display: flex;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.social-icons a {
+  font-size: 1.2rem;
+  color: #444;
+}
+
+.social-icons a:hover {
+  color: #000;
+}
+
+/* 📱 Mobile adjustments */
 @media (max-width: 768px) {
-  .partner-profile {
-    align-items: center;           /* center contents horizontally */
-  }
-  .partner-link {
-    align-self: center;            /* center the button */
-    width: 100%;                   /* full width for easy tap */
+  .partner-columns-container {
+    flex-direction: column;
+    align-items: center;
     text-align: center;
   }
-  .partner-links ul {
-    justify-content: center;       /* center icons */
+  .partner-cta-block {
+    justify-content: center;
   }
+  .partner-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 
 /* === Avoid search box zoom === */
 .search-box input {
@@ -1405,7 +1463,10 @@ body.no-scroll { overflow: hidden; }
   line-height: 1.4;
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
-  border: 0px solid #ccc;
+  border: 1px solid #ddd;  /* ✅ keep a subtle border */
   width: 100%;
   max-width: 400px;
+  background: #fff;
+  box-sizing: border-box;
 }
+

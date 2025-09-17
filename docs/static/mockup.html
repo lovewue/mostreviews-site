@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wue – NOTHS Partner</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body {
+      font-family: "Montserrat", Arial, sans-serif; /* replace with your site standard */
+      margin: 2rem;
+      color: #333;
+    }
+
+    .partner-columns-container {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .partner-header {
+      flex: 0 0 200px; /* fixed logo column */
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .partner-logo {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .partner-profile {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .partner-info {
+      margin: 1rem 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.95rem; /* site standard sizing */
+    }
+
+    .partner-info li {
+      margin: 0.25rem 0;
+      color: #444;
+    }
+
+    .partner-info strong {
+      font-weight: 600;
+      color: #000;
+    }
+
+    .partner-cta-block {
+      margin-top: auto; /* push CTAs to bottom */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .partner-link {
+      background: #000; /* black button */
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-family: "Montserrat", Arial, sans-serif; /* enforce site font */
+    }
+
+    .partner-link:hover {
+      background: #222;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 0.75rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .social-icons a {
+      font-size: 1.2rem;
+      color: #444;
+    }
+
+    .social-icons a:hover {
+      color: #000;
+    }
+
+    /* 📱 Mobile adjustments */
+    @media (max-width: 768px) {
+      .partner-columns-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .partner-cta-block {
+        justify-content: center;
+      }
+      .partner-link {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<section class="partner-detail-page">
+
+  <div class="partner-columns-container top-block">
+    <!-- Left column: logo -->
+    <div class="partner-header">
+      <img src="https://via.placeholder.com/180x100?text=Wue+Logo" alt="Wue logo" class="partner-logo">
+    </div>
+
+    <!-- Right column: info + CTAs -->
+    <div class="partner-profile">
+      <h1>Wue</h1>
+      <ul class="partner-info">
+        <li><strong>Joined:</strong> 2015</li>
+        <li><strong>Total Reviews:</strong> 12,345</li>
+        <li><strong>Product Count:</strong> 128</li>
+      </ul>
+
+      <!-- Footer block: button + socials -->
+      <div class="partner-cta-block">
+        <a href="#" class="partner-link">View on NOTHS</a>
+        <ul class="social-icons">
+          <li><a href="#"><i class="fa-solid fa-globe"></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>

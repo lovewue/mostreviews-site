@@ -24,17 +24,16 @@
         <li><strong>Product Count:</strong> {{ partner.product_count }}</li>
       </ul>
 
-      <!-- View on NOTHS button -->
-      <a href="{{ partner.awin }}"
-         target="_blank"
-         class="partner-link"
-         data-product-url="{{ partner.url }}">
-         View on NOTHS
-      </a>
+      <!-- Footer block: View on NOTHS + social icons -->
+      <div class="partner-cta-block">
+        <a href="{{ partner.awin }}"
+           target="_blank"
+           class="partner-link"
+           data-product-url="{{ partner.url }}">
+           View on NOTHS
+        </a>
 
-      <!-- Paid social links -->
-      {% if partner.paid %}
-      <div class="partner-links">
+        {% if partner.paid %}
         <ul class="social-icons">
           {% if partner.website %}
             <li><a href="{{ partner.website }}" target="_blank" rel="noopener"><i class="fa-solid fa-globe"></i></a></li>
@@ -58,13 +57,12 @@
             <li><a href="{{ partner.tiktok }}" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a></li>
           {% endif %}
         </ul>
+        {% endif %}
       </div>
-      {% endif %}
     </div>
-
   </div> <!-- /partner-columns-container -->
 
-  <!-- Products (same as before) -->
+  <!-- Products section -->
   {% set reviewed = top_products | selectattr("review_count", "ge", 5) | list %}
   {% set low_reviewed = top_products | selectattr("review_count", "lt", 5) | list %}
 
