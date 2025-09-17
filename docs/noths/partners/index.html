@@ -21368,19 +21368,31 @@ loadSellers().then(partners => {
   const results = document.getElementById("searchResults");
 
   function showMatches(q) {
-    results.innerHTML = "";
-    if (!q) return;
+  results.innerHTML = "";
 
-    let matches = partners.filter(s => s.name.toLowerCase().includes(q.toLowerCase())).slice(0, 10);
+  if (!q) {
+    results.classList.remove("has-results");
+    return;
+  }
 
+  let matches = partners
+    .filter(s => s.name.toLowerCase().includes(q.toLowerCase()))
+    .slice(0, 10);
+
+  if (matches.length > 0) {
+    results.classList.add("has-results");
     matches.forEach(s => {
       let li = document.createElement("li");
       li.innerHTML = `<a href="/noths/partners/${s.slug[0]}/${s.slug}.html">${s.name}</a>`;
       results.appendChild(li);
     });
-
-    return matches;
+  } else {
+    results.classList.remove("has-results");
   }
+
+  return matches;
+}
+
 
   input.addEventListener("input", () => {
     showMatches(input.value);
