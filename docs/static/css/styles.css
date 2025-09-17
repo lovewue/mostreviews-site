@@ -1212,6 +1212,17 @@ body.no-scroll { overflow: hidden; }
 }
 
 
+/* =========================
+   PARTNER DETAIL PAGE WRAPPER
+   ========================= */
+.partner-detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: sans-serif; /* consistent with site */
+}
+
+
 /* === Partner detail: 3-column layout === */
 .partner-columns-container {
   display: grid;
