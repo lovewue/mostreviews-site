@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}{{ partner.name }} – NOTHS Partner{% endblock %}
+{% block title %}
+  {{ partner.name }} – NOTHS Partner Since {{ partner.since }}
+{% endblock %}
+
 
 {% block content %}
 <section class="partner-detail-page">
