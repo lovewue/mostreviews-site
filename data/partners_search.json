@@ -4,10 +4,6 @@
     "slug": "lindleywood"
   },
   {
-    "name": "Marina Designs",
-    "slug": "marinadesigns"
-  },
-  {
     "name": "Eliza Asta Jewellery",
     "slug": "elizaastajewellery"
   },
@@ -62,6 +58,10 @@
   {
     "name": "The Garden Tablecloth Co.",
     "slug": "thegardentableclothco"
+  },
+  {
+    "name": "Emmy James Studio",
+    "slug": "emmyjamesstudio"
   },
   {
     "name": "Seven and Six Gifts",
@@ -544,7 +544,7 @@
     "slug": "blueirisdesignsco"
   },
   {
-    "name": "By Sam Jewellery",
+    "name": "Sending Love",
     "slug": "bysamjewellery"
   },
   {
@@ -1904,10 +1904,6 @@
     "slug": "rachellearyceramics"
   },
   {
-    "name": "Lily King",
-    "slug": "lilyking"
-  },
-  {
     "name": "Unhinged Gifts Ltd",
     "slug": "unhingedgifts"
   },
@@ -2324,14 +2320,6 @@
     "slug": "thewhoopiebakery"
   },
   {
-    "name": "Healing Hands Studio",
-    "slug": "soulsobriety"
-  },
-  {
-    "name": "EARSASS",
-    "slug": "earsass"
-  },
-  {
     "name": "Minibeau",
     "slug": "minibeau"
   },
@@ -2538,10 +2526,6 @@
   {
     "name": "EASTNOR POTTERY AND THE FLYING POTTER",
     "slug": "eastnorpotteryandtheflyingpotter"
-  },
-  {
-    "name": "Benjamin Kids",
-    "slug": "benjaminkids"
   },
   {
     "name": "Hard Jelly",
@@ -3884,10 +3868,6 @@
     "slug": "chillino5"
   },
   {
-    "name": "Mi-bambino London",
-    "slug": "mibambinolondon"
-  },
-  {
     "name": "Feather & Foal",
     "slug": "featherandfoal"
   },
@@ -3906,10 +3886,6 @@
   {
     "name": "GIULIO ACCESSORIES",
     "slug": "giulioaccessories"
-  },
-  {
-    "name": "Dry Drinker",
-    "slug": "drydrinker"
   },
   {
     "name": "Little Beasties",
@@ -4512,10 +4488,6 @@
     "slug": "fefusdesigns"
   },
   {
-    "name": "Soch & Co",
-    "slug": "sochandco"
-  },
-  {
     "name": "Pony Nut",
     "slug": "ponynut"
   },
@@ -4570,10 +4542,6 @@
   {
     "name": "Metalbird",
     "slug": "metalbird"
-  },
-  {
-    "name": "VIVE CON STYLE",
-    "slug": "viveconstyle"
   },
   {
     "name": "CIVIL BLOCK MICROSOAPERY",
@@ -6404,10 +6372,6 @@
     "slug": "charlieyallopart"
   },
   {
-    "name": "Tam Creative Living",
-    "slug": "tamcreativeliving"
-  },
-  {
     "name": "Kindred Spirits",
     "slug": "kindredspirits"
   },
@@ -6792,10 +6756,6 @@
     "slug": "helenloveday"
   },
   {
-    "name": "Muddy Paws Accessories",
-    "slug": "muddypawsaccessories"
-  },
-  {
     "name": "Senses Candles",
     "slug": "sensescandles"
   },
@@ -7080,10 +7040,6 @@
     "slug": "clairetuxworthillustration"
   },
   {
-    "name": "milly&sissy",
-    "slug": "millyandsissy"
-  },
-  {
     "name": "Kind Oils Skincare",
     "slug": "kindoils"
   },
@@ -7178,10 +7134,6 @@
   {
     "name": "MAI Clothing",
     "slug": "maiclothing"
-  },
-  {
-    "name": "Last Ember",
-    "slug": "lastember"
   },
   {
     "name": "Thornes",
@@ -8036,10 +7988,6 @@
     "slug": "thediscoveryjournal"
   },
   {
-    "name": "Rusty Barrel",
-    "slug": "rustybarrel"
-  },
-  {
     "name": "We Are The Hood",
     "slug": "wearethehood"
   },
@@ -8152,7 +8100,7 @@
     "slug": "birgitaxtersjewellery"
   },
   {
-    "name": "Frame Your World Co",
+    "name": "Frame Your World",
     "slug": "frameyourworld"
   },
   {
@@ -9120,10 +9068,6 @@
     "slug": "tempowatchmaking"
   },
   {
-    "name": "Chunkycouture",
-    "slug": "chunkycouture"
-  },
-  {
     "name": "The Rose Press Garden",
     "slug": "therosepressgarden"
   },
@@ -9386,10 +9330,6 @@
   {
     "name": "Tiny Trinket Clay Dishes",
     "slug": "unwindillustrations"
-  },
-  {
-    "name": "The Neighbourhood Threat",
-    "slug": "theneighbourhoodthreat"
   },
   {
     "name": "Freddie & Ivy",
@@ -9698,10 +9638,6 @@
   {
     "name": "Lousurfacepattern",
     "slug": "lousurfacepattern"
-  },
-  {
-    "name": "Vespucci Adventures",
-    "slug": "vespucciadventures"
   },
   {
     "name": "Rendy Shop UK",
@@ -10084,10 +10020,6 @@
     "slug": "sketchbysam"
   },
   {
-    "name": "Lizzie-May Design",
-    "slug": "lizziemaydesign"
-  },
-  {
     "name": "Kocktail",
     "slug": "kocktail"
   },
@@ -10106,10 +10038,6 @@
   {
     "name": "Alpha Beta Studio",
     "slug": "alphabetastudio"
-  },
-  {
-    "name": "Millie’s Organics",
-    "slug": "milliesorganics"
   },
   {
     "name": "Steve Smith Ceramics",
@@ -10280,10 +10208,6 @@
     "slug": "punchandfury"
   },
   {
-    "name": "Moho London",
-    "slug": "moholondon"
-  },
-  {
     "name": "Castor & Noble",
     "slug": "thestatelyhound"
   },
@@ -10298,10 +10222,6 @@
   {
     "name": "Be Clean Co.",
     "slug": "becleanco"
-  },
-  {
-    "name": "Nora Wright",
-    "slug": "norawright"
   },
   {
     "name": "moonlit toad",
@@ -10596,10 +10516,6 @@
     "slug": "katebrigdenceramics"
   },
   {
-    "name": "Jiya Jewellery",
-    "slug": "jiyajewellery"
-  },
-  {
     "name": "Safiyyah Studio",
     "slug": "safiyyahstudio"
   },
@@ -10864,10 +10780,6 @@
     "slug": "goodeehoo"
   },
   {
-    "name": "Mutha Hood",
-    "slug": "muthahood"
-  },
-  {
     "name": "Bloody Bens",
     "slug": "bloodybens"
   },
@@ -11116,10 +11028,6 @@
     "slug": "patchytiger"
   },
   {
-    "name": "Spots and Stripes",
-    "slug": "spotsandstripes"
-  },
-  {
     "name": "40 Colori",
     "slug": "40colori"
   },
@@ -11190,10 +11098,6 @@
   {
     "name": "The Print Florist",
     "slug": "theprintflorist"
-  },
-  {
-    "name": "Badger and Birch",
-    "slug": "badgerandbirch"
   },
   {
     "name": "Drinks Boxx Company",
@@ -11314,10 +11218,6 @@
   {
     "name": "Little Bakers",
     "slug": "littlebakers"
-  },
-  {
-    "name": "Laura's Confectionery Ltd",
-    "slug": "laurasconfectionery"
   },
   {
     "name": "lala loves decor",
@@ -12892,10 +12792,6 @@
     "slug": "jindesigns"
   },
   {
-    "name": "Tea Please",
-    "slug": "teaplease"
-  },
-  {
     "name": "PRINTS279",
     "slug": "prints279"
   },
@@ -12938,10 +12834,6 @@
   {
     "name": "Craftly Ltd",
     "slug": "craftly"
-  },
-  {
-    "name": "Leonie Saliba",
-    "slug": "leoniesaliba"
   },
   {
     "name": "Tipsy Wight",
@@ -13186,10 +13078,6 @@
   {
     "name": "Fairy Made Paperart",
     "slug": "fairymadepaperart"
-  },
-  {
-    "name": "Hartill",
-    "slug": "meltingmessages"
   },
   {
     "name": "meminio",
@@ -13760,10 +13648,6 @@
     "slug": "artdisco"
   },
   {
-    "name": "Letterbox Lane",
-    "slug": "letterboxlane"
-  },
-  {
     "name": "The Dartmoor Soap Company Ltd",
     "slug": "thedartmoorsoapcompany"
   },
@@ -13900,7 +13784,7 @@
     "slug": "sunlondon"
   },
   {
-    "name": "Lottie Day",
+    "name": "Norfolk Napkins",
     "slug": "lottieday"
   },
   {
@@ -15640,10 +15524,6 @@
     "slug": "beckybettesworth"
   },
   {
-    "name": "Shropshire Jewellery Designs",
-    "slug": "shropshirejewellerydesigns"
-  },
-  {
     "name": "Bird & Blend Tea Co.",
     "slug": "bluebirdteaco"
   },
@@ -16700,10 +16580,6 @@
     "slug": "peastyle"
   },
   {
-    "name": "Westergaard Designs",
-    "slug": "westergaarddesigns"
-  },
-  {
     "name": "sarah jones-morris ceramics",
     "slug": "sarahjonesmorrisceramics"
   },
@@ -16978,10 +16854,6 @@
   {
     "name": "Paperbird Design",
     "slug": "paperbirddesign"
-  },
-  {
-    "name": "PotNotch",
-    "slug": "potnotch"
   },
   {
     "name": "The Flask Company",
@@ -17496,10 +17368,6 @@
     "slug": "thejoyofmemories"
   },
   {
-    "name": "A Studio Called Fox",
-    "slug": "quotography"
-  },
-  {
     "name": "Fudge Kitchen",
     "slug": "fudgekitchen"
   },
@@ -17626,10 +17494,6 @@
   {
     "name": "Anthony Oram",
     "slug": "anthonyoram"
-  },
-  {
-    "name": "Nell",
-    "slug": "nell"
   },
   {
     "name": "Loubijoux",
@@ -17944,10 +17808,6 @@
     "slug": "hellolovely"
   },
   {
-    "name": "Simply Colors",
-    "slug": "simplycolors"
-  },
-  {
     "name": "Bookishly",
     "slug": "bookishly"
   },
@@ -18130,10 +17990,6 @@
   {
     "name": "MW Studio",
     "slug": "mwstudio"
-  },
-  {
-    "name": "Kiddiewinkles",
-    "slug": "kiddiewinkles"
   },
   {
     "name": "Sarah Lawrence Jewellery",
@@ -19184,10 +19040,6 @@
     "slug": "alteredchic"
   },
   {
-    "name": "Stormy Knight",
-    "slug": "stormyknightcards"
-  },
-  {
     "name": "Love One Another Paper Co.",
     "slug": "loveoneanotherpaperco"
   },
@@ -19346,10 +19198,6 @@
   {
     "name": "Corinne Lapierre",
     "slug": "corinnelapierrecreations"
-  },
-  {
-    "name": "Hannah Turner",
-    "slug": "hannahturnerceramics"
   },
   {
     "name": "Allihopa",
@@ -20300,14 +20148,6 @@
     "slug": "alicefrederick"
   },
   {
-    "name": "Abode Home & GiftsProducts",
-    "slug": "allthingsbrightonbeautiful"
-  },
-  {
-    "name": "Alexander ThurlowProducts",
-    "slug": "atlondonjewels"
-  },
-  {
     "name": "Foxery",
     "slug": "badgersbadgers"
   },
@@ -20332,10 +20172,6 @@
     "slug": "cloudshillsucculents"
   },
   {
-    "name": "Flora & BrassProducts",
-    "slug": "coldclayco"
-  },
-  {
     "name": "Crafts4Kids",
     "slug": "crafts4kids"
   },
@@ -20344,20 +20180,12 @@
     "slug": "cuckooland"
   },
   {
-    "name": "Ace Of WandsProducts",
-    "slug": "eka"
-  },
-  {
     "name": "ElsieBelle",
     "slug": "elsiebellejewellery"
   },
   {
     "name": "Emily Doran Pottery",
     "slug": "emilydoranpottery"
-  },
-  {
-    "name": "Willow & HueProducts",
-    "slug": "freehandfreemind"
   },
   {
     "name": "Giftzee",
@@ -20380,20 +20208,8 @@
     "slug": "keylimedesign"
   },
   {
-    "name": "The Department Of GiftingProducts",
-    "slug": "letteroom"
-  },
-  {
-    "name": "Evansly LaneProducts",
-    "slug": "lilyandwonder"
-  },
-  {
     "name": "Lovette Design",
     "slug": "lovettedesign"
-  },
-  {
-    "name": "Spiritual GiftsProducts",
-    "slug": "malarocks"
   },
   {
     "name": "Mint Maker Studio",
@@ -20428,20 +20244,12 @@
     "slug": "sowseedy"
   },
   {
-    "name": "Boldly WhittleProducts",
-    "slug": "studioone48"
-  },
-  {
     "name": "Magic + Monroe",
     "slug": "studioseed"
   },
   {
     "name": "The Deli Society",
     "slug": "thedelisociety"
-  },
-  {
-    "name": "HELLO LOVELYProducts",
-    "slug": "thelittleboysroom"
   },
   {
     "name": "The Marshmallowist",
@@ -20460,16 +20268,12 @@
     "slug": "theunusualgiftboutique"
   },
   {
+    "name": "TwentyTwoKisses",
+    "slug": "twentytwokisses"
+  },
+  {
     "name": "Twig & Wild",
     "slug": "twigandwild"
-  },
-  {
-    "name": "Paper SceneProducts",
-    "slug": "twiststationery"
-  },
-  {
-    "name": "Petal & Pearl AccessoriesProducts",
-    "slug": "twoforjoyheadbands"
   },
   {
     "name": "Mary in the Wild",
@@ -20726,5 +20530,173 @@
   {
     "name": "Beanies Flavoured Coffee",
     "slug": "beaniesflavouredcoffee"
+  },
+  {
+    "name": "PaperPaper",
+    "slug": "paperpaper"
+  },
+  {
+    "name": "PopBox Party",
+    "slug": "popboxparty"
+  },
+  {
+    "name": "Friary Drinks",
+    "slug": "friaryliqueurs"
+  },
+  {
+    "name": "Atlas & I",
+    "slug": "atlasandi"
+  },
+  {
+    "name": "Hunter & Grey Cocktails",
+    "slug": "hoxtonandgreycocktails"
+  },
+  {
+    "name": "Coral & Moss Decorative Collection",
+    "slug": "coralandmossdecorativecollection"
+  },
+  {
+    "name": "MMC Glass",
+    "slug": "mmcglass"
+  },
+  {
+    "name": "Wax / Wine",
+    "slug": "waxwine"
+  },
+  {
+    "name": "The Pouch Boutique",
+    "slug": "thepouchboutique"
+  },
+  {
+    "name": "ANATOLIACRAFT",
+    "slug": "anatoliacraft"
+  },
+  {
+    "name": "The Pickle House",
+    "slug": "thepicklehouse"
+  },
+  {
+    "name": "PSR Experience",
+    "slug": "psrexperience"
+  },
+  {
+    "name": "Botanical Interior Design",
+    "slug": "botanicalinteriordesign"
+  },
+  {
+    "name": "The Metal Foundry",
+    "slug": "themetalfoundry"
+  },
+  {
+    "name": "The Design Parlour",
+    "slug": "thedesignparlour"
+  },
+  {
+    "name": "Natasha Robinson",
+    "slug": "natasharobinson"
+  },
+  {
+    "name": "Bunny and Bear Studio",
+    "slug": "bunnyandbearstudio"
+  },
+  {
+    "name": "Lonely Sunday Tattoo Care",
+    "slug": "lonelysundaytattoocare"
+  },
+  {
+    "name": "SpaceSweets",
+    "slug": "spacesweets"
+  },
+  {
+    "name": "Wildflower & Berry",
+    "slug": "wildflowerandberry"
+  },
+  {
+    "name": "Hokey Cokey Crafts",
+    "slug": "hokeycokeycrafts"
+  },
+  {
+    "name": "Loste False Nails",
+    "slug": "lostefalsenails"
+  },
+  {
+    "name": "Dear Diary",
+    "slug": "deardiaryltd"
+  },
+  {
+    "name": "Yep Kitchen",
+    "slug": "yepkitchen"
+  },
+  {
+    "name": "Words With Wine",
+    "slug": "wordswithwine"
+  },
+  {
+    "name": "Created By Char",
+    "slug": "createdbychar"
+  },
+  {
+    "name": "The Deck 747",
+    "slug": "thedeck747"
+  },
+  {
+    "name": "Just Be Socks",
+    "slug": "justbesocks"
+  },
+  {
+    "name": "Montezuma's Chocolates",
+    "slug": "montezumaschocolates"
+  },
+  {
+    "name": "Let's Make & Do",
+    "slug": "letsmakeanddo"
+  },
+  {
+    "name": "Gifty London",
+    "slug": "giftylondon"
+  },
+  {
+    "name": "Cocoa Encounters",
+    "slug": "cocoaencounters"
+  },
+  {
+    "name": "Whisky With Us",
+    "slug": "whiskywithus"
+  },
+  {
+    "name": "Hey Wonder",
+    "slug": "heywonder"
+  },
+  {
+    "name": "The Protein Ball co",
+    "slug": "theproteinballco"
+  },
+  {
+    "name": "The Handmade Sign Company",
+    "slug": "thehandmadesigncompany"
+  },
+  {
+    "name": "Lara and Kin",
+    "slug": "laraandkin"
+  },
+  {
+    "name": "From The Paper Mill",
+    "slug": "fromthepapermill"
+  },
+  {
+    "name": "PIC A BOO",
+    "slug": "picaboo"
+  },
+  {
+    "name": "Crumbs Brewing",
+    "slug": "crumbsbrewing"
+  },
+  {
+    "name": "Rebel Biscuit Society",
+    "slug": "rebelbiscuitsociety"
+  },
+  {
+    "name": "Sunny Says",
+    "slug": "ottsandco"
   }
 ]
