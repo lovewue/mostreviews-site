@@ -169,11 +169,12 @@ def render_partner_pages():
         partner["logo"] = logo_cache[slug]
 
         first_letter = slug[0]
-        output_dir = f"{DOCS_DIR}/noths/partners/{first_letter}"
+        output_dir = os.path.join(DOCS_DIR, "noths", "partners", first_letter)
         os.makedirs(output_dir, exist_ok=True)
-        output_path = f"{output_dir}/{slug}.html"
+        output_path = os.path.join(output_dir, f"{slug}.html")
 
-        expected_paths.add(output_path)
+        # ✅ Normalize path so comparisons match later
+        expected_paths.add(os.path.normpath(output_path))
 
         html = template.render(
             partner=partner,
@@ -203,19 +204,18 @@ def render_partner_pages():
                     return False
         return False
 
-    base_dir = f"{DOCS_DIR}/noths/partners"
+    base_dir = os.path.join(DOCS_DIR, "noths", "partners")
     removed = 0
     for root, _dirs, files in os.walk(base_dir):
         for file in files:
             if file.endswith(".html"):
-                full_path = os.path.join(root, file)
+                full_path = os.path.normpath(os.path.join(root, file))
                 if full_path not in expected_paths:
                     if safe_remove(full_path):
                         removed += 1
 
     print(f"🧹 Removed {removed} inactive partner pages")
     print(f"✅ Rendered {count} active partner pages (skipped {skipped})")
-
 
 
 
