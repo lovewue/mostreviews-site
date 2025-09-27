@@ -143,12 +143,21 @@ def render_partner_pages():
 
     expected_paths = set()
     count = 0
+    skipped = 0
 
     for partner in ALL_PARTNERS:
-        if not partner.get("active", True):
+        slug = partner.get("slug", "").lower().strip()
+        active = partner.get("active", True)
+
+        if not slug:
+            print(f"⚠️ Skipping partner with no slug: {partner}")
             continue
 
-        slug = partner["slug"].lower().strip()
+        if not active:
+            skipped += 1
+            print(f"⏭️ Skipped inactive partner: {slug}")
+            continue
+
         top_products = sorted(
             products_by_partner.get(slug, []),
             key=lambda p: p.get("review_count", 0),
@@ -205,7 +214,8 @@ def render_partner_pages():
                         removed += 1
 
     print(f"🧹 Removed {removed} inactive partner pages")
-    print(f"✅ Rendered {count} active partner pages")
+    print(f"✅ Rendered {count} active partner pages (skipped {skipped})")
+
 
 
 
