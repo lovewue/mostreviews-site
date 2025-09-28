@@ -407,6 +407,24 @@ def render_about_page():
 
 
 # === Sitemap ===
+def render_partner_search_json():
+    out_path = os.path.join(DOCS_DIR, "data", "partners_search.json")
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+
+    slim = [
+        {"name": p.get("name", ""), "slug": p.get("slug", "")}
+        for p in ALL_PARTNERS
+        if p.get("active", True) and p.get("slug")
+    ]
+
+    print(f"🧾 First 5 partners going into search.json: {slim[:5]}")
+
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(slim, f, indent=2, ensure_ascii=False)
+
+    print(f"🔎 Rendered partners_search.json → {os.path.abspath(out_path)} ({len(slim)} active partners)")
+
+
 def render_sitemap():
     BASE_URL = "https://www.mostreviews.co.uk"
     urls = [
@@ -457,6 +475,7 @@ if __name__ == "__main__":
     render_site_homepage()
     render_top_partners_last_12_months()
     render_about_page()
+    render_partner_search_json()
     render_sitemap()
     render_top_christmas()
 
