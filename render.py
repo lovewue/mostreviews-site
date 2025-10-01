@@ -321,14 +321,25 @@ def render_partner_most_products_grouped():
     print("📦 Rendered partner-most-products.html")
 
 
-# === Top 100 products ===
 def render_top_100_products():
-    top_100 = sorted(TOP_PRODUCTS_12M, key=lambda x: x.get("review_count", 0), reverse=True)[:100]
+    import pandas as pd
+
+    df = pd.DataFrame(TOP_PRODUCTS_12M)
+    df = df.sort_values(by=["review_count", "name"], ascending=[False, True])
+
+    # Dense ranking: ties get same rank, next skips
+    df["rank"] = df["review_count"].rank(method="min", ascending=False).astype(int)
+
+    # Keep everything with rank ≤ 100
+    top_df = df[df["rank"] <= 100]
+
+    print(f"🔝 Rendered Top 100 (actually {len(top_df)} products with ties)")
+
     template = env.get_template("noths/products/products-last-12-months.html")
     os.makedirs(f"{DOCS_DIR}/noths/products", exist_ok=True)
     with open(f"{DOCS_DIR}/noths/products/products-last-12-months.html", "w", encoding="utf-8") as f:
-        f.write(template.render(products=top_100))
-    print("🔝 Rendered products-last-12-months.html")
+        f.write(template.render(products=top_df.to_dict(orient="records")))
+
 
 
 # === Top Christmas products ===
@@ -378,23 +389,37 @@ def render_site_homepage():
 
 # === Top partners last 12 months ===
 def render_top_partners_last_12_months():
+    import pandas as pd
+
     partner_lookup = {p["slug"]: p for p in ALL_PARTNERS if p.get("active", True)}
+
     review_totals = {}
     for p in TOP_PRODUCTS_12M:
         slug = (p.get("seller_slug") or "").lower().strip()
         if slug and slug in partner_lookup:
             review_totals[slug] = review_totals.get(slug, 0) + int(p.get("review_count", 0))
-    top_partners = sorted(
-        [{"slug": slug, "name": partner_lookup[slug]["name"], "total_reviews": count}
-         for slug, count in review_totals.items()],
-        key=lambda x: x["total_reviews"], reverse=True
-    )[:100]
+
+    df = pd.DataFrame([
+        {"slug": slug, "name": partner_lookup[slug]["name"], "total_reviews": count}
+        for slug, count in review_totals.items()
+    ])
+
+    # Sort by total_reviews, then name for stability
+    df = df.sort_values(by=["total_reviews", "name"], ascending=[False, True])
+
+    # Dense rank so ties share the same rank
+    df["rank"] = df["total_reviews"].rank(method="min", ascending=False).astype(int)
+
+    # Keep everything with rank ≤ 100
+    top_df = df[df["rank"] <= 100]
+
+    print(f"🔝 Rendered Top Partners (actually {len(top_df)} with ties)")
 
     template = env.get_template("noths/partners/top-partners-12-months.html")
     os.makedirs(f"{DOCS_DIR}/noths/partners", exist_ok=True)
     with open(f"{DOCS_DIR}/noths/partners/top-partners-12-months.html", "w", encoding="utf-8") as f:
-        f.write(template.render(partners=top_partners))
-    print("🔝 Rendered top-partners-12-months.html")
+        f.write(template.render(partners=top_df.to_dict(orient='records')))
+
 
 
 # === About page ===
