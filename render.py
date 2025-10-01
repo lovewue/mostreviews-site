@@ -350,11 +350,21 @@ def render_top_100_products():
 def render_top_christmas():
     with open(os.path.join(DATA_DIR, "top_products_christmas.json"), "r", encoding="utf-8") as f:
         christmas_list = json.load(f)
+
+    # Build lookup from the main dataset (12-months)
     full_by_sku = {str(p.get("sku")): p for p in TOP_PRODUCTS_12M}
     enriched = []
+
     for item in christmas_list:
         sku = str(item.get("sku"))
         base = full_by_sku.get(sku, {})
+
+        try:
+            review_count = int(base.get("review_count", 0))
+        except (TypeError, ValueError):
+            review_count = 0
+
+        # Prefer existing NOTHS/Awin links if available
         product_url = base.get("product_url", item.get("url"))
         awin_link = base.get("awin")
         if not awin_link and product_url:
@@ -363,6 +373,7 @@ def render_top_christmas():
                 "awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued="
                 + urllib.parse.quote(product_url, safe="")
             )
+
         enriched.append({
             "sku": sku,
             "name": item.get("name") or base.get("name", ""),
@@ -370,16 +381,32 @@ def render_top_christmas():
             "awin": awin_link,
             "seller_name": base.get("seller_name", ""),
             "seller_slug": base.get("seller_slug", ""),
-            "review_count": base.get("review_count", 0),
+            "review_count": review_count,
+            "available": base.get("available", True),
         })
 
-    enriched_sorted = sorted(enriched, key=lambda x: x.get("review_count", 0), reverse=True)
+    # Sort by review count (highest first)
+    enriched_sorted = sorted(enriched, key=lambda x: x["review_count"], reverse=True)
+
+    # Assign ranking with ties
+    current_rank = 0
+    last_count = None
+    for idx, product in enumerate(enriched_sorted, start=1):
+        if product["review_count"] != last_count:
+            current_rank = idx
+            last_count = product["review_count"]
+        product["rank"] = current_rank
+
     template = env.get_template("noths/products/top-100-christmas.html")
     out_path = f"{DOCS_DIR}/noths/products/top-100-christmas.html"
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(template.render(products=enriched_sorted))
-    print("🎄 Rendered top-100-christmas.html")
+
+    print(f"🎄 Rendered top-100-christmas.html with {len(enriched_sorted)} products")
+
+
+
 
 
 # === Homepage ===
