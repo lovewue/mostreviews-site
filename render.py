@@ -34,9 +34,11 @@ def find_logo_url(slug: str) -> str | None:
 def render_noths_index():
     partner_lookup = {p["slug"]: p for p in ALL_PARTNERS if p.get("active", True)}
 
-    # --- Review totals ---
+    # --- Review totals per partner ---
     review_totals = {}
     for p in TOP_PRODUCTS_12M:
+        if not p.get("available", True):
+            continue
         slug = (p.get("seller_slug") or "").lower().strip()
         if slug and slug in partner_lookup:
             review_totals[slug] = review_totals.get(slug, 0) + int(p.get("review_count", 0))
@@ -44,14 +46,22 @@ def render_noths_index():
     top_partners = sorted(
         [{"slug": slug, "name": partner_lookup[slug]["name"], "total_reviews": count}
          for slug, count in review_totals.items()],
-        key=lambda x: x["total_reviews"], reverse=True
+        key=lambda x: x["total_reviews"],
+        reverse=True
     )[:3]
 
     # --- New joiners in 2025 ---
-    partners_2025 = [p for p in ALL_PARTNERS if p.get("since", "").endswith("2025") and p.get("active", True)]
-    partners_2025 = sorted(partners_2025, key=lambda x: int(str(x.get("review_count", 0)).replace(",", "")), reverse=True)[:3]
+    partners_2025 = [
+        p for p in ALL_PARTNERS
+        if p.get("since", "").endswith("2025") and p.get("active", True)
+    ]
+    partners_2025 = sorted(
+        partners_2025,
+        key=lambda x: int(str(x.get("review_count", 0)).replace(",", "")),
+        reverse=True
+    )[:3]
 
-    # --- Most products ---
+    # --- Partners with most products ---
     partners_with_counts = []
     for p in ALL_PARTNERS:
         if not p.get("active", True):
@@ -60,11 +70,26 @@ def render_noths_index():
             count = int(str(p.get("product_count", 0)).replace(",", ""))
         except:
             count = 0
-        partners_with_counts.append({"slug": p["slug"], "name": p["name"], "product_count": count})
+        partners_with_counts.append({
+            "slug": p["slug"],
+            "name": p["name"],
+            "product_count": count
+        })
 
-    top_product_partners = sorted(partners_with_counts, key=lambda x: x["product_count"], reverse=True)[:3]
+    top_product_partners = sorted(
+        partners_with_counts,
+        key=lambda x: x["product_count"],
+        reverse=True
+    )[:3]
 
-    # --- Christmas top products ---
+    # --- Top 3 products overall (by reviews, available only) ---
+    top_products_sorted = sorted(
+        [p for p in TOP_PRODUCTS_12M if p.get("available", True)],
+        key=lambda x: int(x.get("review_count", 0)),
+        reverse=True
+    )[:3]
+
+    # --- Top 3 Christmas products ---
     with open(os.path.join(DATA_DIR, "top_products_christmas.json"), "r", encoding="utf-8") as f:
         christmas_products = json.load(f)
 
@@ -87,7 +112,11 @@ def render_noths_index():
             "seller_slug": base.get("seller_slug", ""),
         })
 
-    top_christmas_products = sorted(enriched_christmas, key=lambda x: x["review_count"], reverse=True)[:3]
+    top_christmas_products = sorted(
+        enriched_christmas,
+        key=lambda x: x["review_count"],
+        reverse=True
+    )[:3]
 
     # --- A, middle, Z logos ---
     active_partners = [p for p in ALL_PARTNERS if p.get("active", True)]
@@ -104,7 +133,7 @@ def render_noths_index():
     html = template.render(
         title="NOTHS Partners and Products",
         static_path=STATIC_PATH,
-        top_products=TOP_PRODUCTS_12M,
+        top_products=top_products_sorted,        # ✅ only top 3 sorted products
         top_partners=top_partners,
         partners_2025=partners_2025,
         top_product_partners=top_product_partners,
@@ -116,6 +145,7 @@ def render_noths_index():
     with open(f"{DOCS_DIR}/noths/index.html", "w", encoding="utf-8") as f:
         f.write(html)
     print("✅ Rendered NOTHS index")
+
 
 
 # === Copy static assets ===
