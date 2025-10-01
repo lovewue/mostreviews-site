@@ -324,21 +324,25 @@ def render_partner_most_products_grouped():
 def render_top_100_products():
     import pandas as pd
 
-    df = pd.DataFrame(TOP_PRODUCTS_12M)
+    # Filter out unavailable products
+    available_products = [p for p in TOP_PRODUCTS_12M if p.get("available", True)]
+
+    df = pd.DataFrame(available_products)
     df = df.sort_values(by=["review_count", "name"], ascending=[False, True])
 
-    # Dense ranking: ties get same rank, next skips
+    # Dense ranking: ties get same rank
     df["rank"] = df["review_count"].rank(method="min", ascending=False).astype(int)
 
     # Keep everything with rank ≤ 100
     top_df = df[df["rank"] <= 100]
 
-    print(f"🔝 Rendered Top 100 (actually {len(top_df)} products with ties)")
+    print(f"🔝 Rendered Top 100 (actually {len(top_df)} products with ties, excluding unavailable)")
 
     template = env.get_template("noths/products/products-last-12-months.html")
     os.makedirs(f"{DOCS_DIR}/noths/products", exist_ok=True)
     with open(f"{DOCS_DIR}/noths/products/products-last-12-months.html", "w", encoding="utf-8") as f:
         f.write(template.render(products=top_df.to_dict(orient="records")))
+
 
 
 
