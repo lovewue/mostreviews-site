@@ -5,7 +5,7 @@
   <h1>
   Top 100 NOTHS Partners
   <span class="subheading">Last 12 Months</span>
-</h1>
+  </h1>
 
   <p class="lead">Discover the most popular partners based on customer reviews from the last 12 months</p>
 </section>
@@ -24,7 +24,7 @@
           loading="lazy"
           onerror="this.onerror=null; this.src='/Partner_Logo/{{ partner.slug }}.jpg'; this.onerror=function(){this.src='/Partner_Logo/{{ partner.slug }}.png'; this.onerror=function(){this.style.display='none';};};">
         
-        <div class="rank-number">#{{ loop.index }}</div>
+        <div class="rank-number">#{{ partner.rank }}</div>
         <div class="rank-divider"></div>
         <div class="rank-body">
           <h2 class="rank-name">{{ partner.name }}</h2>
