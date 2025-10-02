@@ -79,6 +79,13 @@ a:focus {
   margin-top: 1rem; /* adjust spacing: 1rem ≈ 16px */
 }
 
+.section-divider {
+  margin: 2.5rem 0;
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+
+
 
 /* =========================
    HEADER + MENU
@@ -1448,3 +1455,49 @@ body.no-scroll { overflow: hidden; }
   overflow-y: auto;
   z-index: 1000;
 }
+
+/* =========================
+   FAQ Accordion Styles
+   ========================= */
+.about-page details {
+  margin: 1rem 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  background: #fafafa;
+  transition: background 0.2s ease;
+}
+
+.about-page details:hover {
+  background: #f5f5f5;
+}
+
+.about-page summary {
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.about-page summary::after {
+  content: "＋";
+  font-weight: bold;
+  margin-left: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.about-page details[open] summary::after {
+  content: "–";
+  transform: rotate(90deg);
+}
+
+.about-page details p {
+  margin: 0.75rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #444;
+}
+
