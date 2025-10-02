@@ -189,10 +189,11 @@ def render_partner_pages():
             continue
 
         top_products = sorted(
-            products_by_partner.get(slug, []),
+            [p for p in products_by_partner.get(slug, []) if p.get("available", True)],
             key=lambda p: p.get("review_count", 0),
             reverse=True,
         )
+
 
         if slug not in logo_cache:
             logo_cache[slug] = find_logo_url(slug)
