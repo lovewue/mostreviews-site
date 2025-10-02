@@ -68413,7 +68413,13 @@
     "fail_count": 0,
     "aliases": [],
     "canonical_slug": "wue",
-    "paid": false
+    "paid": true,
+    "website": "https://lovewue.com",
+    "facebook": "https://www.facebook.com/lovewue",
+    "instagram": "https://www.instagram.com/lovewue",
+    "youtube": "https://youtube.com/@Wue-Tube",
+    "x": "https://x.com/TwitWue",
+    "tiktok": "https://www.tiktok.com/@love.wue"
   },
   {
     "slug": "summerandsilver",

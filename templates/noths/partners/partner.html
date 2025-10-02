@@ -71,7 +71,7 @@
 
   {% if reviewed %}
     <div class="partner-products top-list">
-      <h2>Most Reviewed Products<br><small>(Last 12 months)</small></h2>
+      <h2>Most Reviewed Products<br><small>(Available Now)</small></h2>
       <div class="card-grid">
         {% for p in reviewed %}
           <a href="{{ p.awin or p.product_url }}"
@@ -96,7 +96,7 @@
     </div>
   {% elif low_reviewed %}
     <div class="partner-products low-reviewed">
-      <h2>Most Reviewed Products (last 12 months)</h2>
+      <h2>Most Reviewed Products (Available Now)</h2>
       <ul class="top-products-list">
         {% for p in low_reviewed[:5] %}
           <li>
