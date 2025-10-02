@@ -1282,9 +1282,10 @@ body.no-scroll { overflow: hidden; }
   font-weight: 600;
   transition: background 0.2s ease;
 }
-
-.partner-link:hover {
-  background: #222; /* lighter change on hover */
+.partner-link:hover { 
+  background: #fff; 
+  color: #000; 
+  border: 1px solid #000; 
 }
 
 .partner-link:active,
@@ -1293,7 +1294,6 @@ body.no-scroll { overflow: hidden; }
   color: #fff;
   outline: none;
 }
-
 
 
 .col-info { 
