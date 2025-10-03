@@ -491,7 +491,7 @@ def render_top_partners_last_12_months():
 
 # === Top products all time ===
 def render_top_100_all_time():
-    with open("data/top_100_all_time.json", "r", encoding="utf-8") as f:
+    with open(os.path.join(DATA_DIR, "top_100_all_time.json"), "r", encoding="utf-8") as f:
         top_all_time = json.load(f)
 
     template = env.get_template("noths/products/top-100-all-time.html")
@@ -501,7 +501,9 @@ def render_top_100_all_time():
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html)
-    print("✅ Rendered top-100-all-time page")
+
+    print("✅ Rendered Top 100 All Time Products page")
+
 
 
 
