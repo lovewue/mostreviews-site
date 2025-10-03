@@ -118,6 +118,10 @@ def render_noths_index():
         reverse=True
     )[:3]
 
+    # --- Load all-time top products (NEW) ---
+    with open(os.path.join(DATA_DIR, "top_100_all_time.json"), "r", encoding="utf-8") as f:
+        top_all_time = json.load(f)
+
     # --- A, middle, Z logos ---
     active_partners = [p for p in ALL_PARTNERS if p.get("active", True)]
     partners_sorted = sorted(active_partners, key=lambda p: p.get("name", "").lower())
@@ -133,18 +137,21 @@ def render_noths_index():
     html = template.render(
         title="NOTHS Partners and Products",
         static_path=STATIC_PATH,
-        top_products=top_products_sorted,        # ✅ only top 3 sorted products
+        top_products=top_products_sorted,
         top_partners=top_partners,
         partners_2025=partners_2025,
         top_product_partners=top_product_partners,
         top_christmas_products=top_christmas_products,
         az_partners=az_partners,
+        top_all_time=top_all_time,   # ✅ now safely defined
     )
 
     os.makedirs(f"{DOCS_DIR}/noths", exist_ok=True)
     with open(f"{DOCS_DIR}/noths/index.html", "w", encoding="utf-8") as f:
         f.write(html)
     print("✅ Rendered NOTHS index")
+
+
 
 
 
@@ -482,6 +489,20 @@ def render_top_partners_last_12_months():
     with open(f"{DOCS_DIR}/noths/partners/top-partners-12-months.html", "w", encoding="utf-8") as f:
         f.write(template.render(partners=top_df.to_dict(orient='records')))
 
+# === Top products all time ===
+def render_top_100_all_time():
+    with open("data/top_100_all_time.json", "r", encoding="utf-8") as f:
+        top_all_time = json.load(f)
+
+    template = env.get_template("products/top-100-all-time.html")
+    html = template.render(top_all_time=top_all_time)
+
+    out_path = os.path.join(DOCS_DIR, "noths/products/top-100-all-time.html")
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(html)
+    print("✅ Rendered top-100-all-time page")
+
 
 
 # === About page ===
@@ -561,6 +582,7 @@ if __name__ == "__main__":
     render_top_100_products()
     render_site_homepage()
     render_top_partners_last_12_months()
+    render_top_100_all_time()
     render_about_page()
     render_partner_search_json()
     render_sitemap()
