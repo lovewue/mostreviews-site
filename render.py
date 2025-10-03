@@ -494,7 +494,7 @@ def render_top_100_all_time():
     with open("data/top_100_all_time.json", "r", encoding="utf-8") as f:
         top_all_time = json.load(f)
 
-    template = env.get_template("products/top-100-all-time.html")
+    template = env.get_template("noths/products/top-100-all-time.html")
     html = template.render(top_all_time=top_all_time)
 
     out_path = os.path.join(DOCS_DIR, "noths/products/top-100-all-time.html")
