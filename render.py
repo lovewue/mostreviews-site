@@ -491,9 +491,35 @@ def render_top_partners_last_12_months():
 
 # === Top products all time ===
 def render_top_100_all_time():
-    with open(os.path.join(DATA_DIR, "top_100_all_time.json"), "r", encoding="utf-8") as f:
+    data_path = os.path.join(DATA_DIR, "top_100_all_time.json")
+    with open(data_path, "r", encoding="utf-8") as f:
         top_all_time = json.load(f)
 
+    # --- Clean & Sort ---
+    # Ensure review_count is an int
+    for p in top_all_time:
+        try:
+            p["review_count"] = int(p.get("review_count", 0))
+        except Exception:
+            p["review_count"] = 0
+
+    # Sort by review_count descending
+    top_all_time.sort(key=lambda p: p["review_count"], reverse=True)
+
+    # Limit to top 100
+    if len(top_all_time) > 100:
+        print(f"⚠️ Found {len(top_all_time)} entries, trimming to 100")
+        top_all_time = top_all_time[:100]
+
+    # --- Assign ranks (handle ties) ---
+    rank, last_count = 0, None
+    for i, p in enumerate(top_all_time, start=1):
+        if p["review_count"] != last_count:
+            rank = i
+        p["rank"] = rank
+        last_count = p["review_count"]
+
+    # --- Render ---
     template = env.get_template("noths/products/top-100-all-time.html")
     html = template.render(top_all_time=top_all_time)
 
@@ -502,7 +528,8 @@ def render_top_100_all_time():
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html)
 
-    print("✅ Rendered Top 100 All Time Products page")
+    print(f"✅ Rendered Top 100 All Time Products page ({len(top_all_time)} entries)")
+
 
 
 
