@@ -5,20 +5,21 @@
 {% block content %}
 <section class="page-hero">
   <h1>
-  Top 100 NOTHS Products
-  <span class="subheading">All Time</span>
-</h1>
+    Top 100 NOTHS Products
+    <span class="subheading">All Time</span>
+  </h1>
 
-  <p class="lead">Discover the most popular products on Not On The High Street based on customer reviews of all time</p>
+  <p class="lead">
+    Discover the most popular products on Not On The High Street based on customer reviews of all time
+  </p>
 </section>
 
 <div class="card-grid">
-  {% set last_count = None %}
-  {% set rank = 0 %}
+  {% set ns = namespace(last_count=None, rank=0) %}
   {% for product in top_all_time %}
-    {% if product.review_count != last_count %}
-      {% set rank = loop.index %}
-      {% set last_count = product.review_count %}
+    {% if product.review_count != ns.last_count %}
+      {% set ns.rank = loop.index %}
+      {% set ns.last_count = product.review_count %}
     {% endif %}
 
     <a href="{{ product.awin or product.product_url }}"
@@ -35,7 +36,7 @@
         loading="lazy"
         onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
 
-      <div class="rank-number">#{{ rank }}</div>
+      <div class="rank-number">#{{ ns.rank }}</div>
       <div class="rank-divider"></div>
 
       <div class="rank-body">
@@ -48,5 +49,4 @@
     </a>
   {% endfor %}
 </div>
-</section>
 {% endblock %}
