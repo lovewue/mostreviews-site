@@ -3,47 +3,78 @@
 {% block title %}A–Z of Holly & Co Founders{% endblock %}
 
 {% block content %}
-<section class="page-hero">
-  <h1>
-    A–Z of Holly & Co Founders
-    <span class="subheading">All Sellers</span>
-  </h1>
-  <p class="lead">
-    Discover the creative founders behind Holly & Co — independent makers, artisans and small businesses with big ideas.
-  </p>
-</section>
+<div class="hollyco-page">
 
-<!-- Sticky A–Z Nav -->
-<nav class="sticky-nav-hollyco">
-  <ul class="az-bar">
-    <li><a href="#letter-hash">#</a></li>
-    {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
-      <li><a href="#{{ letter }}">{{ letter }}</a></li>
-    {% endfor %}
-    <li><a href="#À">À</a></li>
-  </ul>
-</nav>
-
-<!-- A–Z Seller Sections -->
-<div class="az-container">
-  {% for letter, group in sellers|groupby("first_letter") %}
-  <section
-    class="letter-block"
-    id="{{ 'letter-hash' if letter == '#' else letter }}">
-    
-    <h2 class="letter-title">{{ letter }}</h2>
-
-    <ul class="partner-columns">
-      {% for s in group %}
-      <li>
-        <a href="/hollyco/seller/{{ s.slug }}.html">
-          {{ s.name }}
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
-
+  <!-- HERO -->
+  <section class="page-hero">
+    <h1>
+      A–Z of Holly & Co Founders
+      <span class="subheading">All Sellers</span>
+    </h1>
+    <p class="lead">
+      Discover the creative founders behind Holly & Co — independent makers, artisans and small businesses with big ideas.
+    </p>
   </section>
-  {% endfor %}
-</div>
+
+  <!-- STICKY A–Z NAV -->
+  <nav class="sticky-nav-hollyco">
+    <ul class="az-bar">
+      <!-- Number/symbol group -->
+      <li><a href="#letter-hash">#</a></li>
+      {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+        <li><a href="#{{ letter }}">{{ letter }}</a></li>
+      {% endfor %}
+      <li><a href="#À">À</a></li>
+    </ul>
+  </nav>
+
+  <!-- SELLER GRID SECTIONS -->
+  <div class="card-grid-container">
+    {% for letter, group in sellers|groupby("first_letter") %}
+    <section id="{{ 'letter-hash' if letter == '#' else letter }}" class="az-section">
+      <h2 class="az-letter">{{ letter }}</h2>
+
+      <div class="card-grid">
+        {% for s in group %}
+        <a href="/hollyco/seller/{{ s.slug }}.html"
+           class="rank-card"
+           data-seller-url="{{ s.url }}"
+           target="_blank"
+           rel="noopener">
+
+          <!-- IMAGE -->
+          <img src="/static/hollyco/storefront_images/{{ s.slug }}.webp"
+               alt="{{ s.name }}"
+               class="rank-image"
+               loading="lazy"
+               onerror="this.onerror=null;this.src='/static/fallbacks/no-image.jpg'">
+
+          <!-- CONTENT -->
+          <div class="rank-content">
+            <h3 class="rank-title">{{ s.name }}</h3>
+            {% if s.location %}
+              <p class="rank-subtitle">{{ s.location }}</p>
+            {% endif %}
+          </div>
+
+          <!-- BADGES -->
+          {% if s.badges %}
+          <div class="rank-badges">
+            {% for b in s.badges %}
+            <img src="{{ b.icon_path or b.icon }}"
+                 alt="{{ b.title }}"
+                 title="{{ b.title }}"
+                 class="rank-badge">
+            {% endfor %}
+          </div>
+          {% endif %}
+
+        </a>
+        {% endfor %}
+      </div>
+    </section>
+    {% endfor %}
+  </div>
+
+</div> <!-- end hollyco-page -->
 {% endblock %}
