@@ -1569,11 +1569,18 @@ body.no-scroll { overflow: hidden; }
   border-top: 1px solid #e0e0e0;
   padding-top: 2.5rem;
   scroll-margin-top: calc(var(--header-desktop) + 110px);
+  box-sizing: border-box;
 }
-
 
 .letter-block:first-of-type {
   border-top: none;
+}
+
+/* Keep headings inside the container width */
+.letter-block > .container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .letter-title {
@@ -1606,11 +1613,6 @@ body.no-scroll { overflow: hidden; }
   background: rgba(0, 0, 0, 0.05);
 }
 
-/* ---------- Scroll Alignment ---------- */
-.hollyco-page .letter-block {
-  scroll-margin-top: calc(var(--header-desktop) + 90px);
-}
-
 /* ---------- Card Grid Adjustments ---------- */
 .card-grid-container {
   position: relative;
@@ -1622,6 +1624,12 @@ body.no-scroll { overflow: hidden; }
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1.8rem;
   margin-top: 1rem;
+  padding-top: 1rem; /* prevents cards from tucking under sticky headings */
+}
+
+/* ---------- Scroll Alignment ---------- */
+.hollyco-page .letter-block {
+  scroll-margin-top: calc(var(--header-desktop) + 110px);
 }
 
 /* ---------- Badges ---------- */
@@ -1675,18 +1683,13 @@ body.no-scroll { overflow: hidden; }
     font-size: 1.4rem;
     top: calc(var(--header-desktop) + 60px);
   }
+
+  .hollyco-page .card-grid {
+    gap: 1rem;
+  }
 }
 
-/* --- FIX HOLLY & CO LETTER ALIGNMENT --- */
-.hollyco-page .letter-block {
-  max-width: 1300px;
-  margin: 0 auto 3rem auto;
-  padding: 2.5rem 1.5rem 0 1.5rem;
-  border-top: 1px solid #e0e0e0;
-  scroll-margin-top: calc(var(--header-desktop) + 110px);
-  box-sizing: border-box;
-}
-
+/* ---------- Fix letter title & section width ---------- */
 .hollyco-page .letter-title {
   display: block;
   width: 100%;
@@ -1703,7 +1706,7 @@ body.no-scroll { overflow: hidden; }
   z-index: 25;
 }
 
-/* Fix scroll overlap (cards tucking under sticky nav) */
-.hollyco-page .card-grid {
-  padding-top: 1rem;
+/* ---------- Smooth scroll for #letter-hash ---------- */
+html {
+  scroll-behavior: smooth;
 }
