@@ -171,7 +171,10 @@
     document.addEventListener("DOMContentLoaded", function () {
       const path = window.location.pathname;
       const shouldRunScript =
-        path.includes("/partners/index.html") || path.includes("/partners/by-year.html");
+  path.includes("/partners/index.html") ||
+  path.includes("/partners/by-year.html") ||
+  path.includes("/hollyco/index.html");
+
 
       if (!shouldRunScript) return;
 
