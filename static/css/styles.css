@@ -1515,6 +1515,10 @@ body.no-scroll { overflow: hidden; }
 
 
 /* =========================
+   H&CO 
+   ========================= */
+
+/* =========================
    H&CO Badges
    ========================= */
 
@@ -1558,5 +1562,16 @@ body.no-scroll { overflow: hidden; }
   padding: 0.5rem 0;
 }
 
+
+/* =========================
+   H&CO Index
+   ========================= */
+
+.hollyco-page .sticky-nav {
+  top: var(--header-offset);
+  background-color: var(--nav-bg, #fff);
+  position: sticky;
+  z-index: 20;
+}
 
 
