@@ -3,10 +3,10 @@
 {% block title %}A–Z of Holly & Co Founders{% endblock %}
 
 {% block content %}
-<div class="container partners-page hollyco-page">
+<div class="partners-page hollyco-page">
 
   <!-- HERO -->
-  <section class="page-hero">
+  <section class="page-hero container">
     <h1>
       A–Z of Holly & Co Founders
       <span class="subheading">All Sellers</span>
@@ -16,21 +16,20 @@
     </p>
   </section>
 
-  <!-- STICKY A–Z NAV (use NOTHS classes so existing CSS/JS apply) -->
+  <!-- STICKY A–Z NAV -->
   <nav class="sticky-nav az-nav">
     <ul class="az-bar">
       <li><a href="#letter-hash">#</a></li>
       {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
         <li><a href="#{{ letter }}">{{ letter }}</a></li>
       {% endfor %}
-      <li><a href="#À">À</a></li>
-    </ul>
+      </ul>
   </nav>
 
-  <!-- A–Z CARD GRID (unchanged layout) -->
-  <div class="card-grid-container">
-    {% for letter, group in sellers|groupby("first_letter") %}
-    <section id="{{ 'letter-hash' if letter == '#' else letter }}" class="az-section">
+  <!-- A–Z SECTIONS -->
+  {% for letter, group in sellers|groupby("first_letter") %}
+  <section id="{{ 'letter-hash' if letter == '#' else letter }}" class="letter-block">
+    <div class="container">
       <h2 class="letter-title">{{ '#' if letter == '#' else letter }}</h2>
 
       <div class="card-grid">
@@ -70,9 +69,9 @@
         </a>
         {% endfor %}
       </div>
-    </section>
-    {% endfor %}
-  </div>
+    </div>
+  </section>
+  {% endfor %}
 
-</div> <!-- .container .partners-page .hollyco-page -->
+</div> <!-- /.partners-page.hollyco-page -->
 {% endblock %}
