@@ -1,0 +1,98 @@
+[
+  {
+    "slug": "female",
+    "title": "Female Founded Business",
+    "icon": "https://holly.co/assets/images/badges/badge-female.webp",
+    "icon_path": "static/hollyco/badges/badge-female.webp"
+  },
+  {
+    "slug": "socially",
+    "title": "Socially Positive",
+    "icon": "https://holly.co/assets/images/badges/badge-socially.webp",
+    "icon_path": "static/hollyco/badges/badge-socially.webp"
+  },
+  {
+    "slug": "d4c7640c-d927-4d63-b764-311547e2dd48-original",
+    "title": "Family Business",
+    "icon": "https://holly.co/assets/images/content/d4c7640c-d927-4d63-b764-311547e2dd48-original.webp",
+    "icon_path": "static/hollyco/badges/d4c7640c-d927-4d63-b764-311547e2dd48-original.webp"
+  },
+  {
+    "slug": "60s",
+    "title": "60s Plus Founder",
+    "icon": "https://holly.co/assets/images/badges/badge-60s.webp",
+    "icon_path": "static/hollyco/badges/badge-60s.webp"
+  },
+  {
+    "slug": "independent-winner",
+    "title": "The Independent Awards Winner",
+    "icon": "https://holly.co/assets/images/badges/badge-independent-winner.webp",
+    "icon_path": "static/hollyco/badges/badge-independent-winner.webp"
+  },
+  {
+    "slug": "bipoc",
+    "title": "BIPOC Owned Business",
+    "icon": "https://holly.co/assets/images/badges/badge-bipoc.webp",
+    "icon_path": "static/hollyco/badges/badge-bipoc.webp"
+  },
+  {
+    "slug": "brown",
+    "title": "Brown Owned Business",
+    "icon": "https://holly.co/assets/images/badges/badge-brown.webp",
+    "icon_path": "static/hollyco/badges/badge-brown.webp"
+  },
+  {
+    "slug": "50s",
+    "title": "50s Plus Founder",
+    "icon": "https://holly.co/assets/images/badges/badge-50s.webp",
+    "icon_path": "static/hollyco/badges/badge-50s.webp"
+  },
+  {
+    "slug": "asian",
+    "title": "Asian Owned Business",
+    "icon": "https://holly.co/assets/images/badges/badge-asian.webp",
+    "icon_path": "static/hollyco/badges/badge-asian.webp"
+  },
+  {
+    "slug": "neurodivergent",
+    "title": "Neurodivergent Business",
+    "icon": "https://holly.co/assets/images/badges/badge-neurodivergent.webp",
+    "icon_path": "static/hollyco/badges/badge-neurodivergent.webp"
+  },
+  {
+    "slug": "91224094-b66d-404b-bdef-89e12e3e7d67-original",
+    "title": "Registered Charity",
+    "icon": "https://holly.co/assets/images/content/91224094-b66d-404b-bdef-89e12e3e7d67-original.webp",
+    "icon_path": "static/hollyco/badges/91224094-b66d-404b-bdef-89e12e3e7d67-original.webp"
+  },
+  {
+    "slug": "lgbtqia",
+    "title": "LGBTQIA Business",
+    "icon": "https://holly.co/assets/images/badges/badge-lgbtqia.webp",
+    "icon_path": "static/hollyco/badges/badge-lgbtqia.webp"
+  },
+  {
+    "slug": "b-corp",
+    "title": "Certified B Corporation",
+    "icon": "https://holly.co/assets/images/badges/badge-b-corp.webp",
+    "icon_path": "static/hollyco/badges/badge-b-corp.webp"
+  },
+  {
+    "slug": "black",
+    "title": "Black Owned Business",
+    "icon": "https://holly.co/assets/images/badges/badge-black.webp",
+    "icon_path": "static/hollyco/badges/badge-black.webp"
+  },
+  {
+    "slug": "kidpreneur",
+    "title": "Kidpreneur",
+    "icon": "https://holly.co/assets/images/badges/badge-kidpreneur.webp",
+    "icon_path": "static/hollyco/badges/badge-kidpreneur.webp"
+  },
+  {
+    "slug": "disabled",
+    "title": "Disabled Owned Business",
+    "icon": "https://holly.co/assets/images/badges/badge-disabled.webp",
+    "icon_path": "static/hollyco/badges/badge-disabled.webp"
+  }
+]

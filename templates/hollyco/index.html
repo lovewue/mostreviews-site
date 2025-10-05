@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}A–Z of Holly & Co Founders{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <h1>A–Z of Holly & Co Founders</h1>
+  <p class="lead">Discover inspiring founders from the Holly & Co community — creative businesses, artisans, and entrepreneurs making a positive difference.</p>
+</section>
+
+<!-- Sticky A–Z Nav -->
+<nav class="sticky-nav">
+  <ul>
+    {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+      <li><a href="#{{ letter }}">{{ letter }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>
+
+<div class="az-container">
+  {% for letter, group in sellers|groupby("first_letter") %}
+  <section id="{{ letter }}" class="az-section">
+    <h2 class="az-letter">{{ letter }}</h2>
+    <div class="card-grid">
+      {% for s in group %}
+      <a href="/hollyco/seller/{{ s.slug }}.html" class="seller-card">
+        <img src="/static/storefront_images/{{ s.slug }}.webp"
+             alt="{{ s.name }}"
+             loading="lazy"
+             onerror="this.src='/static/fallbacks/no-image.jpg'">
+        <div class="seller-content">
+          <h3 class="seller-name">{{ s.name }}</h3>
+          {% if s.location %}
+            <p class="seller-location">{{ s.location }}</p>
+          {% endif %}
+          {% if s.badges %}
+            <ul class="seller-badges">
+              {% for b in s.badges %}
+                <li>
+                  <img src="{{ b.icon }}" alt="{{ b.title }}" title="{{ b.title }}">
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}

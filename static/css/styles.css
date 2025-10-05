@@ -1513,3 +1513,50 @@ body.no-scroll { overflow: hidden; }
   color: #444;
 }
 
+
+/* =========================
+   H&CO Badges
+   ========================= */
+
+.badge-index-container {
+  margin-top: 2rem;
+}
+
+.badge-section {
+  margin-bottom: 4rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 2rem;
+}
+
+.badge-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.badge-icon {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.badge-title {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.badge-desc {
+  margin-top: 0.5rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.no-sellers {
+  color: #777;
+  font-style: italic;
+  padding: 0.5rem 0;
+}
+
+
+

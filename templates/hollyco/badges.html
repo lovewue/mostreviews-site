@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Badges of Holly & Co Founders{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <h1>Badges of Holly & Co Founders</h1>
+  <p class="lead">
+    Discover the founder credentials that make Holly & Co’s community so inspiring — from female-founded brands to businesses creating social and environmental impact.
+  </p>
+</section>
+
+<div class="badge-index-container">
+  {% for badge in badges %}
+  <section id="{{ badge.slug }}" class="badge-section">
+    <div class="badge-header">
+      <img src="{{ badge.icon_path or badge.icon }}" alt="{{ badge.title }}" class="badge-icon">
+      <div>
+        <h2 class="badge-title">{{ badge.title }}</h2>
+        {% if badge.description %}
+        <p class="badge-desc">{{ badge.description }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="badge-sellers">
+      {% set sellers_for_badge = sellers | selectattr("badges", "selectattr", "slug", "equalto", badge.slug) | list %}
+      {% if sellers_for_badge %}
+        <div class="card-grid">
+          {% for s in sellers_for_badge %}
+          <a href="/hollyco/seller/{{ s.slug }}.html" class="seller-card">
+            <img src="/static/hollyco/storefront_images/{{ s.slug }}.webp"
+                 alt="{{ s.name }}"
+                 loading="lazy"
+                 onerror="this.src='/static/fallbacks/no-image.jpg'">
+            <div class="seller-content">
+              <h3 class="seller-name">{{ s.name }}</h3>
+              {% if s.location %}
+                <p class="seller-location">{{ s.location }}</p>
+              {% endif %}
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="no-sellers">No sellers currently tagged with this badge.</p>
+      {% endif %}
+    </div>
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}

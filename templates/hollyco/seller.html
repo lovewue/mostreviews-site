@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ seller.name }} – Holly & Co Founder{% endblock %}
+
+{% block content %}
+<section class="seller-detail-page">
+  <div class="seller-header">
+    <img src="/static/storefront_images/{{ seller.slug }}.webp"
+         alt="{{ seller.name }}"
+         class="seller-hero-image"
+         loading="lazy">
+    <div class="seller-info">
+      <h1>{{ seller.name }}</h1>
+      {% if seller.location %}
+        <h2 class="seller-location">{{ seller.location }}</h2>
+      {% endif %}
+      <p><a href="{{ seller.url }}" target="_blank" class="cta cta--primary">View on Holly.co</a></p>
+    </div>
+  </div>
+
+  {% if seller.description %}
+  <div class="seller-description">
+    <p>{{ seller.description }}</p>
+  </div>
+  {% endif %}
+
+  {% if seller.badges %}
+  <div class="seller-badges-block">
+    <h3>Founder Credentials</h3>
+    <ul class="badge-list">
+      {% for b in seller.badges %}
+        <li>
+          <img src="{{ b.icon }}" alt="{{ b.title }}" title="{{ b.title }}">
+          <span>{{ b.title }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}
