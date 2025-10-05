@@ -1567,11 +1567,19 @@ body.no-scroll { overflow: hidden; }
    H&CO Index
    ========================= */
 
-.hollyco-page .sticky-nav {
-  top: var(--header-offset);
-  background-color: var(--nav-bg, #fff);
-  position: sticky;
-  z-index: 20;
+/* --- Fix sticky nav behaviour for Holly & Co page --- */
+.hollyco-page {
+  overflow: visible !important;
+  position: relative;
 }
+
+.hollyco-page .sticky-nav {
+  position: sticky !important;
+  top: var(--header-offset, 120px) !important;
+  z-index: 30;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
 
 
