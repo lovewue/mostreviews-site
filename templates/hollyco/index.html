@@ -39,17 +39,20 @@
          data-seller-url="{{ s.url }}"
          target="_blank"
          rel="noopener">
+
         <img src="/static/hollyco/storefront_images/{{ s.slug }}.webp"
              alt="{{ s.name }}"
              class="rank-image"
              loading="lazy"
              onerror="this.onerror=null;this.src='/static/fallbacks/no-image.jpg'">
+
         <div class="rank-content">
           <h3 class="rank-title">{{ s.name }}</h3>
           {% if s.location %}
             <p class="rank-subtitle">{{ s.location }}</p>
           {% endif %}
         </div>
+
         {% if s.badges %}
         <div class="rank-badges">
           {% for b in s.badges %}
@@ -63,6 +66,7 @@
   </div>
 </section>
 {% endfor %}
+
 
 
 </div> <!-- /.partners-page.hollyco-page -->
