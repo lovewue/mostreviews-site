@@ -1567,17 +1567,46 @@ body.no-scroll { overflow: hidden; }
    H&CO Index
    ========================= */
 
-/* --- FIX for Holly & Co sticky A–Z nav --- */
-main,
-.hollyco-page {
-  overflow: visible !important;
+/* --- Holly & Co dedicated sticky A–Z bar --- */
+.sticky-nav-hollyco {
+  position: sticky;
+  top: calc(var(--header-desktop) + 0px);
+  z-index: 1050;
+  background: #fff;
+  padding: 8px 24px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #eee;
 }
 
-.hollyco-page .sticky-nav {
-  position: sticky !important;
-  top: calc(var(--header-desktop) + 0px) !important;
-  z-index: 1050 !important;
-  background: #fff !important;
+.sticky-nav-hollyco ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sticky-nav-hollyco a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 2px 6px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.sticky-nav-hollyco a:hover,
+.sticky-nav-hollyco a.active {
+  color: var(--link-hover, #333);
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
 }
 
 
