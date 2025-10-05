@@ -1668,3 +1668,12 @@ body.no-scroll { overflow: hidden; }
   height: 1px;
   background: rgba(0,0,0,0.05);
 }
+
+.hollyco-page .letter-block {
+  scroll-margin-top: 50px;
+  padding-top: 20px;
+}
+
+.hollyco-page .sticky-nav.az-nav {
+  top: calc(var(--header-desktop) + 10px);
+}

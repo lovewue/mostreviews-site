@@ -31,7 +31,7 @@
   <div class="card-grid-container">
     {% for letter, group in sellers|groupby("first_letter") %}
     <section id="{{ 'letter-hash' if letter == '#' else letter }}" class="az-section">
-      <h2 class="az-letter">{{ letter }}</h2>
+      <h2 class="letter-title">{{ '#' if letter == '#' else letter }}</h2>
 
       <div class="card-grid">
         {% for s in group %}
