@@ -14,7 +14,7 @@
 </section>
 
 <!-- Sticky A–Z Nav -->
-<nav class="sticky-nav">
+<nav class="sticky-nav az-nav">
   <ul>
     {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
       <li><a href="#{{ letter }}">{{ letter }}</a></li>
@@ -31,37 +31,30 @@
       {% for s in group %}
       <a href="/hollyco/seller/{{ s.slug }}.html"
          class="rank-card"
+         data-seller-url="{{ s.url }}"
          target="_blank"
-         rel="noopener"
-         data-seller-url="{{ s.url }}">
+         rel="noopener">
 
-        <!-- IMAGE -->
         <img src="/static/hollyco/storefront_images/{{ s.slug }}.webp"
              alt="{{ s.name }}"
              class="rank-image"
              loading="lazy"
              onerror="this.onerror=null;this.src='/static/fallbacks/no-image.jpg'">
 
-        <!-- BADGES -->
-        {% if s.badges %}
-        <div class="rank-badges">
-          {% for b in s.badges %}
-          <img src="{{ b.icon_path or b.icon }}"
-               alt="{{ b.title }}"
-               title="{{ b.title }}"
-               class="rank-badge">
-          {% endfor %}
-        </div>
-        {% endif %}
-
-        <!-- INFO -->
         <div class="rank-content">
           <h3 class="rank-title">{{ s.name }}</h3>
           {% if s.location %}
-            <p class="rank-subtitle">{{ s.location }}</p>
+          <p class="rank-subtitle">{{ s.location }}</p>
           {% endif %}
         </div>
 
+        {% if s.badges %}
+        <div class="rank-badges">
+          {% for b in s.badges %}
+          <img src="{{ b.icon_path or b.icon }}" alt="{{ b.title }}" title="{{ b.title }}" class="rank-badge">
+          {% endfor %}
+        </div>
+        {% endif %}
       </a>
       {% endfor %}
     </div>

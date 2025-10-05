@@ -1,59 +1,39 @@
 {% extends "base.html" %}
 
-{% block title %}{{ seller.name }} – Holly & Co Founder{% endblock %}
+{% block title %}{{ seller.name }} – Holly & Co Seller{% endblock %}
 
 {% block content %}
 <section class="partner-detail-page">
-
-  <!-- Partner Profile Block -->
   <div class="partner-columns-container top-block">
 
-    <!-- Column 1: Logo + Button -->
+    <!-- Column 1: Logo -->
     <div class="partner-col col-logo">
-      {% if seller.image_path %}
-        <img src="/static/hollyco/storefront_images/{{ seller.slug }}.webp"
-             alt="{{ seller.name }} logo"
-             class="partner-logo">
-      {% else %}
-        <img src="/static/fallbacks/no-image.jpg"
-             alt="{{ seller.name }} logo"
-             class="partner-logo">
-      {% endif %}
-
-      <a href="{{ seller.url }}"
-         target="_blank"
-         class="partner-link"
-         data-product-url="{{ seller.url }}">
-         View on Holly.co
-      </a>
+      <img src="/static/hollyco/storefront_images/{{ seller.slug }}.webp"
+           alt="{{ seller.name }}"
+           class="partner-logo"
+           onerror="this.onerror=null;this.src='/static/fallbacks/no-image.jpg'">
     </div>
 
-    <!-- Column 2: Info + Description -->
+    <!-- Column 2: Info -->
     <div class="partner-col col-info">
-      <h1 class="partner-name">{{ seller.name }}</h1>
-
+      <h1>{{ seller.name }}</h1>
       {% if seller.location %}
-        <p class="partner-location">{{ seller.location }}</p>
+        <h2>{{ seller.location }}</h2>
       {% endif %}
-
-      {% if seller.badges %}
-      <ul class="partner-badges">
-        {% for b in seller.badges %}
-          <li>
-            <img src="{{ b.icon_path or b.icon }}" alt="{{ b.title }}" title="{{ b.title }}">
-          </li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-
       {% if seller.description %}
       <div class="partner-description">
-        <p>{{ seller.description }}</p>
+        {{ seller.description | safe }}
       </div>
       {% endif %}
+      {% if seller.badges %}
+      <div class="partner-badges">
+        {% for b in seller.badges %}
+        <img src="{{ b.icon_path or b.icon }}" alt="{{ b.title }}" title="{{ b.title }}">
+        {% endfor %}
+      </div>
+      {% endif %}
+      <a href="{{ seller.url }}" target="_blank" class="partner-link">View on Holly & Co</a>
     </div>
-
   </div>
-
 </section>
 {% endblock %}
