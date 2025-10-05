@@ -3,7 +3,7 @@
 {% block title %}A–Z of Holly & Co Founders{% endblock %}
 
 {% block content %}
-<div class="hollyco-page">
+<div class="container partners-page hollyco-page">
 
   <!-- HERO -->
   <section class="page-hero">
@@ -16,10 +16,9 @@
     </p>
   </section>
 
-  <!-- STICKY A–Z NAV -->
-  <nav class="sticky-nav-hollyco">
+  <!-- STICKY A–Z NAV (use NOTHS classes so existing CSS/JS apply) -->
+  <nav class="sticky-nav az-nav">
     <ul class="az-bar">
-      <!-- Number/symbol group -->
       <li><a href="#letter-hash">#</a></li>
       {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
         <li><a href="#{{ letter }}">{{ letter }}</a></li>
@@ -28,7 +27,7 @@
     </ul>
   </nav>
 
-  <!-- SELLER GRID SECTIONS -->
+  <!-- A–Z CARD GRID (unchanged layout) -->
   <div class="card-grid-container">
     {% for letter, group in sellers|groupby("first_letter") %}
     <section id="{{ 'letter-hash' if letter == '#' else letter }}" class="az-section">
@@ -68,7 +67,6 @@
             {% endfor %}
           </div>
           {% endif %}
-
         </a>
         {% endfor %}
       </div>
@@ -76,5 +74,5 @@
     {% endfor %}
   </div>
 
-</div> <!-- end hollyco-page -->
+</div> <!-- .container .partners-page .hollyco-page -->
 {% endblock %}
