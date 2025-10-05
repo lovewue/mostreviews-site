@@ -3,39 +3,57 @@
 {% block title %}{{ seller.name }} – Holly & Co Founder{% endblock %}
 
 {% block content %}
-<section class="seller-detail-page">
-  <div class="seller-header">
-    <img src="/static/storefront_images/{{ seller.slug }}.webp"
-         alt="{{ seller.name }}"
-         class="seller-hero-image"
-         loading="lazy">
-    <div class="seller-info">
-      <h1>{{ seller.name }}</h1>
-      {% if seller.location %}
-        <h2 class="seller-location">{{ seller.location }}</h2>
+<section class="partner-detail-page">
+
+  <!-- Partner Profile Block -->
+  <div class="partner-columns-container top-block">
+
+    <!-- Column 1: Logo + Button -->
+    <div class="partner-col col-logo">
+      {% if seller.image_path %}
+        <img src="/static/hollyco/storefront_images/{{ seller.slug }}.webp"
+             alt="{{ seller.name }} logo"
+             class="partner-logo">
+      {% else %}
+        <img src="/static/fallbacks/no-image.jpg"
+             alt="{{ seller.name }} logo"
+             class="partner-logo">
       {% endif %}
-      <p><a href="{{ seller.url }}" target="_blank" class="cta cta--primary">View on Holly.co</a></p>
+
+      <a href="{{ seller.url }}"
+         target="_blank"
+         class="partner-link"
+         data-product-url="{{ seller.url }}">
+         View on Holly.co
+      </a>
     </div>
+
+    <!-- Column 2: Info + Description -->
+    <div class="partner-col col-info">
+      <h1 class="partner-name">{{ seller.name }}</h1>
+
+      {% if seller.location %}
+        <p class="partner-location">{{ seller.location }}</p>
+      {% endif %}
+
+      {% if seller.badges %}
+      <ul class="partner-badges">
+        {% for b in seller.badges %}
+          <li>
+            <img src="{{ b.icon_path or b.icon }}" alt="{{ b.title }}" title="{{ b.title }}">
+          </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% if seller.description %}
+      <div class="partner-description">
+        <p>{{ seller.description }}</p>
+      </div>
+      {% endif %}
+    </div>
+
   </div>
 
-  {% if seller.description %}
-  <div class="seller-description">
-    <p>{{ seller.description }}</p>
-  </div>
-  {% endif %}
-
-  {% if seller.badges %}
-  <div class="seller-badges-block">
-    <h3>Founder Credentials</h3>
-    <ul class="badge-list">
-      {% for b in seller.badges %}
-        <li>
-          <img src="{{ b.icon }}" alt="{{ b.title }}" title="{{ b.title }}">
-          <span>{{ b.title }}</span>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
 </section>
 {% endblock %}
