@@ -1563,36 +1563,39 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* ---------- Section Headings ---------- */
-.letter-block,
-.az-section {
-  position: relative;
-  margin-top: 2.5rem;
+.letter-block {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   border-top: 1px solid #e0e0e0;
   padding-top: 2rem;
   scroll-margin-top: 180px; /* ensures section headings appear below sticky nav */
 }
 
-.letter-block:first-of-type,
-.az-section:first-of-type {
+.letter-block:first-of-type {
   border-top: none;
 }
 
-.letter-title,
-.az-letter {
+.letter-title {
   position: sticky;
-  top: calc(var(--header-desktop) + 48px);
+  top: calc(var(--header-desktop) + 55px); /* sits just below sticky nav */
   z-index: 20;
   background: #fff;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #000;
-  padding: 0.25rem 0;
-  margin-bottom: 1.2rem;
+  padding: 0.5rem 0;
+  margin-bottom: 1.8rem;
   border-bottom: 1px solid #f2f2f2;
 }
 
-.letter-title::after,
-.az-letter::after {
+/* keep the letter title within container width */
+.letter-block > .container > .letter-title {
+  max-width: 1300px;
+  margin: 0 auto 1.8rem auto;
+  padding: 0 1.5rem;
+}
+
+.letter-title::after {
   content: "";
   position: absolute;
   left: 0;
@@ -1602,13 +1605,10 @@ body.no-scroll { overflow: hidden; }
   background: rgba(0, 0, 0, 0.05);
 }
 
-@media (max-width: 768px) {
-  .az-section,
-  .letter-block {
-    scroll-margin-top: 220px;
-  }
+/* ---------- Scroll Alignment ---------- */
+.hollyco-page .letter-block {
+  scroll-margin-top: calc(var(--header-desktop) + 90px);
 }
-
 
 /* ---------- Card Grid Adjustments ---------- */
 .card-grid-container {
@@ -1619,13 +1619,8 @@ body.no-scroll { overflow: hidden; }
 .hollyco-page .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1.5rem;
-}
-
-/* ---------- Scroll Alignment ---------- */
-.hollyco-page .letter-block,
-.hollyco-page .az-section {
-  scroll-margin-top: 220px; /* moves cards 50px lower for perfect spacing */
+  gap: 1.8rem;
+  margin-top: 1rem;
 }
 
 /* ---------- Badges ---------- */
@@ -1667,4 +1662,16 @@ body.no-scroll { overflow: hidden; }
   color: #777;
   font-style: italic;
   padding: 0.5rem 0;
+}
+
+/* ---------- Mobile Tweaks ---------- */
+@media (max-width: 768px) {
+  .letter-block {
+    scroll-margin-top: 220px;
+  }
+
+  .letter-title {
+    font-size: 1.4rem;
+    top: calc(var(--header-desktop) + 60px);
+  }
 }
