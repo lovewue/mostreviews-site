@@ -1527,7 +1527,7 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* ---------- Sticky A–Z Nav ---------- */
-.sticky-nav-hollyco {
+.hollyco-page .sticky-nav-hollyco {
   position: sticky;
   top: calc(var(--header-desktop));
   z-index: 1050;
@@ -1537,7 +1537,7 @@ body.no-scroll { overflow: hidden; }
   box-sizing: border-box;
 }
 
-.sticky-nav-hollyco .az-bar {
+.hollyco-page .sticky-nav-hollyco .az-bar {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -1547,7 +1547,7 @@ body.no-scroll { overflow: hidden; }
   padding: 0;
 }
 
-.sticky-nav-hollyco .az-bar a {
+.hollyco-page .sticky-nav-hollyco .az-bar a {
   color: #fff;
   font-weight: 600;
   font-size: 0.9rem;
@@ -1557,13 +1557,13 @@ body.no-scroll { overflow: hidden; }
   transition: background 0.2s ease;
 }
 
-.sticky-nav-hollyco .az-bar a:hover,
-.sticky-nav-hollyco .az-bar a.active {
+.hollyco-page .sticky-nav-hollyco .az-bar a:hover,
+.hollyco-page .sticky-nav-hollyco .az-bar a.active {
   background: #222;
 }
 
-/* ---------- Section Headings ---------- */
-.letter-block {
+/* ---------- Section Blocks ---------- */
+.hollyco-page .letter-block {
   margin-top: 3.5rem;
   margin-bottom: 3.5rem;
   border-top: 1px solid #e0e0e0;
@@ -1572,38 +1572,35 @@ body.no-scroll { overflow: hidden; }
   box-sizing: border-box;
 }
 
-.letter-block:first-of-type {
+.hollyco-page .letter-block:first-of-type {
   border-top: none;
 }
 
-/* Keep headings inside the container width */
-.letter-block > .container {
+/* Keep section content constrained */
+.hollyco-page .letter-block > .container {
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-.letter-title {
-  position: sticky;
-  top: calc(var(--header-desktop) + 55px); /* sits just below sticky nav */
-  z-index: 20;
-  background: #fff;
-  font-size: 1.8rem;
+/* ---------- Letter Headings ---------- */
+.hollyco-page .letter-title {
+  display: block;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto 1.5rem auto;
+  padding: 0 1.5rem 0.5rem 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: #000;
-  padding: 0.5rem 0;
-  margin-bottom: 1.8rem;
   border-bottom: 1px solid #f2f2f2;
+  background: #fff;
+  position: sticky;
+  top: calc(var(--header-desktop) + 48px); /* sits below A–Z bar */
+  z-index: 25;
 }
 
-/* keep the letter title within container width */
-.letter-block > .container > .letter-title {
-  max-width: 1300px;
-  margin: 0 auto 1.8rem auto;
-  padding: 0 1.5rem;
-}
-
-.letter-title::after {
+.hollyco-page .letter-title::after {
   content: "";
   position: absolute;
   left: 0;
@@ -1614,7 +1611,7 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* ---------- Card Grid Adjustments ---------- */
-.card-grid-container {
+.hollyco-page .card-grid-container {
   position: relative;
   z-index: 0;
 }
@@ -1633,41 +1630,41 @@ body.no-scroll { overflow: hidden; }
 }
 
 /* ---------- Badges ---------- */
-.badge-index-container {
+.hollyco-page .badge-index-container {
   margin-top: 2rem;
 }
 
-.badge-section {
+.hollyco-page .badge-section {
   margin-bottom: 4rem;
   border-bottom: 1px solid #eee;
   padding-bottom: 2rem;
 }
 
-.badge-header {
+.hollyco-page .badge-header {
   display: flex;
   align-items: center;
   gap: 1.5rem;
   margin-bottom: 1rem;
 }
 
-.badge-icon {
+.hollyco-page .badge-icon {
   width: 80px;
   height: 80px;
   flex-shrink: 0;
 }
 
-.badge-title {
+.hollyco-page .badge-title {
   font-size: 1.5rem;
   margin: 0;
 }
 
-.badge-desc {
+.hollyco-page .badge-desc {
   margin-top: 0.5rem;
   color: #555;
   line-height: 1.4;
 }
 
-.no-sellers {
+.hollyco-page .no-sellers {
   color: #777;
   font-style: italic;
   padding: 0.5rem 0;
@@ -1675,11 +1672,11 @@ body.no-scroll { overflow: hidden; }
 
 /* ---------- Mobile Tweaks ---------- */
 @media (max-width: 768px) {
-  .letter-block {
+  .hollyco-page .letter-block {
     scroll-margin-top: 220px;
   }
 
-  .letter-title {
+  .hollyco-page .letter-title {
     font-size: 1.4rem;
     top: calc(var(--header-desktop) + 60px);
   }
@@ -1689,24 +1686,7 @@ body.no-scroll { overflow: hidden; }
   }
 }
 
-/* ---------- Fix letter title & section width ---------- */
-.hollyco-page .letter-title {
-  display: block;
-  width: 100%;
-  max-width: 1300px;
-  margin: 0 auto 1.5rem auto;
-  padding: 0 1.5rem 0.5rem 1.5rem;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #000;
-  border-bottom: 1px solid #f2f2f2;
-  background: #fff;
-  position: sticky;
-  top: calc(var(--header-desktop) + 48px);
-  z-index: 25;
-}
-
-/* ---------- Smooth scroll for #letter-hash ---------- */
+/* ---------- Smooth Scroll ---------- */
 html {
   scroll-behavior: smooth;
 }
