@@ -1513,3 +1513,202 @@ body.no-scroll { overflow: hidden; }
   color: #444;
 }
 
+/* =========================
+   Footnote
+   ========================= */
+
+.data-footnote {
+  margin-top: 2rem;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+  border-top: 1px solid #eee;
+  text-align: center;
+  line-height: 1.5;
+}
+.data-footnote a {
+  color: #7066E0;
+  text-decoration: none;
+}
+.data-footnote a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* =========================
+   HOLLY & CO STYLING
+   ========================= */
+
+/* ---------- Layout Container ---------- */
+.hollyco-page {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  overflow: visible !important;
+}
+
+/* ---------- Sticky A–Z Nav ---------- */
+.hollyco-page .sticky-nav-hollyco {
+  position: sticky;
+  top: calc(var(--header-desktop));
+  z-index: 1050;
+  background: #000;
+  padding: 8px 24px;
+  border-bottom: 1px solid #111;
+  box-sizing: border-box;
+}
+
+.hollyco-page .sticky-nav-hollyco .az-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hollyco-page .sticky-nav-hollyco .az-bar a {
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.hollyco-page .sticky-nav-hollyco .az-bar a:hover,
+.hollyco-page .sticky-nav-hollyco .az-bar a.active {
+  background: #222;
+}
+
+/* ---------- Section Blocks ---------- */
+.hollyco-page .letter-block {
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 2.5rem;
+  scroll-margin-top: calc(var(--header-desktop) + 110px);
+  box-sizing: border-box;
+}
+
+.hollyco-page .letter-block:first-of-type {
+  border-top: none;
+}
+
+/* Keep section content constrained */
+.hollyco-page .letter-block > .container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ---------- Letter Headings ---------- */
+.hollyco-page .letter-title {
+  display: block;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto 1.5rem auto;
+  padding: 0 1.5rem 0.5rem 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #000;
+  border-bottom: 1px solid #f2f2f2;
+  background: #fff;
+  position: sticky;
+  top: calc(var(--header-desktop) + 48px); /* sits below A–Z bar */
+  z-index: 25;
+}
+
+.hollyco-page .letter-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* ---------- Card Grid Adjustments ---------- */
+.hollyco-page .card-grid-container {
+  position: relative;
+  z-index: 0;
+}
+
+.hollyco-page .card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.8rem;
+  margin-top: 1rem;
+  padding-top: 1rem; /* prevents cards from tucking under sticky headings */
+}
+
+/* ---------- Scroll Alignment ---------- */
+.hollyco-page .letter-block {
+  scroll-margin-top: calc(var(--header-desktop) + 110px);
+}
+
+/* ---------- Badges ---------- */
+.hollyco-page .badge-index-container {
+  margin-top: 2rem;
+}
+
+.hollyco-page .badge-section {
+  margin-bottom: 4rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 2rem;
+}
+
+.hollyco-page .badge-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.hollyco-page .badge-icon {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.hollyco-page .badge-title {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.hollyco-page .badge-desc {
+  margin-top: 0.5rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.hollyco-page .no-sellers {
+  color: #777;
+  font-style: italic;
+  padding: 0.5rem 0;
+}
+
+/* ---------- Mobile Tweaks ---------- */
+@media (max-width: 768px) {
+  .hollyco-page .letter-block {
+    scroll-margin-top: 220px;
+  }
+
+  .hollyco-page .letter-title {
+    font-size: 1.4rem;
+    top: calc(var(--header-desktop) + 60px);
+  }
+
+  .hollyco-page .card-grid {
+    gap: 1rem;
+  }
+}
+
+/* ---------- Smooth Scroll ---------- */
+html {
+  scroll-behavior: smooth;
+}

@@ -18,11 +18,10 @@
   </script>
 
   <!-- Global stylesheet -->
-<link rel="stylesheet" href="/static/css/styles.css?v=2">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-
+  <link rel="stylesheet" href="/static/css/styles.css?v=2">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
+
 <body>
 
   <header class="site-header">
@@ -138,10 +137,15 @@
 
   <footer class="site-footer">
   <div class="container">
-    <p>&copy;  <a href="https://lovewue.com" target="_blank" rel="noopener">Wue Limited</a>. All rights reserved.</p>
-
+    <p>
+      &copy;  
+      <a href="https://lovewue.com" target="_blank" rel="noopener">Wue Ltd</a> 
+      (trading as Most Reviews). All rights reserved. 
+      All trademarks and product images are property of their respective owners.
+    </p>
   </div>
 </footer>
+
 
 <!-- Sticky nav behavior and active letter highlighting -->
 <script>
@@ -186,7 +190,10 @@
     document.addEventListener("DOMContentLoaded", function () {
       const path = window.location.pathname;
       const shouldRunScript =
-        path.includes("/partners/index.html") || path.includes("/partners/by-year.html");
+        path.includes("/partners/index.html") ||
+        path.includes("/partners/by-year.html") ||
+        path.includes("/hollyco/index.html") ||
+        path.includes("/hollyco/seller/");
 
       if (!shouldRunScript) return;
 
@@ -296,57 +303,60 @@
     })();
   </script>
 
-<script>
-async function loadSellers() {
-  const res = await fetch("/data/partners_search.json"); // make sure this file exists
-  return res.json();
-}
-
-loadSellers().then(partners => {
-  const input = document.getElementById("sellerSearch");
-  const results = document.getElementById("searchResults");
-
-  function showMatches(q) {
-  results.innerHTML = "";
-
-  if (!q) {
-    results.classList.remove("has-results");
-    return;
-  }
-
-  let matches = partners
-    .filter(s => s.name.toLowerCase().includes(q.toLowerCase()))
-    .slice(0, 10);
-
-  if (matches.length > 0) {
-    results.classList.add("has-results");
-    matches.forEach(s => {
-      let li = document.createElement("li");
-      li.innerHTML = `<a href="/noths/partners/${s.slug[0]}/${s.slug}.html">${s.name}</a>`;
-      results.appendChild(li);
-    });
-  } else {
-    results.classList.remove("has-results");
-  }
-
-  return matches;
-}
-
-
-  input.addEventListener("input", () => {
-    showMatches(input.value);
-  });
-
-  input.addEventListener("keydown", e => {
-    if (e.key === "Enter") {
-      let matches = showMatches(input.value);
-      if (matches && matches.length > 0) {
-        window.location.href = `/noths/partners/${matches[0].slug[0]}/${matches[0].slug}.html`;
+  <!-- NOTHS search script (disabled on Holly pages) -->
+  <script>
+    const path = window.location.pathname;
+    if (path.includes("/noths/partners/")) {
+      async function loadSellers() {
+        const res = await fetch("/data/partners_search.json");
+        return res.json();
       }
+
+      loadSellers().then(partners => {
+        const input = document.getElementById("sellerSearch");
+        const results = document.getElementById("searchResults");
+
+        function showMatches(q) {
+          results.innerHTML = "";
+
+          if (!q) {
+            results.classList.remove("has-results");
+            return;
+          }
+
+          let matches = partners
+            .filter(s => s.name.toLowerCase().includes(q.toLowerCase()))
+            .slice(0, 10);
+
+          if (matches.length > 0) {
+            results.classList.add("has-results");
+            matches.forEach(s => {
+              let li = document.createElement("li");
+              li.innerHTML = `<a href="/noths/partners/${s.slug[0]}/${s.slug}.html">${s.name}</a>`;
+              results.appendChild(li);
+            });
+          } else {
+            results.classList.remove("has-results");
+          }
+
+          return matches;
+        }
+
+        input.addEventListener("input", () => {
+          showMatches(input.value);
+        });
+
+        input.addEventListener("keydown", e => {
+          if (e.key === "Enter") {
+            let matches = showMatches(input.value);
+            if (matches && matches.length > 0) {
+              window.location.href = `/noths/partners/${matches[0].slug[0]}/${matches[0].slug}.html`;
+            }
+          }
+        });
+      });
     }
-  });
-});
-</script>
+  </script>
 
 </body>
 </html>
