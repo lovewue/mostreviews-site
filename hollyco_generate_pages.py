@@ -1,63 +1,51 @@
 import os
 import json
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+from jinja2 import Environment, FileSystemLoader
+from collections import defaultdict
 
-# ------------------------------------------------------------
-# CONFIG
-# ------------------------------------------------------------
-DATA_FILE = "data/hollyco_sellers.json"
-TEMPLATE_DIR = "templates"
+# --- PATHS ---
+DATA_PATH = "data/hollyco_sellers.json"   # your JSON file with seller data
 OUTPUT_DIR = "docs/hollyco"
-A_Z_TEMPLATE = "hollyco/index.html"
+TEMPLATE_DIR = "templates"
 
-# ------------------------------------------------------------
-# LOAD & CLEAN DATA
-# ------------------------------------------------------------
-with open(DATA_FILE, "r", encoding="utf-8") as f:
+# --- LOAD SELLERS ---
+with open(DATA_PATH, "r", encoding="utf-8") as f:
     sellers = json.load(f)
 
+# --- CLEAN SELLERS ---
 cleaned_sellers = []
 for s in sellers:
-    name = s.get("name", "").strip()
-    if not name:
-        continue  # skip missing names entirely
+    if not s.get("name"):
+        continue
+    cleaned_sellers.append({
+        "name": s["name"].strip(),
+        "slug": s.get("slug", ""),
+        "url": s.get("url", ""),  # external link to Holly & Co
+    })
 
-    # Derive first letter
-    first_char = name[0].upper()
-    if not first_char.isalpha():  # e.g. numbers or punctuation
+# --- GROUP BY FIRST LETTER ---
+sellers_by_letter = defaultdict(list)
+for seller in cleaned_sellers:
+    first_char = seller["name"][0].upper()
+    if not first_char.isalpha():
         first_char = "#"
-    s["first_letter"] = first_char
+    sellers_by_letter[first_char].append(seller)
 
-    # Only keep active sellers
-    if s.get("is_active", True):
-        cleaned_sellers.append(s)
+# Sort dictionary A–Z with '#' first
+sellers_by_letter = dict(sorted(sellers_by_letter.items(), key=lambda x: ('Z' if x[0] == '#' else x[0])))
 
-# Sort by first_letter then name
-cleaned_sellers.sort(key=lambda x: (x["first_letter"], x["name"].lower()))
+# --- JINJA ENVIRONMENT ---
+env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
+index_template = env.get_template("hollyco/index.html")
 
-print(f"✅ Loaded {len(cleaned_sellers)} active Holly & Co sellers")
-
-# ------------------------------------------------------------
-# SETUP JINJA
-# ------------------------------------------------------------
-env = Environment(
-    loader=FileSystemLoader(TEMPLATE_DIR),
-    autoescape=select_autoescape(["html", "xml"]),
-)
-index_template = env.get_template(A_Z_TEMPLATE)
-
-# ------------------------------------------------------------
-# ENSURE OUTPUT FOLDER EXISTS
-# ------------------------------------------------------------
+# --- RENDER INDEX PAGE ---
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# ------------------------------------------------------------
-# RENDER A–Z DIRECTORY
-# ------------------------------------------------------------
-html = index_template.render(sellers=cleaned_sellers)
-output_path = os.path.join(OUTPUT_DIR, "index.html")
+html = index_template.render(
+    sellers_by_letter=sellers_by_letter
+)
 
-with open(output_path, "w", encoding="utf-8") as f:
+with open(os.path.join(OUTPUT_DIR, "index.html"), "w", encoding="utf-8") as f:
     f.write(html)
 
-print(f"✅ Rendered A–Z directory to {output_path}")
+print(f"✅ Holly & Co A–Z index generated successfully with {len(cleaned_sellers)} sellers.")
