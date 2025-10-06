@@ -3,47 +3,56 @@
 {% block title %}A–Z of Holly & Co Founders{% endblock %}
 
 {% block content %}
-  <section class="partner-directory hollyco-page">
-    <h1>Holly & Co Founder Directory</h1>
+<div class="hollyco-page">
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <h1>
+      A–Z of Holly & Co Founders
+      <span class="subheading">All Sellers</span>
+    </h1>
     <p class="lead">
       Discover the creative founders behind Holly & Co — independent makers, artisans and small businesses with big ideas.
     </p>
+  </section>
 
-    <!-- A–Z Sticky Nav -->
-<nav class="sticky-nav-hollyco">
-  <ul class="az-bar">
-    {% for letter in letters %}
-      <li>
-        <a href="#{{ 'letter-hash' if letter == '#' else letter }}">{{ letter }}</a>
-      </li>
-    {% endfor %}
-  </ul>
-</nav>
+  {# ---- Compute the available letters dynamically ---- #}
+  {% set available_letters = sellers | map(attribute="first_letter") | unique | list %}
+  {% set has_hash = '#' in available_letters %}
 
+  <!-- STICKY A–Z NAV -->
+  <nav class="sticky-nav-hollyco">
+    <ul class="az-bar">
+      {% if has_hash %}
+        <li><a href="#letter-hash">#</a></li>
+      {% endif %}
+      {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+        {% if letter in available_letters %}
+          <li><a href="#{{ letter }}">{{ letter }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
 
-    <!-- Founders grouped by letter -->
-    {% for letter, group in sellers|groupby("first_letter") %}
-      {% set section_id = 'letter-hash' if letter == '#' else letter %}
-      <section class="letter-block" id="{{ section_id }}">
+  <!-- SELLER GRID SECTIONS -->
+  <div class="card-grid-container">
+    {% for letter, group in sellers | groupby("first_letter") %}
+      <section id="{{ 'letter-hash' if letter == '#' else letter }}" class="letter-block">
         <div class="container">
           <h2 class="letter-title">{{ '#' if letter == '#' else letter }}</h2>
-
           <div class="card-grid">
             {% for s in group %}
-              <a href="{{ s.url }}"
+              <a href="{{ s.url }}" 
                  class="rank-card"
                  target="_blank"
-                 rel="noopener"
-                 title="View {{ s.name }} on Holly & Co">
-
-                <!-- IMAGE -->
+                 rel="noopener">
+                 
                 <img src="/static/hollyco/storefront_images/{{ s.slug }}.webp"
                      alt="{{ s.name }}"
                      class="rank-image"
                      loading="lazy"
                      onerror="this.onerror=null;this.src='/static/fallbacks/no-image.jpg'">
 
-                <!-- CONTENT -->
                 <div class="rank-content">
                   <h3 class="rank-title">{{ s.name }}</h3>
                   {% if s.location %}
@@ -51,14 +60,13 @@
                   {% endif %}
                 </div>
 
-                <!-- BADGES -->
                 {% if s.badges %}
                 <div class="rank-badges">
                   {% for b in s.badges %}
-                  <img src="{{ b.icon_path or b.icon }}"
-                       alt="{{ b.title }}"
-                       title="{{ b.title }}"
-                       class="rank-badge">
+                    <img src="{{ b.icon_path or b.icon }}"
+                         alt="{{ b.title }}"
+                         title="{{ b.title }}"
+                         class="rank-badge">
                   {% endfor %}
                 </div>
                 {% endif %}
@@ -68,35 +76,6 @@
         </div>
       </section>
     {% endfor %}
-  </section>
-{% endblock %}
-
-{% block scripts %}
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const navLinks = document.querySelectorAll(".az-nav a, .persistent-nav a");
-    const sections = [];
-
-    navLinks.forEach(link => {
-      const id = link.getAttribute("href").replace("#", "");
-      const section = document.getElementById(id);
-      if (section) sections.push({ id, section });
-    });
-
-    function updateActiveNav() {
-      let currentId = null;
-      const scrollPosition = window.scrollY + (window.innerWidth > 768 ? 180 : 120);
-      for (const {id, section} of sections) {
-        if (section.offsetTop <= scrollPosition) currentId = id;
-        else break;
-      }
-      navLinks.forEach(link => {
-        link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
-      });
-    }
-
-    window.addEventListener("scroll", updateActiveNav);
-    updateActiveNav();
-  });
-</script>
+  </div>
+</div>
 {% endblock %}
