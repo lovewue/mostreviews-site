@@ -10,20 +10,16 @@
     </p>
 
     <!-- A–Z Sticky Nav -->
-    <nav class="az-nav sticky-nav-hollyco">
-      <ul class="az-bar">
-        {# Build dynamic letter list based only on available groups #}
-        {% set available_letters = sellers | map(attribute='first_letter') | list | unique | sort %}
-        {% if '#' in available_letters %}
-          <li><a href="#letter-hash">#</a></li>
-        {% endif %}
-        {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
-          {% if letter in available_letters %}
-            <li><a href="#{{ letter }}">{{ letter }}</a></li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </nav>
+<nav class="sticky-nav-hollyco">
+  <ul class="az-bar">
+    {% for letter in letters %}
+      <li>
+        <a href="#{{ 'letter-hash' if letter == '#' else letter }}">{{ letter }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
+
 
     <!-- Founders grouped by letter -->
     {% for letter, group in sellers|groupby("first_letter") %}
