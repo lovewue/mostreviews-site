@@ -6,19 +6,21 @@
   <section class="partner-directory">
     <h1>NOTHS A–Z Partner Directory</h1>
 
-    <!-- A–Z Sticky Nav -->
-    <nav class="az-nav sticky-nav">
-      <ul class="az-bar">
-        {% for letter in letters %}
-  	  {% if letter == "#" %}
-    	  <li><a href="#letter-hash">#</a></li>
-        {% else %}
-          <li><a href="#{{ letter }}">{{ letter }}</a></li>
-        {% endif %}
-        {% endfor %}
+<!-- Sticky A–Z Nav -->
+<nav class="sticky-nav az-nav">
+  <ul class="az-bar">
+    {% set used_letters = sellers | map(attribute='first_letter') | list | unique %}
+    {% if '#' in used_letters %}
+      <li><a href="#letter-hash">#</a></li>
+    {% endif %}
+    {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+      {% if letter in used_letters %}
+        <li><a href="#{{ letter }}">{{ letter }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</nav>
 
-      </ul>
-    </nav>
 
     <!-- Partners Grouped by Letter -->
 {% for letter, group in partners_by_letter.items() %}
