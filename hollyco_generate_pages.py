@@ -32,7 +32,8 @@ for seller in cleaned_sellers:
     sellers_by_letter[first_char].append(seller)
 
 # Sort dictionary A–Z with '#' first
-sellers_by_letter = dict(sorted(sellers_by_letter.items(), key=lambda x: ('Z' if x[0] == '#' else x[0])))
+sellers_by_letter = dict(sorted(sellers_by_letter.items(), key=lambda x: (' ' if x[0] == '#' else x[0])))
+
 
 # --- JINJA ENVIRONMENT ---
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
