@@ -3,71 +3,96 @@
 {% block title %}A–Z of Holly & Co Founders{% endblock %}
 
 {% block content %}
-<div class="partners-page hollyco-page">
+  <section class="partner-directory hollyco-page">
+    <h1>Holly & Co Founder Directory</h1>
 
-  <!-- HERO -->
-  <section class="page-hero container">
-    <h1>
-      A–Z of Holly & Co Founders
-      <span class="subheading">All Sellers</span>
-    </h1>
-    <p class="lead">
-      Discover the creative founders behind Holly & Co — independent makers, artisans and small businesses with big ideas.
-    </p>
-  </section>
-
-  <!-- STICKY A–Z NAV -->
-  <nav class="sticky-nav az-nav">
-    <ul class="az-bar">
-      <li><a href="#letter-hash">#</a></li>
-      {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
-        <li><a href="#{{ letter }}">{{ letter }}</a></li>
-      {% endfor %}
+    <!-- A–Z Sticky Nav -->
+    <nav class="az-nav sticky-nav-hollyco">
+      <ul class="az-bar">
+        <li><a href="#letter-hash">#</a></li>
+        {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+          <li><a href="#{{ letter }}">{{ letter }}</a></li>
+        {% endfor %}
       </ul>
-  </nav>
+    </nav>
 
-  <!-- A–Z SECTIONS -->
-{% for letter, group in sellers|groupby("first_letter") %}
-<section id="{{ 'letter-hash' if letter == '#' else letter }}" class="letter-block">
-  <div class="container">
-    <h2 class="letter-title">{{ '#' if letter == '#' else letter }}</h2>
+    <!-- Founders grouped by letter -->
+    {% for letter, group in sellers|groupby("first_letter") %}
+      {% if letter == "#" %}
+        <section class="letter-block" id="letter-hash">
+      {% else %}
+        <section class="letter-block" id="{{ letter }}">
+      {% endif %}
+          <h2 class="letter-title">{{ '#' if letter == '#' else letter }}</h2>
 
-    <div class="card-grid">
-      {% for s in group %}
-      <a href="/hollyco/seller/{{ s.slug }}.html"
-         class="rank-card"
-         data-seller-url="{{ s.url }}"
-         target="_blank"
-         rel="noopener">
+          <div class="card-grid">
+            {% for s in group %}
+              <a href="{{ s.url }}"
+                 class="rank-card"
+                 target="_blank"
+                 rel="noopener"
+                 title="View {{ s.name }} on Holly & Co">
 
-        <img src="/static/hollyco/storefront_images/{{ s.slug }}.webp"
-             alt="{{ s.name }}"
-             class="rank-image"
-             loading="lazy"
-             onerror="this.onerror=null;this.src='/static/fallbacks/no-image.jpg'">
+                <!-- IMAGE -->
+                <img src="/static/hollyco/storefront_images/{{ s.slug }}.webp"
+                     alt="{{ s.name }}"
+                     class="rank-image"
+                     loading="lazy"
+                     onerror="this.onerror=null;this.src='/static/fallbacks/no-image.jpg'">
 
-        <div class="rank-content">
-          <h3 class="rank-title">{{ s.name }}</h3>
-          {% if s.location %}
-            <p class="rank-subtitle">{{ s.location }}</p>
-          {% endif %}
-        </div>
+                <!-- CONTENT -->
+                <div class="rank-content">
+                  <h3 class="rank-title">{{ s.name }}</h3>
+                  {% if s.location %}
+                    <p class="rank-subtitle">{{ s.location }}</p>
+                  {% endif %}
+                </div>
 
-        {% if s.badges %}
-        <div class="rank-badges">
-          {% for b in s.badges %}
-          <img src="{{ b.icon_path or b.icon }}" alt="{{ b.title }}" title="{{ b.title }}" class="rank-badge">
-          {% endfor %}
-        </div>
-        {% endif %}
-      </a>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-{% endfor %}
+                <!-- BADGES -->
+                {% if s.badges %}
+                <div class="rank-badges">
+                  {% for b in s.badges %}
+                  <img src="{{ b.icon_path or b.icon }}"
+                       alt="{{ b.title }}"
+                       title="{{ b.title }}"
+                       class="rank-badge">
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </a>
+            {% endfor %}
+          </div>
+        </section>
+    {% endfor %}
+  </section>
+{% endblock %}
 
+{% block scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const navLinks = document.querySelectorAll(".az-nav a, .persistent-nav a");
+    const sections = [];
 
+    navLinks.forEach(link => {
+      const id = link.getAttribute("href").replace("#", "");
+      const section = document.getElementById(id);
+      if (section) sections.push({ id, section });
+    });
 
-</div> <!-- /.partners-page.hollyco-page -->
+    function updateActiveNav() {
+      let currentId = null;
+      const scrollPosition = window.scrollY + (window.innerWidth > 768 ? 180 : 120);
+      for (const {id, section} of sections) {
+        if (section.offsetTop <= scrollPosition) currentId = id;
+        else break;
+      }
+      navLinks.forEach(link => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
+      });
+    }
+
+    window.addEventListener("scroll", updateActiveNav);
+    updateActiveNav();
+  });
+</script>
 {% endblock %}
