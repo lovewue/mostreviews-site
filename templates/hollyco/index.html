@@ -5,24 +5,31 @@
 {% block content %}
   <section class="partner-directory hollyco-page">
     <h1>Holly & Co Founder Directory</h1>
+    <p class="lead">
+      Discover the creative founders behind Holly & Co — independent makers, artisans and small businesses with big ideas.
+    </p>
 
     <!-- A–Z Sticky Nav -->
     <nav class="az-nav sticky-nav-hollyco">
       <ul class="az-bar">
-        <li><a href="#letter-hash">#</a></li>
+        {# Build dynamic letter list based only on available groups #}
+        {% set available_letters = sellers | map(attribute='first_letter') | list | unique | sort %}
+        {% if '#' in available_letters %}
+          <li><a href="#letter-hash">#</a></li>
+        {% endif %}
         {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
-          <li><a href="#{{ letter }}">{{ letter }}</a></li>
+          {% if letter in available_letters %}
+            <li><a href="#{{ letter }}">{{ letter }}</a></li>
+          {% endif %}
         {% endfor %}
       </ul>
     </nav>
 
     <!-- Founders grouped by letter -->
     {% for letter, group in sellers|groupby("first_letter") %}
-      {% if letter == "#" %}
-        <section class="letter-block" id="letter-hash">
-      {% else %}
-        <section class="letter-block" id="{{ letter }}">
-      {% endif %}
+      {% set section_id = 'letter-hash' if letter == '#' else letter %}
+      <section class="letter-block" id="{{ section_id }}">
+        <div class="container">
           <h2 class="letter-title">{{ '#' if letter == '#' else letter }}</h2>
 
           <div class="card-grid">
@@ -62,7 +69,8 @@
               </a>
             {% endfor %}
           </div>
-        </section>
+        </div>
+      </section>
     {% endfor %}
   </section>
 {% endblock %}
