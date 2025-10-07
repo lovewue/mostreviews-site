@@ -543,6 +543,23 @@ def render_about_page():
     print("📖 Rendered about.html")
 
 
+# === About the Data page ===
+def render_about_the_data_page():
+    from datetime import datetime
+    template = env.get_template("about-the-data.html")
+
+    # Format date to match your preferred style (dd.mm.yyyy)
+    today_str = datetime.now().strftime("%d.%m.%Y")
+
+    os.makedirs(DOCS_DIR, exist_ok=True)
+    out_path = os.path.join(DOCS_DIR, "about-the-data.html")
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(template.render(last_updated=today_str))
+
+    print(f"📊 Rendered about-the-data.html (Last updated: {today_str})")
+    
+
+
 # === Sitemap ===
 def render_partner_search_json():
     out_path = os.path.join(DOCS_DIR, "data", "partners_search.json")
@@ -613,6 +630,7 @@ if __name__ == "__main__":
     render_top_partners_last_12_months()
     render_top_100_all_time()
     render_about_page()
+    render_about_the_data_page()
     render_partner_search_json()
     render_sitemap()
     render_top_christmas()

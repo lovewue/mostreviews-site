@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}About the Data – Most Reviews{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <h1>About the Data</h1>
+  <p class="lead">
+    How we collect, analyse, and rank the most reviewed products and partners on Not On The High Street.
+  </p>
+</section>
+
+<section class="page-content">
+  <p>
+    <strong>Most Reviews</strong> analyses publicly available data from the 
+    <a href="https://www.feefo.com/" target="_blank" rel="noopener">Feefo</a> 
+    customer review platform to identify the products and partners receiving the highest number of verified reviews on 
+    <a href="https://www.notonthehighstreet.com/" target="_blank" rel="noopener">Not On The High Street</a>.
+  </p>
+
+  <p>
+    Our rankings are based on the total number of verified customer reviews rather than average star ratings. 
+    Review data is refreshed monthly, with the latest update published on the <strong>1st of each month</strong>.
+  </p>
+
+  <p>
+    While we make every effort to ensure accuracy, listings and review totals can change at any time. 
+    <strong>Most Reviews</strong> is an independent project and is not affiliated with 
+    Not On The High Street or Feefo.
+  </p>
+
+  {% if last_updated %}
+  <p class="last-updated">
+    <em>Last updated: {{ last_updated }}</em>
+  </p>
+  {% endif %}
+</section>
+{% endblock %}
