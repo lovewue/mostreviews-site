@@ -308,10 +308,10 @@
     })();
   </script>
 
-  <!-- NOTHS search script (disabled on Holly pages) -->
+  <!-- NOTHS search script (runs on all NOTHS pages, disabled on Holly pages) -->
   <script>
     const path = window.location.pathname;
-    if (path.includes("/noths/partners/")) {
+    if (path.includes("/noths/") && !path.includes("/hollyco/")) {
       async function loadSellers() {
         const res = await fetch("/data/partners_search.json");
         return res.json();
@@ -320,6 +320,7 @@
       loadSellers().then(partners => {
         const input = document.getElementById("sellerSearch");
         const results = document.getElementById("searchResults");
+        if (!input || !results) return;
 
         function showMatches(q) {
           results.innerHTML = "";
