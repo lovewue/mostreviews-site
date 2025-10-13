@@ -139,6 +139,22 @@
   <span class="card-cta">View products →</span>
 </a>
 
+<!-- NOTHS Most Reviewed Product Per Partner -->
+<a class="card visual-card" href="/noths/top-per-partner.html">
+  <div class="card-images">
+    {% for product in top_per_partner[:6] %}
+      <img src="/Product_Images/{{ product.sku }}.jpg"
+           alt="{{ product.name }}">
+    {% endfor %}
+  </div>
+  <div class="card-body">
+    <h2>Most Reviewed Product Per Partner</h2>
+    <p>The top product from every active Not On The High Street seller with 5+ reviews, ranked by total reviews.</p>
+  </div>
+  <span class="card-cta">View products →</span>
+</a>
+
+
 
 
 </section>

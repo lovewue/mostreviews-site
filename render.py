@@ -122,6 +122,15 @@ def render_noths_index():
     with open(os.path.join(DATA_DIR, "top_100_all_time.json"), "r", encoding="utf-8") as f:
         top_all_time = json.load(f)
 
+    # --- Load top product per partner (NEW) ---
+    top_per_partner_path = os.path.join(DATA_DIR, "top_product_per_partner.json")
+    if os.path.exists(top_per_partner_path):
+        with open(top_per_partner_path, "r", encoding="utf-8") as f:
+            top_per_partner = json.load(f)
+    else:
+        print("⚠️ top_product_per_partner.json not found, skipping.")
+        top_per_partner = []    
+
     # --- A, middle, Z logos ---
     active_partners = [p for p in ALL_PARTNERS if p.get("active", True)]
     partners_sorted = sorted(active_partners, key=lambda p: p.get("name", "").lower())
@@ -143,7 +152,8 @@ def render_noths_index():
         top_product_partners=top_product_partners,
         top_christmas_products=top_christmas_products,
         az_partners=az_partners,
-        top_all_time=top_all_time,   # ✅ now safely defined
+        top_all_time=top_all_time,
+        top_per_partner=top_per_partner,
     )
 
     os.makedirs(f"{DOCS_DIR}/noths", exist_ok=True)
@@ -531,7 +541,42 @@ def render_top_100_all_time():
     print(f"✅ Rendered Top 100 All Time Products page ({len(top_all_time)} entries)")
 
 
+# === Most Reviewed Product Per Partner ===
+def render_top_product_per_partner():
+    """Render a page showing each partner's most reviewed product (5+ reviews)."""
+    data_path = os.path.join(DATA_DIR, "top_products_last_12_months.json")
+    with open(data_path, "r", encoding="utf-8") as f:
+        all_products = json.load(f)
 
+    filtered = [p for p in all_products if int(p.get("review_count", 0)) >= 5 and p.get("available", True)]
+
+    best_by_partner = {}
+    for p in filtered:
+        slug = (p.get("seller_slug") or "").lower().strip()
+        if not slug:
+            continue
+        if slug not in best_by_partner or int(p["review_count"]) > int(best_by_partner[slug]["review_count"]):
+            best_by_partner[slug] = p
+
+    products = sorted(best_by_partner.values(), key=lambda x: int(x["review_count"]), reverse=True)
+
+    for i, p in enumerate(products, start=1):
+        p["rank"] = i
+
+    # ✅ Save JSON for reuse in index
+    json_path = os.path.join(DATA_DIR, "top_product_per_partner.json")
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(products, f, indent=2, ensure_ascii=False)
+    print(f"💾 Saved JSON → {json_path}")
+
+    # Render HTML
+    template = env.get_template("noths/products/top-per-partner.html")
+    os.makedirs(f"{DOCS_DIR}/noths/products", exist_ok=True)
+    out_path = f"{DOCS_DIR}/noths/products/top-per-partner.html"
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(template.render(products=products))
+
+    print(f"🤝 Rendered top-per-partner.html with {len(products)} partners (≥5 reviews)")
 
 
 # === About page ===
@@ -618,8 +663,9 @@ def render_sitemap():
 
 # === Run Everything ===
 if __name__ == "__main__":
-    render_noths_index()
     copy_static_assets()
+    render_noths_index()
+    render_top_product_per_partner()
     render_partner_pages()
     render_partner_index()
     render_partner_by_year()
