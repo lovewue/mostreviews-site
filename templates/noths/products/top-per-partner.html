@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Most Reviewed Product Per Partner – Not On The High Street{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <h1>
+    Most Reviewed Product Per Partner
+    <span class="subheading">Not On The High Street</span>
+  </h1>
+  <p class="lead">
+    One standout product from each active Not On The High Street partner,
+    ranked by total customer reviews (minimum 5).
+  </p>
+</section>
+
+<div class="card-grid">
+  {% for product in products %}
+    {% set awin_fallback = "https://www.awin1.com/cread.php?awinmid=18484&awinaffid=1018637&clickref=TopPerPartner&ued=" ~ (product.product_url | urlencode) %}
+    <a href="{{ product.awin or awin_fallback }}"
+       class="rank-card"
+       target="_blank"
+       rel="noopener"
+       data-product-url="{{ product.product_url }}">
+
+
+      <img
+        src="/Product_Images/{{ product.sku }}.jpg"
+        alt="{{ product.name }}"
+        class="rank-image"
+        loading="lazy"
+        onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
+
+      <div class="rank-number">#{{ product.rank }}</div>
+      <div class="rank-divider"></div>
+
+      <h2 class="rank-title">{{ product.name }}</h2>
+      <p class="rank-seller">
+        {{ product.seller_name or product.partner_name }}
+      </p>
+      <p class="rank-count">{{ product.review_count }} reviews</p>
+    </a>
+  {% endfor %}
+</div>
+{% endblock %}
