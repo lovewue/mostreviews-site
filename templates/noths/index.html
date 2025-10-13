@@ -142,7 +142,7 @@
 <!-- NOTHS Most Reviewed Product Per Partner -->
 <a class="card visual-card" href="/noths/produts/top-per-partner.html">
   <div class="card-images">
-    {% for product in top_per_partner[:6] %}
+    {% for product in top_per_partner_sample %}
       <img src="/Product_Images/{{ product.sku }}.jpg"
            alt="{{ product.name }}">
     {% endfor %}

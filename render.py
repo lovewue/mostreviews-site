@@ -129,7 +129,16 @@ def render_noths_index():
             top_per_partner = json.load(f)
     else:
         print("⚠️ top_product_per_partner.json not found, skipping.")
-        top_per_partner = []    
+        top_per_partner = []
+
+    import random
+
+    # --- Random sample for homepage card ---
+    if top_per_partner:
+        top_per_partner_sample = random.sample(top_per_partner, k=min(6, len(top_per_partner)))
+    else:
+        top_per_partner_sample = []
+    
 
     # --- A, middle, Z logos ---
     active_partners = [p for p in ALL_PARTNERS if p.get("active", True)]
@@ -153,7 +162,7 @@ def render_noths_index():
         top_christmas_products=top_christmas_products,
         az_partners=az_partners,
         top_all_time=top_all_time,
-        top_per_partner=top_per_partner,
+        top_per_partner_sample=top_per_partner_sample,
     )
 
     os.makedirs(f"{DOCS_DIR}/noths", exist_ok=True)
