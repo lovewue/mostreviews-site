@@ -4,27 +4,41 @@
   {{ partner.name }} – Not On The High Street Partner Since {{ partner.since }}
 {% endblock %}
 
-
 {% block content %}
 <section class="partner-detail-page">
 
   <!-- Partner Profile Block -->
-  <div class="partner-columns-container top-block">
+  <div class="partner-columns-container top-block {% if not partner.paid or not partner['description line 1'] %}no-premium{% endif %}">
     
-    <!-- Column 1: Logo + Button -->
+    <!-- Column 1: Logo + Button + Social Icons -->
     <div class="partner-col col-logo">
       {% if partner.logo %}
         <img src="{{ partner.logo }}" alt="{{ partner.name }} logo" class="partner-logo">
       {% endif %}
+
       <a href="{{ partner.awin }}"
          target="_blank"
          class="partner-link"
          data-product-url="{{ partner.url }}">
          View on NOTHS
       </a>
+
+      {% if partner.paid %}
+        <ul class="social-icons">
+          {% if partner.website %}
+            <li><a href="{{ partner.website }}" target="_blank" title="Website"><i class="fa-solid fa-globe"></i></a></li>
+          {% endif %}
+          {% if partner.facebook %}
+            <li><a href="{{ partner.facebook }}" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
+          {% endif %}
+          {% if partner.instagram %}
+            <li><a href="{{ partner.instagram }}" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+          {% endif %}
+        </ul>
+      {% endif %}
     </div>
 
-    <!-- Column 2: Name + Info -->
+    <!-- Column 2: Partner Info -->
     <div class="partner-col col-info">
       <h1 class="partner-name">{{ partner.name }}</h1>
       <ul class="partner-info">
@@ -34,32 +48,17 @@
       </ul>
     </div>
 
-    <!-- Column 3: Premium links -->
+    <!-- Column 3: Premium Partner Description -->
     <div class="partner-col col-links">
-      {% if partner.paid %}
-        <ul class="social-icons">
-          {% if partner.website %}
-            <li><a href="{{ partner.website }}" target="_blank"><i class="fa-solid fa-globe"></i></a></li>
+      {% if partner.paid and partner["description line 1"] %}
+        <div class="partner-description">
+          {% if partner["description line 1"] %}
+            <p><em>{{ partner["description line 1"] }}</em></p>
           {% endif %}
-          {% if partner.facebook %}
-            <li><a href="{{ partner.facebook }}" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+          {% if partner["description line 2"] %}
+            <p><em>{{ partner["description line 2"] }}</em></p>
           {% endif %}
-          {% if partner.instagram %}
-            <li><a href="{{ partner.instagram }}" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
-          {% endif %}
-          {% if partner.twitter %}
-            <li><a href="{{ partner.twitter }}" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
-          {% endif %}
-          {% if partner.x %}
-            <li><a href="{{ partner.x }}" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
-          {% endif %}
-          {% if partner.youtube %}
-            <li><a href="{{ partner.youtube }}" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
-          {% endif %}
-          {% if partner.tiktok %}
-            <li><a href="{{ partner.tiktok }}" target="_blank"><i class="fa-brands fa-tiktok"></i></a></li>
-          {% endif %}
-        </ul>
+        </div>
       {% endif %}
     </div>
 
