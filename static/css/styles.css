@@ -1295,7 +1295,6 @@ body.no-scroll { overflow: hidden; }
   outline: none;
 }
 
-/* Social icons under View button */
 .partner-link + .social-icons {
   margin-top: 10px;
 }
@@ -1364,6 +1363,8 @@ body.no-scroll { overflow: hidden; }
   align-items: flex-start;
   justify-content: flex-start;
   text-align: left;
+  border-left: 2px solid #eaeaea;
+  padding-left: 1rem;
 }
 
 .partner-description {
@@ -1374,6 +1375,10 @@ body.no-scroll { overflow: hidden; }
   color: #444;
   line-height: 1.5;
   font-size: 0.95rem;
+  background: #fafafa;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 /* === Collapse Column 3 when no premium content === */
@@ -1401,74 +1406,8 @@ body.no-scroll { overflow: hidden; }
       "about";
     text-align: center;
     padding: 1rem;
-    margin: 0 0.2rem 2rem;
-    max-width: 100%;
-  }
+    margin: 0 0.2
 
-  .col-info {
-    margin-top: 1rem;
-  }
-
-  .col-links {
-    text-align: center;
-    align-items: center;
-  }
-
-  .partner-description {
-    text-align: center;
-    font-size: 0.95rem;
-    max-width: 90%;
-    margin: 0 auto;
-  }
-
-  .social-icons {
-    justify-content: center;
-    margin-top: 1rem;
-    flex-wrap: nowrap;
-    gap: 0.4rem;
-  }
-
-  .social-icons a {
-    flex: 1;
-    max-width: 40px;
-    aspect-ratio: 1 / 1;
-    font-size: 14px;
-  }
-
-  .partner-columns-container.no-premium {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "logo"
-      "info";
-  }
-}
-
-/* === Enhanced styling for premium description column === */
-.col-links {
-  border-left: 2px solid #eaeaea;  /* subtle vertical divider */
-  padding-left: 1rem;
-}
-
-.partner-description {
-  background: #fafafa;             /* very light background tint */
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-}
-
-/* On mobile, remove divider and simplify */
-@media (max-width: 900px) {
-  .col-links {
-    border-left: none;
-    padding-left: 0;
-  }
-
-  .partner-description {
-    background: transparent;
-    box-shadow: none;
-    padding: 0.5rem 0;
-  }
-}
 
 
 

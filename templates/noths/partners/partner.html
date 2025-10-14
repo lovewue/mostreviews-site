@@ -7,8 +7,13 @@
 {% block content %}
 <section class="partner-detail-page">
 
+  {# === Compute description + paid flags === #}
+  {% set has_desc1 = partner["description line 1"] is defined and partner["description line 1"]|trim != '' %}
+  {% set has_desc2 = partner["description line 2"] is defined and partner["description line 2"]|trim != '' %}
+  {% set is_paid = partner.paid|default(false) %}
+
   <!-- Partner Profile Block -->
-  <div class="partner-columns-container top-block {% if not partner.paid or not partner['description line 1'] %}no-premium{% endif %}">
+  <div class="partner-columns-container top-block{% if not is_paid or (not has_desc1 and not has_desc2) %} no-premium{% endif %}">
     
     <!-- Column 1: Logo + Button + Social Icons -->
     <div class="partner-col col-logo">
@@ -23,7 +28,7 @@
          View on NOTHS
       </a>
 
-      {% if partner.paid %}
+      {% if is_paid %}
         <ul class="social-icons">
           {% if partner.website %}
             <li><a href="{{ partner.website }}" target="_blank" title="Website"><i class="fa-solid fa-globe"></i></a></li>
@@ -50,12 +55,12 @@
 
     <!-- Column 3: Premium Partner Description -->
     <div class="partner-col col-links">
-      {% if partner.paid and partner["description line 1"] %}
+      {% if is_paid and (has_desc1 or has_desc2) %}
         <div class="partner-description">
-          {% if partner["description line 1"] %}
+          {% if has_desc1 %}
             <p><em>{{ partner["description line 1"] }}</em></p>
           {% endif %}
-          {% if partner["description line 2"] %}
+          {% if has_desc2 %}
             <p><em>{{ partner["description line 2"] }}</em></p>
           {% endif %}
         </div>
