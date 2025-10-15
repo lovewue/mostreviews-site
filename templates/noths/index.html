@@ -93,6 +93,21 @@
   <span class="card-cta">Browse by year →</span>
 </a>
 
+  <!-- NOTHS Christmas Catalogue -->
+<a class="card visual-card" href="/noths/products/top-christmas.html">
+  <div class="card-images">
+    {% for product in top_christmas_catalogue[:3] %}
+      <img src="/Product_Images/{{ product.sku }}.jpg"
+           alt="{{ product.name }}">
+    {% endfor %}
+  </div>
+  <div class="card-body">
+    <h2>NOTHS Christmas Catalogue</h2>
+    <p>The most loved products from Not On The High Street’s Christmas Catalogue Collection.</p>
+  </div>
+  <span class="card-cta">View products →</span>
+</a>
+
 
   <!-- Partners with Most Products -->
 <a class="card visual-card" href="/noths/partners/partner-most-products.html">
