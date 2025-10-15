@@ -491,7 +491,6 @@ def render_noths_christmas_catalogue():
         except (TypeError, ValueError):
             review_count = 0
 
-        # Prefer AWIN link, fallback to product URL
         product_url = base.get("product_url", item.get("product_url"))
         awin_link = base.get("awin")
         if not awin_link and product_url:
@@ -515,9 +514,8 @@ def render_noths_christmas_catalogue():
     # --- Sort by review count ---
     enriched_sorted = sorted(enriched, key=lambda x: x["review_count"], reverse=True)
 
-    # --- Assign rank numbers (dense ranking) ---
-    current_rank = 0
-    last_count = None
+    # --- Assign dense ranks ---
+    current_rank, last_count = 0, None
     for idx, product in enumerate(enriched_sorted, start=1):
         if product["review_count"] != last_count:
             current_rank = idx
@@ -534,7 +532,6 @@ def render_noths_christmas_catalogue():
         f.write(html)
 
     print(f"🎄 Rendered NOTHS Christmas Catalogue → {output_path} ({len(enriched_sorted)} products)")
-
 
 
 
