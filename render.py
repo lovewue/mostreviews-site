@@ -319,20 +319,20 @@ def render_partner_by_year():
     partners = [p for p in ALL_PARTNERS if p.get("active", True)]
     grouped = defaultdict(list)
 
-    # Group partners by their join year
+    # Group partners by join year
     for p in partners:
         since_raw = str(p.get("since", "")).strip()
         year = since_raw[-4:] if since_raw[-4:].isdigit() else "Unknown"
         grouped[year].append(p)
 
-    # Sort years descending and partners alphabetically
+    # Sort years (descending) and partners alphabetically
     sorted_grouped = {
         year: sorted(group, key=lambda p: p["name"].lower())
         for year, group in sorted(grouped.items(), reverse=True)
     }
 
-    # Compute total active partners
-    total_partners = sum(len(group) for year, group in sorted_grouped.items() if year != "Unknown")
+    # ✅ Total partners = all, including "Unknown"
+    total_partners = sum(len(group) for group in sorted_grouped.values())
 
     # Render template
     template = env.get_template("noths/partners/by-year.html")
@@ -348,8 +348,7 @@ def render_partner_by_year():
             )
         )
 
-    print(f"📅 Rendered partners/by-year.html — {total_partners:,} partners total")
-
+    print(f"📅 Rendered partners/by-year.html — {total_partners:,} total partners")
 
 
 # === Partner most reviews ===
