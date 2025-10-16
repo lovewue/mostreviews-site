@@ -486,6 +486,7 @@ def render_noths_christmas_catalogue():
         sku = str(item.get("sku"))
         base = full_by_sku.get(sku, {})
 
+        # Merge data
         try:
             review_count = int(base.get("review_count", 0))
         except (TypeError, ValueError):
@@ -511,8 +512,11 @@ def render_noths_christmas_catalogue():
             "available": base.get("available", True),
         })
 
-    # --- Sort by review count ---
-    enriched_sorted = sorted(enriched, key=lambda x: x["review_count"], reverse=True)
+    # --- Sort by reviews desc, name asc ---
+    enriched_sorted = sorted(
+        enriched,
+        key=lambda x: (-x.get("review_count", 0), x.get("name", "").lower())
+    )
 
     # --- Assign dense ranks ---
     current_rank, last_count = 0, None
@@ -532,7 +536,6 @@ def render_noths_christmas_catalogue():
         f.write(html)
 
     print(f"🎄 Rendered NOTHS Christmas Catalogue → {output_path} ({len(enriched_sorted)} products)")
-
 
 
 

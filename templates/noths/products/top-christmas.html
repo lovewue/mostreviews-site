@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}NOTHS Christmas Catalogue Products | Not On The High Street{% endblock %}
+{% block title %}Top Christmas Catalogue Products | Not On The High Street{% endblock %}
 
 {% block content %}
 <section class="page-hero">
   <h1>
-    NOTHS Christmas Catalogue Products
+    Top Christmas Catalogue Products
+    <span class="subheading">Christmas Catalogue Collection</span>
   </h1>
   <p class="lead">
-    Discover the products featured in Not On The High Street’s Christmas Catalogue Collection,
-    ranked by customer reviews in the last 12 months.
+    Discover the most reviewed products featured in Not On The High Street’s
+    Christmas Catalogue Collection — ranked by customer reviews in the last 12 months.
   </p>
 </section>
 
@@ -20,7 +21,7 @@
        target="_blank"
        rel="noopener"
        data-product-url="{{ product.product_url }}">
-       
+
       <img src="/Product_Images/{{ product.sku }}.jpg"
            alt="{{ product.name }}"
            class="rank-image"
@@ -31,7 +32,12 @@
       <div class="rank-divider"></div>
 
       <h3>{{ product.name }}</h3>
-      <p class="review-count">{{ product.review_count }} review{{ 's' if product.review_count != 1 else '' }}</p>
+      {% if product.seller_name %}
+        <p class="seller">{{ product.seller_name }}</p>
+      {% endif %}
+      <p class="review-count">
+        {{ product.review_count }} review{{ 's' if product.review_count != 1 else '' }}
+      </p>
     </a>
   {% endfor %}
 </div>
