@@ -340,6 +340,14 @@ body.no-scroll { overflow: hidden; }
   border-bottom: 2px solid #000;
   padding-bottom: 6px;
 }
+
+.year-title small,
+.partner-directory h1 small {
+  font-size: 0.8em;
+  color: #666;
+  font-weight: normal;
+}
+
 .letter-block,
 .year-block {
   margin-bottom: 48px;
@@ -1417,6 +1425,14 @@ body.no-scroll { overflow: hidden; }
     margin: 0 auto;
   }
 
+  /* ✅ New addition: center the View on NOTHS button */
+  .partner-link {
+    display: inline-block;
+    margin: 0.6rem auto 0; /* top spacing and centered */
+    text-align: center;
+    min-width: 180px; /* optional for better tap area */
+  }
+
   .col-info {
     margin-top: 1.2rem;
     text-align: center;
@@ -1457,6 +1473,7 @@ body.no-scroll { overflow: hidden; }
     font-size: 14px;
   }
 }
+
 
 
 /* === Responsive: Mobile stacking === */

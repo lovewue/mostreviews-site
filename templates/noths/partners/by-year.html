@@ -4,13 +4,25 @@
 
 {% block content %}
 <section class="partner-directory">
-  <h1>NOTHS Partners by Year Joined</h1>
+  {% set total_partners = 0 %}
+  {% for year, group in partners_by_year.items() if year != "Unknown" %}
+    {% set total_partners = total_partners + group|length %}
+  {% endfor %}
+
+  <h1>
+    NOTHS Partners by Year Joined
+    <small>(Total partners {{ "{:,}".format(total_partners) }})</small>
+  </h1>
 
   <!-- Year Navigation Bar -->
   <nav class="az-nav sticky-nav">
     <ul class="az-bar">
-      {% for year in partners_by_year.keys() if year != "Unknown" %}
-        <li><a href="#year-{{ year }}">{{ year }}</a></li>
+      {% for year, group in partners_by_year.items() if year != "Unknown" %}
+        <li>
+          <a href="#year-{{ year }}">
+            {{ year }} ({{ group|length }})
+          </a>
+        </li>
       {% endfor %}
     </ul>
   </nav>
@@ -18,7 +30,9 @@
   <!-- Partners Grouped by Year -->
   {% for year, group in partners_by_year.items() if year != "Unknown" %}
     <section class="year-block" id="year-{{ year }}">
-      <h2 class="year-title">{{ year }}</h2>
+      <h2 class="year-title">
+        {{ year }} <small>({{ group|length }} Partners)</small>
+      </h2>
       <ul class="partner-columns">
         {% for partner in group %}
           <li>
@@ -52,7 +66,6 @@
       let currentId = null;
       const scrollPosition = window.scrollY + (window.innerWidth > 768 ? 180 : 120);
 
-      // ✅ check all sections instead of breaking early
       sections.forEach(({ id, section }) => {
         if (section.offsetTop <= scrollPosition) {
           currentId = id;

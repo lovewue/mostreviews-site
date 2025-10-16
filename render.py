@@ -318,19 +318,38 @@ def render_partner_index():
 def render_partner_by_year():
     partners = [p for p in ALL_PARTNERS if p.get("active", True)]
     grouped = defaultdict(list)
+
+    # Group partners by their join year
     for p in partners:
         since_raw = str(p.get("since", "")).strip()
         year = since_raw[-4:] if since_raw[-4:].isdigit() else "Unknown"
         grouped[year].append(p)
 
-    sorted_grouped = {year: sorted(group, key=lambda p: p["name"].lower()) for year, group in sorted(grouped.items(), reverse=True)}
+    # Sort years descending and partners alphabetically
+    sorted_grouped = {
+        year: sorted(group, key=lambda p: p["name"].lower())
+        for year, group in sorted(grouped.items(), reverse=True)
+    }
 
+    # Compute total active partners
+    total_partners = sum(len(group) for year, group in sorted_grouped.items() if year != "Unknown")
+
+    # Render template
     template = env.get_template("noths/partners/by-year.html")
     os.makedirs(f"{DOCS_DIR}/noths/partners", exist_ok=True)
     out_path = f"{DOCS_DIR}/noths/partners/by-year.html"
+
     with open(out_path, "w", encoding="utf-8") as f:
-        f.write(template.render(partners_by_year=sorted_grouped, static_path=STATIC_PATH))
-    print("📅 Rendered partners/by-year.html")
+        f.write(
+            template.render(
+                partners_by_year=sorted_grouped,
+                total_partners=total_partners,
+                static_path=STATIC_PATH,
+            )
+        )
+
+    print(f"📅 Rendered partners/by-year.html — {total_partners:,} partners total")
+
 
 
 # === Partner most reviews ===
