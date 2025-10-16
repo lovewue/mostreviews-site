@@ -4,10 +4,6 @@
 
 {% block content %}
 <section class="partner-directory">
-  {% set total_partners = 0 %}
-  {% for year, group in partners_by_year.items() if year != "Unknown" %}
-    {% set total_partners = total_partners + group|length %}
-  {% endfor %}
 
   <h1>
     NOTHS Partners by Year Joined
@@ -17,12 +13,8 @@
   <!-- Year Navigation Bar -->
   <nav class="az-nav sticky-nav">
     <ul class="az-bar">
-      {% for year, group in partners_by_year.items() if year != "Unknown" %}
-        <li>
-          <a href="#year-{{ year }}">
-            {{ year }} ({{ group|length }})
-          </a>
-        </li>
+      {% for year in partners_by_year.keys() if year != "Unknown" %}
+        <li><a href="#year-{{ year }}">{{ year }}</a></li>
       {% endfor %}
     </ul>
   </nav>
