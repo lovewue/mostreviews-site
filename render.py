@@ -527,10 +527,10 @@ def render_noths_christmas_catalogue():
         product["rank"] = current_rank
 
     # --- Render ---
-    template = env.get_template("noths/products/top-christmas.html")
+    template = env.get_template("noths/products/noths-christmas-catalogue.html")
     html = template.render(products=enriched_sorted)
 
-    output_path = os.path.join(DOCS_DIR, "noths", "products", "top-christmas.html")
+    output_path = os.path.join(DOCS_DIR, "noths", "products", "noths-christmas-catalogue.html")
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)

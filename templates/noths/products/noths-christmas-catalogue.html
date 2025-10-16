@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}NOTHS Christmas Catalogue Products | Not On The High Street{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <h1>
+    NOTHS Christmas Catalogue Products
+    <span class="subheading">Christmas Catalogue Collection</span>
+  </h1>
+  <p class="lead">
+    Discover the most reviewed products featured in Not On The High Street’s
+    Christmas Catalogue Collection — ranked by customer reviews in the last 12 months.
+  </p>
+</section>
+
+<div class="card-grid">
+  {% for product in products %}
+    <a href="{{ product.awin or product.product_url }}"
+       class="rank-card"
+       target="_blank"
+       rel="noopener"
+       data-product-url="{{ product.product_url }}">
+
+      <!-- IMAGE -->
+      <img
+        src="/Product_Images/{{ product.sku }}.jpg"
+        alt="{{ product.name }}"
+        class="rank-image"
+        loading="lazy"
+        onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
+
+      <!-- RANK BADGE -->
+      <div class="rank-number">#{{ product.rank }}</div>
+      <div class="rank-divider"></div>
+
+      <!-- BODY (same as 12-month layout) -->
+      <div class="rank-body">
+        <h2 class="rank-name">{{ product.name }}</h2>
+        <p class="rank-meta">
+          {{ "{:,}".format(product.review_count) }} review{{ 's' if product.review_count != 1 else '' }}<br>
+          {% if product.seller_name %}
+            <span class="seller-name">{{ product.seller_name }}</span>
+          {% endif %}
+        </p>
+      </div>
+    </a>
+  {% endfor %}
+</div>
+
+<div class="data-footnote">
+  <p>
+    <strong>Data Source:</strong> Based on verified customer reviews collected via
+    <a href="https://www.feefo.com/" target="_blank" rel="noopener">Feefo</a>
+    for products sold on
+    <a href="https://www.notonthehighstreet.com/" target="_blank" rel="noopener">Not On The High Street</a>.
+    Rankings reflect total review counts over the past 12 months and are updated monthly.
+    <a href="/about-the-data.html">Learn more about our methodology →</a>
+  </p>
+</div>
+{% endblock %}
