@@ -20,6 +20,31 @@ with open(os.path.join(DATA_DIR, "top_products_last_12_months.json"), "r", encod
 # === Setup Jinja ===
 env = Environment(loader=FileSystemLoader("templates"))
 
+# --- Money / Price Helpers ---
+def _coerce_price(val):
+    """Convert a raw price value (string, int, float) into a float or None."""
+    if val is None:
+        return None
+    try:
+        s = str(val).replace(",", "").strip()
+        return float(s)
+    except Exception:
+        return None
+
+def _money(value, currency="GBP"):
+    """Format a number into a currency string (default £)."""
+    p = _coerce_price(value)
+    if p is None:
+        return ""
+    symbol = "£" if currency.upper() in ("GBP", "UKP") else (
+        "€" if currency.upper() == "EUR" else "$"
+    )
+    return f"{symbol}{p:,.2f}"
+
+# Register Jinja filter for displaying prices nicely
+env.filters["money"] = _money
+
+
 # === Logo helper ===
 def find_logo_url(slug: str) -> str | None:
     for logo_dir in ["Partner_Logo", "Seller_Logo"]:
@@ -555,6 +580,79 @@ def render_noths_christmas_catalogue():
 
     print(f"🎄 Rendered NOTHS Christmas Catalogue → {output_path} ({len(enriched_sorted)} products)")
 
+# === NOTHS Louise Thompson ===
+def render_noths_louise_thompson():
+    data_file = os.path.join(DATA_DIR, "christmas_louise_thompson.json")
+    with open(data_file, "r", encoding="utf-8") as f:
+        christmas_list = json.load(f)
+
+    # --- Build lookup from the main 12-month list ---
+    full_by_sku = {str(p.get("sku")): p for p in TOP_PRODUCTS_12M}
+    enriched = []
+
+    for item in christmas_list:
+        sku = str(item.get("sku"))
+        base = full_by_sku.get(sku, {})
+
+        # Review count (robust to strings/commas/missing)
+        try:
+            review_count = int(str(base.get("review_count", 0)).replace(",", ""))
+        except (TypeError, ValueError):
+            review_count = 0
+
+        # Prefer NOTHS/AWIN links from base; fall back to item if needed
+        product_url = base.get("product_url", item.get("product_url"))
+        awin_link = base.get("awin")
+        if not awin_link and product_url:
+            awin_link = (
+                "https://www.awin1.com/cread.php?"
+                "awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued="
+                + urllib.parse.quote(product_url, safe="")
+            )
+
+        # Price + currency (pulled from scraper JSON-LD extras if present)
+        # Prefer base (from your main dataset) then item, with GBP default.
+        price = _coerce_price(base.get("price", item.get("price")))
+        price_currency = base.get("price_currency", item.get("price_currency")) or "GBP"
+
+        enriched.append({
+            "sku": sku,
+            "name": item.get("name") or base.get("name", ""),
+            "product_url": product_url,
+            "awin": awin_link,
+            "seller_name": base.get("seller_name", ""),
+            "seller_slug": base.get("seller_slug", ""),
+            "review_count": review_count,
+            "available": base.get("available", True),
+            "price": price,
+            "price_currency": price_currency,
+        })
+
+    # --- Sort by reviews desc, then name asc for stability ---
+    enriched_sorted = sorted(
+        enriched,
+        key=lambda x: (-x.get("review_count", 0), x.get("name", "").lower())
+    )
+
+    # --- Assign dense ranks (ties share rank) ---
+    current_rank, last_count = 0, None
+    for idx, product in enumerate(enriched_sorted, start=1):
+        if product["review_count"] != last_count:
+            current_rank = idx
+            last_count = product["review_count"]
+        product["rank"] = current_rank
+
+    # --- Render ---
+    template = env.get_template("noths/products/noths-christmas-louise-thompson.html")
+    html = template.render(products=enriched_sorted)
+
+    output_path = os.path.join(DOCS_DIR, "noths", "products", "noths-christmas-louise-thompson.html")
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html)
+
+    print(f"🎄 Rendered NOTHS Louise Thompson → {output_path} ({len(enriched_sorted)} products)")
+
 
 
 # === Homepage ===
@@ -781,5 +879,6 @@ if __name__ == "__main__":
     render_sitemap()
     render_top_christmas()
     render_noths_christmas_catalogue()
+    render_noths_louise_thompson()
 
 
