@@ -175,23 +175,24 @@ def render_noths_index():
     top_products_sample = top_products_sorted
 
     # --- Louise Thompson random sample ---
-    lt_path = os.path.join(DATA_DIR, "christmas_louise_thompson.json")
     lt_products_sample = []
+    lt_path = os.path.join(DATA_DIR, "christmas_louise_thompson.json")
     if os.path.exists(lt_path):
         with open(lt_path, "r", encoding="utf-8") as f:
             lt_data = json.load(f)
             lt_products_sample = random.sample(lt_data, k=min(3, len(lt_data)))
 
-    # --- Christmas catalogue random sample ---
-    catalogue_path = os.path.join(DATA_DIR, "christmas_catalogue_products.json")
-    top_christmas_catalogue = []
+    # --- Christmas Catalogue random sample ---
     top_christmas_catalogue_sample = []
+    catalogue_path = os.path.join(DATA_DIR, "christmas_catalogue_products.json")
     if os.path.exists(catalogue_path):
         with open(catalogue_path, "r", encoding="utf-8") as f:
             top_christmas_catalogue = json.load(f)
             top_christmas_catalogue_sample = random.sample(
                 top_christmas_catalogue, k=min(3, len(top_christmas_catalogue))
             )
+    else:
+        top_christmas_catalogue = []
 
     # --- Top Christmas products (true top 3 by reviews) ---
     with open(os.path.join(DATA_DIR, "top_products_christmas.json"), "r", encoding="utf-8") as f:
@@ -210,7 +211,19 @@ def render_noths_index():
             "name": item.get("name") or base.get("name", ""),
             "review_count": review_count,
         })
-    top_christmas_products = sorted(enriched_christmas, key=lambda x: x["review_count"], reverse=True)[:3]
+    top_christmas_products = sorted(
+        enriched_christmas,
+        key=lambda x: x["review_count"],
+        reverse=True
+    )[:3]
+
+    # --- Load all-time top products (for homepage card images) ---
+    all_time_path = os.path.join(DATA_DIR, "top_100_all_time.json")
+    top_all_time = []
+    if os.path.exists(all_time_path):
+        with open(all_time_path, "r", encoding="utf-8") as f:
+            top_all_time = json.load(f)
+        top_all_time = top_all_time[:6]
 
     # --- A, middle, Z logos ---
     active_partners = [p for p in ALL_PARTNERS if p.get("active", True)]
@@ -235,11 +248,13 @@ def render_noths_index():
         top_christmas_products=top_christmas_products,
         az_partners=az_partners,
         top_christmas_catalogue=top_christmas_catalogue_sample,
+        top_all_time=top_all_time,
     )
 
     os.makedirs(f"{DOCS_DIR}/noths", exist_ok=True)
     with open(f"{DOCS_DIR}/noths/index.html", "w", encoding="utf-8") as f:
         f.write(html)
+
     print("✅ Rendered NOTHS index")
 
 
