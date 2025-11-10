@@ -694,22 +694,27 @@ def render_noths_louise_thompson():
         product_url = base.get("product_url") or item.get("product_url") or item.get("url")
         product_url = normalize_product_url(product_url)
 
-        # Ensure AWIN link's ued matches product_url (rebuild if needed)
-        awin_link = validate_or_rebuild_awin(base.get("awin"), product_url)
+        # Respect an AWIN present in item, but ensure 'ued' matches product_url
+        awin_candidate = base.get("awin") or item.get("awin")
+        awin_link = validate_or_rebuild_awin(awin_candidate, product_url)
 
-        # Price + currency (from scraper JSON-LD extras if present)
+        # Price + currency (ok if missing now; will render empty)
         price = _coerce_price(base.get("price", item.get("price")))
         price_currency = base.get("price_currency", item.get("price_currency")) or "GBP"
+
+        # Seller details: backfill from item if not present in base
+        seller_name = base.get("seller_name") or item.get("seller_name") or ""
+        seller_slug = (base.get("seller_slug") or item.get("seller_slug") or "").lower()
 
         enriched.append({
             "sku": sku,
             "name": item.get("name") or base.get("name", ""),
             "product_url": product_url,
             "awin": awin_link,
-            "seller_name": base.get("seller_name", ""),
-            "seller_slug": base.get("seller_slug", ""),
+            "seller_name": seller_name,
+            "seller_slug": seller_slug,
             "review_count": review_count,
-            "available": base.get("available", True),
+            "available": base.get("available", True) if base else item.get("available", True),
             "price": price,
             "price_currency": price_currency,
         })
@@ -738,6 +743,7 @@ def render_noths_louise_thompson():
         f.write(html)
 
     print(f"🎄 Rendered NOTHS Louise Thompson → {output_path} ({len(enriched_sorted)} products)")
+
 
 
 
