@@ -1,4 +1,5 @@
 from jinja2 import Environment, FileSystemLoader
+from urllib.parse import urlparse, parse_qs, quote, unquote
 import os
 import json
 import shutil
@@ -9,6 +10,62 @@ import urllib.parse
 STATIC_PATH = "/docs/noths/static"
 DATA_DIR = "data"
 DOCS_DIR = "docs"
+
+# === AWIN Links ===
+
+NOTHS_HOSTS = {"www.notonthehighstreet.com", "notonthehighstreet.com"}
+
+def normalize_product_url(u: str | None) -> str | None:
+    if not u:
+        return None
+    u = u.strip()
+    if not u:
+        return None
+    # force https
+    if u.startswith("http://"):
+        u = "https://" + u[len("http://"):]
+    # ensure www
+    try:
+        p = urlparse(u)
+        if p.netloc == "notonthehighstreet.com":
+            u = u.replace("https://notonthehighstreet.com", "https://www.notonthehighstreet.com", 1)
+    except Exception:
+        pass
+    # strip query/fragment
+    u = u.split("?", 1)[0].split("#", 1)[0]
+    return u
+
+def build_awin(product_url: str) -> str:
+    return (
+        "https://www.awin1.com/cread.php?"
+        "awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=" +
+        quote(product_url, safe="")
+    )
+
+def validate_or_rebuild_awin(awin_url: str | None, product_url: str | None) -> str | None:
+    """Return a good AWIN link if possible; otherwise return normalized product_url."""
+    product_url = normalize_product_url(product_url)
+    if not product_url:
+        return awin_url or None
+
+    if awin_url:
+        try:
+            p = urlparse(awin_url.strip())
+            if "awin1.com" in p.netloc and p.path.endswith("/cread.php"):
+                qs = parse_qs(p.query)
+                ued = qs.get("ued", [None])[0]
+                if ued:
+                    ued_decoded = normalize_product_url(unquote(ued))
+                    if ued_decoded == product_url:
+                        return awin_url  # OK as-is
+        except Exception:
+            pass
+        # Mismatch or parse fail → rebuild
+        return build_awin(product_url)
+
+    # No AWIN provided → build one
+    return build_awin(product_url)
+
 
 # === Load shared data once ===
 with open(os.path.join(DATA_DIR, "partners_merged.json"), "r", encoding="utf-8") as f:
@@ -467,22 +524,19 @@ def render_top_christmas():
 
     for item in christmas_list:
         sku = str(item.get("sku"))
-        base = full_by_sku.get(sku, {})
+        base = full_by_sku.get(sku, {}) or {}
 
         try:
-            review_count = int(base.get("review_count", 0))
+            review_count = int(str(base.get("review_count", 0)).replace(",", ""))
         except (TypeError, ValueError):
             review_count = 0
 
-        # Prefer existing NOTHS/Awin links if available
-        product_url = base.get("product_url", item.get("url"))
-        awin_link = base.get("awin")
-        if not awin_link and product_url:
-            awin_link = (
-                "https://www.awin1.com/cread.php?"
-                "awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued="
-                + urllib.parse.quote(product_url, safe="")
-            )
+        # Prefer existing NOTHS URL; fall back to item; then normalise
+        product_url = base.get("product_url") or item.get("product_url") or item.get("url")
+        product_url = normalize_product_url(product_url)
+
+        # Ensure AWIN link's 'ued' matches product_url (rebuild if needed)
+        awin_link = validate_or_rebuild_awin(base.get("awin"), product_url)
 
         enriched.append({
             "sku": sku,
@@ -498,9 +552,8 @@ def render_top_christmas():
     # Sort by review count (highest first)
     enriched_sorted = sorted(enriched, key=lambda x: x["review_count"], reverse=True)
 
-    # Assign ranking with ties
-    current_rank = 0
-    last_count = None
+    # Assign ranking with ties (dense ranking)
+    current_rank, last_count = 0, None
     for idx, product in enumerate(enriched_sorted, start=1):
         if product["review_count"] != last_count:
             current_rank = idx
@@ -515,6 +568,7 @@ def render_top_christmas():
 
     print(f"🎄 Rendered top-100-christmas.html with {len(enriched_sorted)} products")
 
+
 # === NOTHS Christmas Catalogue ===
 def render_noths_christmas_catalogue():
     data_file = os.path.join(DATA_DIR, "christmas_catalogue_products.json")
@@ -527,22 +581,20 @@ def render_noths_christmas_catalogue():
 
     for item in christmas_list:
         sku = str(item.get("sku"))
-        base = full_by_sku.get(sku, {})
+        base = full_by_sku.get(sku, {}) or {}
 
-        # Merge data
+        # Review count (robust to strings/commas/missing)
         try:
-            review_count = int(base.get("review_count", 0))
+            review_count = int(str(base.get("review_count", 0)).replace(",", ""))
         except (TypeError, ValueError):
             review_count = 0
 
-        product_url = base.get("product_url", item.get("product_url"))
-        awin_link = base.get("awin")
-        if not awin_link and product_url:
-            awin_link = (
-                "https://www.awin1.com/cread.php?"
-                "awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued="
-                + urllib.parse.quote(product_url, safe="")
-            )
+        # Prefer NOTHS URL from base; fall back to item; then normalise
+        product_url = base.get("product_url") or item.get("product_url") or item.get("url")
+        product_url = normalize_product_url(product_url)
+
+        # Ensure AWIN link's 'ued' matches product_url (rebuild if needed)
+        awin_link = validate_or_rebuild_awin(base.get("awin"), product_url)
 
         enriched.append({
             "sku": sku,
@@ -580,6 +632,7 @@ def render_noths_christmas_catalogue():
 
     print(f"🎄 Rendered NOTHS Christmas Catalogue → {output_path} ({len(enriched_sorted)} products)")
 
+
 # === NOTHS Louise Thompson ===
 def render_noths_louise_thompson():
     data_file = os.path.join(DATA_DIR, "christmas_louise_thompson.json")
@@ -592,7 +645,7 @@ def render_noths_louise_thompson():
 
     for item in christmas_list:
         sku = str(item.get("sku"))
-        base = full_by_sku.get(sku, {})
+        base = full_by_sku.get(sku, {}) or {}
 
         # Review count (robust to strings/commas/missing)
         try:
@@ -601,17 +654,13 @@ def render_noths_louise_thompson():
             review_count = 0
 
         # Prefer NOTHS/AWIN links from base; fall back to item if needed
-        product_url = base.get("product_url", item.get("product_url"))
-        awin_link = base.get("awin")
-        if not awin_link and product_url:
-            awin_link = (
-                "https://www.awin1.com/cread.php?"
-                "awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued="
-                + urllib.parse.quote(product_url, safe="")
-            )
+        product_url = base.get("product_url") or item.get("product_url") or item.get("url")
+        product_url = normalize_product_url(product_url)
 
-        # Price + currency (pulled from scraper JSON-LD extras if present)
-        # Prefer base (from your main dataset) then item, with GBP default.
+        # Ensure AWIN link's ued matches product_url (rebuild if needed)
+        awin_link = validate_or_rebuild_awin(base.get("awin"), product_url)
+
+        # Price + currency (from scraper JSON-LD extras if present)
         price = _coerce_price(base.get("price", item.get("price")))
         price_currency = base.get("price_currency", item.get("price_currency")) or "GBP"
 
@@ -652,6 +701,7 @@ def render_noths_louise_thompson():
         f.write(html)
 
     print(f"🎄 Rendered NOTHS Louise Thompson → {output_path} ({len(enriched_sorted)} products)")
+
 
 
 
