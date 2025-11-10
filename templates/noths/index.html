@@ -17,12 +17,12 @@
 
   <div class="search-box">
     <span class="search-icon">
-      <svg fill="none" viewBox="0 0 16 16" aria-hidden="true">
+      <svg fill="none" viewBox="0 0 16 16">
         <path d="M15,15l-4.67-4.67m1.56-3.89A5.44,5.44,0,1,1,6.44,1,5.44,5.44,0,0,1,11.89,6.44Z"
               stroke="#000" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
       </svg>
     </span>
-    <input type="text" id="sellerSearch" placeholder="Search partner by name" autocomplete="off" aria-label="Search partners by name">
+    <input type="text" id="sellerSearch" placeholder="Search partner by name" autocomplete="off">
     <ul id="searchResults" class="search-results"></ul>
   </div>
 </section>
@@ -31,12 +31,8 @@
   <!-- Louise Thompson's Christmas Edit -->
   <a class="card visual-card" href="/noths/products/noths-christmas-louise-thompson.html">
     <div class="card-images">
-      {% for product in top_products[:3] %}
-        <img
-          src="/Product_Images/{{ product.sku }}.jpg"
-          alt="{{ product.name }}"
-          loading="lazy"
-          onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
+      {% for product in lt_products_sample %}
+        <img src="/Product_Images/{{ product.sku }}.jpg" alt="{{ product.name }}">
       {% endfor %}
     </div>
     <div class="card-body">
@@ -49,12 +45,8 @@
   <!-- Most Reviewed Products (last 12 months) -->
   <a class="card visual-card" href="/noths/products/products-last-12-months.html">
     <div class="card-images">
-      {% for product in top_products[:3] %}
-        <img
-          src="/Product_Images/{{ product.sku }}.jpg"
-          alt="{{ product.name }}"
-          loading="lazy"
-          onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
+      {% for product in top_products_sample %}
+        <img src="/Product_Images/{{ product.sku }}.jpg" alt="{{ product.name }}">
       {% endfor %}
     </div>
     <div class="card-body">
@@ -68,11 +60,7 @@
   <a class="card visual-card" href="/noths/partners/top-partners-12-months.html">
     <div class="card-images">
       {% for partner in top_partners %}
-        <img
-          src="{{ partner.logo or ('/Partner_Logo/' ~ partner.slug ~ '.jpg') }}"
-          alt="{{ partner.name }} logo"
-          loading="lazy"
-          onerror="this.onerror=null; this.src='/static/fallbacks/logo-fallback.png'">
+        <img src="/Partner_Logo/{{ partner.slug }}.jpg" alt="{{ partner.name }} logo">
       {% endfor %}
     </div>
     <div class="card-body">
@@ -85,12 +73,8 @@
   <!-- NOTHS Christmas Catalogue -->
   <a class="card visual-card" href="/noths/products/noths-christmas-catalogue.html">
     <div class="card-images">
-      {% for product in top_christmas_catalogue[:3] %}
-        <img
-          src="/Product_Images/{{ product.sku }}.jpg"
-          alt="{{ product.name }}"
-          loading="lazy"
-          onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
+      {% for product in top_christmas_catalogue_sample %}
+        <img src="/Product_Images/{{ product.sku }}.jpg" alt="{{ product.name }}">
       {% endfor %}
     </div>
     <div class="card-body">
@@ -104,11 +88,7 @@
   <a class="card visual-card" href="/noths/partners/index.html">
     <div class="card-images">
       {% for partner in az_partners %}
-        <img
-          src="{{ partner.logo or ('/Partner_Logo/' ~ partner.slug ~ '.jpg') }}"
-          alt="{{ partner.name }} logo"
-          loading="lazy"
-          onerror="this.onerror=null; this.src='/static/fallbacks/logo-fallback.png'">
+        <img src="/Partner_Logo/{{ partner.slug }}.jpg" alt="{{ partner.name }} logo">
       {% endfor %}
     </div>
     <div class="card-body">
@@ -122,11 +102,7 @@
   <a class="card visual-card" href="/noths/partners/by-year.html">
     <div class="card-images">
       {% for partner in partners_2025 %}
-        <img
-          src="{{ partner.logo or ('/Partner_Logo/' ~ partner.slug ~ '.jpg') }}"
-          alt="{{ partner.name }} logo"
-          loading="lazy"
-          onerror="this.onerror=null; this.src='/static/fallbacks/logo-fallback.png'">
+        <img src="/Partner_Logo/{{ partner.slug }}.jpg" alt="{{ partner.name }} logo">
       {% endfor %}
     </div>
     <div class="card-body">
@@ -140,11 +116,7 @@
   <a class="card visual-card" href="/noths/partners/partner-most-products.html">
     <div class="card-images">
       {% for partner in top_product_partners %}
-        <img
-          src="{{ partner.logo or ('/Partner_Logo/' ~ partner.slug ~ '.jpg') }}"
-          alt="{{ partner.name }} logo"
-          loading="lazy"
-          onerror="this.onerror=null; this.src='/static/fallbacks/logo-fallback.png'">
+        <img src="/Partner_Logo/{{ partner.slug }}.jpg" alt="{{ partner.name }} logo">
       {% endfor %}
     </div>
     <div class="card-body">
@@ -157,12 +129,8 @@
   <!-- NOTHS Top 100 Christmas -->
   <a class="card visual-card" href="/noths/products/top-100-christmas.html">
     <div class="card-images">
-      {% for product in top_christmas_products[:3] %}
-        <img
-          src="/Product_Images/{{ product.sku }}.jpg"
-          alt="{{ product.name }}"
-          loading="lazy"
-          onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
+      {% for product in top_christmas_products_sample %}
+        <img src="/Product_Images/{{ product.sku }}.jpg" alt="{{ product.name }}">
       {% endfor %}
     </div>
     <div class="card-body">
@@ -176,11 +144,7 @@
   <a class="card visual-card" href="/noths/products/top-100-all-time.html">
     <div class="card-images">
       {% for product in top_all_time[:6] %}
-        <img
-          src="/Product_Images/{{ product.sku }}.jpg"
-          alt="{{ product.name }}"
-          loading="lazy"
-          onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
+        <img src="/Product_Images/{{ product.local_image }}" alt="{{ product.name }}">
       {% endfor %}
     </div>
     <div class="card-body">
@@ -194,11 +158,7 @@
   <a class="card visual-card" href="/noths/products/top-per-partner.html">
     <div class="card-images">
       {% for product in top_per_partner_sample %}
-        <img
-          src="/Product_Images/{{ product.sku }}.jpg"
-          alt="{{ product.name }}"
-          loading="lazy"
-          onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
+        <img src="/Product_Images/{{ product.sku }}.jpg" alt="{{ product.name }}">
       {% endfor %}
     </div>
     <div class="card-body">
