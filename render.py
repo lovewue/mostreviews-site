@@ -166,33 +166,36 @@ def render_noths_index():
         reverse=True
     )[:3]
 
-    # --- Top products overall (available only) ---
-    available_products = [p for p in TOP_PRODUCTS_12M if p.get("available", True)]
+    # --- Most Reviewed Products (true top 3) ---
     top_products_sorted = sorted(
-        available_products,
+        [p for p in TOP_PRODUCTS_12M if p.get("available", True)],
         key=lambda x: int(x.get("review_count", 0)),
         reverse=True
     )[:3]
+    top_products_sample = top_products_sorted
 
-    # --- Random sample for "Most Reviewed Products" strip (from ALL available, not just top 3) ---
-    top_products_sample = random.sample(available_products, k=min(3, len(available_products)))
+    # --- Louise Thompson random sample ---
+    lt_path = os.path.join(DATA_DIR, "christmas_louise_thompson.json")
+    lt_products_sample = []
+    if os.path.exists(lt_path):
+        with open(lt_path, "r", encoding="utf-8") as f:
+            lt_data = json.load(f)
+            lt_products_sample = random.sample(lt_data, k=min(3, len(lt_data)))
 
-    # --- Christmas catalogue products (raw list to also sample from) ---
-    try:
-        with open(os.path.join(DATA_DIR, "christmas_catalogue_products.json"), "r", encoding="utf-8") as f:
+    # --- Christmas catalogue random sample ---
+    catalogue_path = os.path.join(DATA_DIR, "christmas_catalogue_products.json")
+    top_christmas_catalogue = []
+    top_christmas_catalogue_sample = []
+    if os.path.exists(catalogue_path):
+        with open(catalogue_path, "r", encoding="utf-8") as f:
             top_christmas_catalogue = json.load(f)
-            top_christmas_catalogue.sort(key=lambda x: x.get("review_count", 0), reverse=True)
-    except FileNotFoundError:
-        top_christmas_catalogue = []
+            top_christmas_catalogue_sample = random.sample(
+                top_christmas_catalogue, k=min(3, len(top_christmas_catalogue))
+            )
 
-    top_christmas_catalogue_sample = random.sample(
-        top_christmas_catalogue, k=min(3, len(top_christmas_catalogue))
-    )
-
-    # --- Christmas Bestsellers (from top_products_christmas.json; enrich minimally for sku/name) ---
+    # --- Top Christmas products (true top 3 by reviews) ---
     with open(os.path.join(DATA_DIR, "top_products_christmas.json"), "r", encoding="utf-8") as f:
         christmas_products = json.load(f)
-
     full_by_sku = {str(p.get("sku")): p for p in TOP_PRODUCTS_12M}
     enriched_christmas = []
     for item in christmas_products:
@@ -206,65 +209,12 @@ def render_noths_index():
             "sku": sku,
             "name": item.get("name") or base.get("name", ""),
             "review_count": review_count,
-            "product_url": base.get("product_url", item.get("url")),
-            "awin": base.get("awin"),
-            "seller_name": base.get("seller_name", ""),
-            "seller_slug": base.get("seller_slug", ""),
         })
-
-    top_christmas_products = sorted(
-        enriched_christmas,
-        key=lambda x: x["review_count"],
-        reverse=True
-    )[:3]
-
-    top_christmas_products_sample = random.sample(
-        enriched_christmas, k=min(3, len(enriched_christmas))
-    )
-
-    # --- Load all-time top products (NEW) ---
-    with open(os.path.join(DATA_DIR, "top_100_all_time.json"), "r", encoding="utf-8") as f:
-        top_all_time = json.load(f)
-
-    # --- Load top product per partner (NEW) ---
-    top_per_partner_path = os.path.join(DATA_DIR, "top_product_per_partner.json")
-    if os.path.exists(top_per_partner_path):
-        with open(top_per_partner_path, "r", encoding="utf-8") as f:
-            top_per_partner = json.load(f)
-    else:
-        print("⚠️ top_product_per_partner.json not found, skipping.")
-        top_per_partner = []
-
-    # --- Random sample for "Most Reviewed Product Per Partner" card strip on homepage ---
-    if top_per_partner:
-        top_per_partner_sample = random.sample(top_per_partner, k=min(6, len(top_per_partner)))
-    else:
-        top_per_partner_sample = []
-
-    # --- Louise Thompson's Christmas Edit (minimal enrich for image strip) ---
-    try:
-        with open(os.path.join(DATA_DIR, "christmas_louise_thompson.json"), "r", encoding="utf-8") as f:
-            lt_raw = json.load(f)
-    except FileNotFoundError:
-        lt_raw = []
-
-    lt_enriched_min = []
-    for item in lt_raw:
-        sku = str(item.get("sku") or "").strip()
-        if not sku:
-            continue
-        base = full_by_sku.get(sku, {})
-        lt_enriched_min.append({
-            "sku": sku,
-            "name": item.get("name") or base.get("name", "")
-        })
-
-    lt_products_sample = random.sample(lt_enriched_min, k=min(3, len(lt_enriched_min)))
+    top_christmas_products = sorted(enriched_christmas, key=lambda x: x["review_count"], reverse=True)[:3]
 
     # --- A, middle, Z logos ---
     active_partners = [p for p in ALL_PARTNERS if p.get("active", True)]
     partners_sorted = sorted(active_partners, key=lambda p: p.get("name", "").lower())
-
     az_partners = []
     a_partner = next((p for p in partners_sorted if p.get("name", "").upper().startswith("A")), None)
     if a_partner: az_partners.append(a_partner)
@@ -272,33 +222,26 @@ def render_noths_index():
     z_partner = next((p for p in reversed(partners_sorted) if p.get("name", "").upper().startswith("Z")), None)
     if z_partner: az_partners.append(z_partner)
 
+    # --- Render ---
     template = env.get_template("noths/index.html")
     html = template.render(
         title="NOTHS Partners and Products",
         static_path=STATIC_PATH,
-
-        # existing context
-        top_products=top_products_sorted,
+        lt_products_sample=lt_products_sample,
+        top_products_sample=top_products_sample,
         top_partners=top_partners,
         partners_2025=partners_2025,
         top_product_partners=top_product_partners,
         top_christmas_products=top_christmas_products,
         az_partners=az_partners,
-        top_all_time=top_all_time,
-        top_per_partner_sample=top_per_partner_sample,
-        top_christmas_catalogue=top_christmas_catalogue,
-
-        # NEW: random image strips for cards
-        top_products_sample=top_products_sample,
-        top_christmas_products_sample=top_christmas_products_sample,
-        top_christmas_catalogue_sample=top_christmas_catalogue_sample,
-        lt_products_sample=lt_products_sample,
+        top_christmas_catalogue=top_christmas_catalogue_sample,
     )
 
     os.makedirs(f"{DOCS_DIR}/noths", exist_ok=True)
     with open(f"{DOCS_DIR}/noths/index.html", "w", encoding="utf-8") as f:
         f.write(html)
     print("✅ Rendered NOTHS index")
+
 
 
 
