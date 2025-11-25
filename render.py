@@ -11,9 +11,10 @@ STATIC_PATH = "/docs/noths/static"
 DATA_DIR = "data"
 DOCS_DIR = "docs"
 
-# === AWIN Links ===
+# === AWIN / URL Helpers ===
 
 NOTHS_HOSTS = {"www.notonthehighstreet.com", "notonthehighstreet.com"}
+
 
 def normalize_product_url(u: str | None) -> str | None:
     if not u:
@@ -35,12 +36,14 @@ def normalize_product_url(u: str | None) -> str | None:
     u = u.split("?", 1)[0].split("#", 1)[0]
     return u
 
+
 def build_awin(product_url: str) -> str:
     return (
         "https://www.awin1.com/cread.php?"
         "awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued=" +
         quote(product_url, safe="")
     )
+
 
 def validate_or_rebuild_awin(awin_url: str | None, product_url: str | None) -> str | None:
     """Return a good AWIN link if possible; otherwise return normalized product_url."""
@@ -66,27 +69,60 @@ def validate_or_rebuild_awin(awin_url: str | None, product_url: str | None) -> s
     # No AWIN provided → build one
     return build_awin(product_url)
 
+
+def _extract_noths_url(record: dict) -> str | None:
+    """
+    Try to find a clean NOTHS product URL in the record.
+    Only trust URLs that clearly point at notonthehighstreet.com.
+    """
+    candidates = [
+        record.get("product_url"),
+        record.get("url"),
+        record.get("raw_product_url"),
+    ]
+
+    for u in candidates:
+        u_norm = normalize_product_url(u)
+        if not u_norm:
+            continue
+        try:
+            host = urlparse(u_norm).netloc.lower()
+        except Exception:
+            continue
+        if host in NOTHS_HOSTS:
+            return u_norm
+
+    return None
+
+
 def ensure_awin_primary_link(record: dict) -> dict:
     """
-    Ensure this record has:
-      - a normalised NOTHS URL (raw_product_url)
-      - a correct AWIN link (awin)
-      - product_url pointing to the AWIN link (used everywhere in templates)
+    Prefer a proper AWIN deeplink (with `ued=`) built from a NOTHS URL.
+    If we can't find a NOTHS URL, only trust existing AWIN links
+    that already have a `ued` parameter.
     """
-    # Get original NOTHS URL from any field we use
-    base_url = (
-        record.get("product_url")
-        or record.get("url")
-    )
-    base_url = normalize_product_url(base_url)
-    record["raw_product_url"] = base_url
+    # 1) Find a trustworthy NOTHS URL
+    noths_url = _extract_noths_url(record)
+    record["raw_product_url"] = noths_url
 
-    # Build/validate AWIN link
-    awin_link = validate_or_rebuild_awin(record.get("awin"), base_url)
-    record["awin"] = awin_link
+    # 2) If we have a NOTHS URL, build/validate AWIN from that
+    if noths_url:
+        awin_link = validate_or_rebuild_awin(record.get("awin"), noths_url)
+        record["awin"] = awin_link
+        # Product URL becomes AWIN deeplink if we got one, otherwise fall back to NOTHS
+        record["product_url"] = awin_link or noths_url
+        return record
 
-    # From now on, product_url *is* the AWIN link (fallback to raw URL if needed)
-    record["product_url"] = awin_link or base_url
+    # 3) No NOTHS URL: only use AWIN if it's already a proper deeplink (has ued=)
+    awin = (record.get("awin") or "").strip()
+    if awin:
+        try:
+            p = urlparse(awin)
+            qs = parse_qs(p.query)
+            if "awin1.com" in p.netloc and qs.get("ued"):
+                record["product_url"] = awin
+        except Exception:
+            pass
 
     return record
 
@@ -98,11 +134,12 @@ with open(os.path.join(DATA_DIR, "partners_merged.json"), "r", encoding="utf-8")
 with open(os.path.join(DATA_DIR, "top_products_last_12_months.json"), "r", encoding="utf-8") as f:
     TOP_PRODUCTS_12M = json.load(f)
 
-# Make sure every product in the core dataset uses AWIN as the primary URL
+# Make sure every product in the core dataset uses AWIN as the primary URL where possible
 TOP_PRODUCTS_12M = [ensure_awin_primary_link(p) for p in TOP_PRODUCTS_12M]
 
 # === Setup Jinja ===
 env = Environment(loader=FileSystemLoader("templates"))
+
 
 # --- Money / Price Helpers ---
 def _coerce_price(val):
@@ -115,6 +152,7 @@ def _coerce_price(val):
     except Exception:
         return None
 
+
 def _money(value, currency="GBP"):
     """Format a number into a currency string (default £)."""
     p = _coerce_price(value)
@@ -124,6 +162,7 @@ def _money(value, currency="GBP"):
         "€" if currency.upper() == "EUR" else "$"
     )
     return f"{symbol}{p:,.2f}"
+
 
 # Register Jinja filter for displaying prices nicely
 env.filters["money"] = _money
@@ -207,6 +246,7 @@ def render_noths_index():
     if os.path.exists(lt_path):
         with open(lt_path, "r", encoding="utf-8") as f:
             lt_data = json.load(f)
+            # NOTE: these items may not yet be enriched; used just for sample
             lt_products_sample = random.sample(lt_data, k=min(3, len(lt_data)))
 
     # --- Christmas Catalogue random sample ---
@@ -257,10 +297,13 @@ def render_noths_index():
     partners_sorted = sorted(active_partners, key=lambda p: p.get("name", "").lower())
     az_partners = []
     a_partner = next((p for p in partners_sorted if p.get("name", "").upper().startswith("A")), None)
-    if a_partner: az_partners.append(a_partner)
-    if partners_sorted: az_partners.append(partners_sorted[len(partners_sorted)//2])
+    if a_partner:
+        az_partners.append(a_partner)
+    if partners_sorted:
+        az_partners.append(partners_sorted[len(partners_sorted) // 2])
     z_partner = next((p for p in reversed(partners_sorted) if p.get("name", "").upper().startswith("Z")), None)
-    if z_partner: az_partners.append(z_partner)
+    if z_partner:
+        az_partners.append(z_partner)
 
     # --- Render ---
     template = env.get_template("noths/index.html")
@@ -283,9 +326,6 @@ def render_noths_index():
         f.write(html)
 
     print("✅ Rendered NOTHS index")
-
-
-
 
 
 # === Copy static assets ===
@@ -334,7 +374,6 @@ def render_partner_pages():
             reverse=True,
         )
 
-
         if slug not in logo_cache:
             logo_cache[slug] = find_logo_url(slug)
         partner["logo"] = logo_cache[slug]
@@ -344,7 +383,6 @@ def render_partner_pages():
         os.makedirs(output_dir, exist_ok=True)
         output_path = os.path.join(output_dir, f"{slug}.html")
 
-        # ✅ Normalize path so comparisons match later
         expected_paths.add(os.path.normpath(output_path))
 
         html = template.render(
@@ -361,6 +399,7 @@ def render_partner_pages():
 
     # --- Cleanup inactive pages ---
     import time
+
     def safe_remove(path, retries=3, delay=0.5):
         """Try to remove a file with retries for Windows lock issues."""
         for attempt in range(retries):
@@ -389,8 +428,6 @@ def render_partner_pages():
     print(f"✅ Rendered {count} active partner pages (skipped {skipped})")
 
 
-
-
 # === Partner index A–Z ===
 def render_partner_index():
     partners = [p for p in ALL_PARTNERS if p.get("active", True)]
@@ -414,7 +451,11 @@ def render_partner_index():
     os.makedirs(f"{DOCS_DIR}/noths/partners", exist_ok=True)
     out_path = f"{DOCS_DIR}/noths/partners/index.html"
     with open(out_path, "w", encoding="utf-8") as f:
-        f.write(template.render(letters=sorted(sorted_grouped.keys()), partners_by_letter=sorted_grouped, static_path=STATIC_PATH))
+        f.write(template.render(
+            letters=sorted(sorted_grouped.keys()),
+            partners_by_letter=sorted_grouped,
+            static_path=STATIC_PATH
+        ))
     print("📇 Rendered partners/index.html")
 
 
@@ -435,10 +476,8 @@ def render_partner_by_year():
         for year, group in sorted(grouped.items(), reverse=True)
     }
 
-    # ✅ Total partners = all, including "Unknown"
     total_partners = sum(len(group) for group in sorted_grouped.values())
 
-    # Render template
     template = env.get_template("noths/partners/by-year.html")
     os.makedirs(f"{DOCS_DIR}/noths/partners", exist_ok=True)
     out_path = f"{DOCS_DIR}/noths/partners/by-year.html"
@@ -515,6 +554,7 @@ def render_top_100_products():
 
     # Filter out unavailable products
     available_products = [p for p in TOP_PRODUCTS_12M if p.get("available", True)]
+    # Re-ensure links (idempotent)
     available_products = [ensure_awin_primary_link(p) for p in available_products]
 
     df = pd.DataFrame(available_products)
@@ -534,14 +574,11 @@ def render_top_100_products():
         f.write(template.render(products=top_df.to_dict(orient="records")))
 
 
-
-
 # === Top Christmas products ===
 def render_top_christmas():
     with open(os.path.join(DATA_DIR, "top_products_christmas.json"), "r", encoding="utf-8") as f:
         christmas_list = json.load(f)
 
-    # Build lookup from the main dataset (12-months)
     full_by_sku = {str(p.get("sku")): p for p in TOP_PRODUCTS_12M}
     enriched = []
 
@@ -554,11 +591,9 @@ def render_top_christmas():
         except (TypeError, ValueError):
             review_count = 0
 
-        # Prefer existing NOTHS URL; fall back to item; then normalise
         product_url = base.get("product_url") or item.get("product_url") or item.get("url")
         product_url = normalize_product_url(product_url)
 
-        # Ensure AWIN link's 'ued' matches product_url (rebuild if needed)
         awin_link = validate_or_rebuild_awin(base.get("awin"), product_url)
 
         record = {
@@ -574,10 +609,8 @@ def render_top_christmas():
 
         enriched.append(ensure_awin_primary_link(record))
 
-    # Sort by review count (highest first)
     enriched_sorted = sorted(enriched, key=lambda x: x["review_count"], reverse=True)
 
-    # Assign ranking with ties (dense ranking)
     current_rank, last_count = 0, None
     for idx, product in enumerate(enriched_sorted, start=1):
         if product["review_count"] != last_count:
@@ -600,7 +633,6 @@ def render_noths_christmas_catalogue():
     with open(data_file, "r", encoding="utf-8") as f:
         christmas_list = json.load(f)
 
-    # --- Build lookup from main 12-month list ---
     full_by_sku = {str(p.get("sku")): p for p in TOP_PRODUCTS_12M}
     enriched = []
 
@@ -608,17 +640,14 @@ def render_noths_christmas_catalogue():
         sku = str(item.get("sku"))
         base = full_by_sku.get(sku, {}) or {}
 
-        # Review count (robust to strings/commas/missing)
         try:
             review_count = int(str(base.get("review_count", 0)).replace(",", ""))
         except (TypeError, ValueError):
             review_count = 0
 
-        # Prefer NOTHS URL from base; fall back to item; then normalise
         product_url = base.get("product_url") or item.get("product_url") or item.get("url")
         product_url = normalize_product_url(product_url)
 
-        # Ensure AWIN link's 'ued' matches product_url (rebuild if needed)
         awin_link = validate_or_rebuild_awin(base.get("awin"), product_url)
 
         record = {
@@ -634,13 +663,11 @@ def render_noths_christmas_catalogue():
 
         enriched.append(ensure_awin_primary_link(record))
 
-    # --- Sort by reviews desc, name asc ---
     enriched_sorted = sorted(
         enriched,
         key=lambda x: (-x.get("review_count", 0), x.get("name", "").lower())
     )
 
-    # --- Assign dense ranks ---
     current_rank, last_count = 0, None
     for idx, product in enumerate(enriched_sorted, start=1):
         if product["review_count"] != last_count:
@@ -648,7 +675,6 @@ def render_noths_christmas_catalogue():
             last_count = product["review_count"]
         product["rank"] = current_rank
 
-    # --- Render ---
     template = env.get_template("noths/products/noths-christmas-catalogue.html")
     html = template.render(products=enriched_sorted)
 
@@ -666,7 +692,6 @@ def render_noths_louise_thompson():
     with open(data_file, "r", encoding="utf-8") as f:
         christmas_list = json.load(f)
 
-    # --- Build lookup from the main 12-month list ---
     full_by_sku = {str(p.get("sku")): p for p in TOP_PRODUCTS_12M}
     enriched = []
 
@@ -674,24 +699,19 @@ def render_noths_louise_thompson():
         sku = str(item.get("sku"))
         base = full_by_sku.get(sku, {}) or {}
 
-        # Review count (robust to strings/commas/missing)
         try:
             review_count = int(str(base.get("review_count", 0)).replace(",", ""))
         except (TypeError, ValueError):
             review_count = 0
 
-        # Prefer NOTHS/AWIN links from base; fall back to item if needed
         product_url = base.get("product_url") or item.get("product_url") or item.get("url")
         product_url = normalize_product_url(product_url)
 
-        # Ensure AWIN link's 'ued' matches product_url (rebuild if needed)
         awin_link = validate_or_rebuild_awin(base.get("awin"), product_url)
 
-        # Price + currency (from scraper JSON-LD extras if present)
         price = _coerce_price(base.get("price", item.get("price")))
         price_currency = base.get("price_currency", item.get("price_currency")) or "GBP"
 
-        # 🔑 Seller/brand fallback: prefer dataset seller_name, else item's brand
         seller_name = (base.get("seller_name") or item.get("brand") or "").strip()
         seller_slug = (base.get("seller_slug") or "").strip()
 
@@ -710,13 +730,11 @@ def render_noths_louise_thompson():
 
         enriched.append(ensure_awin_primary_link(record))
 
-    # --- Sort by reviews desc, then name asc for stability ---
     enriched_sorted = sorted(
         enriched,
         key=lambda x: (-x.get("review_count", 0), x.get("name", "").lower())
     )
 
-    # --- Assign dense ranks (ties share rank) ---
     current_rank, last_count = 0, None
     for idx, product in enumerate(enriched_sorted, start=1):
         if product["review_count"] != last_count:
@@ -724,7 +742,6 @@ def render_noths_louise_thompson():
             last_count = product["review_count"]
         product["rank"] = current_rank
 
-    # --- Render ---
     template = env.get_template("noths/products/noths-christmas-louise-thompson.html")
     html = template.render(products=enriched_sorted)
 
@@ -734,10 +751,6 @@ def render_noths_louise_thompson():
         f.write(html)
 
     print(f"🎄 Rendered NOTHS Louise Thompson → {output_path} ({len(enriched_sorted)} products)")
-
-
-
-
 
 
 # === Homepage ===
@@ -766,13 +779,10 @@ def render_top_partners_last_12_months():
         for slug, count in review_totals.items()
     ])
 
-    # Sort by total_reviews, then name for stability
     df = df.sort_values(by=["total_reviews", "name"], ascending=[False, True])
 
-    # Dense rank so ties share the same rank
     df["rank"] = df["total_reviews"].rank(method="min", ascending=False).astype(int)
 
-    # Keep everything with rank ≤ 100
     top_df = df[df["rank"] <= 100]
 
     print(f"🔝 Rendered Top Partners (actually {len(top_df)} with ties)")
@@ -782,32 +792,27 @@ def render_top_partners_last_12_months():
     with open(f"{DOCS_DIR}/noths/partners/top-partners-12-months.html", "w", encoding="utf-8") as f:
         f.write(template.render(partners=top_df.to_dict(orient='records')))
 
+
 # === Top products all time ===
 def render_top_100_all_time():
     data_path = os.path.join(DATA_DIR, "top_100_all_time.json")
     with open(data_path, "r", encoding="utf-8") as f:
         top_all_time = json.load(f)
 
-    # Ensure AWIN is primary link for this dataset as well
     top_all_time = [ensure_awin_primary_link(p) for p in top_all_time]
 
-    # --- Clean & Sort ---
-    # Ensure review_count is an int
     for p in top_all_time:
         try:
             p["review_count"] = int(p.get("review_count", 0))
         except Exception:
             p["review_count"] = 0
 
-    # Sort by review_count descending
     top_all_time.sort(key=lambda p: p["review_count"], reverse=True)
 
-    # Limit to top 100
     if len(top_all_time) > 100:
         print(f"⚠️ Found {len(top_all_time)} entries, trimming to 100")
         top_all_time = top_all_time[:100]
 
-    # --- Assign ranks (handle ties) ---
     rank, last_count = 0, None
     for i, p in enumerate(top_all_time, start=1):
         if p["review_count"] != last_count:
@@ -815,7 +820,6 @@ def render_top_100_all_time():
         p["rank"] = rank
         last_count = p["review_count"]
 
-    # --- Render ---
     template = env.get_template("noths/products/top-100-all-time.html")
     html = template.render(top_all_time=top_all_time)
 
@@ -830,7 +834,6 @@ def render_top_100_all_time():
 # === Most Reviewed Product Per Partner ===
 def render_top_product_per_partner():
     """Render a page showing each partner's most reviewed product (5+ reviews)."""
-    # Use the already-enriched TOP_PRODUCTS_12M rather than re-reading the file
     all_products = TOP_PRODUCTS_12M
 
     filtered = [p for p in all_products if int(p.get("review_count", 0)) >= 5 and p.get("available", True)]
@@ -849,13 +852,11 @@ def render_top_product_per_partner():
     for i, p in enumerate(products, start=1):
         p["rank"] = i
 
-    # ✅ Save JSON for reuse in index
     json_path = os.path.join(DATA_DIR, "top_product_per_partner.json")
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(products, f, indent=2, ensure_ascii=False)
     print(f"💾 Saved JSON → {json_path}")
 
-    # Render HTML
     template = env.get_template("noths/products/top-per-partner.html")
     os.makedirs(f"{DOCS_DIR}/noths/products", exist_ok=True)
     out_path = f"{DOCS_DIR}/noths/products/top-per-partner.html"
@@ -879,7 +880,6 @@ def render_about_the_data_page():
     from datetime import datetime
     template = env.get_template("about-the-data.html")
 
-    # Format date to match your preferred style (dd.mm.yyyy)
     today_str = datetime.now().strftime("%d.%m.%Y")
 
     os.makedirs(DOCS_DIR, exist_ok=True)
@@ -888,10 +888,9 @@ def render_about_the_data_page():
         f.write(template.render(last_updated=today_str))
 
     print(f"📊 Rendered about-the-data.html (Last updated: {today_str})")
-    
 
 
-# === Sitemap ===
+# === Sitemap helpers ===
 def render_partner_search_json():
     out_path = os.path.join(DOCS_DIR, "data", "partners_search.json")
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
