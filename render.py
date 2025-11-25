@@ -98,8 +98,12 @@ def _extract_noths_url(record: dict) -> str | None:
 def ensure_awin_primary_link(record: dict) -> dict:
     """
     Prefer a proper AWIN deeplink (with `ued=`) built from a NOTHS URL.
-    If we can't find a NOTHS URL, only trust existing AWIN links
-    that already have a `ued` parameter.
+
+    - If we can find a NOTHS URL, we build/validate AWIN from that and make:
+        product_url = awin (fallback to NOTHS)
+        awin        = awin
+    - If we *cannot* find a NOTHS URL, we only keep AWIN links that are
+      already proper deeplinks (have `ued=`). All other AWIN URLs get dropped.
     """
     # 1) Find a trustworthy NOTHS URL
     noths_url = _extract_noths_url(record)
@@ -113,16 +117,21 @@ def ensure_awin_primary_link(record: dict) -> dict:
         record["product_url"] = awin_link or noths_url
         return record
 
-    # 3) No NOTHS URL: only use AWIN if it's already a proper deeplink (has ued=)
+    # 3) No NOTHS URL: only keep AWIN if it's already a proper deeplink (has ued=...)
     awin = (record.get("awin") or "").strip()
     if awin:
         try:
             p = urlparse(awin)
             qs = parse_qs(p.query)
-            if "awin1.com" in p.netloc and qs.get("ued"):
+            if "awin1.com" in p.netloc and p.path.endswith("/cread.php") and qs.get("ued"):
+                # proper deeplink – we can safely use this
+                record["awin"] = awin
                 record["product_url"] = awin
+            else:
+                # looks like a tracking / view URL (sv1, awc, etc) → drop it
+                record["awin"] = None
         except Exception:
-            pass
+            record["awin"] = None
 
     return record
 
@@ -240,16 +249,15 @@ def render_noths_index():
     )[:3]
     top_products_sample = top_products_sorted
 
-    # --- Louise Thompson random sample ---
+    # --- Louise Thompson random sample (raw list, just for teaser) ---
     lt_products_sample = []
     lt_path = os.path.join(DATA_DIR, "christmas_louise_thompson.json")
     if os.path.exists(lt_path):
         with open(lt_path, "r", encoding="utf-8") as f:
             lt_data = json.load(f)
-            # NOTE: these items may not yet be enriched; used just for sample
             lt_products_sample = random.sample(lt_data, k=min(3, len(lt_data)))
 
-    # --- Christmas Catalogue random sample ---
+    # --- Christmas Catalogue random sample (raw list, just for teaser) ---
     top_christmas_catalogue_sample = []
     catalogue_path = os.path.join(DATA_DIR, "christmas_catalogue_products.json")
     if os.path.exists(catalogue_path):
@@ -591,7 +599,7 @@ def render_top_christmas():
         except (TypeError, ValueError):
             review_count = 0
 
-        product_url = base.get("product_url") or item.get("product_url") or item.get("url")
+        product_url = base.get("raw_product_url") or base.get("product_url") or item.get("product_url") or item.get("url")
         product_url = normalize_product_url(product_url)
 
         awin_link = validate_or_rebuild_awin(base.get("awin"), product_url)
@@ -645,7 +653,7 @@ def render_noths_christmas_catalogue():
         except (TypeError, ValueError):
             review_count = 0
 
-        product_url = base.get("product_url") or item.get("product_url") or item.get("url")
+        product_url = base.get("raw_product_url") or base.get("product_url") or item.get("product_url") or item.get("url")
         product_url = normalize_product_url(product_url)
 
         awin_link = validate_or_rebuild_awin(base.get("awin"), product_url)
@@ -704,7 +712,7 @@ def render_noths_louise_thompson():
         except (TypeError, ValueError):
             review_count = 0
 
-        product_url = base.get("product_url") or item.get("product_url") or item.get("url")
+        product_url = base.get("raw_product_url") or base.get("product_url") or item.get("product_url") or item.get("url")
         product_url = normalize_product_url(product_url)
 
         awin_link = validate_or_rebuild_awin(base.get("awin"), product_url)
