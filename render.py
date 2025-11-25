@@ -66,6 +66,30 @@ def validate_or_rebuild_awin(awin_url: str | None, product_url: str | None) -> s
     # No AWIN provided → build one
     return build_awin(product_url)
 
+def ensure_awin_primary_link(record: dict) -> dict:
+    """
+    Ensure this record has:
+      - a normalised NOTHS URL (raw_product_url)
+      - a correct AWIN link (awin)
+      - product_url pointing to the AWIN link (used everywhere in templates)
+    """
+    # Get original NOTHS URL from any field we use
+    base_url = (
+        record.get("product_url")
+        or record.get("url")
+    )
+    base_url = normalize_product_url(base_url)
+    record["raw_product_url"] = base_url
+
+    # Build/validate AWIN link
+    awin_link = validate_or_rebuild_awin(record.get("awin"), base_url)
+    record["awin"] = awin_link
+
+    # From now on, product_url *is* the AWIN link (fallback to raw URL if needed)
+    record["product_url"] = awin_link or base_url
+
+    return record
+
 
 # === Load shared data once ===
 with open(os.path.join(DATA_DIR, "partners_merged.json"), "r", encoding="utf-8") as f:
@@ -73,6 +97,9 @@ with open(os.path.join(DATA_DIR, "partners_merged.json"), "r", encoding="utf-8")
 
 with open(os.path.join(DATA_DIR, "top_products_last_12_months.json"), "r", encoding="utf-8") as f:
     TOP_PRODUCTS_12M = json.load(f)
+
+# Make sure every product in the core dataset uses AWIN as the primary URL
+TOP_PRODUCTS_12M = [ensure_awin_primary_link(p) for p in TOP_PRODUCTS_12M]
 
 # === Setup Jinja ===
 env = Environment(loader=FileSystemLoader("templates"))
@@ -488,6 +515,7 @@ def render_top_100_products():
 
     # Filter out unavailable products
     available_products = [p for p in TOP_PRODUCTS_12M if p.get("available", True)]
+    available_products = [ensure_awin_primary_link(p) for p in available_products]
 
     df = pd.DataFrame(available_products)
     df = df.sort_values(by=["review_count", "name"], ascending=[False, True])
@@ -533,7 +561,7 @@ def render_top_christmas():
         # Ensure AWIN link's 'ued' matches product_url (rebuild if needed)
         awin_link = validate_or_rebuild_awin(base.get("awin"), product_url)
 
-        enriched.append({
+        record = {
             "sku": sku,
             "name": item.get("name") or base.get("name", ""),
             "product_url": product_url,
@@ -542,7 +570,9 @@ def render_top_christmas():
             "seller_slug": base.get("seller_slug", ""),
             "review_count": review_count,
             "available": base.get("available", True),
-        })
+        }
+
+        enriched.append(ensure_awin_primary_link(record))
 
     # Sort by review count (highest first)
     enriched_sorted = sorted(enriched, key=lambda x: x["review_count"], reverse=True)
@@ -591,7 +621,7 @@ def render_noths_christmas_catalogue():
         # Ensure AWIN link's 'ued' matches product_url (rebuild if needed)
         awin_link = validate_or_rebuild_awin(base.get("awin"), product_url)
 
-        enriched.append({
+        record = {
             "sku": sku,
             "name": item.get("name") or base.get("name", ""),
             "product_url": product_url,
@@ -600,7 +630,9 @@ def render_noths_christmas_catalogue():
             "seller_slug": base.get("seller_slug", ""),
             "review_count": review_count,
             "available": base.get("available", True),
-        })
+        }
+
+        enriched.append(ensure_awin_primary_link(record))
 
     # --- Sort by reviews desc, name asc ---
     enriched_sorted = sorted(
@@ -663,18 +695,20 @@ def render_noths_louise_thompson():
         seller_name = (base.get("seller_name") or item.get("brand") or "").strip()
         seller_slug = (base.get("seller_slug") or "").strip()
 
-        enriched.append({
+        record = {
             "sku": sku,
             "name": (item.get("name") or base.get("name", "")).strip(),
             "product_url": product_url,
             "awin": awin_link,
-            "seller_name": seller_name,           # <- now populated from brand if needed
+            "seller_name": seller_name,
             "seller_slug": seller_slug,
             "review_count": review_count,
             "available": base.get("available", True),
             "price": price,
             "price_currency": price_currency,
-        })
+        }
+
+        enriched.append(ensure_awin_primary_link(record))
 
     # --- Sort by reviews desc, then name asc for stability ---
     enriched_sorted = sorted(
@@ -754,6 +788,9 @@ def render_top_100_all_time():
     with open(data_path, "r", encoding="utf-8") as f:
         top_all_time = json.load(f)
 
+    # Ensure AWIN is primary link for this dataset as well
+    top_all_time = [ensure_awin_primary_link(p) for p in top_all_time]
+
     # --- Clean & Sort ---
     # Ensure review_count is an int
     for p in top_all_time:
@@ -793,9 +830,8 @@ def render_top_100_all_time():
 # === Most Reviewed Product Per Partner ===
 def render_top_product_per_partner():
     """Render a page showing each partner's most reviewed product (5+ reviews)."""
-    data_path = os.path.join(DATA_DIR, "top_products_last_12_months.json")
-    with open(data_path, "r", encoding="utf-8") as f:
-        all_products = json.load(f)
+    # Use the already-enriched TOP_PRODUCTS_12M rather than re-reading the file
+    all_products = TOP_PRODUCTS_12M
 
     filtered = [p for p in all_products if int(p.get("review_count", 0)) >= 5 and p.get("available", True)]
 
@@ -808,6 +844,7 @@ def render_top_product_per_partner():
             best_by_partner[slug] = p
 
     products = sorted(best_by_partner.values(), key=lambda x: int(x["review_count"]), reverse=True)
+    products = [ensure_awin_primary_link(p) for p in products]
 
     for i, p in enumerate(products, start=1):
         p["rank"] = i
@@ -931,5 +968,3 @@ if __name__ == "__main__":
     render_top_christmas()
     render_noths_christmas_catalogue()
     render_noths_louise_thompson()
-
-
