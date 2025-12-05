@@ -95,6 +95,8 @@ def _extract_noths_url(record: dict) -> str | None:
     return None
 
 
+from urllib.parse import urlparse, parse_qs
+
 def ensure_awin_primary_link(record: dict) -> dict:
     """
     Prefer a proper AWIN deeplink (with `ued=`) built from a NOTHS URL.
@@ -118,12 +120,23 @@ def ensure_awin_primary_link(record: dict) -> dict:
         return record
 
     # 3) No NOTHS URL: only keep AWIN if it's already a proper deeplink (has ued=...)
-    awin = (record.get("awin") or "").strip()
+    raw_awin = record.get("awin", "")
+
+    # normalise to a clean string; NaN/None/float → ""
+    if isinstance(raw_awin, str):
+        awin = raw_awin.strip()
+    else:
+        awin = ""
+
     if awin:
         try:
             p = urlparse(awin)
             qs = parse_qs(p.query)
-            if "awin1.com" in p.netloc and p.path.endswith("/cread.php") and qs.get("ued"):
+            if (
+                "awin1.com" in p.netloc
+                and p.path.endswith("/cread.php")
+                and qs.get("ued")
+            ):
                 # proper deeplink – we can safely use this
                 record["awin"] = awin
                 record["product_url"] = awin
@@ -134,6 +147,7 @@ def ensure_awin_primary_link(record: dict) -> dict:
             record["awin"] = None
 
     return record
+
 
 
 # === Load shared data once ===
