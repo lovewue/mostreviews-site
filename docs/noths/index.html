@@ -15,6 +15,10 @@
     gtag('config', 'G-TBVJN61R8T', { 'anonymize_ip': true });
   </script>
 
+  <!-- Google AdSense Loader -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9600318491478913"
+          crossorigin="anonymous"></script>
+
   <!-- Global stylesheet -->
   <link rel="stylesheet" href="/static/css/styles.css?v=2">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -58,7 +62,21 @@
 <!-- Backdrop for mobile drawer -->
 <div class="nav-backdrop"></div>
 
+  <!-- Top banner AdSense unit -->
+  <div class="ad-wrapper ad-top">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-9600318491478913"
+         data-ad-slot="TOP_SLOT_ID"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
   <main>
+
     
 <section class="page-hero">
   <h1>Most Reviewed on NOTHS</h1>
@@ -89,11 +107,11 @@
   <a class="card visual-card" href="/noths/products/noths-christmas-louise-thompson.html">
     <div class="card-images">
       
-        <img src="/Product_Images/1540498.jpg" alt="Rainbow Forest Honeycomb Decorations X10">
+        <img src="/Product_Images/1480240.jpg" alt="Our Lucky Stars Personalised Family Initials Print">
       
-        <img src="/Product_Images/995641.jpg" alt="Victorian Paper Garland Father Christmas With Sack">
+        <img src="/Product_Images/1243193.jpg" alt="Beige Real Wool Button Bodywarmer">
       
-        <img src="/Product_Images/1368266.jpg" alt="Couples Date Night Scratch Off Bucket List Journal">
+        <img src="/Product_Images/1207415.jpg" alt="Personalised Blue Guitar Wooden Toy 3y+">
       
     </div>
     <div class="card-body">
@@ -254,6 +272,20 @@
   </a>
 </section>
 
+
+    <!-- Bottom banner AdSense unit -->
+    <div class="ad-wrapper ad-bottom">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-9600318491478913"
+           data-ad-slot="BOTTOM_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
   </main>
 
   <footer class="site-footer">
@@ -357,7 +389,6 @@
       window.addEventListener("scroll", updateActiveNav);
       updateActiveNav();
 
-      // Optional: smooth scroll when page loads with hash
       if (window.location.hash) {
         const target = document.querySelector(window.location.hash);
         if (target) {
@@ -424,7 +455,7 @@
     })();
   </script>
 
-  <!-- NOTHS search script (runs on all NOTHS pages, disabled on Holly pages) -->
+  <!-- NOTHS search script -->
   <script>
     const path = window.location.pathname;
     if (path.includes("/noths/") && !path.includes("/hollyco/")) {
