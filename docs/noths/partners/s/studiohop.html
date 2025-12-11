@@ -991,20 +991,28 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  function hideEmptyAds() {
-    document.querySelectorAll(".ad-wrapper").forEach(function(wrapper) {
+  function hideUnfilledAds() {
+    document.querySelectorAll(".ad-wrapper").forEach(function (wrapper) {
       var slot = wrapper.querySelector("ins.adsbygoogle");
-      if (slot && slot.offsetHeight === 0) {
+      if (!slot) return;
+
+      // Has AdSense injected an iframe yet?
+      var hasIframe = slot.querySelector("iframe") !== null;
+
+      // If there is no iframe after a while, assume no ad is being served
+      if (!hasIframe) {
         wrapper.style.display = "none";
       }
     });
   }
 
-  // Give AdSense time to attempt rendering before deciding it's empty
-  setTimeout(hideEmptyAds, 2500);
-  window.addEventListener("load", () => setTimeout(hideEmptyAds, 2500));
+  // Check a few times in case AdSense is slow
+  setTimeout(hideUnfilledAds, 3000);
+  setTimeout(hideUnfilledAds, 6000);
+  setTimeout(hideUnfilledAds, 9000);
 });
 </script>
+
 
 
 </body>
