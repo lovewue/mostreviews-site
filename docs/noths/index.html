@@ -107,11 +107,11 @@
   <a class="card visual-card" href="/noths/products/noths-christmas-louise-thompson.html">
     <div class="card-images">
       
-        <img src="/Product_Images/1480240.jpg" alt="Our Lucky Stars Personalised Family Initials Print">
+        <img src="/Product_Images/1428111.jpg" alt="Luxurious Christmas Wreath Making Kit">
       
-        <img src="/Product_Images/1243193.jpg" alt="Beige Real Wool Button Bodywarmer">
+        <img src="/Product_Images/1531031.jpg" alt="Tis The Season To Be Stripey | Christmas Paper Chain Kit">
       
-        <img src="/Product_Images/1207415.jpg" alt="Personalised Blue Guitar Wooden Toy 3y+">
+        <img src="/Product_Images/1485405.jpg" alt="Candle Holder Flower Découpage Workshop In Brighton">
       
     </div>
     <div class="card-body">
@@ -510,6 +510,24 @@
       });
     }
   </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  function hideEmptyAds() {
+    document.querySelectorAll(".ad-wrapper").forEach(function(wrapper) {
+      var slot = wrapper.querySelector("ins.adsbygoogle");
+      if (slot && slot.offsetHeight === 0) {
+        wrapper.style.display = "none";
+      }
+    });
+  }
+
+  // Give AdSense time to attempt rendering before deciding it's empty
+  setTimeout(hideEmptyAds, 2500);
+  window.addEventListener("load", () => setTimeout(hideEmptyAds, 2500));
+});
+</script>
+
 
 </body>
 </html>

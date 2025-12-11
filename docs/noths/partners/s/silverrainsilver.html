@@ -1439,5 +1439,23 @@
     }
   </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  function hideEmptyAds() {
+    document.querySelectorAll(".ad-wrapper").forEach(function(wrapper) {
+      var slot = wrapper.querySelector("ins.adsbygoogle");
+      if (slot && slot.offsetHeight === 0) {
+        wrapper.style.display = "none";
+      }
+    });
+  }
+
+  // Give AdSense time to attempt rendering before deciding it's empty
+  setTimeout(hideEmptyAds, 2500);
+  window.addEventListener("load", () => setTimeout(hideEmptyAds, 2500));
+});
+</script>
+
+
 </body>
 </html>
