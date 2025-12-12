@@ -1806,3 +1806,15 @@ html {
 .page-content .data-footnote {
   text-align: center;
 }
+
+/* -------- Google Ads ---------- */
+
+.ad-wrapper {
+  display: flex;
+  justify-content: center;   /* centers the ad horizontally */
+  margin: 20px 0;            /* optional spacing */
+}
+
+.ad-wrapper ins.adsbygoogle {
+  margin: 0 auto;            /* double-reinforce centering */
+}
