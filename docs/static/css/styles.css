@@ -1807,14 +1807,14 @@ html {
   text-align: center;
 }
 
-/* -------- Google Ads ---------- */
+/* -------- Google Ads Center ---------- */
 
 .ad-wrapper {
-  display: flex;
-  justify-content: center;   /* centers the ad horizontally */
-  margin: 20px 0;            /* optional spacing */
+  text-align: center;      /* center inline content */
+  margin: 20px 0;          /* spacing above/below */
 }
 
 .ad-wrapper ins.adsbygoogle {
-  margin: 0 auto;            /* double-reinforce centering */
+  display: inline-block;   /* let Google size it */
 }
+
