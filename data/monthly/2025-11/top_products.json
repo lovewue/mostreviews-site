@@ -1,0 +1,1267 @@
+{
+  "month": "2025-11",
+  "source_file": "feefo_product_ratings_month_20251101.xlsx",
+  "generated_at": "2026-02-01T12:32:09+00:00",
+  "items": [
+    {
+      "sku": "1345877",
+      "review_count_month": 17,
+      "rating_month": 4.9
+    },
+    {
+      "sku": "1249874",
+      "review_count_month": 16,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "856677",
+      "review_count_month": 16,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1491886",
+      "review_count_month": 16,
+      "rating_month": 4.6
+    },
+    {
+      "sku": "1353406",
+      "review_count_month": 14,
+      "rating_month": 4.9
+    },
+    {
+      "sku": "469358",
+      "review_count_month": 14,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "786481",
+      "review_count_month": 14,
+      "rating_month": 4.5
+    },
+    {
+      "sku": "1431678",
+      "review_count_month": 13,
+      "rating_month": 4.9
+    },
+    {
+      "sku": "1512197",
+      "review_count_month": 13,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1508457",
+      "review_count_month": 11,
+      "rating_month": 4.9
+    },
+    {
+      "sku": "876141",
+      "review_count_month": 11,
+      "rating_month": 4.9
+    },
+    {
+      "sku": "1232243",
+      "review_count_month": 11,
+      "rating_month": 3.9
+    },
+    {
+      "sku": "1162105",
+      "review_count_month": 10,
+      "rating_month": 4.9
+    },
+    {
+      "sku": "1443796",
+      "review_count_month": 10,
+      "rating_month": 4.6
+    },
+    {
+      "sku": "1530258",
+      "review_count_month": 9,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "999592",
+      "review_count_month": 9,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "880642",
+      "review_count_month": 9,
+      "rating_month": 4.4
+    },
+    {
+      "sku": "1211310",
+      "review_count_month": 8,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1423774",
+      "review_count_month": 8,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1062346",
+      "review_count_month": 8,
+      "rating_month": 4.9
+    },
+    {
+      "sku": "1478705",
+      "review_count_month": 8,
+      "rating_month": 4.9
+    },
+    {
+      "sku": "937471",
+      "review_count_month": 8,
+      "rating_month": 4.6
+    },
+    {
+      "sku": "1332189",
+      "review_count_month": 8,
+      "rating_month": 4.5
+    },
+    {
+      "sku": "1349260",
+      "review_count_month": 8,
+      "rating_month": 4.5
+    },
+    {
+      "sku": "621809",
+      "review_count_month": 8,
+      "rating_month": 4.5
+    },
+    {
+      "sku": "1439485",
+      "review_count_month": 7,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1446472",
+      "review_count_month": 7,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1523616",
+      "review_count_month": 7,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "764151",
+      "review_count_month": 7,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "610619",
+      "review_count_month": 7,
+      "rating_month": 4.9
+    },
+    {
+      "sku": "1344943",
+      "review_count_month": 7,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1428161",
+      "review_count_month": 7,
+      "rating_month": 4.4
+    },
+    {
+      "sku": "545355",
+      "review_count_month": 7,
+      "rating_month": 4.3
+    },
+    {
+      "sku": "1154598",
+      "review_count_month": 6,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1205131",
+      "review_count_month": 6,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1290822",
+      "review_count_month": 6,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1311546",
+      "review_count_month": 6,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1351207",
+      "review_count_month": 6,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1478663",
+      "review_count_month": 6,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1500484",
+      "review_count_month": 6,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "100458",
+      "review_count_month": 6,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1062124",
+      "review_count_month": 6,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1271268",
+      "review_count_month": 6,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1307229",
+      "review_count_month": 6,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1437689",
+      "review_count_month": 6,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1488236",
+      "review_count_month": 6,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "910678",
+      "review_count_month": 6,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "606456",
+      "review_count_month": 6,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1456319",
+      "review_count_month": 6,
+      "rating_month": 4.5
+    },
+    {
+      "sku": "1411805",
+      "review_count_month": 6,
+      "rating_month": 4.3
+    },
+    {
+      "sku": "1450889",
+      "review_count_month": 6,
+      "rating_month": 4.2
+    },
+    {
+      "sku": "1415417",
+      "review_count_month": 6,
+      "rating_month": 3.8
+    },
+    {
+      "sku": "1039106",
+      "review_count_month": 5,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1055749",
+      "review_count_month": 5,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1067493",
+      "review_count_month": 5,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1174183",
+      "review_count_month": 5,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1275466",
+      "review_count_month": 5,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1438808",
+      "review_count_month": 5,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1497029",
+      "review_count_month": 5,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1501314",
+      "review_count_month": 5,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1535932",
+      "review_count_month": 5,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "904970",
+      "review_count_month": 5,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "983233",
+      "review_count_month": 5,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1045365",
+      "review_count_month": 5,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1509363",
+      "review_count_month": 5,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1535923",
+      "review_count_month": 5,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "298443",
+      "review_count_month": 5,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "752970",
+      "review_count_month": 5,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "824634",
+      "review_count_month": 5,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "866983",
+      "review_count_month": 5,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1229228",
+      "review_count_month": 5,
+      "rating_month": 4.6
+    },
+    {
+      "sku": "1414478",
+      "review_count_month": 5,
+      "rating_month": 4.6
+    },
+    {
+      "sku": "571200",
+      "review_count_month": 5,
+      "rating_month": 4.6
+    },
+    {
+      "sku": "734979",
+      "review_count_month": 5,
+      "rating_month": 4.6
+    },
+    {
+      "sku": "1232284",
+      "review_count_month": 5,
+      "rating_month": 4.4
+    },
+    {
+      "sku": "260606",
+      "review_count_month": 5,
+      "rating_month": 4.2
+    },
+    {
+      "sku": "1524901",
+      "review_count_month": 5,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "799432",
+      "review_count_month": 5,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "1179336",
+      "review_count_month": 5,
+      "rating_month": 3.8
+    },
+    {
+      "sku": "1456324",
+      "review_count_month": 5,
+      "rating_month": 3.4
+    },
+    {
+      "sku": "1019804",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1090474",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1093803",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1119514",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1150628",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1180998",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1183789",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1244126",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1259361",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1345526",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1389021",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1395590",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1401261",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1416383",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1434701",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1435726",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1456699",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1461369",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1463310",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1491892",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1508460",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1535929",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "177216",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "350209",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "486223",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "631040",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "643101",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "828426",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "837561",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "846759",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "975970",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "986639",
+      "review_count_month": 4,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1091007",
+      "review_count_month": 4,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1094785",
+      "review_count_month": 4,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1347117",
+      "review_count_month": 4,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1347156",
+      "review_count_month": 4,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1372943",
+      "review_count_month": 4,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1386556",
+      "review_count_month": 4,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1512245",
+      "review_count_month": 4,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "768387",
+      "review_count_month": 4,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "857942",
+      "review_count_month": 4,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "920040",
+      "review_count_month": 4,
+      "rating_month": 4.8
+    },
+    {
+      "sku": "1372560",
+      "review_count_month": 4,
+      "rating_month": 4.5
+    },
+    {
+      "sku": "1449594",
+      "review_count_month": 4,
+      "rating_month": 4.5
+    },
+    {
+      "sku": "1521053",
+      "review_count_month": 4,
+      "rating_month": 4.5
+    },
+    {
+      "sku": "352545",
+      "review_count_month": 4,
+      "rating_month": 4.5
+    },
+    {
+      "sku": "521155",
+      "review_count_month": 4,
+      "rating_month": 4.5
+    },
+    {
+      "sku": "895147",
+      "review_count_month": 4,
+      "rating_month": 4.3
+    },
+    {
+      "sku": "1066700",
+      "review_count_month": 4,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "1418624",
+      "review_count_month": 4,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "1463308",
+      "review_count_month": 4,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "380275",
+      "review_count_month": 4,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "462337",
+      "review_count_month": 4,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "1231889",
+      "review_count_month": 4,
+      "rating_month": 3.5
+    },
+    {
+      "sku": "801933",
+      "review_count_month": 4,
+      "rating_month": 3.3
+    },
+    {
+      "sku": "1051541",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1055160",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1102757",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1111064",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1130272",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1154280",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1172159",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1211562",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1227443",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1228762",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1246966",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1276718",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1279089",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1292199",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1296344",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1318034",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1318509",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1346567",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1361978",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1363107",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1381151",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1383055",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1387361",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1404584",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1413323",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1413835",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1417123",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1420726",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1421130",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1424281",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1429977",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1436809",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1446457",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1448731",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1476097",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1483678",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1486879",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1494582",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1496335",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1532162",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1545426",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "348268",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "412675",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "449042",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "607975",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "663976",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "679514",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "710563",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "738289",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "761949",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "767168",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "781947",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "816668",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "822583",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "824517",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "846092",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "860988",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "868202",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "875007",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "898792",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "902672",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "968713",
+      "review_count_month": 3,
+      "rating_month": 5.0
+    },
+    {
+      "sku": "1033155",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1060326",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1127852",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1216253",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1232434",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1245502",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1246973",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1256703",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1277156",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1309827",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1312519",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1338923",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1377000",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1378864",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1390300",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1404418",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1506709",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1532137",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "290733",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "841587",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "879692",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "903830",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "941353",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "945255",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "960159",
+      "review_count_month": 3,
+      "rating_month": 4.7
+    },
+    {
+      "sku": "1261865",
+      "review_count_month": 3,
+      "rating_month": 4.3
+    },
+    {
+      "sku": "1277120",
+      "review_count_month": 3,
+      "rating_month": 4.3
+    },
+    {
+      "sku": "1305084",
+      "review_count_month": 3,
+      "rating_month": 4.3
+    },
+    {
+      "sku": "1430471",
+      "review_count_month": 3,
+      "rating_month": 4.3
+    },
+    {
+      "sku": "1475693",
+      "review_count_month": 3,
+      "rating_month": 4.3
+    },
+    {
+      "sku": "1491277",
+      "review_count_month": 3,
+      "rating_month": 4.3
+    },
+    {
+      "sku": "1500483",
+      "review_count_month": 3,
+      "rating_month": 4.3
+    },
+    {
+      "sku": "1502622",
+      "review_count_month": 3,
+      "rating_month": 4.3
+    },
+    {
+      "sku": "362362",
+      "review_count_month": 3,
+      "rating_month": 4.3
+    },
+    {
+      "sku": "772232",
+      "review_count_month": 3,
+      "rating_month": 4.3
+    },
+    {
+      "sku": "1033142",
+      "review_count_month": 3,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "1056043",
+      "review_count_month": 3,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "1162095",
+      "review_count_month": 3,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "1244887",
+      "review_count_month": 3,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "1350143",
+      "review_count_month": 3,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "1354241",
+      "review_count_month": 3,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "1526964",
+      "review_count_month": 3,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "301437",
+      "review_count_month": 3,
+      "rating_month": 4.0
+    },
+    {
+      "sku": "1042980",
+      "review_count_month": 3,
+      "rating_month": 3.7
+    },
+    {
+      "sku": "1202855",
+      "review_count_month": 3,
+      "rating_month": 3.7
+    },
+    {
+      "sku": "1443868",
+      "review_count_month": 3,
+      "rating_month": 3.7
+    },
+    {
+      "sku": "1512882",
+      "review_count_month": 3,
+      "rating_month": 3.7
+    },
+    {
+      "sku": "284031",
+      "review_count_month": 3,
+      "rating_month": 3.7
+    },
+    {
+      "sku": "566833",
+      "review_count_month": 3,
+      "rating_month": 3.7
+    },
+    {
+      "sku": "601537",
+      "review_count_month": 3,
+      "rating_month": 3.7
+    },
+    {
+      "sku": "720141",
+      "review_count_month": 3,
+      "rating_month": 3.7
+    },
+    {
+      "sku": "905169",
+      "review_count_month": 3,
+      "rating_month": 3.3
+    },
+    {
+      "sku": "561534",
+      "review_count_month": 3,
+      "rating_month": 3.0
+    },
+    {
+      "sku": "1378083",
+      "review_count_month": 3,
+      "rating_month": 1.0
+    },
+    {
+      "sku": "1464409",
+      "review_count_month": 3,
+      "rating_month": 1.0
+    }
+  ]
+}

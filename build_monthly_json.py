@@ -9,14 +9,17 @@ MONTH = "2026-01"  # adjust if needed
 OUT_JSON = f"data/monthly/{MONTH}/top_products.json"
 TOP_N = 250
 
+
 def clean_sku(raw):
     try:
         return str(int(float(raw))).strip()
     except Exception:
         return str(raw).strip()
 
+
 def now_iso():
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
 
 def main():
     if not os.path.exists(INPUT_XLSX):
@@ -25,8 +28,7 @@ def main():
 
     df = pd.read_excel(INPUT_XLSX)
 
-    # Accept either "Product Code" or "Product Code\t..." type headers
-    # (sometimes Excel exports can include odd whitespace)
+    # Normalise headers (handles weird whitespace / tabs)
     cols = {c: re.sub(r"\s+", " ", str(c)).strip() for c in df.columns}
     df = df.rename(columns=cols)
 
@@ -41,8 +43,16 @@ def main():
     df["review_count_month"] = pd.to_numeric(df["review_count"], errors="coerce").fillna(0).astype(int)
     df["rating_month"] = pd.to_numeric(df["rating"], errors="coerce")
 
-    # Sort by monthly count, then rating
-    df = df.sort_values(["review_count_month", "rating_month"], ascending=[False, False]).head(TOP_N)
+    # Sort by monthly count desc, then rating desc, then sku (stable tie-break)
+    df = df.sort_values(
+        ["review_count_month", "rating_month", "sku"],
+        ascending=[False, False, True]
+    )
+
+    # --- Top 250 + ties by review_count_month ---
+    if len(df) > TOP_N:
+        cutoff = int(df.iloc[TOP_N - 1]["review_count_month"])
+        df = df[df["review_count_month"] >= cutoff]
 
     payload = {
         "month": MONTH,
@@ -54,7 +64,7 @@ def main():
                 "rating_month": (None if pd.isna(r["rating_month"]) else float(r["rating_month"])),
             }
             for _, r in df.iterrows()
-        ]
+        ],
     }
 
     os.makedirs(os.path.dirname(OUT_JSON), exist_ok=True)
@@ -63,6 +73,9 @@ def main():
 
     print(f"✅ Wrote monthly JSON: {OUT_JSON}")
     print(f"   Items: {len(payload['items'])}")
+    if payload["items"]:
+        print(f"   Cutoff review_count_month: {payload['items'][-1]['review_count_month']}")
+
 
 if __name__ == "__main__":
     main()
