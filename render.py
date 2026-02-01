@@ -13,6 +13,8 @@ STATIC_PATH = "/docs/noths/static"
 DATA_DIR = "data"
 DOCS_DIR = "docs"
 
+PRODUCT_IMAGES_DIR = "Product_Images"
+
 # === AWIN / URL Helpers ===
 NOTHS_HOSTS = {"www.notonthehighstreet.com", "notonthehighstreet.com"}
 
@@ -195,28 +197,63 @@ def find_logo_url(slug: str) -> str | None:
 # ==========================
 # MONTHLY HELPERS + RENDER
 # ==========================
+def _monthly_json_path(month: str) -> str:
+    return os.path.join(MONTHLY_DIR, month, "top_products.json")
+
+
+def _month_has_data(month: str) -> bool:
+    # must have data/monthly/{month}/top_products.json
+    return os.path.exists(_monthly_json_path(month))
+
+
+def _month_label_is_valid(name: str) -> bool:
+    return bool(re.match(r"^\d{4}-\d{2}$", name))
+
+
 def load_monthly_index() -> list[str]:
-    """Return months like ['2026-01', '2025-12', ...]."""
+    """
+    Return months like ['2026-01', '2025-12', ...] but ONLY months that
+    actually have a top_products.json file (prevents broken links).
+    """
+    months: list[str] = []
+
     if os.path.exists(MONTHLY_INDEX):
         with open(MONTHLY_INDEX, "r", encoding="utf-8") as f:
-            months = json.load(f)
-        return [str(m).strip() for m in months if str(m).strip()]
+            raw = json.load(f)
+        months = [str(m).strip() for m in raw if str(m).strip()]
+    else:
+        # fallback: detect folders under data/monthly
+        if os.path.exists(MONTHLY_DIR):
+            for name in os.listdir(MONTHLY_DIR):
+                if _month_label_is_valid(name) and os.path.isdir(os.path.join(MONTHLY_DIR, name)):
+                    months.append(name)
 
-    # fallback: detect folders under data/monthly
-    if os.path.exists(MONTHLY_DIR):
-        months = []
-        for name in os.listdir(MONTHLY_DIR):
-            if re.match(r"^\d{4}-\d{2}$", name) and os.path.isdir(os.path.join(MONTHLY_DIR, name)):
-                months.append(name)
-        return sorted(months, reverse=True)
-
-    return []
+    # Filter to only months that really have the JSON
+    months = [m for m in months if _month_label_is_valid(m) and _month_has_data(m)]
+    months = sorted(set(months), reverse=True)
+    return months
 
 
 def load_monthly_file(month: str) -> dict:
-    path = os.path.join(MONTHLY_DIR, month, "top_products.json")
+    path = _monthly_json_path(month)
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+def _load_unavailable_skus(month: str) -> set[str]:
+    unavailable_path = os.path.join(MONTHLY_DIR, month, "unavailable_skus.json")
+    if not os.path.exists(unavailable_path):
+        return set()
+    try:
+        with open(unavailable_path, "r", encoding="utf-8") as f:
+            return set(str(x).strip() for x in json.load(f) if str(x).strip())
+    except Exception:
+        return set()
+
+
+def _has_image(sku: str) -> bool:
+    # your monthly image script saves SKU as .jpg
+    return os.path.exists(os.path.join(PRODUCT_IMAGES_DIR, f"{sku}.jpg"))
 
 
 def enrich_month_products(month: str) -> list[dict]:
@@ -224,25 +261,20 @@ def enrich_month_products(month: str) -> list[dict]:
     monthly_items = monthly.get("items", [])
 
     cache_by_sku = {str(p.get("sku", "")).strip(): p for p in PRODUCTS_CACHE if p.get("sku")}
+    unavailable = _load_unavailable_skus(month)
 
-    # Optional: allow a per-month blocklist of SKUs that are confirmed unavailable / deleted
-    unavailable_path = os.path.join(MONTHLY_DIR, month, "unavailable_skus.json")
-    unavailable = set()
-    if os.path.exists(unavailable_path):
-        try:
-            with open(unavailable_path, "r", encoding="utf-8") as f:
-                unavailable = set(str(x).strip() for x in json.load(f) if str(x).strip())
-        except Exception:
-            unavailable = set()
-
-    enriched = []
+    enriched: list[dict] = []
     for row in monthly_items:
         sku = str(row.get("sku", "")).strip()
         if not sku:
             continue
 
-        # Drop if confirmed dead for this month (your image script already proved these 404)
+        # Drop if confirmed dead for this month
         if sku in unavailable:
+            continue
+
+        # Drop if we don't have an image (prevents broken tiles)
+        if not _has_image(sku):
             continue
 
         meta = cache_by_sku.get(sku)
@@ -306,10 +338,11 @@ def render_monthly_products(month: str):
 def render_monthly_index():
     months = load_monthly_index()
     if not months:
-        print("⚠️ No months found under data/monthly. Skipping monthly index.", flush=True)
+        print("⚠️ No valid months found under data/monthly. Skipping monthly index.", flush=True)
         return
 
     latest = months[0]
+
     template = env.get_template("noths/monthly/index.html")
     html = template.render(
         latest_month=latest,
@@ -556,7 +589,10 @@ def render_partner_index():
             first_letter = "#"
         grouped[first_letter].append(p)
 
-    sorted_grouped = {letter: sorted(group, key=lambda p: str(p.get("name", "")).lower()) for letter, group in sorted(grouped.items())}
+    sorted_grouped = {
+        letter: sorted(group, key=lambda p: str(p.get("name", "")).lower())
+        for letter, group in sorted(grouped.items())
+    }
 
     template = env.get_template("noths/partners/index.html")
     os.makedirs(f"{DOCS_DIR}/noths/partners", exist_ok=True)
@@ -581,7 +617,10 @@ def render_partner_by_year():
         year = since_raw[-4:] if since_raw[-4:].isdigit() else "Unknown"
         grouped[year].append(p)
 
-    sorted_grouped = {year: sorted(group, key=lambda p: p["name"].lower()) for year, group in sorted(grouped.items(), reverse=True)}
+    sorted_grouped = {
+        year: sorted(group, key=lambda p: p["name"].lower())
+        for year, group in sorted(grouped.items(), reverse=True)
+    }
     total_partners = sum(len(group) for group in sorted_grouped.values())
 
     template = env.get_template("noths/partners/by-year.html")

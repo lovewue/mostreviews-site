@@ -3,33 +3,41 @@ import re
 import json
 import time
 import random
-import warnings
 from io import BytesIO
-from urllib.parse import urlparse, urljoin
+from urllib.parse import urlparse
 
 import requests
 from bs4 import BeautifulSoup
 
-from PIL import Image, UnidentifiedImageError
+try:
+    from PIL import Image
+    PIL_OK = True
+except Exception:
+    PIL_OK = False
 
 
 # =====================
 # CONFIG
 # =====================
 DATA_DIR = "data"
-MONTH = "2026-01"  # <-- change this each month (or I can make it auto-detect)
-MONTHLY_JSON = os.path.join(DATA_DIR, "monthly", MONTH, "top_products.json")
-
 CACHE_JSON = os.path.join(DATA_DIR, "cache", "products_cache.json")
 
-IMAGES_DIR = "Product_Images"
-OUT_PATH_TEMPLATE = os.path.join(IMAGES_DIR, "{sku}.jpg")
+# If you want a specific month:
+MONTH = "2026-01"
+MONTHLY_JSON = os.path.join(DATA_DIR, "monthly", MONTH, "top_products.json")
 
+# Optional fallback source of SKUs:
+TOP_12M_JSON = os.path.join(DATA_DIR, "top_products_last_12_months.json")
+
+# Where your images live (you said you already have this folder)
+IMAGES_DIR = "Product_Images"
+OUT_EXT = ".jpg"  # keep consistent with your templates
+
+MAX_TO_FETCH = 5000          # safety limit
+SLEEP_RANGE = (0.4, 1.1)     # be gentle
 TIMEOUT = 15
 MAX_RETRIES = 3
-MAX_BYTES = 8_000_000
-SLEEP_RANGE = (0.4, 1.0)
-MAX_TO_FETCH = 2000  # safety
+
 
 UA_POOL = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
@@ -38,7 +46,6 @@ UA_POOL = [
 ]
 
 NOTHS_HOSTS = {"www.notonthehighstreet.com", "notonthehighstreet.com"}
-NOTHS_SEARCH = "https://www.notonthehighstreet.com/search?term={sku}"
 
 
 # =====================
@@ -59,6 +66,7 @@ def normalize_url(u: str | None) -> str | None:
         return None
     if u.startswith("http://"):
         u = "https://" + u[len("http://"):]
+    # strip query/fragment
     u = u.split("?", 1)[0].split("#", 1)[0]
     return u
 
@@ -74,15 +82,15 @@ def is_noths_url(u: str | None) -> bool:
     return host in NOTHS_HOSTS
 
 
-def image_exists_jpg(sku: str) -> bool:
-    return os.path.exists(OUT_PATH_TEMPLATE.format(sku=sku))
+def make_session() -> requests.Session:
+    s = requests.Session()
+    return s
 
 
-def polite_sleep():
-    time.sleep(random.uniform(*SLEEP_RANGE))
+SESSION = make_session()
 
 
-def get_headers():
+def get_headers() -> dict:
     return {
         "User-Agent": random.choice(UA_POOL),
         "Accept-Language": "en-GB,en;q=0.9",
@@ -90,35 +98,41 @@ def get_headers():
     }
 
 
-def fetch(url: str) -> requests.Response | None:
-    for attempt in range(1, MAX_RETRIES + 1):
-        try:
-            r = requests.get(url, headers=get_headers(), timeout=TIMEOUT, allow_redirects=True)
-            if r.status_code >= 400:
-                raise RuntimeError(f"HTTP {r.status_code}")
-            return r
-        except Exception as e:
-            if attempt == MAX_RETRIES:
-                print(f"❌ Failed: {url} ({e})")
-                return None
-            time.sleep(0.6 * attempt)
-    return None
+def polite_sleep():
+    time.sleep(random.uniform(*SLEEP_RANGE))
 
 
-def fetch_bytes(url: str) -> bytes | None:
-    r = fetch(url)
-    if not r:
-        return None
-
-    content = r.content
-    if content and len(content) > MAX_BYTES:
-        # too big; still try to process first MAX_BYTES
-        content = content[:MAX_BYTES]
-    return content
+def load_json(path: str):
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 
-def pick_product_url_from_cache(meta: dict) -> str | None:
-    # Prefer raw product URL if you store it; else product_url; else url.
+def load_skus_from_monthly(path: str) -> list[str]:
+    if not os.path.exists(path):
+        return []
+    data = load_json(path)
+    items = data.get("items", [])
+    return [clean_sku(x.get("sku")) for x in items if x.get("sku")]
+
+
+def load_skus_from_12m(path: str) -> list[str]:
+    if not os.path.exists(path):
+        return []
+    data = load_json(path)
+    out = []
+    for r in data:
+        sku = r.get("sku")
+        if sku:
+            out.append(clean_sku(sku))
+    return out
+
+
+def image_exists(sku: str) -> bool:
+    return os.path.exists(os.path.join(IMAGES_DIR, f"{sku}{OUT_EXT}"))
+
+
+def pick_product_url(meta: dict) -> str | None:
+    # Prefer raw_product_url if you have it, else product_url
     for k in ("raw_product_url", "product_url", "url"):
         u = meta.get(k)
         if is_noths_url(u):
@@ -126,234 +140,173 @@ def pick_product_url_from_cache(meta: dict) -> str | None:
     return None
 
 
-# =====================
-# IMAGE EXTRACTION
-# =====================
-_NOT_FOUND_PAT = re.compile(r"we couldn[’']t find anything for", re.IGNORECASE)
+def extract_image_url_from_html(html: str) -> str | None:
+    soup = BeautifulSoup(html, "html.parser")
 
-
-def search_not_found(html: str | None) -> bool:
-    return bool(html and _NOT_FOUND_PAT.search(html))
-
-
-def pick_from_srcset(srcset: str) -> str | None:
-    if not srcset:
-        return None
-    pairs = []
-    for part in srcset.split(","):
-        part = part.strip()
-        if " " in part:
-            url, w = part.rsplit(" ", 1)
-            try:
-                width = int(w.rstrip("w"))
-            except Exception:
-                width = 0
-            pairs.append((width, url.strip()))
-        else:
-            pairs.append((0, part))
-    if not pairs:
-        return None
-    pairs.sort(key=lambda x: x[0], reverse=True)
-    return pairs[0][1]
-
-
-def score_url(u: str) -> int:
-    s = (u or "").lower()
-    score = 0
-    if "cdn.notonthehighstreet.com" in s: score += 3
-    if "/system/product_images/images/" in s: score += 4
-    if "/fs/" in s: score += 2
-    if any(k in s for k in ("original_", "standard_", "large_", "zoom", "preview_")): score += 2
-    if s.endswith((".jpg", ".jpeg")): score += 2
-    if "logo" in s or "seller" in s: score -= 8
-    return score
-
-
-def extract_image_url_from_search(html: str, base_url: str) -> str | None:
-    soup = BeautifulSoup(html, "lxml")
-    candidates = []
-
-    # product image paths commonly show here
-    for img in soup.find_all("img"):
-        src = img.get("src") or img.get("data-src")
-        if src and "/system/product_images/images/" in src:
-            candidates.append(urljoin(base_url, src))
-
-    # responsive images
-    for source in soup.find_all("source"):
-        srcset = source.get("srcset")
-        if srcset:
-            chosen = pick_from_srcset(srcset)
-            if chosen and "/system/product_images/images/" in chosen:
-                candidates.append(urljoin(base_url, chosen))
-
-    if not candidates:
-        return None
-
-    candidates = list(dict.fromkeys(candidates))
-    candidates.sort(key=score_url, reverse=True)
-    return candidates[0]
-
-
-def extract_image_url_from_pdp(html: str, base_url: str) -> str | None:
-    soup = BeautifulSoup(html, "lxml")
-
-    # JSON-LD product image
-    for script in soup.find_all("script", type="application/ld+json"):
-        try:
-            data = json.loads(script.string or "")
-            nodes = data if isinstance(data, list) else [data]
-            for node in nodes:
-                if isinstance(node, dict) and node.get("@type", "").lower() == "product":
-                    img = node.get("image")
-                    if isinstance(img, list) and img:
-                        return urljoin(base_url, img[0])
-                    if isinstance(img, str) and img:
-                        return urljoin(base_url, img)
-        except Exception:
-            continue
-
-    # og:image fallback
+    # 1) OpenGraph is often present
     og = soup.find("meta", property="og:image")
     if og and og.get("content"):
-        return urljoin(base_url, og["content"])
+        return og["content"].strip()
 
-    # last resort: any CDN img
-    urls = []
-    for srcset in [s.get("srcset") for s in soup.find_all("source") if s.get("srcset")]:
-        chosen = pick_from_srcset(srcset)
-        if chosen:
-            urls.append(urljoin(base_url, chosen))
+    # 2) Twitter image fallback
+    tw = soup.find("meta", attrs={"name": "twitter:image"})
+    if tw and tw.get("content"):
+        return tw["content"].strip()
 
+    # 3) Common NOTHS product image patterns in img tags
+    # Look for large-ish images hosted on their CDN
+    candidates = []
+    for img in soup.find_all("img", src=True):
+        src = img["src"].strip()
+        if "cdn.notonthehighstreet.com" in src or "/fs/" in src:
+            candidates.append(src)
+
+    # Some pages lazy-load via data-src / srcset
     for img in soup.find_all("img"):
-        src = img.get("src") or img.get("data-src")
-        if src:
-            urls.append(urljoin(base_url, src))
+        for attr in ("data-src", "data-original", "data-lazy", "data-srcset"):
+            v = img.get(attr)
+            if not v:
+                continue
+            v = str(v).strip()
+            if "cdn.notonthehighstreet.com" in v or "/fs/" in v:
+                # srcset can be multiple; take first URL-like token
+                first = v.split(",")[0].strip().split(" ")[0].strip()
+                candidates.append(first)
 
-    urls = [u for u in urls if "cdn.notonthehighstreet.com" in (u or "").lower()]
-    if not urls:
-        return None
+    # pick the "best" candidate (often longest URL contains 'original_')
+    if candidates:
+        candidates = list(dict.fromkeys(candidates))  # dedupe preserving order
+        candidates.sort(key=lambda u: ("original_" in u, len(u)), reverse=True)
+        return candidates[0]
 
-    urls = list(dict.fromkeys(urls))
-    urls.sort(key=score_url, reverse=True)
-    return urls[0]
-
-
-def save_as_jpg(sku: str, content: bytes, out_dir: str) -> str | None:
-    os.makedirs(out_dir, exist_ok=True)
-    out_path = OUT_PATH_TEMPLATE.format(sku=sku)
-    try:
-        img = Image.open(BytesIO(content)).convert("RGB")
-        img.save(out_path, "JPEG", quality=90, optimize=True)
-        return out_path
-    except UnidentifiedImageError:
-        return None
-    except Exception:
-        return None
+    return None
 
 
-# =====================
-# MAIN
-# =====================
+def fetch_with_retries(url: str, is_binary: bool = False) -> requests.Response | None:
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            r = SESSION.get(url, headers=get_headers(), timeout=TIMEOUT, allow_redirects=True)
+            if r.status_code >= 400:
+                raise RuntimeError(f"HTTP {r.status_code}")
+            return r
+        except Exception as e:
+            if attempt == MAX_RETRIES:
+                print(f"❌ Failed: {url} ({e})")
+                return None
+            time.sleep(0.8 * attempt)
+    return None
+
+
+def save_as_jpg(content: bytes, out_path: str) -> bool:
+    """
+    Save bytes as jpg. Uses Pillow if available; otherwise saves raw bytes.
+    (If no Pillow, and the source isn't JPG, it may not render.)
+    """
+    if PIL_OK:
+        try:
+            im = Image.open(BytesIO(content)).convert("RGB")
+            im.save(out_path, "JPEG", quality=90, optimize=True)
+            return True
+        except Exception:
+            return False
+    else:
+        # best effort: write raw
+        try:
+            with open(out_path, "wb") as f:
+                f.write(content)
+            return True
+        except Exception:
+            return False
+
+
 def main():
-    if not os.path.exists(MONTHLY_JSON):
-        print(f"❌ Monthly file not found: {MONTHLY_JSON}")
-        return
+    os.makedirs(IMAGES_DIR, exist_ok=True)
 
     if not os.path.exists(CACHE_JSON):
-        print(f"❌ Cache file not found: {CACHE_JSON}")
+        print(f"❌ Missing cache: {CACHE_JSON}")
         return
 
-    with open(MONTHLY_JSON, "r", encoding="utf-8") as f:
-        monthly = json.load(f)
+    cache = load_json(CACHE_JSON)
+    cache_by_sku = {clean_sku(r.get("sku")): r for r in cache if r.get("sku")}
 
-    items = monthly.get("items", [])
-    skus = [clean_sku(x.get("sku")) for x in items if x.get("sku")]
-    skus = list(dict.fromkeys(skus))
+    skus = []
+    skus += load_skus_from_monthly(MONTHLY_JSON)
+    if not skus:
+        print(f"⚠️ No SKUs found in monthly file: {MONTHLY_JSON}")
 
-    with open(CACHE_JSON, "r", encoding="utf-8") as f:
-        cache = json.load(f)
-    cache_by_sku = {clean_sku(p.get("sku")): p for p in cache if p.get("sku")}
+    # Optional: uncomment if you want to also ensure 12-month products always have images
+    # skus += load_skus_from_12m(TOP_12M_JSON)
 
-    missing = [s for s in skus if not image_exists_jpg(s)]
-    print(f"🗓️ Month: {MONTH}")
-    print(f"🖼️ Total SKUs: {len(skus)}")
-    print(f"➕ Missing .jpg images: {len(missing)}")
+    # De-dupe, keep order
+    seen = set()
+    skus = [s for s in skus if not (s in seen or seen.add(s))]
+
+    missing = [s for s in skus if not image_exists(s)]
+    print(f"🖼️ Total SKUs checked: {len(skus)}")
+    print(f"➕ Missing images: {len(missing)}")
 
     if not missing:
         print("✅ Nothing to do.")
         return
 
-    os.makedirs(IMAGES_DIR, exist_ok=True)
+    missing = missing[:MAX_TO_FETCH]
 
     ok = 0
-    no_url = 0
-    no_img = 0
-    unavailable = 0
+    skipped_no_url = 0
     failed = 0
 
-    for i, sku in enumerate(missing[:MAX_TO_FETCH], start=1):
-        meta = cache_by_sku.get(sku, {})
-        product_url = pick_product_url_from_cache(meta)
-
-        print(f"\n[{i}/{len(missing)}] SKU {sku}")
-
-        img_url = None
-
-        # Prefer PDP if we have a proper URL
-        if product_url:
-            r = fetch(product_url)
-            if r:
-                img_url = extract_image_url_from_pdp(r.text, product_url)
-
-        # Fallback to search-by-sku
-        if not img_url:
-            search_url = NOTHS_SEARCH.format(sku=sku)
-            r = fetch(search_url)
-            if not r:
-                failed += 1
-                continue
-
-            if search_not_found(r.text):
-                print("   ⛔ NOT FOUND in search (unavailable)")
-                unavailable += 1
-                polite_sleep()
-                continue
-
-            img_url = extract_image_url_from_search(r.text, search_url)
-
-        if not img_url:
-            print("   ⚠️ No image URL found")
-            no_img += 1
-            polite_sleep()
-            continue
-
-        print(f"   🔗 Image: {img_url}")
-        content = fetch_bytes(img_url)
-        if not content:
-            print("   ❌ Download failed")
+    for i, sku in enumerate(missing, start=1):
+        meta = cache_by_sku.get(sku)
+        if not meta:
+            print(f"⏭️ {i}/{len(missing)} SKU {sku}: not in cache (skipping)")
             failed += 1
-            polite_sleep()
             continue
 
-        saved = save_as_jpg(sku, content, IMAGES_DIR)
-        if saved:
-            print(f"   ✅ Saved: {saved}")
+        product_url = pick_product_url(meta)
+        if not product_url:
+            print(f"⏭️ {i}/{len(missing)} SKU {sku}: no NOTHS URL in cache (skipping)")
+            skipped_no_url += 1
+            continue
+
+        print(f"🔎 {i}/{len(missing)} SKU {sku}: {product_url}")
+
+        page = fetch_with_retries(product_url)
+        if not page:
+            failed += 1
+            continue
+
+        img_url = extract_image_url_from_html(page.text)
+        if not img_url:
+            print(f"   ❌ Could not find image on page for {sku}")
+            failed += 1
+            continue
+
+        img_url = normalize_url(img_url)
+        if not img_url:
+            print(f"   ❌ Bad image URL for {sku}")
+            failed += 1
+            continue
+
+        img_res = fetch_with_retries(img_url, is_binary=True)
+        if not img_res:
+            failed += 1
+            continue
+
+        out_path = os.path.join(IMAGES_DIR, f"{sku}{OUT_EXT}")
+        if save_as_jpg(img_res.content, out_path):
+            print(f"   ✅ Saved {out_path}")
             ok += 1
         else:
-            print("   ❌ Could not decode/save image (PIL)")
+            print(f"   ❌ Failed to save image for {sku} (try installing Pillow)")
             failed += 1
 
         polite_sleep()
 
-    print("\n📊 Monthly image top-up report")
+    print("\n📊 Image top-up report")
     print(f"   ✅ Saved: {ok}")
-    print(f"   ⛔ Unavailable (search): {unavailable}")
-    print(f"   ⚠️ No image found: {no_img}")
+    print(f"   ⏭️ No URL: {skipped_no_url}")
     print(f"   ❌ Failed: {failed}")
-    print("\nDone.")
 
 
 if __name__ == "__main__":
-    warnings.filterwarnings("ignore")
     main()
