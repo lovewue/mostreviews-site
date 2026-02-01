@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Top Products on NOTHS – {{ month }}{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <h1>
+    Top NOTHS Products
+    <span class="subheading">{{ month }}</span>
+  </h1>
+
+  <p class="lead">
+    The most reviewed products on Not On The High Street for this month (based on verified Feefo reviews).
+  </p>
+
+  {% if months and months|length > 1 %}
+  <div class="month-switcher" style="margin-top: 14px;">
+    <label for="monthSelect" class="sr-only">Choose month</label>
+    <select id="monthSelect" onchange="if(this.value){ window.location.href = this.value; }">
+      {% for m in months %}
+        <option value="/noths/monthly/{{ m }}/" {% if m == month %}selected{% endif %}>{{ m }}</option>
+      {% endfor %}
+    </select>
+    <noscript>
+      <p style="margin-top:10px;">
+        {% for m in months %}
+          <a href="/noths/monthly/{{ m }}/">{{ m }}</a>{% if not loop.last %} · {% endif %}
+        {% endfor %}
+      </p>
+    </noscript>
+  </div>
+  {% endif %}
+</section>
+
+<div class="card-grid">
+  {% for product in products %}
+    <a href="{{ product.awin or product.product_url }}"
+       class="rank-card"
+       target="_blank"
+       rel="noopener"
+       data-product-url="{{ product.product_url }}">
+
+      <!-- IMAGE FIRST -->
+      <img
+        src="/Product_Images/{{ product.sku }}.jpg"
+        alt="{{ product.name }}"
+        class="rank-image"
+        loading="lazy"
+        onerror="this.onerror=null; this.src='/static/fallbacks/no-image.jpg'">
+
+      <div class="rank-number">#{{ product.rank }}</div>
+      <div class="rank-divider"></div>
+
+      <div class="rank-body">
+        <h2 class="rank-name">{{ product.name }}</h2>
+        <p class="rank-meta">
+          {{ "{:,}".format(product.review_count_month) }} reviews this month<br>
+          {% if product.rating_month %}
+            {{ "%.1f"|format(product.rating_month) }} ★ average<br>
+          {% endif %}
+          <span class="seller-name">{{ product.seller_name }}</span>
+        </p>
+      </div>
+    </a>
+  {% endfor %}
+</div>
+
+<div class="data-footnote">
+  <p>
+    <strong>Data Source:</strong> Based on verified customer reviews collected via
+    <a href="https://www.feefo.com/" target="_blank" rel="noopener">Feefo</a>
+    for products sold on
+    <a href="https://www.notonthehighstreet.com/" target="_blank" rel="noopener">Not On The High Street</a>.
+    This page is a snapshot for <strong>{{ month }}</strong>{% if generated_at %} (generated {{ generated_at }}){% endif %}.
+    <a href="/about-the-data.html">Learn more about our methodology →</a>
+  </p>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}NOTHS Monthly Most Reviewed{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <h1>
+    NOTHS Monthly Most Reviewed
+    <span class="subheading">Archive</span>
+  </h1>
+
+  <p class="lead">
+    A monthly snapshot of the most reviewed products on Not On The High Street.
+    Pick a month to see what was trending.
+  </p>
+</section>
+
+<section style="margin-bottom: 18px;">
+  <a class="rank-card" href="/noths/monthly/{{ latest_month }}/" style="display:block; text-decoration:none;">
+    <div class="rank-body" style="padding: 18px;">
+      <h2 class="rank-name" style="margin:0;">Latest month: {{ latest_month }}</h2>
+      <p class="rank-meta" style="margin-top:8px;">
+        View the most reviewed products for {{ latest_month }} →
+      </p>
+    </div>
+  </a>
+</section>
+
+{% if months %}
+<section>
+  <h2 style="margin: 10px 0 14px;">All months</h2>
+
+  <div class="card-grid">
+    {% for m in months %}
+      <a href="/noths/monthly/{{ m }}/"
+         class="rank-card"
+         style="text-decoration:none;">
+        <div class="rank-body" style="padding:18px;">
+          <h2 class="rank-name" style="margin:0;">{{ m }}</h2>
+          <p class="rank-meta" style="margin-top:8px;">
+            View monthly rankings →
+          </p>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<div class="data-footnote">
+  <p>
+    <strong>Data Source:</strong> Monthly snapshots are built from verified Feefo reviews for products on
+    <a href="https://www.notonthehighstreet.com/" target="_blank" rel="noopener">Not On The High Street</a>.
+    <a href="/about-the-data.html">Learn more about our methodology →</a>
+  </p>
+</div>
+{% endblock %}
