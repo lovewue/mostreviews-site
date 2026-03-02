@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Most Reviews – Maintenance</title>
+  <title>The Trend List – Maintenance</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
@@ -10,32 +10,85 @@
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: #fafafa;
       color: #333;
+      margin: 0;
+    }
+
+    /* Header */
+    .site-header {
+      background: #ffffff;
+      padding: 3rem 1rem 2rem;
       text-align: center;
-      padding: 5rem 1rem;
+      border-bottom: 1px solid #f0f0f0;
     }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+
+    .header-logo img {
+      max-width: 280px;
+      height: auto;
     }
-    p {
-      font-size: 1.1rem;
-      color: #666;
+
+    /* Main content */
+    .maintenance-wrapper {
+      text-align: center;
+      padding: 6rem 1rem;
     }
+
     .notice {
       display: inline-block;
       background: #fff;
       border: 1px solid #eee;
       border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 3rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+      max-width: 480px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .site-footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #999;
+      border-top: 1px solid #f0f0f0;
+      background: #fff;
     }
   </style>
 </head>
+
 <body>
-  <div class="notice">
-    <h1>🔧 Site Under Maintenance</h1>
-    <p>Most Reviews is currently offline for updates.<br>
-    Please check back shortly.</p>
-  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-logo">
+      <a href="/">
+        <img src="/static/img/The-Trend-List-Logo.jpg" alt="The Trend List logo">
+      </a>
+    </div>
+  </header>
+
+  <!-- Maintenance Message -->
+  <main class="maintenance-wrapper">
+    <div class="notice">
+      <h1>We’re Making Some Updates</h1>
+      <p>The Trend List is currently offline while we make improvements.<br>
+      We’ll be back shortly.</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    © 2026 The Trend List
+  </footer>
+
 </body>
 </html>
