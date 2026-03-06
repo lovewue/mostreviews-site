@@ -1,11 +1,114 @@
-[
-  "2026-01",
-  "2025-12",
-  "2025-11",
-  "2025-10",
-  "2025-09",
-  "2025-08",
-  "2025-07",
-  "2025-06",
-  "2025-05"
-]
+{
+  "generated_at": "2026-03-06T06:59:40+00:00",
+  "month_count": 12,
+  "months": [
+    {
+      "month": "2026-02",
+      "source_file": "feefo_product_ratings_month_20260301.xlsx",
+      "json_file": "data/monthly/2026-02/top_products.json",
+      "item_count": 3528,
+      "top_review_count_month": 24,
+      "bottom_review_count_month": 1,
+      "generated_at": "2026-03-06T06:59:40+00:00"
+    },
+    {
+      "month": "2026-01",
+      "source_file": "feefo_product_ratings_month_20260201.xlsx",
+      "json_file": "data/monthly/2026-01/top_products.json",
+      "item_count": 3268,
+      "top_review_count_month": 19,
+      "bottom_review_count_month": 1,
+      "generated_at": "2026-03-06T06:59:40+00:00"
+    },
+    {
+      "month": "2025-12",
+      "source_file": "feefo_product_ratings_month_20260101.xlsx",
+      "json_file": "data/monthly/2025-12/top_products.json",
+      "item_count": 8695,
+      "top_review_count_month": 75,
+      "bottom_review_count_month": 1,
+      "generated_at": "2026-03-06T06:59:39+00:00"
+    },
+    {
+      "month": "2025-11",
+      "source_file": "feefo_product_ratings_month_20251201.xlsx",
+      "json_file": "data/monthly/2025-11/top_products.json",
+      "item_count": 5028,
+      "top_review_count_month": 27,
+      "bottom_review_count_month": 1,
+      "generated_at": "2026-03-06T06:59:38+00:00"
+    },
+    {
+      "month": "2025-10",
+      "source_file": "feefo_product_ratings_month_20251101.xlsx",
+      "json_file": "data/monthly/2025-10/top_products.json",
+      "item_count": 3896,
+      "top_review_count_month": 17,
+      "bottom_review_count_month": 1,
+      "generated_at": "2026-03-06T06:59:37+00:00"
+    },
+    {
+      "month": "2025-09",
+      "source_file": "feefo_product_ratings_month_20251001.xlsx",
+      "json_file": "data/monthly/2025-09/top_products.json",
+      "item_count": 4003,
+      "top_review_count_month": 21,
+      "bottom_review_count_month": 1,
+      "generated_at": "2026-03-06T06:59:37+00:00"
+    },
+    {
+      "month": "2025-08",
+      "source_file": "feefo_product_ratings_month_20250901.xlsx",
+      "json_file": "data/monthly/2025-08/top_products.json",
+      "item_count": 3899,
+      "top_review_count_month": 21,
+      "bottom_review_count_month": 1,
+      "generated_at": "2026-03-06T06:59:36+00:00"
+    },
+    {
+      "month": "2025-07",
+      "source_file": "feefo_product_ratings_month_20250801.xlsx",
+      "json_file": "data/monthly/2025-07/top_products.json",
+      "item_count": 3931,
+      "top_review_count_month": 20,
+      "bottom_review_count_month": 1,
+      "generated_at": "2026-03-06T06:59:36+00:00"
+    },
+    {
+      "month": "2025-06",
+      "source_file": "feefo_product_ratings_month_20250701.xlsx",
+      "json_file": "data/monthly/2025-06/top_products.json",
+      "item_count": 3301,
+      "top_review_count_month": 27,
+      "bottom_review_count_month": 1,
+      "generated_at": "2026-03-06T06:59:35+00:00"
+    },
+    {
+      "month": "2025-05",
+      "source_file": "feefo_product_ratings_month_20250601.xlsx",
+      "json_file": "data/monthly/2025-05/top_products.json",
+      "item_count": 2101,
+      "top_review_count_month": 16,
+      "bottom_review_count_month": 1,
+      "generated_at": "2026-03-06T06:59:35+00:00"
+    },
+    {
+      "month": "2025-04",
+      "source_file": "feefo_product_ratings_month_20250501.xlsx",
+      "json_file": "data/monthly/2025-04/top_products.json",
+      "item_count": 2149,
+      "top_review_count_month": 12,
+      "bottom_review_count_month": 1,
+      "generated_at": "2026-03-06T06:59:35+00:00"
+    },
+    {
+      "month": "2025-03",
+      "source_file": "feefo_product_ratings_month_20250430.xlsx",
+      "json_file": "data/monthly/2025-03/top_products.json",
+      "item_count": 2178,
+      "top_review_count_month": 12,
+      "bottom_review_count_month": 1,
+      "generated_at": "2026-03-06T06:59:34+00:00"
+    }
+  ]
+}
