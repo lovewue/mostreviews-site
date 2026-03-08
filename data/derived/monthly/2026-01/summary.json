@@ -1,14 +1,10 @@
 {
-  "month": "2026-01",
-  "generated_at": "2026-03-06T12:47:51+00:00",
+  "generated_at": "2026-03-08T09:29:48+00:00",
+  "total_reviews_month": 4238,
   "product_count_with_reviews": 3268,
-  "products_with_name": 3268,
-  "products_with_seller": 3265,
-  "products_available": 3219,
-  "products_missing_metadata": 0,
   "seller_count_with_reviews": 860,
-  "top_review_count": 19,
   "products_with_5_plus_reviews": 58,
-  "products_with_10_plus_reviews": 8,
-  "top_seller_reviews_month": 110
+  "average_reviews_per_product": 1.3,
+  "top_100_share_of_reviews": 0.1364,
+  "top_review_count": 19
 }
