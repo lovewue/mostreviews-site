@@ -33,6 +33,7 @@ def load_text(path: Path) -> str:
 BASE_TEMPLATE = load_text(TEMPLATES_DIR / "base.html")
 HEADER_TEMPLATE = load_text(PARTIALS_DIR / "header.html")
 FOOTER_TEMPLATE = load_text(PARTIALS_DIR / "footer.html")
+HOMEPAGE_TEMPLATE = load_text(TEMPLATES_DIR / "homepage.html")
 
 
 def render_page(title: str, content: str, static_path: str) -> str:
@@ -426,32 +427,15 @@ def render_homepage(latest_month, previous_month=None):
     title_month = format_month(latest_month)
     top_products = top_n_with_ties(products, 20, value_key="review_count_month")
 
-    body = f"""
-<h1>Trending Products on NOTHS</h1>
-
-<p>
-Snapshot for <strong>{title_month}</strong>.
-</p>
-
-{render_monthly_stats(summary)}
-
-<h2>Top Products</h2>
-<p><small>Showing top 20 including ties ({len(top_products)} products shown).</small></p>
-
-{render_products(products, limit=20, show_last_month=bool(previous_month))}
-
-<h2>Top Brands</h2>
-
-{render_partners(partners, 10)}
-
-<h2>Explore More</h2>
-
-<ul>
-    <li><a href="top-products-all-time.html">Top 100 Products of All Time</a></li>
-    <li><a href="top-products-last-12-months.html">Top 100 Products of the Last 12 Months</a></li>
-    <li><a href="archive.html">Monthly archive</a></li>
-</ul>
-"""
+    body = HOMEPAGE_TEMPLATE
+    body = body.replace("{{MONTH}}", title_month)
+    body = body.replace("{{MONTHLY_STATS}}", render_monthly_stats(summary))
+    body = body.replace("{{TOP_PRODUCTS_COUNT}}", str(len(top_products)))
+    body = body.replace(
+        "{{TOP_PRODUCTS}}",
+        render_products(products, limit=20, show_last_month=bool(previous_month))
+    )
+    body = body.replace("{{TOP_BRANDS}}", render_partners(partners, 10))
 
     html = render_page("Trending Products on NOTHS", body, "static")
     save_html(OUTPUT_ROOT / "index.html", html)
@@ -545,8 +529,6 @@ def render_top_products_all_time():
     data = load_json(leaderboard_file)
     items = data.get("items", [])
 
-    top_items = top_n_with_ties(items, 100, value_key="reviews")
-
     body = f"""
 <h1>Top 100 Products of All Time</h1>
 
@@ -615,7 +597,6 @@ def render_top_products_last_12_months(latest_month=None, previous_month=None):
     else:
         items = add_dense_ranks(items, value_key="reviews")
 
-    top_items = top_n_with_ties(items, 100, value_key="reviews")
     title_suffix = f" – {format_month(latest_month)}" if latest_month else ""
 
     body = f"""
