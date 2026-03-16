@@ -694,12 +694,16 @@ def render_products(products, limit=None, show_last_month=False):
         seller = p.get("seller_name") or "Unknown brand"
         reviews = p.get("review_count_month") or 0
         url = p.get("product_url")
+        available = p.get("available", True)
+
         awin_url = build_awin_product_link(url, clickref="TrendListProduct")
 
-        if awin_url:
-            name_html = f'<a href="{awin_url}" target="_blank" rel="noopener sponsored">{name}</a>'
+        display_name = name + ("*" if available is False else "")
+
+        if awin_url and available:
+            name_html = f'<a href="{awin_url}" target="_blank" rel="noopener sponsored">{display_name}</a>'
         else:
-            name_html = name
+            name_html = display_name
 
         last_month_cell = ""
         if show_last_month:
@@ -919,6 +923,8 @@ Products ranked by number of reviews received during the month.
 
 {render_products(products, limit=50, show_last_month=bool(previous_month))}
 
+<p class="table-note">* Product no longer available on NOTHS</p>
+
 <h2>Top Brands</h2>
 
 {render_partners(partners, 20, brand_link_prefix="../brands/")}
@@ -1073,6 +1079,51 @@ The products with the highest recorded Feefo review counts over the last 12 mont
 
     print("✅ top-products-last-12-months rendered")
 
+# -----------------------------------------------------------------------------
+# Sitemap rendering
+# -----------------------------------------------------------------------------
+
+def generate_sitemap(months, brands):
+
+    base_url = "https://trendlist.co.uk"
+
+    urls = []
+
+    # Core pages
+    urls.append(f"{base_url}/")
+    urls.append(f"{base_url}/top-products-last-12-months.html")
+    urls.append(f"{base_url}/top-products-all-time.html")
+    urls.append(f"{base_url}/top-100-brands.html")
+    urls.append(f"{base_url}/brands.html")
+    urls.append(f"{base_url}/archive.html")
+
+    # Monthly pages
+    for m in months:
+        urls.append(f"{base_url}/months/{m}.html")
+
+    # Brand pages
+    for brand in brands:
+        slug = brand.get("slug")
+        if slug:
+            urls.append(f"{base_url}/brands/{slug}/")
+
+    # Build XML
+    xml = ['<?xml version="1.0" encoding="UTF-8"?>']
+    xml.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+
+    for url in urls:
+        xml.append("  <url>")
+        xml.append(f"    <loc>{url}</loc>")
+        xml.append("  </url>")
+
+    xml.append("</urlset>")
+
+    sitemap = "\n".join(xml)
+
+    save_html(OUTPUT_ROOT / "sitemap.xml", sitemap)
+
+    print("✅ sitemap.xml generated")
+
 
 # -----------------------------------------------------------------------------
 # Main
@@ -1109,6 +1160,8 @@ def main():
         render_brands_index(brands)
         render_brands_top_100(brands)
         render_brand_pages(brands)
+
+    generate_sitemap(months, brands)
 
     print()
     print("🏁 Site render complete")
