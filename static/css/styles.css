@@ -30,7 +30,7 @@ Header
 }
 
 .header-logo img {
-  max-width: 280px;
+  max-width: 240px;
   height: auto;
 }
 
@@ -40,6 +40,7 @@ Header
   justify-content: center;
   gap: 22px;
   font-size: 0.95rem;
+  flex-wrap: wrap;
 }
 
 .site-nav a {
@@ -103,12 +104,11 @@ th {
 }
 
 .reviews {
-  text-align: center;
+  text-align: right;
   white-space: nowrap;
 }
 
 .last-month {
-  text-align: center;
   white-space: nowrap;
 }
 
@@ -228,4 +228,46 @@ Brands
     list-style: none;
     padding: 0;
     margin: 10px 0 0;
+}
+
+/* ----------------------------------------------------
+Mobile
+---------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .site-header {
+    padding: 2rem 1rem 1.5rem;
+  }
+
+  .header-logo img {
+    max-width: 220px;
+  }
+
+  main {
+    padding: 2rem 1rem;
+  }
+
+  .stats,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brands-grid,
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  th,
+  td {
+    padding: 8px;
+    font-size: 0.92rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
 }
