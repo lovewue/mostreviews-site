@@ -737,6 +737,7 @@ def render_products(products, limit=None, show_last_month=False):
     last_month_header = '<th class="last-month">Previous Month</th>' if show_last_month else ""
 
     return f"""
+<div class="table-scroll">
 <table>
     <tr>
         <th>#</th>
@@ -770,6 +771,7 @@ def render_partners(partners, limit=10, brand_link_prefix="brands/"):
         )
 
     return f"""
+<div class="table-scroll">
 <table>
     <tr>
         <th>#</th>
