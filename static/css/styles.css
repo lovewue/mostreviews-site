@@ -30,7 +30,7 @@ Header
 }
 
 .header-logo img {
-  max-width: 240px;
+  max-width: 280px;
   height: auto;
 }
 
@@ -103,11 +103,12 @@ th {
 }
 
 .reviews {
-  text-align: right;
+  text-align: center;
   white-space: nowrap;
 }
 
 .last-month {
+  text-align: center;
   white-space: nowrap;
 }
 

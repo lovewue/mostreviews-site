@@ -730,7 +730,7 @@ def render_products(products, limit=None, show_last_month=False):
 """
         )
 
-    last_month_header = "<th>Last Month</th>" if show_last_month else ""
+    last_month_header = '<th class="last-month">Previous Month</th>' if show_last_month else ""
 
     return f"""
 <table>
