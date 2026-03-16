@@ -169,3 +169,46 @@ Footer
   border-top: 1px solid #f0f0f0;
   background: #fff;
 }
+
+/* ----------------------------------------------------
+Brands
+---------------------------------------------------- */
+
+.az-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0 30px;
+}
+
+.az-nav a {
+    text-decoration: none;
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+}
+
+.brand-letter-section {
+    margin: 40px 0;
+}
+
+.brands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.brand-card {
+    border: 1px solid #eee;
+    padding: 16px;
+}
+
+.brand-card h3 {
+    margin-top: 0;
+}
+
+.brand-meta,
+.brand-details {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}

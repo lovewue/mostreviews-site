@@ -1,0 +1,33 @@
+<section class="page-intro">
+  <p class="eyebrow">Brand</p>
+  <h1>{{ brand_name }}</h1>
+  <p>Brand profile, review count and marketplace summary.</p>
+</section>
+
+<section class="brand-summary">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">Sales</div>
+      <div class="stat-value">{{ order_volume }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Reviews</div>
+      <div class="stat-value">{{ reviews }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Products</div>
+      <div class="stat-value">{{ products }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Location</div>
+      <div class="stat-value">{{ location }}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Tenure</div>
+      <div class="stat-value">{{ tenure }}</div>
+    </div>
+  </div>
+
+  {{ cta }}
+  {{ inactive_note }}
+</section>
