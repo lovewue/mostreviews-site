@@ -30,8 +30,24 @@ Header
 }
 
 .header-logo img {
-  max-width: 280px;
+  max-width: 240px;
   height: auto;
+}
+
+.site-nav {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  font-size: 0.95rem;
+}
+
+.site-nav a {
+  color: #555;
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
 }
 
 /* ----------------------------------------------------

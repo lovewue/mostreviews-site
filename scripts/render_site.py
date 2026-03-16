@@ -2,6 +2,7 @@ import json
 import shutil
 from pathlib import Path
 from datetime import datetime
+from urllib.parse import quote
 
 
 # -----------------------------------------------------------------------------
@@ -41,11 +42,31 @@ BRANDS_TOP_100_TEMPLATE = load_text(TEMPLATES_DIR / "brands-top-100.html")
 BRAND_TEMPLATE = load_text(TEMPLATES_DIR / "brand.html")
 
 
-def render_page(title: str, content: str, static_path: str, meta_description: str = "", canonical: str = "") -> str:
+def render_page(
+    title: str,
+    content: str,
+    static_path: str,
+    root_path: str,
+    meta_description: str = "",
+    canonical: str = "",
+) -> str:
     html = BASE_TEMPLATE
 
-    header_html = HEADER_TEMPLATE.replace("{{STATIC}}", static_path).replace("{{ static }}", static_path)
-    footer_html = FOOTER_TEMPLATE.replace("{{STATIC}}", static_path).replace("{{ static }}", static_path)
+    header_html = (
+        HEADER_TEMPLATE
+        .replace("{{STATIC}}", static_path)
+        .replace("{{ static }}", static_path)
+        .replace("{{ROOT}}", root_path)
+        .replace("{{ root }}", root_path)
+    )
+
+    footer_html = (
+        FOOTER_TEMPLATE
+        .replace("{{STATIC}}", static_path)
+        .replace("{{ static }}", static_path)
+        .replace("{{ROOT}}", root_path)
+        .replace("{{ root }}", root_path)
+    )
 
     # Uppercase placeholders
     html = html.replace("{{TITLE}}", title)
@@ -53,6 +74,7 @@ def render_page(title: str, content: str, static_path: str, meta_description: st
     html = html.replace("{{FOOTER}}", footer_html)
     html = html.replace("{{CONTENT}}", content)
     html = html.replace("{{STATIC}}", static_path)
+    html = html.replace("{{ROOT}}", root_path)
     html = html.replace("{{META_DESCRIPTION}}", meta_description or title)
     html = html.replace("{{CANONICAL}}", canonical)
 
@@ -62,6 +84,7 @@ def render_page(title: str, content: str, static_path: str, meta_description: st
     html = html.replace("{{ footer }}", footer_html)
     html = html.replace("{{ content }}", content)
     html = html.replace("{{ static }}", static_path)
+    html = html.replace("{{ root }}", root_path)
     html = html.replace("{{ meta_description }}", meta_description or title)
     html = html.replace("{{ canonical }}", canonical)
 
@@ -148,16 +171,9 @@ def normalise_text(value) -> str:
         return ", ".join(normalise_text(v) for v in value.values() if normalise_text(v))
     return str(value).strip()
 
-def build_review_lookup(products):
-    return {
-        p["sku"]: (p.get("review_count_month") or 0)
-        for p in products
-        if p.get("sku")
-    }
-
 
 # -----------------------------------------------------------------------------
-# Rank helpers
+# Rank / review helpers
 # -----------------------------------------------------------------------------
 def add_dense_ranks(products, value_key):
     ranked = []
@@ -183,9 +199,12 @@ def add_dense_ranks(products, value_key):
     return ranked
 
 
-def build_rank_lookup(products):
-    ranked = add_dense_ranks(products, value_key="review_count_month")
-    return {p["sku"]: p["rank"] for p in ranked if p.get("sku")}
+def build_review_lookup(products):
+    return {
+        p["sku"]: (p.get("review_count_month") or 0)
+        for p in products
+        if p.get("sku")
+    }
 
 
 def apply_rank_movement(products, previous_review_lookup):
@@ -215,9 +234,10 @@ def apply_rank_movement(products, previous_review_lookup):
 
     return enriched
 
-from urllib.parse import quote
 
-
+# -----------------------------------------------------------------------------
+# URL / AWIN helpers
+# -----------------------------------------------------------------------------
 def build_brand_url(slug: str) -> str:
     if not slug:
         return ""
@@ -232,6 +252,31 @@ def build_awin_link(slug: str, clickref: str = "TrendList") -> str:
     return (
         "https://www.awin1.com/cread.php"
         f"?awinmid=18484&awinaffid=1018637&clickref={clickref}&ued={encoded_destination}"
+    )
+
+
+def build_awin_product_link(product_url: str, clickref: str = "TrendListProduct") -> str:
+    product_url = (product_url or "").strip()
+    if not product_url:
+        return ""
+
+    encoded_destination = quote(product_url, safe="")
+    return (
+        "https://www.awin1.com/cread.php"
+        f"?awinmid=18484&awinaffid=1018637&clickref={clickref}&ued={encoded_destination}"
+    )
+
+
+def slugify_brand_name(name: str) -> str:
+    return (
+        (name or "").strip().lower()
+        .replace("&", "and")
+        .replace("’", "")
+        .replace("'", "")
+        .replace(".", "")
+        .replace(",", "")
+        .replace("/", "-")
+        .replace(" ", "-")
     )
 
 
@@ -346,17 +391,6 @@ def load_brands():
 
     return cleaned
 
-def build_awin_product_link(product_url: str, clickref: str = "TrendList") -> str:
-    product_url = (product_url or "").strip()
-    if not product_url:
-        return ""
-
-    encoded_destination = quote(product_url, safe="")
-    return (
-        "https://www.awin1.com/cread.php"
-        f"?awinmid=18484&awinaffid=1018637&clickref={clickref}&ued={encoded_destination}"
-    )
-
 
 def get_active_brands(brands):
     return [b for b in brands if b.get("slug")]
@@ -379,41 +413,88 @@ def get_top_brands(brands, limit=100):
     return ranked[:limit]
 
 
-def render_brands_index(brands):
-    active = get_active_brands(brands)
-    active.sort(key=lambda b: (b.get("name", "") or "").lower())
+# -----------------------------------------------------------------------------
+# Brand page rendering helpers
+# -----------------------------------------------------------------------------
+def get_brand_initial(name):
+    first = (name or "").strip()[:1].upper()
+    if first.isalpha():
+        return first
+    return "#"
 
-    cards = []
 
-    for brand in active:
-        display_name = brand["name"] + ("*" if brand.get("inactive") else "")
-        product_count = "" if brand.get("inactive") else format_int(brand.get("product_count", 0))
-        location = "" if brand.get("inactive") else brand.get("location", "")
-        review_count_value = "" if brand.get("inactive") else format_int(brand.get("brand_review_count", 0))
+def render_brand_az_nav(brands):
+    initials = sorted({get_brand_initial(b.get("name", "")) for b in brands})
 
-        location_html = f"<li>{location}</li>" if location else ""
+    links = []
+    for initial in initials:
+        links.append(f'<a href="#letter-{initial}">{initial}</a>')
 
-        cards.append(
-            f"""
+    return '<div class="az-nav">' + "".join(links) + "</div>"
+
+
+def render_brands_az_sections(brands):
+    grouped = {}
+
+    for brand in brands:
+        initial = get_brand_initial(brand.get("name", ""))
+        grouped.setdefault(initial, []).append(brand)
+
+    sections = []
+
+    for initial in sorted(grouped.keys()):
+        cards = []
+
+        for brand in grouped[initial]:
+            display_name = brand["name"] + ("*" if brand.get("inactive") else "")
+            product_count = "" if brand.get("inactive") else format_int(brand.get("product_count", 0))
+            review_count = "" if brand.get("inactive") else format_int(brand.get("brand_review_count", 0))
+            location = "" if brand.get("inactive") else brand.get("location", "")
+
+            location_html = f"<li>{location}</li>" if location else ""
+
+            cards.append(
+                f"""
 <div class="brand-card">
   <h3><a href="brands/{brand['slug']}/index.html">{display_name}</a></h3>
   <ul class="brand-meta">
     <li><strong>Products:</strong> {product_count}</li>
-    <li><strong>Reviews:</strong> {review_count_value}</li>
+    <li><strong>Reviews:</strong> {review_count}</li>
     {location_html}
   </ul>
 </div>
 """.strip()
+            )
+
+        sections.append(
+            f"""
+<section class="brand-letter-section" id="letter-{initial}">
+  <h2>{initial}</h2>
+  <div class="brands-grid">
+    {"".join(cards)}
+  </div>
+</section>
+""".strip()
         )
 
+    return "\n".join(sections)
+
+
+def render_brands_index(brands):
+    active = get_active_brands(brands)
+    active.sort(key=lambda b: (b.get("name", "") or "").lower())
+
     body = BRANDS_INDEX_TEMPLATE
-    body = body.replace("{{ brand_cards }}", "\n".join(cards))
+    body = body.replace("{{BRAND_COUNT}}", format_int(len(active)))
+    body = body.replace("{{AZ_NAV}}", render_brand_az_nav(active))
+    body = body.replace("{{BRAND_SECTIONS}}", render_brands_az_sections(active))
 
     html = render_page(
         "Independent Brands on NOTHS",
         body,
         "static",
-        "Browse brands tracked on The Trend List.",
+        "",
+        "Browse brands A–Z on The Trend List.",
     )
     save_html(OUTPUT_ROOT / "brands.html", html)
 
@@ -445,6 +526,7 @@ def render_top_brands_rows(brands):
 
     return "\n".join(rows)
 
+
 def render_brands_top_100(brands):
     top_brands = get_top_brands(brands, limit=100)
 
@@ -455,6 +537,7 @@ def render_brands_top_100(brands):
         "Top Brands on NOTHS",
         body,
         "static",
+        "",
         "Top 100 brands on NOTHS ranked by total order volume.",
     )
     save_html(OUTPUT_ROOT / "top-100-brands.html", html)
@@ -494,6 +577,7 @@ def render_brand_pages(brands):
             f"{brand.get('name', '')} | NOTHS Brand Profile",
             body,
             "../../static",
+            "../../",
             f"{brand.get('name', '')} brand profile on The Trend List.",
         )
         save_html(OUTPUT_ROOT / "brands" / brand["slug"] / "index.html", html)
@@ -610,7 +694,7 @@ def render_products(products, limit=None, show_last_month=False):
         seller = p.get("seller_name") or "Unknown brand"
         reviews = p.get("review_count_month") or 0
         url = p.get("product_url")
-        awin_url = build_awin_product_link(url, clickref="TrendList")
+        awin_url = build_awin_product_link(url, clickref="TrendListProduct")
 
         if awin_url:
             name_html = f'<a href="{awin_url}" target="_blank" rel="noopener sponsored">{name}</a>'
@@ -619,16 +703,11 @@ def render_products(products, limit=None, show_last_month=False):
 
         last_month_cell = ""
         if show_last_month:
-            previous_reviews = p.get("previous_reviews", "")
+            previous_reviews = p.get("previous_reviews", 0)
             movement_label = p.get("movement_label", "")
             movement_class = p.get("movement_class", "")
 
-            if previous_reviews == "":
-                previous_reviews_value = 0
-            else:
-                previous_reviews_value = previous_reviews
-
-            previous_reviews_html = f"{previous_reviews_value:,}"
+            previous_reviews_html = f"{previous_reviews:,}"
 
             last_month_cell = (
                 f'<td class="last-month">'
@@ -664,19 +743,6 @@ def render_products(products, limit=None, show_last_month=False):
     {''.join(rows)}
 </table>
 """
-
-
-def slugify_brand_name(name: str) -> str:
-    return (
-        (name or "").strip().lower()
-        .replace("&", "and")
-        .replace("’", "")
-        .replace("'", "")
-        .replace(".", "")
-        .replace(",", "")
-        .replace("/", "-")
-        .replace(" ", "-")
-    )
 
 
 def render_partners(partners, limit=10, brand_link_prefix="brands/"):
@@ -736,7 +802,6 @@ def render_leaderboard_products(items, limit=100, last_month=False, link_only_if
         available = p.get("available")
 
         should_link = bool(url and available is True) if link_only_if_available else bool(url)
-
         awin_url = build_awin_product_link(url, clickref="TrendListProduct")
 
         if should_link and awin_url:
@@ -808,9 +873,15 @@ def render_homepage(latest_month, previous_month=None):
         "{{TOP_PRODUCTS}}",
         render_products(products, limit=20, show_last_month=bool(previous_month))
     )
-    body = body.replace("{{TOP_BRANDS}}", render_partners(partners, 10))
+    body = body.replace("{{TOP_BRANDS}}", render_partners(partners, 10, brand_link_prefix="brands/"))
 
-    html = render_page("Trending Products on NOTHS", body, "static")
+    html = render_page(
+        "Trending Products on NOTHS",
+        body,
+        "static",
+        "",
+        "Trending products on Not On The High Street based on recent reviews.",
+    )
     save_html(OUTPUT_ROOT / "index.html", html)
 
     print("✅ homepage rendered")
@@ -857,7 +928,13 @@ Products ranked by number of reviews received during the month.
 </p>
 """
 
-    html = render_page(f"Trending Products – {title_month}", body, "../static")
+    html = render_page(
+        f"Trending Products – {title_month}",
+        body,
+        "../static",
+        "../",
+        f"Trending products on NOTHS for {title_month}.",
+    )
     save_html(OUTPUT_ROOT / "months" / f"{month}.html", html)
 
     print(f"✅ rendered {month}")
@@ -887,7 +964,13 @@ def render_archive(months):
 </p>
 """
 
-    html = render_page("Monthly Archive", body, "static")
+    html = render_page(
+        "Monthly Archive",
+        body,
+        "static",
+        "",
+        "Monthly archive of trending products on NOTHS.",
+    )
     save_html(OUTPUT_ROOT / "archive.html", html)
 
     print("✅ archive rendered")
@@ -928,7 +1011,13 @@ The products with the highest recorded Feefo review counts on Not On The High St
 </p>
 """
 
-    html = render_page("Top 100 Products of All Time", body, "static")
+    html = render_page(
+        "Top 100 Products of All Time",
+        body,
+        "static",
+        "",
+        "Top 100 products of all time on NOTHS.",
+    )
     save_html(OUTPUT_ROOT / "top-products-all-time.html", html)
 
     print("✅ top-products-all-time rendered")
@@ -943,32 +1032,7 @@ def render_top_products_last_12_months(latest_month=None, previous_month=None):
     data = load_json(leaderboard_file)
     items = data.get("items", [])
 
-    previous_rank_lookup = {}
-    if previous_month:
-        prev_dir = DERIVED_ROOT / previous_month
-        if prev_dir.exists():
-            prev_products = load_json(prev_dir / "enriched_products.json")
-            previous_rank_lookup = build_rank_lookup(prev_products)
-
-    if previous_rank_lookup:
-        converted = []
-        for item in items:
-            converted.append(
-                {
-                    **item,
-                    "review_count_month": item.get("reviews"),
-                }
-            )
-        moved = apply_rank_movement(converted, previous_rank_lookup)
-
-        items = []
-        for item in moved:
-            row = dict(item)
-            row["reviews"] = row.get("review_count_month")
-            row.pop("review_count_month", None)
-            items.append(row)
-    else:
-        items = add_dense_ranks(items, value_key="reviews")
+    items = add_dense_ranks(items, value_key="reviews")
 
     title_suffix = f" – {format_month(latest_month)}" if latest_month else ""
 
@@ -991,14 +1055,20 @@ The products with the highest recorded Feefo review counts over the last 12 mont
 <h2>Leaderboard</h2>
 <p><small>Showing top 100 including ties.</small></p>
 
-{render_leaderboard_products(items, limit=100, last_month=bool(previous_rank_lookup), link_only_if_available=False)}
+{render_leaderboard_products(items, limit=100, last_month=False, link_only_if_available=False)}
 
 <p>
     <a href="index.html">← Back to homepage</a>
 </p>
 """
 
-    html = render_page(f"Top 100 Products of the Last 12 Months{title_suffix}", body, "static")
+    html = render_page(
+        f"Top 100 Products of the Last 12 Months{title_suffix}",
+        body,
+        "static",
+        "",
+        "Top 100 products on NOTHS over the last 12 months.",
+    )
     save_html(OUTPUT_ROOT / "top-products-last-12-months.html", html)
 
     print("✅ top-products-last-12-months rendered")
