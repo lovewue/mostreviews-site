@@ -41,6 +41,8 @@ BRANDS_INDEX_TEMPLATE = load_text(TEMPLATES_DIR / "brands-index.html")
 BRANDS_TOP_100_TEMPLATE = load_text(TEMPLATES_DIR / "brands-top-100.html")
 BRAND_TEMPLATE = load_text(TEMPLATES_DIR / "brand.html")
 
+ABOUT_TEMPLATE = load_text(TEMPLATES_DIR / "about.html")
+
 
 def render_page(
     title: str,
@@ -1082,6 +1084,24 @@ The products with the highest recorded Feefo review counts over the last 12 mont
     print("✅ top-products-last-12-months rendered")
 
 # -----------------------------------------------------------------------------
+# About page rendering
+# -----------------------------------------------------------------------------    
+
+def render_about():
+    body = ABOUT_TEMPLATE
+
+    html = render_page(
+        "About The Trend List",
+        body,
+        "static",
+        "How The Trend List tracks trending products and brands on Not On The High Street."
+    )
+
+    save_html(OUTPUT_ROOT / "about.html", html)
+
+    print("✅ about page rendered")
+
+# -----------------------------------------------------------------------------
 # Sitemap rendering
 # -----------------------------------------------------------------------------
 
@@ -1162,6 +1182,8 @@ def main():
         render_brands_index(brands)
         render_brands_top_100(brands)
         render_brand_pages(brands)
+
+    render_about()     
 
     generate_sitemap(months, brands)
 

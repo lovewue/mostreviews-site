@@ -231,6 +231,30 @@ Brands
 }
 
 /* ----------------------------------------------------
+About Page
+---------------------------------------------------- */
+
+.page-intro {
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: #777;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+ul {
+  padding-left: 18px;
+  line-height: 1.6;
+}
+
+/* ----------------------------------------------------
 Mobile
 ---------------------------------------------------- */
 
