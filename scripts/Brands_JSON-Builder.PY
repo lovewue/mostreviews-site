@@ -54,9 +54,9 @@ PUBLISHED_CSV = PUBLISHED_DIR / "brands.csv"
 
 BASE = "https://www.notonthehighstreet.com"
 
-RUN_MODE = "update"   # "passA" | "passB" | "update"
+RUN_MODE = "passA"   # "passA" | "passB" | "update"
 PASSA_LIMIT = None    # None = all
-PASSB_LIMIT = 1000     # None = all (not recommended)
+PASSB_LIMIT = None     # None = all (not recommended)
 
 MAX_WORKERS_PASSA = 2
 MAX_WORKERS_PASSB = 1
