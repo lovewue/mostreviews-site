@@ -1,0 +1,3620 @@
+[
+  {
+    "seller_slug": "unknown",
+    "seller_name": "Unknown brand",
+    "product_count_month": 1500,
+    "total_reviews_month": 1587
+  },
+  {
+    "seller_slug": "joybycorrinesmith",
+    "seller_name": "Joy by Corrine Smith",
+    "product_count_month": 27,
+    "total_reviews_month": 78
+  },
+  {
+    "seller_slug": "studiohop",
+    "seller_name": "Studio Hop",
+    "product_count_month": 30,
+    "total_reviews_month": 63
+  },
+  {
+    "seller_slug": "myposhshop",
+    "seller_name": "My Posh Shop",
+    "product_count_month": 28,
+    "total_reviews_month": 55
+  },
+  {
+    "seller_slug": "lisaangeljewellery",
+    "seller_name": "Lisa Angel",
+    "product_count_month": 21,
+    "total_reviews_month": 41
+  },
+  {
+    "seller_slug": "silverrainsilver",
+    "seller_name": "Silver Rain Silver",
+    "product_count_month": 39,
+    "total_reviews_month": 40
+  },
+  {
+    "seller_slug": "letterfest",
+    "seller_name": "Letterfest",
+    "product_count_month": 16,
+    "total_reviews_month": 39
+  },
+  {
+    "seller_slug": "gaamaa",
+    "seller_name": "Gaamaa",
+    "product_count_month": 18,
+    "total_reviews_month": 34
+  },
+  {
+    "seller_slug": "alphabetgifting",
+    "seller_name": "Alphabet Gifting",
+    "product_count_month": 4,
+    "total_reviews_month": 33
+  },
+  {
+    "seller_slug": "selections",
+    "seller_name": "Garden Selections",
+    "product_count_month": 13,
+    "total_reviews_month": 31
+  },
+  {
+    "seller_slug": "marthajackson",
+    "seller_name": "Martha Jackson Sterling Silver",
+    "product_count_month": 22,
+    "total_reviews_month": 31
+  },
+  {
+    "seller_slug": "acdxlimited",
+    "seller_name": "AikaPortraits",
+    "product_count_month": 11,
+    "total_reviews_month": 29
+  },
+  {
+    "seller_slug": "arrowgiftco",
+    "seller_name": "Arrow Gift Co",
+    "product_count_month": 21,
+    "total_reviews_month": 27
+  },
+  {
+    "seller_slug": "ellieellie",
+    "seller_name": "Ellie Ellie",
+    "product_count_month": 16,
+    "total_reviews_month": 25
+  },
+  {
+    "seller_slug": "looppa",
+    "seller_name": "Pomchick",
+    "product_count_month": 15,
+    "total_reviews_month": 25
+  },
+  {
+    "seller_slug": "attic",
+    "seller_name": "attic",
+    "product_count_month": 15,
+    "total_reviews_month": 25
+  },
+  {
+    "seller_slug": "lucysworld",
+    "seller_name": "FromLucy&Co",
+    "product_count_month": 11,
+    "total_reviews_month": 24
+  },
+  {
+    "seller_slug": "hallby",
+    "seller_name": "Hallby gifts",
+    "product_count_month": 15,
+    "total_reviews_month": 24
+  },
+  {
+    "seller_slug": "songsofinkandsteel",
+    "seller_name": "Songs of Ink and Steel",
+    "product_count_month": 18,
+    "total_reviews_month": 23
+  },
+  {
+    "seller_slug": "sophiavictoriajoy",
+    "seller_name": "Sophia Victoria Joy",
+    "product_count_month": 16,
+    "total_reviews_month": 22
+  },
+  {
+    "seller_slug": "thewordshack",
+    "seller_name": "The Word Shack",
+    "product_count_month": 10,
+    "total_reviews_month": 22
+  },
+  {
+    "seller_slug": "dibor",
+    "seller_name": "Dibor",
+    "product_count_month": 15,
+    "total_reviews_month": 21
+  },
+  {
+    "seller_slug": "theforestandco",
+    "seller_name": "The Forest & Co",
+    "product_count_month": 13,
+    "total_reviews_month": 21
+  },
+  {
+    "seller_slug": "charlieboots",
+    "seller_name": "Charlie Boots",
+    "product_count_month": 14,
+    "total_reviews_month": 18
+  },
+  {
+    "seller_slug": "minilunn",
+    "seller_name": "Mini Lunn",
+    "product_count_month": 8,
+    "total_reviews_month": 18
+  },
+  {
+    "seller_slug": "paperhigh",
+    "seller_name": "Paper High",
+    "product_count_month": 13,
+    "total_reviews_month": 18
+  },
+  {
+    "seller_slug": "silkpursesowsear",
+    "seller_name": "Silk Purse, Sow's Ear",
+    "product_count_month": 13,
+    "total_reviews_month": 18
+  },
+  {
+    "seller_slug": "sophiejonesjewellery",
+    "seller_name": "Sophie Jones Jewellery",
+    "product_count_month": 16,
+    "total_reviews_month": 18
+  },
+  {
+    "seller_slug": "hurleyburleyman",
+    "seller_name": "Hurleyburley man",
+    "product_count_month": 11,
+    "total_reviews_month": 17
+  },
+  {
+    "seller_slug": "tinit",
+    "seller_name": "TINIT",
+    "product_count_month": 6,
+    "total_reviews_month": 17
+  },
+  {
+    "seller_slug": "twentyseven",
+    "seller_name": "Twenty-Seven",
+    "product_count_month": 8,
+    "total_reviews_month": 17
+  },
+  {
+    "seller_slug": "uniques",
+    "seller_name": "Unique's Co.",
+    "product_count_month": 6,
+    "total_reviews_month": 17
+  },
+  {
+    "seller_slug": "lovethelinks",
+    "seller_name": "Lovethelinks",
+    "product_count_month": 14,
+    "total_reviews_month": 16
+  },
+  {
+    "seller_slug": "thatsnicethat",
+    "seller_name": "That's Nice That",
+    "product_count_month": 12,
+    "total_reviews_month": 16
+  },
+  {
+    "seller_slug": "coingiftshop",
+    "seller_name": "Coin Gift Shop",
+    "product_count_month": 10,
+    "total_reviews_month": 15
+  },
+  {
+    "seller_slug": "duncanstewarttextiles",
+    "seller_name": "Duncan Stewart",
+    "product_count_month": 11,
+    "total_reviews_month": 15
+  },
+  {
+    "seller_slug": "acecards",
+    "seller_name": "Ace Cards",
+    "product_count_month": 13,
+    "total_reviews_month": 14
+  },
+  {
+    "seller_slug": "ladedaliving",
+    "seller_name": "La de da! Living",
+    "product_count_month": 9,
+    "total_reviews_month": 14
+  },
+  {
+    "seller_slug": "modocreative",
+    "seller_name": "Made At The Mill",
+    "product_count_month": 10,
+    "total_reviews_month": 14
+  },
+  {
+    "seller_slug": "madeforyougifts",
+    "seller_name": "Made For You Gifts",
+    "product_count_month": 7,
+    "total_reviews_month": 14
+  },
+  {
+    "seller_slug": "noordinarygiftcompany",
+    "seller_name": "No Ordinary Gift",
+    "product_count_month": 8,
+    "total_reviews_month": 14
+  },
+  {
+    "seller_slug": "oakdenedesigns",
+    "seller_name": "Oakdene Designs",
+    "product_count_month": 13,
+    "total_reviews_month": 14
+  },
+  {
+    "seller_slug": "potiega",
+    "seller_name": "Potiega",
+    "product_count_month": 11,
+    "total_reviews_month": 14
+  },
+  {
+    "seller_slug": "wholeinthemiddle",
+    "seller_name": "Whole in the Middle",
+    "product_count_month": 10,
+    "total_reviews_month": 14
+  },
+  {
+    "seller_slug": "sparksanddaughters",
+    "seller_name": "Sparks And Daughters",
+    "product_count_month": 10,
+    "total_reviews_month": 13
+  },
+  {
+    "seller_slug": "taylorcutco",
+    "seller_name": "Taylor Cut Co",
+    "product_count_month": 5,
+    "total_reviews_month": 13
+  },
+  {
+    "seller_slug": "cribstar",
+    "seller_name": "cribstar",
+    "product_count_month": 5,
+    "total_reviews_month": 13
+  },
+  {
+    "seller_slug": "fromyoutome",
+    "seller_name": "FROM YOU TO ME",
+    "product_count_month": 4,
+    "total_reviews_month": 11
+  },
+  {
+    "seller_slug": "heatheralsteaddesign",
+    "seller_name": "Heather Alstead Design",
+    "product_count_month": 3,
+    "total_reviews_month": 11
+  },
+  {
+    "seller_slug": "hurleyburley",
+    "seller_name": "Hurleyburley",
+    "product_count_month": 9,
+    "total_reviews_month": 11
+  },
+  {
+    "seller_slug": "meandmycar",
+    "seller_name": "Me and My Car",
+    "product_count_month": 6,
+    "total_reviews_month": 11
+  },
+  {
+    "seller_slug": "nameitwhatyoulike",
+    "seller_name": "Nameitwhatyoulike",
+    "product_count_month": 6,
+    "total_reviews_month": 11
+  },
+  {
+    "seller_slug": "pogofandango",
+    "seller_name": "Pogofandango",
+    "product_count_month": 8,
+    "total_reviews_month": 11
+  },
+  {
+    "seller_slug": "thecornishcompany",
+    "seller_name": "The Cornish Company",
+    "product_count_month": 5,
+    "total_reviews_month": 11
+  },
+  {
+    "seller_slug": "vintagelane",
+    "seller_name": "Vintage Lane",
+    "product_count_month": 8,
+    "total_reviews_month": 11
+  },
+  {
+    "seller_slug": "nappyhead",
+    "seller_name": "Yeah Boo",
+    "product_count_month": 8,
+    "total_reviews_month": 11
+  },
+  {
+    "seller_slug": "forgeandfoundry",
+    "seller_name": "FORGE & FOUNDRY",
+    "product_count_month": 6,
+    "total_reviews_month": 10
+  },
+  {
+    "seller_slug": "dreamstoreality",
+    "seller_name": "Love Lumi Ltd",
+    "product_count_month": 9,
+    "total_reviews_month": 10
+  },
+  {
+    "seller_slug": "mygivenname",
+    "seller_name": "MY GIVEN NAME",
+    "product_count_month": 4,
+    "total_reviews_month": 10
+  },
+  {
+    "seller_slug": "mymagicname",
+    "seller_name": "MY MAGIC NAME",
+    "product_count_month": 7,
+    "total_reviews_month": 10
+  },
+  {
+    "seller_slug": "mirrorin",
+    "seller_name": "Mirrorin",
+    "product_count_month": 6,
+    "total_reviews_month": 10
+  },
+  {
+    "seller_slug": "paperscene",
+    "seller_name": "Paper Scene",
+    "product_count_month": 9,
+    "total_reviews_month": 10
+  },
+  {
+    "seller_slug": "dustandthings",
+    "seller_name": "Dust and Things",
+    "product_count_month": 6,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "hooddesignsco",
+    "seller_name": "Hood Designs Co.",
+    "product_count_month": 5,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "hurleyburleyjunior",
+    "seller_name": "Hurleyburley Junior",
+    "product_count_month": 7,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "jungley",
+    "seller_name": "JUNGLEY",
+    "product_count_month": 5,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "kutuu",
+    "seller_name": "Kutuu",
+    "product_count_month": 4,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "lottieshaws",
+    "seller_name": "LOTTIE SHAW'S",
+    "product_count_month": 5,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "penelopetom",
+    "seller_name": "Penelopetom",
+    "product_count_month": 7,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "raspberryripplejewellery",
+    "seller_name": "Raspberry Ripple Jewellery",
+    "product_count_month": 4,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "sascreative",
+    "seller_name": "SAS Creative",
+    "product_count_month": 5,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "stori",
+    "seller_name": "Stori",
+    "product_count_month": 7,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "thealphabetgiftshop",
+    "seller_name": "The Alphabet Gift Shop",
+    "product_count_month": 8,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "therusticdish",
+    "seller_name": "The Rustic Dish®",
+    "product_count_month": 7,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "thestamfordstudio",
+    "seller_name": "The Stamford Studio",
+    "product_count_month": 9,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "dynastylondon",
+    "seller_name": "Brand X",
+    "product_count_month": 7,
+    "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "eskimokissdesigns",
+    "seller_name": "Eskimo Kiss Designs",
+    "product_count_month": 4,
+    "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "francescarossidesigns",
+    "seller_name": "Francesca Rossi Designs",
+    "product_count_month": 7,
+    "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "giftrepublic",
+    "seller_name": "Gift Republic",
+    "product_count_month": 5,
+    "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "giftsonline4u",
+    "seller_name": "GiftsOnline4U",
+    "product_count_month": 6,
+    "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "iconiccoasters",
+    "seller_name": "Iconic Coasters",
+    "product_count_month": 5,
+    "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "myleelondon",
+    "seller_name": "Mylee London",
+    "product_count_month": 7,
+    "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "seedball",
+    "seller_name": "Seedball",
+    "product_count_month": 3,
+    "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "alphabetinteriors",
+    "seller_name": "Solesmith",
+    "product_count_month": 8,
+    "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "uniqueful",
+    "seller_name": "Uniqueful",
+    "product_count_month": 8,
+    "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "vintagedesignsreborn",
+    "seller_name": "Vintage Designs Reborn",
+    "product_count_month": 6,
+    "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "wildwarestudio",
+    "seller_name": "Wildware Studio",
+    "product_count_month": 3,
+    "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "wishedfor",
+    "seller_name": "Wished For",
+    "product_count_month": 4,
+    "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "elevencorners",
+    "seller_name": "elevencorners",
+    "product_count_month": 6,
+    "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "bankslyonbotanical",
+    "seller_name": "Banks-Lyon Botanical",
+    "product_count_month": 5,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "beadlet",
+    "seller_name": "Beadlet",
+    "product_count_month": 6,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "thelyndoncompany",
+    "seller_name": "Deyongs Ltd",
+    "product_count_month": 5,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "feelsilkstudio",
+    "seller_name": "Feel Silk Studio",
+    "product_count_month": 7,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "giftspersonalised",
+    "seller_name": "Gifts Personalised",
+    "product_count_month": 5,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "teetotalgifts",
+    "seller_name": "Good Time Gifts",
+    "product_count_month": 4,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "hopeandlove",
+    "seller_name": "Hope and Love",
+    "product_count_month": 7,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "littlesentiments",
+    "seller_name": "Little Sentiments",
+    "product_count_month": 6,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "thedogscollarsuk",
+    "seller_name": "The Dogs Collars UK",
+    "product_count_month": 7,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "themousehousecheeseco",
+    "seller_name": "The Mouse House Cheese Co",
+    "product_count_month": 6,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "wildplanet",
+    "seller_name": "Wild Planet Aromatherapy",
+    "product_count_month": 2,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "yatrishomeandgift",
+    "seller_name": "Yatris",
+    "product_count_month": 5,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "babymagicdress",
+    "seller_name": "baby magic dress",
+    "product_count_month": 5,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "alexanderthurlow",
+    "seller_name": "Alexander Thurlow",
+    "product_count_month": 5,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "andreafays",
+    "seller_name": "Andrea Fays",
+    "product_count_month": 4,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "betsybenn",
+    "seller_name": "Betsy Benn",
+    "product_count_month": 5,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "brickbybrick23",
+    "seller_name": "BrickByBrick23",
+    "product_count_month": 5,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "creategiftlove",
+    "seller_name": "Create Gift Love",
+    "product_count_month": 6,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "habulous",
+    "seller_name": "Dartmoor Ceramics",
+    "product_count_month": 3,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "izzyandpop",
+    "seller_name": "Izzy & Pop",
+    "product_count_month": 1,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "justbeekids",
+    "seller_name": "Just Bee Kids",
+    "product_count_month": 4,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "letterboxlove",
+    "seller_name": "Letterbox Love",
+    "product_count_month": 4,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "lucysheeran",
+    "seller_name": "Lucy Sheeran",
+    "product_count_month": 3,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "naturalnoble",
+    "seller_name": "Natural & Noble",
+    "product_count_month": 2,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "oflifeandlemons",
+    "seller_name": "Of Life & Lemons",
+    "product_count_month": 4,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "rossandross",
+    "seller_name": "Ross & Ross Gifts",
+    "product_count_month": 3,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "spicentice",
+    "seller_name": "Spicentice",
+    "product_count_month": 5,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "storkmail",
+    "seller_name": "Stork Mail",
+    "product_count_month": 3,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "carriagetrade",
+    "seller_name": "The Carriage Trade Company Ltd",
+    "product_count_month": 4,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "withlovejewellerylimited",
+    "seller_name": "With Love Jewellery Limited",
+    "product_count_month": 4,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "abodehomeandgifts",
+    "seller_name": "Abode Home & Gifts",
+    "product_count_month": 5,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "amandahancocks",
+    "seller_name": "Amanda Hancocks",
+    "product_count_month": 5,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "lineamasks",
+    "seller_name": "Awristo",
+    "product_count_month": 3,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "beecycle",
+    "seller_name": "BEEcycle",
+    "product_count_month": 2,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "chocolateonchocolate",
+    "seller_name": "Choc on Choc",
+    "product_count_month": 2,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "diamondrosegifts",
+    "seller_name": "Diamond Rose Gifts",
+    "product_count_month": 5,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "cublifeclothing",
+    "seller_name": "DreamBuy",
+    "product_count_month": 3,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "eazo",
+    "seller_name": "EAZO",
+    "product_count_month": 5,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "gystudio",
+    "seller_name": "GY Studios",
+    "product_count_month": 4,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "graceandvalour",
+    "seller_name": "Grace & Valour",
+    "product_count_month": 4,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "jolly",
+    "seller_name": "Jolly",
+    "product_count_month": 2,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "jomanda",
+    "seller_name": "Jomanda Soft Plush Toys, Gifts & Accessories #SofterThanASoftThing CE/UKCA",
+    "product_count_month": 3,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "julietreevesdesigns",
+    "seller_name": "Juliet Reeves Designs",
+    "product_count_month": 3,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "kindredfires",
+    "seller_name": "Kindred Fires",
+    "product_count_month": 4,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "lovetreedesign",
+    "seller_name": "Lovetree Design",
+    "product_count_month": 4,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "lucentstudios",
+    "seller_name": "Lucent Studios",
+    "product_count_month": 4,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "luckandluck",
+    "seller_name": "Luck and Luck",
+    "product_count_month": 5,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "mapsinternational",
+    "seller_name": "Maps International",
+    "product_count_month": 4,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "marthabrook",
+    "seller_name": "Martha Brook",
+    "product_count_month": 5,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "my1styears",
+    "seller_name": "My 1st Years",
+    "product_count_month": 3,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "oskarandcatie",
+    "seller_name": "Oskar & Catie",
+    "product_count_month": 3,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 2,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "rubythecakeartist",
+    "seller_name": "Ruby The Cake Artist",
+    "product_count_month": 5,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "sbri",
+    "seller_name": "SBRI",
+    "product_count_month": 3,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "schokolat",
+    "seller_name": "Schokolat Scotland",
+    "product_count_month": 1,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "claireclose",
+    "seller_name": "So Close",
+    "product_count_month": 3,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "spincollective",
+    "seller_name": "Spin Collective",
+    "product_count_month": 4,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "swootsy",
+    "seller_name": "Swootsy",
+    "product_count_month": 4,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "thegluttonousgardener",
+    "seller_name": "The Gluttonous Gardener",
+    "product_count_month": 4,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "theimageindustry",
+    "seller_name": "The Image Industry",
+    "product_count_month": 4,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "ayearofdates",
+    "seller_name": "A Year of Dates",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "bettysglamourbox",
+    "seller_name": "Betty's Glamour Box",
+    "product_count_month": 2,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "craftheaven",
+    "seller_name": "Craft Heaven Designs",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "edgeinspired",
+    "seller_name": "EdgeInspired",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "greyfoxdesign",
+    "seller_name": "Greyfox Design",
+    "product_count_month": 1,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "herseysilversmiths",
+    "seller_name": "Hersey Silversmiths",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "hotdot",
+    "seller_name": "Hot Dot Laser",
+    "product_count_month": 2,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "ivynat",
+    "seller_name": "Ivy Nat",
+    "product_count_month": 2,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "jacksprattbaby",
+    "seller_name": "Jack Spratt",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "kittyandfin",
+    "seller_name": "Kitty and Fin",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "letterboxhamper",
+    "seller_name": "Letter Box Hamper",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "lisamariedesigns",
+    "seller_name": "Lisa Marie Designs",
+    "product_count_month": 2,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "lostinmusicprints",
+    "seller_name": "Lost In Music Prints",
+    "product_count_month": 2,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "lucylovesneko",
+    "seller_name": "Lucy Loves Neko",
+    "product_count_month": 3,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "lunity",
+    "seller_name": "Lunity",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "mijmoj",
+    "seller_name": "MijMoj Design",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "minettajewellery",
+    "seller_name": "Minetta Jewellery",
+    "product_count_month": 3,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "overandover",
+    "seller_name": "Over & Over",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "personalisedtreasures",
+    "seller_name": "Personalised Treasures",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "qwertybeerbox",
+    "seller_name": "QWERTY Beer Box",
+    "product_count_month": 3,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "showstoppersupplies",
+    "seller_name": "Showstopper Supplies",
+    "product_count_month": 3,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "steepletone",
+    "seller_name": "Steepletone",
+    "product_count_month": 3,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "thedanes",
+    "seller_name": "The Danes",
+    "product_count_month": 3,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "thehummingbirdcardcompany",
+    "seller_name": "The Hummingbird Card Company",
+    "product_count_month": 2,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "topdoglondon",
+    "seller_name": "Topdog London",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "travellingbeecompany",
+    "seller_name": "Travelling Bee Company",
+    "product_count_month": 2,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "twistedpendant",
+    "seller_name": "Twisted Pendant",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "momoandboo",
+    "seller_name": "momo+boo",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "sweetsinthepost",
+    "seller_name": "sweets in the post",
+    "product_count_month": 3,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "atypeofdesign",
+    "seller_name": "A Type Of Design",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "barbuoycocktails",
+    "seller_name": "Bar Buoy Cocktails",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "messageinamillion",
+    "seller_name": "Belle & Wilde",
+    "product_count_month": 1,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "bestofbritishbeer",
+    "seller_name": "Best of British Beer",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "blushandgold",
+    "seller_name": "Blush and Gold",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "bubbleboohandmade",
+    "seller_name": "BubbleBoo Handmade",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "butlersfarmhousecheeses",
+    "seller_name": "Butlers Farmhouse Cheeses",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "coulsonmacleod",
+    "seller_name": "Coulson Macleod",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "doodlecardsboutique",
+    "seller_name": "DoodlecardsBoutique",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "faysstudio",
+    "seller_name": "Fay's Studio",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "flamingocandles",
+    "seller_name": "Flamingo Candles",
+    "product_count_month": 1,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "wishuponastring",
+    "seller_name": "Gifted",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "greentulip",
+    "seller_name": "Green Tulip",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "hellolovely",
+    "seller_name": "HELLO LOVELY",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "happyboxx",
+    "seller_name": "Happy Boxx",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "highgrovecards",
+    "seller_name": "Highgrove Cards",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "homieestudio",
+    "seller_name": "HomieeStudio",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "hoobynoo",
+    "seller_name": "Hoobynoo",
+    "product_count_month": 1,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "karriebarroncards",
+    "seller_name": "Karrie Barron",
+    "product_count_month": 1,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "ladidasweettreats",
+    "seller_name": "La Mira Sweet Treats",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "littlecraftybees",
+    "seller_name": "Little Crafty Bees",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "lollyrocket",
+    "seller_name": "Lollyrocket Candle Co",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "lottieandgil",
+    "seller_name": "Lottie & Gil",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "indulgenthampersuk",
+    "seller_name": "Love From Gifts",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "lovejodesigns",
+    "seller_name": "Love Jo Designs",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "lunella",
+    "seller_name": "Lunella",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "muchv",
+    "seller_name": "MUCHV",
+    "product_count_month": 1,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "madeinwords",
+    "seller_name": "Made In Words",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "marigoldcharms",
+    "seller_name": "Marigold Charms",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "nvlondoncalcutta",
+    "seller_name": "NV London Calcutta",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "oliviamorgan",
+    "seller_name": "Olivia Morgan Ltd",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "ourhands",
+    "seller_name": "OurHands",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "parsy",
+    "seller_name": "Parsy Designs",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "pinkpineapple",
+    "seller_name": "Pink Pineapple Home & Gifts",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "rockonruby",
+    "seller_name": "Rock On Ruby",
+    "product_count_month": 1,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "rosiemadeathing",
+    "seller_name": "Rosie Made A Thing",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "scaramanga",
+    "seller_name": "Scaramanga",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "stephieann",
+    "seller_name": "StephieAnn",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "stevesmithceramics",
+    "seller_name": "Steve Smith Ceramics",
+    "product_count_month": 1,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "summerlanestudio",
+    "seller_name": "Summer Lane Studio",
+    "product_count_month": 1,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "surreyhillsdesigns",
+    "seller_name": "Surreyhillsdesigns",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "sweetwilliamdesigns",
+    "seller_name": "Sweet William Designs",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "thebestroom",
+    "seller_name": "The Best Room",
+    "product_count_month": 1,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "thecraftykitcompany",
+    "seller_name": "The Crafty Kit Company",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "thegiftologist",
+    "seller_name": "The Giftologist",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "thelittlekeepsakecompany",
+    "seller_name": "The Little Keepsake Company",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "thelittlepicturecompany",
+    "seller_name": "The Little Picture Company",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "thelovelygiftgroup",
+    "seller_name": "The Lovely Gift Group",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "thisisnessie",
+    "seller_name": "This Is Nessie",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "toffeemoon",
+    "seller_name": "Toffee Moon",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "upcircle",
+    "seller_name": "UpCircle",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "vidavida",
+    "seller_name": "Vida Vida",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "withpuns",
+    "seller_name": "Withpuns",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "afewhometruths",
+    "seller_name": "aFewHomeTruths",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "victoriamaedesigns",
+    "seller_name": "victoria mae designs",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "aballonestudio",
+    "seller_name": "AballoneStudio",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "acquagarden",
+    "seller_name": "Acqua Garden",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "amysgiftstudio",
+    "seller_name": "Amy's Gift Studio",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "aspireartglass",
+    "seller_name": "Aspire Art Glass",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "begolden",
+    "seller_name": "BeGolden",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "bigstitch",
+    "seller_name": "Big Stitch",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "boldlywhittle",
+    "seller_name": "Boldly Whittle",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "bottleinabox",
+    "seller_name": "Bottle In A Box",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "clemandco",
+    "seller_name": "Clem & Co",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "cocochemistry",
+    "seller_name": "Coco Chemistry",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "cocoapod",
+    "seller_name": "Cocoapod Chocolates",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "djcboutique",
+    "seller_name": "DJC BOUTIQUE",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "daphnerosa",
+    "seller_name": "DaphneRosa",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "diamondaffair",
+    "seller_name": "Diamond Affair",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "eggbertanddaisy",
+    "seller_name": "Eggbert & Daisy",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "loveloxlockets",
+    "seller_name": "Engravers Guild",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "fableengland",
+    "seller_name": "Fable England",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "fragrancedhumour",
+    "seller_name": "Fragranced Humour",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "geople",
+    "seller_name": "GEOPLE Home & Baby",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "giftdelivery",
+    "seller_name": "Gift Delivery",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "theglenstockenherbandplantcompany",
+    "seller_name": "Glenstocken Herb and Plant Co.",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "handmadebyhelle",
+    "seller_name": "Handmade by Helle",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "hanmadedesigns",
+    "seller_name": "Hanmade Designs",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "hayleyandco",
+    "seller_name": "Hayley & Co",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "hendogdesigns",
+    "seller_name": "Hendog Designs",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "historicnewspapers",
+    "seller_name": "Historic Newspapers",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "handbagsdirect2u",
+    "seller_name": "Holly Rose",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "igstudioceramics",
+    "seller_name": "IGstudio Ceramics",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "idyllhome",
+    "seller_name": "Idyll Home",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "impulsepurchase",
+    "seller_name": "Impulse Purchase",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "islandfallshome",
+    "seller_name": "Island Falls Home",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "jaamcandles",
+    "seller_name": "J.a.a.m candles",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "jjpark",
+    "seller_name": "JJ PARK",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "jamesellis",
+    "seller_name": "James Ellis",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "jeanandmoonltd",
+    "seller_name": "Jean & Moon Ltd",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "julietstallwoodcakesandbiscuits",
+    "seller_name": "Juliet Stallwood Cakes and Biscuits",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "gilbertandstone",
+    "seller_name": "Kate Ceramics",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "kirstyshaw",
+    "seller_name": "Kirsty Shaw",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "kokoblossom",
+    "seller_name": "Koko Blossom",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "lafillecreative",
+    "seller_name": "La Fille Créative",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "letterfestengraving",
+    "seller_name": "Letterfest Engraving",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "limetreedesign",
+    "seller_name": "Lime Tree Design",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "littleletter",
+    "seller_name": "Little Letter",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "livingroots",
+    "seller_name": "Living Roots",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "lucykempjewellery",
+    "seller_name": "Lucy Kemp Silver Jewellery",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "luminouspretties",
+    "seller_name": "Luminous Pretties Jewellery",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "monoscape",
+    "seller_name": "MONOSCAPE",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "mallo",
+    "seller_name": "Mallo",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "marbletree",
+    "seller_name": "Marbletree",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "maryfellows",
+    "seller_name": "Mary Fellows",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "mermaidmarys",
+    "seller_name": "Mermaid Marys",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "nutmeg",
+    "seller_name": "Nutmeg Wall Stickers",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "ottiedesign",
+    "seller_name": "Ottie Design",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "personalisednpretty",
+    "seller_name": "Personalisednpretty",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "pinkstrawberry",
+    "seller_name": "Pink Strawberry",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "therusticwarehouse",
+    "seller_name": "RW NORFOLK",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "refinedspaces",
+    "seller_name": "Refined Spaces",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "regalo",
+    "seller_name": "Regalo",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "sallyclayjewellerydesign",
+    "seller_name": "Sally Clay",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "secretcreation",
+    "seller_name": "Secret Creation",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "snapswing",
+    "seller_name": "SnapSwing",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "sockcreatures",
+    "seller_name": "Sock Creatures",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "spokengifts",
+    "seller_name": "Spoken Gifts LTD",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "stagdesign",
+    "seller_name": "Stag Design",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "storyteller",
+    "seller_name": "Storyteller",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "sundaysdaughter",
+    "seller_name": "Sunday's Daughter",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "theboxesofjoy",
+    "seller_name": "The Boxes of Joy",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "thefizzbizz",
+    "seller_name": "The Fizz Bizz",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "thelabradorcompany",
+    "seller_name": "The Labrador Company",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "snugglefeet",
+    "seller_name": "The Laser Engraving Company",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "thelovelyedit",
+    "seller_name": "The Lovely Edit",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "thenorthernline",
+    "seller_name": "The Northern Line",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "countryandpaws",
+    "seller_name": "The Thoughtful Touch",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "theuniquechocolate",
+    "seller_name": "The Unique Chocolate",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "tilliemint",
+    "seller_name": "TillieMint",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "tollymcrae",
+    "seller_name": "Tolly McRae",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "truewillowgifts",
+    "seller_name": "True Willow Gifts",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "twigs",
+    "seller_name": "Twigs",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "undertherose",
+    "seller_name": "Under the Rose",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "netalternative",
+    "seller_name": "Warner's End",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "welovetocreate",
+    "seller_name": "We Love To Create",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "nameyourball",
+    "seller_name": "We Print Balls",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "weaselandstoat",
+    "seller_name": "Weasel and Stoat",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "whiskytastingcompany",
+    "seller_name": "Whisky Tasting Company",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "woati",
+    "seller_name": "Woati",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "millyandpip",
+    "seller_name": "milly and pip gifts and cards",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "byalex",
+    "seller_name": "'By Alex'",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "2greenmonkeys",
+    "seller_name": "2 Green Monkeys",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "auraque",
+    "seller_name": "AURA QUE",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "abigailwarner",
+    "seller_name": "Abigail Warner",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "abiza",
+    "seller_name": "Abiza",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "acornandhide",
+    "seller_name": "Acorn & Hide",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "adornedembroidery",
+    "seller_name": "Adorned Embroidery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "adventhorizon",
+    "seller_name": "Advent Horizon",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "alphabetbespokecreations",
+    "seller_name": "Alphabet Bespoke Creations",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "alsothebison",
+    "seller_name": "Also the Bison",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "amylucy",
+    "seller_name": "Amy Lucy",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "angiebealdesigns",
+    "seller_name": "Angie Beal Designs",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "animalcrackers",
+    "seller_name": "Animal Crackers",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "artchocolat",
+    "seller_name": "ArtChocolat",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "artbox",
+    "seller_name": "Artbox",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "artiqueboutique",
+    "seller_name": "Artique Boutique",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "augustajewellery",
+    "seller_name": "Augusta Jewellery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "avocadoandspice",
+    "seller_name": "Avocadoandspice",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "bskincare",
+    "seller_name": "B Skincare",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "braidandbow",
+    "seller_name": "BRAID & BOW",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "babuskajewellery",
+    "seller_name": "Babuska Jewellery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "babybells",
+    "seller_name": "BabyBells",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "bakerboxx",
+    "seller_name": "Baker Boxx",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "battlegreen",
+    "seller_name": "Battle Green",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "bearhugs",
+    "seller_name": "BearHugs",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "beardedmermaid",
+    "seller_name": "Bearded Mermaid",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "beckagriffinillustration",
+    "seller_name": "Becka Griffin Illustration",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "beerhunter",
+    "seller_name": "Beerhunter",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "bellsandwhistlesmake",
+    "seller_name": "Bells and Whistles Make",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "bettieconfetti",
+    "seller_name": "Bettie Confetti",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "boarandsew",
+    "seller_name": "Boar and Sew",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "bombus",
+    "seller_name": "Bombus",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "brayscottageporkpies",
+    "seller_name": "Bray's Cottage Pork Pies",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "bumblebeez",
+    "seller_name": "Bumble beez",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "buttonsandcushions",
+    "seller_name": "Buttons & Bells",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "bymysidebracelets",
+    "seller_name": "By My Side Bracelets",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "cgbgiftware",
+    "seller_name": "CGB Giftware",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "squeak",
+    "seller_name": "Caltonberry from Squeak Gift and Party",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "chapelcards",
+    "seller_name": "Chapel Cards",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "charlottesweb",
+    "seller_name": "Charlotte's Web Jewellery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "cheesehamper",
+    "seller_name": "Cheese Hamper",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "cherrypete",
+    "seller_name": "Cherry Pete",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "chiafrica",
+    "seller_name": "Chi-Africa",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "chronosdesign",
+    "seller_name": "Chronos Design",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "chunkichilli",
+    "seller_name": "ChunkiChilli",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "clairesowdendesign",
+    "seller_name": "Claire Sowden Design",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "climemet",
+    "seller_name": "ClimeMET",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "clothncard",
+    "seller_name": "Cloth N Card",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "cloud9design",
+    "seller_name": "Cloud 9 Design",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "coachhouseforge",
+    "seller_name": "Coach House Forge",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "lillyloves",
+    "seller_name": "Coco Loves London",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "colourmefun",
+    "seller_name": "Colour Me Fun",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "copperrivetdistillery",
+    "seller_name": "Copper Rivet Distillery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "cot2totandbeyond",
+    "seller_name": "Cot2tot & Beyond",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "cotswoldwears",
+    "seller_name": "Cotswold Wears",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "cottontwist",
+    "seller_name": "Cotton Twist",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "coupolecarnaby",
+    "seller_name": "Coupole Carnaby",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "craftyourown",
+    "seller_name": "Craft Your Own",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "craftedmemories",
+    "seller_name": "Crafted Memories",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "crank",
+    "seller_name": "Crank",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "crumbsourdough",
+    "seller_name": "Crumb Sourdough",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "culinaryconceptslondon",
+    "seller_name": "Culinary Concepts London",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "daughtersoftherevolution",
+    "seller_name": "Daughters Of The Revolution",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "davidaster",
+    "seller_name": "David Aster",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "david-louisdesign",
+    "seller_name": "David-Louis Design",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "designed",
+    "seller_name": "Designed",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "distinctlyliving",
+    "seller_name": "Distinctly Living",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "ditsypet",
+    "seller_name": "Ditsy Pet",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "dizzy",
+    "seller_name": "Dizzy",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "donnacrainaccessories",
+    "seller_name": "Donna Crain",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "dottyaboutbraille",
+    "seller_name": "Dotty About Braille",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thedriftingbear",
+    "seller_name": "Drifting Co.",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "ejgolfgloves",
+    "seller_name": "EJ Golf Gloves",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "elizabethjane",
+    "seller_name": "Elizabeth Jane",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "elizabethfrances",
+    "seller_name": "Elizabethfrances",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "emilymackenzie",
+    "seller_name": "Emily MacKenzie",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "everlightblooms",
+    "seller_name": "Everlight Blooms",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "fleurdeluxe",
+    "seller_name": "Fleur De Luxe",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "fleurdetresor",
+    "seller_name": "Fleur de Trésor",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "florencelondon",
+    "seller_name": "Florence London",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "flossandco",
+    "seller_name": "Floss & Co.",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "foreverafter",
+    "seller_name": "Forever After",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "garudiostudiage",
+    "seller_name": "Garudio Studiage",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "gifthorseknitkits",
+    "seller_name": "Gift Horse Knit Kits",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "giftedbox",
+    "seller_name": "Gifted Box",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "giantsparrows",
+    "seller_name": "GigglyFox",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "gillianarnold",
+    "seller_name": "Gillian Arnold",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "ginamariecreations",
+    "seller_name": "Gina Marie Creations",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "goodintentions",
+    "seller_name": "Good Intentions",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "goodteamonpaper",
+    "seller_name": "Good Team On Paper",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "onceuponatuesday",
+    "seller_name": "Good Tuesday",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "goodeehoo",
+    "seller_name": "Goodeehoo",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "goodordering",
+    "seller_name": "Goodordering",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "graciecollins",
+    "seller_name": "Gracie Collins",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "guesswhatidid",
+    "seller_name": "Guess What I Did! Experience Days",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "hamptonhomeware",
+    "seller_name": "Hampton Homeware",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "hannahshelbournedesigns",
+    "seller_name": "Hannah Shelbourne Designs",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "harleyhousedistillery",
+    "seller_name": "Harley House Distillery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "haveagander",
+    "seller_name": "Have a Gander",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "hazeydesigns",
+    "seller_name": "Hazey Designs",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "heirloompuzzles",
+    "seller_name": "Heirloom Puzzles",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "hellogiftsuk",
+    "seller_name": "Hello Gifts UK",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "helloruth",
+    "seller_name": "Hello Ruth",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "hemstudios",
+    "seller_name": "Hem Studios",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "hickorydickory",
+    "seller_name": "Hickory Dickory Designs",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "homegrownprintco",
+    "seller_name": "Homegrown Print Co.",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "honestlytasty",
+    "seller_name": "Honestly Tasty",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "honeymosaics",
+    "seller_name": "Honey Mosaics",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "hopeandwilson",
+    "seller_name": "Hope & Wilson",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "houseofhetty",
+    "seller_name": "House of Hetty",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "hugrug",
+    "seller_name": "Hug Rug",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "iseeme",
+    "seller_name": "I See Me! Personalised Children's Books",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "illuminatedapparel",
+    "seller_name": "Illuminated Apparel",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "collectionsbyhayley",
+    "seller_name": "Indisa Jewellery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "ingravia",
+    "seller_name": "Ingravia",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "inkywool",
+    "seller_name": "Inkywool Butterfly Art",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "jandsjewellery",
+    "seller_name": "J&S Jewellery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "jacksposters",
+    "seller_name": "Jack's Posters",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "jamielondon",
+    "seller_name": "Jamie London",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "janekatherinehoughtondesigns",
+    "seller_name": "Jane Katherine Houghton Designs",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "jgartwork",
+    "seller_name": "Jodie Gaul",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "kflossandpop",
+    "seller_name": "K Floss and Pop",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "kabinshop",
+    "seller_name": "Kabinshop",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "kabloom",
+    "seller_name": "Kabloom",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "karinakesson",
+    "seller_name": "Karin Åkesson Design",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "katecharltonceramics",
+    "seller_name": "Kate Charlton Ceramics",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "katemoby",
+    "seller_name": "Kate Moby",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "kindpetals",
+    "seller_name": "Kindpetals",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "klevercase",
+    "seller_name": "KleverCase",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "landmbespokedesigns",
+    "seller_name": "L&M Bespoke Designs",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "letterboxsweets",
+    "seller_name": "LETTERBOX SWEETS",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "lauracrow",
+    "seller_name": "Laura Crow",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "letsmakeanddo",
+    "seller_name": "Let's Make & Do",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "liachahlalondon",
+    "seller_name": "Lia Chahla London",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "littlecherubdesign",
+    "seller_name": "Little Cherub Design",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "littlefoundry",
+    "seller_name": "Little Foundry",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "littlefoxglove",
+    "seller_name": "Little Foxglove",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "littleoftenandalways",
+    "seller_name": "Little Often and Always",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "littleonesletterbox",
+    "seller_name": "Little Ones Letterbox",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "littlesilverleaf",
+    "seller_name": "Little Silverleaf",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "littlesparklesboutique",
+    "seller_name": "Little sparkles boutique",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thelondongardentradingco",
+    "seller_name": "London Garden Trading",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "lovinglyhandmadecrochet",
+    "seller_name": "Lovingly Handmade Crochet",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "lucianleathergoods",
+    "seller_name": "Lucianleathergoods",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "lucylilybet",
+    "seller_name": "Lucy Lilybet",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "mamajewels",
+    "seller_name": "MJ Artisan Gift Co",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "madeyours",
+    "seller_name": "Made Yours",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "maggiesneedle",
+    "seller_name": "Maggie's Studio",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "collardmanson",
+    "seller_name": "Maitri",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "makemesomethingspecial",
+    "seller_name": "Make Me Something Special",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "marcopaul",
+    "seller_name": "Marco Paul",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "marquisanddawe",
+    "seller_name": "Marquis & Dawe",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "mayahjewellery",
+    "seller_name": "MayaH Jewellery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "mhohoandco",
+    "seller_name": "Mhoho and Co",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "hotwax",
+    "seller_name": "Mischief Candles",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "missshellydesigns",
+    "seller_name": "Miss Shelly Designs",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "mochimart",
+    "seller_name": "Mochi Mart",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "mollymae",
+    "seller_name": "Molly Mae®",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "monbijouxjewellery",
+    "seller_name": "Mon Bijoux Jewellery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "monstersportinggifts",
+    "seller_name": "Monster Sporting Gifts",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "moonshineprints",
+    "seller_name": "Moonshine Prints",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "mummymakesfudge",
+    "seller_name": "Mummy Makes Fudge",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "munchkincreative",
+    "seller_name": "Munchkin Creative",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "naturalgiftstore",
+    "seller_name": "Natural Gift Store",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "nest",
+    "seller_name": "Nest Gifts",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "neutrumbearltd",
+    "seller_name": "Neutrum Bear Ltd",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "notajewellerybox",
+    "seller_name": "Not a Jewellery Box",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "olivindesigns",
+    "seller_name": "Olivin Designs",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "onnanokojewellery",
+    "seller_name": "Onnanoko Jewellery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "paperandinc",
+    "seller_name": "Paper and Inc",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "parkerandco",
+    "seller_name": "Parker & Co.",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "pawprintfamily",
+    "seller_name": "Pawprint Family",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "personalisationboutique",
+    "seller_name": "Personalisation Boutique",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "personalisedbee",
+    "seller_name": "Personalised Bee",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "personalisedbottlelabels",
+    "seller_name": "Personalisedbottlelabels",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "pinkbiscuits",
+    "seller_name": "Pink Biscuits",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "pinkpositive",
+    "seller_name": "Pink Positive",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "griffinandsinclair",
+    "seller_name": "Pintail studios",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "placesandspacesartco",
+    "seller_name": "Places & Spaces Art Co.",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "plumandivory",
+    "seller_name": "Plum & Ivory",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "popsanddudes",
+    "seller_name": "Pops and Dudes",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "poshtottydesignsinteriors",
+    "seller_name": "Posh Totty Designs Interiors",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "prettylittlepresents",
+    "seller_name": "Pretty Little Presents",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "printedwoodphoto",
+    "seller_name": "Printedwoodphoto",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "chadpowellphotography",
+    "seller_name": "Printing Powell",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "warmpixie",
+    "seller_name": "Pro Yarn Studio",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "propergoose",
+    "seller_name": "Proper Goose",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "putanameonitltd",
+    "seller_name": "Put A Name On It",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "puzzlepostuk",
+    "seller_name": "Puzzle Post UK",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "queenbeewishes",
+    "seller_name": "Queen Bee Wishes",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "rappu",
+    "seller_name": "RAPPU Reusable Cards & Bags",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "rdhouseofchocolate",
+    "seller_name": "RD House of Chocolate",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "redberryapple",
+    "seller_name": "Red Berry Apple",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "richlittlethings",
+    "seller_name": "Rich Little Things",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "marrymepaperboutique",
+    "seller_name": "Rinky Doodle",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "rosiewillettdesigns",
+    "seller_name": "Rosie Willett Designs",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "rubyandrafe",
+    "seller_name": "Ruby & Rafe",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "shareasmilegifts",
+    "seller_name": "SHARE A SMILE GIFTS",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "saabunsoap",
+    "seller_name": "Saabuni",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "meslin",
+    "seller_name": "Saff & Sass",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "sarahhickeyjewellery",
+    "seller_name": "Sarah Hickey",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "scillarose",
+    "seller_name": "Scilla Rose",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "sculptaceramics",
+    "seller_name": "Sculpta Ceramics",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "simonseabright",
+    "seller_name": "Seabright Designs",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "seagirlandmagpie",
+    "seller_name": "Seagirl and Magpie",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "bysamjewellery",
+    "seller_name": "Sending Love",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "sevenandsixgifts",
+    "seller_name": "Seven and Six Gifts",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "shellseekersjewellery",
+    "seller_name": "Shell Seekers Jewellery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "signaturemomentsuk",
+    "seller_name": "Signature Moments UK",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "silkandbears",
+    "seller_name": "Silk and Bears",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "sistir",
+    "seller_name": "Sistir",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "sosilver",
+    "seller_name": "So Silver",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "sparkmorejoy",
+    "seller_name": "Spark More Joy",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thecolourfulaura",
+    "seller_name": "Sparkling Aura",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "spicecartel",
+    "seller_name": "Spice Cartel",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "spottynstripy",
+    "seller_name": "Spotty N Stripy",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "sprinkledwithmagic",
+    "seller_name": "Sprinkled with Magic",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "stabo",
+    "seller_name": "Stabo",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "statesidetreatemporium",
+    "seller_name": "Stateside Treat Emporium",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "stickyartuk",
+    "seller_name": "Sticky Art UK",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "strikingimage",
+    "seller_name": "Striking Image",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "studio9",
+    "seller_name": "Studio 9 Ltd",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "swankycrafts",
+    "seller_name": "Swanky Crafts",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "sweetpeadesign",
+    "seller_name": "Sweet Pea Design",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "tediworkshop",
+    "seller_name": "TeDi Workshop",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "teaonesugar",
+    "seller_name": "Tea One Sugar",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thebiskery",
+    "seller_name": "The Biskery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "2littleboys",
+    "seller_name": "The Chiswick Gift Company",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thedeadseaco",
+    "seller_name": "The Dead Sea Co.",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thedepartmentofgifting",
+    "seller_name": "The Department Of Gifting",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thegiftingteam",
+    "seller_name": "The Gifting Team",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thehandmadesigncompany",
+    "seller_name": "The Handmade Sign Company",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thelampshadejungle",
+    "seller_name": "The Lampshade Jungle",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "poshpawspettags",
+    "seller_name": "The Little Engraving Company",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thelittlepinco",
+    "seller_name": "The Little Pin Co.",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thelittlesigncompany",
+    "seller_name": "The Little Sign Company",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "themakearcade",
+    "seller_name": "The Make Arcade",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "themetalfoundry",
+    "seller_name": "The Metal Foundry",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "theneweden",
+    "seller_name": "The New Eden",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "theorchard",
+    "seller_name": "The Orchard",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "theoriginalcakecompany",
+    "seller_name": "The Original Cake Company",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "therealcure",
+    "seller_name": "The Real Cure",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "theseamstressofbloomsbury",
+    "seller_name": "The Seamstress of Bloomsbury",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "theslabb",
+    "seller_name": "The Slabb",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thetypecastgallery",
+    "seller_name": "The Typecast Gallery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "theweddingofmydreams",
+    "seller_name": "The Wedding of my Dreams",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thewrappingpapershop",
+    "seller_name": "The Wrapping Paper Shop",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thoughtfulkeepsakeco",
+    "seller_name": "Thoughtful Keepsake Co",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "tiedwithtwine",
+    "seller_name": "Tied with twine",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "tigerlilyjewellery",
+    "seller_name": "TigerLily Jewellery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "tikauo",
+    "seller_name": "Tikauo",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "tilliemintloves",
+    "seller_name": "Tillie Mint Loves",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "treehousejewellery",
+    "seller_name": "Treehouse Jewellery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "trouvailleglobal",
+    "seller_name": "Trouvaille Global",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "tulastrastudio",
+    "seller_name": "Tulastra Studio",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "tuppenceandcrumble",
+    "seller_name": "Tuppence and Crumble",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "unitedoddsocks",
+    "seller_name": "Unitedoddsocks",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "velea",
+    "seller_name": "Velea",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "veryberyl",
+    "seller_name": "Very Beryl",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "vinylvillage",
+    "seller_name": "Vinyl Village",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "walnuttreegifts",
+    "seller_name": "Walnut Tree Gifts",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "whiteraindesigns",
+    "seller_name": "White Rain Designs",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "willowcottageflowers",
+    "seller_name": "Willow Cottage Flowers",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "willsow",
+    "seller_name": "Willsow",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "wonderlandboutique",
+    "seller_name": "Wonderland Boutique",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "wuddl",
+    "seller_name": "Wuddl",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "wue",
+    "seller_name": "Wue",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "littleyorkshirepaperco",
+    "seller_name": "Wylde Paperie",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "xissjewellery",
+    "seller_name": "XISSJEWELLERY",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "xanderkostroma",
+    "seller_name": "Xander Kostroma",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "yasamiin",
+    "seller_name": "Yasamiin",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "yugenbonsai",
+    "seller_name": "Yugen Bonsai",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "zamsoe",
+    "seller_name": "Zamsoe",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "aringaday",
+    "seller_name": "a ring a day",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "birdyhome",
+    "seller_name": "birdyhome",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "buttongirldesigns",
+    "seller_name": "buttongirl designs",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "ditsychic",
+    "seller_name": "ditsy chic",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "paperfiction",
+    "seller_name": "geekinesis",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "gingerrose",
+    "seller_name": "ginger rose",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "horsfallwright",
+    "seller_name": "horsfall & wright",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thespicery",
+    "seller_name": "the spicery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "thenorthernsilverco",
+    "seller_name": "thenorthernsilverco.",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  }
+]
