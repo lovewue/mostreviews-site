@@ -163,14 +163,31 @@ def coerce_int(*values, default=0):
 def normalise_text(value) -> str:
     if value is None:
         return ""
+
+    # handle pandas NaN / float NaN
+    if isinstance(value, float):
+        try:
+            import math
+            if math.isnan(value):
+                return ""
+        except Exception:
+            pass
+
     if isinstance(value, str):
-        return value.strip()
-    if isinstance(value, (int, float, bool)):
+        value = value.strip()
+        if value.lower() in {"nan", "none", "null"}:
+            return ""
+        return value
+
+    if isinstance(value, (int, bool)):
         return str(value)
+
     if isinstance(value, list):
         return ", ".join(normalise_text(v) for v in value if normalise_text(v))
+
     if isinstance(value, dict):
         return ", ".join(normalise_text(v) for v in value.values() if normalise_text(v))
+
     return str(value).strip()
 
 
