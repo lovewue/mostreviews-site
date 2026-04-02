@@ -4,6 +4,7 @@ NOTHS Brands Builder (CSV-first, resumable)
 Outputs:
 - data/working/brands_working.csv
 - data/published/brands.csv
+- data/published/brands.json
 - data/archive/brands/brands_YYYY-MM-DD.csv
 
 Inputs:
@@ -27,7 +28,7 @@ import shutil
 import datetime
 import threading
 from pathlib import Path
-from urllib.parse import urlparse, urljoin
+from urllib.parse import urlparse, urljoin, quote
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import pandas as pd
@@ -51,12 +52,13 @@ LEGACY_PARTNERS_JSON = SOURCE_DIR / "partners.json"  # optional
 
 WORKING_CSV = WORKING_DIR / "brands_working.csv"
 PUBLISHED_CSV = PUBLISHED_DIR / "brands.csv"
+PUBLISHED_JSON = PUBLISHED_DIR / "brands.json"
 
 BASE = "https://www.notonthehighstreet.com"
 
 RUN_MODE = "update"   # "passA" | "passB" | "update"
 PASSA_LIMIT = None    # None = all
-PASSB_LIMIT = None     # None = all (not recommended)
+PASSB_LIMIT = None    # None = all (not recommended)
 
 MAX_WORKERS_PASSA = 2
 MAX_WORKERS_PASSB = 1
@@ -446,6 +448,80 @@ def write_working(rows: dict):
     tmp.replace(WORKING_CSV)
 
 # =========================
+# JSON publisher
+# =========================
+def clean_str(v):
+    if v is None:
+        return ""
+    s = str(v).strip()
+    return "" if s.lower() == "nan" else s
+
+def to_int(v):
+    try:
+        return int(float(str(v).strip() or "0"))
+    except:
+        return 0
+
+def to_bool(v):
+    return str(v).strip().lower() in ("true", "1", "yes", "y")
+
+def build_affiliate_url(brand_url: str, clickref: str = "TrendList") -> str:
+    encoded_destination = quote(brand_url, safe="")
+    return (
+        "https://www.awin1.com/cread.php?"
+        f"awinmid=18484&awinaffid=1018637&clickref={clickref}&ued={encoded_destination}"
+    )
+
+def build_published_json_from_df(df: pd.DataFrame):
+    records = []
+
+    for _, r in df.iterrows():
+        slug = clean_str(r.get("slug", "")).lower()
+        if not slug:
+            continue
+
+        name = clean_str(r.get("name", "")) or slug
+        brand_url = f"{BASE}/partners/{slug}"
+        products_url = f"{BASE}/partners/{slug}/products"
+
+        years_on_noths = to_int(r.get("years_on_noths", 0))
+        months_on_noths = to_int(r.get("months_on_noths", 0))
+
+        record = {
+            "slug": slug,
+            "canonical_slug": slug,
+            "aliases": [],
+            "name": name,
+            "active": to_bool(r.get("active", False)),
+            "urls": {
+                "brand": brand_url,
+                "products": products_url,
+                "affiliate": build_affiliate_url(brand_url, clickref="TrendList"),
+            },
+            "stats": {
+                "product_count": to_int(r.get("product_count", 0)),
+                "brand_review_count": to_int(r.get("brand_review_count", 0)),
+                "brand_reviews_available": to_bool(r.get("brand_reviews_available", True)),
+                "order_volume_label": clean_str(r.get("order_volume_label", "")),
+                "order_volume_numeric": to_int(r.get("order_volume_numeric", 0)),
+                "order_volume_tier": clean_str(r.get("order_volume_tier", "")),
+                "years_on_noths": years_on_noths,
+                "months_on_noths": months_on_noths,
+                "tenure_label": clean_str(r.get("tenure_label", "")),
+            },
+            "location": {
+                "display": clean_str(r.get("location", "")),
+            },
+            "meta": {
+                "returns_address_full": clean_str(r.get("returns_address_full", "")),
+            }
+        }
+
+        records.append(record)
+
+    return records
+
+# =========================
 # Pass A / Pass B processors
 # =========================
 def do_passA(slug: str, row: dict):
@@ -629,11 +705,17 @@ def main():
     df = df.drop(columns=["active_sort", "order_volume_numeric_sort"], errors="ignore")
 
     df.to_csv(PUBLISHED_CSV, index=False)
+
+    published_json = build_published_json_from_df(df)
+    with open(PUBLISHED_JSON, "w", encoding="utf-8") as f:
+        json.dump(published_json, f, indent=2, ensure_ascii=False)
+
     archive_path = ARCHIVE_DIR / f"brands_{today_stamp()}.csv"
     shutil.copy2(PUBLISHED_CSV, archive_path)
 
     print(f"\n✅ Working checkpoint → {WORKING_CSV}")
     print(f"✅ Published CSV → {PUBLISHED_CSV}")
+    print(f"✅ Published JSON → {PUBLISHED_JSON}")
     print(f"🗄 Archive → {archive_path}")
 
 if __name__ == "__main__":
