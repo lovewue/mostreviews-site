@@ -17,37 +17,19 @@ from selenium.webdriver.support.ui import WebDriverWait
 # -----------------------------------------------------------------------------
 # Project paths
 # -----------------------------------------------------------------------------
-# This makes the script work no matter where it is run from.
-# Assumes this file lives in:
-#   mostreviews-site/scripts/recover_cache_feefo_selenium.py
-# -----------------------------------------------------------------------------
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
 
 DATA_DIR = PROJECT_ROOT / "data"
 CACHE_FILE = DATA_DIR / "cache" / "products_cache.json"
 PARTNERS_JSON = PROJECT_ROOT / "partners_search.json"  # optional helper file
+MONTHLY_ROOT = DATA_DIR / "monthly"
+MONTHLY_INDEX_FILE = MONTHLY_ROOT / "index.json"
 
 
 # -----------------------------------------------------------------------------
 # Configuration
 # -----------------------------------------------------------------------------
-# This script:
-# 1. Loads data/cache/products_cache.json
-# 2. Finds cache rows where name is missing / null
-# 3. Opens the Feefo SKU page in Selenium
-# 4. Extracts:
-#       - product title
-#       - NOTHS product URL
-#       - seller slug from that URL
-# 5. Updates the cache and saves progress periodically
-#
-# Notes:
-# - This is intended as a repair script, not part of the main fast pipeline
-# - It only targets unresolved products
-# - It keeps historical product URLs / slugs even if the product is no longer live
-# -----------------------------------------------------------------------------
-
 FEEFO_PRODUCT_URL = (
     "https://www.feefo.com/en-US/reviews/notonthehighstreet-com/products/*"
     "?sku={sku}&displayFeedbackType=PRODUCT&timeFrame=ALL"
@@ -56,7 +38,7 @@ FEEFO_PRODUCT_URL = (
 MAX_TO_PROCESS = None          # e.g. 20 for testing, or None for all
 SAVE_EVERY = 10
 PAGE_WAIT_SECONDS = 15
-HEADLESS = False              # set True once you're happy with the run
+HEADLESS = False
 MIN_SLEEP = 1.0
 MAX_SLEEP = 2.0
 
@@ -68,12 +50,10 @@ CHROMEDRIVER_PATH = None
 # General helpers
 # -----------------------------------------------------------------------------
 def now_iso() -> str:
-    """Return the current UTC timestamp in ISO format."""
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
 def clean_sku(raw) -> str:
-    """Normalise product codes into a clean string SKU."""
     try:
         return str(int(float(raw))).strip()
     except Exception:
@@ -81,15 +61,13 @@ def clean_sku(raw) -> str:
 
 
 def clean_text(value: str | None) -> str | None:
-    """Normalise whitespace in text."""
     if value is None:
         return None
-    value = re.sub(r"\s+", " ", value).strip()
+    value = re.sub(r"\s+", " ", str(value)).strip()
     return value or None
 
 
 def clean_url(url: str | None) -> str | None:
-    """Normalise URLs and reject obvious junk values."""
     if not url:
         return None
     url = str(url).strip()
@@ -99,10 +77,6 @@ def clean_url(url: str | None) -> str | None:
 
 
 def parse_seller_slug_from_product_url(url: str | None) -> str | None:
-    """
-    Extract seller slug from URLs like:
-    https://www.notonthehighstreet.com/liviandbelle/product/extra-large-personalised-snowy-wreath
-    """
     url = clean_url(url)
     if not url:
         return None
@@ -118,17 +92,24 @@ def parse_seller_slug_from_product_url(url: str | None) -> str | None:
     return None
 
 
-def normalise_placeholder(value):
-    """
-    Convert legacy placeholder values into None.
-    """
-    if isinstance(value, str) and value.strip().lower() in {
-        "not found",
-        "unknown",
-        "unknown seller",
-        "error",
+def is_placeholder(value) -> bool:
+    if value is None:
+        return True
+    s = str(value).strip().lower()
+    return s in {
         "",
-    }:
+        "unknown",
+        "unknown brand",
+        "unknown seller",
+        "not found",
+        "error",
+        "none",
+        "null",
+    }
+
+
+def normalise_placeholder(value):
+    if is_placeholder(value):
         return None
     return value
 
@@ -137,15 +118,6 @@ def normalise_placeholder(value):
 # Optional seller name lookup
 # -----------------------------------------------------------------------------
 def load_partner_lookup() -> dict:
-    """
-    Load an optional partner slug -> seller name lookup.
-
-    Expected structure:
-        [
-          {"slug": "wue", "name": "Wue"},
-          ...
-        ]
-    """
     if PARTNERS_JSON.exists():
         try:
             with open(PARTNERS_JSON, "r", encoding="utf-8") as f:
@@ -171,14 +143,6 @@ seller_name_cache = {}
 
 
 def get_seller_name(slug: str | None, fallback: str | None = None) -> str | None:
-    """
-    Resolve a seller name from slug.
-
-    Priority:
-    1. in-memory cache
-    2. partners_search.json lookup
-    3. title-cased slug fallback
-    """
     if not slug:
         return fallback
 
@@ -198,7 +162,6 @@ def get_seller_name(slug: str | None, fallback: str | None = None) -> str | None
 # Cache I/O
 # -----------------------------------------------------------------------------
 def load_cache() -> dict:
-    """Load the product cache into a dict keyed by SKU."""
     if CACHE_FILE.exists():
         with open(CACHE_FILE, "r", encoding="utf-8") as f:
             items = json.load(f)
@@ -219,7 +182,6 @@ def load_cache() -> dict:
 
 
 def save_cache(cache_by_sku: dict) -> None:
-    """Save the cache back to disk in a stable order."""
     CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
 
     items = list(cache_by_sku.values())
@@ -230,10 +192,63 @@ def save_cache(cache_by_sku: dict) -> None:
 
 
 # -----------------------------------------------------------------------------
+# Monthly helpers
+# -----------------------------------------------------------------------------
+def load_json(path: Path):
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_latest_month_skus() -> tuple[str | None, list[str]]:
+    if not MONTHLY_INDEX_FILE.exists():
+        print(f"⚠️ Monthly index not found: {MONTHLY_INDEX_FILE}")
+        return None, []
+
+    try:
+        index_data = load_json(MONTHLY_INDEX_FILE)
+        months = index_data.get("months", [])
+        if not months:
+            print("⚠️ No months found in monthly index")
+            return None, []
+
+        latest_entry = sorted(
+            [m for m in months if isinstance(m, dict) and m.get("month")],
+            key=lambda x: x["month"],
+            reverse=True,
+        )[0]
+
+        latest_month = latest_entry["month"]
+
+        json_file = latest_entry.get("json_file")
+        if json_file:
+            month_file = Path(json_file)
+            if not month_file.is_absolute():
+                month_file = PROJECT_ROOT / month_file
+        else:
+            month_file = MONTHLY_ROOT / latest_month / "top_products.json"
+
+        if not month_file.exists():
+            print(f"⚠️ Latest month file not found: {month_file}")
+            return latest_month, []
+
+        month_data = load_json(month_file)
+        skus = []
+        for item in month_data.get("items", []):
+            sku = clean_sku(item.get("sku", ""))
+            if sku:
+                skus.append(sku)
+
+        return latest_month, sorted(set(skus))
+
+    except Exception as e:
+        print(f"⚠️ Could not load latest month SKUs: {e}")
+        return None, []
+
+
+# -----------------------------------------------------------------------------
 # Selenium setup
 # -----------------------------------------------------------------------------
 def make_driver() -> webdriver.Chrome:
-    """Create and return a Chrome Selenium driver."""
     chrome_options = Options()
 
     if HEADLESS:
@@ -260,9 +275,6 @@ def make_driver() -> webdriver.Chrome:
 # Page helpers
 # -----------------------------------------------------------------------------
 def wait_for_feefo_page(driver: webdriver.Chrome) -> None:
-    """
-    Wait for the Feefo page to load enough that we can extract content.
-    """
     wait = WebDriverWait(driver, PAGE_WAIT_SECONDS)
 
     wait.until(lambda d: d.execute_script("return document.readyState") == "complete")
@@ -275,9 +287,6 @@ def wait_for_feefo_page(driver: webdriver.Chrome) -> None:
 
 
 def dismiss_cookie_or_popup_if_present(driver: webdriver.Chrome) -> None:
-    """
-    Try a few generic popup / cookie button patterns without failing the run.
-    """
     candidate_xpaths = [
         "//button[contains(., 'Accept')]",
         "//button[contains(., 'I Accept')]",
@@ -298,15 +307,6 @@ def dismiss_cookie_or_popup_if_present(driver: webdriver.Chrome) -> None:
 
 
 def get_feefo_data_selenium(driver: webdriver.Chrome, sku: str) -> dict:
-    """
-    Recover product metadata from Feefo using Selenium.
-
-    Strategy:
-    - open the Feefo SKU page
-    - read the product title from <h1>
-    - find any NOTHS link containing /product/
-    - parse seller slug from that URL
-    """
     url = FEEFO_PRODUCT_URL.format(sku=sku)
 
     try:
@@ -318,16 +318,10 @@ def get_feefo_data_selenium(driver: webdriver.Chrome, sku: str) -> dict:
         product_url = None
         seller_slug = None
 
-        # ---------------------------------------------------------------------
-        # Product title from <h1>
-        # ---------------------------------------------------------------------
         h1_elements = driver.find_elements(By.TAG_NAME, "h1")
         if h1_elements:
             product_name = clean_text(h1_elements[0].text)
 
-        # ---------------------------------------------------------------------
-        # Find any NOTHS product link
-        # ---------------------------------------------------------------------
         anchors = driver.find_elements(By.TAG_NAME, "a")
         for a in anchors:
             href = clean_url(a.get_attribute("href"))
@@ -373,9 +367,6 @@ def get_feefo_data_selenium(driver: webdriver.Chrome, sku: str) -> dict:
 
 
 def is_product_live_selenium(driver: webdriver.Chrome, url: str | None) -> bool:
-    """
-    Check whether a NOTHS product URL still resolves to a live product page.
-    """
     url = clean_url(url)
     if not url:
         return False
@@ -397,10 +388,6 @@ def is_product_live_selenium(driver: webdriver.Chrome, url: str | None) -> bool:
 # Merge logic
 # -----------------------------------------------------------------------------
 def merge_with_existing(existing: dict | None, fresh: dict) -> dict:
-    """
-    Merge fresh metadata into any existing cache record without wiping out
-    good historical fields unnecessarily.
-    """
     existing = existing or {}
     existing = {k: normalise_placeholder(v) for k, v in existing.items()}
 
@@ -426,16 +413,24 @@ def merge_with_existing(existing: dict | None, fresh: dict) -> dict:
 
 
 # -----------------------------------------------------------------------------
-# Main recovery logic
+# Recovery helpers
 # -----------------------------------------------------------------------------
+def record_needs_recovery(record: dict | None) -> bool:
+    if not record:
+        return True
+
+    return (
+        is_placeholder(record.get("name"))
+        or is_placeholder(record.get("seller_slug"))
+        or is_placeholder(record.get("seller_name"))
+    )
+
+
 def build_meta_with_selenium(
     driver: webdriver.Chrome,
     sku: str,
     existing: dict | None = None,
 ) -> dict:
-    """
-    Recover a cache record using Selenium on the Feefo page.
-    """
     existing = existing or {}
     previous_attempts = int(existing.get("lookup_attempts", 0) or 0)
 
@@ -473,7 +468,6 @@ def build_meta_with_selenium(
         }
         return merge_with_existing(existing, fresh)
 
-    # Still unresolved
     timestamp = now_iso()
     fresh = {
         "sku": sku,
@@ -487,34 +481,38 @@ def build_meta_with_selenium(
     return merge_with_existing(existing, fresh)
 
 
+# -----------------------------------------------------------------------------
+# Main
+# -----------------------------------------------------------------------------
 def main() -> None:
-    """
-    Main Selenium repair pass.
-    """
     print(f"Project root: {PROJECT_ROOT}")
     print(f"Cache file:   {CACHE_FILE}")
     print(f"Cache exists: {CACHE_FILE.exists()}")
     print()
 
     cache = load_cache()
+    latest_month, latest_month_skus = load_latest_month_skus()
 
-    to_process = [
+    print(f"📦 Cache SKUs:         {len(cache)}")
+    if latest_month:
+        print(f"🗂 Latest month:       {latest_month}")
+        print(f"🆕 Latest month SKUs:  {len(latest_month_skus)}")
+    print()
+
+    to_process = sorted(
         sku
-        for sku, record in cache.items()
-        if not record.get("name")
-    ]
-
-    to_process = sorted(to_process)
+        for sku in latest_month_skus
+        if record_needs_recovery(cache.get(sku))
+    )
 
     if MAX_TO_PROCESS:
         to_process = to_process[:MAX_TO_PROCESS]
 
-    print(f"📦 Cache SKUs:         {len(cache)}")
-    print(f"🔧 Unresolved SKUs:    {len(to_process)}")
+    print(f"🔧 SKUs to recover:    {len(to_process)}")
     print()
 
     if not to_process:
-        print("✅ No unresolved SKUs found.")
+        print("✅ No unresolved SKUs found for the latest month.")
         return
 
     driver = make_driver()
@@ -528,8 +526,8 @@ def main() -> None:
             print(
                 f"✅ {i}: cached {sku} – "
                 f"{meta.get('name') or '[no name]'} "
-                f"(status={meta.get('lookup_status')}, "
-                f"method={meta.get('lookup_method')}, "
+                f"(slug={meta.get('seller_slug') or '[none]'}, "
+                f"status={meta.get('lookup_status')}, "
                 f"avail={meta.get('available')})"
             )
 
