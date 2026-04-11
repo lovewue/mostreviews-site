@@ -579,7 +579,7 @@ def render_brand_pages(brands):
         cta = ""
         destination = str(brand.get("awin", brand.get("brand_url", "")) or "")
         if destination and not brand.get("inactive"):
-            cta = f'<p><a class="button" href="{destination}" target="_blank" rel="noopener sponsored">Visit {brand.get("name", "")}</a></p>'
+            cta = f'<p><a class="button" href="{destination}">Visit {brand.get("name", "")}</a></p>'
 
         inactive_note = "<p><em>* Brand no longer on NOTHS.</em></p>" if brand.get("inactive") else ""
 
@@ -720,7 +720,7 @@ def render_products(products, limit=None, show_last_month=False):
         display_name = name + ("*" if available is False else "")
 
         if awin_url and available:
-            name_html = f'<a href="{awin_url}" target="_blank" rel="noopener sponsored">{display_name}</a>'
+            name_html = f'<a href="{awin_url}">{display_name}</a>'
         else:
             name_html = display_name
 
@@ -830,7 +830,7 @@ def render_leaderboard_products(items, limit=100, last_month=False, link_only_if
         awin_url = build_awin_product_link(url, clickref="TrendListProduct")
 
         if should_link and awin_url:
-            name_html = f'<a href="{awin_url}" target="_blank" rel="noopener sponsored">{name}</a>'
+            name_html = f'<a href="{awin_url}">{name}</a>'
         else:
             name_html = name
 
@@ -1100,10 +1100,10 @@ The products with the highest recorded Feefo review counts over the last 12 mont
 
     print("✅ top-products-last-12-months rendered")
 
+
 # -----------------------------------------------------------------------------
 # About page rendering
-# -----------------------------------------------------------------------------    
-
+# -----------------------------------------------------------------------------
 def render_about():
     body = ABOUT_TEMPLATE
 
@@ -1111,6 +1111,7 @@ def render_about():
         "About The Trend List",
         body,
         "static",
+        "",
         "How The Trend List tracks trending products and brands on Not On The High Street."
     )
 
@@ -1118,10 +1119,10 @@ def render_about():
 
     print("✅ about page rendered")
 
+
 # -----------------------------------------------------------------------------
 # Sitemap rendering
 # -----------------------------------------------------------------------------
-
 def generate_sitemap(months, brands):
 
     base_url = "https://trendlist.co.uk"
@@ -1200,7 +1201,7 @@ def main():
         render_brands_top_100(brands)
         render_brand_pages(brands)
 
-    render_about()     
+    render_about()
 
     generate_sitemap(months, brands)
 
