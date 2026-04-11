@@ -255,6 +255,64 @@ ul {
 }
 
 /* ----------------------------------------------------
+Homepage promos (NOTHS)
+---------------------------------------------------- */
+
+.homepage-hero,
+.homepage-footer-promo {
+  display: block;
+  margin: 0 0 2rem;
+}
+
+.homepage-hero img,
+.homepage-footer-promo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+/* Featured product strip */
+
+.featured-products {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin: 1.5rem 0 3rem;
+}
+
+.featured-product {
+  display: block;
+}
+
+.featured-product img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform .15s ease;
+}
+
+.featured-product:hover img {
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+
+@media (max-width: 980px) {
+  .featured-products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .featured-products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ----------------------------------------------------
 Mobile
 ---------------------------------------------------- */
 
