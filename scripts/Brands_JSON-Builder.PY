@@ -5,7 +5,8 @@ Outputs:
 - data/working/brands_working.csv
 - data/published/brands.csv
 - data/published/brands.json
-- data/archive/brands/brands_YYYY-MM-DD.csv
+- data/archive/brands/brands_YYYY-MM-DD_HH-MM.csv
+- data/archive/brands/brands_YYYY-MM-DD_HH-MM.json
 
 Inputs:
 - data/source/unique_seller_slugs_latest.csv
@@ -47,7 +48,7 @@ PUBLISHED_DIR = PROJECT_ROOT / "data" / "published"
 ARCHIVE_DIR = PROJECT_ROOT / "data" / "archive" / "brands"
 
 UNIQUE_SLUGS_CSV = SOURCE_DIR / "unique_seller_slugs_latest.csv"
-ALL_PRODUCTS_CSV = SOURCE_DIR / "all_product_urls.csv"
+ALL_PRODUCTS_CSV = SOURCE_DIR / "data" / "source" / "all_product_urls.csv"
 LEGACY_PARTNERS_JSON = SOURCE_DIR / "partners.json"  # optional
 
 WORKING_CSV = WORKING_DIR / "brands_working.csv"
@@ -102,8 +103,11 @@ def normalize(url: str) -> str:
         url = "https://www.notonthehighstreet.com/" + url.split("notonthehighstreet.com/", 1)[1]
     return url
 
-def today_stamp():
+def today_date():
     return datetime.date.today().strftime("%Y-%m-%d")
+
+def archive_stamp():
+    return datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
 
 def fetch(url: str, jitter):
     """
@@ -392,7 +396,7 @@ def new_row(slug: str, sample_url: str):
         "location_blank_count": 0,
         "fail_count": 0,
         "last_error": "",
-        "last_updated": today_stamp(),
+        "last_updated": today_date(),
     }
 
 def load_working_csv() -> dict:
@@ -410,11 +414,15 @@ def load_working_csv() -> dict:
 
 def coerce_types(row: dict) -> dict:
     def to_int(v):
-        try: return int(str(v).strip() or "0")
-        except: return 0
+        try:
+            return int(str(v).strip() or "0")
+        except:
+            return 0
+
     def to_bool(v):
         s = str(v).strip().lower()
         return s in ("true", "1", "yes", "y")
+
     row["active"] = to_bool(row.get("active", False))
     row["product_count"] = to_int(row.get("product_count", 0))
     row["order_volume_numeric"] = to_int(row.get("order_volume_numeric", 0))
@@ -427,7 +435,7 @@ def coerce_types(row: dict) -> dict:
     row["location_blank_count"] = to_int(row.get("location_blank_count", 0))
     row["fail_count"] = to_int(row.get("fail_count", 0))
     row["brand_reviews_available"] = to_bool(row.get("brand_reviews_available", True))
-    row["last_updated"] = row.get("last_updated") or today_stamp()
+    row["last_updated"] = row.get("last_updated") or today_date()
     return row
 
 def write_working(rows: dict):
@@ -522,12 +530,28 @@ def build_published_json_from_df(df: pd.DataFrame):
     return records
 
 # =========================
+# Archive helpers
+# =========================
+def archive_existing_published_files():
+    stamp = archive_stamp()
+
+    if PUBLISHED_CSV.exists():
+        archive_csv = ARCHIVE_DIR / f"brands_{stamp}.csv"
+        shutil.copy2(PUBLISHED_CSV, archive_csv)
+        print(f"🗄 Archived previous CSV → {archive_csv}")
+
+    if PUBLISHED_JSON.exists():
+        archive_json = ARCHIVE_DIR / f"brands_{stamp}.json"
+        shutil.copy2(PUBLISHED_JSON, archive_json)
+        print(f"🗄 Archived previous JSON → {archive_json}")
+
+# =========================
 # Pass A / Pass B processors
 # =========================
 def do_passA(slug: str, row: dict):
     ok, status, html, note, final_url = fetch(f"{BASE}/partners/{slug}/products", JITTER_PASSA)
     row["passA_status"] = status
-    row["last_updated"] = today_stamp()
+    row["last_updated"] = today_date()
 
     if ok and html:
         name, product_count, orders_label, orders_num, tier, years, months, tenure_label = scrape_products_page(html)
@@ -549,7 +573,7 @@ def do_passA(slug: str, row: dict):
     return slug, row
 
 def do_passB(slug: str, row: dict):
-    row["last_updated"] = today_stamp()
+    row["last_updated"] = today_date()
 
     if int(row.get("product_count", 0) or 0) == 0:
         return slug, row
@@ -704,19 +728,21 @@ def main():
     df = df.sort_values(by=["active_sort", "order_volume_numeric_sort", "name"], ascending=[False, False, True])
     df = df.drop(columns=["active_sort", "order_volume_numeric_sort"], errors="ignore")
 
+    published_json = build_published_json_from_df(df)
+
+    # Archive current live files BEFORE overwrite
+    archive_existing_published_files()
+
+    # Save new published CSV
     df.to_csv(PUBLISHED_CSV, index=False)
 
-    published_json = build_published_json_from_df(df)
+    # Save new published JSON
     with open(PUBLISHED_JSON, "w", encoding="utf-8") as f:
         json.dump(published_json, f, indent=2, ensure_ascii=False)
-
-    archive_path = ARCHIVE_DIR / f"brands_{today_stamp()}.csv"
-    shutil.copy2(PUBLISHED_CSV, archive_path)
 
     print(f"\n✅ Working checkpoint → {WORKING_CSV}")
     print(f"✅ Published CSV → {PUBLISHED_CSV}")
     print(f"✅ Published JSON → {PUBLISHED_JSON}")
-    print(f"🗄 Archive → {archive_path}")
 
 if __name__ == "__main__":
     main()

@@ -22,8 +22,13 @@ SOURCE_DIR = os.path.join(DATA_DIR, "source")
 ARCHIVE_DIR = os.path.join(DATA_DIR, "archive")
 SLUGS_ARCHIVE_DIR = os.path.join(ARCHIVE_DIR, "slugs")
 PARTNERS_ARCHIVE_DIR = os.path.join(ARCHIVE_DIR, "partners")
+PRODUCTS_ARCHIVE_DIR = os.path.join(ARCHIVE_DIR, "products")
 
+# Main outputs
 OUTPUT_ALL_PRODUCTS = os.path.join(SOURCE_DIR, "all_product_urls.csv")
+OUTPUT_ALL_PRODUCTS_JSON = os.path.join(SOURCE_DIR, "all_products_from_sitemap.json")
+OUTPUT_ALL_PRODUCTS_XLSX = os.path.join(SOURCE_DIR, "all_products_from_sitemap.xlsx")
+
 OUTPUT_SLUGS_LATEST = os.path.join(SOURCE_DIR, "unique_seller_slugs_latest.csv")
 PARTNERS_FILE = os.path.join(SOURCE_DIR, "partners.json")
 
@@ -44,6 +49,17 @@ REQUEST_TIMEOUT = 15
 SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
 
+# ===== Regex =====
+SELLER_SLUG_RE = re.compile(
+    r"notonthehighstreet\.com/([^/]+)/product/",
+    re.IGNORECASE
+)
+
+PRODUCT_URL_RE = re.compile(
+    r"notonthehighstreet\.com/([^/]+)/product/([^/?#]+)",
+    re.IGNORECASE
+)
+
 
 # ===== Helpers =====
 def today_stamp():
@@ -56,6 +72,7 @@ def ensure_folders():
     os.makedirs(ARCHIVE_DIR, exist_ok=True)
     os.makedirs(SLUGS_ARCHIVE_DIR, exist_ok=True)
     os.makedirs(PARTNERS_ARCHIVE_DIR, exist_ok=True)
+    os.makedirs(PRODUCTS_ARCHIVE_DIR, exist_ok=True)
 
 
 def latest_stamp_from_files(folder: str):
@@ -128,11 +145,17 @@ def fetch_partner_name(slug: str, retries: int = RETRIES) -> tuple[str, bool]:
 
 
 def parse_sitemaps(folder: str):
+    """
+    Returns:
+      - all_urls: list[str]
+      - slugs: list[str]
+      - product_rows: list[dict]
+    """
     stamp = today_stamp()
 
     if not os.path.exists(folder):
         print(f"⚠️ Sitemap folder does not exist: {folder}")
-        return [], []
+        return [], [], []
 
     gz_files = [f for f in os.listdir(folder) if f.endswith(f"-{stamp}.xml.gz")]
 
@@ -140,14 +163,15 @@ def parse_sitemaps(folder: str):
         latest = latest_stamp_from_files(folder)
         if not latest:
             print("⚠️ No sitemap files available.")
-            return [], []
+            return [], [], []
         print(f"ℹ️ Using latest available sitemaps ({latest})")
         gz_files = [f for f in os.listdir(folder) if f.endswith(f"-{latest}.xml.gz")]
 
     all_urls = []
     slugs = []
+    product_rows = []
+
     ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
-    product_slug_re = re.compile(r"notonthehighstreet\.com/([^/]+)/product/", re.IGNORECASE)
 
     for fname in sorted(gz_files):
         path = os.path.join(folder, fname)
@@ -163,15 +187,40 @@ def parse_sitemaps(folder: str):
         locs = root.findall(".//sm:loc", ns) or root.findall(".//loc")
         for loc in locs:
             url = (loc.text or "").strip()
-            if "/product/" in url:
-                all_urls.append(url)
-                m = product_slug_re.search(url)
-                if m:
-                    slugs.append(m.group(1).strip().lower())
+            if "/product/" not in url:
+                continue
 
+            all_urls.append(url)
+
+            seller_match = SELLER_SLUG_RE.search(url)
+            if seller_match:
+                slugs.append(seller_match.group(1).strip().lower())
+
+            product_match = PRODUCT_URL_RE.search(url)
+            if product_match:
+                seller_slug = product_match.group(1).strip().lower()
+                product_slug = product_match.group(2).strip().lower()
+
+                product_rows.append({
+                    "product_url": url,
+                    "seller_slug": seller_slug,
+                    "product_slug": product_slug,
+                })
+
+    # dedupe while preserving order
     all_urls = list(dict.fromkeys(all_urls))
     slugs = list(dict.fromkeys(slugs))
-    return all_urls, slugs
+
+    deduped_products = []
+    seen_urls = set()
+    for row in product_rows:
+        url = row["product_url"]
+        if url in seen_urls:
+            continue
+        seen_urls.add(url)
+        deduped_products.append(row)
+
+    return all_urls, slugs, deduped_products
 
 
 def load_partners():
@@ -258,16 +307,71 @@ def update_partners(slugs):
         print("✅ No new partners to add")
 
 
+def save_products_outputs(all_urls, product_rows):
+    """
+    Writes:
+      - all_product_urls.csv (structured)
+      - all_products_from_sitemap.json
+      - all_products_from_sitemap.xlsx
+      - dated archive copies
+    """
+    if not product_rows:
+        print("⚠️ No product rows to save.")
+        return
+
+    df_products = pd.DataFrame(product_rows)
+
+    # keep column order stable
+    wanted_cols = ["product_url", "seller_slug", "product_slug"]
+    df_products = df_products[wanted_cols]
+
+    # main CSV
+    tmp_csv = OUTPUT_ALL_PRODUCTS + ".tmp"
+    df_products.to_csv(tmp_csv, index=False)
+    os.replace(tmp_csv, OUTPUT_ALL_PRODUCTS)
+    print(f"✅ Saved structured product list → {OUTPUT_ALL_PRODUCTS}")
+
+    # JSON
+    tmp_json = OUTPUT_ALL_PRODUCTS_JSON + ".tmp"
+    with open(tmp_json, "w", encoding="utf-8") as f:
+        json.dump(product_rows, f, indent=2, ensure_ascii=False)
+    os.replace(tmp_json, OUTPUT_ALL_PRODUCTS_JSON)
+    print(f"✅ Saved JSON → {OUTPUT_ALL_PRODUCTS_JSON}")
+
+    # XLSX
+    tmp_xlsx = OUTPUT_ALL_PRODUCTS_XLSX + ".tmp.xlsx"
+    df_products.to_excel(tmp_xlsx, index=False)
+    os.replace(tmp_xlsx, OUTPUT_ALL_PRODUCTS_XLSX)
+    print(f"✅ Saved XLSX → {OUTPUT_ALL_PRODUCTS_XLSX}")
+
+    # archive copies
+    stamp = today_stamp()
+    archive_csv = os.path.join(PRODUCTS_ARCHIVE_DIR, f"all_products_from_sitemap_{stamp}.csv")
+    archive_json = os.path.join(PRODUCTS_ARCHIVE_DIR, f"all_products_from_sitemap_{stamp}.json")
+    archive_xlsx = os.path.join(PRODUCTS_ARCHIVE_DIR, f"all_products_from_sitemap_{stamp}.xlsx")
+
+    df_products.to_csv(archive_csv, index=False)
+    with open(archive_json, "w", encoding="utf-8") as f:
+        json.dump(product_rows, f, indent=2, ensure_ascii=False)
+    df_products.to_excel(archive_xlsx, index=False)
+
+    print(f"🗄 Archived products CSV  → {archive_csv}")
+    print(f"🗄 Archived products JSON → {archive_json}")
+    print(f"🗄 Archived products XLSX → {archive_xlsx}")
+
+    print(f"ℹ️ Found {len(all_urls):,} product URLs")
+    print(f"ℹ️ Structured product rows: {len(df_products):,}")
+
+
 def main():
     ensure_folders()
 
-    urls, slugs = parse_sitemaps(SITEMAPS_DIR)
+    urls, slugs, product_rows = parse_sitemaps(SITEMAPS_DIR)
     if not urls:
         return
 
-    pd.DataFrame(urls, columns=["URL"]).to_csv(OUTPUT_ALL_PRODUCTS, index=False)
-    print(f"✅ Saved all product URLs → {OUTPUT_ALL_PRODUCTS}")
-    print(f"ℹ️ Found {len(urls):,} product URLs and {len(slugs):,} unique seller slugs")
+    save_products_outputs(urls, product_rows)
+    print(f"ℹ️ Found {len(slugs):,} unique seller slugs")
 
     if FETCH_NAMES_FOR_ALL_SLUGS:
         print("⚠️ FETCH_NAMES_FOR_ALL_SLUGS=True (this can take a long time)")
