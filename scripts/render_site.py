@@ -131,12 +131,29 @@ def get_month_dirs():
     return months
 
 
-def top_n_with_ties(products, limit, value_key):
-    if not limit or len(products) <= limit:
-        return products
+def clean_product_list(products):
+    if not products:
+        return []
+    return [p for p in products if isinstance(p, dict)]
 
-    cutoff_value = products[limit - 1].get(value_key) or 0
-    return [p for p in products if (p.get(value_key) or 0) >= cutoff_value]
+
+def top_n_with_ties(products, limit, value_key="reviews"):
+    clean_products = clean_product_list(products)
+
+    if not clean_products:
+        return []
+
+    clean_products = sorted(
+        clean_products,
+        key=lambda p: (p.get(value_key) or 0),
+        reverse=True
+    )
+
+    if len(clean_products) <= limit:
+        return clean_products
+
+    cutoff_value = clean_products[limit - 1].get(value_key) or 0
+    return [p for p in clean_products if (p.get(value_key) or 0) >= cutoff_value]
 
 
 def format_int(value) -> str:
@@ -195,33 +212,34 @@ def normalise_text(value) -> str:
 # Rank / review helpers
 # -----------------------------------------------------------------------------
 def add_dense_ranks(products, value_key):
+    clean_products = clean_product_list(products)
+
+    if not clean_products:
+        return []
+
     ranked = []
-
     prev_value = None
-    prev_rank = 0
+    current_rank = 0
 
-    for i, p in enumerate(products, start=1):
+    for p in clean_products:
         value = p.get(value_key) or 0
 
-        if value == prev_value:
-            rank = prev_rank
-        else:
-            rank = i
+        if value != prev_value:
+            current_rank += 1
+            prev_value = value
 
         item = dict(p)
-        item["rank"] = rank
+        item["rank"] = current_rank
         ranked.append(item)
-
-        prev_value = value
-        prev_rank = rank
 
     return ranked
 
 
 def build_review_lookup(products):
+    clean_products = clean_product_list(products)
     return {
         p["sku"]: (p.get("review_count_month") or 0)
-        for p in products
+        for p in clean_products
         if p.get("sku")
     }
 
@@ -362,7 +380,12 @@ def load_brands():
         active_raw = item.get("active")
         active = True if active_raw is None else bool(active_raw)
 
-        location = normalise_text(item.get("location", ""))
+        raw_location = item.get("location", "")
+        if isinstance(raw_location, dict):
+            location = normalise_text(raw_location.get("display", ""))
+        else:
+            location = normalise_text(raw_location)
+
         tenure_label = normalise_text(
             item.get("tenure_label")
             or stats.get("tenure_label")
@@ -380,7 +403,7 @@ def load_brands():
             or build_brand_url(slug)
         )
 
-        awin = build_awin_link(slug, clickref="TrendList")
+        awin = normalise_text(urls.get("affiliate") or build_awin_link(slug, clickref="TrendList"))
 
         inferred_inactive = (product_count == 0 and not location)
         inactive = (not active) or inferred_inactive
@@ -692,55 +715,60 @@ def render_leaderboard_stats(
 
 
 def render_products(products, limit=None, show_last_month=False):
+    products = clean_product_list(products)
+
     if limit:
         products = top_n_with_ties(products, limit, value_key="review_count_month")
 
-    if not products or "rank" not in products[0]:
-        products = add_dense_ranks(products, value_key="review_count_month")
+    if not products:
+        rows = []
+    else:
+        if "rank" not in products[0]:
+            products = add_dense_ranks(products, value_key="review_count_month")
 
-    rows = []
+        rows = []
 
-    for idx, p in enumerate(products):
-        rank_num = p.get("rank", "")
+        for idx, p in enumerate(products):
+            rank_num = p.get("rank", "")
 
-        same_as_prev = (
-            idx > 0 and
-            (p.get("review_count_month") or 0) == (products[idx - 1].get("review_count_month") or 0)
-        )
-        rank_display = f"{rank_num}=" if same_as_prev else str(rank_num)
-
-        name = p.get("name") or f"Product {p.get('sku')}"
-        seller = p.get("seller_name") or "Unknown brand"
-        reviews = p.get("review_count_month") or 0
-        url = p.get("product_url")
-        available = p.get("available", True)
-
-        awin_url = build_awin_product_link(url, clickref="TrendListProduct")
-
-        display_name = name + ("*" if available is False else "")
-
-        if awin_url and available:
-            name_html = f'<a href="{awin_url}">{display_name}</a>'
-        else:
-            name_html = display_name
-
-        last_month_cell = ""
-        if show_last_month:
-            previous_reviews = p.get("previous_reviews", 0)
-            movement_label = p.get("movement_label", "")
-            movement_class = p.get("movement_class", "")
-
-            previous_reviews_html = f"{previous_reviews:,}"
-
-            last_month_cell = (
-                f'<td class="last-month">'
-                f'{previous_reviews_html} '
-                f'<span class="rank-change {movement_class}">{movement_label}</span>'
-                f'</td>'
+            same_as_prev = (
+                idx > 0 and
+                (p.get("review_count_month") or 0) == (products[idx - 1].get("review_count_month") or 0)
             )
+            rank_display = f"{rank_num}=" if same_as_prev else str(rank_num)
 
-        rows.append(
-            f"""
+            name = p.get("name") or f"Product {p.get('sku')}"
+            seller = p.get("seller_name") or "Unknown brand"
+            reviews = p.get("review_count_month") or 0
+            url = p.get("product_url")
+            available = p.get("available", True)
+
+            awin_url = build_awin_product_link(url, clickref="TrendListProduct")
+
+            display_name = name + ("*" if available is False else "")
+
+            if awin_url and available:
+                name_html = f'<a href="{awin_url}">{display_name}</a>'
+            else:
+                name_html = display_name
+
+            last_month_cell = ""
+            if show_last_month:
+                previous_reviews = p.get("previous_reviews", 0)
+                movement_label = p.get("movement_label", "")
+                movement_class = p.get("movement_class", "")
+
+                previous_reviews_html = f"{previous_reviews:,}"
+
+                last_month_cell = (
+                    f'<td class="last-month">'
+                    f'{previous_reviews_html} '
+                    f'<span class="rank-change {movement_class}">{movement_label}</span>'
+                    f'</td>'
+                )
+
+            rows.append(
+                f"""
 <tr>
     <td class="rank">{rank_display}</td>
     <td>
@@ -751,7 +779,7 @@ def render_products(products, limit=None, show_last_month=False):
     {last_month_cell}
 </tr>
 """
-        )
+            )
 
     last_month_header = '<th class="last-month">Previous Month</th>' if show_last_month else ""
 
@@ -766,6 +794,7 @@ def render_products(products, limit=None, show_last_month=False):
     </tr>
     {''.join(rows)}
 </table>
+</div>
 """
 
 
@@ -799,49 +828,55 @@ def render_partners(partners, limit=10, brand_link_prefix="brands/"):
     </tr>
     {''.join(rows)}
 </table>
+</div>
 """
 
 
 def render_leaderboard_products(items, limit=100, last_month=False, link_only_if_available=False):
+    items = clean_product_list(items)
+
     if limit:
         items = top_n_with_ties(items, limit, value_key="reviews")
 
-    if not items or "rank" not in items[0]:
-        items = add_dense_ranks(items, value_key="reviews")
+    if not items:
+        rows = []
+    else:
+        if "rank" not in items[0]:
+            items = add_dense_ranks(items, value_key="reviews")
 
-    rows = []
+        rows = []
 
-    for idx, p in enumerate(items):
-        rank_num = p.get("rank", "")
+        for idx, p in enumerate(items):
+            rank_num = p.get("rank", "")
 
-        same_as_prev = (
-            idx > 0 and
-            (p.get("reviews") or 0) == (items[idx - 1].get("reviews") or 0)
-        )
-        rank_display = f"{rank_num}=" if same_as_prev else str(rank_num)
+            same_as_prev = (
+                idx > 0 and
+                (p.get("reviews") or 0) == (items[idx - 1].get("reviews") or 0)
+            )
+            rank_display = f"{rank_num}=" if same_as_prev else str(rank_num)
 
-        name = p.get("name") or f"Product {p.get('sku')}"
-        seller = p.get("seller_name") or "Unknown brand"
-        reviews = p.get("reviews") or 0
-        url = p.get("product_url")
-        available = p.get("available")
+            name = p.get("name") or f"Product {p.get('sku')}"
+            seller = p.get("seller_name") or "Unknown brand"
+            reviews = p.get("reviews") or 0
+            url = p.get("product_url")
+            available = p.get("available")
 
-        should_link = bool(url and available is True) if link_only_if_available else bool(url)
-        awin_url = build_awin_product_link(url, clickref="TrendListProduct")
+            should_link = bool(url and available is True) if link_only_if_available else bool(url)
+            awin_url = build_awin_product_link(url, clickref="TrendListProduct")
 
-        if should_link and awin_url:
-            name_html = f'<a href="{awin_url}">{name}</a>'
-        else:
-            name_html = name
+            if should_link and awin_url:
+                name_html = f'<a href="{awin_url}">{name}</a>'
+            else:
+                name_html = name
 
-        last_month_cell = ""
-        if last_month:
-            movement_label = p.get("movement_label", "")
-            movement_class = p.get("movement_class", "")
-            last_month_cell = f'<td class="last-month rank-change {movement_class}">{movement_label}</td>'
+            last_month_cell = ""
+            if last_month:
+                movement_label = p.get("movement_label", "")
+                movement_class = p.get("movement_class", "")
+                last_month_cell = f'<td class="last-month rank-change {movement_class}">{movement_label}</td>'
 
-        rows.append(
-            f"""
+            rows.append(
+                f"""
 <tr>
     <td class="rank">{rank_display}</td>
     <td>
@@ -852,7 +887,7 @@ def render_leaderboard_products(items, limit=100, last_month=False, link_only_if
     {last_month_cell}
 </tr>
 """
-        )
+            )
 
     last_month_header = "<th>Last Month</th>" if last_month else ""
 
@@ -1010,7 +1045,7 @@ def render_top_products_all_time():
         return
 
     data = load_json(leaderboard_file)
-    items = data.get("items", [])
+    items = clean_product_list(data.get("items", []))
 
     body = f"""
 <h1>Top 100 Products of All Time</h1>
@@ -1057,8 +1092,7 @@ def render_top_products_last_12_months(latest_month=None, previous_month=None):
         return
 
     data = load_json(leaderboard_file)
-    items = data.get("items", [])
-
+    items = clean_product_list(data.get("items", []))
     items = add_dense_ranks(items, value_key="reviews")
 
     title_suffix = f" – {format_month(latest_month)}" if latest_month else ""
@@ -1124,7 +1158,6 @@ def render_about():
 # Sitemap rendering
 # -----------------------------------------------------------------------------
 def generate_sitemap(months, brands):
-
     base_url = "https://trendlist.co.uk"
 
     urls = []
@@ -1136,6 +1169,7 @@ def generate_sitemap(months, brands):
     urls.append(f"{base_url}/top-100-brands.html")
     urls.append(f"{base_url}/brands.html")
     urls.append(f"{base_url}/archive.html")
+    urls.append(f"{base_url}/about.html")
 
     # Monthly pages
     for m in months:
@@ -1202,7 +1236,6 @@ def main():
         render_brand_pages(brands)
 
     render_about()
-
     generate_sitemap(months, brands)
 
     print()
