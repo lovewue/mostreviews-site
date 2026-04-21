@@ -57,7 +57,7 @@ PUBLISHED_JSON = PUBLISHED_DIR / "brands.json"
 
 BASE = "https://www.notonthehighstreet.com"
 
-RUN_MODE = "update"   # "passA" | "passB" | "update"
+RUN_MODE = "passB"   # "passA" | "passB" | "update"
 PASSA_LIMIT = None    # None = all
 PASSB_LIMIT = None    # None = all (not recommended)
 
