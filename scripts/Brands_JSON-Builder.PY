@@ -48,7 +48,7 @@ PUBLISHED_DIR = PROJECT_ROOT / "data" / "published"
 ARCHIVE_DIR = PROJECT_ROOT / "data" / "archive" / "brands"
 
 UNIQUE_SLUGS_CSV = SOURCE_DIR / "unique_seller_slugs_latest.csv"
-ALL_PRODUCTS_CSV = SOURCE_DIR / "data" / "source" / "all_product_urls.csv"
+ALL_PRODUCTS_CSV = SOURCE_DIR / "all_product_urls.csv"
 LEGACY_PARTNERS_JSON = SOURCE_DIR / "partners.json"  # optional
 
 WORKING_CSV = WORKING_DIR / "brands_working.csv"
@@ -58,8 +58,8 @@ PUBLISHED_JSON = PUBLISHED_DIR / "brands.json"
 BASE = "https://www.notonthehighstreet.com"
 
 RUN_MODE = "passB"   # "passA" | "passB" | "update"
-PASSA_LIMIT = None    # None = all
-PASSB_LIMIT = None    # None = all (not recommended)
+PASSA_LIMIT = None   # None = all
+PASSB_LIMIT = None   # None = all
 
 MAX_WORKERS_PASSA = 2
 MAX_WORKERS_PASSB = 1
@@ -76,6 +76,11 @@ CHECKPOINT_EVERY = 25
 MAX_REVIEWS_BLANK = 3
 MAX_LOCATION_BLANK = 2
 
+# In pure passB mode, refresh review/location even if values already exist.
+FORCE_PASSB_REFRESH = True
+
+DEBUG_PASSB = True
+
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; TrendListBot/1.0; +https://trendlist.co.uk/)",
     "Accept-Language": "en-GB,en;q=0.9",
@@ -88,12 +93,14 @@ ALLOWED_HOSTS = {"www.notonthehighstreet.com", "notonthehighstreet.com"}
 # =========================
 _thread_local = threading.local()
 
+
 def get_session():
     if not hasattr(_thread_local, "session"):
         s = requests.Session()
         s.headers.update(HEADERS)
         _thread_local.session = s
     return _thread_local.session
+
 
 def normalize(url: str) -> str:
     url = (url or "").strip()
@@ -103,11 +110,14 @@ def normalize(url: str) -> str:
         url = "https://www.notonthehighstreet.com/" + url.split("notonthehighstreet.com/", 1)[1]
     return url
 
+
 def today_date():
     return datetime.date.today().strftime("%Y-%m-%d")
 
+
 def archive_stamp():
     return datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
+
 
 def fetch(url: str, jitter):
     """
@@ -152,6 +162,7 @@ def fetch(url: str, jitter):
 
     return False, 0, None, "exhausted_retries", url
 
+
 # =========================
 # Parsing helpers
 # =========================
@@ -159,9 +170,11 @@ slug_from_url_re = re.compile(r"^https?://[^/]+/([^/]+)/product/")
 location_gb_re = re.compile(r"\b([A-Za-z0-9 .'\-]+,\s*GB)\b")
 returns_h2_re = re.compile(r"^\s*Returns\s*$", re.IGNORECASE)
 
+
 def extract_slug_from_url(url: str):
     m = slug_from_url_re.match((url or "").strip())
     return m.group(1).lower() if m else None
+
 
 def parse_order_volume(label: str) -> int:
     if not label:
@@ -179,22 +192,35 @@ def parse_order_volume(label: str) -> int:
         s = s[:-1]
     try:
         return int(float(s) * mult)
-    except:
+    except Exception:
         return 0
 
+
 def order_volume_tier(n: int) -> str:
-    if n >= 5_000_000: return "5M+"
-    if n >= 2_000_000: return "2M+"
-    if n >= 1_000_000: return "1M+"
-    if n >= 500_000:   return "500K+"
-    if n >= 250_000:   return "250K+"
-    if n >= 100_000:   return "100K+"
-    if n >= 50_000:    return "50K+"
-    if n >= 10_000:    return "10K+"
-    if n >= 1_000:     return "1K+"
-    if n >= 100:       return "100+"
-    if n >= 10:        return "10+"
+    if n >= 5_000_000:
+        return "5M+"
+    if n >= 2_000_000:
+        return "2M+"
+    if n >= 1_000_000:
+        return "1M+"
+    if n >= 500_000:
+        return "500K+"
+    if n >= 250_000:
+        return "250K+"
+    if n >= 100_000:
+        return "100K+"
+    if n >= 50_000:
+        return "50K+"
+    if n >= 10_000:
+        return "10K+"
+    if n >= 1_000:
+        return "1K+"
+    if n >= 100:
+        return "100+"
+    if n >= 10:
+        return "10+"
     return "<10"
+
 
 def scrape_orders_label_from_products_page(soup: BeautifulSoup) -> str:
     for li in soup.find_all("li"):
@@ -206,6 +232,7 @@ def scrape_orders_label_from_products_page(soup: BeautifulSoup) -> str:
             m = re.search(r"([0-9]+(?:\.[0-9]+)?[KMB]?\+?)", li_txt)
             return m.group(1).upper() if m else ""
     return ""
+
 
 def scrape_products_page(html: str):
     soup = BeautifulSoup(html, "html.parser")
@@ -239,6 +266,7 @@ def scrape_products_page(html: str):
 
     return name, product_count, orders_label, orders_num, tier, years, months, tenure_label
 
+
 def extract_brand_reviews_count(soup: BeautifulSoup) -> int:
     li = soup.find("li", attrs={"data-testid": re.compile(r"PartnerMiniModule-.*brand-rating", re.IGNORECASE)})
     if li:
@@ -257,6 +285,7 @@ def extract_brand_reviews_count(soup: BeautifulSoup) -> int:
         return int(m.group(1).replace(",", ""))
 
     return 0
+
 
 def extract_location_from_product_soup(soup: BeautifulSoup) -> str:
     for li in soup.find_all("li"):
@@ -280,15 +309,18 @@ def extract_location_from_product_soup(soup: BeautifulSoup) -> str:
 
     return ""
 
+
 def page_has_brand_reviews_text(html: str) -> bool:
     t = (html or "").lower()
     return ("brand reviews" in t) or ("brand review" in t)
+
 
 def scrape_product_page(html: str):
     soup = BeautifulSoup(html, "html.parser")
     loc = extract_location_from_product_soup(soup)
     reviews = extract_brand_reviews_count(soup)
     return loc, reviews
+
 
 def location_from_returns_address(addr: str) -> str:
     if not addr:
@@ -302,6 +334,7 @@ def location_from_returns_address(addr: str) -> str:
         return f"{town}, {country}"
     return parts[0].strip()
 
+
 def scrape_location_from_partner_page(html: str) -> tuple[str, str]:
     soup = BeautifulSoup(html, "html.parser")
     for h in soup.find_all(["h2", "h3"]):
@@ -311,6 +344,7 @@ def scrape_location_from_partner_page(html: str) -> tuple[str, str]:
                 full_addr = p.get_text(" ", strip=True)
                 return location_from_returns_address(full_addr), full_addr
     return "", ""
+
 
 # =========================
 # Load slug + sample URL maps
@@ -326,7 +360,8 @@ def load_master_slugs_and_product_map():
         col = "URL" if "URL" in df.columns else df.columns[0]
         for url in df[col].dropna().astype(str):
             slug = extract_slug_from_url(url)
-            if slug and slug not in prod_map:
+            if slug:
+                # Keep the latest URL seen, not the first one
                 prod_map[slug] = url.strip()
 
     legacy_slugs = []
@@ -344,6 +379,7 @@ def load_master_slugs_and_product_map():
 
     master = sorted(set(sitemap_slugs) | set(prod_map.keys()) | set(legacy_slugs))
     return master, prod_map
+
 
 # =========================
 # CSV store (resumable)
@@ -373,6 +409,7 @@ CSV_COLUMNS = [
     "last_updated",
 ]
 
+
 def new_row(slug: str, sample_url: str):
     return {
         "slug": slug,
@@ -399,6 +436,7 @@ def new_row(slug: str, sample_url: str):
         "last_updated": today_date(),
     }
 
+
 def load_working_csv() -> dict:
     if not WORKING_CSV.exists():
         return {}
@@ -412,31 +450,33 @@ def load_working_csv() -> dict:
         rows[slug] = row
     return rows
 
+
 def coerce_types(row: dict) -> dict:
-    def to_int(v):
+    def _to_int(v):
         try:
             return int(str(v).strip() or "0")
-        except:
+        except Exception:
             return 0
 
-    def to_bool(v):
+    def _to_bool(v):
         s = str(v).strip().lower()
         return s in ("true", "1", "yes", "y")
 
-    row["active"] = to_bool(row.get("active", False))
-    row["product_count"] = to_int(row.get("product_count", 0))
-    row["order_volume_numeric"] = to_int(row.get("order_volume_numeric", 0))
-    row["years_on_noths"] = to_int(row.get("years_on_noths", 0))
-    row["months_on_noths"] = to_int(row.get("months_on_noths", 0))
-    row["brand_review_count"] = to_int(row.get("brand_review_count", 0))
-    row["passA_status"] = to_int(row.get("passA_status", 0))
-    row["passB_status"] = to_int(row.get("passB_status", 0))
-    row["reviews_blank_count"] = to_int(row.get("reviews_blank_count", 0))
-    row["location_blank_count"] = to_int(row.get("location_blank_count", 0))
-    row["fail_count"] = to_int(row.get("fail_count", 0))
-    row["brand_reviews_available"] = to_bool(row.get("brand_reviews_available", True))
+    row["active"] = _to_bool(row.get("active", False))
+    row["product_count"] = _to_int(row.get("product_count", 0))
+    row["order_volume_numeric"] = _to_int(row.get("order_volume_numeric", 0))
+    row["years_on_noths"] = _to_int(row.get("years_on_noths", 0))
+    row["months_on_noths"] = _to_int(row.get("months_on_noths", 0))
+    row["brand_review_count"] = _to_int(row.get("brand_review_count", 0))
+    row["passA_status"] = _to_int(row.get("passA_status", 0))
+    row["passB_status"] = _to_int(row.get("passB_status", 0))
+    row["reviews_blank_count"] = _to_int(row.get("reviews_blank_count", 0))
+    row["location_blank_count"] = _to_int(row.get("location_blank_count", 0))
+    row["fail_count"] = _to_int(row.get("fail_count", 0))
+    row["brand_reviews_available"] = _to_bool(row.get("brand_reviews_available", True))
     row["last_updated"] = row.get("last_updated") or today_date()
     return row
+
 
 def write_working(rows: dict):
     WORKING_DIR.mkdir(parents=True, exist_ok=True)
@@ -455,6 +495,7 @@ def write_working(rows: dict):
             w.writerow(out)
     tmp.replace(WORKING_CSV)
 
+
 # =========================
 # JSON publisher
 # =========================
@@ -464,14 +505,17 @@ def clean_str(v):
     s = str(v).strip()
     return "" if s.lower() == "nan" else s
 
+
 def to_int(v):
     try:
         return int(float(str(v).strip() or "0"))
-    except:
+    except Exception:
         return 0
+
 
 def to_bool(v):
     return str(v).strip().lower() in ("true", "1", "yes", "y")
+
 
 def build_affiliate_url(brand_url: str, clickref: str = "TrendList") -> str:
     encoded_destination = quote(brand_url, safe="")
@@ -479,6 +523,7 @@ def build_affiliate_url(brand_url: str, clickref: str = "TrendList") -> str:
         "https://www.awin1.com/cread.php?"
         f"awinmid=18484&awinaffid=1018637&clickref={clickref}&ued={encoded_destination}"
     )
+
 
 def build_published_json_from_df(df: pd.DataFrame):
     records = []
@@ -529,6 +574,7 @@ def build_published_json_from_df(df: pd.DataFrame):
 
     return records
 
+
 # =========================
 # Archive helpers
 # =========================
@@ -544,6 +590,7 @@ def archive_existing_published_files():
         archive_json = ARCHIVE_DIR / f"brands_{stamp}.json"
         shutil.copy2(PUBLISHED_JSON, archive_json)
         print(f"🗄 Archived previous JSON → {archive_json}")
+
 
 # =========================
 # Pass A / Pass B processors
@@ -572,6 +619,7 @@ def do_passA(slug: str, row: dict):
 
     return slug, row
 
+
 def do_passB(slug: str, row: dict):
     row["last_updated"] = today_date()
 
@@ -593,11 +641,15 @@ def do_passB(slug: str, row: dict):
     if ok and html:
         loc, reviews = scrape_product_page(html)
 
+        if DEBUG_PASSB:
+            print(f"PASS B | {slug} | sample={sample} | reviews={reviews} | loc={loc}")
+
         if reviews:
             row["brand_review_count"] = reviews
             row["brand_reviews_available"] = True
             row["reviews_blank_count"] = 0
         else:
+            # Keep existing count if the page is unhelpful, but track blanks
             if not page_has_brand_reviews_text(html):
                 row["reviews_blank_count"] = int(row.get("reviews_blank_count", 0) or 0) + 1
                 if row["reviews_blank_count"] >= 2:
@@ -633,12 +685,18 @@ def do_passB(slug: str, row: dict):
 
     return slug, row
 
-def row_needs_passB(row: dict) -> bool:
+
+def row_needs_passB(row: dict, force_refresh: bool = False) -> bool:
     if int(row.get("product_count", 0) or 0) == 0:
         return False
 
+    if force_refresh:
+        return (row.get("sample_product_url", "") or "").strip() != ""
+
+    if not bool(row.get("brand_reviews_available", True)):
+        return False
+
     reviews_needed = (
-        bool(row.get("brand_reviews_available", True)) and
         int(row.get("brand_review_count", 0) or 0) == 0 and
         int(row.get("reviews_blank_count", 0) or 0) < MAX_REVIEWS_BLANK
     )
@@ -649,6 +707,7 @@ def row_needs_passB(row: dict) -> bool:
     )
 
     return reviews_needed or location_needed
+
 
 # =========================
 # Main
@@ -667,8 +726,10 @@ def main():
             rows[slug] = new_row(slug, prod_map.get(slug, ""))
         else:
             rows[slug] = coerce_types(rows[slug])
-            if prod_map.get(slug) and not (rows[slug].get("sample_product_url") or "").strip():
-                rows[slug]["sample_product_url"] = prod_map[slug]
+
+        # Always refresh sample product URL from latest source data if available
+        if prod_map.get(slug):
+            rows[slug]["sample_product_url"] = prod_map[slug]
 
     if RUN_MODE in ("passA", "update"):
         slugs = list(rows.keys())
@@ -696,12 +757,17 @@ def main():
                     print(f"[{i}/{len(slugs)}] {slug}")
 
     if RUN_MODE in ("passB", "update"):
-        candidates = [s for s, r in rows.items() if row_needs_passB(r)]
+        force_refresh = RUN_MODE == "passB" and FORCE_PASSB_REFRESH
+
+        candidates = [
+            s for s, r in rows.items()
+            if row_needs_passB(r, force_refresh=force_refresh)
+        ]
         candidates.sort(key=lambda s: -int(rows[s].get("order_volume_numeric", 0) or 0))
         if PASSB_LIMIT is not None:
             candidates = candidates[: int(PASSB_LIMIT)]
 
-        print(f"passB → {len(candidates)} to process (workers={MAX_WORKERS_PASSB})")
+        print(f"passB → {len(candidates)} to process (workers={MAX_WORKERS_PASSB}, force_refresh={force_refresh})")
         done = 0
         with ThreadPoolExecutor(max_workers=MAX_WORKERS_PASSB) as ex:
             futures = {ex.submit(do_passB, slug, rows[slug]): slug for slug in candidates}
@@ -743,6 +809,7 @@ def main():
     print(f"\n✅ Working checkpoint → {WORKING_CSV}")
     print(f"✅ Published CSV → {PUBLISHED_CSV}")
     print(f"✅ Published JSON → {PUBLISHED_JSON}")
+
 
 if __name__ == "__main__":
     main()
