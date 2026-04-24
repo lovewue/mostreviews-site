@@ -62,7 +62,7 @@ PASSA_LIMIT = None   # None = all
 PASSB_LIMIT = None   # None = all
 
 MAX_WORKERS_PASSA = 2
-MAX_WORKERS_PASSB = 1
+MAX_WORKERS_PASSB = 2
 
 JITTER_PASSA = (0.35, 1.1)
 JITTER_PASSB = (1.5, 4.0)
@@ -268,19 +268,30 @@ def scrape_products_page(html: str):
 
 
 def extract_brand_reviews_count(soup: BeautifulSoup) -> int:
-    li = soup.find("li", attrs={"data-testid": re.compile(r"PartnerMiniModule-.*brand-rating", re.IGNORECASE)})
-    if li:
-        t = li.get_text(" ", strip=True)
-        m = re.search(r"\(([\d,]+)\s*(?:Brand\s+)?reviews?\)", t, re.IGNORECASE)
+    # 1) Best target: explicit brand rating module
+    candidates = soup.select('li[data-testid*="brand-rating"]')
+
+    for li in candidates:
+        text = li.get_text(" ", strip=True)
+
+        # Prefer patterns like: (43,892 Brand reviews)
+        m = re.search(r"\(([\d,]+)\s+Brand\s+reviews?\)", text, re.IGNORECASE)
         if m:
             return int(m.group(1).replace(",", ""))
 
+        # Fallback: 43,892 Brand reviews
+        m = re.search(r"([\d,]+)\s+Brand\s+reviews?\b", text, re.IGNORECASE)
+        if m:
+            return int(m.group(1).replace(",", ""))
+
+    # 2) Broader fallback across whole page, but still require "Brand reviews"
     full_txt = soup.get_text(" ", strip=True)
-    m = re.search(r"\(([\d,]+)\s*(?:Brand\s+)?reviews?\)", full_txt, re.IGNORECASE)
+
+    m = re.search(r"\(([\d,]+)\s+Brand\s+reviews?\)", full_txt, re.IGNORECASE)
     if m:
         return int(m.group(1).replace(",", ""))
 
-    m = re.search(r"([\d,]+)\s*(?:Brand\s+)?reviews?\b", full_txt, re.IGNORECASE)
+    m = re.search(r"([\d,]+)\s+Brand\s+reviews?\b", full_txt, re.IGNORECASE)
     if m:
         return int(m.group(1).replace(",", ""))
 
