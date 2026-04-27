@@ -59,7 +59,7 @@ BASE = "https://www.notonthehighstreet.com"
 
 RUN_MODE = "passB"   # "passA" | "passB" | "update"
 PASSA_LIMIT = None   # None = all
-PASSB_LIMIT = None   # None = all
+PASSB_LIMIT = 10   # None = all
 
 MAX_WORKERS_PASSA = 2
 MAX_WORKERS_PASSB = 2
@@ -161,6 +161,7 @@ def fetch(url: str, jitter):
             return False, 0, None, f"error:{type(e).__name__}", url
 
     return False, 0, None, "exhausted_retries", url
+
 
 
 # =========================
@@ -268,23 +269,24 @@ def scrape_products_page(html: str):
 
 
 def extract_brand_reviews_count(soup: BeautifulSoup) -> int:
-    # 1) Best target: explicit brand rating module
     candidates = soup.select('li[data-testid*="brand-rating"]')
+
+    if DEBUG_PASSB:
+        print("BRAND RATING CANDIDATES:", len(candidates))
+        for li in candidates[:3]:
+            print("CANDIDATE TEXT:", li.get_text(" ", strip=True))
 
     for li in candidates:
         text = li.get_text(" ", strip=True)
 
-        # Prefer patterns like: (43,892 Brand reviews)
         m = re.search(r"\(([\d,]+)\s+Brand\s+reviews?\)", text, re.IGNORECASE)
         if m:
             return int(m.group(1).replace(",", ""))
 
-        # Fallback: 43,892 Brand reviews
         m = re.search(r"([\d,]+)\s+Brand\s+reviews?\b", text, re.IGNORECASE)
         if m:
             return int(m.group(1).replace(",", ""))
 
-    # 2) Broader fallback across whole page, but still require "Brand reviews"
     full_txt = soup.get_text(" ", strip=True)
 
     m = re.search(r"\(([\d,]+)\s+Brand\s+reviews?\)", full_txt, re.IGNORECASE)
@@ -636,7 +638,9 @@ def do_passB(slug: str, row: dict):
 
     if int(row.get("product_count", 0) or 0) == 0:
         return slug, row
-    if not bool(row.get("brand_reviews_available", True)):
+
+    # Important: don't skip unavailable rows when force-refreshing
+    if not bool(row.get("brand_reviews_available", True)) and not FORCE_PASSB_REFRESH:
         return slug, row
 
     sample = (row.get("sample_product_url") or "").strip()
@@ -649,6 +653,19 @@ def do_passB(slug: str, row: dict):
     ok, status, html, note, final_url = fetch(sample, JITTER_PASSB)
     row["passB_status"] = status
 
+    if DEBUG_PASSB and html:
+        debug_dir = PROJECT_ROOT / "debug"
+        debug_dir.mkdir(exist_ok=True)
+
+        debug_file = debug_dir / f"passb_{slug}.html"
+        debug_file.write_text(html, encoding="utf-8")
+
+        print(f"DEBUG HTML SAVED → {debug_file}")
+        print("status:", status)
+        print("final_url:", final_url)
+        print("contains Brand reviews:", "Brand reviews" in html)
+        print("contains brand-rating:", "brand-rating" in html)
+
     if ok and html:
         loc, reviews = scrape_product_page(html)
 
@@ -660,16 +677,9 @@ def do_passB(slug: str, row: dict):
             row["brand_reviews_available"] = True
             row["reviews_blank_count"] = 0
         else:
-            # Keep existing count if the page is unhelpful, but track blanks
-            if not page_has_brand_reviews_text(html):
-                row["reviews_blank_count"] = int(row.get("reviews_blank_count", 0) or 0) + 1
-                if row["reviews_blank_count"] >= 2:
-                    row["brand_reviews_available"] = False
-                    row["reviews_blank_count"] = MAX_REVIEWS_BLANK
-            else:
-                row["reviews_blank_count"] = int(row.get("reviews_blank_count", 0) or 0) + 1
-                if row["reviews_blank_count"] >= MAX_REVIEWS_BLANK:
-                    row["brand_reviews_available"] = False
+            row["reviews_blank_count"] = int(row.get("reviews_blank_count", 0) or 0) + 1
+            if row["reviews_blank_count"] >= MAX_REVIEWS_BLANK:
+                row["brand_reviews_available"] = False
 
         if loc:
             row["location"] = loc
@@ -695,7 +705,6 @@ def do_passB(slug: str, row: dict):
         row["location_blank_count"] = min(MAX_LOCATION_BLANK, int(row.get("location_blank_count", 0) or 0) + 1)
 
     return slug, row
-
 
 def row_needs_passB(row: dict, force_refresh: bool = False) -> bool:
     if int(row.get("product_count", 0) or 0) == 0:
