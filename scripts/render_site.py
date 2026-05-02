@@ -221,11 +221,11 @@ def add_dense_ranks(products, value_key):
     prev_value = None
     current_rank = 0
 
-    for p in clean_products:
+    for idx, p in enumerate(clean_products, start=1):
         value = p.get(value_key) or 0
 
         if value != prev_value:
-            current_rank += 1
+            current_rank = idx
             prev_value = value
 
         item = dict(p)
@@ -853,7 +853,15 @@ def render_leaderboard_products(items, limit=100, last_month=False, link_only_if
                 idx > 0 and
                 (p.get("reviews") or 0) == (items[idx - 1].get("reviews") or 0)
             )
-            rank_display = f"{rank_num}=" if same_as_prev else str(rank_num)
+
+            same_as_next = (
+                idx < len(items) - 1 and
+                (p.get("reviews") or 0) == (items[idx + 1].get("reviews") or 0)
+            )
+
+            is_tied = same_as_prev or same_as_next
+
+            rank_display = f"{rank_num}=" if is_tied else str(rank_num)
 
             name = p.get("name") or f"Product {p.get('sku')}"
             seller = p.get("seller_name") or "Unknown brand"
