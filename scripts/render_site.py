@@ -864,10 +864,12 @@ def render_leaderboard_products(items, limit=100, last_month=False, link_only_if
             should_link = bool(url and available is True) if link_only_if_available else bool(url)
             awin_url = build_awin_product_link(url, clickref="TrendListProduct")
 
+            display_name = name + ("*" if available is False else "")
+
             if should_link and awin_url:
-                name_html = f'<a href="{awin_url}">{name}</a>'
+                name_html = f'<a href="{awin_url}">{display_name}</a>'
             else:
-                name_html = name
+                name_html = display_name
 
             last_month_cell = ""
             if last_month:
@@ -1067,6 +1069,8 @@ The products with the highest recorded Feefo review counts on Not On The High St
 <p><small>Showing top 100 including ties. Product links are shown only where the item is still available.</small></p>
 
 {render_leaderboard_products(items, limit=100, last_month=False, link_only_if_available=False)}
+
+<p class="table-note">* No longer available on NOTHS</p>
 
 <p>
     <a href="index.html">← Back to homepage</a>
