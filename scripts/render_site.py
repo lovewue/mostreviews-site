@@ -1066,7 +1066,7 @@ The products with the highest recorded Feefo review counts on Not On The High St
 <h2>Leaderboard</h2>
 <p><small>Showing top 100 including ties. Product links are shown only where the item is still available.</small></p>
 
-{render_leaderboard_products(items, limit=100, last_month=False, link_only_if_available=True)}
+{render_leaderboard_products(items, limit=100, last_month=False, link_only_if_available=False)}
 
 <p>
     <a href="index.html">← Back to homepage</a>
