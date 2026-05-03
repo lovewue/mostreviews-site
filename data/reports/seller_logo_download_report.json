@@ -24789,5 +24789,605 @@
     "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt9076995e3a6002c3/69652ae5e7d9190008aea957/logo-annaopher-56261.jpg?width=224&auto=webp&quality=70",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\annaopher.jpg",
     "status": "saved"
+  },
+  {
+    "slug": "annemarierickusart",
+    "name": "Anne-Marie Rickus Art",
+    "brand_url": "https://www.notonthehighstreet.com/partners/annemarierickusart",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt79412ec490b97523/6964d627933c640008d9778c/logo-annemarierickusart-8164.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\annemarierickusart.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "beetrootlondon",
+    "name": "Antonia Lawes",
+    "brand_url": "https://www.notonthehighstreet.com/partners/beetrootlondon",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltfaf221e4f3238349/696547fe0e934e0008d41f8f/logo-beetrootlondon-71563.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\beetrootlondon.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "aprilmarchjewellery",
+    "name": "April March Jewellery",
+    "brand_url": "https://www.notonthehighstreet.com/partners/aprilmarchjewellery",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltcdc7a40210c7091f/696589c40e4cb1000800519d/logo-aprilmarchjewellery-110240.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\aprilmarchjewellery.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "arabellaboutique",
+    "name": "Arabella Boutique",
+    "brand_url": "https://www.notonthehighstreet.com/partners/arabellaboutique",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt440f298620c3c809/696624261086fd00080edc82/logo-arabellaboutique-134245.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\arabellaboutique.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "monarcjewellery",
+    "name": "Arc London",
+    "brand_url": "https://www.notonthehighstreet.com/partners/monarcjewellery",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt03cea067205b6237/69663966920b1700087efc82/logo-monarcjewellery-64195.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\monarcjewellery.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "arcdenoa",
+    "name": "Arc de Noa",
+    "brand_url": "https://www.notonthehighstreet.com/partners/arcdenoa",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blteee1086e876253a8/69658af80d20960008d00ca5/logo-arcdenoa-110632.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\arcdenoa.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "arrowtowndrinks",
+    "name": "Arrowtown Drinks",
+    "brand_url": "https://www.notonthehighstreet.com/partners/arrowtowndrinks",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltcc01b15aab8533a8/696592a9c43ac00008dfc383/logo-arrowtowndrinks-113223.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\arrowtowndrinks.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "artforge",
+    "name": "Artforge",
+    "brand_url": "https://www.notonthehighstreet.com/partners/artforge",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt86b1d8805ae760a1/696542610c120d0008537cc8/logo-artforge-69798.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\artforge.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "artioskincare",
+    "name": "Artio Skincare",
+    "brand_url": "https://www.notonthehighstreet.com/partners/artioskincare",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt603f5b39dba135df/6965b095733bf00008460f9f/logo-artioskincare-119038.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\artioskincare.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "asterleybroslondon",
+    "name": "Asterley Bros, London",
+    "brand_url": "https://www.notonthehighstreet.com/partners/asterleybroslondon",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt9b68cd4cbaca0de5/696567078caa400008e4a65f/logo-asterleybroslondon-93461.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\asterleybroslondon.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "astraltides",
+    "name": "Astral Tides",
+    "brand_url": "https://www.notonthehighstreet.com/partners/astraltides",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt2f5a47668d8d5c0c/6965de12c13dd7000811e804/logo-astraltides-127075.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\astraltides.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "beaulillyinteriors",
+    "name": "BEAU-LILLY INTERIORS",
+    "brand_url": "https://www.notonthehighstreet.com/partners/beaulillyinteriors",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt2df9b6ad86763d13/69658e6adf74340008d5b76f/logo-beaulillyinteriors-111797.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\beaulillyinteriors.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "aliceladkin",
+    "name": "Bad Leopard",
+    "brand_url": "https://www.notonthehighstreet.com/partners/aliceladkin",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt403b9813c0701642/6965cfc18c18a400084fc815/logo-aliceladkin-124005.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\aliceladkin.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "bagology",
+    "name": "Bagology London",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bagology",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt0e2d08b1603a3fee/69654f8a50a26a0008efc262/logo-bagology-74270.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bagology.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "baileyofsheffield",
+    "name": "Bailey of Sheffield",
+    "brand_url": "https://www.notonthehighstreet.com/partners/baileyofsheffield",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt9c4899a2aa3b4c4a/696540013531300008c80e68/logo-baileyofsheffield-69064.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\baileyofsheffield.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "barevodka",
+    "name": "Bare Vodka",
+    "brand_url": "https://www.notonthehighstreet.com/partners/barevodka",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt4bb8241ef2fba279/6965de8057b1740008f7f8df/logo-barevodka-127191.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\barevodka.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "barefacedknits",
+    "name": "BareFaced Knits",
+    "brand_url": "https://www.notonthehighstreet.com/partners/barefacedknits",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt6e0e7ad50fd476dd/69657157920b1700087ecb31/logo-barefacedknits-102623.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\barefacedknits.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "bealice",
+    "name": "Be. Alice",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bealice",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blta1d21d2ee316790b/69657a4977497c000820627f/logo-bealice-105577.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bealice.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "belovednaturalpetcare",
+    "name": "Be:Loved Natural Petcare",
+    "brand_url": "https://www.notonthehighstreet.com/partners/belovednaturalpetcare",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt4cdc27407ec0e60c/6965a14d57f35100088eb8e8/logo-belovednaturalpetcare-116378.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\belovednaturalpetcare.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "beachhousebotanics",
+    "name": "Beach House Botanics",
+    "brand_url": "https://www.notonthehighstreet.com/partners/beachhousebotanics",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt409355c8e6696ff5/696567b90f86e6000887c250/logo-beachhousebotanics-94869.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\beachhousebotanics.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "beanwaveeditions",
+    "name": "Beanwave Editions",
+    "brand_url": "https://www.notonthehighstreet.com/partners/beanwaveeditions",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltaa37d0937d99787a/6965a7d18caa400008e4ad91/logo-beanwaveeditions-117992.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\beanwaveeditions.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "bebuxart",
+    "name": "Bebuxart",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bebuxart",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt05fe214b7a6a16dd/6965af154c5670000897848c/logo-bebuxart-118882.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bebuxart.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "beccisbridaldesigns",
+    "name": "Becci's Bridal Designs",
+    "brand_url": "https://www.notonthehighstreet.com/partners/beccisbridaldesigns",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blte4d6492ba6937ddc/696620f58caa400008e4ced3/logo-beccisbridaldesigns-134123.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\beccisbridaldesigns.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "bellsgalleries",
+    "name": "Bell's Galleries",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bellsgalleries",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blte8f2618be0456794/6965785fa90a5700081e5d05/logo-bellsgalleries-104932.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bellsgalleries.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "bestofbritishart",
+    "name": "Best of British Art",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bestofbritishart",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltac1c6a74c4cbfea5/6965251d57f35100088ea9eb/logo-bestofbritishart-53194.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bestofbritishart.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "birgitaxtersjewellery",
+    "name": "Birgit Axters Jewellery",
+    "brand_url": "https://www.notonthehighstreet.com/partners/birgitaxtersjewellery",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt38365df4bd53c159/6965a1db0f86e6000887c87e/logo-birgitaxtersjewellery-116572.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\birgitaxtersjewellery.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "blanchedlysdesigns",
+    "name": "Blanche Dlys Designs",
+    "brand_url": "https://www.notonthehighstreet.com/partners/blanchedlysdesigns",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt6b1611b2b8e6f361/6964dd85fc39970008f0e67f/logo-blanchedlysdesigns-12516.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\blanchedlysdesigns.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "blockhappy",
+    "name": "Block Happy",
+    "brand_url": "https://www.notonthehighstreet.com/partners/blockhappy",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltf3aabbf9f71b63ba/69663e236dd0c10008e076da/logo-blockhappy-118465.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\blockhappy.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "blossomandbramble",
+    "name": "Blossom and Bramble",
+    "brand_url": "https://www.notonthehighstreet.com/partners/blossomandbramble",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blta1c0c777620c9557/69661ffb97efaa00088beb85/logo-blossomandbramble-133957.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\blossomandbramble.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "bobbibeck",
+    "name": "Bobbi Beck",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bobbibeck",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltfb70e0d389a05df3/6965d1cc0e934e0008d433db/logo-bobbibeck-124540.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bobbibeck.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "bobsandblue",
+    "name": "Bobs & Blue",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bobsandblue",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt8cd9ad26b2f3533d/69658ba4e6c7dc0008f3245e/logo-bobsandblue-110842.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bobsandblue.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "bohoandbowie",
+    "name": "Boho and Bowie",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bohoandbowie",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltc12c6b351e4d1acd/69659ee83531300008c8177a/logo-bohoandbowie-115864.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bohoandbowie.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "bomonde",
+    "name": "Bomonde",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bomonde",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt699fcdbca87b8583/696641a05696ea00081d6ce7/logo-bomonde-122182.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bomonde.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "bondesign",
+    "name": "Bon Design",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bondesign",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltc80b0b8e2efe0185/69656a1d0e4cb10008004ec9/logo-bondesign-97123.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bondesign.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "bonhaye",
+    "name": "Bonhaye",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bonhaye",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt92c5ddf9368ac23b/6965c2b850a26a0008efd26b/logo-bonhaye-121098.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bonhaye.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "boteamano",
+    "name": "Bote A Mano",
+    "brand_url": "https://www.notonthehighstreet.com/partners/boteamano",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt2b49c3b6c963bd41/69660d1e3e88090008d054d1/logo-boteamano-129015.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\boteamano.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "brandtsjewellery",
+    "name": "Brandts Jewellery",
+    "brand_url": "https://www.notonthehighstreet.com/partners/brandtsjewellery",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltcb51b7943b5c639e/696550eb3e88090008d0314b/logo-brandtsjewellery-75257.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\brandtsjewellery.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "brickchocolate",
+    "name": "Brick Chocolate",
+    "brand_url": "https://www.notonthehighstreet.com/partners/brickchocolate",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt06d98f0683e6d814/6965de4ae7d9190008aec441/logo-brickchocolate-127144.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\brickchocolate.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "bumbleandbunny",
+    "name": "Bumble & Bunny",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bumbleandbunny",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt1caad1dfb7099aaa/69657102920b1700087ecb27/logo-bumbleandbunny-102529.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bumbleandbunny.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "bymrscarter",
+    "name": "By Mrs Carter",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bymrscarter",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt4c203da19ffbd04f/69651c1b9950ac00085ef532/logo-bymrscarter-47749.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bymrscarter.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "caitlinevans",
+    "name": "Caitlin Evans",
+    "brand_url": "https://www.notonthehighstreet.com/partners/caitlinevans",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt5869700307cf0ec6/6965b11c77497c0008206a30/logo-caitlinevans-119066.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\caitlinevans.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "caitlinvictoria",
+    "name": "Caitlin Victoria",
+    "brand_url": "https://www.notonthehighstreet.com/partners/caitlinvictoria",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt8915a75f766cbc5f/696554fbda3b1a000827ac43/logo-caitlinvictoria-76850.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\caitlinvictoria.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "camberwelldesigns",
+    "name": "Camberwell Designs",
+    "brand_url": "https://www.notonthehighstreet.com/partners/camberwelldesigns",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt03b866dc6d746142/6965d10f57f35100088ec3f9/logo-camberwelldesigns-124283.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\camberwelldesigns.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "candicealexandra",
+    "name": "Candice Alexandra",
+    "brand_url": "https://www.notonthehighstreet.com/partners/candicealexandra",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt087f84c817923b30/6965432d77497c0008205d01/logo-candicealexandra-70197.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\candicealexandra.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "carriefertig",
+    "name": "Carrie Fertig",
+    "brand_url": "https://www.notonthehighstreet.com/partners/carriefertig",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt06e5112946f42a25/69663fa64c5670000897ad36/logo-carriefertig-120031.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\carriefertig.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "castlefarm",
+    "name": "Castle Farm",
+    "brand_url": "https://www.notonthehighstreet.com/partners/castlefarm",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt631819c6769c732a/696620aee7d9190008aeda69/logo-castlefarm-134082.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\castlefarm.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "caviarandcocktails",
+    "name": "Caviar and Cocktails",
+    "brand_url": "https://www.notonthehighstreet.com/partners/caviarandcocktails",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt9bddcd6a67439f3c/696643c42ba7750008fb155d/logo-caviarandcocktails-132754.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\caviarandcocktails.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "ceracotton",
+    "name": "Cera Cotton",
+    "brand_url": "https://www.notonthehighstreet.com/partners/ceracotton",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blta468d822f0930b7e/6965dc570b14ee000822b9d7/logo-ceracotton-126729.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ceracotton.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "chapterinvites",
+    "name": "Chapter Invites",
+    "brand_url": "https://www.notonthehighstreet.com/partners/chapterinvites",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltea003b2481cd31eb/696584590d20960008d00c0e/logo-chapterinvites-108659.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\chapterinvites.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "charlieco",
+    "name": "Charlie + Co",
+    "brand_url": "https://www.notonthehighstreet.com/partners/charlieco",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt15334aca088d25f5/6965971577497c0008206586/logo-charlieco-114349.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\charlieco.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "charliepressesflowers",
+    "name": "Charlie Presses Flowers",
+    "brand_url": "https://www.notonthehighstreet.com/partners/charliepressesflowers",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt0f099fe1d74b9456/6966400bc13dd70008120653/logo-charliepressesflowers-120664.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\charliepressesflowers.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "charlieyallopart",
+    "name": "Charlie Yallop Art",
+    "brand_url": "https://www.notonthehighstreet.com/partners/charlieyallopart",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt9394b91acca058b3/6965b43c8c18a400084fc1bd/logo-charlieyallopart-119444.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\charlieyallopart.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "charrings",
+    "name": "Charrings",
+    "brand_url": "https://www.notonthehighstreet.com/partners/charrings",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt12b01166b0250a52/6965e322b71d720008a48c70/logo-charrings-127851.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\charrings.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "chelseybartleydesigns",
+    "name": "Chelsey Bartley Design",
+    "brand_url": "https://www.notonthehighstreet.com/partners/chelseybartleydesigns",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt56aaf8c5f7ce637c/6965b62acd431d0008a52f80/logo-chelseybartleydesigns-119664.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\chelseybartleydesigns.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "paintmylovestory",
+    "name": "Cheryl Morrice Fine Art & Commissions",
+    "brand_url": "https://www.notonthehighstreet.com/partners/paintmylovestory",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt6c713d1ce44da1ce/6965b3eacd431d0008a52eed/logo-paintmylovestory-119402.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\paintmylovestory.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "colourfulkatsigns",
+    "name": "Chic Sign Studio",
+    "brand_url": "https://www.notonthehighstreet.com/partners/colourfulkatsigns",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt35d51ae5f2defe7a/6965b2023e88090008d03e4b/logo-colourfulkatsigns-119175.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\colourfulkatsigns.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "chinchinprints",
+    "name": "Chin Chin Prints",
+    "brand_url": "https://www.notonthehighstreet.com/partners/chinchinprints",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt552b855939efa211/69660e450e934e0008d4433e/logo-chinchinprints-129617.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\chinchinprints.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "chucklesoaps",
+    "name": "Chuckle Soaps",
+    "brand_url": "https://www.notonthehighstreet.com/partners/chucklesoaps",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt5df8401e5844a5d3/69661fa34ce40000087d3de2/logo-chucklesoaps-133898.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\chucklesoaps.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "claudettejoseph",
+    "name": "Claudette Joseph",
+    "brand_url": "https://www.notonthehighstreet.com/partners/claudettejoseph",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt0c2d2c124d2b52c7/6964cf71e6c7dc0008f30bd4/logo-claudettejoseph-5254.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\claudettejoseph.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "cotswoldblueliving",
+    "name": "Coastal Blue",
+    "brand_url": "https://www.notonthehighstreet.com/partners/cotswoldblueliving",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blte22d6fbce13331cf/6965b4280e934e0008d42d70/logo-cotswoldblueliving-119435.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\cotswoldblueliving.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "cocobellejewellery",
+    "name": "Cocobelle Jewellery",
+    "brand_url": "https://www.notonthehighstreet.com/partners/cocobellejewellery",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltbb771ed703beb557/69661e881086fd00080edb7c/logo-cocobellejewellery-133777.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\cocobellejewellery.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "coffeeandkin",
+    "name": "Coffee & Kin",
+    "brand_url": "https://www.notonthehighstreet.com/partners/coffeeandkin",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blta988b60d253790aa/6965cec19950ac00085f10ba/logo-coffeeandkin-123745.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\coffeeandkin.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "consciouswater",
+    "name": "Conscious Water",
+    "brand_url": "https://www.notonthehighstreet.com/partners/consciouswater",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltf7a2c4e1d06a2a2c/69655bc60f86e6000887c146/logo-consciouswater-81377.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\consciouswater.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "cookiecakes",
+    "name": "Cookie Cakes",
+    "brand_url": "https://www.notonthehighstreet.com/partners/cookiecakes",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltf0f397ef376af13d/69662169c43ac00008dfe888/logo-cookiecakes-134168.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\cookiecakes.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "coolcrutchesandwalkingsticks",
+    "name": "Cool Crutches & Walking Sticks",
+    "brand_url": "https://www.notonthehighstreet.com/partners/coolcrutchesandwalkingsticks",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltdc68ff92bb80e4b9/69659fe8891b010008de7534/logo-coolcrutchesandwalkingsticks-116123.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\coolcrutchesandwalkingsticks.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "createdbychar",
+    "name": "Created By Char",
+    "brand_url": "https://www.notonthehighstreet.com/partners/createdbychar",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt8f55a63e40a6e76b/696614890e4cb10008007184/logo-createdbychar-131281.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\createdbychar.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "crtnjewellery",
+    "name": "Crtn Jewellery",
+    "brand_url": "https://www.notonthehighstreet.com/partners/crtnjewellery",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt5d842ed84b27dad9/696611230e4cb10008006fe8/logo-crtnjewellery-130408.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\crtnjewellery.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "crystalplanets",
+    "name": "Crystal Planets",
+    "brand_url": "https://www.notonthehighstreet.com/partners/crystalplanets",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltcd5b7b2a30e6cd89/6965d8382ba7750008faf456/logo-crystalplanets-125960.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\crystalplanets.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "curiositysnug",
+    "name": "Curiosity Snug®",
+    "brand_url": "https://www.notonthehighstreet.com/partners/curiositysnug",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blta422537316e14d96/69655c8d3e88090008d032a3/logo-curiositysnug-81946.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\curiositysnug.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "dolen",
+    "name": "D O L E N",
+    "brand_url": "https://www.notonthehighstreet.com/partners/dolen",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt52211da53b61b64c/6965e59a733bf00008461a54/logo-dolen-128270.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\dolen.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "daseinlondon",
+    "name": "Dasein London",
+    "brand_url": "https://www.notonthehighstreet.com/partners/daseinlondon",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt01e6237f66a07786/696614b05696ea00081d5ea9/logo-daseinlondon-131312.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\daseinlondon.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "deadseadream",
+    "name": "Dead Sea Dream",
+    "brand_url": "https://www.notonthehighstreet.com/partners/deadseadream",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt23d61a3134eab0c6/69664331a90a5700081e8e6d/logo-deadseadream-128084.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\deadseadream.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "dianehilldesign",
+    "name": "Diane Hill Design",
+    "brand_url": "https://www.notonthehighstreet.com/partners/dianehilldesign",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt4d2991a8151da26e/69659508733bf00008460aec/logo-dianehilldesign-113914.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\dianehilldesign.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "dinosuit",
+    "name": "Dinosuit™",
+    "brand_url": "https://www.notonthehighstreet.com/partners/dinosuit",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt06f8be169b51a629/6965d3483e88090008d0466c/logo-dinosuit-124911.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\dinosuit.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "dogsnug",
+    "name": "Dogsnug",
+    "brand_url": "https://www.notonthehighstreet.com/partners/dogsnug",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltcc1c3609b335c75d/69653d5d0e934e0008d41def/logo-dogsnug-67705.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\dogsnug.jpg",
+    "status": "saved"
   }
 ]
