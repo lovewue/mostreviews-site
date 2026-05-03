@@ -586,19 +586,8 @@ def render_brands_top_100(brands):
 
     print("✅ top 100 brands rendered")
 
-def render_brand_top_products(slug, limit=5):
-    leaderboard_file = LEADERBOARDS_ROOT / "top_products_last_12_months.json"
-
-    if not leaderboard_file.exists():
-        return "<p>No trending products found yet.</p>"
-
-    data = load_json(leaderboard_file)
-    items = clean_product_list(data.get("items", []))
-
-    brand_items = [
-        p for p in items
-        if (p.get("seller_slug") or "").lower() == slug.lower()
-    ]
+def render_brand_top_products(slug, products_by_brand, limit=5):
+    brand_items = products_by_brand.get((slug or "").lower(), [])
 
     brand_items = sorted(
         brand_items,
@@ -642,8 +631,22 @@ def render_brand_top_products(slug, limit=5):
 <p class="table-note">* No longer available on NOTHS</p>
 """.strip()
 
+
 def render_brand_pages(brands):
     active = get_active_brands(brands)
+
+    leaderboard_file = LEADERBOARDS_ROOT / "top_products_last_12_months.json"
+    products_by_brand = {}
+
+    if leaderboard_file.exists():
+        data = load_json(leaderboard_file)
+        items = clean_product_list(data.get("items", []))
+
+        for p in items:
+            seller_slug = (p.get("seller_slug") or "").lower()
+            if not seller_slug:
+                continue
+            products_by_brand.setdefault(seller_slug, []).append(p)
 
     for brand in active:
         body = BRAND_TEMPLATE
@@ -664,6 +667,12 @@ def render_brand_pages(brands):
 </div>
 """.strip()
 
+        top_products_html = render_brand_top_products(
+            brand["slug"],
+            products_by_brand,
+            limit=5
+        )
+
         cta = ""
         destination = str(brand.get("awin", brand.get("brand_url", "")) or "")
         if destination and not brand.get("inactive"):
@@ -678,11 +687,9 @@ def render_brand_pages(brands):
         body = body.replace("{{ products }}", product_count_value)
         body = body.replace("{{ location }}", location_value)
         body = body.replace("{{ tenure }}", tenure_value)
+        body = body.replace("{{ top_products }}", top_products_html)
         body = body.replace("{{ cta }}", cta)
         body = body.replace("{{ inactive_note }}", inactive_note)
-
-        top_products_html = render_brand_top_products(brand["slug"], limit=5)
-        body = body.replace("{{ top_products }}", top_products_html)
 
         html = render_page(
             f"{brand.get('name', '')} | NOTHS Brand Profile",
