@@ -586,6 +586,61 @@ def render_brands_top_100(brands):
 
     print("✅ top 100 brands rendered")
 
+def render_brand_top_products(slug, limit=5):
+    leaderboard_file = LEADERBOARDS_ROOT / "top_products_last_12_months.json"
+
+    if not leaderboard_file.exists():
+        return "<p>No trending products found yet.</p>"
+
+    data = load_json(leaderboard_file)
+    items = clean_product_list(data.get("items", []))
+
+    brand_items = [
+        p for p in items
+        if (p.get("seller_slug") or "").lower() == slug.lower()
+    ]
+
+    brand_items = sorted(
+        brand_items,
+        key=lambda p: p.get("reviews") or 0,
+        reverse=True
+    )[:limit]
+
+    if not brand_items:
+        return "<p>No trending products found yet.</p>"
+
+    rows = []
+
+    for i, p in enumerate(brand_items, start=1):
+        name = p.get("name") or f"Product {p.get('sku')}"
+        reviews = p.get("reviews") or 0
+        url = p.get("product_url")
+        available = p.get("available")
+        awin_url = build_awin_product_link(url, clickref="TrendListBrandProduct")
+
+        display_name = name + ("*" if available is not True else "")
+
+        if awin_url and available is True:
+            name_html = f'<a href="{awin_url}">{display_name}</a>'
+        else:
+            name_html = display_name
+
+        rows.append(
+            f"""
+<li>
+  <span class="brand-product-rank">#{i}</span>
+  <span class="brand-product-name">{name_html}</span>
+  <span class="brand-product-reviews">{reviews:,} reviews</span>
+</li>
+""".strip()
+        )
+
+    return f"""
+<ol class="brand-product-list">
+  {''.join(rows)}
+</ol>
+<p class="table-note">* No longer available on NOTHS</p>
+""".strip()
 
 def render_brand_pages(brands):
     active = get_active_brands(brands)
@@ -625,7 +680,9 @@ def render_brand_pages(brands):
         body = body.replace("{{ tenure }}", tenure_value)
         body = body.replace("{{ cta }}", cta)
         body = body.replace("{{ inactive_note }}", inactive_note)
-        body = body.replace("{{ top_products }}", "")
+
+        top_products_html = render_brand_top_products(brand["slug"], limit=5)
+        body = body.replace("{{ top_products }}", top_products_html)
 
         html = render_page(
             f"{brand.get('name', '')} | NOTHS Brand Profile",
