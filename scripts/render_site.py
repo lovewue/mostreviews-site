@@ -598,22 +598,34 @@ def render_brand_pages(brands):
         review_count_value = "" if brand.get("inactive") else format_int(brand.get("brand_review_count", 0))
         location_value = "" if brand.get("inactive") else str(brand.get("location", "") or "")
         order_volume_value = str(brand.get("order_volume_label", "") or "")
+        tenure_value = str(brand.get("tenure_label", "") or "")
+
+        brand_initial = (brand.get("name", "") or "?").strip()[:1].upper()
+        logo_path = f"../../static/img/sellers/{brand['slug']}.jpg"
+
+        logo_html = f"""
+<div class="brand-logo-box">
+  <img src="{logo_path}" alt="{brand.get('name', '')} logo" onerror="this.style.display='none'; this.parentElement.classList.add('no-logo'); this.parentElement.innerHTML='{brand_initial}';">
+</div>
+""".strip()
 
         cta = ""
         destination = str(brand.get("awin", brand.get("brand_url", "")) or "")
         if destination and not brand.get("inactive"):
-            cta = f'<p><a class="button" href="{destination}">Visit {brand.get("name", "")}</a></p>'
+            cta = f'<p><a class="button" href="{destination}">View products on NOTHS →</a></p>'
 
         inactive_note = "<p><em>* Brand no longer on NOTHS.</em></p>" if brand.get("inactive") else ""
 
+        body = body.replace("{{ brand_logo }}", logo_html)
         body = body.replace("{{ brand_name }}", display_name)
         body = body.replace("{{ order_volume }}", order_volume_value)
         body = body.replace("{{ reviews }}", review_count_value)
         body = body.replace("{{ products }}", product_count_value)
         body = body.replace("{{ location }}", location_value)
-        body = body.replace("{{ tenure }}", str(brand.get("tenure_label", "") or ""))
+        body = body.replace("{{ tenure }}", tenure_value)
         body = body.replace("{{ cta }}", cta)
         body = body.replace("{{ inactive_note }}", inactive_note)
+        body = body.replace("{{ top_products }}", "")
 
         html = render_page(
             f"{brand.get('name', '')} | NOTHS Brand Profile",
