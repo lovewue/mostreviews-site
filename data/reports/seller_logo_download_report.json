@@ -41386,5 +41386,564 @@
     "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt6a933f3a5d313514/6965c2aec43ac00008dfcd29/logo-mypersonaliseditem-121093.jpg?width=224&auto=webp&quality=70",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\mypersonaliseditem.jpg",
     "status": "saved"
+  },
+  {
+    "slug": "mell22",
+    "name": "mëll 22",
+    "brand_url": "https://www.notonthehighstreet.com/partners/mell22",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt224b00f903de9f9d/69660da39a5e4200080ab039/logo-mell22-129339.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\mell22.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "nickprints",
+    "name": "nickprints",
+    "brand_url": "https://www.notonthehighstreet.com/partners/nickprints",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltfbf9098f20309580/6964e576121bb50008c1807e/logo-nickprints-16706.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\nickprints.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "nicolabaretta",
+    "name": "nicola baretta",
+    "brand_url": "https://www.notonthehighstreet.com/partners/nicolabaretta",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltb7cd2005e9346ad8/696587778caa400008e4a8ff/logo-nicolabaretta-109522.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\nicolabaretta.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "nodo",
+    "name": "nodo",
+    "brand_url": "https://www.notonthehighstreet.com/partners/nodo",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt5bb7ecdfebab57e4/6965b3989a5e4200080a9a58/logo-nodo-119379.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\nodo.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "osotwee",
+    "name": "oso twee",
+    "brand_url": "https://www.notonthehighstreet.com/partners/osotwee",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt9776a82bb778e114/69653fefb235e30008056433/logo-osotwee-69050.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\osotwee.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "pangoproductions",
+    "name": "pango productions!",
+    "brand_url": "https://www.notonthehighstreet.com/partners/pangoproductions",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blte3e8528c2936a9c8/6964e7ba3e88090008d02268/logo-pangoproductions-17576.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\pangoproductions.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "paper-and-string",
+    "name": "paper-and-string",
+    "brand_url": "https://www.notonthehighstreet.com/partners/paper-and-string",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt686dde455c2d4d88/6964d9759c4fae00081b409c/logo-paper-and-string-11098.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\paper-and-string.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "petalandpuddles",
+    "name": "petal and puddles",
+    "brand_url": "https://www.notonthehighstreet.com/partners/petalandpuddles",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt86dc7a2e429692e6/696624cc920b1700087ef60a/logo-petalandpuddles-134307.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\petalandpuddles.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "pluen",
+    "name": "pluen",
+    "brand_url": "https://www.notonthehighstreet.com/partners/pluen",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt2424ce5380a10881/6964e210f8714f000850a223/logo-pluen-14909.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\pluen.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "rachaeltaylor",
+    "name": "rachael taylor",
+    "brand_url": "https://www.notonthehighstreet.com/partners/rachaeltaylor",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltddcb9418832d58f0/6964d1f8294af10008459a5a/logo-rachaeltaylor-6164.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rachaeltaylor.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "ripplehome",
+    "name": "ripple⁺ home",
+    "brand_url": "https://www.notonthehighstreet.com/partners/ripplehome",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltcb4e3b59f8dad03a/69662c760e4cb10008007b53/logo-ripplehome-135447.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ripplehome.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "rubbastuff",
+    "name": "rubbastuff",
+    "brand_url": "https://www.notonthehighstreet.com/partners/rubbastuff",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt98a5b1b705ac16d6/6965498e891b010008de6c6b/logo-rubbastuff-71853.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rubbastuff.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "rubysuzeart",
+    "name": "rubysuze art",
+    "brand_url": "https://www.notonthehighstreet.com/partners/rubysuzeart",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt168209c757fca3a6/696589540d20960008d00c8f/logo-rubysuzeart-110100.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rubysuzeart.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "smitten",
+    "name": "smitten knits",
+    "brand_url": "https://www.notonthehighstreet.com/partners/smitten",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt27a51fd95cf9aa7f/6964e7979b6c5d0008bd4118/logo-smitten-17549.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\smitten.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "sootielimetree",
+    "name": "sootie limetree",
+    "brand_url": "https://www.notonthehighstreet.com/partners/sootielimetree",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltf0390b28999b8aea/696524913313d20007e46a68/logo-sootielimetree-52998.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sootielimetree.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "sparkleandco",
+    "name": "sparkle & co",
+    "brand_url": "https://www.notonthehighstreet.com/partners/sparkleandco",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blta3c551998b179321/6965ca7457b1740008f7f526/logo-sparkleandco-122409.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sparkleandco.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "spdesign",
+    "name": "spdesign",
+    "brand_url": "https://www.notonthehighstreet.com/partners/spdesign",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt1abbe3c202f1da6a/6964f26d77497c0008205123/logo-spdesign-22329.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\spdesign.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "starchildshoes",
+    "name": "starchild shoes",
+    "brand_url": "https://www.notonthehighstreet.com/partners/starchildshoes",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt87dd55f37f5d98a9/6964d0c3e3d0620008a8a0db/logo-starchildshoes-5787.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\starchildshoes.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "theconscious",
+    "name": "studio thie",
+    "brand_url": "https://www.notonthehighstreet.com/partners/theconscious",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blteb82f5a476c18dee/6965708bc43ac00008dfbffb/logo-theconscious-102334.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theconscious.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "sugarandcement",
+    "name": "sugar & cement",
+    "brand_url": "https://www.notonthehighstreet.com/partners/sugarandcement",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt990f5e41652a7660/69656d43b71d720008a478f0/logo-sugarandcement-99445.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sugarandcement.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "tashainteriors",
+    "name": "tasha interiors",
+    "brand_url": "https://www.notonthehighstreet.com/partners/tashainteriors",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt06f10dd1ed62103a/6964e8d49a3791000879d6df/logo-tashainteriors-18263.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\tashainteriors.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "teeandtoast",
+    "name": "tee and toast",
+    "brand_url": "https://www.notonthehighstreet.com/partners/teeandtoast",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt5441d04277efa7d6/6964ce3d82d75a0008d12c85/logo-teeandtoast-4786.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\teeandtoast.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "thegreengables",
+    "name": "the green gables",
+    "brand_url": "https://www.notonthehighstreet.com/partners/thegreengables",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltd66fe6c4d8a16431/6964dfbe933c640008d979e5/logo-thegreengables-13703.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thegreengables.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "thenurseryshelfieco",
+    "name": "the nursery shelfie co.",
+    "brand_url": "https://www.notonthehighstreet.com/partners/thenurseryshelfieco",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltce5011dc29d0d964/6966328e973cbc0008e95615/logo-thenurseryshelfieco-136408.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thenurseryshelfieco.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "tomsavanococktails",
+    "name": "tom savano cocktails",
+    "brand_url": "https://www.notonthehighstreet.com/partners/tomsavanococktails",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt1e5960ef54a81c34/6966413b5696ea00081d6cd3/logo-tomsavanococktails-121893.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\tomsavanococktails.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "tototale",
+    "name": "tototale",
+    "brand_url": "https://www.notonthehighstreet.com/partners/tototale",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt655cbe56d2b331da/69c4083468af33f23d397716/logo-tototale-137003-1774454834916-4tq77ymg.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\tototale.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "twentytwoeast",
+    "name": "twenty two east",
+    "brand_url": "https://www.notonthehighstreet.com/partners/twentytwoeast",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blte633ab559bbd3b69/6965e1442ba7750008faf565/logo-twentytwoeast-127612.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\twentytwoeast.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "twofolde",
+    "name": "twofolde",
+    "brand_url": "https://www.notonthehighstreet.com/partners/twofolde",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt3b51991bb22ab8f1/6965d80b0f86e6000887d471/logo-twofolde-125917.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\twofolde.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "vintagesports",
+    "name": "vintage sports",
+    "brand_url": "https://www.notonthehighstreet.com/partners/vintagesports",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt8b49cf22de367de7/6965d6e40e934e0008d434f5/logo-vintagesports-125639.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\vintagesports.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "whatmabeldid",
+    "name": "whatmabeldid",
+    "brand_url": "https://www.notonthehighstreet.com/partners/whatmabeldid",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt473a2e18d95acfbf/696598720c120d00085384de/logo-whatmabeldid-114683.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\whatmabeldid.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "wildaboutflowers",
+    "name": "wild about flowers",
+    "brand_url": "https://www.notonthehighstreet.com/partners/wildaboutflowers",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltb29d6f75a2e87a62/69657c450f86e6000887c424/logo-wildaboutflowers-106252.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\wildaboutflowers.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "winifredj",
+    "name": "winifredj",
+    "brand_url": "https://www.notonthehighstreet.com/partners/winifredj",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt0954fdce212f14a7/69658fa9da3b1a000827b150/logo-winifredj-112100.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\winifredj.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "winniefig",
+    "name": "winnie + fig",
+    "brand_url": "https://www.notonthehighstreet.com/partners/winniefig",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltd849391750001711/6966297f0c120d000853ab3f/logo-winniefig-135060.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\winniefig.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "alasie",
+    "name": "À L'aise",
+    "brand_url": "https://www.notonthehighstreet.com/partners/alasie",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt0ee6ad59ad14b778/696538022ba7750008fadc55/logo-alasie-64523.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\alasie.jpg",
+    "status": "saved"
+  },
+  {
+    "slug": "122group",
+    "name": "122group",
+    "brand_url": "https://www.notonthehighstreet.com/partners/122group",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/122group"
+  },
+  {
+    "slug": "360brewingcompany",
+    "name": "360brewingcompany",
+    "brand_url": "https://www.notonthehighstreet.com/partners/360brewingcompany",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/360brewingcompany"
+  },
+  {
+    "slug": "abelburners",
+    "name": "abelburners",
+    "brand_url": "https://www.notonthehighstreet.com/partners/abelburners",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/abelburners"
+  },
+  {
+    "slug": "ablelabels",
+    "name": "ablelabels",
+    "brand_url": "https://www.notonthehighstreet.com/partners/ablelabels",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/ablelabels"
+  },
+  {
+    "slug": "aciesco",
+    "name": "aciesco",
+    "brand_url": "https://www.notonthehighstreet.com/partners/aciesco",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/aciesco"
+  },
+  {
+    "slug": "afropopsocks",
+    "name": "afropopsocks",
+    "brand_url": "https://www.notonthehighstreet.com/partners/afropopsocks",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/afropopsocks"
+  },
+  {
+    "slug": "alicefrederick",
+    "name": "alicefrederick",
+    "brand_url": "https://www.notonthehighstreet.com/partners/alicefrederick",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/alicefrederick"
+  },
+  {
+    "slug": "alisonhardcastle",
+    "name": "alisonhardcastle",
+    "brand_url": "https://www.notonthehighstreet.com/partners/alisonhardcastle",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/alisonhardcastle"
+  },
+  {
+    "slug": "allthingsbrightonbeautiful",
+    "name": "allthingsbrightonbeautiful",
+    "brand_url": "https://www.notonthehighstreet.com/partners/allthingsbrightonbeautiful",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/allthingsbrightonbeautiful"
+  },
+  {
+    "slug": "alludio",
+    "name": "alludio",
+    "brand_url": "https://www.notonthehighstreet.com/partners/alludio",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/alludio"
+  },
+  {
+    "slug": "anevay",
+    "name": "anevay",
+    "brand_url": "https://www.notonthehighstreet.com/partners/anevay",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/anevay"
+  },
+  {
+    "slug": "angelachick",
+    "name": "angelachick",
+    "brand_url": "https://www.notonthehighstreet.com/partners/angelachick",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/angelachick"
+  },
+  {
+    "slug": "appleberrypress",
+    "name": "appleberrypress",
+    "brand_url": "https://www.notonthehighstreet.com/partners/appleberrypress",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/appleberrypress"
+  },
+  {
+    "slug": "argentoflondon",
+    "name": "argentoflondon",
+    "brand_url": "https://www.notonthehighstreet.com/partners/argentoflondon",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/argentoflondon"
+  },
+  {
+    "slug": "ashlanbakery",
+    "name": "ashlanbakery",
+    "brand_url": "https://www.notonthehighstreet.com/partners/ashlanbakery",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/ashlanbakery"
+  },
+  {
+    "slug": "atlondonjewels",
+    "name": "atlondonjewels",
+    "brand_url": "https://www.notonthehighstreet.com/partners/atlondonjewels",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/atlondonjewels"
+  },
+  {
+    "slug": "atoastinthepost",
+    "name": "atoastinthepost",
+    "brand_url": "https://www.notonthehighstreet.com/partners/atoastinthepost",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/atoastinthepost"
+  },
+  {
+    "slug": "axelandash",
+    "name": "axelandash",
+    "brand_url": "https://www.notonthehighstreet.com/partners/axelandash",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/axelandash"
+  },
+  {
+    "slug": "azaralifestyle",
+    "name": "azaralifestyle",
+    "brand_url": "https://www.notonthehighstreet.com/partners/azaralifestyle",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/azaralifestyle"
+  },
+  {
+    "slug": "babychum",
+    "name": "babychum",
+    "brand_url": "https://www.notonthehighstreet.com/partners/babychum",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/babychum"
+  },
+  {
+    "slug": "badgerandbirch",
+    "name": "badgerandbirch",
+    "brand_url": "https://www.notonthehighstreet.com/partners/badgerandbirch",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/badgerandbirch"
+  },
+  {
+    "slug": "balloonvibes",
+    "name": "balloonvibes",
+    "brand_url": "https://www.notonthehighstreet.com/partners/balloonvibes",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/balloonvibes"
+  },
+  {
+    "slug": "barnabysbrushes",
+    "name": "barnabysbrushes",
+    "brand_url": "https://www.notonthehighstreet.com/partners/barnabysbrushes",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/barnabysbrushes"
+  },
+  {
+    "slug": "bave",
+    "name": "bave",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bave",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/bave"
+  },
+  {
+    "slug": "beautifulbowsforboys",
+    "name": "beautifulbowsforboys",
+    "brand_url": "https://www.notonthehighstreet.com/partners/beautifulbowsforboys",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/beautifulbowsforboys"
+  },
+  {
+    "slug": "beckymackenzieceramics",
+    "name": "beckymackenzieceramics",
+    "brand_url": "https://www.notonthehighstreet.com/partners/beckymackenzieceramics",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/beckymackenzieceramics"
+  },
+  {
+    "slug": "belfastbowcompany",
+    "name": "belfastbowcompany",
+    "brand_url": "https://www.notonthehighstreet.com/partners/belfastbowcompany",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/belfastbowcompany"
+  },
+  {
+    "slug": "bellesandwhistlesfloraldesign",
+    "name": "bellesandwhistlesfloraldesign",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bellesandwhistlesfloraldesign",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/bellesandwhistlesfloraldesign"
+  },
+  {
+    "slug": "benjaminkids",
+    "name": "benjaminkids",
+    "brand_url": "https://www.notonthehighstreet.com/partners/benjaminkids",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/benjaminkids"
+  },
+  {
+    "slug": "benrotheryillustrator",
+    "name": "benrotheryillustrator",
+    "brand_url": "https://www.notonthehighstreet.com/partners/benrotheryillustrator",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/benrotheryillustrator"
+  },
+  {
+    "slug": "berylune",
+    "name": "berylune",
+    "brand_url": "https://www.notonthehighstreet.com/partners/berylune",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/berylune"
+  },
+  {
+    "slug": "birdhousepress",
+    "name": "birdhousepress",
+    "brand_url": "https://www.notonthehighstreet.com/partners/birdhousepress",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/birdhousepress"
+  },
+  {
+    "slug": "birdsinhats",
+    "name": "birdsinhats",
+    "brand_url": "https://www.notonthehighstreet.com/partners/birdsinhats",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/birdsinhats"
+  },
+  {
+    "slug": "blackpearl",
+    "name": "blackpearl",
+    "brand_url": "https://www.notonthehighstreet.com/partners/blackpearl",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/blackpearl"
+  },
+  {
+    "slug": "blankinside",
+    "name": "blankinside",
+    "brand_url": "https://www.notonthehighstreet.com/partners/blankinside",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/blankinside"
+  },
+  {
+    "slug": "bobbieprint",
+    "name": "bobbieprint",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bobbieprint",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/bobbieprint"
+  },
+  {
+    "slug": "bohemia",
+    "name": "bohemia",
+    "brand_url": "https://www.notonthehighstreet.com/partners/bohemia",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/bohemia"
+  },
+  {
+    "slug": "boldbeanco",
+    "name": "boldbeanco",
+    "brand_url": "https://www.notonthehighstreet.com/partners/boldbeanco",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/boldbeanco"
+  },
+  {
+    "slug": "boxandblume",
+    "name": "boxandblume",
+    "brand_url": "https://www.notonthehighstreet.com/partners/boxandblume",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/boxandblume"
+  },
+  {
+    "slug": "boxprints",
+    "name": "boxprints",
+    "brand_url": "https://www.notonthehighstreet.com/partners/boxprints",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/boxprints"
+  },
+  {
+    "slug": "breadandjam",
+    "name": "breadandjam",
+    "brand_url": "https://www.notonthehighstreet.com/partners/breadandjam",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/breadandjam"
   }
 ]
