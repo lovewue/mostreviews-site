@@ -660,11 +660,33 @@ def render_brand_pages(brands):
         tenure_value = str(brand.get("tenure_label", "") or "")
 
         brand_initial = (brand.get("name", "") or "?").strip()[:1].upper()
-        logo_path = f"../../static/img/sellers/{brand['slug']}.jpg"
 
-        logo_html = f"""
+        logo_jpg = STATIC_SRC / "img" / "sellers" / f"{brand['slug']}.jpg"
+        logo_jpeg = STATIC_SRC / "img" / "sellers" / f"{brand['slug']}.jpeg"
+        logo_png = STATIC_SRC / "img" / "sellers" / f"{brand['slug']}.png"
+        logo_webp = STATIC_SRC / "img" / "sellers" / f"{brand['slug']}.webp"
+
+        if logo_jpg.exists():
+            logo_src = f"../../static/img/sellers/{brand['slug']}.jpg"
+        elif logo_jpeg.exists():
+            logo_src = f"../../static/img/sellers/{brand['slug']}.jpeg"
+        elif logo_png.exists():
+            logo_src = f"../../static/img/sellers/{brand['slug']}.png"
+        elif logo_webp.exists():
+            logo_src = f"../../static/img/sellers/{brand['slug']}.webp"
+        else:
+            logo_src = None
+
+        if logo_src:
+            logo_html = f"""
 <div class="brand-logo-box">
-  <img src="{logo_path}" alt="{brand.get('name', '')} logo" onerror="this.style.display='none'; this.parentElement.classList.add('no-logo'); this.parentElement.innerHTML='{brand_initial}';">
+  <img src="{logo_src}" alt="{brand.get('name', '')} logo">
+</div>
+""".strip()
+        else:
+            logo_html = f"""
+<div class="brand-logo-box no-logo">
+  {brand_initial}
 </div>
 """.strip()
 
@@ -699,6 +721,7 @@ def render_brand_pages(brands):
             "../../",
             f"{brand.get('name', '')} brand profile on The Trend List.",
         )
+
         save_html(OUTPUT_ROOT / "brands" / brand["slug"] / "index.html", html)
 
     print(f"✅ {len(active)} brand pages rendered")
