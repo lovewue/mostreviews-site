@@ -235,7 +235,7 @@
   },
   {
     "slug": "wue",
-    "name": "Wue",
+    "name": "Wue | Jewellery & Gifts",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\wue.jpg"
   },
@@ -361,7 +361,7 @@
   },
   {
     "slug": "giftsonline4u",
-    "name": "GiftsOnline4U",
+    "name": "FGC",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\giftsonline4u.png"
   },
@@ -1308,6 +1308,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\themotivatedtype.jpg"
   },
   {
+    "slug": "craftheaven",
+    "name": "Craft Heaven Designs",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\craftheaven.jpg"
+  },
+  {
     "slug": "graceandvalour",
     "name": "Grace & Valour",
     "status": "already_exists",
@@ -1330,12 +1336,6 @@
     "name": "Claudette Worters",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\claudetteworters.jpg"
-  },
-  {
-    "slug": "craftheaven",
-    "name": "Craft Heaven Designs",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\craftheaven.jpg"
   },
   {
     "slug": "letterboxgifts",
@@ -1422,6 +1422,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\eggbertanddaisy.jpg"
   },
   {
+    "slug": "minilunn",
+    "name": "Mini Lunn",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\minilunn.jpg"
+  },
+  {
     "slug": "sweetpeadesign",
     "name": "Sweet Pea Design",
     "status": "already_exists",
@@ -1446,12 +1452,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\evydesigns.jpg"
   },
   {
-    "slug": "minilunn",
-    "name": "Mini Lunn",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\minilunn.jpg"
-  },
-  {
     "slug": "gilbertandstone",
     "name": "Kate Ceramics",
     "status": "already_exists",
@@ -1470,6 +1470,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\twistedtwee.jpg"
   },
   {
+    "slug": "millyandpip",
+    "name": "milly and pip gifts and cards",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\millyandpip.jpg"
+  },
+  {
     "slug": "alicepalace",
     "name": "Alice Palace",
     "status": "already_exists",
@@ -1480,12 +1486,6 @@
     "name": "David-Louis Design",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\david-louisdesign.jpg"
-  },
-  {
-    "slug": "millyandpip",
-    "name": "milly and pip gifts and cards",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\millyandpip.jpg"
   },
   {
     "slug": "adamregesterartandillustration",
@@ -1578,10 +1578,22 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\stompstamps.jpg"
   },
   {
+    "slug": "yatrishomeandgift",
+    "name": "Yatris",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\yatrishomeandgift.jpg"
+  },
+  {
     "slug": "gingerrose",
     "name": "ginger rose",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\gingerrose.jpg"
+  },
+  {
+    "slug": "ayearofdates",
+    "name": "A Year of Dates",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ayearofdates.jpg"
   },
   {
     "slug": "hickorydickory",
@@ -1626,24 +1638,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\deborahsparks.jpg"
   },
   {
-    "slug": "sarahcatherinedesigns",
-    "name": "The Wee Sparrow",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sarahcatherinedesigns.jpg"
-  },
-  {
-    "slug": "yatrishomeandgift",
-    "name": "Yatris",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\yatrishomeandgift.jpg"
-  },
-  {
-    "slug": "ayearofdates",
-    "name": "A Year of Dates",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ayearofdates.jpg"
-  },
-  {
     "slug": "alphabetbespokecreations",
     "name": "Alphabet Bespoke Creations",
     "status": "already_exists",
@@ -1678,6 +1672,12 @@
     "name": "KleverCase",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\klevercase.jpg"
+  },
+  {
+    "slug": "rubyandrafe",
+    "name": "Ruby & Rafe",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rubyandrafe.jpg"
   },
   {
     "slug": "violetpickles",
@@ -1716,10 +1716,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\hotdot.jpg"
   },
   {
-    "slug": "rubyandrafe",
-    "name": "Ruby & Rafe",
+    "slug": "studio9",
+    "name": "Studio 9 Ltd",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rubyandrafe.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\studio9.jpg"
   },
   {
     "slug": "huntergatherer",
@@ -1734,16 +1734,16 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\kabloom.jpg"
   },
   {
+    "slug": "looppa",
+    "name": "Pomchick",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\looppa.jpg"
+  },
+  {
     "slug": "spicentice",
     "name": "Spicentice",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\spicentice.jpg"
-  },
-  {
-    "slug": "studio9",
-    "name": "Studio 9 Ltd",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\studio9.jpg"
   },
   {
     "slug": "talesfromtheearth",
@@ -1768,12 +1768,6 @@
     "name": "Eskimo Kiss Designs",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\eskimokissdesigns.jpg"
-  },
-  {
-    "slug": "looppa",
-    "name": "Pomchick",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\looppa.jpg"
   },
   {
     "slug": "thetypecastgallery",
@@ -1962,6 +1956,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\pinkandturquoise.jpg"
   },
   {
+    "slug": "sockcreatures",
+    "name": "Sock Creatures",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sockcreatures.jpg"
+  },
+  {
     "slug": "thecutlerycommission",
     "name": "The Cutlery Commission",
     "status": "already_exists",
@@ -1990,12 +1990,6 @@
     "name": "Sarah Edmonds Illustration",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sarahedmondsillustration.jpg"
-  },
-  {
-    "slug": "sockcreatures",
-    "name": "Sock Creatures",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sockcreatures.jpg"
   },
   {
     "slug": "thebigcheesemakingkit",
@@ -2316,6 +2310,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\workshopone80.jpg"
   },
   {
+    "slug": "joclarkdesign",
+    "name": "jo clark design",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\joclarkdesign.jpg"
+  },
+  {
     "slug": "bishboshbecca",
     "name": "Bish Bosh Becca",
     "status": "already_exists",
@@ -2338,12 +2338,6 @@
     "name": "Vinyl Village",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\vinylvillage.jpg"
-  },
-  {
-    "slug": "joclarkdesign",
-    "name": "jo clark design",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\joclarkdesign.jpg"
   },
   {
     "slug": "cherrypete",
@@ -2484,6 +2478,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\gingko.jpg"
   },
   {
+    "slug": "mangunbear",
+    "name": "Man & Bear",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\mangunbear.jpg"
+  },
+  {
     "slug": "hotwax",
     "name": "Mischief Candles",
     "status": "already_exists",
@@ -2590,12 +2590,6 @@
     "name": "Letterbox Love",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\letterboxlove.jpg"
-  },
-  {
-    "slug": "mangunbear",
-    "name": "Man & Bear",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\mangunbear.jpg"
   },
   {
     "slug": "natalieryandesign",
@@ -2862,6 +2856,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\shortbreadgiftcompany.jpg"
   },
   {
+    "slug": "madeforyougifts",
+    "name": "Made For You Gifts",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\madeforyougifts.jpg"
+  },
+  {
     "slug": "sbri",
     "name": "SBRI",
     "status": "already_exists",
@@ -2914,12 +2914,6 @@
     "name": "Indisa Jewellery",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\collectionsbyhayley.jpg"
-  },
-  {
-    "slug": "madeforyougifts",
-    "name": "Made For You Gifts",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\madeforyougifts.jpg"
   },
   {
     "slug": "richlittlethings",
@@ -3042,6 +3036,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\deservedlyso.jpg"
   },
   {
+    "slug": "feelsilkstudio",
+    "name": "Feel Silk Studio",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\feelsilkstudio.jpg"
+  },
+  {
     "slug": "fullcircledesigns",
     "name": "Full Circle Designs",
     "status": "already_exists",
@@ -3052,6 +3052,12 @@
     "name": "Glyn West Design",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\glynwestdesign.jpg"
+  },
+  {
+    "slug": "hallby",
+    "name": "Hallby gifts",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\hallby.jpg"
   },
   {
     "slug": "handmadeatposhyarns",
@@ -3148,18 +3154,6 @@
     "name": "Blackdown Lifestyle",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\outdoorlifestyle.jpg"
-  },
-  {
-    "slug": "feelsilkstudio",
-    "name": "Feel Silk Studio",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\feelsilkstudio.jpg"
-  },
-  {
-    "slug": "hallby",
-    "name": "Hallby gifts",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\hallby.jpg"
   },
   {
     "slug": "hoxtonandgreycocktails",
@@ -3318,6 +3312,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\michellefiedlerdesign.jpg"
   },
   {
+    "slug": "mollybrownlondon",
+    "name": "Molly Brown London",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\mollybrownlondon.jpg"
+  },
+  {
     "slug": "murutalisman",
     "name": "Muru",
     "status": "already_exists",
@@ -3468,12 +3468,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\madehappy.jpg"
   },
   {
-    "slug": "mollybrownlondon",
-    "name": "Molly Brown London",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\mollybrownlondon.jpg"
-  },
-  {
     "slug": "munchkincreative",
     "name": "Munchkin Creative",
     "status": "already_exists",
@@ -3586,6 +3580,12 @@
     "name": "Glover and Smith",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\gloverandsmith.jpg"
+  },
+  {
+    "slug": "onceuponatuesday",
+    "name": "Good Tuesday",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\onceuponatuesday.jpg"
   },
   {
     "slug": "hazelandblue",
@@ -3766,12 +3766,6 @@
     "name": "GY Studios",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\gystudio.jpg"
-  },
-  {
-    "slug": "onceuponatuesday",
-    "name": "Good Tuesday",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\onceuponatuesday.jpg"
   },
   {
     "slug": "gorgeouscreations",
@@ -4074,6 +4068,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\gillianarnold.jpg"
   },
   {
+    "slug": "hollyblake",
+    "name": "Holly Blake",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\hollyblake.jpg"
+  },
+  {
     "slug": "hotsmoked",
     "name": "Hot Smoked",
     "status": "already_exists",
@@ -4260,12 +4260,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\funkyfeetfashions.jpg"
   },
   {
-    "slug": "hollyblake",
-    "name": "Holly Blake",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\hollyblake.jpg"
-  },
-  {
     "slug": "annreesequestrian",
     "name": "annrees",
     "status": "already_exists",
@@ -4296,16 +4290,16 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\chocovenyl.jpg"
   },
   {
-    "slug": "thatsminepersonalisedembroideredgifts",
-    "name": "That's mine personalised embroidered gifts",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thatsminepersonalisedembroideredgifts.jpg"
-  },
-  {
     "slug": "coachhouseforge",
     "name": "Coach House Forge",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\coachhouseforge.jpg"
+  },
+  {
+    "slug": "thatsminepersonalisedembroideredgifts",
+    "name": "That's mine personalised embroidered gifts",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thatsminepersonalisedembroideredgifts.jpg"
   },
   {
     "slug": "fionareeves",
@@ -4330,6 +4324,18 @@
     "name": "Bee Friendly Seeds",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\beefriendlyseeds.jpg"
+  },
+  {
+    "slug": "giftdelivery",
+    "name": "Gift Delivery",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\giftdelivery.jpg"
+  },
+  {
+    "slug": "lunella",
+    "name": "Lunella",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\lunella.jpg"
   },
   {
     "slug": "jacquelinehammondsmartdeco",
@@ -4362,12 +4368,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\darwindesigns.jpg"
   },
   {
-    "slug": "giftdelivery",
-    "name": "Gift Delivery",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\giftdelivery.jpg"
-  },
-  {
     "slug": "hiphipparty",
     "name": "HipHipParty",
     "status": "already_exists",
@@ -4384,12 +4384,6 @@
     "name": "Life of Spice",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\lifeofspice.jpg"
-  },
-  {
-    "slug": "lunella",
-    "name": "Lunella",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\lunella.jpg"
   },
   {
     "slug": "okeydokey",
@@ -4476,6 +4470,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\huiyitan.jpg"
   },
   {
+    "slug": "ourhands",
+    "name": "OurHands",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ourhands.jpg"
+  },
+  {
     "slug": "yummycard",
     "name": "Yummycard",
     "status": "already_exists",
@@ -4494,12 +4494,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\strivecreatives.jpg"
   },
   {
-    "slug": "ourhands",
-    "name": "OurHands",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ourhands.jpg"
-  },
-  {
     "slug": "stitchkits",
     "name": "StitchKits Crafts",
     "status": "already_exists",
@@ -4510,6 +4504,12 @@
     "name": "Tessa Galloway Illustration",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\handmadebytessagalloway.jpg"
+  },
+  {
+    "slug": "deardiary",
+    "name": "The Inspired Stories",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\deardiary.jpg"
   },
   {
     "slug": "littlecub",
@@ -4540,12 +4540,6 @@
     "name": "Laura Danby",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\lauradanby.jpg"
-  },
-  {
-    "slug": "deardiary",
-    "name": "The Inspired Stories",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\deardiary.jpg"
   },
   {
     "slug": "decadorn",
@@ -4680,6 +4674,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\spicepots.jpg"
   },
   {
+    "slug": "thelittlekeepsakecompany",
+    "name": "The Little Keepsake Company",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thelittlekeepsakecompany.jpg"
+  },
+  {
     "slug": "jessicagreenaway",
     "name": "Jessica Greenaway",
     "status": "already_exists",
@@ -4692,16 +4692,16 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\renandthread.jpg"
   },
   {
+    "slug": "thekitbox",
+    "name": "The KitBox®",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thekitbox.jpg"
+  },
+  {
     "slug": "theletterologists",
     "name": "The Letterologists",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theletterologists.jpg"
-  },
-  {
-    "slug": "thelittlekeepsakecompany",
-    "name": "The Little Keepsake Company",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thelittlekeepsakecompany.jpg"
   },
   {
     "slug": "wombat",
@@ -4726,12 +4726,6 @@
     "name": "Pure Spain",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\purespain.jpg"
-  },
-  {
-    "slug": "thekitbox",
-    "name": "The KitBox®",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thekitbox.jpg"
   },
   {
     "slug": "betsyandels",
@@ -4788,6 +4782,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\orangeblossomdesign.jpg"
   },
   {
+    "slug": "bakedbysteph",
+    "name": "Baked by Steph",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bakedbysteph.jpg"
+  },
+  {
     "slug": "fingerprints",
     "name": "Fingerprints",
     "status": "already_exists",
@@ -4836,12 +4836,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\appleofmyeyedesign.jpg"
   },
   {
-    "slug": "bakedbysteph",
-    "name": "Baked by Steph",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bakedbysteph.jpg"
-  },
-  {
     "slug": "charlottemaceytextiles",
     "name": "Charlotte Macey",
     "status": "already_exists",
@@ -4858,6 +4852,12 @@
     "name": "Lisa Walker Studio",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thoughtsofyou.jpg"
+  },
+  {
+    "slug": "makingthingshappen",
+    "name": "MTH Craft Studio",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\makingthingshappen.jpg"
   },
   {
     "slug": "thesweetreasoncompany",
@@ -4888,12 +4888,6 @@
     "name": "Engravers Guild",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\loveloxlockets.jpg"
-  },
-  {
-    "slug": "makingthingshappen",
-    "name": "MTH Craft Studio",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\makingthingshappen.jpg"
   },
   {
     "slug": "oopsadoodle",
@@ -5214,6 +5208,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\tobytiger.jpg"
   },
   {
+    "slug": "veryberyl",
+    "name": "Very Beryl",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\veryberyl.jpg"
+  },
+  {
     "slug": "choctilyoudrop",
     "name": "Choc Til You Drop",
     "status": "already_exists",
@@ -5226,10 +5226,22 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\gingerpickle.jpg"
   },
   {
+    "slug": "handsandhearts",
+    "name": "Hands & Hearts",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\handsandhearts.jpg"
+  },
+  {
     "slug": "jindesigns",
     "name": "Jin Designs",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\jindesigns.jpg"
+  },
+  {
+    "slug": "lovatpress",
+    "name": "Lovat Press",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\lovatpress.jpg"
   },
   {
     "slug": "seedpantry",
@@ -5256,22 +5268,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thelondonearringcompany.jpg"
   },
   {
-    "slug": "veryberyl",
-    "name": "Very Beryl",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\veryberyl.jpg"
-  },
-  {
     "slug": "wyatt9",
     "name": "Wyatt9",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\wyatt9.jpg"
-  },
-  {
-    "slug": "handsandhearts",
-    "name": "Hands & Hearts",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\handsandhearts.jpg"
   },
   {
     "slug": "littlechip",
@@ -5280,10 +5280,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\littlechip.jpg"
   },
   {
-    "slug": "lovatpress",
-    "name": "Lovat Press",
+    "slug": "indulgenthampersuk",
+    "name": "Love From Gifts",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\lovatpress.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\indulgenthampersuk.jpg"
   },
   {
     "slug": "pippadesigns",
@@ -5296,6 +5296,12 @@
     "name": "Samphire Jewellery",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\samphirejewellery.jpg"
+  },
+  {
+    "slug": "thelovelygiftgroup",
+    "name": "The Lovely Gift Group",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thelovelygiftgroup.jpg"
   },
   {
     "slug": "theorigamiboutique",
@@ -5316,10 +5322,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\kategarey.jpg"
   },
   {
-    "slug": "indulgenthampersuk",
-    "name": "Love From Gifts",
+    "slug": "treatbox",
+    "name": "TreatBox",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\indulgenthampersuk.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\treatbox.jpg"
   },
   {
     "slug": "bottlebarandshop",
@@ -5352,16 +5358,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\studioyelle.jpg"
   },
   {
-    "slug": "thelovelygiftgroup",
-    "name": "The Lovely Gift Group",
+    "slug": "acecards",
+    "name": "Ace Cards",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thelovelygiftgroup.jpg"
-  },
-  {
-    "slug": "treatbox",
-    "name": "TreatBox",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\treatbox.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\acecards.jpg"
   },
   {
     "slug": "habulous",
@@ -5374,6 +5374,12 @@
     "name": "Fawn & Thistle",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\fawnandthistle.jpg"
+  },
+  {
+    "slug": "giftspersonalised",
+    "name": "Gifts Personalised",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\giftspersonalised.jpg"
   },
   {
     "slug": "hepburnandhughes",
@@ -5424,10 +5430,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\socktalk.jpg"
   },
   {
-    "slug": "acecards",
-    "name": "Ace Cards",
+    "slug": "wickandwonder",
+    "name": "Wick + Wonder Candles",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\acecards.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\wickandwonder.jpg"
   },
   {
     "slug": "fireandwolf",
@@ -5436,10 +5442,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\fireandwolf.jpg"
   },
   {
-    "slug": "giftspersonalised",
-    "name": "Gifts Personalised",
+    "slug": "collardmanson",
+    "name": "Maitri",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\giftspersonalised.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\collardmanson.jpg"
   },
   {
     "slug": "melanieporter",
@@ -5448,10 +5454,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\melanieporter.jpg"
   },
   {
-    "slug": "wickandwonder",
-    "name": "Wick + Wonder Candles",
+    "slug": "sophiemacbain",
+    "name": "Sophie MacBain",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\wickandwonder.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sophiemacbain.jpg"
   },
   {
     "slug": "chocolatesubmarine",
@@ -5464,6 +5470,18 @@
     "name": "Abigail Warner",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\abigailwarner.jpg"
+  },
+  {
+    "slug": "gardenpack",
+    "name": "Garden Pack",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\gardenpack.jpg"
+  },
+  {
+    "slug": "highgrovecards",
+    "name": "Highgrove Cards",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\highgrovecards.jpg"
   },
   {
     "slug": "joulberry",
@@ -5484,12 +5502,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\justforyou.jpg"
   },
   {
-    "slug": "collardmanson",
-    "name": "Maitri",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\collardmanson.jpg"
-  },
-  {
     "slug": "rabal",
     "name": "Rabal",
     "status": "already_exists",
@@ -5500,12 +5512,6 @@
     "name": "Rock N Rose",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rocknrose.jpg"
-  },
-  {
-    "slug": "sophiemacbain",
-    "name": "Sophie MacBain",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sophiemacbain.jpg"
   },
   {
     "slug": "spiritsmith",
@@ -5544,12 +5550,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\dorsetchillishop.jpg"
   },
   {
-    "slug": "gardenpack",
-    "name": "Garden Pack",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\gardenpack.jpg"
-  },
-  {
     "slug": "rapt",
     "name": "Get it Rapt.",
     "status": "already_exists",
@@ -5560,12 +5560,6 @@
     "name": "Handmade By If",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\handmadebyif.jpg"
-  },
-  {
-    "slug": "highgrovecards",
-    "name": "Highgrove Cards",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\highgrovecards.jpg"
   },
   {
     "slug": "keylimedesign",
@@ -5670,6 +5664,18 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\jameshollisart.jpg"
   },
   {
+    "slug": "lovejodesigns",
+    "name": "Love Jo Designs",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\lovejodesigns.jpg"
+  },
+  {
+    "slug": "chloekmartist",
+    "name": "Pet Portrait Illustration",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\chloekmartist.jpg"
+  },
+  {
     "slug": "prestigewicker",
     "name": "Prestige Wicker",
     "status": "already_exists",
@@ -5724,22 +5730,28 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\katesprostonembroideredtextiles.jpg"
   },
   {
-    "slug": "lovejodesigns",
-    "name": "Love Jo Designs",
+    "slug": "littlesentiments",
+    "name": "Little Sentiments",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\lovejodesigns.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\littlesentiments.jpg"
   },
   {
-    "slug": "chloekmartist",
-    "name": "Pet Portrait Illustration",
+    "slug": "personalisedtreasures",
+    "name": "Personalised Treasures",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\chloekmartist.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\personalisedtreasures.jpg"
   },
   {
     "slug": "rolfeandwills",
     "name": "Rolfe & Wills",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rolfeandwills.jpg"
+  },
+  {
+    "slug": "woati",
+    "name": "Woati",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\woati.jpg"
   },
   {
     "slug": "woodliketoplay",
@@ -5754,10 +5766,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\culinaryconceptslondon.jpg"
   },
   {
-    "slug": "personalisedtreasures",
-    "name": "Personalised Treasures",
+    "slug": "fragrancedhumour",
+    "name": "Fragranced Humour",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\personalisedtreasures.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\fragrancedhumour.jpg"
   },
   {
     "slug": "strikingimage",
@@ -5766,16 +5778,16 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\strikingimage.jpg"
   },
   {
+    "slug": "thehappyplace",
+    "name": "The Happy Place",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thehappyplace.jpg"
+  },
+  {
     "slug": "truewillowgifts",
     "name": "True Willow Gifts",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\truewillowgifts.jpg"
-  },
-  {
-    "slug": "woati",
-    "name": "Woati",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\woati.jpg"
   },
   {
     "slug": "benandlola",
@@ -5788,18 +5800,6 @@
     "name": "Bumble beez",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bumblebeez.jpg"
-  },
-  {
-    "slug": "fragrancedhumour",
-    "name": "Fragranced Humour",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\fragrancedhumour.jpg"
-  },
-  {
-    "slug": "littlesentiments",
-    "name": "Little Sentiments",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\littlesentiments.jpg"
   },
   {
     "slug": "magikmoments",
@@ -5818,12 +5818,6 @@
     "name": "Rael & Pappie",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\raelandpappie.jpg"
-  },
-  {
-    "slug": "thehappyplace",
-    "name": "The Happy Place",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thehappyplace.jpg"
   },
   {
     "slug": "wraptious",
@@ -5854,6 +5848,12 @@
     "name": "NOAH'S ARK",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\noahsark.jpg"
+  },
+  {
+    "slug": "sandglowscents",
+    "name": "SandGlow Scents",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sandglowscents.jpg"
   },
   {
     "slug": "thewiltshirechillifarm",
@@ -5916,16 +5916,16 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\louisebrainwood.jpg"
   },
   {
+    "slug": "moonshineprints",
+    "name": "Moonshine Prints",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\moonshineprints.jpg"
+  },
+  {
     "slug": "kirstybaynham",
     "name": "Prism of Starlings",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\kirstybaynham.png"
-  },
-  {
-    "slug": "sandglowscents",
-    "name": "SandGlow Scents",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sandglowscents.jpg"
   },
   {
     "slug": "shindigg",
@@ -5976,12 +5976,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\kabinshop.jpg"
   },
   {
-    "slug": "moonshineprints",
-    "name": "Moonshine Prints",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\moonshineprints.jpg"
-  },
-  {
     "slug": "sadlerjones",
     "name": "Sadler Jones",
     "status": "already_exists",
@@ -5998,6 +5992,12 @@
     "name": "The Spotted Dog Company",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thespotteddogcompany.jpg"
+  },
+  {
+    "slug": "xanderkostroma",
+    "name": "Xander Kostroma",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\xanderkostroma.jpg"
   },
   {
     "slug": "xoxodesignsbyruth",
@@ -6054,12 +6054,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\wildonejewellery.jpg"
   },
   {
-    "slug": "xanderkostroma",
-    "name": "Xander Kostroma",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\xanderkostroma.jpg"
-  },
-  {
     "slug": "anthonyblakeney",
     "name": "Anthony Blakeney",
     "status": "already_exists",
@@ -6082,6 +6076,12 @@
     "name": "Little Ones Letterbox",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\littleonesletterbox.jpg"
+  },
+  {
+    "slug": "showstoppersupplies",
+    "name": "Showstopper Supplies",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\showstoppersupplies.jpg"
   },
   {
     "slug": "ottsandco",
@@ -6108,12 +6108,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\comeuppance.jpg"
   },
   {
-    "slug": "showstoppersupplies",
-    "name": "Showstopper Supplies",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\showstoppersupplies.jpg"
-  },
-  {
     "slug": "nichestore",
     "name": "Stanley Street Studio",
     "status": "already_exists",
@@ -6130,6 +6124,18 @@
     "name": "Be In The Book",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\pedestalled.jpg"
+  },
+  {
+    "slug": "ewecraftylamb",
+    "name": "Ewe Crafty Lamb",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ewecraftylamb.jpg"
+  },
+  {
+    "slug": "littlebigpartyco",
+    "name": "Little Big Party Co.",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\littlebigpartyco.jpg"
   },
   {
     "slug": "nancymac",
@@ -6168,6 +6174,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ceridwenhazelchilddesign.jpg"
   },
   {
+    "slug": "coingiftshop",
+    "name": "Coin Gift Shop",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\coingiftshop.jpg"
+  },
+  {
     "slug": "dukeandrabbit",
     "name": "Duke & Rabbit",
     "status": "already_exists",
@@ -6178,18 +6190,6 @@
     "name": "Ella's Kitchen Company Ltd.",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ekchome.jpg"
-  },
-  {
-    "slug": "ewecraftylamb",
-    "name": "Ewe Crafty Lamb",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ewecraftylamb.jpg"
-  },
-  {
-    "slug": "littlebigpartyco",
-    "name": "Little Big Party Co.",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\littlebigpartyco.jpg"
   },
   {
     "slug": "lovinglyhandmadecrochet",
@@ -6222,16 +6222,16 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\butlersfarmhousecheeses.jpg"
   },
   {
-    "slug": "coingiftshop",
-    "name": "Coin Gift Shop",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\coingiftshop.jpg"
-  },
-  {
     "slug": "emmakatefrancis",
     "name": "Emma-Kate Francis",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\emmakatefrancis.jpg"
+  },
+  {
+    "slug": "justbeekids",
+    "name": "Just Bee Kids",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\justbeekids.jpg"
   },
   {
     "slug": "matthewjiwood",
@@ -6252,6 +6252,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\studiolowen.jpg"
   },
   {
+    "slug": "theuniquechocolate",
+    "name": "The Unique Chocolate",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theuniquechocolate.jpg"
+  },
+  {
     "slug": "bombki",
     "name": "bombki",
     "status": "already_exists",
@@ -6260,10 +6266,8 @@
   {
     "slug": "happyboxx",
     "name": "Happy Boxx",
-    "brand_url": "https://www.notonthehighstreet.com/partners/happyboxx",
-    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt2334030da44d32ed/6965de3fda3b1a000827c0cf/logo-happyboxx-127129.jpg?width=224&auto=webp&quality=70",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\happyboxx.jpg",
-    "status": "saved"
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\happyboxx.jpg"
   },
   {
     "slug": "onnanokojewellery",
@@ -6272,16 +6276,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\onnanokojewellery.jpg"
   },
   {
-    "slug": "popsofcolour",
-    "name": "Pops of Colour",
+    "slug": "theimageindustry",
+    "name": "The Image Industry",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\popsofcolour.jpg"
-  },
-  {
-    "slug": "theuniquechocolate",
-    "name": "The Unique Chocolate",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theuniquechocolate.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theimageindustry.jpg"
   },
   {
     "slug": "cotswoldwears",
@@ -6308,22 +6306,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\harfi.jpg"
   },
   {
-    "slug": "justbeekids",
-    "name": "Just Bee Kids",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\justbeekids.jpg"
-  },
-  {
     "slug": "mademoisellemacaron",
     "name": "Mademoiselle Macaron",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\mademoisellemacaron.jpg"
-  },
-  {
-    "slug": "theimageindustry",
-    "name": "The Image Industry",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theimageindustry.jpg"
   },
   {
     "slug": "oldwithnew",
@@ -6512,6 +6498,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\momentum.jpg"
   },
   {
+    "slug": "spokengifts",
+    "name": "Spoken Gifts LTD",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\spokengifts.jpg"
+  },
+  {
     "slug": "thedeadseaco",
     "name": "The Dead Sea Co.",
     "status": "already_exists",
@@ -6570,12 +6562,6 @@
     "name": "Rochejewels",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rochejewels.jpg"
-  },
-  {
-    "slug": "spokengifts",
-    "name": "Spoken Gifts LTD",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\spokengifts.jpg"
   },
   {
     "slug": "jewellerybox",
@@ -6734,6 +6720,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thelittlepancakecompany.jpg"
   },
   {
+    "slug": "theoilhut",
+    "name": "The Oil Hut",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theoilhut.jpg"
+  },
+  {
     "slug": "todhunter",
     "name": "Todhunter",
     "status": "already_exists",
@@ -6794,6 +6786,18 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\naturesgenie.jpg"
   },
   {
+    "slug": "personalisedbee",
+    "name": "Personalised Bee",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\personalisedbee.jpg"
+  },
+  {
+    "slug": "personalisednpretty",
+    "name": "Personalisednpretty",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\personalisednpretty.jpg"
+  },
+  {
     "slug": "pixelstopaper",
     "name": "Pixelstopaper",
     "status": "already_exists",
@@ -6818,16 +6822,16 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thelittlepeacecompany.jpg"
   },
   {
-    "slug": "theoilhut",
-    "name": "The Oil Hut",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theoilhut.jpg"
-  },
-  {
     "slug": "twostoriesgifts",
     "name": "Two Stories Gifts",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\twostoriesgifts.jpg"
+  },
+  {
+    "slug": "wildwarestudio",
+    "name": "Wildware Studio",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\wildwarestudio.jpg"
   },
   {
     "slug": "lukedrewthis",
@@ -6852,6 +6856,12 @@
     "name": "Bluebelle and Co",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bluebelleandco.jpg"
+  },
+  {
+    "slug": "bubbleboohandmade",
+    "name": "BubbleBoo Handmade",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bubbleboohandmade.jpg"
   },
   {
     "slug": "bymarie",
@@ -6908,18 +6918,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\mantidy.jpg"
   },
   {
-    "slug": "personalisedbee",
-    "name": "Personalised Bee",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\personalisedbee.jpg"
-  },
-  {
-    "slug": "personalisednpretty",
-    "name": "Personalisednpretty",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\personalisednpretty.jpg"
-  },
-  {
     "slug": "silversixpenceinhershoe",
     "name": "Silver Sixpence in her Shoe",
     "status": "already_exists",
@@ -6938,12 +6936,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\walnuttreegifts.jpg"
   },
   {
-    "slug": "wildwarestudio",
-    "name": "Wildware Studio",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\wildwarestudio.jpg"
-  },
-  {
     "slug": "aballonestudio",
     "name": "AballoneStudio",
     "status": "already_exists",
@@ -6954,12 +6946,6 @@
     "name": "Baa Baby",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\baababy.jpg"
-  },
-  {
-    "slug": "bubbleboohandmade",
-    "name": "BubbleBoo Handmade",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bubbleboohandmade.jpg"
   },
   {
     "slug": "celinadigby",
@@ -7050,6 +7036,12 @@
     "name": "Queens & Bowl",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\queensandbowl.jpg"
+  },
+  {
+    "slug": "oikku",
+    "name": "Shelf Life",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\oikku.jpg"
   },
   {
     "slug": "theperfumestudio",
@@ -7148,16 +7140,28 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\loubijoux.jpg"
   },
   {
+    "slug": "madeyours",
+    "name": "Made Yours",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\madeyours.jpg"
+  },
+  {
+    "slug": "muditabracelets",
+    "name": "Mudita Bracelets",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\muditabracelets.jpg"
+  },
+  {
+    "slug": "rebelandwild",
+    "name": "Rebel and Wild",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rebelandwild.jpg"
+  },
+  {
     "slug": "skoura",
     "name": "SKOURA",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\skoura.jpg"
-  },
-  {
-    "slug": "oikku",
-    "name": "Shelf Life",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\oikku.jpg"
   },
   {
     "slug": "sprinklemorejoy",
@@ -7244,22 +7248,16 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\littledoodlehouse.jpg"
   },
   {
-    "slug": "madeyours",
-    "name": "Made Yours",
+    "slug": "luckandluck",
+    "name": "Luck and Luck",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\madeyours.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\luckandluck.jpg"
   },
   {
     "slug": "mara",
     "name": "Mara Studio",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\mara.jpg"
-  },
-  {
-    "slug": "muditabracelets",
-    "name": "Mudita Bracelets",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\muditabracelets.jpg"
   },
   {
     "slug": "patchoulifair",
@@ -7278,12 +7276,6 @@
     "name": "Pink Alligator",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\pinkalligator.jpg"
-  },
-  {
-    "slug": "rebelandwild",
-    "name": "Rebel and Wild",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rebelandwild.jpg"
   },
   {
     "slug": "scrufts",
@@ -7320,6 +7312,18 @@
     "name": "Britten Weddings",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\brittenweddings.jpg"
+  },
+  {
+    "slug": "carolinerees",
+    "name": "Caroline Rees",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\carolinerees.jpg"
+  },
+  {
+    "slug": "igstudioceramics",
+    "name": "IGstudio Ceramics",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\igstudioceramics.jpg"
   },
   {
     "slug": "ingravia",
@@ -7370,12 +7374,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\linnetjewellery.jpg"
   },
   {
-    "slug": "luckandluck",
-    "name": "Luck and Luck",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\luckandluck.jpg"
-  },
-  {
     "slug": "emmarandallillustration",
     "name": "Pear Tree Press",
     "status": "already_exists",
@@ -7424,16 +7422,22 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\tiedwithtwine.jpg"
   },
   {
+    "slug": "adventhorizon",
+    "name": "Advent Horizon",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\adventhorizon.jpg"
+  },
+  {
+    "slug": "amysgiftstudio",
+    "name": "Amy's Gift Studio",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\amysgiftstudio.jpg"
+  },
+  {
     "slug": "billyfranks",
     "name": "Billy Franks",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\billyfranks.jpg"
-  },
-  {
-    "slug": "carolinerees",
-    "name": "Caroline Rees",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\carolinerees.jpg"
   },
   {
     "slug": "cloudninemarshmallows",
@@ -7464,12 +7468,6 @@
     "name": "Gem Pang Illustration",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\gempangillustration.jpg"
-  },
-  {
-    "slug": "igstudioceramics",
-    "name": "IGstudio Ceramics",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\igstudioceramics.jpg"
   },
   {
     "slug": "katrilee",
@@ -7532,22 +7530,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\zazous.jpg"
   },
   {
-    "slug": "adventhorizon",
-    "name": "Advent Horizon",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\adventhorizon.jpg"
-  },
-  {
     "slug": "alsothebison",
     "name": "Also the Bison",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\alsothebison.jpg"
-  },
-  {
-    "slug": "amysgiftstudio",
-    "name": "Amy's Gift Studio",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\amysgiftstudio.jpg"
   },
   {
     "slug": "aureejewellery",
@@ -7790,6 +7776,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\foxinabox.jpg"
   },
   {
+    "slug": "hellogiftsuk",
+    "name": "Hello Gifts UK",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\hellogiftsuk.jpg"
+  },
+  {
     "slug": "janedebono",
     "name": "Jane de Bono Textiles England",
     "status": "already_exists",
@@ -7800,6 +7792,12 @@
     "name": "Minni",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\minni.jpg"
+  },
+  {
+    "slug": "pinkstrawberry",
+    "name": "Pink Strawberry",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\pinkstrawberry.jpg"
   },
   {
     "slug": "scratchyouretch",
@@ -7844,12 +7842,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\h2osqd.jpg"
   },
   {
-    "slug": "hellogiftsuk",
-    "name": "Hello Gifts UK",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\hellogiftsuk.jpg"
-  },
-  {
     "slug": "honestoutlaw",
     "name": "Honest Outlaw",
     "status": "already_exists",
@@ -7874,6 +7866,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\juliastaite.jpg"
   },
   {
+    "slug": "nameitwhatyoulike",
+    "name": "Nameitwhatyoulike",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\nameitwhatyoulike.png"
+  },
+  {
     "slug": "ninedesigns",
     "name": "Nine Designs",
     "status": "already_exists",
@@ -7892,10 +7890,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\personalisationboutique.jpg"
   },
   {
-    "slug": "pinkstrawberry",
-    "name": "Pink Strawberry",
+    "slug": "savageworks",
+    "name": "Savage Works",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\pinkstrawberry.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\savageworks.jpg"
   },
   {
     "slug": "snuglo",
@@ -7906,10 +7904,8 @@
   {
     "slug": "sparkmorejoy",
     "name": "Spark More Joy",
-    "brand_url": "https://www.notonthehighstreet.com/partners/sparkmorejoy",
-    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt2479078146d20b2c/6965be118c18a400084fc3cd/logo-sparkmorejoy-120520.jpg?width=224&auto=webp&quality=70",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sparkmorejoy.jpg",
-    "status": "saved"
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sparkmorejoy.jpg"
   },
   {
     "slug": "stephaniecoledesign",
@@ -7996,22 +7992,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\mummymakesfudge.jpg"
   },
   {
-    "slug": "nameitwhatyoulike",
-    "name": "Nameitwhatyoulike",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\nameitwhatyoulike.png"
-  },
-  {
     "slug": "naturalbabybox",
     "name": "Natural Baby Box",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\naturalbabybox.jpg"
-  },
-  {
-    "slug": "savageworks",
-    "name": "Savage Works",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\savageworks.jpg"
   },
   {
     "slug": "sprout",
@@ -8024,6 +8008,12 @@
     "name": "The Distinguished Dog Company",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thedistinguisheddogcompany.jpg"
+  },
+  {
+    "slug": "thegoodnessproject",
+    "name": "The Goodness Project",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thegoodnessproject.jpg"
   },
   {
     "slug": "thelefthookery",
@@ -8048,6 +8038,12 @@
     "name": "Verry Kerry",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\verrykerry.jpg"
+  },
+  {
+    "slug": "withlovejewellerylimited",
+    "name": "With Love Jewellery Limited",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\withlovejewellerylimited.jpg"
   },
   {
     "slug": "23chocolate",
@@ -8098,6 +8094,18 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\doggielicious.jpg"
   },
   {
+    "slug": "ginamariecreations",
+    "name": "Gina Marie Creations",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ginamariecreations.jpg"
+  },
+  {
+    "slug": "hamptonhomeware",
+    "name": "Hampton Homeware",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\hamptonhomeware.jpg"
+  },
+  {
     "slug": "lindsaypearson",
     "name": "LINDSAY PEARSON",
     "status": "already_exists",
@@ -8110,16 +8118,16 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\printedchocolates.jpg"
   },
   {
+    "slug": "sperolondon",
+    "name": "Spero London",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sperolondon.jpg"
+  },
+  {
     "slug": "storminateacup",
     "name": "Storm In A Teacup",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\storminateacup.jpg"
-  },
-  {
-    "slug": "thegoodnessproject",
-    "name": "The Goodness Project",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thegoodnessproject.jpg"
   },
   {
     "slug": "poshpawspettags",
@@ -8158,10 +8166,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\windowcards.jpg"
   },
   {
-    "slug": "withlovejewellerylimited",
-    "name": "With Love Jewellery Limited",
+    "slug": "withpuns",
+    "name": "Withpuns",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\withlovejewellerylimited.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\withpuns.jpg"
   },
   {
     "slug": "amberdavenport",
@@ -8210,18 +8218,6 @@
     "name": "Gin Bothy",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ginbothy.jpg"
-  },
-  {
-    "slug": "ginamariecreations",
-    "name": "Gina Marie Creations",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ginamariecreations.jpg"
-  },
-  {
-    "slug": "hamptonhomeware",
-    "name": "Hampton Homeware",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\hamptonhomeware.jpg"
   },
   {
     "slug": "innocentbones",
@@ -8278,12 +8274,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\siennamai.jpg"
   },
   {
-    "slug": "sperolondon",
-    "name": "Spero London",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sperolondon.jpg"
-  },
-  {
     "slug": "spiritualjewellery",
     "name": "Spiritual Gifts",
     "status": "already_exists",
@@ -8306,6 +8296,12 @@
     "name": "The Artisan Dried Flower Company",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theartisandriedflowercompany.jpg"
+  },
+  {
+    "slug": "thecraftykitcompany",
+    "name": "The Crafty Kit Company",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thecraftykitcompany.jpg"
   },
   {
     "slug": "theenglishrosebakery",
@@ -8342,12 +8338,6 @@
     "name": "UNITED ARTISTS",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bittenlondon.jpg"
-  },
-  {
-    "slug": "withpuns",
-    "name": "Withpuns",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\withpuns.jpg"
   },
   {
     "slug": "fablittlegiftshop",
@@ -8462,12 +8452,6 @@
     "name": "Sproglets Kits",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sprogletskits.jpg"
-  },
-  {
-    "slug": "thecraftykitcompany",
-    "name": "The Crafty Kit Company",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thecraftykitcompany.jpg"
   },
   {
     "slug": "thepersonalbarber",
@@ -8699,6 +8683,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thegreekfarmer.jpg"
   },
   {
+    "slug": "thenaturalspa",
+    "name": "The Natural Spa",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thenaturalspa.jpg"
+  },
+  {
     "slug": "theteaspoonclub",
     "name": "The Teaspoon Club",
     "status": "already_exists",
@@ -8855,16 +8845,16 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thedenandnow.jpg"
   },
   {
-    "slug": "thenaturalspa",
-    "name": "The Natural Spa",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thenaturalspa.jpg"
-  },
-  {
     "slug": "wmpersonaliseddesigns",
     "name": "WM Personalised Designs",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\wmpersonaliseddesigns.jpg"
+  },
+  {
+    "slug": "willowcottageflowers",
+    "name": "Willow Cottage Flowers",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\willowcottageflowers.jpg"
   },
   {
     "slug": "sarahjonesmorrisceramics",
@@ -8951,6 +8941,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\obahome.jpg"
   },
   {
+    "slug": "olivindesigns",
+    "name": "Olivin Designs",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\olivindesigns.jpg"
+  },
+  {
     "slug": "peachyandwild",
     "name": "PEACHY & WILD",
     "status": "already_exists",
@@ -8997,12 +8993,6 @@
     "name": "WAY NORTH",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\waynorth.jpg"
-  },
-  {
-    "slug": "willowcottageflowers",
-    "name": "Willow Cottage Flowers",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\willowcottageflowers.jpg"
   },
   {
     "slug": "rucomfybeanbags",
@@ -9113,12 +9103,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\memorology.jpg"
   },
   {
-    "slug": "olivindesigns",
-    "name": "Olivin Designs",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\olivindesigns.jpg"
-  },
-  {
     "slug": "oyzshop",
     "name": "OyzShop",
     "status": "already_exists",
@@ -9227,6 +9211,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\lillyloves.jpg"
   },
   {
+    "slug": "deardiaryltd",
+    "name": "Dear Diary",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\deardiaryltd.jpg"
+  },
+  {
     "slug": "hollyyoungheadwear",
     "name": "Holly Young Millinery",
     "status": "already_exists",
@@ -9329,6 +9319,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\silverstuffjewellery.jpg"
   },
   {
+    "slug": "sproutingtiger",
+    "name": "Sprouting Tiger",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sproutingtiger.jpg"
+  },
+  {
     "slug": "stitchme",
     "name": "StitchMe",
     "status": "already_exists",
@@ -9399,12 +9395,6 @@
     "name": "Colour Their Day",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\colourtheirday.jpg"
-  },
-  {
-    "slug": "deardiaryltd",
-    "name": "Dear Diary",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\deardiaryltd.jpg"
   },
   {
     "slug": "thelittlebirdpress",
@@ -9533,12 +9523,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sosilver.jpg"
   },
   {
-    "slug": "sproutingtiger",
-    "name": "Sprouting Tiger",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sproutingtiger.jpg"
-  },
-  {
     "slug": "sugarmango",
     "name": "Sugar Mango",
     "status": "already_exists",
@@ -9621,6 +9605,12 @@
     "name": "Crafty Glass London",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\craftyglasslondon.jpg"
+  },
+  {
+    "slug": "divon",
+    "name": "DIVON",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\divon.jpg"
   },
   {
     "slug": "dessidesigns",
@@ -9733,10 +9723,8 @@
   {
     "slug": "thespiritco",
     "name": "The Spirit Co",
-    "brand_url": "https://www.notonthehighstreet.com/partners/thespiritco",
-    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt6fc351793de2d143/69660d270d20960008d0292e/logo-thespiritco-129065.jpg?width=224&auto=webp&quality=70",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thespiritco.jpg",
-    "status": "saved"
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thespiritco.jpg"
   },
   {
     "slug": "umbrellabella",
@@ -9769,6 +9757,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sundaebest.jpg"
   },
   {
+    "slug": "bhambinaprints",
+    "name": "Bhambina Party & Crafts",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bhambinaprints.jpg"
+  },
+  {
     "slug": "mandhcakecompany",
     "name": "Bloom and Crumb",
     "status": "already_exists",
@@ -9793,16 +9787,18 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\creativelyoccupied.jpg"
   },
   {
-    "slug": "divon",
-    "name": "DIVON",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\divon.jpg"
-  },
-  {
     "slug": "dinkyartist",
     "name": "Dinky Artist",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\dinkyartist.jpg"
+  },
+  {
+    "slug": "dottyanddash",
+    "name": "Dotty and Dash",
+    "brand_url": "https://www.notonthehighstreet.com/partners/dottyanddash",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blta2b8016c50aa63f3/696640363531300008c844de/logo-dottyanddash-120902.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\dottyanddash.jpg",
+    "status": "saved"
   },
   {
     "slug": "edwynuk",
@@ -10057,12 +10053,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\amphoraaromatics.jpg"
   },
   {
-    "slug": "bhambinaprints",
-    "name": "Bhambina Party & Crafts",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bhambinaprints.jpg"
-  },
-  {
     "slug": "charlottevallanceillustrationanddesign",
     "name": "Charlotte Vallance Illustration & Design",
     "status": "already_exists",
@@ -10145,6 +10135,12 @@
     "name": "OWL Watches",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\owlwatches.jpg"
+  },
+  {
+    "slug": "outofthebox",
+    "name": "Out Of The Box",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\outofthebox.jpg"
   },
   {
     "slug": "thekraftpackage",
@@ -10339,6 +10335,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\linenandlisle.jpg"
   },
   {
+    "slug": "macandlilly",
+    "name": "Mac and lilly",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\macandlilly.jpg"
+  },
+  {
     "slug": "millymoore",
     "name": "Milly Moore",
     "status": "already_exists",
@@ -10361,12 +10363,6 @@
     "name": "Only The Good Stuff UK/ OTGSUK",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\onlythegoodstuffuk.jpg"
-  },
-  {
-    "slug": "outofthebox",
-    "name": "Out Of The Box",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\outofthebox.jpg"
   },
   {
     "slug": "philipwattsdesign",
@@ -10439,6 +10435,12 @@
     "name": "Urban Colours",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\urbancolours.jpg"
+  },
+  {
+    "slug": "amaebridal",
+    "name": "Amae Bridal",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\amaebridal.jpg"
   },
   {
     "slug": "babuskajewellery",
@@ -10561,12 +10563,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\lowrytoday.jpg"
   },
   {
-    "slug": "macandlilly",
-    "name": "Mac and lilly",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\macandlilly.jpg"
-  },
-  {
     "slug": "mustardmonday",
     "name": "Mustard Monday",
     "status": "already_exists",
@@ -10591,6 +10587,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\positivebakes.jpg"
   },
   {
+    "slug": "queenbeewishes",
+    "name": "Queen Bee Wishes",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\queenbeewishes.jpg"
+  },
+  {
     "slug": "sixstarscreations",
     "name": "Six Stars Creations",
     "status": "already_exists",
@@ -10601,6 +10603,12 @@
     "name": "Sonja Bessant Jewellery",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sonjabessantjewellery.jpg"
+  },
+  {
+    "slug": "thehandmadesigncompany",
+    "name": "The Handmade Sign Company",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thehandmadesigncompany.jpg"
   },
   {
     "slug": "tipsywight",
@@ -10625,12 +10633,6 @@
     "name": "Alice Eden Jewellery",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\eden.jpg"
-  },
-  {
-    "slug": "amaebridal",
-    "name": "Amae Bridal",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\amaebridal.jpg"
   },
   {
     "slug": "angieyoungdesigns",
@@ -10759,16 +10761,16 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\pennyspoonerceramics.jpg"
   },
   {
+    "slug": "petpoochboutique",
+    "name": "Pet Pooch Boutique",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\petpoochboutique.jpg"
+  },
+  {
     "slug": "pipinggoodbiscuits",
     "name": "Piping Good Biscuits",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\pipinggoodbiscuits.jpg"
-  },
-  {
-    "slug": "queenbeewishes",
-    "name": "Queen Bee Wishes",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\queenbeewishes.jpg"
   },
   {
     "slug": "reasonseasontime",
@@ -10799,6 +10801,12 @@
     "name": "Scene in London",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sceneinprints.jpg"
+  },
+  {
+    "slug": "sendasmilegifting",
+    "name": "Send a Smile Gifting",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sendasmilegifting.jpg"
   },
   {
     "slug": "sendinglovegifts",
@@ -10841,12 +10849,6 @@
     "name": "The Flask Company",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theflaskcompany.jpg"
-  },
-  {
-    "slug": "thehandmadesigncompany",
-    "name": "The Handmade Sign Company",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thehandmadesigncompany.jpg"
   },
   {
     "slug": "tropicalglass",
@@ -10915,6 +10917,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\campsiecandles.jpg"
   },
   {
+    "slug": "craftedmemories",
+    "name": "Crafted Memories",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\craftedmemories.jpg"
+  },
+  {
     "slug": "fairymadepaperart",
     "name": "Fairy Made Paperart",
     "status": "already_exists",
@@ -10975,6 +10983,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\madgicksamongtheflowers.jpg"
   },
   {
+    "slug": "matildamoonjewellery",
+    "name": "Matilda Moon Jewellery",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\matildamoonjewellery.jpg"
+  },
+  {
     "slug": "mayahjewellery",
     "name": "MayaH Jewellery",
     "status": "already_exists",
@@ -10991,12 +11005,6 @@
     "name": "Ooo That's Nice",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ooothatsnice.jpg"
-  },
-  {
-    "slug": "petpoochboutique",
-    "name": "Pet Pooch Boutique",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\petpoochboutique.jpg"
   },
   {
     "slug": "philippawhitesideceramics",
@@ -11021,12 +11029,6 @@
     "name": "Sawyer Co Golf",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sawyercogolf.jpg"
-  },
-  {
-    "slug": "sendasmilegifting",
-    "name": "Send a Smile Gifting",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sendasmilegifting.jpg"
   },
   {
     "slug": "bysamjewellery",
@@ -11132,12 +11134,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\charnwoodforestalpacas.jpg"
   },
   {
-    "slug": "craftedmemories",
-    "name": "Crafted Memories",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\craftedmemories.jpg"
-  },
-  {
     "slug": "garudiostudiage",
     "name": "Garudio Studiage",
     "status": "already_exists",
@@ -11166,18 +11162,6 @@
     "name": "Lottie & Lysh",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\lottieandlysh.jpg"
-  },
-  {
-    "slug": "matildamoonjewellery",
-    "name": "Matilda Moon Jewellery",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\matildamoonjewellery.jpg"
-  },
-  {
-    "slug": "nelsonsgin",
-    "name": "Nelson's Gin & Vodka School",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\nelsonsgin.jpg"
   },
   {
     "slug": "oakleyfinch",
@@ -11238,6 +11222,12 @@
     "name": "Van Buskirk Jewellery",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\vanbuskirkjewellery.jpg"
+  },
+  {
+    "slug": "wildivy",
+    "name": "Wild Ivy",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\wildivy.jpg"
   },
   {
     "slug": "milkandblack",
@@ -11378,6 +11368,18 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\metalbird.jpg"
   },
   {
+    "slug": "nataliecassart",
+    "name": "Natalie Cass Art",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\nataliecassart.jpg"
+  },
+  {
+    "slug": "notesandclips",
+    "name": "Notes & Clips",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\notesandclips.jpg"
+  },
+  {
     "slug": "pswithlove",
     "name": "PS With Love",
     "status": "already_exists",
@@ -11454,12 +11456,6 @@
     "name": "Velveteen Rabbit Confections",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\velveteenrabbit.jpg"
-  },
-  {
-    "slug": "wildivy",
-    "name": "Wild Ivy",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\wildivy.jpg"
   },
   {
     "slug": "zoe",
@@ -11568,18 +11564,6 @@
     "name": "Mon Sculptures",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\monsculptures.jpg"
-  },
-  {
-    "slug": "nataliecassart",
-    "name": "Natalie Cass Art",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\nataliecassart.jpg"
-  },
-  {
-    "slug": "notesandclips",
-    "name": "Notes & Clips",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\notesandclips.jpg"
   },
   {
     "slug": "patchytiger",
@@ -11810,6 +11794,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rubyandb.jpg"
   },
   {
+    "slug": "scottishprintco",
+    "name": "Scottish Print Co.",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\scottishprintco.jpg"
+  },
+  {
     "slug": "sevenyays",
     "name": "SevenYays",
     "status": "already_exists",
@@ -11916,6 +11906,12 @@
     "name": "Debbie Carlisle",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\debbiecarlisle.jpg"
+  },
+  {
+    "slug": "ellisgreyjewellery",
+    "name": "Ellis Grey Jewellery",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ellisgreyjewellery.jpg"
   },
   {
     "slug": "franklycollective",
@@ -12050,10 +12046,16 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\safanajewellery.jpg"
   },
   {
-    "slug": "scottishprintco",
-    "name": "Scottish Print Co.",
+    "slug": "steveashillustration",
+    "name": "Steve Ash illustration",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\scottishprintco.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\steveashillustration.jpg"
+  },
+  {
+    "slug": "tangiblestationerycoltd",
+    "name": "Tangible Stationery Co. Ltd",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\tangiblestationerycoltd.jpg"
   },
   {
     "slug": "silklis",
@@ -12200,12 +12202,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\crumpetorium.jpg"
   },
   {
-    "slug": "ellisgreyjewellery",
-    "name": "Ellis Grey Jewellery",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ellisgreyjewellery.jpg"
-  },
-  {
     "slug": "fleurdeluxe",
     "name": "Fleur De Luxe",
     "status": "already_exists",
@@ -12252,6 +12248,12 @@
     "name": "Little Poe Designs",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\babyboxcollective.jpg"
+  },
+  {
+    "slug": "madebyseema",
+    "name": "Made by Seema",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\madebyseema.jpg"
   },
   {
     "slug": "monogrammedlinenshop",
@@ -12302,22 +12304,16 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sianelin.jpg"
   },
   {
-    "slug": "steveashillustration",
-    "name": "Steve Ash illustration",
+    "slug": "silkandbears",
+    "name": "Silk and Bears",
     "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\steveashillustration.jpg"
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\silkandbears.jpg"
   },
   {
     "slug": "sunlondon",
     "name": "Sun London",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sunlondon.jpg"
-  },
-  {
-    "slug": "tangiblestationerycoltd",
-    "name": "Tangible Stationery Co. Ltd",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\tangiblestationerycoltd.jpg"
   },
   {
     "slug": "taniacovo",
@@ -12422,6 +12418,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\denversdesigns.jpg"
   },
   {
+    "slug": "dollondandco",
+    "name": "Dollond & Co.",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\dollondandco.jpg"
+  },
+  {
     "slug": "evhome",
     "name": "Ev Home",
     "status": "already_exists",
@@ -12488,10 +12490,22 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theindiangardencompany.jpg"
   },
   {
+    "slug": "justbesocks",
+    "name": "Just Be Socks",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\justbesocks.jpg"
+  },
+  {
     "slug": "kaybarkerillustrations",
     "name": "Kay Train Illustrator",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\kaybarkerillustrations.jpg"
+  },
+  {
+    "slug": "lovajewellery",
+    "name": "LOVA JEWELLERY",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\lovajewellery.jpg"
   },
   {
     "slug": "woodandham",
@@ -12536,12 +12550,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\luxetones.jpg"
   },
   {
-    "slug": "madebyseema",
-    "name": "Made by Seema",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\madebyseema.jpg"
-  },
-  {
     "slug": "maiandmoo",
     "name": "Mai & Moo",
     "status": "already_exists",
@@ -12582,12 +12590,6 @@
     "name": "Samara Ball Designs",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\samaraballdesigns.jpg"
-  },
-  {
-    "slug": "silkandbears",
-    "name": "Silk and Bears",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\silkandbears.jpg"
   },
   {
     "slug": "studioeglomise",
@@ -12686,6 +12688,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\blossomandbloom.jpg"
   },
   {
+    "slug": "butlerandgrace",
+    "name": "Butler & Grace",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\butlerandgrace.jpg"
+  },
+  {
     "slug": "camellios",
     "name": "Camellios",
     "status": "already_exists",
@@ -12738,12 +12746,6 @@
     "name": "Delly Doodles",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\dellydoodles.jpg"
-  },
-  {
-    "slug": "dollondandco",
-    "name": "Dollond & Co.",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\dollondandco.jpg"
   },
   {
     "slug": "editiondeluxe",
@@ -12824,22 +12826,10 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\jeanandmoonltd.jpg"
   },
   {
-    "slug": "justbesocks",
-    "name": "Just Be Socks",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\justbesocks.jpg"
-  },
-  {
     "slug": "katiecardew",
     "name": "Katie Cardew",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\katiecardew.jpg"
-  },
-  {
-    "slug": "lovajewellery",
-    "name": "LOVA JEWELLERY",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\lovajewellery.jpg"
   },
   {
     "slug": "laurafletchertextiles",
@@ -12956,6 +12946,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rlxd.jpg"
   },
   {
+    "slug": "rjffarhi",
+    "name": "Rita Farhi",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rjffarhi.jpg"
+  },
+  {
     "slug": "sophiaandthefox",
     "name": "SOPHIA & THE FOX",
     "status": "already_exists",
@@ -12972,6 +12968,12 @@
     "name": "Sejal Ceramics",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sejalceramics.jpg"
+  },
+  {
+    "slug": "snapswing",
+    "name": "SnapSwing",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\snapswing.jpg"
   },
   {
     "slug": "thecosycompany",
@@ -13124,12 +13126,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\bundleandbeau.jpg"
   },
   {
-    "slug": "butlerandgrace",
-    "name": "Butler & Grace",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\butlerandgrace.jpg"
-  },
-  {
     "slug": "cbaker",
     "name": "C.Baker",
     "status": "already_exists",
@@ -13234,10 +13230,8 @@
   {
     "slug": "kokoacollection",
     "name": "Kokoa Collection",
-    "brand_url": "https://www.notonthehighstreet.com/partners/kokoacollection",
-    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltb7e9d6bbb8c31497/69653f8f0f86e6000887be49/logo-kokoacollection-68853.jpg?width=224&auto=webp&quality=70",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\kokoacollection.jpg",
-    "status": "saved"
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\kokoacollection.jpg"
   },
   {
     "slug": "lucocoachocolate",
@@ -13268,6 +13262,12 @@
     "name": "Mirch Masala",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\mirchmasala.jpg"
+  },
+  {
+    "slug": "nicocreative",
+    "name": "Nico Creative",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\nicocreative.jpg"
   },
   {
     "slug": "ninemoo",
@@ -13306,12 +13306,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\prettyhands.jpg"
   },
   {
-    "slug": "rjffarhi",
-    "name": "Rita Farhi",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rjffarhi.jpg"
-  },
-  {
     "slug": "royalmilesilver",
     "name": "Royal Mile Silver",
     "status": "already_exists",
@@ -13334,12 +13328,6 @@
     "name": "SnaffleS",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\snaffles.jpg"
-  },
-  {
-    "slug": "snapswing",
-    "name": "SnapSwing",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\snapswing.jpg"
   },
   {
     "slug": "thesolarcentre",
@@ -13684,12 +13672,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\naturalhistory.jpg"
   },
   {
-    "slug": "nicocreative",
-    "name": "Nico Creative",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\nicocreative.jpg"
-  },
-  {
     "slug": "oneflower",
     "name": "ONE FLOWER",
     "status": "already_exists",
@@ -13730,6 +13712,12 @@
     "name": "Prism Golf",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\prismgolf.jpg"
+  },
+  {
+    "slug": "quirkablyyours",
+    "name": "Quirkably Yours",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\quirkablyyours.png"
   },
   {
     "slug": "ralphiebear",
@@ -14014,6 +14002,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\elbo.jpg"
   },
   {
+    "slug": "everlightblooms",
+    "name": "Everlight Blooms",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\everlightblooms.jpg"
+  },
+  {
     "slug": "kirsteenstewart",
     "name": "Fiona Firth",
     "status": "already_exists",
@@ -14248,6 +14242,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\muntonstraditionalplantsupports.jpg"
   },
   {
+    "slug": "niccihicksdesign",
+    "name": "Nicci Hicks Design",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\niccihicksdesign.jpg"
+  },
+  {
     "slug": "nickhubbardjewellery",
     "name": "Nick Hubbard Jewellery",
     "status": "already_exists",
@@ -14306,12 +14306,6 @@
     "name": "Pure French Soaps",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\purefrenchsoaps.jpg"
-  },
-  {
-    "slug": "quirkablyyours",
-    "name": "Quirkably Yours",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\quirkablyyours.png"
   },
   {
     "slug": "ranacullimore",
@@ -14386,6 +14380,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\tastesmiths.jpg"
   },
   {
+    "slug": "theburningbright",
+    "name": "The Burning Bright",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theburningbright.jpg"
+  },
+  {
     "slug": "thecraftscollective",
     "name": "The Crafts Collective",
     "status": "already_exists",
@@ -14426,6 +14426,12 @@
     "name": "The Wild Kitchen",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thewildkitchen.jpg"
+  },
+  {
+    "slug": "thicketmemorials",
+    "name": "Thicket Memorials",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thicketmemorials.jpg"
   },
   {
     "slug": "tilleytree",
@@ -14474,6 +14480,12 @@
     "name": "Yougi",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\yougi.jpg"
+  },
+  {
+    "slug": "zolaijewellery",
+    "name": "Zolái Jewellery ( formerly known as Luminous Pretties)",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\zolaijewellery.jpg"
   },
   {
     "slug": "albaquirky",
@@ -14638,12 +14650,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\ellbalou.jpg"
   },
   {
-    "slug": "everlightblooms",
-    "name": "Everlight Blooms",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\everlightblooms.jpg"
-  },
-  {
     "slug": "fernandivy",
     "name": "Fern & Ivy",
     "status": "already_exists",
@@ -14654,6 +14660,12 @@
     "name": "Fold+Rºll",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\makepiece.jpg"
+  },
+  {
+    "slug": "forgetmenotbyjade",
+    "name": "ForgetMeNotByJade",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\forgetmenotbyjade.jpg"
   },
   {
     "slug": "gudrumclassics",
@@ -14708,12 +14720,6 @@
     "name": "Kalating Leather UK",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\kalatingleatheruk.jpg"
-  },
-  {
-    "slug": "kate-sheridan",
-    "name": "Kate Sheridan",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\kate-sheridan.jpg"
   },
   {
     "slug": "kitschnoir",
@@ -14841,12 +14847,6 @@
     "name": "Nautilus Driftwood Design",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\nautilusdriftwooddesign.jpg"
-  },
-  {
-    "slug": "niccihicksdesign",
-    "name": "Nicci Hicks Design",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\niccihicksdesign.jpg"
   },
   {
     "slug": "no13",
@@ -15065,12 +15065,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thebakeonomist.jpg"
   },
   {
-    "slug": "theburningbright",
-    "name": "The Burning Bright",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theburningbright.jpg"
-  },
-  {
     "slug": "thedottyducks",
     "name": "The Dotty Ducks",
     "status": "already_exists",
@@ -15087,12 +15081,6 @@
     "name": "The Sourceror Ltd",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thesourcerorltd.jpg"
-  },
-  {
-    "slug": "thicketmemorials",
-    "name": "Thicket Memorials",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thicketmemorials.jpg"
   },
   {
     "slug": "tigerandlilystudio",
@@ -15159,12 +15147,6 @@
     "name": "Yumma Candy",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\yummacandy.jpg"
-  },
-  {
-    "slug": "zolaijewellery",
-    "name": "Zolái Jewellery ( formerly known as Luminous Pretties)",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\zolaijewellery.jpg"
   },
   {
     "slug": "amosdentondesigns",
@@ -15425,6 +15407,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\emilydoranpottery.jpg"
   },
   {
+    "slug": "emmaalviti",
+    "name": "Emma Alviti",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\emmaalviti.jpg"
+  },
+  {
     "slug": "fieldfreshskincare",
     "name": "Field Fresh Skincare",
     "status": "already_exists",
@@ -15453,12 +15441,6 @@
     "name": "Forge & Foundry Limited",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\forgeandfoundrylimited.jpg"
-  },
-  {
-    "slug": "forgetmenotbyjade",
-    "name": "ForgetMeNotByJade",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\forgetmenotbyjade.jpg"
   },
   {
     "slug": "frombabieswithlove",
@@ -16187,12 +16169,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\emilicollaborativedesign.jpg"
   },
   {
-    "slug": "emmaalviti",
-    "name": "Emma Alviti",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\emmaalviti.jpg"
-  },
-  {
     "slug": "forshelovedwool",
     "name": "FOR SHE LOVED WOOL",
     "status": "already_exists",
@@ -16375,10 +16351,8 @@
   {
     "slug": "exechocolate",
     "name": "Nicola's Chocolate",
-    "brand_url": "https://www.notonthehighstreet.com/partners/exechocolate",
-    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltb60568f3e28dbfb3/69661646a43c960008789581/logo-exechocolate-131865.jpg?width=224&auto=webp&quality=70",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\exechocolate.jpg",
-    "status": "saved"
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\exechocolate.jpg"
   },
   {
     "slug": "houseydesigns",
@@ -16417,6 +16391,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\paperbirch.jpg"
   },
   {
+    "slug": "patchesuk",
+    "name": "Patches UK",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\patchesuk.jpg"
+  },
+  {
     "slug": "petalsandberry",
     "name": "Petals & Berry",
     "status": "already_exists",
@@ -16445,6 +16425,12 @@
     "name": "Quite Literally Design",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\quiteliterally.jpg"
+  },
+  {
+    "slug": "rappu",
+    "name": "RAPPU Reusable Cards & Bags",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rappu.jpg"
   },
   {
     "slug": "redthumbprint",
@@ -16821,10 +16807,8 @@
   {
     "slug": "berylandsilver",
     "name": "Beryl & Silver",
-    "brand_url": "https://www.notonthehighstreet.com/partners/berylandsilver",
-    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltd97bf2f2545face4/6965dd288c18a400084fca7c/logo-berylandsilver-126936.jpg?width=224&auto=webp&quality=70",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\berylandsilver.jpg",
-    "status": "saved"
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\berylandsilver.jpg"
   },
   {
     "slug": "bethslaydenjewellery",
@@ -17374,7 +17358,7 @@
   },
   {
     "slug": "katiesdesignhouse",
-    "name": "Katie's Design House",
+    "name": "Katie Dyer Design",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\katiesdesignhouse.jpg"
   },
@@ -17817,12 +17801,6 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\paperbirddesign.jpg"
   },
   {
-    "slug": "patchesuk",
-    "name": "Patches UK",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\patchesuk.jpg"
-  },
-  {
     "slug": "peakdistrictcandlecompany",
     "name": "Peak District Candle Company",
     "status": "already_exists",
@@ -17905,12 +17883,6 @@
     "name": "Qulore.",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\qulore.jpg"
-  },
-  {
-    "slug": "rappu",
-    "name": "RAPPU Reusable Cards & Bags",
-    "status": "already_exists",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\rappu.jpg"
   },
   {
     "slug": "rachelbronwen",
@@ -19859,10 +19831,8 @@
   {
     "slug": "longshotdrinks",
     "name": "Long Shot Drinks",
-    "brand_url": "https://www.notonthehighstreet.com/partners/longshotdrinks",
-    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltf99c64acd6796dbe/69658e27c43ac00008dfc2f7/logo-longshotdrinks-111595.jpg?width=224&auto=webp&quality=70",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\longshotdrinks.jpg",
-    "status": "saved"
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\longshotdrinks.jpg"
   },
   {
     "slug": "loolaandgoo",
@@ -21325,10 +21295,8 @@
   {
     "slug": "alicejoanwoven",
     "name": "alicejoanwoven",
-    "brand_url": "https://www.notonthehighstreet.com/partners/alicejoanwoven",
-    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt5e1d4e02495dea57/69657899e7d9190008aeb269/logo-alicejoanwoven-104983.jpg?width=224&auto=webp&quality=70",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\alicejoanwoven.jpg",
-    "status": "saved"
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\alicejoanwoven.jpg"
   },
   {
     "slug": "apdesigns",
@@ -21731,6 +21699,14 @@
     "name": "Amoka Dalo",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\amokadalo.jpg"
+  },
+  {
+    "slug": "amymeadjewellery",
+    "name": "Amy Mead Jewellery",
+    "brand_url": "https://www.notonthehighstreet.com/partners/amymeadjewellery",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltb32552526eddccbb/69b30ad05a9c0ed3c535f24c/upload-1773341391720-AM_Logo_06_3x-100.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\amymeadjewellery.jpg",
+    "status": "saved"
   },
   {
     "slug": "anagibb",
@@ -23767,6 +23743,14 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\emandlu.jpg"
   },
   {
+    "slug": "emersivebooks",
+    "name": "Emersive Books",
+    "brand_url": "https://www.notonthehighstreet.com/partners/emersivebooks",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltecf1acbca8d68d33/69d934e1c20bb800b77ed4dd/logo-emersivelimited-137334-1775842526419-c2ttu0ee.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\emersivebooks.jpg",
+    "status": "saved"
+  },
+  {
     "slug": "emilyrollings",
     "name": "Emily Rollings",
     "status": "already_exists",
@@ -24853,6 +24837,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\homecoming.jpg"
   },
   {
+    "slug": "homeleighdesigns",
+    "name": "Homeleigh Designs",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\homeleighdesigns.jpg"
+  },
+  {
     "slug": "homeysltd",
     "name": "Homeys Ltd",
     "status": "already_exists",
@@ -25375,6 +25365,14 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\jupitersgrace.jpg"
   },
   {
+    "slug": "justjackstudio",
+    "name": "Just Jack Studio",
+    "brand_url": "https://www.notonthehighstreet.com/partners/justjackstudio",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltb668239ae5811c58/69dfb1cddb24f52fc9ec6073/logo-justjackstudio-137629-1776267723912-lwg74nor.png?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\justjackstudio.png",
+    "status": "saved"
+  },
+  {
     "slug": "justmytype",
     "name": "Just My Type",
     "status": "already_exists",
@@ -25417,6 +25415,14 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\karinakesson.jpg"
   },
   {
+    "slug": "karmbox",
+    "name": "Karmbox",
+    "brand_url": "https://www.notonthehighstreet.com/partners/karmbox",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltc44c0d604b088525/69ef9aaff09014b97676c386/logo-karmbox-137098-1777310381952-4ggki6wa.png?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\karmbox.png",
+    "status": "saved"
+  },
+  {
     "slug": "katebrigdenceramics",
     "name": "Kate Brigden Ceramics",
     "status": "already_exists",
@@ -25439,6 +25445,12 @@
     "name": "Kate Daniels design",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\katedaniels.jpg"
+  },
+  {
+    "slug": "kate-sheridan",
+    "name": "Kate Sheridan",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\kate-sheridan.jpg"
   },
   {
     "slug": "glintjewellery",
@@ -25973,6 +25985,12 @@
     "name": "Loela",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\loela.jpg"
+  },
+  {
+    "slug": "loftandfig",
+    "name": "Loft & Fig",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\loftandfig.jpg"
   },
   {
     "slug": "lollylish",
@@ -26965,6 +26983,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\neighbourhoodcoffeeroasters.jpg"
   },
   {
+    "slug": "nelsonsgin",
+    "name": "Nelson's Gin & Vodka School",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\nelsonsgin.jpg"
+  },
+  {
     "slug": "neonmagpie",
     "name": "Neon Magpie",
     "status": "already_exists",
@@ -27709,6 +27733,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\poppyspatches.jpg"
   },
   {
+    "slug": "popsofcolour",
+    "name": "Pops of Colour",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\popsofcolour.jpg"
+  },
+  {
     "slug": "popsyandplum",
     "name": "Popsy & Plum",
     "status": "already_exists",
@@ -27761,6 +27791,14 @@
     "name": "Pretty As A Picture Board",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\prettyasapictureboard.png"
+  },
+  {
+    "slug": "prettyperfectplanners",
+    "name": "Pretty Perfect Products",
+    "brand_url": "https://www.notonthehighstreet.com/partners/prettyperfectplanners",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltad7595d023f03ce2/69a8649c5acf923ec0e12635/upload-1772643484372-pretty-perfect-products-IG-profile-picture.png?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\prettyperfectplanners.png",
+    "status": "saved"
   },
   {
     "slug": "primroseandplum",
@@ -28553,6 +28591,14 @@
     "name": "Small Beer",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\smallbeer.jpg"
+  },
+  {
+    "slug": "smartyplants",
+    "name": "SmartyPlants",
+    "brand_url": "https://www.notonthehighstreet.com/partners/smartyplants",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt8d6df4b6d211ecb9/69ec6336436f09355d6f166a/logo-smartyplants-137723-1777099573056-8vdf8izg.png?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\smartyplants.png",
+    "status": "saved"
   },
   {
     "slug": "smilogykids",
@@ -29492,6 +29538,14 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theforrest.jpg"
   },
   {
+    "slug": "thefoxglovetree",
+    "name": "The Foxglove Tree",
+    "brand_url": "https://www.notonthehighstreet.com/partners/thefoxglovetree",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltdb96745b189f2668/69d66532e657dcb5188cfd07/logo-cleardonhouselimitedtradingasthefoxglovetree-137565-1775658289682-fncoyxfb.png?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\thefoxglovetree.png",
+    "status": "saved"
+  },
+  {
     "slug": "thefreshherbsaltcompany",
     "name": "The Fresh Herb Salt Company",
     "status": "already_exists",
@@ -29900,6 +29954,12 @@
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\theweddinggarterco.jpg"
   },
   {
+    "slug": "sarahcatherinedesigns",
+    "name": "The Wee Sparrow",
+    "status": "already_exists",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\sarahcatherinedesigns.jpg"
+  },
+  {
     "slug": "thewilloughbybookclub",
     "name": "The Willoughby Book Club",
     "status": "already_exists",
@@ -30024,6 +30084,14 @@
     "name": "Tiny Treds",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\tinytreds.jpg"
+  },
+  {
+    "slug": "tinyme",
+    "name": "Tinyme",
+    "brand_url": "https://www.notonthehighstreet.com/partners/tinyme",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt775c396b0fc61026/69d45ca3f0df612c110d9631/logo-tinymelimited-137400-1775525024681-ko1dalig.jpg?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\tinyme.jpg",
+    "status": "saved"
   },
   {
     "slug": "tiredgirlapparel",
@@ -30612,6 +30680,14 @@
     "name": "World Race Circuits",
     "status": "already_exists",
     "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\worldracecircuits.jpg"
+  },
+  {
+    "slug": "worldlyaromaslondon",
+    "name": "Worldly Aromas London",
+    "brand_url": "https://www.notonthehighstreet.com/partners/worldlyaromaslondon",
+    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt50fb9e9155c96d70/69eb8cea49002c1061cf6262/logo-worldlyaromaslondon-137725-1777044713055-jw1iwziu.png?width=224&auto=webp&quality=70",
+    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\worldlyaromaslondon.png",
+    "status": "saved"
   },
   {
     "slug": "writeinlights",
@@ -31393,6 +31469,13 @@
     "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/atoastinthepost"
   },
   {
+    "slug": "augustandcelestestudio",
+    "name": "augustandcelestestudio",
+    "brand_url": "https://www.notonthehighstreet.com/partners/augustandcelestestudio",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/augustandcelestestudio"
+  },
+  {
     "slug": "axelandash",
     "name": "axelandash",
     "brand_url": "https://www.notonthehighstreet.com/partners/axelandash",
@@ -32104,7 +32187,7 @@
     "name": "hartwood",
     "brand_url": "https://www.notonthehighstreet.com/partners/hartwood",
     "status": "failed",
-    "error": "502 Server Error: Bad Gateway for url: https://www.notonthehighstreet.com/partners/hartwood"
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/hartwood"
   },
   {
     "slug": "harumatcha",
@@ -32147,14 +32230,6 @@
     "brand_url": "https://www.notonthehighstreet.com/partners/holysweetfocaccia",
     "status": "failed",
     "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/holysweetfocaccia"
-  },
-  {
-    "slug": "homeleighdesigns",
-    "name": "homeleighdesigns",
-    "brand_url": "https://www.notonthehighstreet.com/partners/homeleighdesigns",
-    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/blt457d3457d0ccd79b/696629bb920b1700087ef770/logo-homeleighdesigns-135089.jpg?width=224&auto=webp&quality=70",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\homeleighdesigns.jpg",
-    "status": "saved"
   },
   {
     "slug": "hugmepillows",
@@ -32477,14 +32552,6 @@
     "brand_url": "https://www.notonthehighstreet.com/partners/loelandco",
     "status": "failed",
     "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/loelandco"
-  },
-  {
-    "slug": "loftandfig",
-    "name": "loftandfig",
-    "brand_url": "https://www.notonthehighstreet.com/partners/loftandfig",
-    "logo_url": "https://images.contentstack.io/v3/assets/blt63f2f7afd19b09c2/bltba71f2e6ce441f50/696630d00e934e0008d45104/logo-loftandfig-136069.jpg?width=224&auto=webp&quality=70",
-    "file": "C:\\Users\\richa\\OneDrive - Wue\\Documents 1\\GitHub\\mostreviews-site\\static\\img\\sellers\\loftandfig.jpg",
-    "status": "saved"
   },
   {
     "slug": "lollieshopjewellery",
@@ -33187,6 +33254,13 @@
     "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/studioblakecreative"
   },
   {
+    "slug": "studiomaryjewellery",
+    "name": "studiomaryjewellery",
+    "brand_url": "https://www.notonthehighstreet.com/partners/studiomaryjewellery",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/studiomaryjewellery"
+  },
+  {
     "slug": "studioone48",
     "name": "studioone48",
     "brand_url": "https://www.notonthehighstreet.com/partners/studioone48",
@@ -33276,6 +33350,13 @@
     "brand_url": "https://www.notonthehighstreet.com/partners/tellmystorybook",
     "status": "failed",
     "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/tellmystorybook"
+  },
+  {
+    "slug": "thebigwoof",
+    "name": "thebigwoof",
+    "brand_url": "https://www.notonthehighstreet.com/partners/thebigwoof",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/thebigwoof"
   },
   {
     "slug": "thebotanicalabc",
@@ -33500,6 +33581,13 @@
     "brand_url": "https://www.notonthehighstreet.com/partners/vintageartfair",
     "status": "failed",
     "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/vintageartfair"
+  },
+  {
+    "slug": "violetrae",
+    "name": "violetrae",
+    "brand_url": "https://www.notonthehighstreet.com/partners/violetrae",
+    "status": "failed",
+    "error": "404 Client Error: Not Found for url: https://www.notonthehighstreet.com/partners/violetrae"
   },
   {
     "slug": "viveconstyle",
