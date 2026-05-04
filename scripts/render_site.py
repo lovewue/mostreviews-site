@@ -1,5 +1,6 @@
 import json
 import shutil
+import re
 from pathlib import Path
 from datetime import datetime
 from urllib.parse import quote
@@ -702,6 +703,37 @@ def render_brand_pages(brands):
 
     print(f"✅ {len(active)} brand pages rendered")
 
+def brand_age_months(brand):
+    since = str(
+        brand.get("tenure_label")
+        or brand.get("since")
+        or ""
+    ).lower().strip()
+
+    if not since:
+        return 999999
+
+    years = 0
+    months = 0
+
+    year_match = re.search(r"(\d+)\s*year", since)
+    month_match = re.search(r"(\d+)\s*month", since)
+
+    if year_match:
+        years = int(year_match.group(1))
+
+    if month_match:
+        months = int(month_match.group(1))
+
+    total = years * 12 + months
+
+    # Handle edge cases like "new" or "less than a month"
+    if total == 0:
+        if "new" in since or "less" in since:
+            return 0
+
+    return total if total > 0 else 999999
+
 
 # -----------------------------------------------------------------------------
 # Copy static
@@ -1224,6 +1256,70 @@ The products with the highest recorded Feefo review counts over the last 12 mont
 
     print("✅ top-products-last-12-months rendered")
 
+def render_newest_brands(brands):
+    newest_brands = sorted(
+        [b for b in brands if b.get("active", True)],
+        key=brand_age_months
+    )[:100]
+
+    rows = []
+
+    for idx, brand in enumerate(newest_brands, start=1):
+        destination = brand.get("awin") or brand.get("brand_url") or ""
+
+        if destination:
+            link_html = f'<a href="{destination}">View on NOTHS →</a>'
+        else:
+            link_html = ""
+
+        rows.append(
+            f"""
+<tr>
+  <td class="rank">{idx}</td>
+  <td><a href="brands/{brand['slug']}/index.html">{brand['name']}</a></td>
+  <td>{brand.get('tenure_label', '')}</td>
+  <td>{brand.get('location', '')}</td>
+  <td>{link_html}</td>
+</tr>
+""".strip()
+        )
+
+    body = f"""
+<h1>100 Newest Brands on NOTHS</h1>
+
+<p>
+Discover the newest independent brands joining Not On The High Street.
+This list highlights 100 recently added brands, ordered by how long they appear to have been selling on NOTHS.
+</p>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Brand</th>
+    <th>On NOTHS</th>
+    <th>Location</th>
+    <th></th>
+  </tr>
+  {''.join(rows)}
+</table>
+
+<p>
+  <a href="index.html">← Back to homepage</a>
+</p>
+"""
+
+    html = render_page(
+        "100 Newest Brands on NOTHS",
+        body,
+        "static",
+        "",
+        "The 100 newest brands on Not On The High Street.",
+    )
+
+    save_html(OUTPUT_ROOT / "100-newest-brands.html", html)
+
+    print("✅ 100 newest brands rendered")
+
 
 # -----------------------------------------------------------------------------
 # About page rendering
@@ -1323,6 +1419,7 @@ def main():
     if brands:
         render_brands_index(brands)
         render_brands_top_100(brands)
+        render_newest_brands(brands)
         render_brand_pages(brands)
 
     render_about()

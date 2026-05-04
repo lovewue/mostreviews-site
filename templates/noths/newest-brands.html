@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>100 Newest Brands on NOTHS</h1>
+
+<p>
+Discover the newest independent brands joining Not On The High Street.
+This list highlights 100 recently added brands, ordered by how long they appear to have been selling on NOTHS.
+</p>
+
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>On NOTHS</th>
+      <th>Location</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for brand in newest_brands %}
+    <tr>
+      <td>
+        <strong>{{ brand.name }}</strong>
+      </td>
+      <td>
+        {{ brand.since or "" }}
+      </td>
+      <td>
+        {{ brand.location or "" }}
+      </td>
+      <td>
+        {% if brand.awin %}
+          <a href="{{ brand.awin }}" target="_blank" rel="sponsored noopener">View on NOTHS →</a>
+        {% elif brand.url %}
+          <a href="{{ brand.url }}" target="_blank" rel="noopener">View on NOTHS →</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
