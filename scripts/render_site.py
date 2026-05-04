@@ -1297,13 +1297,13 @@ def render_newest_brands(brands):
 
         rows.append(
             f"""
-<tr>
-  <td class="rank">{idx}</td>
-  <td><a href="brands/{brand['slug']}/index.html">{brand['name']}</a></td>
-  <td>{brand.get('tenure_label', '')}</td>
-  <td>{link_html}</td>
-</tr>
-""".strip()
+        <tr>
+          <td class="rank">{idx}</td>
+          <td><a href="brands/{brand['slug']}/index.html">{brand['name']}</a></td>
+          <td>{brand.get('tenure_label', '')}</td>
+          <td class="reviews">{format_int(brand.get('brand_review_count', 0))}</td>
+        </tr>
+        """.strip()
         )
 
     body = f"""
@@ -1319,7 +1319,7 @@ This list highlights 100 recently added brands, ordered by how long they appear 
     <th>#</th>
     <th>Brand</th>
     <th>On NOTHS</th>
-    <th></th>
+    <th>Reviews</th>
   </tr>
   {''.join(rows)}
 </table>
