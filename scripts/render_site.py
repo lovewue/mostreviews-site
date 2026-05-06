@@ -1,6 +1,7 @@
 import json
 import shutil
 import re
+import pandas as pd
 from pathlib import Path
 from datetime import datetime
 from urllib.parse import quote
@@ -208,6 +209,55 @@ def normalise_text(value) -> str:
 
     return str(value).strip()
 
+def clean_handle(value):
+    value = str(value).strip()
+
+    if not value:
+        return ""
+
+    return value.replace("@", "").strip()
+
+
+def load_brand_socials():
+    path = DATA_DIR / "source" / "brand_socials.xlsx"
+
+    if not path.exists():
+        return {}
+
+    df = pd.read_excel(path).fillna("")
+
+    socials = {}
+
+    for _, row in df.iterrows():
+        slug = str(row.get("Slug", "")).strip().lower()
+
+        if not slug:
+            continue
+
+        instagram = clean_handle(row.get("Instagram", ""))
+        tiktok = clean_handle(row.get("TikTok", ""))
+        facebook = clean_handle(row.get("Facebook", ""))
+
+        socials[slug] = {
+            "website": str(row.get("Website", "")).strip(),
+
+            "instagram": (
+                f"https://www.instagram.com/{instagram}/"
+                if instagram else ""
+            ),
+
+            "tiktok": (
+                f"https://www.tiktok.com/@{tiktok}"
+                if tiktok else ""
+            ),
+
+            "facebook": (
+                f"https://www.facebook.com/{facebook}"
+                if facebook else ""
+            ),
+        }
+
+    return socials
 
 # -----------------------------------------------------------------------------
 # Rank / review helpers
@@ -636,6 +686,8 @@ def render_brand_top_products(slug, products_by_brand, limit=5):
 def render_brand_pages(brands):
     active = get_active_brands(brands)
 
+    brand_socials = load_brand_socials()
+
     leaderboard_file = LEADERBOARDS_ROOT / "top_products_last_12_months.json"
     products_by_brand = {}
 
@@ -650,6 +702,16 @@ def render_brand_pages(brands):
             products_by_brand.setdefault(seller_slug, []).append(p)
 
     for brand in active:
+
+        socials = brand_socials.get(str(brand.get("slug", "")).lower(), {})
+
+        brand["website"] = socials.get("website", "")
+        brand["instagram"] = socials.get("instagram", "")
+        brand["tiktok"] = socials.get("tiktok", "")
+        brand["facebook"] = socials.get("facebook", "")
+
+        body = BRAND_TEMPLATE
+        
         body = BRAND_TEMPLATE
 
         display_name = brand["name"] + ("*" if brand.get("inactive") else "")
