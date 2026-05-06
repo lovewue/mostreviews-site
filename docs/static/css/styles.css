@@ -285,6 +285,18 @@ Brands
     margin: 10px 0 0;
 }
 
+.brand-social-links {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.brand-social-links a {
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
 /* ----------------------------------------------------
 About Page
 ---------------------------------------------------- */

@@ -676,10 +676,34 @@ def render_brand_top_products(slug, products_by_brand, limit=5):
         )
 
     return f"""
-<ol class="brand-product-list">
+<ul class="brand-product-list">
   {''.join(rows)}
-</ol>
+</ul>
 <p class="table-note">* No longer available on NOTHS</p>
+""".strip()
+
+def render_brand_social_links(brand):
+    links = []
+
+    if brand.get("website"):
+        links.append(f'<a href="{brand["website"]}" target="_blank" rel="noopener">Website</a>')
+
+    if brand.get("instagram"):
+        links.append(f'<a href="{brand["instagram"]}" target="_blank" rel="noopener">Instagram</a>')
+
+    if brand.get("tiktok"):
+        links.append(f'<a href="{brand["tiktok"]}" target="_blank" rel="noopener">TikTok</a>')
+
+    if brand.get("facebook"):
+        links.append(f'<a href="{brand["facebook"]}" target="_blank" rel="noopener">Facebook</a>')
+
+    if not links:
+        return ""
+
+    return f"""
+<div class="brand-social-links">
+  {"".join(links)}
+</div>
 """.strip()
 
 
@@ -702,7 +726,6 @@ def render_brand_pages(brands):
             products_by_brand.setdefault(seller_slug, []).append(p)
 
     for brand in active:
-
         socials = brand_socials.get(str(brand.get("slug", "")).lower(), {})
 
         brand["website"] = socials.get("website", "")
@@ -710,8 +733,8 @@ def render_brand_pages(brands):
         brand["tiktok"] = socials.get("tiktok", "")
         brand["facebook"] = socials.get("facebook", "")
 
-        body = BRAND_TEMPLATE
-        
+        brand_social_links = render_brand_social_links(brand)
+
         body = BRAND_TEMPLATE
 
         display_name = brand["name"] + ("*" if brand.get("inactive") else "")
@@ -767,6 +790,7 @@ def render_brand_pages(brands):
 
         body = body.replace("{{ brand_logo }}", logo_html)
         body = body.replace("{{ brand_name }}", display_name)
+        body = body.replace("{{ brand_social_links }}", brand_social_links)
         body = body.replace("{{ order_volume }}", order_volume_value)
         body = body.replace("{{ reviews }}", review_count_value)
         body = body.replace("{{ products }}", product_count_value)
