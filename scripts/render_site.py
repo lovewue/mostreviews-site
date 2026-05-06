@@ -218,6 +218,18 @@ def clean_handle(value):
     return value.replace("@", "").strip()
 
 
+def clean_url(value):
+    value = str(value).strip()
+
+    if not value:
+        return ""
+
+    if value.startswith("http://") or value.startswith("https://"):
+        return value
+
+    return "https://" + value
+
+
 def load_brand_socials():
     path = DATA_DIR / "source" / "brand_socials.xlsx"
 
@@ -239,7 +251,7 @@ def load_brand_socials():
         facebook = clean_handle(row.get("Facebook", ""))
 
         socials[slug] = {
-            "website": str(row.get("Website", "")).strip(),
+            "website": clean_url(row.get("Website", "")),
 
             "instagram": (
                 f"https://www.instagram.com/{instagram}/"
