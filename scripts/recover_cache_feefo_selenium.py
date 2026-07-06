@@ -38,7 +38,7 @@ FEEFO_PRODUCT_URL = (
 MAX_TO_PROCESS = None          # e.g. 20 for testing, or None for all
 SAVE_EVERY = 10
 PAGE_WAIT_SECONDS = 15
-HEADLESS = False
+HEADLESS = True
 MIN_SLEEP = 1.0
 MAX_SLEEP = 2.0
 
