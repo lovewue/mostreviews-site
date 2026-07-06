@@ -13,8 +13,10 @@ name: Site Build & Publish
 # Steps:
 # 1. Top up the product cache with any new products found in the data
 # 2. Rebuild monthly JSON from all xlsx files present
-# 3. Render the site (docs/)
-# 4. Commit — GitHub Pages serves trendlist.co.uk directly from this repo's
+# 3. Build enriched monthly datasets (adds product/seller metadata from cache)
+# 4. Render the /noths/ subpages and about-the-data page (render.py)
+# 5. Render the homepage, archive, top-products, and about pages (render_site.py)
+# 6. Commit — GitHub Pages serves trendlist.co.uk directly from this repo's
 #    /docs folder, so this commit is the final step; no second repo involved.
 
 on:
@@ -52,11 +54,19 @@ jobs:
       - name: Build monthly JSON
         run: python build_monthly_json.py
 
-      # --- 3. Render the site (writes into docs/) -----------------------------
-      - name: Render site
+      # --- 3. Build enriched monthly datasets (needed by render_site.py) ----
+      - name: Build enriched monthly data
+        run: python scripts/build_enriched_monthly.py
+
+      # --- 4. Render /noths/ subpages + about-the-data page ------------------
+      - name: Render noths subpages
         run: python render.py
 
-      # --- 4. Commit build output ---------------------------------------------
+      # --- 5. Render homepage, archive, top-products, about ------------------
+      - name: Render homepage and core pages
+        run: python scripts/render_site.py
+
+      # --- 6. Commit build output ---------------------------------------------
       - name: Commit build output
         run: |
           git config --global user.name "github-actions"
