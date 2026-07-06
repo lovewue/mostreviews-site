@@ -220,7 +220,20 @@ def load_monthly_index() -> list[str]:
     if os.path.exists(MONTHLY_INDEX):
         with open(MONTHLY_INDEX, "r", encoding="utf-8") as f:
             raw = json.load(f)
-        months = [str(m).strip() for m in raw if str(m).strip()]
+
+        # index.json is an object like {"months": [{"month": "2026-04", ...}, ...]}
+        # (as written by build_monthly_json.py), not a plain list of strings.
+        if isinstance(raw, dict):
+            entries = raw.get("months", [])
+            months = [
+                str(entry.get("month", "")).strip()
+                for entry in entries
+                if isinstance(entry, dict) and str(entry.get("month", "")).strip()
+            ]
+        elif isinstance(raw, list):
+            # Fallback: support a plain list of month strings too, in case
+            # index.json is ever written in that simpler format.
+            months = [str(m).strip() for m in raw if str(m).strip()]
     else:
         # fallback: detect folders under data/monthly
         if os.path.exists(MONTHLY_DIR):
