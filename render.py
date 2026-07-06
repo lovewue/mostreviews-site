@@ -843,23 +843,10 @@ def render_sitemap():
         f"{BASE_URL}/",
         f"{BASE_URL}/noths/products/products-last-12-months.html",
         f"{BASE_URL}/noths/products/top-100-christmas.html",
-        f"{BASE_URL}/noths/partners/index.html",
-        f"{BASE_URL}/noths/partners/by-year.html",
-        f"{BASE_URL}/noths/partners/partner-most-reviews.html",
         f"{BASE_URL}/noths/monthly/",
     ]
 
-    # Partner pages
-    search_json_path = "docs/data/partners_search.json"
-    try:
-        with open(search_json_path, "r", encoding="utf-8") as f:
-            sellers = json.load(f)
-        for s in sellers:
-            slug = s["slug"]
-            first = slug[0].lower()
-            urls.append(f"{BASE_URL}/noths/partners/{first}/{slug}.html")
-    except FileNotFoundError:
-        print(f"⚠️ Skipped seller URLs in sitemap: '{search_json_path}' not found.", flush=True)
+    # NOTE: Partner/brand page URLs removed 2026-07 — those pages are retired.
 
     # Monthly pages
     months = load_monthly_index()
@@ -900,7 +887,6 @@ def render_noths_louise_thompson():
 # === Run Everything ===
 if __name__ == "__main__":
     copy_static_assets()
-    render_noths_index()
 
     # Monthly pages
     print("➡️ Rendering monthly landing...", flush=True)
@@ -909,28 +895,20 @@ if __name__ == "__main__":
     months = load_monthly_index()
     print(f"➡️ Months found: {months}", flush=True)
 
-    # ✅ Render ALL months (not just latest)
+    # Render ALL months (not just latest)
     for m in months:
         print(f"➡️ Rendering monthly products for {m}...", flush=True)
         render_monthly_products(m)
 
-    # Existing site
-    render_top_product_per_partner()
-    render_partner_pages()
-    render_partner_index()
-    render_partner_by_year()
-    render_partner_most_reviews_grouped()
-    render_partner_most_products_grouped()
+    # Site pages
+    # NOTE: Brand/partner directory pages retired 2026-07 (Top Brands, Newest
+    # Brands, All Brands, individual /brands/{slug}/ pages, and the legacy
+    # /noths/index.html partner+product landing page). Their functions are
+    # kept in this file in case they're needed again, but are no longer
+    # called here.
     render_top_100_products()
     render_site_homepage()
-    render_top_partners_last_12_months()
     render_top_100_all_time()
     render_about_page()
     render_about_the_data_page()
-    render_partner_search_json()
     render_sitemap()
-
-    # Keep these last (if you have them implemented in your version)
-    render_top_christmas()
-    render_noths_christmas_catalogue()
-    render_noths_louise_thompson()
