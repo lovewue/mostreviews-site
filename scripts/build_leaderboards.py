@@ -7,9 +7,6 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import pandas as pd
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
 
 
 # -----------------------------------------------------------------------------
@@ -21,8 +18,11 @@ PROJECT_ROOT = SCRIPT_DIR.parent
 DATA_DIR = PROJECT_ROOT / "data"
 CACHE_FILE = DATA_DIR / "cache" / "products_cache.json"
 
-ALL_TIME_FILE = DATA_DIR / "feefo_product_ratings_all_20260501.xlsx"
-LAST_12_MONTHS_FILE = DATA_DIR / "feefo_product_ratings_year_20260501.xlsx"
+# NOTE: previously hardcoded to a specific date-stamped filename, which broke
+# every month once that file was no longer the latest. Now auto-discovers the
+# most recent matching file instead.
+ALL_TIME_PATTERN = "feefo_product_ratings_all_*.xlsx"
+LAST_12_MONTHS_PATTERN = "feefo_product_ratings_year_*.xlsx"
 
 OUT_DIR = DATA_DIR / "derived" / "leaderboards"
 OUT_ALL_TIME = OUT_DIR / "top_products_all_time.json"
@@ -32,13 +32,6 @@ ARCHIVE_ALL_TIME = OUT_DIR / "top_products_all_time_archive.json"
 ARCHIVE_LAST_12 = OUT_DIR / "top_products_last_12_months_archive.json"
 
 PARTNERS_JSON = PROJECT_ROOT / "data" / "partners_search.json"
-
-
-# -----------------------------------------------------------------------------
-# Configuration
-# -----------------------------------------------------------------------------
-HEADLESS = False
-CHROMEDRIVER_PATH = None
 
 
 # -----------------------------------------------------------------------------
@@ -140,6 +133,18 @@ def save_json(path: Path, data: dict) -> None:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
+def find_latest_file(pattern: str) -> Path:
+    """
+    Find the most recently-dated file in data/ matching the given glob
+    pattern. Replaces the old hardcoded single-filename approach, which
+    broke every month once a new file was pulled.
+    """
+    candidates = sorted(DATA_DIR.glob(pattern))
+    if not candidates:
+        raise FileNotFoundError(f"No files found matching pattern: {pattern} in {DATA_DIR}")
+    return candidates[-1]
+
+
 # -----------------------------------------------------------------------------
 # Partner lookup
 # -----------------------------------------------------------------------------
@@ -229,31 +234,6 @@ def load_existing_leaderboard(path: Path) -> dict:
 
 
 # -----------------------------------------------------------------------------
-# Selenium setup
-# -----------------------------------------------------------------------------
-def make_driver() -> webdriver.Chrome:
-    options = Options()
-
-    if HEADLESS:
-        options.add_argument("--headless=new")
-
-    if CHROMEDRIVER_PATH:
-        service = Service(CHROMEDRIVER_PATH)
-        return webdriver.Chrome(service=service, options=options)
-
-    return webdriver.Chrome(options=options)
-
-
-# -----------------------------------------------------------------------------
-# Feefo scraping placeholder
-# -----------------------------------------------------------------------------
-def get_feefo_data_selenium(driver: webdriver.Chrome, sku: str) -> dict:
-    # Keep this safe while Feefo recovery is unreliable.
-    # Returning empty dict means "do not change existing item".
-    return {}
-
-
-# -----------------------------------------------------------------------------
 # Leaderboard helpers
 # -----------------------------------------------------------------------------
 def merge_archive_fallback(item: dict, archive_rows: dict) -> dict:
@@ -311,16 +291,7 @@ def base_row(sku, reviews, rating, rank, cache, existing_rows):
     return row
 
 
-def needs_feefo_enrichment(row: dict) -> bool:
-    return (
-        is_blank(row.get("name"))
-        or is_blank(row.get("product_url"))
-        or is_blank(row.get("seller_slug"))
-        or is_blank(row.get("seller_name"))
-    )
-
-
-def build_leaderboard(path: Path, label: str, cache: dict, driver: webdriver.Chrome | None = None) -> dict:
+def build_leaderboard(path: Path, label: str, cache: dict) -> dict:
     df = pd.read_excel(path)
 
     df["sku"] = df["Product Code"].apply(clean_sku)
@@ -343,11 +314,19 @@ def build_leaderboard(path: Path, label: str, cache: dict, driver: webdriver.Chr
     top_100_reviews = int(df_sorted_for_stats.head(100)["reviews"].sum())
     top_100_share_of_reviews = top_100_reviews / full_total_reviews if full_total_reviews else 0
 
+    # NOTE: key names below (products_with_500_plus_reviews /
+    # products_with_10_plus_reviews) must match exactly what render_site.py
+    # reads via data.get(...) — previously this was written as a generic
+    # "threshold_count", which render_site.py never looked for, so the
+    # stat always silently showed 0.
     if label == "all_time":
+        threshold_key = "products_with_500_plus_reviews"
         threshold_count = int((df["reviews"] >= 500).sum())
     elif label == "last_12_months":
+        threshold_key = "products_with_10_plus_reviews"
         threshold_count = int((df["reviews"] >= 10).sum())
     else:
+        threshold_key = "products_with_threshold_reviews"
         threshold_count = None
 
     df = df.sort_values(
@@ -367,18 +346,6 @@ def build_leaderboard(path: Path, label: str, cache: dict, driver: webdriver.Chr
         # Restore old/manual metadata before trying any live recovery
         item = merge_archive_fallback(item, archive_rows)
 
-        # Safe Feefo enrichment: only fills blanks, never downgrades good data
-        if needs_feefo_enrichment(item) and driver is not None:
-            recovered = get_feefo_data_selenium(driver, sku)
-
-            if isinstance(recovered, dict):
-                for key in ["name", "seller_slug", "seller_name", "product_url", "available"]:
-                    if is_blank(item.get(key)) and not is_blank(recovered.get(key)):
-                        item[key] = recovered[key]
-
-        # Final fallback again in case Feefo added nothing
-        item = merge_archive_fallback(item, archive_rows)
-
         items.append(item)
 
     output = {
@@ -389,7 +356,7 @@ def build_leaderboard(path: Path, label: str, cache: dict, driver: webdriver.Chr
         "total_reviews": full_total_reviews,
         "average_reviews_per_product": round(average_reviews_per_product, 2),
         "top_100_share_of_reviews": round(top_100_share_of_reviews, 4),
-        "threshold_count": threshold_count,
+        threshold_key: threshold_count,
         "items": items,
     }
 
@@ -402,13 +369,16 @@ def build_leaderboard(path: Path, label: str, cache: dict, driver: webdriver.Chr
 def main():
     cache = load_cache()
 
-    # Driver retained for compatibility, but Feefo recovery is disabled safely above.
-    driver = None
+    all_time_file = find_latest_file(ALL_TIME_PATTERN)
+    last_12_months_file = find_latest_file(LAST_12_MONTHS_PATTERN)
 
-    all_time = build_leaderboard(ALL_TIME_FILE, "all_time", cache, driver)
+    print(f"📄 Using all-time file: {all_time_file.name}")
+    print(f"📄 Using last-12-months file: {last_12_months_file.name}")
+
+    all_time = build_leaderboard(all_time_file, "all_time", cache)
     save_json(OUT_ALL_TIME, all_time)
 
-    last_12 = build_leaderboard(LAST_12_MONTHS_FILE, "last_12_months", cache, driver)
+    last_12 = build_leaderboard(last_12_months_file, "last_12_months", cache)
     save_json(OUT_LAST_12, last_12)
 
     print(f"✅ All-time leaderboard written → {OUT_ALL_TIME}")
