@@ -12,11 +12,13 @@ name: Site Build & Publish
 #
 # Steps:
 # 1. Top up the product cache with any new products found in the data
-# 2. Rebuild monthly JSON from all xlsx files present
-# 3. Build enriched monthly datasets (adds product/seller metadata from cache)
-# 4. Render the /noths/ subpages and about-the-data page (render.py)
-# 5. Render the homepage, archive, top-products, and about pages (render_site.py)
-# 6. Commit — GitHub Pages serves trendlist.co.uk directly from this repo's
+#    (NOTHS search only — some products won't resolve this way)
+# 2. Second pass: recover still-unresolved products via Feefo (Selenium)
+# 3. Rebuild monthly JSON from all xlsx files present
+# 4. Build enriched monthly datasets (adds product/seller metadata from cache)
+# 5. Render the /noths/ subpages and about-the-data page (render.py)
+# 6. Render the homepage, archive, top-products, and about pages (render_site.py)
+# 7. Commit — GitHub Pages serves trendlist.co.uk directly from this repo's
 #    /docs folder, so this commit is the final step; no second repo involved.
 
 on:
@@ -44,29 +46,37 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          pip install pandas openpyxl requests beautifulsoup4 jinja2
+          pip install pandas openpyxl requests beautifulsoup4 jinja2 selenium
 
-      # --- 1. Fill in missing product details --------------------------------
+      # --- 1. Fill in missing product details (NOTHS search) ------------------
       - name: Top up product cache
+        env:
+          PYTHONUNBUFFERED: "1"
         run: python topup_products_cache.py
 
-      # --- 2. Rebuild monthly JSON from all xlsx files present --------------
+      # --- 2. Second pass: recover unresolved products via Feefo (Selenium) --
+      - name: Recover unresolved products via Feefo
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: python scripts/recover_cache_feefo_selenium.py
+
+      # --- 3. Rebuild monthly JSON from all xlsx files present --------------
       - name: Build monthly JSON
         run: python build_monthly_json.py
 
-      # --- 3. Build enriched monthly datasets (needed by render_site.py) ----
+      # --- 4. Build enriched monthly datasets (needed by render_site.py) ----
       - name: Build enriched monthly data
         run: python scripts/build_enriched_monthly.py
 
-      # --- 4. Render /noths/ subpages + about-the-data page ------------------
+      # --- 5. Render /noths/ subpages + about-the-data page ------------------
       - name: Render noths subpages
         run: python render.py
 
-      # --- 5. Render homepage, archive, top-products, about ------------------
+      # --- 6. Render homepage, archive, top-products, about ------------------
       - name: Render homepage and core pages
         run: python scripts/render_site.py
 
-      # --- 6. Commit build output ---------------------------------------------
+      # --- 7. Commit build output ---------------------------------------------
       - name: Commit build output
         run: |
           git config --global user.name "github-actions"
