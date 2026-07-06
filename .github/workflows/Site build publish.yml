@@ -1,0 +1,67 @@
+name: Site Build & Publish
+
+# Rebuilds the site from whatever data already exists in data/ — it does NOT
+# pull new data itself. Data collection is handled entirely separately by
+# weekly-agent.yml, monthly-agent.yml, yearly-agent.yml, and all-agent.yml on
+# their own schedules.
+#
+# Deliberately decoupled: this workflow just says "build the site from
+# whatever's there right now." build_monthly_json.py scans ALL matching
+# xlsx files in data/, not just the newest — so if a month was missed (e.g.
+# June/July sitting unrendered), running this will catch it up automatically.
+#
+# Steps:
+# 1. Top up the product cache with any new products found in the data
+# 2. Rebuild monthly JSON from all xlsx files present
+# 3. Render the site (docs/)
+# 4. Commit — GitHub Pages serves trendlist.co.uk directly from this repo's
+#    /docs folder, so this commit is the final step; no second repo involved.
+
+on:
+  schedule:
+    - cron: '0 6 1 * *'   # 1st of the month, 06:00 UTC — well after the data-pull agents
+  workflow_dispatch:        # lets you trigger it manually any time, e.g. to catch up
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pandas openpyxl requests beautifulsoup4 jinja2
+
+      # --- 1. Fill in missing product details --------------------------------
+      - name: Top up product cache
+        run: python topup_products_cache.py
+
+      # --- 2. Rebuild monthly JSON from all xlsx files present --------------
+      - name: Build monthly JSON
+        run: python build_monthly_json.py
+
+      # --- 3. Render the site (writes into docs/) -----------------------------
+      - name: Render site
+        run: python render.py
+
+      # --- 4. Commit build output ---------------------------------------------
+      - name: Commit build output
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add data/ docs/
+          timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          git commit -m "Site rebuild for $timestamp" || echo "No changes to commit"
+          git push
