@@ -30,12 +30,6 @@
     "total_reviews_month": 34
   },
   {
-    "seller_slug": "unknown",
-    "seller_name": "Unknown brand",
-    "product_count_month": 32,
-    "total_reviews_month": 34
-  },
-  {
     "seller_slug": "oakdenedesigns",
     "seller_name": "Oakdene Designs",
     "product_count_month": 22,
@@ -50,8 +44,8 @@
   {
     "seller_slug": "myposhshop",
     "seller_name": "My Posh Shop",
-    "product_count_month": 21,
-    "total_reviews_month": 28
+    "product_count_month": 23,
+    "total_reviews_month": 30
   },
   {
     "seller_slug": "thealphabetgiftshop",
@@ -110,20 +104,20 @@
   {
     "seller_slug": "dibor",
     "seller_name": "Dibor",
-    "product_count_month": 14,
-    "total_reviews_month": 20
+    "product_count_month": 15,
+    "total_reviews_month": 21
+  },
+  {
+    "seller_slug": "hopeandlove",
+    "seller_name": "Hopeandlove",
+    "product_count_month": 20,
+    "total_reviews_month": 21
   },
   {
     "seller_slug": "thewordshack",
     "seller_name": "The Word Shack",
     "product_count_month": 12,
     "total_reviews_month": 20
-  },
-  {
-    "seller_slug": "hopeandlove",
-    "seller_name": "Hopeandlove",
-    "product_count_month": 18,
-    "total_reviews_month": 19
   },
   {
     "seller_slug": "littlesentiments",
@@ -174,6 +168,12 @@
     "total_reviews_month": 15
   },
   {
+    "seller_slug": "acquagarden",
+    "seller_name": "Acquagarden",
+    "product_count_month": 13,
+    "total_reviews_month": 14
+  },
+  {
     "seller_slug": "arrowgiftco",
     "seller_name": "Arrow Gift Co",
     "product_count_month": 13,
@@ -208,12 +208,6 @@
     "seller_name": "attic",
     "product_count_month": 13,
     "total_reviews_month": 14
-  },
-  {
-    "seller_slug": "acquagarden",
-    "seller_name": "Acquagarden",
-    "product_count_month": 12,
-    "total_reviews_month": 13
   },
   {
     "seller_slug": "amandahancocks",
@@ -261,6 +255,18 @@
     "seller_slug": "paperhigh",
     "seller_name": "Paper High",
     "product_count_month": 11,
+    "total_reviews_month": 12
+  },
+  {
+    "seller_slug": "personalisedbee",
+    "seller_name": "Personalisedbee",
+    "product_count_month": 12,
+    "total_reviews_month": 12
+  },
+  {
+    "seller_slug": "songsofinkandsteel",
+    "seller_name": "Songsofinkandsteel",
+    "product_count_month": 10,
     "total_reviews_month": 12
   },
   {
@@ -342,12 +348,6 @@
     "total_reviews_month": 10
   },
   {
-    "seller_slug": "personalisedbee",
-    "seller_name": "Personalisedbee",
-    "product_count_month": 10,
-    "total_reviews_month": 10
-  },
-  {
     "seller_slug": "personalisedtreasures",
     "seller_name": "Personalisedtreasures",
     "product_count_month": 8,
@@ -357,12 +357,6 @@
     "seller_slug": "pogofandango",
     "seller_name": "Pogofandango",
     "product_count_month": 8,
-    "total_reviews_month": 10
-  },
-  {
-    "seller_slug": "songsofinkandsteel",
-    "seller_name": "Songsofinkandsteel",
-    "product_count_month": 9,
     "total_reviews_month": 10
   },
   {
@@ -417,6 +411,12 @@
     "seller_slug": "heatheralsteaddesign",
     "seller_name": "Heather Alstead Design",
     "product_count_month": 6,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "lottieshaws",
+    "seller_name": "LOTTIE SHAW'S",
+    "product_count_month": 7,
     "total_reviews_month": 9
   },
   {
@@ -480,12 +480,6 @@
     "total_reviews_month": 8
   },
   {
-    "seller_slug": "lottieshaws",
-    "seller_name": "LOTTIE SHAW'S",
-    "product_count_month": 6,
-    "total_reviews_month": 8
-  },
-  {
     "seller_slug": "lovetreedesign",
     "seller_name": "Lovetreedesign",
     "product_count_month": 8,
@@ -508,6 +502,12 @@
     "seller_name": "Under the Rose",
     "product_count_month": 7,
     "total_reviews_month": 8
+  },
+  {
+    "seller_slug": "afewhometruths",
+    "seller_name": "Afewhometruths",
+    "product_count_month": 7,
+    "total_reviews_month": 7
   },
   {
     "seller_slug": "bumblebeez",
@@ -555,6 +555,12 @@
     "seller_slug": "forgeandfoundry",
     "seller_name": "FORGE & FOUNDRY",
     "product_count_month": 5,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "feelsilkstudio",
+    "seller_name": "Feel Silk Studio",
+    "product_count_month": 7,
     "total_reviews_month": 7
   },
   {
@@ -654,12 +660,6 @@
     "total_reviews_month": 7
   },
   {
-    "seller_slug": "afewhometruths",
-    "seller_name": "Afewhometruths",
-    "product_count_month": 6,
-    "total_reviews_month": 6
-  },
-  {
     "seller_slug": "lineamasks",
     "seller_name": "Awristo",
     "product_count_month": 5,
@@ -738,6 +738,12 @@
     "total_reviews_month": 6
   },
   {
+    "seller_slug": "stagdesign",
+    "seller_name": "Stag Design",
+    "product_count_month": 6,
+    "total_reviews_month": 6
+  },
+  {
     "seller_slug": "thegiftologist",
     "seller_name": "The Giftologist",
     "product_count_month": 6,
@@ -783,12 +789,6 @@
     "seller_slug": "coachhouseforge",
     "seller_name": "Coach House Forge",
     "product_count_month": 4,
-    "total_reviews_month": 5
-  },
-  {
-    "seller_slug": "feelsilkstudio",
-    "seller_name": "Feel Silk Studio",
-    "product_count_month": 5,
     "total_reviews_month": 5
   },
   {
@@ -843,12 +843,6 @@
     "seller_slug": "shareasmilegifts",
     "seller_name": "SHARE A SMILE GIFTS",
     "product_count_month": 4,
-    "total_reviews_month": 5
-  },
-  {
-    "seller_slug": "stagdesign",
-    "seller_name": "Stag Design",
-    "product_count_month": 5,
     "total_reviews_month": 5
   },
   {
@@ -1002,6 +996,12 @@
     "total_reviews_month": 4
   },
   {
+    "seller_slug": "foxinabox",
+    "seller_name": "Foxinabox",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
     "seller_slug": "jamesellis",
     "seller_name": "Jamesellis",
     "product_count_month": 4,
@@ -1046,6 +1046,12 @@
   {
     "seller_slug": "littlebabyboutique",
     "seller_name": "Littlebabyboutique",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "lucylovesneko",
+    "seller_name": "Lucylovesneko",
     "product_count_month": 4,
     "total_reviews_month": 4
   },
@@ -1142,6 +1148,12 @@
   {
     "seller_slug": "rubythecakeartist",
     "seller_name": "Ruby The Cake Artist",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "selections",
+    "seller_name": "Selections",
     "product_count_month": 4,
     "total_reviews_month": 4
   },
@@ -1338,18 +1350,6 @@
     "total_reviews_month": 3
   },
   {
-    "seller_slug": "foxinabox",
-    "seller_name": "Foxinabox",
-    "product_count_month": 3,
-    "total_reviews_month": 3
-  },
-  {
-    "seller_slug": "selections",
-    "seller_name": "Garden Selections",
-    "product_count_month": 3,
-    "total_reviews_month": 3
-  },
-  {
     "seller_slug": "giantsparrows",
     "seller_name": "Giantsparrows",
     "product_count_month": 3,
@@ -1434,6 +1434,12 @@
     "total_reviews_month": 3
   },
   {
+    "seller_slug": "limetreedesign",
+    "seller_name": "Limetreedesign",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
     "seller_slug": "lucykempjewellery",
     "seller_name": "Lucy Kemp Silver Jewellery",
     "product_count_month": 3,
@@ -1442,12 +1448,6 @@
   {
     "seller_slug": "lucylilybet",
     "seller_name": "Lucylilybet",
-    "product_count_month": 3,
-    "total_reviews_month": 3
-  },
-  {
-    "seller_slug": "lucylovesneko",
-    "seller_name": "Lucylovesneko",
     "product_count_month": 3,
     "total_reviews_month": 3
   },
@@ -1506,8 +1506,20 @@
     "total_reviews_month": 3
   },
   {
+    "seller_slug": "monstersportinggifts",
+    "seller_name": "Monstersportinggifts",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
     "seller_slug": "multiplydesign",
     "seller_name": "Multiplydesign",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "oskarandcatie",
+    "seller_name": "Oskarandcatie",
     "product_count_month": 3,
     "total_reviews_month": 3
   },
@@ -1550,6 +1562,12 @@
   {
     "seller_slug": "handmadebytessagalloway",
     "seller_name": "Tessa Galloway Illustration",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "thatsminepersonalisedembroideredgifts",
+    "seller_name": "That's mine personalised embroidered gifts",
     "product_count_month": 3,
     "total_reviews_month": 3
   },
@@ -1671,6 +1689,12 @@
     "seller_slug": "alunamae",
     "seller_name": "Aluna Mae",
     "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "aroralondon",
+    "seller_name": "Aroralondon",
+    "product_count_month": 2,
     "total_reviews_month": 2
   },
   {
@@ -1818,6 +1842,12 @@
     "total_reviews_month": 2
   },
   {
+    "seller_slug": "eggbertanddaisy",
+    "seller_name": "Eggbertanddaisy",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
     "seller_slug": "eskimokissdesigns",
     "seller_name": "Eskimo Kiss Designs",
     "product_count_month": 2,
@@ -1868,6 +1898,12 @@
   {
     "seller_slug": "gapgardenproducts",
     "seller_name": "Gap Garden Products",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "giftdelivery",
+    "seller_name": "Giftdelivery",
     "product_count_month": 2,
     "total_reviews_month": 2
   },
@@ -2130,12 +2166,6 @@
     "total_reviews_month": 2
   },
   {
-    "seller_slug": "monstersportinggifts",
-    "seller_name": "Monstersportinggifts",
-    "product_count_month": 2,
-    "total_reviews_month": 2
-  },
-  {
     "seller_slug": "morganicsbeauty",
     "seller_name": "Morganicsbeauty",
     "product_count_month": 2,
@@ -2180,12 +2210,6 @@
   {
     "seller_slug": "onnanokojewellery",
     "seller_name": "Onnanoko Jewellery",
-    "product_count_month": 2,
-    "total_reviews_month": 2
-  },
-  {
-    "seller_slug": "oskarandcatie",
-    "seller_name": "Oskarandcatie",
     "product_count_month": 2,
     "total_reviews_month": 2
   },
@@ -2292,12 +2316,6 @@
     "total_reviews_month": 2
   },
   {
-    "seller_slug": "thatsminepersonalisedembroideredgifts",
-    "seller_name": "That's mine personalised embroidered gifts",
-    "product_count_month": 2,
-    "total_reviews_month": 2
-  },
-  {
     "seller_slug": "thebestofmedesigns",
     "seller_name": "The Best Of Me Designs",
     "product_count_month": 2,
@@ -2324,6 +2342,12 @@
   {
     "seller_slug": "thekitbox",
     "seller_name": "The KitBox®",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "snugglefeet",
+    "seller_name": "The Laser Engraving Company",
     "product_count_month": 2,
     "total_reviews_month": 2
   },
@@ -2504,12 +2528,6 @@
   {
     "seller_slug": "annieoak",
     "seller_name": "Annieoak",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
-    "seller_slug": "aroralondon",
-    "seller_name": "Aroralondon",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
@@ -2856,12 +2874,6 @@
     "total_reviews_month": 1
   },
   {
-    "seller_slug": "eggbertanddaisy",
-    "seller_name": "Eggbertanddaisy",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
     "seller_slug": "ellisgreyjewellery",
     "seller_name": "Ellisgreyjewellery",
     "product_count_month": 1,
@@ -2880,6 +2892,12 @@
     "total_reviews_month": 1
   },
   {
+    "seller_slug": "everwild",
+    "seller_name": "Everwild",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
     "seller_slug": "evydesigns",
     "seller_name": "Evydesigns",
     "product_count_month": 1,
@@ -2888,6 +2906,12 @@
   {
     "seller_slug": "fableengland",
     "seller_name": "Fableengland",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "fieldtripsupplyco",
+    "seller_name": "Fieldtripsupplyco",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
@@ -2954,12 +2978,6 @@
   {
     "seller_slug": "gardnerscookies",
     "seller_name": "Gardnerscookies",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
-    "seller_slug": "giftdelivery",
-    "seller_name": "Giftdelivery",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
@@ -3318,6 +3336,12 @@
     "total_reviews_month": 1
   },
   {
+    "seller_slug": "letterbox-cocktails",
+    "seller_name": "Letterbox Cocktails",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
     "seller_slug": "lifeofriley",
     "seller_name": "Lifeofriley",
     "product_count_month": 1,
@@ -3332,12 +3356,6 @@
   {
     "seller_slug": "lilymo",
     "seller_name": "Lilymo",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
-    "seller_slug": "limetreedesign",
-    "seller_name": "Limetreedesign",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
@@ -3522,6 +3540,12 @@
     "total_reviews_month": 1
   },
   {
+    "seller_slug": "minnikins",
+    "seller_name": "Minnikins",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
     "seller_slug": "mirchmasala",
     "seller_name": "Mirchmasala",
     "product_count_month": 1,
@@ -3588,6 +3612,18 @@
     "total_reviews_month": 1
   },
   {
+    "seller_slug": "mylittleshopuk",
+    "seller_name": "Mylittleshopuk",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "neboho",
+    "seller_name": "Neboho",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
     "seller_slug": "notesandclips",
     "seller_name": "Notes & Clips",
     "product_count_month": 1,
@@ -3614,6 +3650,12 @@
   {
     "seller_slug": "oneshowmore",
     "seller_name": "Oneshowmore",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "oopsadoodle",
+    "seller_name": "Oopsadoodle",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
@@ -4100,12 +4142,6 @@
   {
     "seller_slug": "2littleboys",
     "seller_name": "The Chiswick Gift Company",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
-    "seller_slug": "snugglefeet",
-    "seller_name": "The Laser Engraving Company",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
