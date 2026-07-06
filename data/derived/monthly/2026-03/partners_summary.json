@@ -486,6 +486,12 @@
     "total_reviews_month": 11
   },
   {
+    "seller_slug": "carriagetrade",
+    "seller_name": "The Carriage Trade Company Ltd",
+    "product_count_month": 9,
+    "total_reviews_month": 11
+  },
+  {
     "seller_slug": "thecornishcompany",
     "seller_name": "The Cornish Company",
     "product_count_month": 5,
@@ -603,12 +609,6 @@
     "seller_slug": "sweetwilliamdesigns",
     "seller_name": "Sweetwilliamdesigns",
     "product_count_month": 10,
-    "total_reviews_month": 10
-  },
-  {
-    "seller_slug": "carriagetrade",
-    "seller_name": "The Carriage Trade Company Ltd",
-    "product_count_month": 8,
     "total_reviews_month": 10
   },
   {
@@ -1686,8 +1686,8 @@
     "total_reviews_month": 4
   },
   {
-    "seller_slug": "unknown",
-    "seller_name": "Unknown brand",
+    "seller_slug": "netalternative",
+    "seller_name": "Warner's End",
     "product_count_month": 4,
     "total_reviews_month": 4
   },
@@ -2132,12 +2132,6 @@
   {
     "seller_slug": "twigs",
     "seller_name": "Twigs",
-    "product_count_month": 3,
-    "total_reviews_month": 3
-  },
-  {
-    "seller_slug": "netalternative",
-    "seller_name": "Warner's End",
     "product_count_month": 3,
     "total_reviews_month": 3
   },
@@ -3864,6 +3858,12 @@
     "total_reviews_month": 1
   },
   {
+    "seller_slug": "globall",
+    "seller_name": "Globall",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
     "seller_slug": "gloverandsmith",
     "seller_name": "Gloverandsmith",
     "product_count_month": 1,
@@ -5444,6 +5444,12 @@
   {
     "seller_slug": "tuppenceandcrumble",
     "seller_name": "Tuppence and Crumble",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "unknown",
+    "seller_name": "Unknown brand",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
