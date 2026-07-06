@@ -35,7 +35,7 @@ FEEFO_PRODUCT_URL = (
     "?sku={sku}&displayFeedbackType=PRODUCT&timeFrame=ALL"
 )
 
-MAX_TO_PROCESS = None          # e.g. 20 for testing, or None for all
+MAX_TO_PROCESS = 200          # capped per run — backlog clears gradually over successive months
 SAVE_EVERY = 10
 PAGE_WAIT_SECONDS = 15
 HEADLESS = True
@@ -491,18 +491,17 @@ def main() -> None:
     print()
 
     cache = load_cache()
-    latest_month, latest_month_skus = load_latest_month_skus()
 
     print(f"📦 Cache SKUs:         {len(cache)}")
-    if latest_month:
-        print(f"🗂 Latest month:       {latest_month}")
-        print(f"🆕 Latest month SKUs:  {len(latest_month_skus)}")
     print()
 
+    # NOTE: previously only checked the latest month's SKUs, missing anything
+    # unresolved from earlier months. Now checks every SKU currently in the
+    # cache, so the full backlog gets a chance at Feefo recovery each run.
     to_process = sorted(
         sku
-        for sku in latest_month_skus
-        if record_needs_recovery(cache.get(sku))
+        for sku, record in cache.items()
+        if record_needs_recovery(record)
     )
 
     if MAX_TO_PROCESS:
@@ -512,7 +511,7 @@ def main() -> None:
     print()
 
     if not to_process:
-        print("✅ No unresolved SKUs found for the latest month.")
+        print("✅ No unresolved SKUs found.")
         return
 
     driver = make_driver()
