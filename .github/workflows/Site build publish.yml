@@ -68,15 +68,19 @@ jobs:
       - name: Build enriched monthly data
         run: python scripts/build_enriched_monthly.py
 
-      # --- 5. Render /noths/ subpages + about-the-data page ------------------
+      # --- 5. Build leaderboards (all-time / last-12-months product stats) --
+      - name: Build leaderboards
+        run: python scripts/build_leaderboards.py
+
+      # --- 6. Render /noths/ subpages + about-the-data page ------------------
       - name: Render noths subpages
         run: python render.py
 
-      # --- 6. Render homepage, archive, top-products, about ------------------
+      # --- 7. Render homepage, archive, top-products, about ------------------
       - name: Render homepage and core pages
         run: python scripts/render_site.py
 
-      # --- 7. Commit build output ---------------------------------------------
+      # --- 8. Commit build output ---------------------------------------------
       - name: Commit build output
         run: |
           git config --global user.name "github-actions"
