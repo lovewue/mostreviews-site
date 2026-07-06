@@ -922,6 +922,7 @@ if __name__ == "__main__":
     render_top_100_products()
     render_site_homepage()
     render_top_100_all_time()
-    render_about_page()
     render_about_the_data_page()
-    render_sitemap()
+    # NOTE: about.html and sitemap.xml are now owned by scripts/render_site.py
+    # (it wraps content with proper header/nav/footer, which this file's
+    # about.html rendering does not). Run render_site.py after this script.

@@ -34,14 +34,13 @@ def load_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
-BASE_TEMPLATE = load_text(TEMPLATES_DIR / "base.html")
+BASE_TEMPLATE = load_text(TEMPLATES_DIR / "legacy-base.html")
 HEADER_TEMPLATE = load_text(PARTIALS_DIR / "header.html")
 FOOTER_TEMPLATE = load_text(PARTIALS_DIR / "footer.html")
 HOMEPAGE_TEMPLATE = load_text(TEMPLATES_DIR / "homepage.html")
 
-BRANDS_INDEX_TEMPLATE = load_text(TEMPLATES_DIR / "brands-index.html")
-BRANDS_TOP_100_TEMPLATE = load_text(TEMPLATES_DIR / "brands-top-100.html")
-BRAND_TEMPLATE = load_text(TEMPLATES_DIR / "brand.html")
+# NOTE: Brand directory templates retired 2026-07 (brands-index.html,
+# brands-top-100.html, brand.html) — no longer loaded here.
 
 ABOUT_TEMPLATE = load_text(TEMPLATES_DIR / "about.html")
 
@@ -1469,8 +1468,6 @@ def generate_sitemap(months, brands):
     urls.append(f"{base_url}/")
     urls.append(f"{base_url}/top-products-last-12-months.html")
     urls.append(f"{base_url}/top-products-all-time.html")
-    urls.append(f"{base_url}/top-100-brands.html")
-    urls.append(f"{base_url}/brands.html")
     urls.append(f"{base_url}/archive.html")
     urls.append(f"{base_url}/about.html")
 
@@ -1478,7 +1475,8 @@ def generate_sitemap(months, brands):
     for m in months:
         urls.append(f"{base_url}/months/{m}.html")
 
-    # Brand pages
+    # NOTE: Brand pages retired 2026-07 — brands list will be empty going
+    # forward, so this loop is now a no-op, kept for structural symmetry.
     for brand in brands:
         slug = brand.get("slug")
         if slug:
@@ -1530,17 +1528,12 @@ def main():
     render_top_products_all_time()
     render_top_products_last_12_months(latest, previous_for_homepage)
 
-    brands = load_brands()
-    print(f"Brands loaded: {len(brands)}")
-
-    if brands:
-        render_brands_index(brands)
-        render_brands_top_100(brands)
-        render_newest_brands(brands)
-        render_brand_pages(brands)
+    # NOTE: Brand directory retired 2026-07 (Top Brands, Newest Brands, All
+    # Brands, individual /brands/{slug}/ pages). Functions kept in this file
+    # in case they're needed again, but no longer called here.
 
     render_about()
-    generate_sitemap(months, brands)
+    generate_sitemap(months, brands=[])
 
     print()
     print("🏁 Site render complete")
