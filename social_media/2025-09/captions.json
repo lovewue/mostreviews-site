@@ -1,0 +1,98 @@
+{
+  "month": "2025-09",
+  "generated_at": "2026-07-07T12:22:46+00:00",
+  "cover_image": "00_cover.jpg",
+  "total_reviews_month": 5233,
+  "products": [
+    {
+      "rank": 1,
+      "sku": "856677",
+      "image_file": "01_856677.jpg",
+      "name": "Metallic Gold Mulberry Tree Of Life Scarf",
+      "seller_name": "My Posh Shop",
+      "review_count_month": 21,
+      "product_url": "https://www.notonthehighstreet.com/myposhshop/product/silver-foil-tree-cotton-scarf"
+    },
+    {
+      "rank": 2,
+      "sku": "1311546",
+      "image_file": "02_1311546.jpg",
+      "name": "Reversible Colour Contrast Cashmere Blend Scarf",
+      "seller_name": "Studio Hop",
+      "review_count_month": 16,
+      "product_url": "https://www.notonthehighstreet.com/studiohop/product/reversible-colour-contrast-cashmere-blend-scarf"
+    },
+    {
+      "rank": 2,
+      "sku": "786481",
+      "image_file": "02_786481.jpg",
+      "name": "Sterling Silver Birthstone Sliding Bracelet",
+      "seller_name": "Gaamaa",
+      "review_count_month": 16,
+      "product_url": "https://www.notonthehighstreet.com/gaamaa/product/sterling-silver-birthstone-sliding-bracelet"
+    },
+    {
+      "rank": 4,
+      "sku": "1478663",
+      "image_file": "04_1478663.jpg",
+      "name": "Porcelain Bird French Vintage Charm Bracelet",
+      "seller_name": "Unique's Co.",
+      "review_count_month": 15,
+      "product_url": "https://www.notonthehighstreet.com/uniques/product/porcelain-bird-french-vintage-charm-bracelet"
+    },
+    {
+      "rank": 5,
+      "sku": "621809",
+      "image_file": "05_621809.jpg",
+      "name": "Friendship Knot Bangle",
+      "seller_name": "Joy by Corrine Smith",
+      "review_count_month": 14,
+      "product_url": "https://www.notonthehighstreet.com/joybycorrinesmith/product/friendship-knot-bangle"
+    },
+    {
+      "rank": 6,
+      "sku": "1523616",
+      "image_file": "06_1523616.jpg",
+      "name": "Soft Cuddly Giant Handwarmer Henry The Hedgehog",
+      "seller_name": "Deyongs Ltd",
+      "review_count_month": 13,
+      "product_url": "https://www.notonthehighstreet.com/thelyndoncompany/product/soft-cuddly-giant-handwarmer-henry-the-hedgehog"
+    },
+    {
+      "rank": 6,
+      "sku": "469358",
+      "image_file": "06_469358.jpg",
+      "name": "Family Birthstone Link Bracelet",
+      "seller_name": "Joy by Corrine Smith",
+      "review_count_month": 13,
+      "product_url": "https://www.notonthehighstreet.com/joybycorrinesmith/product/family-birthstone-link-bracelet"
+    },
+    {
+      "rank": 6,
+      "sku": "545355",
+      "image_file": "06_545355.jpg",
+      "name": "Personalised Swarovski Birthstone And Initial Necklace",
+      "seller_name": "Twenty-Seven",
+      "review_count_month": 13,
+      "product_url": "https://www.notonthehighstreet.com/twentyseven/product/personalised-swarovski-birthstone-and-initial-necklace"
+    },
+    {
+      "rank": 6,
+      "sku": "876141",
+      "image_file": "06_876141.jpg",
+      "name": "Personalised Birth Flower Scarf",
+      "seller_name": "The Forest & Co",
+      "review_count_month": 13,
+      "product_url": "https://www.notonthehighstreet.com/theforestandco/product/personalised-birth-flower-scarf"
+    },
+    {
+      "rank": 10,
+      "sku": "1345877",
+      "image_file": "10_1345877.jpg",
+      "name": "Ladies Sterling Silver Or Gold Mesh Bracelet",
+      "seller_name": "Hurleyburley",
+      "review_count_month": 12,
+      "product_url": "https://www.notonthehighstreet.com/hurleyburley/product/ladies-sterling-silver-mesh-bracelet"
+    }
+  ]
+}
