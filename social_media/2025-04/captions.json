@@ -1,0 +1,116 @@
+{
+  "month": "2025-04",
+  "generated_at": "2026-07-07T12:46:40+00:00",
+  "cover_image": "00_cover.jpg",
+  "total_reviews_month": 2530,
+  "products": [
+    {
+      "rank": 1,
+      "sku": "469358",
+      "image_file": "01_469358.jpg",
+      "name": "Family Birthstone Link Bracelet",
+      "seller_name": "Joy by Corrine Smith",
+      "review_count_month": 12,
+      "product_url": "https://www.notonthehighstreet.com/joybycorrinesmith/product/family-birthstone-link-bracelet"
+    },
+    {
+      "rank": 2,
+      "sku": "571200",
+      "image_file": "02_571200.jpg",
+      "name": "Cast Iron Daffodil Bird Feeder Garden Ornament",
+      "seller_name": "Garden Selections",
+      "review_count_month": 10,
+      "product_url": "https://www.notonthehighstreet.com/selections/product/cast-iron-daffodil-bird-feeder-garden-ornament"
+    },
+    {
+      "rank": 3,
+      "sku": "748820",
+      "image_file": "03_748820.jpg",
+      "name": "Personalised Metallic Sound Wave Song Print",
+      "seller_name": "The Gift Edit",
+      "review_count_month": 7,
+      "product_url": "https://www.notonthehighstreet.com/mixpixie/product/personalised-metallic-foil-sound-wave-song-print"
+    },
+    {
+      "rank": 3,
+      "sku": "771041",
+      "image_file": "03_771041.jpg",
+      "name": "Personalised Relaxation And Wellness Pamper Gift Set",
+      "seller_name": "Banks-Lyon Botanical",
+      "review_count_month": 7,
+      "product_url": "https://www.notonthehighstreet.com/bankslyonbotanical/product/relaxation-gift-set"
+    },
+    {
+      "rank": 5,
+      "sku": "868202",
+      "image_file": "05_868202.jpg",
+      "name": "60th Birthday Solid Sterling Silver Six Star Bracelet",
+      "seller_name": "My Posh Shop",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/myposhshop/product/60th-birthday-solid-sterling-silver-six-star-bracelet"
+    },
+    {
+      "rank": 5,
+      "sku": "937471",
+      "image_file": "05_937471.jpg",
+      "name": "Dandelion Foil Birthday Gift Scarf",
+      "seller_name": "Studio Hop",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/studiohop/product/thinking-of-you-dandelion-scarf-letterbox-gift"
+    },
+    {
+      "rank": 5,
+      "sku": "1278588",
+      "image_file": "05_1278588.jpg",
+      "name": "Bunny In A Box",
+      "seller_name": "The Gourmet Chocolate Pizza Co.",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/thegourmetchocolatepizzaco/product/bunny-in-a-box"
+    },
+    {
+      "rank": 5,
+      "sku": "876141",
+      "image_file": "05_876141.jpg",
+      "name": "Personalised Birth Flower Scarf",
+      "seller_name": "The Forest & Co",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/theforestandco/product/personalised-birth-flower-scarf"
+    },
+    {
+      "rank": 9,
+      "sku": "1152259",
+      "image_file": "09_1152259.jpg",
+      "name": "Personalised Stainless Steel Pizza Cutter",
+      "seller_name": "Oakdene Designs",
+      "review_count_month": 5,
+      "product_url": "https://www.notonthehighstreet.com/oakdenedesigns/product/personalised-stainless-steel-pizza-cutter"
+    },
+    {
+      "rank": 9,
+      "sku": "1183789",
+      "image_file": "09_1183789.jpg",
+      "name": "Personalised Keyring For Mummy Or Daddy",
+      "seller_name": "Taylor Cut Co",
+      "review_count_month": 5,
+      "product_url": "https://www.notonthehighstreet.com/taylorcutco/product/this-daddy-dad-belongs-to-kechain"
+    },
+    {
+      "rank": 9,
+      "sku": "377170",
+      "image_file": "09_377170.jpg",
+      "name": "Scratch The World Map Print with Coin",
+      "seller_name": "Maps International",
+      "review_count_month": 5,
+      "product_url": "https://www.notonthehighstreet.com/mapsinternational/product/scratch-world-map"
+    },
+    {
+      "rank": 9,
+      "sku": "621809",
+      "image_file": "09_621809.jpg",
+      "name": "Friendship Knot Bangle",
+      "seller_name": "Joy by Corrine Smith",
+      "review_count_month": 5,
+      "product_url": "https://www.notonthehighstreet.com/joybycorrinesmith/product/friendship-knot-bangle"
+    }
+  ]
+}
