@@ -1,0 +1,98 @@
+{
+  "month": "2025-11",
+  "generated_at": "2026-07-07T15:40:04+00:00",
+  "cover_image": "00_cover.jpg",
+  "total_reviews_month": 7052,
+  "products": [
+    {
+      "rank": 1,
+      "sku": "469358",
+      "image_file": "01_469358.jpg",
+      "name": "Family Birthstone Link Bracelet",
+      "seller_name": "Joy by Corrine Smith",
+      "review_count_month": 27,
+      "product_url": "https://www.notonthehighstreet.com/joybycorrinesmith/product/family-birthstone-link-bracelet"
+    },
+    {
+      "rank": 2,
+      "sku": "1062346",
+      "image_file": "02_1062346.jpg",
+      "name": "Tree Of Life Rose Gold Foil Scarf Gift",
+      "seller_name": "Studio Hop",
+      "review_count_month": 26,
+      "product_url": "https://www.notonthehighstreet.com/studiohop/product/tree-of-life-foil-scarf-letterbox-gift"
+    },
+    {
+      "rank": 3,
+      "sku": "1345877",
+      "image_file": "03_1345877.jpg",
+      "name": "Ladies Sterling Silver Or Gold Mesh Bracelet",
+      "seller_name": "Hurleyburley",
+      "review_count_month": 24,
+      "product_url": "https://www.notonthehighstreet.com/hurleyburley/product/ladies-sterling-silver-mesh-bracelet"
+    },
+    {
+      "rank": 4,
+      "sku": "1232243",
+      "image_file": "04_1232243.jpg",
+      "name": "Curries From Around The World, Personalised Gift",
+      "seller_name": "Spicentice",
+      "review_count_month": 23,
+      "product_url": "https://www.notonthehighstreet.com/spicentice/product/curries-from-around-the-world-gift-box"
+    },
+    {
+      "rank": 5,
+      "sku": "1353406",
+      "image_file": "05_1353406.jpg",
+      "name": "F1 Formula One 2025 / 2026 Calendar Track T Shirt Gift For Him",
+      "seller_name": "Yeah Boo",
+      "review_count_month": 18,
+      "product_url": "https://www.notonthehighstreet.com/nappyhead/product/formula-1-track-t-shirt-gift-for-him"
+    },
+    {
+      "rank": 5,
+      "sku": "1491886",
+      "image_file": "05_1491886.jpg",
+      "name": "Custom Jewelry Box, Travel Jewellery Box",
+      "seller_name": "Awristo",
+      "review_count_month": 18,
+      "product_url": "https://www.notonthehighstreet.com/lineamasks/product/custom-jewelry-box-travel-jewellery-box"
+    },
+    {
+      "rank": 7,
+      "sku": "1162105",
+      "image_file": "07_1162105.jpg",
+      "name": "Enamelled Birth Flower Brooch In A Gift Box",
+      "seller_name": "Studio Hop",
+      "review_count_month": 15,
+      "product_url": "https://www.notonthehighstreet.com/studiohop/product/enamelled-birth-flower-brooch-in-a-gift-box"
+    },
+    {
+      "rank": 7,
+      "sku": "1500484",
+      "image_file": "07_1500484.jpg",
+      "name": "Personalised Granddaughter Bracelet. Granddaughter Gift",
+      "seller_name": "Nameitwhatyoulike",
+      "review_count_month": 15,
+      "product_url": "https://www.notonthehighstreet.com/nameitwhatyoulike/product/personalised-special-granddaughter-charm-bracelet"
+    },
+    {
+      "rank": 7,
+      "sku": "545355",
+      "image_file": "07_545355.jpg",
+      "name": "Personalised Swarovski Birthstone And Initial Necklace",
+      "seller_name": "Twenty-Seven",
+      "review_count_month": 15,
+      "product_url": "https://www.notonthehighstreet.com/twentyseven/product/personalised-swarovski-birthstone-and-initial-necklace"
+    },
+    {
+      "rank": 10,
+      "sku": "1344943",
+      "image_file": "10_1344943.jpg",
+      "name": "No Words Just Hugs Candle Gift Set",
+      "seller_name": "Pomchick",
+      "review_count_month": 14,
+      "product_url": "https://www.notonthehighstreet.com/looppa/product/no-words-just-hugs-candle-gift-set"
+    }
+  ]
+}

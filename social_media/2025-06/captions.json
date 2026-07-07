@@ -1,0 +1,116 @@
+{
+  "month": "2025-06",
+  "generated_at": "2026-07-07T15:40:16+00:00",
+  "cover_image": "00_cover.jpg",
+  "total_reviews_month": 4233,
+  "products": [
+    {
+      "rank": 1,
+      "sku": "876141",
+      "image_file": "01_876141.jpg",
+      "name": "Personalised Birth Flower Scarf",
+      "seller_name": "The Forest & Co",
+      "review_count_month": 27,
+      "product_url": "https://www.notonthehighstreet.com/theforestandco/product/personalised-birth-flower-scarf"
+    },
+    {
+      "rank": 2,
+      "sku": "133151",
+      "image_file": "02_133151.jpg",
+      "name": "Sheep Sofa Tidy, Remote Control Holder",
+      "seller_name": "Jomanda Soft Plush Toys, Gifts & Accessories #SofterThanASoftThing CE/UKCA",
+      "review_count_month": 13,
+      "product_url": "https://www.notonthehighstreet.com/jomanda/product/sheepey-sofa-tidy-coffe"
+    },
+    {
+      "rank": 3,
+      "sku": "469358",
+      "image_file": "03_469358.jpg",
+      "name": "Family Birthstone Link Bracelet",
+      "seller_name": "Joy by Corrine Smith",
+      "review_count_month": 11,
+      "product_url": "https://www.notonthehighstreet.com/joybycorrinesmith/product/family-birthstone-link-bracelet"
+    },
+    {
+      "rank": 4,
+      "sku": "1375251",
+      "image_file": "04_1375251.jpg",
+      "name": "Personalised Daddy And Me Lego Brick Photo Block",
+      "seller_name": "BrickByBrick23",
+      "review_count_month": 10,
+      "product_url": "https://www.notonthehighstreet.com/brickbybrick23/product/personalised-daddy-and-me-lego-brick-photo-block"
+    },
+    {
+      "rank": 5,
+      "sku": "1062346",
+      "image_file": "05_1062346.jpg",
+      "name": "Tree Of Life Rose Gold Foil Scarf Gift",
+      "seller_name": "Studio Hop",
+      "review_count_month": 9,
+      "product_url": "https://www.notonthehighstreet.com/studiohop/product/tree-of-life-foil-scarf-letterbox-gift"
+    },
+    {
+      "rank": 5,
+      "sku": "621809",
+      "image_file": "05_621809.jpg",
+      "name": "Friendship Knot Bangle",
+      "seller_name": "Joy by Corrine Smith",
+      "review_count_month": 9,
+      "product_url": "https://www.notonthehighstreet.com/joybycorrinesmith/product/friendship-knot-bangle"
+    },
+    {
+      "rank": 5,
+      "sku": "663976",
+      "image_file": "05_663976.jpg",
+      "name": "Personalised Metal Photo Keyring With Leather Case",
+      "seller_name": "Create Gift Love",
+      "review_count_month": 9,
+      "product_url": "https://www.notonthehighstreet.com/creategiftlove/product/personalised-metal-photo-keyring-with-leather-case"
+    },
+    {
+      "rank": 5,
+      "sku": "937471",
+      "image_file": "05_937471.jpg",
+      "name": "Dandelion Foil Birthday Gift Scarf",
+      "seller_name": "Studio Hop",
+      "review_count_month": 9,
+      "product_url": "https://www.notonthehighstreet.com/studiohop/product/thinking-of-you-dandelion-scarf-letterbox-gift"
+    },
+    {
+      "rank": 9,
+      "sku": "1436809",
+      "image_file": "09_1436809.jpg",
+      "name": "Spitfire And Lancaster Double Garden Art",
+      "seller_name": "Gap Garden Products",
+      "review_count_month": 8,
+      "product_url": "https://www.notonthehighstreet.com/gapgardenproducts/product/spitfire-lancaster-double-garden-art"
+    },
+    {
+      "rank": 9,
+      "sku": "1182639",
+      "image_file": "09_1182639.jpg",
+      "name": "Personalised Wedding Gift Wallet, Money Or Voucher Envelope",
+      "seller_name": "PureCreationGifts",
+      "review_count_month": 8,
+      "product_url": "https://www.notonthehighstreet.com/bubblebusinessuk/product/wedding-gift-flowers-in-a-balloon"
+    },
+    {
+      "rank": 9,
+      "sku": "692849",
+      "image_file": "09_692849.jpg",
+      "name": "Men's Personalised Leather Bracelet With Matt Clasp",
+      "seller_name": "Lisa Angel",
+      "review_count_month": 8,
+      "product_url": "https://www.notonthehighstreet.com/lisaangeljewellery/product/men-s-personalised-leather-bracelet-with-matt-clasp"
+    },
+    {
+      "rank": 9,
+      "sku": "1183789",
+      "image_file": "09_1183789.jpg",
+      "name": "Personalised Keyring For Mummy Or Daddy",
+      "seller_name": "Taylor Cut Co",
+      "review_count_month": 8,
+      "product_url": "https://www.notonthehighstreet.com/taylorcutco/product/this-daddy-dad-belongs-to-kechain"
+    }
+  ]
+}
