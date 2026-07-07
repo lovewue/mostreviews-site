@@ -1,890 +1,402 @@
+from __future__ import annotations
+
+from jinja2 import Environment, FileSystemLoader
+from urllib.parse import urlparse, parse_qs, quote, unquote
+import os
+import re
 import json
 import shutil
-from pathlib import Path
-from datetime import datetime
-from urllib.parse import quote
+
+# === Config ===
+STATIC_PATH = "/docs/noths/static"
+DATA_DIR = "data"
+DOCS_DIR = "docs"
+
+PRODUCT_IMAGES_DIR = "Product_Images"
+
+# === AWIN / URL Helpers ===
+NOTHS_HOSTS = {"www.notonthehighstreet.com", "notonthehighstreet.com"}
 
 
-# -----------------------------------------------------------------------------
-# Paths
-# -----------------------------------------------------------------------------
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent
+def normalize_product_url(u: str | None) -> str | None:
+    if not u:
+        return None
 
-DATA_DIR = PROJECT_ROOT / "data"
-DERIVED_ROOT = DATA_DIR / "derived" / "monthly"
-LEADERBOARDS_ROOT = DATA_DIR / "derived" / "leaderboards"
+    if not isinstance(u, str):
+        u = str(u)
 
-TEMPLATES_DIR = PROJECT_ROOT / "templates"
-PARTIALS_DIR = TEMPLATES_DIR / "partials"
+    u = u.strip()
+    if not u:
+        return None
 
-STATIC_SRC = PROJECT_ROOT / "static"
+    # force https
+    if u.startswith("http://"):
+        u = "https://" + u[len("http://"):]
 
-OUTPUT_ROOT = PROJECT_ROOT / "docs"
-STATIC_DST = OUTPUT_ROOT / "static"
+    # ensure www for NOTHS
+    try:
+        p = urlparse(u)
+        host = (p.netloc or "").lower()
+        if host == "notonthehighstreet.com":
+            u = u.replace(
+                "https://notonthehighstreet.com",
+                "https://www.notonthehighstreet.com",
+                1,
+            )
+    except Exception:
+        pass
 
-
-# -----------------------------------------------------------------------------
-# Template loading
-# -----------------------------------------------------------------------------
-def load_text(path: Path) -> str:
-    return path.read_text(encoding="utf-8")
-
-
-BASE_TEMPLATE = load_text(TEMPLATES_DIR / "legacy-base.html")
-HEADER_TEMPLATE = load_text(PARTIALS_DIR / "header.html")
-FOOTER_TEMPLATE = load_text(PARTIALS_DIR / "footer.html")
-HOMEPAGE_TEMPLATE = load_text(TEMPLATES_DIR / "homepage.html")
-
-# NOTE: Brand directory templates retired 2026-07 (brands-index.html,
-# brands-top-100.html, brand.html) — no longer loaded here.
-
-ABOUT_TEMPLATE = load_text(TEMPLATES_DIR / "about.html")
+    # strip query/fragment
+    u = u.split("?", 1)[0].split("#", 1)[0]
+    return u
 
 
-def render_page(
-    title: str,
-    content: str,
-    static_path: str,
-    root_path: str,
-    meta_description: str = "",
-    canonical: str = "",
-) -> str:
-    html = BASE_TEMPLATE
-
-    header_html = (
-        HEADER_TEMPLATE
-        .replace("{{STATIC}}", static_path)
-        .replace("{{ static }}", static_path)
-        .replace("{{ROOT}}", root_path)
-        .replace("{{ root }}", root_path)
+def build_awin(product_url: str) -> str:
+    return (
+        "https://www.awin1.com/cread.php?"
+        "awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued="
+        + quote(product_url, safe="")
     )
 
-    footer_html = (
-        FOOTER_TEMPLATE
-        .replace("{{STATIC}}", static_path)
-        .replace("{{ static }}", static_path)
-        .replace("{{ROOT}}", root_path)
-        .replace("{{ root }}", root_path)
-    )
 
-    # Uppercase placeholders
-    html = html.replace("{{TITLE}}", title)
-    html = html.replace("{{HEADER}}", header_html)
-    html = html.replace("{{FOOTER}}", footer_html)
-    html = html.replace("{{CONTENT}}", content)
-    html = html.replace("{{STATIC}}", static_path)
-    html = html.replace("{{ROOT}}", root_path)
-    html = html.replace("{{META_DESCRIPTION}}", meta_description or title)
-    html = html.replace("{{CANONICAL}}", canonical)
+def validate_or_rebuild_awin(awin_url: str | None, product_url: str | None) -> str | None:
+    """Return a good AWIN link if possible; otherwise return AWIN url (if any) or None."""
+    product_url = normalize_product_url(product_url)
+    if not product_url:
+        return awin_url or None
 
-    # Lowercase placeholders
-    html = html.replace("{{ title }}", title)
-    html = html.replace("{{ header }}", header_html)
-    html = html.replace("{{ footer }}", footer_html)
-    html = html.replace("{{ content }}", content)
-    html = html.replace("{{ static }}", static_path)
-    html = html.replace("{{ root }}", root_path)
-    html = html.replace("{{ meta_description }}", meta_description or title)
-    html = html.replace("{{ canonical }}", canonical)
+    if awin_url:
+        try:
+            p = urlparse(awin_url.strip())
+            if "awin1.com" in p.netloc and p.path.endswith("/cread.php"):
+                qs = parse_qs(p.query)
+                ued = qs.get("ued", [None])[0]
+                if ued:
+                    ued_decoded = normalize_product_url(unquote(ued))
+                    if ued_decoded == product_url:
+                        return awin_url  # OK
+        except Exception:
+            pass
+        return build_awin(product_url)
 
-    return html
+    return build_awin(product_url)
 
 
-# -----------------------------------------------------------------------------
-# Data helpers
-# -----------------------------------------------------------------------------
-def load_json(path: Path):
+def _extract_noths_url(record: dict) -> str | None:
+    """Try to find a clean NOTHS product URL in the record."""
+    candidates = [
+        record.get("product_url"),
+        record.get("url"),
+        record.get("raw_product_url"),
+    ]
+
+    for u in candidates:
+        u_norm = normalize_product_url(u)
+        if not u_norm:
+            continue
+        try:
+            host = urlparse(u_norm).netloc.lower()
+        except Exception:
+            continue
+        if host in NOTHS_HOSTS and "/product/" in u_norm:
+            return u_norm
+
+    return None
+
+
+def ensure_awin_primary_link(record: dict) -> dict:
+    """
+    Prefer a proper AWIN deeplink (with `ued=`) built from a NOTHS URL.
+    If NOTHS URL exists → ensure record["awin"] and set record["product_url"]=awin.
+    """
+    noths_url = _extract_noths_url(record)
+    record["raw_product_url"] = noths_url
+
+    if noths_url:
+        awin_link = validate_or_rebuild_awin(record.get("awin"), noths_url)
+        record["awin"] = awin_link
+        record["product_url"] = awin_link or noths_url
+        return record
+
+    # No NOTHS URL: only keep AWIN if it's already proper deeplink with ued=
+    raw_awin = record.get("awin", "")
+    awin = raw_awin.strip() if isinstance(raw_awin, str) else ""
+
+    if awin:
+        try:
+            p = urlparse(awin)
+            qs = parse_qs(p.query)
+            if ("awin1.com" in p.netloc) and p.path.endswith("/cread.php") and qs.get("ued"):
+                record["awin"] = awin
+                record["product_url"] = awin
+            else:
+                record["awin"] = None
+        except Exception:
+            record["awin"] = None
+
+    return record
+
+
+# === Monthly + cache data ===
+PRODUCTS_CACHE_PATH = os.path.join(DATA_DIR, "cache", "products_cache.json")
+MONTHLY_DIR = os.path.join(DATA_DIR, "monthly")
+MONTHLY_INDEX = os.path.join(MONTHLY_DIR, "index.json")
+
+PRODUCTS_CACHE = []
+if os.path.exists(PRODUCTS_CACHE_PATH):
+    with open(PRODUCTS_CACHE_PATH, "r", encoding="utf-8") as f:
+        PRODUCTS_CACHE = json.load(f)
+
+# === Setup Jinja ===
+env = Environment(loader=FileSystemLoader("templates"))
+
+
+# --- Money / Price Helpers ---
+def _coerce_price(val):
+    if val is None:
+        return None
+    try:
+        s = str(val).replace(",", "").strip()
+        return float(s)
+    except Exception:
+        return None
+
+
+def _money(value, currency="GBP"):
+    p = _coerce_price(value)
+    if p is None:
+        return ""
+    symbol = "£" if currency.upper() in ("GBP", "UKP") else ("€" if currency.upper() == "EUR" else "$")
+    return f"{symbol}{p:,.2f}"
+
+
+env.filters["money"] = _money
+
+
+# ==========================
+# MONTHLY HELPERS + RENDER
+# ==========================
+def _monthly_json_path(month: str) -> str:
+    return os.path.join(MONTHLY_DIR, month, "top_products.json")
+
+
+def _month_has_data(month: str) -> bool:
+    # must have data/monthly/{month}/top_products.json
+    return os.path.exists(_monthly_json_path(month))
+
+
+def _month_label_is_valid(name: str) -> bool:
+    return bool(re.match(r"^\d{4}-\d{2}$", name))
+
+
+def load_monthly_index() -> list[str]:
+    """
+    Return months like ['2026-01', '2025-12', ...] but ONLY months that
+    actually have a top_products.json file (prevents broken links).
+    """
+    months: list[str] = []
+
+    if os.path.exists(MONTHLY_INDEX):
+        with open(MONTHLY_INDEX, "r", encoding="utf-8") as f:
+            raw = json.load(f)
+
+        # index.json is an object like {"months": [{"month": "2026-04", ...}, ...]}
+        # (as written by build_monthly_json.py), not a plain list of strings.
+        if isinstance(raw, dict):
+            entries = raw.get("months", [])
+            months = [
+                str(entry.get("month", "")).strip()
+                for entry in entries
+                if isinstance(entry, dict) and str(entry.get("month", "")).strip()
+            ]
+        elif isinstance(raw, list):
+            # Fallback: support a plain list of month strings too, in case
+            # index.json is ever written in that simpler format.
+            months = [str(m).strip() for m in raw if str(m).strip()]
+    else:
+        # fallback: detect folders under data/monthly
+        if os.path.exists(MONTHLY_DIR):
+            for name in os.listdir(MONTHLY_DIR):
+                if _month_label_is_valid(name) and os.path.isdir(os.path.join(MONTHLY_DIR, name)):
+                    months.append(name)
+
+    # Filter to only months that really have the JSON
+    months = [m for m in months if _month_label_is_valid(m) and _month_has_data(m)]
+    months = sorted(set(months), reverse=True)
+    return months
+
+
+def load_monthly_file(month: str) -> dict:
+    path = _monthly_json_path(month)
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
-def save_html(path: Path, html: str):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(html, encoding="utf-8")
-
-
-def format_month(month: str) -> str:
-    dt = datetime.strptime(month, "%Y-%m")
-    return dt.strftime("%B %Y")
-
-
-def format_percent(value) -> str:
+def _load_unavailable_skus(month: str) -> set[str]:
+    unavailable_path = os.path.join(MONTHLY_DIR, month, "unavailable_skus.json")
+    if not os.path.exists(unavailable_path):
+        return set()
     try:
-        return f"{float(value) * 100:.1f}%"
+        with open(unavailable_path, "r", encoding="utf-8") as f:
+            return set(str(x).strip() for x in json.load(f) if str(x).strip())
     except Exception:
-        return "0.0%"
+        return set()
 
 
-def get_month_dirs():
-    months = []
-    if not DERIVED_ROOT.exists():
-        return months
-
-    for p in DERIVED_ROOT.iterdir():
-        if p.is_dir():
-            months.append(p.name)
-
-    months.sort(reverse=True)
-    return months
+def _has_image(sku: str) -> bool:
+    # your monthly image script saves SKU as .jpg
+    return os.path.exists(os.path.join(PRODUCT_IMAGES_DIR, f"{sku}.jpg"))
 
 
-def clean_product_list(products):
-    if not products:
-        return []
-    return [p for p in products if isinstance(p, dict)]
+def enrich_month_products(month: str) -> list[dict]:
+    monthly = load_monthly_file(month)
+    monthly_items = monthly.get("items", [])
 
+    cache_by_sku = {str(p.get("sku", "")).strip(): p for p in PRODUCTS_CACHE if p.get("sku")}
+    unavailable = _load_unavailable_skus(month)
 
-def top_n_with_ties(products, limit, value_key="reviews"):
-    clean_products = clean_product_list(products)
+    enriched: list[dict] = []
+    for row in monthly_items:
+        sku = str(row.get("sku", "")).strip()
+        if not sku:
+            continue
 
-    if not clean_products:
-        return []
+        # Drop if confirmed dead for this month
+        if sku in unavailable:
+            continue
 
-    clean_products = sorted(
-        clean_products,
-        key=lambda p: (p.get(value_key) or 0),
-        reverse=True
-    )
+        # Drop if we don't have an image (prevents broken tiles)
+        if not _has_image(sku):
+            continue
 
-    if len(clean_products) <= limit:
-        return clean_products
+        meta = cache_by_sku.get(sku)
+        if not meta:
+            continue
 
-    cutoff_value = clean_products[limit - 1].get(value_key) or 0
-    return [p for p in clean_products if (p.get(value_key) or 0) >= cutoff_value]
+        rec = {
+            **meta,
+            "review_count_month": int(row.get("review_count_month", 0)),
+            "rating_month": row.get("rating_month"),
+        }
 
+        rec = ensure_awin_primary_link(rec)
+        enriched.append(rec)
 
-def format_int(value) -> str:
-    try:
-        return f"{int(value):,}"
-    except Exception:
-        return "0"
+    # Sort by monthly reviews then name
+    enriched.sort(key=lambda x: (-int(x.get("review_count_month", 0)), (x.get("name") or "").lower()))
 
+    # ---- Top 250 + ties (AFTER filtering) ----
+    TOP_N = 250
+    if len(enriched) > TOP_N:
+        cutoff = int(enriched[TOP_N - 1].get("review_count_month", 0))
+        enriched = [p for p in enriched if int(p.get("review_count_month", 0)) >= cutoff]
 
-# -----------------------------------------------------------------------------
-# Rank / review helpers
-# -----------------------------------------------------------------------------
-def add_dense_ranks(products, value_key):
-    clean_products = clean_product_list(products)
-
-    if not clean_products:
-        return []
-
-    ranked = []
-    prev_value = None
-    current_rank = 0
-
-    for idx, p in enumerate(clean_products, start=1):
-        value = p.get(value_key) or 0
-
-        if value != prev_value:
-            current_rank = idx
-            prev_value = value
-
-        item = dict(p)
-        item["rank"] = current_rank
-        ranked.append(item)
-
-    return ranked
-
-
-def build_review_lookup(products):
-    clean_products = clean_product_list(products)
-    return {
-        p["sku"]: (p.get("review_count_month") or 0)
-        for p in clean_products
-        if p.get("sku")
-    }
-
-
-def apply_rank_movement(products, previous_review_lookup):
-    ranked = add_dense_ranks(products, value_key="review_count_month")
-    enriched = []
-
-    for p in ranked:
-        item = dict(p)
-
-        sku = item.get("sku")
-        current_reviews = item.get("review_count_month") or 0
-        previous_reviews = previous_review_lookup.get(sku, 0)
-
-        item["previous_reviews"] = previous_reviews
-
-        if current_reviews > previous_reviews:
-            item["movement_label"] = "▲"
-            item["movement_class"] = "up"
-        elif current_reviews < previous_reviews:
-            item["movement_label"] = "▼"
-            item["movement_class"] = "down"
-        else:
-            item["movement_label"] = "–"
-            item["movement_class"] = "same"
-
-        enriched.append(item)
+    # Dense rank on monthly review count
+    rank, last = 0, None
+    for i, p in enumerate(enriched, start=1):
+        count = int(p.get("review_count_month", 0))
+        if count != last:
+            rank = i
+            last = count
+        p["rank"] = rank
 
     return enriched
 
 
-# -----------------------------------------------------------------------------
-# URL / AWIN helpers
-# -----------------------------------------------------------------------------
-def build_brand_url(slug: str) -> str:
-    if not slug:
-        return ""
-    return f"https://www.notonthehighstreet.com/partners/{slug}"
+def render_monthly_products(month: str):
+    products = enrich_month_products(month)
+    months = load_monthly_index()
+    monthly_meta = load_monthly_file(month)
+    generated_at = monthly_meta.get("generated_at")
 
-
-def build_awin_link(slug: str, clickref: str = "TrendList") -> str:
-    if not slug:
-        return ""
-    destination = build_brand_url(slug)
-    encoded_destination = quote(destination, safe="")
-    return (
-        "https://www.awin1.com/cread.php"
-        f"?awinmid=18484&awinaffid=1018637&clickref={clickref}&ued={encoded_destination}"
+    template = env.get_template("noths/monthly/products.html")
+    html = template.render(
+        month=month,
+        months=months,
+        products=products,
+        generated_at=generated_at,
+        static_path=STATIC_PATH,
     )
 
+    out_dir = os.path.join(DOCS_DIR, "noths", "monthly", month)
+    os.makedirs(out_dir, exist_ok=True)
+    out_path = os.path.join(out_dir, "index.html")
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(html)
 
-def build_awin_product_link(product_url: str, clickref: str = "TrendListProduct") -> str:
-    product_url = (product_url or "").strip()
-    if not product_url:
-        return ""
+    print(f"🗓️ Rendered monthly products → {out_path} ({len(products)} products)", flush=True)
 
-    encoded_destination = quote(product_url, safe="")
-    return (
-        "https://www.awin1.com/cread.php"
-        f"?awinmid=18484&awinaffid=1018637&clickref={clickref}&ued={encoded_destination}"
-    )
 
-
-def slugify_brand_name(name: str) -> str:
-    return (
-        (name or "").strip().lower()
-        .replace("&", "and")
-        .replace("’", "")
-        .replace("'", "")
-        .replace(".", "")
-        .replace(",", "")
-        .replace("/", "-")
-        .replace(" ", "-")
-    )
-
-
-# -----------------------------------------------------------------------------
-# Copy static
-# -----------------------------------------------------------------------------
-def copy_static():
-    STATIC_DST.mkdir(parents=True, exist_ok=True)
-
-    for item in STATIC_SRC.rglob("*"):
-        dest = STATIC_DST / item.relative_to(STATIC_SRC)
-
-        if item.is_dir():
-            dest.mkdir(parents=True, exist_ok=True)
-        else:
-            shutil.copy2(item, dest)
-
-    print("✅ Static assets copied")
-
-
-# -----------------------------------------------------------------------------
-# HTML fragments
-# -----------------------------------------------------------------------------
-def render_monthly_stats(summary):
-    total_reviews = summary.get("total_reviews_month", 0)
-    products_reviewed = summary.get("product_count_with_reviews", 0)
-    products_with_5_plus = summary.get("products_with_5_plus_reviews", 0)
-    avg_reviews = summary.get("average_reviews_per_product", 0)
-    top_100_share = summary.get("top_100_share_of_reviews", 0)
-
-    return f"""
-<div class="stats">
-    <div class="stat">
-        <div class="stat-label">Total reviews</div>
-        <div class="stat-value">{total_reviews:,}</div>
-    </div>
-    <div class="stat">
-        <div class="stat-label">Products reviewed</div>
-        <div class="stat-value">{products_reviewed:,}</div>
-    </div>
-    <div class="stat">
-        <div class="stat-label">Products with 5+ reviews</div>
-        <div class="stat-value">{products_with_5_plus:,}</div>
-    </div>
-    <div class="stat">
-        <div class="stat-label">Average reviews per product</div>
-        <div class="stat-value">{avg_reviews:.1f}</div>
-    </div>
-</div>
-
-<p class="stats-note">
-    Top 100 share of reviews: <strong>{format_percent(top_100_share)}</strong>
-</p>
-"""
-
-
-def render_leaderboard_stats(
-    total_reviews,
-    total_products_reviewed,
-    threshold_label,
-    threshold_value,
-    average_reviews_per_product,
-    top_100_share_of_reviews,
-):
-    return f"""
-<div class="stats">
-    <div class="stat">
-        <div class="stat-label">Total reviews</div>
-        <div class="stat-value">{total_reviews:,}</div>
-    </div>
-    <div class="stat">
-        <div class="stat-label">Total products reviewed</div>
-        <div class="stat-value">{total_products_reviewed:,}</div>
-    </div>
-    <div class="stat">
-        <div class="stat-label">{threshold_label}</div>
-        <div class="stat-value">{threshold_value:,}</div>
-    </div>
-    <div class="stat">
-        <div class="stat-label">Average reviews per product</div>
-        <div class="stat-value">{average_reviews_per_product:.1f}</div>
-    </div>
-</div>
-
-<p class="stats-note">
-    Top 100 share of reviews: <strong>{format_percent(top_100_share_of_reviews)}</strong>
-</p>
-"""
-
-
-def render_products(products, limit=None, show_last_month=False):
-    products = clean_product_list(products)
-
-    if limit:
-        products = top_n_with_ties(products, limit, value_key="review_count_month")
-
-    if not products:
-        rows = []
-    else:
-        if "rank" not in products[0]:
-            products = add_dense_ranks(products, value_key="review_count_month")
-
-        rows = []
-
-        for idx, p in enumerate(products):
-            rank_num = p.get("rank", "")
-
-            same_as_prev = (
-                idx > 0 and
-                (p.get("review_count_month") or 0) == (products[idx - 1].get("review_count_month") or 0)
-            )
-            rank_display = f"{rank_num}=" if same_as_prev else str(rank_num)
-
-            name = p.get("name") or f"Product {p.get('sku')}"
-            seller = p.get("seller_name") or "Unknown brand"
-            reviews = p.get("review_count_month") or 0
-            url = p.get("product_url")
-            available = p.get("available", True)
-
-            awin_url = build_awin_product_link(url, clickref="TrendListProduct")
-
-            display_name = name + ("*" if available is False else "")
-
-            if awin_url and available:
-                name_html = f'<a href="{awin_url}">{display_name}</a>'
-            else:
-                name_html = display_name
-
-            last_month_cell = ""
-            if show_last_month:
-                previous_reviews = p.get("previous_reviews", 0)
-                movement_label = p.get("movement_label", "")
-                movement_class = p.get("movement_class", "")
-
-                previous_reviews_html = f"{previous_reviews:,}"
-
-                last_month_cell = (
-                    f'<td class="last-month">'
-                    f'{previous_reviews_html} '
-                    f'<span class="rank-change {movement_class}">{movement_label}</span>'
-                    f'</td>'
-                )
-
-            rows.append(
-                f"""
-<tr>
-    <td class="rank">{rank_display}</td>
-    <td>
-        {name_html}
-        <div class="partner">{seller}</div>
-    </td>
-    <td class="reviews">{reviews:,}</td>
-    {last_month_cell}
-</tr>
-"""
-            )
-
-    last_month_header = '<th class="last-month">Previous Month</th>' if show_last_month else ""
-
-    return f"""
-<div class="table-scroll">
-<table>
-    <tr>
-        <th>#</th>
-        <th>Product</th>
-        <th>Reviews</th>
-        {last_month_header}
-    </tr>
-    {''.join(rows)}
-</table>
-</div>
-"""
-
-
-def render_partners(partners, limit=10):
-    rows = []
-
-    for i, p in enumerate(partners[:limit], start=1):
-        seller_name = p.get("seller_name") or p.get("seller_slug") or "Unknown brand"
-        seller_slug = p.get("seller_slug") or slugify_brand_name(seller_name)
-        reviews = p.get("total_reviews_month") or 0
-
-        # NOTE: previously linked to the retired internal /brands/{slug}/
-        # page. Now links straight to the real NOTHS seller page via the
-        # existing AWIN affiliate link builder.
-        awin_url = build_awin_link(seller_slug)
-        seller_html = f'<a href="{awin_url}" target="_blank" rel="sponsored noopener">{seller_name}</a>'
-
-        rows.append(
-            f"""
-<tr>
-    <td class="rank">{i}</td>
-    <td>{seller_html}</td>
-    <td class="reviews">{reviews:,}</td>
-</tr>
-"""
-        )
-
-    return f"""
-<div class="table-scroll">
-<table>
-    <tr>
-        <th>#</th>
-        <th>Brand</th>
-        <th>Reviews</th>
-    </tr>
-    {''.join(rows)}
-</table>
-</div>
-"""
-
-
-def render_leaderboard_products(items, limit=100, last_month=False, link_only_if_available=False):
-    items = clean_product_list(items)
-
-    if limit:
-        items = top_n_with_ties(items, limit, value_key="reviews")
-
-    if not items:
-        rows = []
-    else:
-        if "rank" not in items[0]:
-            items = add_dense_ranks(items, value_key="reviews")
-
-        rows = []
-
-        for idx, p in enumerate(items):
-            rank_num = p.get("rank", "")
-
-            same_as_prev = (
-                idx > 0 and
-                (p.get("reviews") or 0) == (items[idx - 1].get("reviews") or 0)
-            )
-
-            same_as_next = (
-                idx < len(items) - 1 and
-                (p.get("reviews") or 0) == (items[idx + 1].get("reviews") or 0)
-            )
-
-            is_tied = same_as_prev or same_as_next
-
-            rank_display = f"{rank_num}=" if is_tied else str(rank_num)
-
-            name = p.get("name") or f"Product {p.get('sku')}"
-            seller = p.get("seller_name") or "Unknown brand"
-            reviews = p.get("reviews") or 0
-            url = p.get("product_url")
-            available = p.get("available")
-
-            should_link = bool(url and available is True) if link_only_if_available else bool(url)
-            awin_url = build_awin_product_link(url, clickref="TrendListProduct")
-
-            display_name = name + ("*" if available is not True else "")
-
-            should_link = bool(url and available is True) if link_only_if_available else bool(url)
-
-            if should_link and awin_url:
-                name_html = f'<a href="{awin_url}">{display_name}</a>'
-            else:
-                name_html = display_name
-
-            last_month_cell = ""
-            if last_month:
-                movement_label = p.get("movement_label", "")
-                movement_class = p.get("movement_class", "")
-                last_month_cell = f'<td class="last-month rank-change {movement_class}">{movement_label}</td>'
-
-            rows.append(
-                f"""
-<tr>
-    <td class="rank">{rank_display}</td>
-    <td>
-        {name_html}
-        <div class="partner">{seller}</div>
-    </td>
-    <td class="reviews">{reviews:,}</td>
-    {last_month_cell}
-</tr>
-"""
-            )
-
-    last_month_header = "<th>Last Month</th>" if last_month else ""
-
-    return f"""
-<table>
-    <tr>
-        <th>#</th>
-        <th>Product</th>
-        <th>Reviews</th>
-        {last_month_header}
-    </tr>
-    {''.join(rows)}
-</table>
-"""
-
-
-# -----------------------------------------------------------------------------
-# Page rendering
-# -----------------------------------------------------------------------------
-def render_homepage(latest_month, previous_month=None):
-    month_dir = DERIVED_ROOT / latest_month
-
-    products = load_json(month_dir / "enriched_products.json")
-    partners = load_json(month_dir / "partners_summary.json")
-    summary = load_json(month_dir / "summary.json")
-
-    previous_review_lookup = {}
-    if previous_month:
-        prev_dir = DERIVED_ROOT / previous_month
-        prev_products = load_json(prev_dir / "enriched_products.json")
-        previous_review_lookup = build_review_lookup(prev_products)
-
-    products = apply_rank_movement(products, previous_review_lookup)
-
-    title_month = format_month(latest_month)
-    top_products = top_n_with_ties(products, 20, value_key="review_count_month")
-
-    body = HOMEPAGE_TEMPLATE
-    body = body.replace("{{MONTH}}", title_month)
-    body = body.replace("{{MONTHLY_STATS}}", render_monthly_stats(summary))
-    body = body.replace("{{TOP_PRODUCTS_COUNT}}", str(len(top_products)))
-    body = body.replace(
-        "{{TOP_PRODUCTS}}",
-        render_products(products, limit=20, show_last_month=bool(previous_month))
-    )
-    body = body.replace("{{TOP_BRANDS}}", render_partners(partners, 10))
-
-    html = render_page(
-        "Trending Products on NOTHS",
-        body,
-        "static",
-        "",
-        "Trending products on Not On The High Street based on recent reviews.",
-    )
-    save_html(OUTPUT_ROOT / "index.html", html)
-
-    print("✅ homepage rendered")
-
-
-def render_month(month, previous_month=None):
-    month_dir = DERIVED_ROOT / month
-
-    products = load_json(month_dir / "enriched_products.json")
-    partners = load_json(month_dir / "partners_summary.json")
-    summary = load_json(month_dir / "summary.json")
-
-    previous_review_lookup = {}
-    if previous_month:
-        prev_dir = DERIVED_ROOT / previous_month
-        prev_products = load_json(prev_dir / "enriched_products.json")
-        previous_review_lookup = build_review_lookup(prev_products)
-
-    products = apply_rank_movement(products, previous_review_lookup)
-
-    title_month = format_month(month)
-    top_products = top_n_with_ties(products, 50, value_key="review_count_month")
-
-    body = f"""
-<h1>Trending Products – {title_month}</h1>
-
-<p>
-Products ranked by number of reviews received during the month.
-</p>
-
-{render_monthly_stats(summary)}
-
-<h2>Top Products</h2>
-<p><small>Showing top 50 including ties ({len(top_products)} products shown).</small></p>
-
-{render_products(products, limit=50, show_last_month=bool(previous_month))}
-
-<p class="table-note">* Product no longer available on NOTHS</p>
-
-<h2>Top Brands</h2>
-
-{render_partners(partners, 20)}
-
-<p>
-    <a href="../index.html">← Back to homepage</a>
-</p>
-"""
-
-    html = render_page(
-        f"Trending Products – {title_month}",
-        body,
-        "../static",
-        "../",
-        f"Trending products on NOTHS for {title_month}.",
-    )
-    save_html(OUTPUT_ROOT / "months" / f"{month}.html", html)
-
-    print(f"✅ rendered {month}")
-
-
-def render_archive(months):
-    rows = []
-
-    for m in months:
-        month_dir = DERIVED_ROOT / m
-        summary_file = month_dir / "summary.json"
-        summary = load_json(summary_file) if summary_file.exists() else {}
-
-        total_reviews = summary.get("total_reviews_month", 0)
-        label = format_month(m)
-        rows.append(f'<li><a href="months/{m}.html">{label}</a> – {total_reviews:,} reviews</li>')
-
-    body = f"""
-<h1>Monthly Archive</h1>
-
-<ul>
-    {''.join(rows)}
-</ul>
-
-<p>
-    <a href="index.html">← Back to homepage</a>
-</p>
-"""
-
-    html = render_page(
-        "Monthly Archive",
-        body,
-        "static",
-        "",
-        "Monthly archive of trending products on NOTHS.",
-    )
-    save_html(OUTPUT_ROOT / "archive.html", html)
-
-    print("✅ archive rendered")
-
-
-def render_top_products_all_time():
-    leaderboard_file = LEADERBOARDS_ROOT / "top_products_all_time.json"
-    if not leaderboard_file.exists():
-        print("⚠️ top_products_all_time.json not found")
-        return
-
-    data = load_json(leaderboard_file)
-    items = clean_product_list(data.get("items", []))
-
-    body = f"""
-<h1>Top 100 Products of All Time</h1>
-
-<p>
-The products with the highest recorded Feefo review counts on Not On The High Street.
-</p>
-
-{render_leaderboard_stats(
-    total_reviews=data.get("total_reviews", 0),
-    total_products_reviewed=data.get("total_products_reviewed", len(items)),
-    threshold_label="Products with 500+ reviews",
-    threshold_value=data.get("products_with_500_plus_reviews", 0) or 0,
-    average_reviews_per_product=data.get("average_reviews_per_product", 0) or 0,
-    top_100_share_of_reviews=data.get("top_100_share_of_reviews", 0) or 0,
-)}
-
-<h2>Leaderboard</h2>
-<p><small>Showing top 100 including ties. Product links are shown only where the item is still available.</small></p>
-
-{render_leaderboard_products(items, limit=100, last_month=False, link_only_if_available=True)}
-
-<p class="table-note">* No longer available on NOTHS</p>
-
-<p>
-    <a href="index.html">← Back to homepage</a>
-</p>
-"""
-
-    html = render_page(
-        "Top 100 Products of All Time",
-        body,
-        "static",
-        "",
-        "Top 100 products of all time on NOTHS.",
-    )
-    save_html(OUTPUT_ROOT / "top-products-all-time.html", html)
-
-    print("✅ top-products-all-time rendered")
-
-
-def render_top_products_last_12_months(latest_month=None, previous_month=None):
-    leaderboard_file = LEADERBOARDS_ROOT / "top_products_last_12_months.json"
-    if not leaderboard_file.exists():
-        print("⚠️ top_products_last_12_months.json not found")
-        return
-
-    data = load_json(leaderboard_file)
-    items = clean_product_list(data.get("items", []))
-    items = add_dense_ranks(items, value_key="reviews")
-
-    title_suffix = f" – {format_month(latest_month)}" if latest_month else ""
-
-    body = f"""
-<h1>Top 100 Products of the Last 12 Months</h1>
-
-<p>
-The products with the highest recorded Feefo review counts over the last 12 months.
-</p>
-
-{render_leaderboard_stats(
-    total_reviews=data.get("total_reviews", 0),
-    total_products_reviewed=data.get("total_products_reviewed", len(items)),
-    threshold_label="Products with 10+ reviews",
-    threshold_value=data.get("products_with_10_plus_reviews", 0) or 0,
-    average_reviews_per_product=data.get("average_reviews_per_product", 0) or 0,
-    top_100_share_of_reviews=data.get("top_100_share_of_reviews", 0) or 0,
-)}
-
-<h2>Leaderboard</h2>
-<p><small>Showing top 100 including ties.</small></p>
-
-{render_leaderboard_products(items, limit=100, last_month=False, link_only_if_available=False)}
-
-<p>
-    <a href="index.html">← Back to homepage</a>
-</p>
-"""
-
-    html = render_page(
-        f"Top 100 Products of the Last 12 Months{title_suffix}",
-        body,
-        "static",
-        "",
-        "Top 100 products on NOTHS over the last 12 months.",
-    )
-    save_html(OUTPUT_ROOT / "top-products-last-12-months.html", html)
-
-    print("✅ top-products-last-12-months rendered")
-
-# -----------------------------------------------------------------------------
-# About page rendering
-# -----------------------------------------------------------------------------
-def render_about():
-    body = ABOUT_TEMPLATE
-
-    html = render_page(
-        "About The Trend List",
-        body,
-        "static",
-        "",
-        "How The Trend List tracks trending products and brands on Not On The High Street."
-    )
-
-    save_html(OUTPUT_ROOT / "about.html", html)
-
-    print("✅ about page rendered")
-
-
-# -----------------------------------------------------------------------------
-# Sitemap rendering
-# -----------------------------------------------------------------------------
-def generate_sitemap(months):
-    base_url = "https://trendlist.co.uk"
-
-    urls = []
-
-    # Core pages
-    urls.append(f"{base_url}/")
-    urls.append(f"{base_url}/top-products-last-12-months.html")
-    urls.append(f"{base_url}/top-products-all-time.html")
-    urls.append(f"{base_url}/archive.html")
-    urls.append(f"{base_url}/about.html")
-
-    # Monthly pages
-    for m in months:
-        urls.append(f"{base_url}/months/{m}.html")
-
-    # Build XML
-    xml = ['<?xml version="1.0" encoding="UTF-8"?>']
-    xml.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
-
-    for url in urls:
-        xml.append("  <url>")
-        xml.append(f"    <loc>{url}</loc>")
-        xml.append("  </url>")
-
-    xml.append("</urlset>")
-
-    sitemap = "\n".join(xml)
-
-    save_html(OUTPUT_ROOT / "sitemap.xml", sitemap)
-
-    print("✅ sitemap.xml generated")
-
-
-# -----------------------------------------------------------------------------
-# Main
-# -----------------------------------------------------------------------------
-def main():
-    months = get_month_dirs()
-
+def render_monthly_index():
+    months = load_monthly_index()
     if not months:
-        print("No derived months found.")
+        print("⚠️ No valid months found under data/monthly. Skipping monthly index.", flush=True)
         return
-
-    copy_static()
 
     latest = months[0]
-    previous_for_homepage = months[1] if len(months) > 1 else None
 
-    print(f"📊 Latest month: {latest}")
-    print()
+    template = env.get_template("noths/monthly/index.html")
+    html = template.render(
+        latest_month=latest,
+        months=months,
+        static_path=STATIC_PATH,
+    )
 
-    render_homepage(latest, previous_for_homepage)
+    out_dir = os.path.join(DOCS_DIR, "noths", "monthly")
+    os.makedirs(out_dir, exist_ok=True)
+    out_path = os.path.join(out_dir, "index.html")
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(html)
 
-    for idx, month in enumerate(months):
-        previous_month = months[idx + 1] if idx + 1 < len(months) else None
-        render_month(month, previous_month)
-
-    render_archive(months)
-    render_top_products_all_time()
-    render_top_products_last_12_months(latest, previous_for_homepage)
-
-    render_about()
-    generate_sitemap(months)
-
-    print()
-    print("🏁 Site render complete")
+    print(f"🗓️ Rendered monthly landing → {out_path} (latest={latest})", flush=True)
 
 
+def copy_static_assets():
+    if os.path.exists("static"):
+        shutil.copytree("static", f"{DOCS_DIR}/static", dirs_exist_ok=True)
+        print("✅ Copied static assets", flush=True)
+
+    for folder in ["Partner_Logo", "Seller_Logo"]:
+        if os.path.exists(folder):
+            shutil.copytree(folder, f"{DOCS_DIR}/{folder}", dirs_exist_ok=True)
+            print(f"✅ Copied {folder}", flush=True)
+
+
+def render_about_the_data_page():
+    from datetime import datetime
+
+    template = env.get_template("about-the-data.html")
+    today_str = datetime.now().strftime("%d.%m.%Y")
+
+    os.makedirs(DOCS_DIR, exist_ok=True)
+    out_path = os.path.join(DOCS_DIR, "about-the-data.html")
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(template.render(last_updated=today_str))
+
+    print(f"📊 Rendered about-the-data.html (Last updated: {today_str})", flush=True)
+
+
+# === Run Everything ===
 if __name__ == "__main__":
-    main()
+    copy_static_assets()
+
+    # Monthly pages
+    print("➡️ Rendering monthly landing...", flush=True)
+    render_monthly_index()
+
+    months = load_monthly_index()
+    print(f"➡️ Months found: {months}", flush=True)
+
+    # Render ALL months (not just latest)
+    for m in months:
+        print(f"➡️ Rendering monthly products for {m}...", flush=True)
+        render_monthly_products(m)
+
+    render_about_the_data_page()
+    # NOTE: Homepage, archive, top-products pages, about.html, and
+    # sitemap.xml are all owned by scripts/render_site.py — run that after
+    # this script. This file now only builds the /noths/ subpages and
+    # about-the-data.html.
+
+    print()
+    print("🏁 render.py complete")

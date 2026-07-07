@@ -1,7 +1,5 @@
 import json
 import shutil
-import re
-import pandas as pd
 from pathlib import Path
 from datetime import datetime
 from urllib.parse import quote
@@ -16,7 +14,6 @@ PROJECT_ROOT = SCRIPT_DIR.parent
 DATA_DIR = PROJECT_ROOT / "data"
 DERIVED_ROOT = DATA_DIR / "derived" / "monthly"
 LEADERBOARDS_ROOT = DATA_DIR / "derived" / "leaderboards"
-PUBLISHED_ROOT = DATA_DIR / "published"
 
 TEMPLATES_DIR = PROJECT_ROOT / "templates"
 PARTIALS_DIR = TEMPLATES_DIR / "partials"
@@ -164,112 +161,6 @@ def format_int(value) -> str:
         return "0"
 
 
-def coerce_int(*values, default=0):
-    for value in values:
-        if value is None or value == "":
-            continue
-        try:
-            return int(value)
-        except Exception:
-            try:
-                return int(float(value))
-            except Exception:
-                continue
-    return default
-
-
-def normalise_text(value) -> str:
-    if value is None:
-        return ""
-
-    # handle pandas NaN / float NaN
-    if isinstance(value, float):
-        try:
-            import math
-            if math.isnan(value):
-                return ""
-        except Exception:
-            pass
-
-    if isinstance(value, str):
-        value = value.strip()
-        if value.lower() in {"nan", "none", "null"}:
-            return ""
-        return value
-
-    if isinstance(value, (int, bool)):
-        return str(value)
-
-    if isinstance(value, list):
-        return ", ".join(normalise_text(v) for v in value if normalise_text(v))
-
-    if isinstance(value, dict):
-        return ", ".join(normalise_text(v) for v in value.values() if normalise_text(v))
-
-    return str(value).strip()
-
-def clean_handle(value):
-    value = str(value).strip()
-
-    if not value:
-        return ""
-
-    return value.replace("@", "").strip()
-
-
-def clean_url(value):
-    value = str(value).strip()
-
-    if not value:
-        return ""
-
-    if value.startswith("http://") or value.startswith("https://"):
-        return value
-
-    return "https://" + value
-
-
-def load_brand_socials():
-    path = DATA_DIR / "source" / "brand_socials.xlsx"
-
-    if not path.exists():
-        return {}
-
-    df = pd.read_excel(path).fillna("")
-
-    socials = {}
-
-    for _, row in df.iterrows():
-        slug = str(row.get("Slug", "")).strip().lower()
-
-        if not slug:
-            continue
-
-        instagram = clean_handle(row.get("Instagram", ""))
-        tiktok = clean_handle(row.get("TikTok", ""))
-        facebook = clean_handle(row.get("Facebook", ""))
-
-        socials[slug] = {
-            "website": clean_url(row.get("Website", "")),
-
-            "instagram": (
-                f"https://www.instagram.com/{instagram}/"
-                if instagram else ""
-            ),
-
-            "tiktok": (
-                f"https://www.tiktok.com/@{tiktok}"
-                if tiktok else ""
-            ),
-
-            "facebook": (
-                f"https://www.facebook.com/{facebook}"
-                if facebook else ""
-            ),
-        }
-
-    return socials
-
 # -----------------------------------------------------------------------------
 # Rank / review helpers
 # -----------------------------------------------------------------------------
@@ -377,482 +268,6 @@ def slugify_brand_name(name: str) -> str:
         .replace("/", "-")
         .replace(" ", "-")
     )
-
-
-# -----------------------------------------------------------------------------
-# Brand helpers
-# -----------------------------------------------------------------------------
-def load_brands():
-    brands_file = PUBLISHED_ROOT / "brands.json"
-    if not brands_file.exists():
-        print("⚠️ brands.json not found")
-        return []
-
-    brands = load_json(brands_file)
-    if not isinstance(brands, list):
-        print("⚠️ brands.json is not a list")
-        return []
-
-    cleaned = []
-
-    for b in brands:
-        if not isinstance(b, dict):
-            continue
-
-        item = dict(b)
-        stats = item.get("stats", {}) or {}
-        urls = item.get("urls", {}) or {}
-
-        slug = normalise_text(
-            item.get("slug")
-            or item.get("seller_slug")
-            or ""
-        ).lower()
-
-        name = normalise_text(
-            item.get("name")
-            or item.get("seller_name")
-            or slug
-        )
-
-        product_count = coerce_int(
-            item.get("product_count"),
-            stats.get("product_count"),
-            item.get("products"),
-            item.get("product_total"),
-            item.get("count"),
-            default=0,
-        )
-
-        brand_review_count = coerce_int(
-            item.get("brand_review_count"),
-            stats.get("brand_review_count"),
-            item.get("reviews"),
-            item.get("review_count"),
-            item.get("total_reviews"),
-            default=0,
-        )
-
-        order_volume_numeric = coerce_int(
-            item.get("order_volume_numeric"),
-            stats.get("order_volume_numeric"),
-            default=0,
-        )
-
-        active_raw = item.get("active")
-        active = True if active_raw is None else bool(active_raw)
-
-        raw_location = item.get("location", "")
-        if isinstance(raw_location, dict):
-            location = normalise_text(raw_location.get("display", ""))
-        else:
-            location = normalise_text(raw_location)
-
-        tenure_label = normalise_text(
-            item.get("tenure_label")
-            or stats.get("tenure_label")
-            or ""
-        )
-        order_volume_label = normalise_text(
-            item.get("order_volume_label")
-            or stats.get("order_volume_label")
-            or ""
-        )
-        brand_url = normalise_text(
-            item.get("brand_url")
-            or item.get("url")
-            or urls.get("brand")
-            or build_brand_url(slug)
-        )
-
-        awin = normalise_text(urls.get("affiliate") or build_awin_link(slug, clickref="TrendList"))
-
-        inferred_inactive = (product_count == 0 and not location)
-        inactive = (not active) or inferred_inactive
-
-        cleaned_item = {
-            **item,
-            "slug": slug,
-            "name": name,
-            "active": active,
-            "inactive": inactive,
-            "product_count": product_count,
-            "brand_review_count": brand_review_count,
-            "order_volume_numeric": order_volume_numeric,
-            "location": location,
-            "tenure_label": tenure_label,
-            "order_volume_label": order_volume_label,
-            "awin": awin,
-            "brand_url": brand_url,
-        }
-
-        if cleaned_item["slug"]:
-            cleaned.append(cleaned_item)
-
-    print(f"✅ loaded {len(cleaned)} brands")
-    if cleaned:
-        print("First brand sample:", cleaned[0])
-
-    return cleaned
-
-
-def get_active_brands(brands):
-    return [b for b in brands if b.get("slug")]
-
-
-def get_top_brands(brands, limit=100):
-    active = get_active_brands(brands)
-
-    ranked = [b for b in active if b.get("order_volume_numeric", 0) > 0]
-
-    ranked.sort(
-        key=lambda b: (
-            -int(b.get("order_volume_numeric", 0) or 0),
-            -int(b.get("brand_review_count", 0) or 0),
-            -int(b.get("product_count", 0) or 0),
-            (b.get("name", "") or "").lower(),
-        )
-    )
-
-    return ranked[:limit]
-
-
-# -----------------------------------------------------------------------------
-# Brand page rendering helpers
-# -----------------------------------------------------------------------------
-def get_brand_initial(name):
-    first = (name or "").strip()[:1].upper()
-    if first.isalpha():
-        return first
-    return "#"
-
-
-def render_brand_az_nav(brands):
-    initials = sorted({get_brand_initial(b.get("name", "")) for b in brands})
-
-    links = []
-    for initial in initials:
-        links.append(f'<a href="#letter-{initial}">{initial}</a>')
-
-    return '<div class="az-nav">' + "".join(links) + "</div>"
-
-
-def render_brands_az_sections(brands):
-    grouped = {}
-
-    for brand in brands:
-        initial = get_brand_initial(brand.get("name", ""))
-        grouped.setdefault(initial, []).append(brand)
-
-    sections = []
-
-    for initial in sorted(grouped.keys()):
-        cards = []
-
-        for brand in grouped[initial]:
-            display_name = brand["name"] + ("*" if brand.get("inactive") else "")
-            product_count = "" if brand.get("inactive") else format_int(brand.get("product_count", 0))
-            review_count = "" if brand.get("inactive") else format_int(brand.get("brand_review_count", 0))
-            location = "" if brand.get("inactive") else brand.get("location", "")
-
-            location_html = f"<li>{location}</li>" if location else ""
-
-            cards.append(
-                f"""
-<div class="brand-card">
-  <h3><a href="brands/{brand['slug']}/index.html">{display_name}</a></h3>
-  <ul class="brand-meta">
-    <li><strong>Products:</strong> {product_count}</li>
-    <li><strong>Reviews:</strong> {review_count}</li>
-    {location_html}
-  </ul>
-</div>
-""".strip()
-            )
-
-        sections.append(
-            f"""
-<section class="brand-letter-section" id="letter-{initial}">
-  <h2>{initial}</h2>
-  <div class="brands-grid">
-    {"".join(cards)}
-  </div>
-</section>
-""".strip()
-        )
-
-    return "\n".join(sections)
-
-
-def render_brands_index(brands):
-    active = get_active_brands(brands)
-    active.sort(key=lambda b: (b.get("name", "") or "").lower())
-
-    body = BRANDS_INDEX_TEMPLATE
-    body = body.replace("{{BRAND_COUNT}}", format_int(len(active)))
-    body = body.replace("{{AZ_NAV}}", render_brand_az_nav(active))
-    body = body.replace("{{BRAND_SECTIONS}}", render_brands_az_sections(active))
-
-    html = render_page(
-        "Independent Brands on NOTHS",
-        body,
-        "static",
-        "",
-        "Browse brands A–Z on The Trend List.",
-    )
-    save_html(OUTPUT_ROOT / "brands.html", html)
-
-    print("✅ brand index rendered")
-
-
-def render_top_brands_rows(brands):
-    rows = []
-
-    for idx, brand in enumerate(brands, start=1):
-        display_name = brand["name"] + ("*" if brand.get("inactive") else "")
-        product_count_value = "" if brand.get("inactive") else format_int(brand.get("product_count", 0))
-        location_value = "" if brand.get("inactive") else brand.get("location", "")
-        review_count_value = "" if brand.get("inactive") else format_int(brand.get("brand_review_count", 0))
-
-        rows.append(
-            f"""
-<tr>
-  <td class="rank">{idx}</td>
-  <td><a href="brands/{brand['slug']}/index.html">{display_name}</a></td>
-  <td>{brand.get('order_volume_label', '')}</td>
-  <td class="reviews">{review_count_value}</td>
-  <td>{product_count_value}</td>
-  <td>{location_value}</td>
-  <td>{brand.get('tenure_label', '')}</td>
-</tr>
-""".strip()
-        )
-
-    return "\n".join(rows)
-
-
-def render_brands_top_100(brands):
-    top_brands = get_top_brands(brands, limit=100)
-
-    body = BRANDS_TOP_100_TEMPLATE
-    body = body.replace("{{ brand_rows }}", render_top_brands_rows(top_brands))
-
-    html = render_page(
-        "Top Brands on NOTHS",
-        body,
-        "static",
-        "",
-        "Top 100 brands on NOTHS ranked by total order volume.",
-    )
-    save_html(OUTPUT_ROOT / "top-100-brands.html", html)
-
-    print("✅ top 100 brands rendered")
-
-def render_brand_top_products(slug, products_by_brand, limit=5):
-    brand_items = products_by_brand.get((slug or "").lower(), [])
-
-    brand_items = sorted(
-        brand_items,
-        key=lambda p: p.get("reviews") or 0,
-        reverse=True
-    )[:limit]
-
-    if not brand_items:
-        return "<p>No trending products found yet.</p>"
-
-    rows = []
-
-    for i, p in enumerate(brand_items, start=1):
-        name = p.get("name") or f"Product {p.get('sku')}"
-        reviews = p.get("reviews") or 0
-        url = p.get("product_url")
-        available = p.get("available")
-        awin_url = build_awin_product_link(url, clickref="TrendListBrandProduct")
-
-        display_name = name + ("*" if available is not True else "")
-
-        if awin_url and available is True:
-            name_html = f'<a href="{awin_url}">{display_name}</a>'
-        else:
-            name_html = display_name
-
-        rows.append(
-            f"""
-<li>
-  <span class="brand-product-rank">#{i}</span>
-  <span class="brand-product-name">{name_html}</span>
-  <span class="brand-product-reviews">{reviews:,} reviews</span>
-</li>
-""".strip()
-        )
-
-    return f"""
-<ul class="brand-product-list">
-  {''.join(rows)}
-</ul>
-<p class="table-note">* No longer available on NOTHS</p>
-""".strip()
-
-def render_brand_social_links(brand):
-    links = []
-
-    if brand.get("website"):
-        links.append(f'<a href="{brand["website"]}" target="_blank" rel="noopener">Website</a>')
-
-    if brand.get("instagram"):
-        links.append(f'<a href="{brand["instagram"]}" target="_blank" rel="noopener">Instagram</a>')
-
-    if brand.get("tiktok"):
-        links.append(f'<a href="{brand["tiktok"]}" target="_blank" rel="noopener">TikTok</a>')
-
-    if brand.get("facebook"):
-        links.append(f'<a href="{brand["facebook"]}" target="_blank" rel="noopener">Facebook</a>')
-
-    if not links:
-        return ""
-
-    return f"""
-<div class="brand-social-links">
-  {"".join(links)}
-</div>
-""".strip()
-
-
-def render_brand_pages(brands):
-    active = get_active_brands(brands)
-
-    brand_socials = load_brand_socials()
-
-    leaderboard_file = LEADERBOARDS_ROOT / "top_products_last_12_months.json"
-    products_by_brand = {}
-
-    if leaderboard_file.exists():
-        data = load_json(leaderboard_file)
-        items = clean_product_list(data.get("items", []))
-
-        for p in items:
-            seller_slug = (p.get("seller_slug") or "").lower()
-            if not seller_slug:
-                continue
-            products_by_brand.setdefault(seller_slug, []).append(p)
-
-    for brand in active:
-        socials = brand_socials.get(str(brand.get("slug", "")).lower(), {})
-
-        brand["website"] = socials.get("website", "")
-        brand["instagram"] = socials.get("instagram", "")
-        brand["tiktok"] = socials.get("tiktok", "")
-        brand["facebook"] = socials.get("facebook", "")
-
-        brand_social_links = render_brand_social_links(brand)
-
-        body = BRAND_TEMPLATE
-
-        display_name = brand["name"] + ("*" if brand.get("inactive") else "")
-        product_count_value = "" if brand.get("inactive") else format_int(brand.get("product_count", 0))
-        review_count_value = "" if brand.get("inactive") else format_int(brand.get("brand_review_count", 0))
-        location_value = "" if brand.get("inactive") else str(brand.get("location", "") or "")
-        order_volume_value = str(brand.get("order_volume_label", "") or "")
-        tenure_value = str(brand.get("tenure_label", "") or "")
-
-        brand_initial = (brand.get("name", "") or "?").strip()[:1].upper()
-
-        logo_jpg = STATIC_SRC / "img" / "sellers" / f"{brand['slug']}.jpg"
-        logo_jpeg = STATIC_SRC / "img" / "sellers" / f"{brand['slug']}.jpeg"
-        logo_png = STATIC_SRC / "img" / "sellers" / f"{brand['slug']}.png"
-        logo_webp = STATIC_SRC / "img" / "sellers" / f"{brand['slug']}.webp"
-
-        if logo_jpg.exists():
-            logo_src = f"../../static/img/sellers/{brand['slug']}.jpg"
-        elif logo_jpeg.exists():
-            logo_src = f"../../static/img/sellers/{brand['slug']}.jpeg"
-        elif logo_png.exists():
-            logo_src = f"../../static/img/sellers/{brand['slug']}.png"
-        elif logo_webp.exists():
-            logo_src = f"../../static/img/sellers/{brand['slug']}.webp"
-        else:
-            logo_src = None
-
-        if logo_src:
-            logo_html = f"""
-<div class="brand-logo-box">
-  <img src="{logo_src}" alt="{brand.get('name', '')} logo">
-</div>
-""".strip()
-        else:
-            logo_html = f"""
-<div class="brand-logo-box no-logo">
-  {brand_initial}
-</div>
-""".strip()
-
-        top_products_html = render_brand_top_products(
-            brand["slug"],
-            products_by_brand,
-            limit=5
-        )
-
-        cta = ""
-        destination = str(brand.get("awin", brand.get("brand_url", "")) or "")
-        if destination and not brand.get("inactive"):
-            cta = f'<p><a class="button" href="{destination}">View products on NOTHS →</a></p>'
-
-        inactive_note = "<p><em>* Brand no longer on NOTHS.</em></p>" if brand.get("inactive") else ""
-
-        body = body.replace("{{ brand_logo }}", logo_html)
-        body = body.replace("{{ brand_name }}", display_name)
-        body = body.replace("{{ brand_social_links }}", brand_social_links)
-        body = body.replace("{{ order_volume }}", order_volume_value)
-        body = body.replace("{{ reviews }}", review_count_value)
-        body = body.replace("{{ products }}", product_count_value)
-        body = body.replace("{{ location }}", location_value)
-        body = body.replace("{{ tenure }}", tenure_value)
-        body = body.replace("{{ top_products }}", top_products_html)
-        body = body.replace("{{ cta }}", cta)
-        body = body.replace("{{ inactive_note }}", inactive_note)
-
-        html = render_page(
-            f"{brand.get('name', '')} | NOTHS Brand Profile",
-            body,
-            "../../static",
-            "../../",
-            f"{brand.get('name', '')} brand profile on The Trend List.",
-        )
-
-        save_html(OUTPUT_ROOT / "brands" / brand["slug"] / "index.html", html)
-
-    print(f"✅ {len(active)} brand pages rendered")
-
-def brand_age_months(brand):
-    since = str(
-        brand.get("tenure_label")
-        or brand.get("since")
-        or ""
-    ).lower().strip()
-
-    if not since:
-        return 999999
-
-    years = 0
-    months = 0
-
-    year_match = re.search(r"(\d+)\s*year", since)
-    month_match = re.search(r"(\d+)\s*month", since)
-
-    if year_match:
-        years = int(year_match.group(1))
-
-    if month_match:
-        months = int(month_match.group(1))
-
-    total = years * 12 + months
-
-    # Handle edge cases like "new" or "less than a month"
-    if total == 0:
-        if "new" in since or "less" in since:
-            return 0
-
-    return total if total > 0 else 999999
 
 
 # -----------------------------------------------------------------------------
@@ -1026,7 +441,7 @@ def render_products(products, limit=None, show_last_month=False):
 """
 
 
-def render_partners(partners, limit=10, brand_link_prefix="brands/"):
+def render_partners(partners, limit=10):
     rows = []
 
     for i, p in enumerate(partners[:limit], start=1):
@@ -1034,7 +449,11 @@ def render_partners(partners, limit=10, brand_link_prefix="brands/"):
         seller_slug = p.get("seller_slug") or slugify_brand_name(seller_name)
         reviews = p.get("total_reviews_month") or 0
 
-        seller_html = f'<a href="{brand_link_prefix}{seller_slug}/index.html">{seller_name}</a>'
+        # NOTE: previously linked to the retired internal /brands/{slug}/
+        # page. Now links straight to the real NOTHS seller page via the
+        # existing AWIN affiliate link builder.
+        awin_url = build_awin_link(seller_slug)
+        seller_html = f'<a href="{awin_url}" target="_blank" rel="sponsored noopener">{seller_name}</a>'
 
         rows.append(
             f"""
@@ -1173,7 +592,7 @@ def render_homepage(latest_month, previous_month=None):
         "{{TOP_PRODUCTS}}",
         render_products(products, limit=20, show_last_month=bool(previous_month))
     )
-    body = body.replace("{{TOP_BRANDS}}", render_partners(partners, 10, brand_link_prefix="brands/"))
+    body = body.replace("{{TOP_BRANDS}}", render_partners(partners, 10))
 
     html = render_page(
         "Trending Products on NOTHS",
@@ -1223,7 +642,7 @@ Products ranked by number of reviews received during the month.
 
 <h2>Top Brands</h2>
 
-{render_partners(partners, 20, brand_link_prefix="../brands/")}
+{render_partners(partners, 20)}
 
 <p>
     <a href="../index.html">← Back to homepage</a>
@@ -1376,67 +795,6 @@ The products with the highest recorded Feefo review counts over the last 12 mont
 
     print("✅ top-products-last-12-months rendered")
 
-def render_newest_brands(brands):
-    newest_brands = sorted(
-        [b for b in brands if b.get("active", True)],
-        key=brand_age_months
-    )[:100]
-
-    rows = []
-
-    for idx, brand in enumerate(newest_brands, start=1):
-        destination = brand.get("awin") or brand.get("brand_url") or ""
-
-        if destination:
-            link_html = f'<a href="{destination}">View on NOTHS →</a>'
-        else:
-            link_html = ""
-
-        rows.append(
-            f"""
-        <tr>
-          <td class="rank">{idx}</td>
-          <td><a href="brands/{brand['slug']}/index.html">{brand['name']}</a></td>
-          <td>{brand.get('tenure_label', '')}</td>
-        </tr>
-        """.strip()
-        )
-
-    body = f"""
-<h1>100 Newest Brands on NOTHS</h1>
-
-<p>
-Discover the newest independent brands joining Not On The High Street.
-This list highlights 100 recently added brands, ordered by how long they appear to have been selling on NOTHS.
-</p>
-
-<table>
-  <tr>
-    <th>#</th>
-    <th>Brand</th>
-    <th>On NOTHS</th>
-  </tr>
-  {''.join(rows)}
-</table>
-
-<p>
-  <a href="index.html">← Back to homepage</a>
-</p>
-"""
-
-    html = render_page(
-        "100 Newest Brands on NOTHS",
-        body,
-        "static",
-        "",
-        "The 100 newest brands on Not On The High Street.",
-    )
-
-    save_html(OUTPUT_ROOT / "100-newest-brands.html", html)
-
-    print("✅ 100 newest brands rendered")
-
-
 # -----------------------------------------------------------------------------
 # About page rendering
 # -----------------------------------------------------------------------------
@@ -1459,7 +817,7 @@ def render_about():
 # -----------------------------------------------------------------------------
 # Sitemap rendering
 # -----------------------------------------------------------------------------
-def generate_sitemap(months, brands):
+def generate_sitemap(months):
     base_url = "https://trendlist.co.uk"
 
     urls = []
@@ -1474,13 +832,6 @@ def generate_sitemap(months, brands):
     # Monthly pages
     for m in months:
         urls.append(f"{base_url}/months/{m}.html")
-
-    # NOTE: Brand pages retired 2026-07 — brands list will be empty going
-    # forward, so this loop is now a no-op, kept for structural symmetry.
-    for brand in brands:
-        slug = brand.get("slug")
-        if slug:
-            urls.append(f"{base_url}/brands/{slug}/")
 
     # Build XML
     xml = ['<?xml version="1.0" encoding="UTF-8"?>']
@@ -1528,12 +879,8 @@ def main():
     render_top_products_all_time()
     render_top_products_last_12_months(latest, previous_for_homepage)
 
-    # NOTE: Brand directory retired 2026-07 (Top Brands, Newest Brands, All
-    # Brands, individual /brands/{slug}/ pages). Functions kept in this file
-    # in case they're needed again, but no longer called here.
-
     render_about()
-    generate_sitemap(months, brands=[])
+    generate_sitemap(months)
 
     print()
     print("🏁 Site render complete")
