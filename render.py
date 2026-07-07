@@ -1,928 +1,1547 @@
-from __future__ import annotations
-
-from jinja2 import Environment, FileSystemLoader
-from urllib.parse import urlparse, parse_qs, quote, unquote
-import os
-import re
 import json
 import shutil
-from collections import defaultdict
-
-# === Config ===
-STATIC_PATH = "/docs/noths/static"
-DATA_DIR = "data"
-DOCS_DIR = "docs"
-
-PRODUCT_IMAGES_DIR = "Product_Images"
-
-# === AWIN / URL Helpers ===
-NOTHS_HOSTS = {"www.notonthehighstreet.com", "notonthehighstreet.com"}
+import re
+import pandas as pd
+from pathlib import Path
+from datetime import datetime
+from urllib.parse import quote
 
 
-def normalize_product_url(u: str | None) -> str | None:
-    if not u:
-        return None
+# -----------------------------------------------------------------------------
+# Paths
+# -----------------------------------------------------------------------------
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent
 
-    if not isinstance(u, str):
-        u = str(u)
+DATA_DIR = PROJECT_ROOT / "data"
+DERIVED_ROOT = DATA_DIR / "derived" / "monthly"
+LEADERBOARDS_ROOT = DATA_DIR / "derived" / "leaderboards"
+PUBLISHED_ROOT = DATA_DIR / "published"
 
-    u = u.strip()
-    if not u:
-        return None
+TEMPLATES_DIR = PROJECT_ROOT / "templates"
+PARTIALS_DIR = TEMPLATES_DIR / "partials"
 
-    # force https
-    if u.startswith("http://"):
-        u = "https://" + u[len("http://"):]
+STATIC_SRC = PROJECT_ROOT / "static"
 
-    # ensure www for NOTHS
-    try:
-        p = urlparse(u)
-        host = (p.netloc or "").lower()
-        if host == "notonthehighstreet.com":
-            u = u.replace(
-                "https://notonthehighstreet.com",
-                "https://www.notonthehighstreet.com",
-                1,
-            )
-    except Exception:
-        pass
-
-    # strip query/fragment
-    u = u.split("?", 1)[0].split("#", 1)[0]
-    return u
+OUTPUT_ROOT = PROJECT_ROOT / "docs"
+STATIC_DST = OUTPUT_ROOT / "static"
 
 
-def build_awin(product_url: str) -> str:
-    return (
-        "https://www.awin1.com/cread.php?"
-        "awinmid=18484&awinaffid=1018637&clickref=MostReviewed&ued="
-        + quote(product_url, safe="")
+# -----------------------------------------------------------------------------
+# Template loading
+# -----------------------------------------------------------------------------
+def load_text(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+BASE_TEMPLATE = load_text(TEMPLATES_DIR / "legacy-base.html")
+HEADER_TEMPLATE = load_text(PARTIALS_DIR / "header.html")
+FOOTER_TEMPLATE = load_text(PARTIALS_DIR / "footer.html")
+HOMEPAGE_TEMPLATE = load_text(TEMPLATES_DIR / "homepage.html")
+
+# NOTE: Brand directory templates retired 2026-07 (brands-index.html,
+# brands-top-100.html, brand.html) — no longer loaded here.
+
+ABOUT_TEMPLATE = load_text(TEMPLATES_DIR / "about.html")
+
+
+def render_page(
+    title: str,
+    content: str,
+    static_path: str,
+    root_path: str,
+    meta_description: str = "",
+    canonical: str = "",
+) -> str:
+    html = BASE_TEMPLATE
+
+    header_html = (
+        HEADER_TEMPLATE
+        .replace("{{STATIC}}", static_path)
+        .replace("{{ static }}", static_path)
+        .replace("{{ROOT}}", root_path)
+        .replace("{{ root }}", root_path)
     )
 
+    footer_html = (
+        FOOTER_TEMPLATE
+        .replace("{{STATIC}}", static_path)
+        .replace("{{ static }}", static_path)
+        .replace("{{ROOT}}", root_path)
+        .replace("{{ root }}", root_path)
+    )
 
-def validate_or_rebuild_awin(awin_url: str | None, product_url: str | None) -> str | None:
-    """Return a good AWIN link if possible; otherwise return AWIN url (if any) or None."""
-    product_url = normalize_product_url(product_url)
-    if not product_url:
-        return awin_url or None
+    # Uppercase placeholders
+    html = html.replace("{{TITLE}}", title)
+    html = html.replace("{{HEADER}}", header_html)
+    html = html.replace("{{FOOTER}}", footer_html)
+    html = html.replace("{{CONTENT}}", content)
+    html = html.replace("{{STATIC}}", static_path)
+    html = html.replace("{{ROOT}}", root_path)
+    html = html.replace("{{META_DESCRIPTION}}", meta_description or title)
+    html = html.replace("{{CANONICAL}}", canonical)
 
-    if awin_url:
-        try:
-            p = urlparse(awin_url.strip())
-            if "awin1.com" in p.netloc and p.path.endswith("/cread.php"):
-                qs = parse_qs(p.query)
-                ued = qs.get("ued", [None])[0]
-                if ued:
-                    ued_decoded = normalize_product_url(unquote(ued))
-                    if ued_decoded == product_url:
-                        return awin_url  # OK
-        except Exception:
-            pass
-        return build_awin(product_url)
+    # Lowercase placeholders
+    html = html.replace("{{ title }}", title)
+    html = html.replace("{{ header }}", header_html)
+    html = html.replace("{{ footer }}", footer_html)
+    html = html.replace("{{ content }}", content)
+    html = html.replace("{{ static }}", static_path)
+    html = html.replace("{{ root }}", root_path)
+    html = html.replace("{{ meta_description }}", meta_description or title)
+    html = html.replace("{{ canonical }}", canonical)
 
-    return build_awin(product_url)
-
-
-def _extract_noths_url(record: dict) -> str | None:
-    """Try to find a clean NOTHS product URL in the record."""
-    candidates = [
-        record.get("product_url"),
-        record.get("url"),
-        record.get("raw_product_url"),
-    ]
-
-    for u in candidates:
-        u_norm = normalize_product_url(u)
-        if not u_norm:
-            continue
-        try:
-            host = urlparse(u_norm).netloc.lower()
-        except Exception:
-            continue
-        if host in NOTHS_HOSTS and "/product/" in u_norm:
-            return u_norm
-
-    return None
+    return html
 
 
-def ensure_awin_primary_link(record: dict) -> dict:
-    """
-    Prefer a proper AWIN deeplink (with `ued=`) built from a NOTHS URL.
-    If NOTHS URL exists → ensure record["awin"] and set record["product_url"]=awin.
-    """
-    noths_url = _extract_noths_url(record)
-    record["raw_product_url"] = noths_url
-
-    if noths_url:
-        awin_link = validate_or_rebuild_awin(record.get("awin"), noths_url)
-        record["awin"] = awin_link
-        record["product_url"] = awin_link or noths_url
-        return record
-
-    # No NOTHS URL: only keep AWIN if it's already proper deeplink with ued=
-    raw_awin = record.get("awin", "")
-    awin = raw_awin.strip() if isinstance(raw_awin, str) else ""
-
-    if awin:
-        try:
-            p = urlparse(awin)
-            qs = parse_qs(p.query)
-            if ("awin1.com" in p.netloc) and p.path.endswith("/cread.php") and qs.get("ued"):
-                record["awin"] = awin
-                record["product_url"] = awin
-            else:
-                record["awin"] = None
-        except Exception:
-            record["awin"] = None
-
-    return record
-
-
-# === Load shared data once ===
-with open(os.path.join(DATA_DIR, "partners_merged.json"), "r", encoding="utf-8") as f:
-    ALL_PARTNERS = json.load(f)
-
-with open(os.path.join(DATA_DIR, "top_products_last_12_months.json"), "r", encoding="utf-8") as f:
-    TOP_PRODUCTS_12M = json.load(f)
-
-# Ensure AWIN primary links
-TOP_PRODUCTS_12M = [ensure_awin_primary_link(p) for p in TOP_PRODUCTS_12M]
-
-# === Monthly + cache data ===
-PRODUCTS_CACHE_PATH = os.path.join(DATA_DIR, "cache", "products_cache.json")
-MONTHLY_DIR = os.path.join(DATA_DIR, "monthly")
-MONTHLY_INDEX = os.path.join(MONTHLY_DIR, "index.json")
-
-PRODUCTS_CACHE = []
-if os.path.exists(PRODUCTS_CACHE_PATH):
-    with open(PRODUCTS_CACHE_PATH, "r", encoding="utf-8") as f:
-        PRODUCTS_CACHE = json.load(f)
-
-# === Setup Jinja ===
-env = Environment(loader=FileSystemLoader("templates"))
-
-
-# --- Money / Price Helpers ---
-def _coerce_price(val):
-    if val is None:
-        return None
-    try:
-        s = str(val).replace(",", "").strip()
-        return float(s)
-    except Exception:
-        return None
-
-
-def _money(value, currency="GBP"):
-    p = _coerce_price(value)
-    if p is None:
-        return ""
-    symbol = "£" if currency.upper() in ("GBP", "UKP") else ("€" if currency.upper() == "EUR" else "$")
-    return f"{symbol}{p:,.2f}"
-
-
-env.filters["money"] = _money
-
-
-# === Logo helper ===
-def find_logo_url(slug: str) -> str | None:
-    for logo_dir in ["Partner_Logo", "Seller_Logo"]:
-        for ext in ("jpg", "jpeg", "png", "webp", "svg"):
-            local_path = os.path.join(logo_dir, f"{slug}.{ext}")
-            if os.path.exists(local_path):
-                return f"/{logo_dir}/{slug}.{ext}"
-    return None
-
-
-# ==========================
-# MONTHLY HELPERS + RENDER
-# ==========================
-def _monthly_json_path(month: str) -> str:
-    return os.path.join(MONTHLY_DIR, month, "top_products.json")
-
-
-def _month_has_data(month: str) -> bool:
-    # must have data/monthly/{month}/top_products.json
-    return os.path.exists(_monthly_json_path(month))
-
-
-def _month_label_is_valid(name: str) -> bool:
-    return bool(re.match(r"^\d{4}-\d{2}$", name))
-
-
-def load_monthly_index() -> list[str]:
-    """
-    Return months like ['2026-01', '2025-12', ...] but ONLY months that
-    actually have a top_products.json file (prevents broken links).
-    """
-    months: list[str] = []
-
-    if os.path.exists(MONTHLY_INDEX):
-        with open(MONTHLY_INDEX, "r", encoding="utf-8") as f:
-            raw = json.load(f)
-
-        # index.json is an object like {"months": [{"month": "2026-04", ...}, ...]}
-        # (as written by build_monthly_json.py), not a plain list of strings.
-        if isinstance(raw, dict):
-            entries = raw.get("months", [])
-            months = [
-                str(entry.get("month", "")).strip()
-                for entry in entries
-                if isinstance(entry, dict) and str(entry.get("month", "")).strip()
-            ]
-        elif isinstance(raw, list):
-            # Fallback: support a plain list of month strings too, in case
-            # index.json is ever written in that simpler format.
-            months = [str(m).strip() for m in raw if str(m).strip()]
-    else:
-        # fallback: detect folders under data/monthly
-        if os.path.exists(MONTHLY_DIR):
-            for name in os.listdir(MONTHLY_DIR):
-                if _month_label_is_valid(name) and os.path.isdir(os.path.join(MONTHLY_DIR, name)):
-                    months.append(name)
-
-    # Filter to only months that really have the JSON
-    months = [m for m in months if _month_label_is_valid(m) and _month_has_data(m)]
-    months = sorted(set(months), reverse=True)
-    return months
-
-
-def load_monthly_file(month: str) -> dict:
-    path = _monthly_json_path(month)
+# -----------------------------------------------------------------------------
+# Data helpers
+# -----------------------------------------------------------------------------
+def load_json(path: Path):
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
-def _load_unavailable_skus(month: str) -> set[str]:
-    unavailable_path = os.path.join(MONTHLY_DIR, month, "unavailable_skus.json")
-    if not os.path.exists(unavailable_path):
-        return set()
+def save_html(path: Path, html: str):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(html, encoding="utf-8")
+
+
+def format_month(month: str) -> str:
+    dt = datetime.strptime(month, "%Y-%m")
+    return dt.strftime("%B %Y")
+
+
+def format_percent(value) -> str:
     try:
-        with open(unavailable_path, "r", encoding="utf-8") as f:
-            return set(str(x).strip() for x in json.load(f) if str(x).strip())
+        return f"{float(value) * 100:.1f}%"
     except Exception:
-        return set()
+        return "0.0%"
 
 
-def _has_image(sku: str) -> bool:
-    # your monthly image script saves SKU as .jpg
-    return os.path.exists(os.path.join(PRODUCT_IMAGES_DIR, f"{sku}.jpg"))
+def get_month_dirs():
+    months = []
+    if not DERIVED_ROOT.exists():
+        return months
+
+    for p in DERIVED_ROOT.iterdir():
+        if p.is_dir():
+            months.append(p.name)
+
+    months.sort(reverse=True)
+    return months
 
 
-def enrich_month_products(month: str) -> list[dict]:
-    monthly = load_monthly_file(month)
-    monthly_items = monthly.get("items", [])
+def clean_product_list(products):
+    if not products:
+        return []
+    return [p for p in products if isinstance(p, dict)]
 
-    cache_by_sku = {str(p.get("sku", "")).strip(): p for p in PRODUCTS_CACHE if p.get("sku")}
-    unavailable = _load_unavailable_skus(month)
 
-    enriched: list[dict] = []
-    for row in monthly_items:
-        sku = str(row.get("sku", "")).strip()
-        if not sku:
+def top_n_with_ties(products, limit, value_key="reviews"):
+    clean_products = clean_product_list(products)
+
+    if not clean_products:
+        return []
+
+    clean_products = sorted(
+        clean_products,
+        key=lambda p: (p.get(value_key) or 0),
+        reverse=True
+    )
+
+    if len(clean_products) <= limit:
+        return clean_products
+
+    cutoff_value = clean_products[limit - 1].get(value_key) or 0
+    return [p for p in clean_products if (p.get(value_key) or 0) >= cutoff_value]
+
+
+def format_int(value) -> str:
+    try:
+        return f"{int(value):,}"
+    except Exception:
+        return "0"
+
+
+def coerce_int(*values, default=0):
+    for value in values:
+        if value is None or value == "":
+            continue
+        try:
+            return int(value)
+        except Exception:
+            try:
+                return int(float(value))
+            except Exception:
+                continue
+    return default
+
+
+def normalise_text(value) -> str:
+    if value is None:
+        return ""
+
+    # handle pandas NaN / float NaN
+    if isinstance(value, float):
+        try:
+            import math
+            if math.isnan(value):
+                return ""
+        except Exception:
+            pass
+
+    if isinstance(value, str):
+        value = value.strip()
+        if value.lower() in {"nan", "none", "null"}:
+            return ""
+        return value
+
+    if isinstance(value, (int, bool)):
+        return str(value)
+
+    if isinstance(value, list):
+        return ", ".join(normalise_text(v) for v in value if normalise_text(v))
+
+    if isinstance(value, dict):
+        return ", ".join(normalise_text(v) for v in value.values() if normalise_text(v))
+
+    return str(value).strip()
+
+def clean_handle(value):
+    value = str(value).strip()
+
+    if not value:
+        return ""
+
+    return value.replace("@", "").strip()
+
+
+def clean_url(value):
+    value = str(value).strip()
+
+    if not value:
+        return ""
+
+    if value.startswith("http://") or value.startswith("https://"):
+        return value
+
+    return "https://" + value
+
+
+def load_brand_socials():
+    path = DATA_DIR / "source" / "brand_socials.xlsx"
+
+    if not path.exists():
+        return {}
+
+    df = pd.read_excel(path).fillna("")
+
+    socials = {}
+
+    for _, row in df.iterrows():
+        slug = str(row.get("Slug", "")).strip().lower()
+
+        if not slug:
             continue
 
-        # Drop if confirmed dead for this month
-        if sku in unavailable:
-            continue
+        instagram = clean_handle(row.get("Instagram", ""))
+        tiktok = clean_handle(row.get("TikTok", ""))
+        facebook = clean_handle(row.get("Facebook", ""))
 
-        # Drop if we don't have an image (prevents broken tiles)
-        if not _has_image(sku):
-            continue
+        socials[slug] = {
+            "website": clean_url(row.get("Website", "")),
 
-        meta = cache_by_sku.get(sku)
-        if not meta:
-            continue
+            "instagram": (
+                f"https://www.instagram.com/{instagram}/"
+                if instagram else ""
+            ),
 
-        rec = {
-            **meta,
-            "review_count_month": int(row.get("review_count_month", 0)),
-            "rating_month": row.get("rating_month"),
+            "tiktok": (
+                f"https://www.tiktok.com/@{tiktok}"
+                if tiktok else ""
+            ),
+
+            "facebook": (
+                f"https://www.facebook.com/{facebook}"
+                if facebook else ""
+            ),
         }
 
-        rec = ensure_awin_primary_link(rec)
-        enriched.append(rec)
+    return socials
 
-    # Sort by monthly reviews then name
-    enriched.sort(key=lambda x: (-int(x.get("review_count_month", 0)), (x.get("name") or "").lower()))
+# -----------------------------------------------------------------------------
+# Rank / review helpers
+# -----------------------------------------------------------------------------
+def add_dense_ranks(products, value_key):
+    clean_products = clean_product_list(products)
 
-    # ---- Top 250 + ties (AFTER filtering) ----
-    TOP_N = 250
-    if len(enriched) > TOP_N:
-        cutoff = int(enriched[TOP_N - 1].get("review_count_month", 0))
-        enriched = [p for p in enriched if int(p.get("review_count_month", 0)) >= cutoff]
+    if not clean_products:
+        return []
 
-    # Dense rank on monthly review count
-    rank, last = 0, None
-    for i, p in enumerate(enriched, start=1):
-        count = int(p.get("review_count_month", 0))
-        if count != last:
-            rank = i
-            last = count
-        p["rank"] = rank
+    ranked = []
+    prev_value = None
+    current_rank = 0
+
+    for idx, p in enumerate(clean_products, start=1):
+        value = p.get(value_key) or 0
+
+        if value != prev_value:
+            current_rank = idx
+            prev_value = value
+
+        item = dict(p)
+        item["rank"] = current_rank
+        ranked.append(item)
+
+    return ranked
+
+
+def build_review_lookup(products):
+    clean_products = clean_product_list(products)
+    return {
+        p["sku"]: (p.get("review_count_month") or 0)
+        for p in clean_products
+        if p.get("sku")
+    }
+
+
+def apply_rank_movement(products, previous_review_lookup):
+    ranked = add_dense_ranks(products, value_key="review_count_month")
+    enriched = []
+
+    for p in ranked:
+        item = dict(p)
+
+        sku = item.get("sku")
+        current_reviews = item.get("review_count_month") or 0
+        previous_reviews = previous_review_lookup.get(sku, 0)
+
+        item["previous_reviews"] = previous_reviews
+
+        if current_reviews > previous_reviews:
+            item["movement_label"] = "▲"
+            item["movement_class"] = "up"
+        elif current_reviews < previous_reviews:
+            item["movement_label"] = "▼"
+            item["movement_class"] = "down"
+        else:
+            item["movement_label"] = "–"
+            item["movement_class"] = "same"
+
+        enriched.append(item)
 
     return enriched
 
 
-def render_monthly_products(month: str):
-    products = enrich_month_products(month)
-    months = load_monthly_index()
-    monthly_meta = load_monthly_file(month)
-    generated_at = monthly_meta.get("generated_at")
+# -----------------------------------------------------------------------------
+# URL / AWIN helpers
+# -----------------------------------------------------------------------------
+def build_brand_url(slug: str) -> str:
+    if not slug:
+        return ""
+    return f"https://www.notonthehighstreet.com/partners/{slug}"
 
-    template = env.get_template("noths/monthly/products.html")
-    html = template.render(
-        month=month,
-        months=months,
-        products=products,
-        generated_at=generated_at,
-        static_path=STATIC_PATH,
+
+def build_awin_link(slug: str, clickref: str = "TrendList") -> str:
+    if not slug:
+        return ""
+    destination = build_brand_url(slug)
+    encoded_destination = quote(destination, safe="")
+    return (
+        "https://www.awin1.com/cread.php"
+        f"?awinmid=18484&awinaffid=1018637&clickref={clickref}&ued={encoded_destination}"
     )
 
-    out_dir = os.path.join(DOCS_DIR, "noths", "monthly", month)
-    os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "index.html")
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write(html)
 
-    print(f"🗓️ Rendered monthly products → {out_path} ({len(products)} products)", flush=True)
+def build_awin_product_link(product_url: str, clickref: str = "TrendListProduct") -> str:
+    product_url = (product_url or "").strip()
+    if not product_url:
+        return ""
+
+    encoded_destination = quote(product_url, safe="")
+    return (
+        "https://www.awin1.com/cread.php"
+        f"?awinmid=18484&awinaffid=1018637&clickref={clickref}&ued={encoded_destination}"
+    )
 
 
-def render_monthly_index():
-    months = load_monthly_index()
-    if not months:
-        print("⚠️ No valid months found under data/monthly. Skipping monthly index.", flush=True)
+def slugify_brand_name(name: str) -> str:
+    return (
+        (name or "").strip().lower()
+        .replace("&", "and")
+        .replace("’", "")
+        .replace("'", "")
+        .replace(".", "")
+        .replace(",", "")
+        .replace("/", "-")
+        .replace(" ", "-")
+    )
+
+
+# -----------------------------------------------------------------------------
+# Brand helpers
+# -----------------------------------------------------------------------------
+def load_brands():
+    brands_file = PUBLISHED_ROOT / "brands.json"
+    if not brands_file.exists():
+        print("⚠️ brands.json not found")
+        return []
+
+    brands = load_json(brands_file)
+    if not isinstance(brands, list):
+        print("⚠️ brands.json is not a list")
+        return []
+
+    cleaned = []
+
+    for b in brands:
+        if not isinstance(b, dict):
+            continue
+
+        item = dict(b)
+        stats = item.get("stats", {}) or {}
+        urls = item.get("urls", {}) or {}
+
+        slug = normalise_text(
+            item.get("slug")
+            or item.get("seller_slug")
+            or ""
+        ).lower()
+
+        name = normalise_text(
+            item.get("name")
+            or item.get("seller_name")
+            or slug
+        )
+
+        product_count = coerce_int(
+            item.get("product_count"),
+            stats.get("product_count"),
+            item.get("products"),
+            item.get("product_total"),
+            item.get("count"),
+            default=0,
+        )
+
+        brand_review_count = coerce_int(
+            item.get("brand_review_count"),
+            stats.get("brand_review_count"),
+            item.get("reviews"),
+            item.get("review_count"),
+            item.get("total_reviews"),
+            default=0,
+        )
+
+        order_volume_numeric = coerce_int(
+            item.get("order_volume_numeric"),
+            stats.get("order_volume_numeric"),
+            default=0,
+        )
+
+        active_raw = item.get("active")
+        active = True if active_raw is None else bool(active_raw)
+
+        raw_location = item.get("location", "")
+        if isinstance(raw_location, dict):
+            location = normalise_text(raw_location.get("display", ""))
+        else:
+            location = normalise_text(raw_location)
+
+        tenure_label = normalise_text(
+            item.get("tenure_label")
+            or stats.get("tenure_label")
+            or ""
+        )
+        order_volume_label = normalise_text(
+            item.get("order_volume_label")
+            or stats.get("order_volume_label")
+            or ""
+        )
+        brand_url = normalise_text(
+            item.get("brand_url")
+            or item.get("url")
+            or urls.get("brand")
+            or build_brand_url(slug)
+        )
+
+        awin = normalise_text(urls.get("affiliate") or build_awin_link(slug, clickref="TrendList"))
+
+        inferred_inactive = (product_count == 0 and not location)
+        inactive = (not active) or inferred_inactive
+
+        cleaned_item = {
+            **item,
+            "slug": slug,
+            "name": name,
+            "active": active,
+            "inactive": inactive,
+            "product_count": product_count,
+            "brand_review_count": brand_review_count,
+            "order_volume_numeric": order_volume_numeric,
+            "location": location,
+            "tenure_label": tenure_label,
+            "order_volume_label": order_volume_label,
+            "awin": awin,
+            "brand_url": brand_url,
+        }
+
+        if cleaned_item["slug"]:
+            cleaned.append(cleaned_item)
+
+    print(f"✅ loaded {len(cleaned)} brands")
+    if cleaned:
+        print("First brand sample:", cleaned[0])
+
+    return cleaned
+
+
+def get_active_brands(brands):
+    return [b for b in brands if b.get("slug")]
+
+
+def get_top_brands(brands, limit=100):
+    active = get_active_brands(brands)
+
+    ranked = [b for b in active if b.get("order_volume_numeric", 0) > 0]
+
+    ranked.sort(
+        key=lambda b: (
+            -int(b.get("order_volume_numeric", 0) or 0),
+            -int(b.get("brand_review_count", 0) or 0),
+            -int(b.get("product_count", 0) or 0),
+            (b.get("name", "") or "").lower(),
+        )
+    )
+
+    return ranked[:limit]
+
+
+# -----------------------------------------------------------------------------
+# Brand page rendering helpers
+# -----------------------------------------------------------------------------
+def get_brand_initial(name):
+    first = (name or "").strip()[:1].upper()
+    if first.isalpha():
+        return first
+    return "#"
+
+
+def render_brand_az_nav(brands):
+    initials = sorted({get_brand_initial(b.get("name", "")) for b in brands})
+
+    links = []
+    for initial in initials:
+        links.append(f'<a href="#letter-{initial}">{initial}</a>')
+
+    return '<div class="az-nav">' + "".join(links) + "</div>"
+
+
+def render_brands_az_sections(brands):
+    grouped = {}
+
+    for brand in brands:
+        initial = get_brand_initial(brand.get("name", ""))
+        grouped.setdefault(initial, []).append(brand)
+
+    sections = []
+
+    for initial in sorted(grouped.keys()):
+        cards = []
+
+        for brand in grouped[initial]:
+            display_name = brand["name"] + ("*" if brand.get("inactive") else "")
+            product_count = "" if brand.get("inactive") else format_int(brand.get("product_count", 0))
+            review_count = "" if brand.get("inactive") else format_int(brand.get("brand_review_count", 0))
+            location = "" if brand.get("inactive") else brand.get("location", "")
+
+            location_html = f"<li>{location}</li>" if location else ""
+
+            cards.append(
+                f"""
+<div class="brand-card">
+  <h3><a href="brands/{brand['slug']}/index.html">{display_name}</a></h3>
+  <ul class="brand-meta">
+    <li><strong>Products:</strong> {product_count}</li>
+    <li><strong>Reviews:</strong> {review_count}</li>
+    {location_html}
+  </ul>
+</div>
+""".strip()
+            )
+
+        sections.append(
+            f"""
+<section class="brand-letter-section" id="letter-{initial}">
+  <h2>{initial}</h2>
+  <div class="brands-grid">
+    {"".join(cards)}
+  </div>
+</section>
+""".strip()
+        )
+
+    return "\n".join(sections)
+
+
+def render_brands_index(brands):
+    active = get_active_brands(brands)
+    active.sort(key=lambda b: (b.get("name", "") or "").lower())
+
+    body = BRANDS_INDEX_TEMPLATE
+    body = body.replace("{{BRAND_COUNT}}", format_int(len(active)))
+    body = body.replace("{{AZ_NAV}}", render_brand_az_nav(active))
+    body = body.replace("{{BRAND_SECTIONS}}", render_brands_az_sections(active))
+
+    html = render_page(
+        "Independent Brands on NOTHS",
+        body,
+        "static",
+        "",
+        "Browse brands A–Z on The Trend List.",
+    )
+    save_html(OUTPUT_ROOT / "brands.html", html)
+
+    print("✅ brand index rendered")
+
+
+def render_top_brands_rows(brands):
+    rows = []
+
+    for idx, brand in enumerate(brands, start=1):
+        display_name = brand["name"] + ("*" if brand.get("inactive") else "")
+        product_count_value = "" if brand.get("inactive") else format_int(brand.get("product_count", 0))
+        location_value = "" if brand.get("inactive") else brand.get("location", "")
+        review_count_value = "" if brand.get("inactive") else format_int(brand.get("brand_review_count", 0))
+
+        rows.append(
+            f"""
+<tr>
+  <td class="rank">{idx}</td>
+  <td><a href="brands/{brand['slug']}/index.html">{display_name}</a></td>
+  <td>{brand.get('order_volume_label', '')}</td>
+  <td class="reviews">{review_count_value}</td>
+  <td>{product_count_value}</td>
+  <td>{location_value}</td>
+  <td>{brand.get('tenure_label', '')}</td>
+</tr>
+""".strip()
+        )
+
+    return "\n".join(rows)
+
+
+def render_brands_top_100(brands):
+    top_brands = get_top_brands(brands, limit=100)
+
+    body = BRANDS_TOP_100_TEMPLATE
+    body = body.replace("{{ brand_rows }}", render_top_brands_rows(top_brands))
+
+    html = render_page(
+        "Top Brands on NOTHS",
+        body,
+        "static",
+        "",
+        "Top 100 brands on NOTHS ranked by total order volume.",
+    )
+    save_html(OUTPUT_ROOT / "top-100-brands.html", html)
+
+    print("✅ top 100 brands rendered")
+
+def render_brand_top_products(slug, products_by_brand, limit=5):
+    brand_items = products_by_brand.get((slug or "").lower(), [])
+
+    brand_items = sorted(
+        brand_items,
+        key=lambda p: p.get("reviews") or 0,
+        reverse=True
+    )[:limit]
+
+    if not brand_items:
+        return "<p>No trending products found yet.</p>"
+
+    rows = []
+
+    for i, p in enumerate(brand_items, start=1):
+        name = p.get("name") or f"Product {p.get('sku')}"
+        reviews = p.get("reviews") or 0
+        url = p.get("product_url")
+        available = p.get("available")
+        awin_url = build_awin_product_link(url, clickref="TrendListBrandProduct")
+
+        display_name = name + ("*" if available is not True else "")
+
+        if awin_url and available is True:
+            name_html = f'<a href="{awin_url}">{display_name}</a>'
+        else:
+            name_html = display_name
+
+        rows.append(
+            f"""
+<li>
+  <span class="brand-product-rank">#{i}</span>
+  <span class="brand-product-name">{name_html}</span>
+  <span class="brand-product-reviews">{reviews:,} reviews</span>
+</li>
+""".strip()
+        )
+
+    return f"""
+<ul class="brand-product-list">
+  {''.join(rows)}
+</ul>
+<p class="table-note">* No longer available on NOTHS</p>
+""".strip()
+
+def render_brand_social_links(brand):
+    links = []
+
+    if brand.get("website"):
+        links.append(f'<a href="{brand["website"]}" target="_blank" rel="noopener">Website</a>')
+
+    if brand.get("instagram"):
+        links.append(f'<a href="{brand["instagram"]}" target="_blank" rel="noopener">Instagram</a>')
+
+    if brand.get("tiktok"):
+        links.append(f'<a href="{brand["tiktok"]}" target="_blank" rel="noopener">TikTok</a>')
+
+    if brand.get("facebook"):
+        links.append(f'<a href="{brand["facebook"]}" target="_blank" rel="noopener">Facebook</a>')
+
+    if not links:
+        return ""
+
+    return f"""
+<div class="brand-social-links">
+  {"".join(links)}
+</div>
+""".strip()
+
+
+def render_brand_pages(brands):
+    active = get_active_brands(brands)
+
+    brand_socials = load_brand_socials()
+
+    leaderboard_file = LEADERBOARDS_ROOT / "top_products_last_12_months.json"
+    products_by_brand = {}
+
+    if leaderboard_file.exists():
+        data = load_json(leaderboard_file)
+        items = clean_product_list(data.get("items", []))
+
+        for p in items:
+            seller_slug = (p.get("seller_slug") or "").lower()
+            if not seller_slug:
+                continue
+            products_by_brand.setdefault(seller_slug, []).append(p)
+
+    for brand in active:
+        socials = brand_socials.get(str(brand.get("slug", "")).lower(), {})
+
+        brand["website"] = socials.get("website", "")
+        brand["instagram"] = socials.get("instagram", "")
+        brand["tiktok"] = socials.get("tiktok", "")
+        brand["facebook"] = socials.get("facebook", "")
+
+        brand_social_links = render_brand_social_links(brand)
+
+        body = BRAND_TEMPLATE
+
+        display_name = brand["name"] + ("*" if brand.get("inactive") else "")
+        product_count_value = "" if brand.get("inactive") else format_int(brand.get("product_count", 0))
+        review_count_value = "" if brand.get("inactive") else format_int(brand.get("brand_review_count", 0))
+        location_value = "" if brand.get("inactive") else str(brand.get("location", "") or "")
+        order_volume_value = str(brand.get("order_volume_label", "") or "")
+        tenure_value = str(brand.get("tenure_label", "") or "")
+
+        brand_initial = (brand.get("name", "") or "?").strip()[:1].upper()
+
+        logo_jpg = STATIC_SRC / "img" / "sellers" / f"{brand['slug']}.jpg"
+        logo_jpeg = STATIC_SRC / "img" / "sellers" / f"{brand['slug']}.jpeg"
+        logo_png = STATIC_SRC / "img" / "sellers" / f"{brand['slug']}.png"
+        logo_webp = STATIC_SRC / "img" / "sellers" / f"{brand['slug']}.webp"
+
+        if logo_jpg.exists():
+            logo_src = f"../../static/img/sellers/{brand['slug']}.jpg"
+        elif logo_jpeg.exists():
+            logo_src = f"../../static/img/sellers/{brand['slug']}.jpeg"
+        elif logo_png.exists():
+            logo_src = f"../../static/img/sellers/{brand['slug']}.png"
+        elif logo_webp.exists():
+            logo_src = f"../../static/img/sellers/{brand['slug']}.webp"
+        else:
+            logo_src = None
+
+        if logo_src:
+            logo_html = f"""
+<div class="brand-logo-box">
+  <img src="{logo_src}" alt="{brand.get('name', '')} logo">
+</div>
+""".strip()
+        else:
+            logo_html = f"""
+<div class="brand-logo-box no-logo">
+  {brand_initial}
+</div>
+""".strip()
+
+        top_products_html = render_brand_top_products(
+            brand["slug"],
+            products_by_brand,
+            limit=5
+        )
+
+        cta = ""
+        destination = str(brand.get("awin", brand.get("brand_url", "")) or "")
+        if destination and not brand.get("inactive"):
+            cta = f'<p><a class="button" href="{destination}">View products on NOTHS →</a></p>'
+
+        inactive_note = "<p><em>* Brand no longer on NOTHS.</em></p>" if brand.get("inactive") else ""
+
+        body = body.replace("{{ brand_logo }}", logo_html)
+        body = body.replace("{{ brand_name }}", display_name)
+        body = body.replace("{{ brand_social_links }}", brand_social_links)
+        body = body.replace("{{ order_volume }}", order_volume_value)
+        body = body.replace("{{ reviews }}", review_count_value)
+        body = body.replace("{{ products }}", product_count_value)
+        body = body.replace("{{ location }}", location_value)
+        body = body.replace("{{ tenure }}", tenure_value)
+        body = body.replace("{{ top_products }}", top_products_html)
+        body = body.replace("{{ cta }}", cta)
+        body = body.replace("{{ inactive_note }}", inactive_note)
+
+        html = render_page(
+            f"{brand.get('name', '')} | NOTHS Brand Profile",
+            body,
+            "../../static",
+            "../../",
+            f"{brand.get('name', '')} brand profile on The Trend List.",
+        )
+
+        save_html(OUTPUT_ROOT / "brands" / brand["slug"] / "index.html", html)
+
+    print(f"✅ {len(active)} brand pages rendered")
+
+def brand_age_months(brand):
+    since = str(
+        brand.get("tenure_label")
+        or brand.get("since")
+        or ""
+    ).lower().strip()
+
+    if not since:
+        return 999999
+
+    years = 0
+    months = 0
+
+    year_match = re.search(r"(\d+)\s*year", since)
+    month_match = re.search(r"(\d+)\s*month", since)
+
+    if year_match:
+        years = int(year_match.group(1))
+
+    if month_match:
+        months = int(month_match.group(1))
+
+    total = years * 12 + months
+
+    # Handle edge cases like "new" or "less than a month"
+    if total == 0:
+        if "new" in since or "less" in since:
+            return 0
+
+    return total if total > 0 else 999999
+
+
+# -----------------------------------------------------------------------------
+# Copy static
+# -----------------------------------------------------------------------------
+def copy_static():
+    STATIC_DST.mkdir(parents=True, exist_ok=True)
+
+    for item in STATIC_SRC.rglob("*"):
+        dest = STATIC_DST / item.relative_to(STATIC_SRC)
+
+        if item.is_dir():
+            dest.mkdir(parents=True, exist_ok=True)
+        else:
+            shutil.copy2(item, dest)
+
+    print("✅ Static assets copied")
+
+
+# -----------------------------------------------------------------------------
+# HTML fragments
+# -----------------------------------------------------------------------------
+def render_monthly_stats(summary):
+    total_reviews = summary.get("total_reviews_month", 0)
+    products_reviewed = summary.get("product_count_with_reviews", 0)
+    products_with_5_plus = summary.get("products_with_5_plus_reviews", 0)
+    avg_reviews = summary.get("average_reviews_per_product", 0)
+    top_100_share = summary.get("top_100_share_of_reviews", 0)
+
+    return f"""
+<div class="stats">
+    <div class="stat">
+        <div class="stat-label">Total reviews</div>
+        <div class="stat-value">{total_reviews:,}</div>
+    </div>
+    <div class="stat">
+        <div class="stat-label">Products reviewed</div>
+        <div class="stat-value">{products_reviewed:,}</div>
+    </div>
+    <div class="stat">
+        <div class="stat-label">Products with 5+ reviews</div>
+        <div class="stat-value">{products_with_5_plus:,}</div>
+    </div>
+    <div class="stat">
+        <div class="stat-label">Average reviews per product</div>
+        <div class="stat-value">{avg_reviews:.1f}</div>
+    </div>
+</div>
+
+<p class="stats-note">
+    Top 100 share of reviews: <strong>{format_percent(top_100_share)}</strong>
+</p>
+"""
+
+
+def render_leaderboard_stats(
+    total_reviews,
+    total_products_reviewed,
+    threshold_label,
+    threshold_value,
+    average_reviews_per_product,
+    top_100_share_of_reviews,
+):
+    return f"""
+<div class="stats">
+    <div class="stat">
+        <div class="stat-label">Total reviews</div>
+        <div class="stat-value">{total_reviews:,}</div>
+    </div>
+    <div class="stat">
+        <div class="stat-label">Total products reviewed</div>
+        <div class="stat-value">{total_products_reviewed:,}</div>
+    </div>
+    <div class="stat">
+        <div class="stat-label">{threshold_label}</div>
+        <div class="stat-value">{threshold_value:,}</div>
+    </div>
+    <div class="stat">
+        <div class="stat-label">Average reviews per product</div>
+        <div class="stat-value">{average_reviews_per_product:.1f}</div>
+    </div>
+</div>
+
+<p class="stats-note">
+    Top 100 share of reviews: <strong>{format_percent(top_100_share_of_reviews)}</strong>
+</p>
+"""
+
+
+def render_products(products, limit=None, show_last_month=False):
+    products = clean_product_list(products)
+
+    if limit:
+        products = top_n_with_ties(products, limit, value_key="review_count_month")
+
+    if not products:
+        rows = []
+    else:
+        if "rank" not in products[0]:
+            products = add_dense_ranks(products, value_key="review_count_month")
+
+        rows = []
+
+        for idx, p in enumerate(products):
+            rank_num = p.get("rank", "")
+
+            same_as_prev = (
+                idx > 0 and
+                (p.get("review_count_month") or 0) == (products[idx - 1].get("review_count_month") or 0)
+            )
+            rank_display = f"{rank_num}=" if same_as_prev else str(rank_num)
+
+            name = p.get("name") or f"Product {p.get('sku')}"
+            seller = p.get("seller_name") or "Unknown brand"
+            reviews = p.get("review_count_month") or 0
+            url = p.get("product_url")
+            available = p.get("available", True)
+
+            awin_url = build_awin_product_link(url, clickref="TrendListProduct")
+
+            display_name = name + ("*" if available is False else "")
+
+            if awin_url and available:
+                name_html = f'<a href="{awin_url}">{display_name}</a>'
+            else:
+                name_html = display_name
+
+            last_month_cell = ""
+            if show_last_month:
+                previous_reviews = p.get("previous_reviews", 0)
+                movement_label = p.get("movement_label", "")
+                movement_class = p.get("movement_class", "")
+
+                previous_reviews_html = f"{previous_reviews:,}"
+
+                last_month_cell = (
+                    f'<td class="last-month">'
+                    f'{previous_reviews_html} '
+                    f'<span class="rank-change {movement_class}">{movement_label}</span>'
+                    f'</td>'
+                )
+
+            rows.append(
+                f"""
+<tr>
+    <td class="rank">{rank_display}</td>
+    <td>
+        {name_html}
+        <div class="partner">{seller}</div>
+    </td>
+    <td class="reviews">{reviews:,}</td>
+    {last_month_cell}
+</tr>
+"""
+            )
+
+    last_month_header = '<th class="last-month">Previous Month</th>' if show_last_month else ""
+
+    return f"""
+<div class="table-scroll">
+<table>
+    <tr>
+        <th>#</th>
+        <th>Product</th>
+        <th>Reviews</th>
+        {last_month_header}
+    </tr>
+    {''.join(rows)}
+</table>
+</div>
+"""
+
+
+def render_partners(partners, limit=10, brand_link_prefix="brands/"):
+    rows = []
+
+    for i, p in enumerate(partners[:limit], start=1):
+        seller_name = p.get("seller_name") or p.get("seller_slug") or "Unknown brand"
+        seller_slug = p.get("seller_slug") or slugify_brand_name(seller_name)
+        reviews = p.get("total_reviews_month") or 0
+
+        # NOTE: previously linked to the retired internal /brands/{slug}/
+        # page. Now links straight to the real NOTHS seller page via the
+        # existing AWIN affiliate link builder.
+        awin_url = build_awin_link(seller_slug)
+        seller_html = f'<a href="{awin_url}" target="_blank" rel="sponsored noopener">{seller_name}</a>'
+
+        rows.append(
+            f"""
+<tr>
+    <td class="rank">{i}</td>
+    <td>{seller_html}</td>
+    <td class="reviews">{reviews:,}</td>
+</tr>
+"""
+        )
+
+    return f"""
+<div class="table-scroll">
+<table>
+    <tr>
+        <th>#</th>
+        <th>Brand</th>
+        <th>Reviews</th>
+    </tr>
+    {''.join(rows)}
+</table>
+</div>
+"""
+
+
+def render_leaderboard_products(items, limit=100, last_month=False, link_only_if_available=False):
+    items = clean_product_list(items)
+
+    if limit:
+        items = top_n_with_ties(items, limit, value_key="reviews")
+
+    if not items:
+        rows = []
+    else:
+        if "rank" not in items[0]:
+            items = add_dense_ranks(items, value_key="reviews")
+
+        rows = []
+
+        for idx, p in enumerate(items):
+            rank_num = p.get("rank", "")
+
+            same_as_prev = (
+                idx > 0 and
+                (p.get("reviews") or 0) == (items[idx - 1].get("reviews") or 0)
+            )
+
+            same_as_next = (
+                idx < len(items) - 1 and
+                (p.get("reviews") or 0) == (items[idx + 1].get("reviews") or 0)
+            )
+
+            is_tied = same_as_prev or same_as_next
+
+            rank_display = f"{rank_num}=" if is_tied else str(rank_num)
+
+            name = p.get("name") or f"Product {p.get('sku')}"
+            seller = p.get("seller_name") or "Unknown brand"
+            reviews = p.get("reviews") or 0
+            url = p.get("product_url")
+            available = p.get("available")
+
+            should_link = bool(url and available is True) if link_only_if_available else bool(url)
+            awin_url = build_awin_product_link(url, clickref="TrendListProduct")
+
+            display_name = name + ("*" if available is not True else "")
+
+            should_link = bool(url and available is True) if link_only_if_available else bool(url)
+
+            if should_link and awin_url:
+                name_html = f'<a href="{awin_url}">{display_name}</a>'
+            else:
+                name_html = display_name
+
+            last_month_cell = ""
+            if last_month:
+                movement_label = p.get("movement_label", "")
+                movement_class = p.get("movement_class", "")
+                last_month_cell = f'<td class="last-month rank-change {movement_class}">{movement_label}</td>'
+
+            rows.append(
+                f"""
+<tr>
+    <td class="rank">{rank_display}</td>
+    <td>
+        {name_html}
+        <div class="partner">{seller}</div>
+    </td>
+    <td class="reviews">{reviews:,}</td>
+    {last_month_cell}
+</tr>
+"""
+            )
+
+    last_month_header = "<th>Last Month</th>" if last_month else ""
+
+    return f"""
+<table>
+    <tr>
+        <th>#</th>
+        <th>Product</th>
+        <th>Reviews</th>
+        {last_month_header}
+    </tr>
+    {''.join(rows)}
+</table>
+"""
+
+
+# -----------------------------------------------------------------------------
+# Page rendering
+# -----------------------------------------------------------------------------
+def render_homepage(latest_month, previous_month=None):
+    month_dir = DERIVED_ROOT / latest_month
+
+    products = load_json(month_dir / "enriched_products.json")
+    partners = load_json(month_dir / "partners_summary.json")
+    summary = load_json(month_dir / "summary.json")
+
+    previous_review_lookup = {}
+    if previous_month:
+        prev_dir = DERIVED_ROOT / previous_month
+        prev_products = load_json(prev_dir / "enriched_products.json")
+        previous_review_lookup = build_review_lookup(prev_products)
+
+    products = apply_rank_movement(products, previous_review_lookup)
+
+    title_month = format_month(latest_month)
+    top_products = top_n_with_ties(products, 20, value_key="review_count_month")
+
+    body = HOMEPAGE_TEMPLATE
+    body = body.replace("{{MONTH}}", title_month)
+    body = body.replace("{{MONTHLY_STATS}}", render_monthly_stats(summary))
+    body = body.replace("{{TOP_PRODUCTS_COUNT}}", str(len(top_products)))
+    body = body.replace(
+        "{{TOP_PRODUCTS}}",
+        render_products(products, limit=20, show_last_month=bool(previous_month))
+    )
+    body = body.replace("{{TOP_BRANDS}}", render_partners(partners, 10, brand_link_prefix="brands/"))
+
+    html = render_page(
+        "Trending Products on NOTHS",
+        body,
+        "static",
+        "",
+        "Trending products on Not On The High Street based on recent reviews.",
+    )
+    save_html(OUTPUT_ROOT / "index.html", html)
+
+    print("✅ homepage rendered")
+
+
+def render_month(month, previous_month=None):
+    month_dir = DERIVED_ROOT / month
+
+    products = load_json(month_dir / "enriched_products.json")
+    partners = load_json(month_dir / "partners_summary.json")
+    summary = load_json(month_dir / "summary.json")
+
+    previous_review_lookup = {}
+    if previous_month:
+        prev_dir = DERIVED_ROOT / previous_month
+        prev_products = load_json(prev_dir / "enriched_products.json")
+        previous_review_lookup = build_review_lookup(prev_products)
+
+    products = apply_rank_movement(products, previous_review_lookup)
+
+    title_month = format_month(month)
+    top_products = top_n_with_ties(products, 50, value_key="review_count_month")
+
+    body = f"""
+<h1>Trending Products – {title_month}</h1>
+
+<p>
+Products ranked by number of reviews received during the month.
+</p>
+
+{render_monthly_stats(summary)}
+
+<h2>Top Products</h2>
+<p><small>Showing top 50 including ties ({len(top_products)} products shown).</small></p>
+
+{render_products(products, limit=50, show_last_month=bool(previous_month))}
+
+<p class="table-note">* Product no longer available on NOTHS</p>
+
+<h2>Top Brands</h2>
+
+{render_partners(partners, 20, brand_link_prefix="../brands/")}
+
+<p>
+    <a href="../index.html">← Back to homepage</a>
+</p>
+"""
+
+    html = render_page(
+        f"Trending Products – {title_month}",
+        body,
+        "../static",
+        "../",
+        f"Trending products on NOTHS for {title_month}.",
+    )
+    save_html(OUTPUT_ROOT / "months" / f"{month}.html", html)
+
+    print(f"✅ rendered {month}")
+
+
+def render_archive(months):
+    rows = []
+
+    for m in months:
+        month_dir = DERIVED_ROOT / m
+        summary_file = month_dir / "summary.json"
+        summary = load_json(summary_file) if summary_file.exists() else {}
+
+        total_reviews = summary.get("total_reviews_month", 0)
+        label = format_month(m)
+        rows.append(f'<li><a href="months/{m}.html">{label}</a> – {total_reviews:,} reviews</li>')
+
+    body = f"""
+<h1>Monthly Archive</h1>
+
+<ul>
+    {''.join(rows)}
+</ul>
+
+<p>
+    <a href="index.html">← Back to homepage</a>
+</p>
+"""
+
+    html = render_page(
+        "Monthly Archive",
+        body,
+        "static",
+        "",
+        "Monthly archive of trending products on NOTHS.",
+    )
+    save_html(OUTPUT_ROOT / "archive.html", html)
+
+    print("✅ archive rendered")
+
+
+def render_top_products_all_time():
+    leaderboard_file = LEADERBOARDS_ROOT / "top_products_all_time.json"
+    if not leaderboard_file.exists():
+        print("⚠️ top_products_all_time.json not found")
         return
 
-    latest = months[0]
+    data = load_json(leaderboard_file)
+    items = clean_product_list(data.get("items", []))
 
-    template = env.get_template("noths/monthly/index.html")
-    html = template.render(
-        latest_month=latest,
-        months=months,
-        static_path=STATIC_PATH,
+    body = f"""
+<h1>Top 100 Products of All Time</h1>
+
+<p>
+The products with the highest recorded Feefo review counts on Not On The High Street.
+</p>
+
+{render_leaderboard_stats(
+    total_reviews=data.get("total_reviews", 0),
+    total_products_reviewed=data.get("total_products_reviewed", len(items)),
+    threshold_label="Products with 500+ reviews",
+    threshold_value=data.get("products_with_500_plus_reviews", 0) or 0,
+    average_reviews_per_product=data.get("average_reviews_per_product", 0) or 0,
+    top_100_share_of_reviews=data.get("top_100_share_of_reviews", 0) or 0,
+)}
+
+<h2>Leaderboard</h2>
+<p><small>Showing top 100 including ties. Product links are shown only where the item is still available.</small></p>
+
+{render_leaderboard_products(items, limit=100, last_month=False, link_only_if_available=True)}
+
+<p class="table-note">* No longer available on NOTHS</p>
+
+<p>
+    <a href="index.html">← Back to homepage</a>
+</p>
+"""
+
+    html = render_page(
+        "Top 100 Products of All Time",
+        body,
+        "static",
+        "",
+        "Top 100 products of all time on NOTHS.",
     )
+    save_html(OUTPUT_ROOT / "top-products-all-time.html", html)
 
-    out_dir = os.path.join(DOCS_DIR, "noths", "monthly")
-    os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "index.html")
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write(html)
-
-    print(f"🗓️ Rendered monthly landing → {out_path} (latest={latest})", flush=True)
+    print("✅ top-products-all-time rendered")
 
 
-# ==========================
-# EXISTING RENDERS
-# ==========================
-def render_noths_index():
-    import random
+def render_top_products_last_12_months(latest_month=None, previous_month=None):
+    leaderboard_file = LEADERBOARDS_ROOT / "top_products_last_12_months.json"
+    if not leaderboard_file.exists():
+        print("⚠️ top_products_last_12_months.json not found")
+        return
 
-    partner_lookup = {p["slug"]: p for p in ALL_PARTNERS if p.get("active", True)}
+    data = load_json(leaderboard_file)
+    items = clean_product_list(data.get("items", []))
+    items = add_dense_ranks(items, value_key="reviews")
 
-    review_totals = {}
-    for p in TOP_PRODUCTS_12M:
-        if not p.get("available", True):
-            continue
-        slug = (p.get("seller_slug") or "").lower().strip()
-        if slug and slug in partner_lookup:
-            review_totals[slug] = review_totals.get(slug, 0) + int(p.get("review_count", 0))
+    title_suffix = f" – {format_month(latest_month)}" if latest_month else ""
 
-    top_partners = sorted(
-        [{"slug": slug, "name": partner_lookup[slug]["name"], "total_reviews": count} for slug, count in review_totals.items()],
-        key=lambda x: x["total_reviews"],
-        reverse=True,
-    )[:3]
+    body = f"""
+<h1>Top 100 Products of the Last 12 Months</h1>
 
-    partners_2025 = [p for p in ALL_PARTNERS if p.get("since", "").endswith("2025") and p.get("active", True)]
-    partners_2025 = sorted(
-        partners_2025,
-        key=lambda x: int(str(x.get("review_count", 0)).replace(",", "")),
-        reverse=True,
-    )[:3]
+<p>
+The products with the highest recorded Feefo review counts over the last 12 months.
+</p>
 
-    partners_with_counts = []
-    for p in ALL_PARTNERS:
-        if not p.get("active", True):
-            continue
-        try:
-            count = int(str(p.get("product_count", 0)).replace(",", ""))
-        except Exception:
-            count = 0
-        partners_with_counts.append({"slug": p["slug"], "name": p["name"], "product_count": count})
+{render_leaderboard_stats(
+    total_reviews=data.get("total_reviews", 0),
+    total_products_reviewed=data.get("total_products_reviewed", len(items)),
+    threshold_label="Products with 10+ reviews",
+    threshold_value=data.get("products_with_10_plus_reviews", 0) or 0,
+    average_reviews_per_product=data.get("average_reviews_per_product", 0) or 0,
+    top_100_share_of_reviews=data.get("top_100_share_of_reviews", 0) or 0,
+)}
 
-    top_product_partners = sorted(partners_with_counts, key=lambda x: x["product_count"], reverse=True)[:3]
+<h2>Leaderboard</h2>
+<p><small>Showing top 100 including ties.</small></p>
 
-    top_products_sorted = sorted(
-        [p for p in TOP_PRODUCTS_12M if p.get("available", True)],
-        key=lambda x: int(x.get("review_count", 0)),
-        reverse=True,
-    )[:3]
-    top_products_sample = top_products_sorted
+{render_leaderboard_products(items, limit=100, last_month=False, link_only_if_available=False)}
 
-    # Teasers
-    lt_products_sample = []
-    lt_path = os.path.join(DATA_DIR, "christmas_louise_thompson.json")
-    if os.path.exists(lt_path):
-        with open(lt_path, "r", encoding="utf-8") as f:
-            lt_data = json.load(f)
-        lt_products_sample = random.sample(lt_data, k=min(3, len(lt_data)))
+<p>
+    <a href="index.html">← Back to homepage</a>
+</p>
+"""
 
-    top_christmas_catalogue_sample = []
-    catalogue_path = os.path.join(DATA_DIR, "christmas_catalogue_products.json")
-    if os.path.exists(catalogue_path):
-        with open(catalogue_path, "r", encoding="utf-8") as f:
-            top_christmas_catalogue = json.load(f)
-        top_christmas_catalogue_sample = random.sample(top_christmas_catalogue, k=min(3, len(top_christmas_catalogue)))
-
-    # Top Christmas products teaser
-    top_christmas_products = []
-    top_products_christmas_path = os.path.join(DATA_DIR, "top_products_christmas.json")
-    if os.path.exists(top_products_christmas_path):
-        with open(top_products_christmas_path, "r", encoding="utf-8") as f:
-            christmas_products = json.load(f)
-        full_by_sku = {str(p.get("sku")): p for p in TOP_PRODUCTS_12M}
-        enriched_christmas = []
-        for item in christmas_products:
-            sku = str(item.get("sku"))
-            base = full_by_sku.get(sku, {})
-            try:
-                review_count = int(str(base.get("review_count", 0)).replace(",", ""))
-            except Exception:
-                review_count = 0
-            enriched_christmas.append(
-                {"sku": sku, "name": item.get("name") or base.get("name", ""), "review_count": review_count}
-            )
-        top_christmas_products = sorted(enriched_christmas, key=lambda x: x["review_count"], reverse=True)[:3]
-
-    # All-time teaser
-    all_time_path = os.path.join(DATA_DIR, "top_100_all_time.json")
-    top_all_time = []
-    if os.path.exists(all_time_path):
-        with open(all_time_path, "r", encoding="utf-8") as f:
-            top_all_time = json.load(f)
-        top_all_time = top_all_time[:6]
-
-    # A, middle, Z logos
-    active_partners = [p for p in ALL_PARTNERS if p.get("active", True)]
-    partners_sorted = sorted(active_partners, key=lambda p: p.get("name", "").lower())
-    az_partners = []
-    a_partner = next((p for p in partners_sorted if p.get("name", "").upper().startswith("A")), None)
-    if a_partner:
-        az_partners.append(a_partner)
-    if partners_sorted:
-        az_partners.append(partners_sorted[len(partners_sorted) // 2])
-    z_partner = next((p for p in reversed(partners_sorted) if p.get("name", "").upper().startswith("Z")), None)
-    if z_partner:
-        az_partners.append(z_partner)
-
-    template = env.get_template("noths/index.html")
-    html = template.render(
-        title="NOTHS Partners and Products",
-        static_path=STATIC_PATH,
-        lt_products_sample=lt_products_sample,
-        top_products_sample=top_products_sample,
-        top_partners=top_partners,
-        partners_2025=partners_2025,
-        top_product_partners=top_product_partners,
-        top_christmas_products=top_christmas_products,
-        az_partners=az_partners,
-        top_christmas_catalogue=top_christmas_catalogue_sample,
-        top_all_time=top_all_time,
+    html = render_page(
+        f"Top 100 Products of the Last 12 Months{title_suffix}",
+        body,
+        "static",
+        "",
+        "Top 100 products on NOTHS over the last 12 months.",
     )
+    save_html(OUTPUT_ROOT / "top-products-last-12-months.html", html)
 
-    os.makedirs(f"{DOCS_DIR}/noths", exist_ok=True)
-    with open(f"{DOCS_DIR}/noths/index.html", "w", encoding="utf-8") as f:
-        f.write(html)
+    print("✅ top-products-last-12-months rendered")
 
-    print("✅ Rendered NOTHS index", flush=True)
+def render_newest_brands(brands):
+    newest_brands = sorted(
+        [b for b in brands if b.get("active", True)],
+        key=brand_age_months
+    )[:100]
 
+    rows = []
 
-def copy_static_assets():
-    if os.path.exists("static"):
-        shutil.copytree("static", f"{DOCS_DIR}/static", dirs_exist_ok=True)
-        print("✅ Copied static assets", flush=True)
+    for idx, brand in enumerate(newest_brands, start=1):
+        destination = brand.get("awin") or brand.get("brand_url") or ""
 
-    for folder in ["Partner_Logo", "Seller_Logo"]:
-        if os.path.exists(folder):
-            shutil.copytree(folder, f"{DOCS_DIR}/{folder}", dirs_exist_ok=True)
-            print(f"✅ Copied {folder}", flush=True)
+        if destination:
+            link_html = f'<a href="{destination}">View on NOTHS →</a>'
+        else:
+            link_html = ""
 
-
-def render_partner_pages():
-    products_by_partner = defaultdict(list)
-    for p in TOP_PRODUCTS_12M:
-        slug = (p.get("seller_slug") or "").lower().strip()
-        if slug:
-            products_by_partner[slug].append(p)
-
-    template = env.get_template("noths/partners/partner.html")
-    logo_cache = {}
-    print("📦 Rendering partner pages...", flush=True)
-
-    expected_paths = set()
-    count = 0
-    skipped = 0
-
-    for partner in ALL_PARTNERS:
-        slug = partner.get("slug", "").lower().strip()
-        active = partner.get("active", True)
-
-        if not slug:
-            continue
-        if not active:
-            skipped += 1
-            continue
-
-        top_products = sorted(
-            [p for p in products_by_partner.get(slug, []) if p.get("available", True)],
-            key=lambda p: p.get("review_count", 0),
-            reverse=True,
+        rows.append(
+            f"""
+        <tr>
+          <td class="rank">{idx}</td>
+          <td><a href="brands/{brand['slug']}/index.html">{brand['name']}</a></td>
+          <td>{brand.get('tenure_label', '')}</td>
+        </tr>
+        """.strip()
         )
 
-        if slug not in logo_cache:
-            logo_cache[slug] = find_logo_url(slug)
-        partner["logo"] = logo_cache[slug]
-
-        first_letter = slug[0]
-        output_dir = os.path.join(DOCS_DIR, "noths", "partners", first_letter)
-        os.makedirs(output_dir, exist_ok=True)
-        output_path = os.path.join(output_dir, f"{slug}.html")
-        expected_paths.add(os.path.normpath(output_path))
-
-        html = template.render(partner=partner, top_products=top_products, static_path=STATIC_PATH)
-        with open(output_path, "w", encoding="utf-8") as f:
-            f.write(html)
-
-        count += 1
-        if count <= 10 or count % 500 == 0:
-            print(f"  ✅ Wrote {output_path}", flush=True)
-
-    # cleanup inactive pages
-    import time as _time
-
-    def safe_remove(path, retries=3, delay=0.5):
-        for attempt in range(retries):
-            try:
-                os.remove(path)
-                return True
-            except PermissionError:
-                if attempt < retries - 1:
-                    _time.sleep(delay)
-                else:
-                    print(f"⚠️ Could not delete locked file: {path}", flush=True)
-                    return False
-        return False
-
-    base_dir = os.path.join(DOCS_DIR, "noths", "partners")
-    removed = 0
-    for root, _dirs, files in os.walk(base_dir):
-        for file in files:
-            if file.endswith(".html"):
-                full_path = os.path.normpath(os.path.join(root, file))
-                if full_path not in expected_paths:
-                    if safe_remove(full_path):
-                        removed += 1
-
-    print(f"🧹 Removed {removed} inactive partner pages", flush=True)
-    print(f"✅ Rendered {count} active partner pages (skipped {skipped})", flush=True)
-
-
-def render_partner_index():
-    partners = [p for p in ALL_PARTNERS if p.get("active", True)]
-    grouped = defaultdict(list)
-
-    for p in partners:
-        name = str(p.get("name", "")).strip()
-        slug = str(p.get("slug", "")).strip().lower()
-        if not name or not slug:
-            continue
-        first_letter = name[0].upper()
-        if not first_letter.isalpha():
-            first_letter = "#"
-        grouped[first_letter].append(p)
-
-    sorted_grouped = {
-        letter: sorted(group, key=lambda p: str(p.get("name", "")).lower())
-        for letter, group in sorted(grouped.items())
-    }
-
-    template = env.get_template("noths/partners/index.html")
-    os.makedirs(f"{DOCS_DIR}/noths/partners", exist_ok=True)
-    out_path = f"{DOCS_DIR}/noths/partners/index.html"
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write(
-            template.render(
-                letters=sorted(sorted_grouped.keys()),
-                partners_by_letter=sorted_grouped,
-                static_path=STATIC_PATH,
-            )
-        )
-    print("📇 Rendered partners/index.html", flush=True)
-
-
-def render_partner_by_year():
-    partners = [p for p in ALL_PARTNERS if p.get("active", True)]
-    grouped = defaultdict(list)
-
-    for p in partners:
-        since_raw = str(p.get("since", "")).strip()
-        year = since_raw[-4:] if since_raw[-4:].isdigit() else "Unknown"
-        grouped[year].append(p)
-
-    sorted_grouped = {
-        year: sorted(group, key=lambda p: p["name"].lower())
-        for year, group in sorted(grouped.items(), reverse=True)
-    }
-    total_partners = sum(len(group) for group in sorted_grouped.values())
-
-    template = env.get_template("noths/partners/by-year.html")
-    os.makedirs(f"{DOCS_DIR}/noths/partners", exist_ok=True)
-    out_path = f"{DOCS_DIR}/noths/partners/by-year.html"
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write(template.render(partners_by_year=sorted_grouped, total_partners=total_partners, static_path=STATIC_PATH))
-
-    print(f"📅 Rendered partners/by-year.html — {total_partners:,} total partners", flush=True)
-
-
-def render_partner_most_reviews_grouped():
-    active_partners = [p for p in ALL_PARTNERS if p.get("active", True)]
-    for p in active_partners:
-        try:
-            p["review_count"] = int(str(p.get("review_count", 0)).replace(",", ""))
-        except Exception:
-            p["review_count"] = 0
-
-    review_bands = [30000, 20000, 10000, 5000, 2500, 1000]
-    partners_by_band = {band: [] for band in review_bands}
-
-    for partner in active_partners:
-        for band in review_bands:
-            if partner["review_count"] >= band:
-                partners_by_band[band].append(partner)
-                break
-
-    for band in review_bands:
-        partners_by_band[band].sort(key=lambda p: p["name"].lower())
-
-    template = env.get_template("noths/partners/partner-most-reviews.html")
-    os.makedirs(f"{DOCS_DIR}/noths/partners", exist_ok=True)
-    with open(f"{DOCS_DIR}/noths/partners/partner-most-reviews.html", "w", encoding="utf-8") as f:
-        f.write(template.render(bands=review_bands, partners_by_band=partners_by_band))
-
-    print("🏆 Rendered partner-most-reviews.html", flush=True)
-
-
-def render_partner_most_products_grouped():
-    active = [p for p in ALL_PARTNERS if p.get("active", True)]
-    for p in active:
-        try:
-            p["product_count"] = int(str(p.get("product_count", 0)).replace(",", ""))
-        except Exception:
-            p["product_count"] = 0
-
-    bands = [3000, 2000, 1000, 500, 250]
-    partners_by_band = {b: [] for b in bands}
-    for p in active:
-        for b in bands:
-            if p["product_count"] >= b:
-                partners_by_band[b].append(p)
-                break
-
-    for b in bands:
-        partners_by_band[b].sort(key=lambda p: p["name"].lower())
-
-    template = env.get_template("noths/partners/partner-most-products.html")
-    os.makedirs(f"{DOCS_DIR}/noths/partners", exist_ok=True)
-    with open(f"{DOCS_DIR}/noths/partners/partner-most-products.html", "w", encoding="utf-8") as f:
-        f.write(template.render(bands=bands, partners_by_band=partners_by_band))
-
-    print("📦 Rendered partner-most-products.html", flush=True)
-
-
-def render_top_100_products():
-    import pandas as pd
-
-    available_products = [p for p in TOP_PRODUCTS_12M if p.get("available", True)]
-    available_products = [ensure_awin_primary_link(p) for p in available_products]
-
-    df = pd.DataFrame(available_products)
-    df = df.sort_values(by=["review_count", "name"], ascending=[False, True])
-    df["rank"] = df["review_count"].rank(method="min", ascending=False).astype(int)
-    top_df = df[df["rank"] <= 100]
-
-    print(f"🔝 Rendered Top 100 (actually {len(top_df)} products with ties, excluding unavailable)", flush=True)
-
-    template = env.get_template("noths/products/products-last-12-months.html")
-    os.makedirs(f"{DOCS_DIR}/noths/products", exist_ok=True)
-    with open(f"{DOCS_DIR}/noths/products/products-last-12-months.html", "w", encoding="utf-8") as f:
-        f.write(template.render(products=top_df.to_dict(orient="records")))
-
-
-def render_site_homepage():
-    template = env.get_template("home.html")
-    os.makedirs(DOCS_DIR, exist_ok=True)
-    with open(f"{DOCS_DIR}/home.html", "w", encoding="utf-8") as f:
-        f.write(template.render())
-    print("🏠 Rendered homepage", flush=True)
-
-
-def render_top_partners_last_12_months():
-    import pandas as pd
-
-    partner_lookup = {p["slug"]: p for p in ALL_PARTNERS if p.get("active", True)}
-
-    review_totals = {}
-    for p in TOP_PRODUCTS_12M:
-        slug = (p.get("seller_slug") or "").lower().strip()
-        if slug and slug in partner_lookup:
-            review_totals[slug] = review_totals.get(slug, 0) + int(p.get("review_count", 0))
-
-    df = pd.DataFrame([{"slug": slug, "name": partner_lookup[slug]["name"], "total_reviews": count} for slug, count in review_totals.items()])
-    df = df.sort_values(by=["total_reviews", "name"], ascending=[False, True])
-    df["rank"] = df["total_reviews"].rank(method="min", ascending=False).astype(int)
-    top_df = df[df["rank"] <= 100]
-
-    print(f"🔝 Rendered Top Partners (actually {len(top_df)} with ties)", flush=True)
-
-    template = env.get_template("noths/partners/top-partners-12-months.html")
-    os.makedirs(f"{DOCS_DIR}/noths/partners", exist_ok=True)
-    with open(f"{DOCS_DIR}/noths/partners/top-partners-12-months.html", "w", encoding="utf-8") as f:
-        f.write(template.render(partners=top_df.to_dict(orient="records")))
-
-
-def render_top_100_all_time():
-    data_path = os.path.join(DATA_DIR, "top_100_all_time.json")
-    with open(data_path, "r", encoding="utf-8") as f:
-        top_all_time = json.load(f)
-
-    top_all_time = [ensure_awin_primary_link(p) for p in top_all_time]
-
-    for p in top_all_time:
-        try:
-            p["review_count"] = int(p.get("review_count", 0))
-        except Exception:
-            p["review_count"] = 0
-
-    top_all_time.sort(key=lambda p: p["review_count"], reverse=True)
-    if len(top_all_time) > 100:
-        top_all_time = top_all_time[:100]
-
-    rank, last_count = 0, None
-    for i, p in enumerate(top_all_time, start=1):
-        if p["review_count"] != last_count:
-            rank = i
-        p["rank"] = rank
-        last_count = p["review_count"]
-
-    template = env.get_template("noths/products/top-100-all-time.html")
-    html = template.render(top_all_time=top_all_time)
-
-    out_path = os.path.join(DOCS_DIR, "noths/products/top-100-all-time.html")
-    os.makedirs(os.path.dirname(out_path), exist_ok=True)
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write(html)
-
-    print(f"✅ Rendered Top 100 All Time Products page ({len(top_all_time)} entries)", flush=True)
-
-
-def render_top_product_per_partner():
-    filtered = [p for p in TOP_PRODUCTS_12M if int(p.get("review_count", 0)) >= 5 and p.get("available", True)]
-
-    best_by_partner = {}
-    for p in filtered:
-        slug = (p.get("seller_slug") or "").lower().strip()
-        if not slug:
-            continue
-        if slug not in best_by_partner or int(p["review_count"]) > int(best_by_partner[slug]["review_count"]):
-            best_by_partner[slug] = p
-
-    products = sorted(best_by_partner.values(), key=lambda x: int(x["review_count"]), reverse=True)
-    products = [ensure_awin_primary_link(p) for p in products]
-
-    for i, p in enumerate(products, start=1):
-        p["rank"] = i
-
-    json_path = os.path.join(DATA_DIR, "top_product_per_partner.json")
-    with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(products, f, indent=2, ensure_ascii=False)
-
-    template = env.get_template("noths/products/top-per-partner.html")
-    os.makedirs(f"{DOCS_DIR}/noths/products", exist_ok=True)
-    out_path = f"{DOCS_DIR}/noths/products/top-per-partner.html"
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write(template.render(products=products))
-
-    print(f"🤝 Rendered top-per-partner.html with {len(products)} partners (≥5 reviews)", flush=True)
-
-
-def render_about_page():
-    template = env.get_template("about.html")
-    os.makedirs(DOCS_DIR, exist_ok=True)
-    with open(f"{DOCS_DIR}/about.html", "w", encoding="utf-8") as f:
-        f.write(template.render())
-    print("📖 Rendered about.html", flush=True)
-
-
-def render_about_the_data_page():
-    from datetime import datetime
-
-    template = env.get_template("about-the-data.html")
-    today_str = datetime.now().strftime("%d.%m.%Y")
-
-    os.makedirs(DOCS_DIR, exist_ok=True)
-    out_path = os.path.join(DOCS_DIR, "about-the-data.html")
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write(template.render(last_updated=today_str))
-
-    print(f"📊 Rendered about-the-data.html (Last updated: {today_str})", flush=True)
-
-
-def render_partner_search_json():
-    out_path = os.path.join(DOCS_DIR, "data", "partners_search.json")
-    os.makedirs(os.path.dirname(out_path), exist_ok=True)
-
-    slim = [{"name": p.get("name", ""), "slug": p.get("slug", "")} for p in ALL_PARTNERS if p.get("active", True) and p.get("slug")]
-
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(slim, f, indent=2, ensure_ascii=False)
-
-    print(f"🔎 Rendered partners_search.json → {os.path.abspath(out_path)} ({len(slim)} active partners)", flush=True)
-
-
-def render_sitemap():
-    BASE_URL = "https://www.mostreviews.co.uk"
-    urls = [
-        f"{BASE_URL}/",
-        f"{BASE_URL}/noths/products/products-last-12-months.html",
-        f"{BASE_URL}/noths/products/top-100-christmas.html",
-        f"{BASE_URL}/noths/monthly/",
-    ]
-
-    # NOTE: Partner/brand page URLs removed 2026-07 — those pages are retired.
+    body = f"""
+<h1>100 Newest Brands on NOTHS</h1>
+
+<p>
+Discover the newest independent brands joining Not On The High Street.
+This list highlights 100 recently added brands, ordered by how long they appear to have been selling on NOTHS.
+</p>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Brand</th>
+    <th>On NOTHS</th>
+  </tr>
+  {''.join(rows)}
+</table>
+
+<p>
+  <a href="index.html">← Back to homepage</a>
+</p>
+"""
+
+    html = render_page(
+        "100 Newest Brands on NOTHS",
+        body,
+        "static",
+        "",
+        "The 100 newest brands on Not On The High Street.",
+    )
+
+    save_html(OUTPUT_ROOT / "100-newest-brands.html", html)
+
+    print("✅ 100 newest brands rendered")
+
+
+# -----------------------------------------------------------------------------
+# About page rendering
+# -----------------------------------------------------------------------------
+def render_about():
+    body = ABOUT_TEMPLATE
+
+    html = render_page(
+        "About The Trend List",
+        body,
+        "static",
+        "",
+        "How The Trend List tracks trending products and brands on Not On The High Street."
+    )
+
+    save_html(OUTPUT_ROOT / "about.html", html)
+
+    print("✅ about page rendered")
+
+
+# -----------------------------------------------------------------------------
+# Sitemap rendering
+# -----------------------------------------------------------------------------
+def generate_sitemap(months, brands):
+    base_url = "https://trendlist.co.uk"
+
+    urls = []
+
+    # Core pages
+    urls.append(f"{base_url}/")
+    urls.append(f"{base_url}/top-products-last-12-months.html")
+    urls.append(f"{base_url}/top-products-all-time.html")
+    urls.append(f"{base_url}/archive.html")
+    urls.append(f"{base_url}/about.html")
 
     # Monthly pages
-    months = load_monthly_index()
     for m in months:
-        urls.append(f"{BASE_URL}/noths/monthly/{m}/")
+        urls.append(f"{base_url}/months/{m}.html")
 
-    today = __import__("datetime").date.today().isoformat()
+    # NOTE: Brand pages retired 2026-07 — brands list will be empty going
+    # forward, so this loop is now a no-op, kept for structural symmetry.
+    for brand in brands:
+        slug = brand.get("slug")
+        if slug:
+            urls.append(f"{base_url}/brands/{slug}/")
+
+    # Build XML
     xml = ['<?xml version="1.0" encoding="UTF-8"?>']
     xml.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
-    for u in urls:
+
+    for url in urls:
         xml.append("  <url>")
-        xml.append(f"    <loc>{u}</loc>")
-        xml.append(f"    <lastmod>{today}</lastmod>")
-        xml.append("    <changefreq>weekly</changefreq>")
-        xml.append("    <priority>0.8</priority>")
+        xml.append(f"    <loc>{url}</loc>")
         xml.append("  </url>")
+
     xml.append("</urlset>")
 
-    with open(f"{DOCS_DIR}/sitemap.xml", "w", encoding="utf-8") as f:
-        f.write("\n".join(xml))
+    sitemap = "\n".join(xml)
 
-    print(f"🗺️ Wrote sitemap.xml with {len(urls)} URLs", flush=True)
+    save_html(OUTPUT_ROOT / "sitemap.xml", sitemap)
 
-
-# === Keep your existing implementations in your real repo (left as placeholders here) ===
-def render_top_christmas():
-    pass
+    print("✅ sitemap.xml generated")
 
 
-def render_noths_christmas_catalogue():
-    pass
+# -----------------------------------------------------------------------------
+# Main
+# -----------------------------------------------------------------------------
+def main():
+    months = get_month_dirs()
+
+    if not months:
+        print("No derived months found.")
+        return
+
+    copy_static()
+
+    latest = months[0]
+    previous_for_homepage = months[1] if len(months) > 1 else None
+
+    print(f"📊 Latest month: {latest}")
+    print()
+
+    render_homepage(latest, previous_for_homepage)
+
+    for idx, month in enumerate(months):
+        previous_month = months[idx + 1] if idx + 1 < len(months) else None
+        render_month(month, previous_month)
+
+    render_archive(months)
+    render_top_products_all_time()
+    render_top_products_last_12_months(latest, previous_for_homepage)
+
+    # NOTE: Brand directory retired 2026-07 (Top Brands, Newest Brands, All
+    # Brands, individual /brands/{slug}/ pages). Functions kept in this file
+    # in case they're needed again, but no longer called here.
+
+    render_about()
+    generate_sitemap(months, brands=[])
+
+    print()
+    print("🏁 Site render complete")
 
 
-def render_noths_louise_thompson():
-    pass
-
-
-# === Run Everything ===
 if __name__ == "__main__":
-    copy_static_assets()
-
-    # Monthly pages
-    print("➡️ Rendering monthly landing...", flush=True)
-    render_monthly_index()
-
-    months = load_monthly_index()
-    print(f"➡️ Months found: {months}", flush=True)
-
-    # Render ALL months (not just latest)
-    for m in months:
-        print(f"➡️ Rendering monthly products for {m}...", flush=True)
-        render_monthly_products(m)
-
-    # Site pages
-    # NOTE: Brand/partner directory pages retired 2026-07 (Top Brands, Newest
-    # Brands, All Brands, individual /brands/{slug}/ pages, and the legacy
-    # /noths/index.html partner+product landing page). Their functions are
-    # kept in this file in case they're needed again, but are no longer
-    # called here.
-    render_top_100_products()
-    render_site_homepage()
-    render_top_100_all_time()
-    render_about_the_data_page()
-    # NOTE: about.html and sitemap.xml are now owned by scripts/render_site.py
-    # (it wraps content with proper header/nav/footer, which this file's
-    # about.html rendering does not). Run render_site.py after this script.
+    main()
