@@ -1,0 +1,107 @@
+{
+  "month": "2025-05",
+  "generated_at": "2026-07-07T18:10:21+00:00",
+  "cover_image": "00_cover.jpg",
+  "total_reviews_month": 2493,
+  "products": [
+    {
+      "rank": 1,
+      "sku": "469358",
+      "image_file": "01_469358.jpg",
+      "name": "Family Birthstone Link Bracelet",
+      "seller_name": "Joy by Corrine Smith",
+      "review_count_month": 16,
+      "product_url": "https://www.notonthehighstreet.com/joybycorrinesmith/product/family-birthstone-link-bracelet"
+    },
+    {
+      "rank": 2,
+      "sku": "876141",
+      "image_file": "02_876141.jpg",
+      "name": "Personalised Birth Flower Scarf",
+      "seller_name": "The Forest & Co",
+      "review_count_month": 10,
+      "product_url": "https://www.notonthehighstreet.com/theforestandco/product/personalised-birth-flower-scarf"
+    },
+    {
+      "rank": 2,
+      "sku": "786481",
+      "image_file": "02_786481.jpg",
+      "name": "Sterling Silver Birthstone Sliding Bracelet",
+      "seller_name": "Gaamaa",
+      "review_count_month": 10,
+      "product_url": "https://www.notonthehighstreet.com/gaamaa/product/sterling-silver-birthstone-sliding-bracelet"
+    },
+    {
+      "rank": 4,
+      "sku": "133151",
+      "image_file": null,
+      "name": "Sheep Sofa Tidy, Remote Control Holder",
+      "seller_name": "Jomanda Soft Plush Toys, Gifts & Accessories #SofterThanASoftThing CE/UKCA",
+      "review_count_month": 9,
+      "product_url": "https://www.notonthehighstreet.com/jomanda/product/sheepey-sofa-tidy-coffe"
+    },
+    {
+      "rank": 4,
+      "sku": "937471",
+      "image_file": "04_937471.jpg",
+      "name": "Dandelion Foil Birthday Gift Scarf",
+      "seller_name": "Studio Hop",
+      "review_count_month": 9,
+      "product_url": "https://www.notonthehighstreet.com/studiohop/product/thinking-of-you-dandelion-scarf-letterbox-gift"
+    },
+    {
+      "rank": 4,
+      "sku": "1062346",
+      "image_file": "04_1062346.jpg",
+      "name": "Tree Of Life Rose Gold Foil Scarf Gift",
+      "seller_name": "Studio Hop",
+      "review_count_month": 9,
+      "product_url": "https://www.notonthehighstreet.com/studiohop/product/tree-of-life-foil-scarf-letterbox-gift"
+    },
+    {
+      "rank": 7,
+      "sku": "1385338",
+      "image_file": "07_1385338.jpg",
+      "name": "Mystery Box",
+      "seller_name": "Lucy says I do",
+      "review_count_month": 7,
+      "product_url": "https://www.notonthehighstreet.com/lucysaysido/product/mystery-box"
+    },
+    {
+      "rank": 8,
+      "sku": "1345877",
+      "image_file": "08_1345877.jpg",
+      "name": "Ladies Sterling Silver Or Gold Mesh Bracelet",
+      "seller_name": "Hurleyburley",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/hurleyburley/product/ladies-sterling-silver-mesh-bracelet"
+    },
+    {
+      "rank": 8,
+      "sku": "748820",
+      "image_file": null,
+      "name": "Personalised Metallic Sound Wave Song Print",
+      "seller_name": "The Gift Edit",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/mixpixie/product/personalised-metallic-foil-sound-wave-song-print"
+    },
+    {
+      "rank": 8,
+      "sku": "764151",
+      "image_file": "08_764151.jpg",
+      "name": "Personalised Olive Wood Wedding Gift Chopping Board",
+      "seller_name": "The Rustic Dish®",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/therusticdish/product/personalised-couples-cheese-chopping-board"
+    },
+    {
+      "rank": 8,
+      "sku": "1150628",
+      "image_file": "08_1150628.jpg",
+      "name": "Personalised Road Sign",
+      "seller_name": "Made For You Gifts",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/madeforyougifts/product/personalised-metal-road-sign"
+    }
+  ]
+}
