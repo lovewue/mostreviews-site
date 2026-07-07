@@ -36,8 +36,10 @@ TOP_N = 10
 
 # --- Cover image design ---
 COVER_SIZE = (1080, 1080)
-COVER_BACKGROUND = (24, 60, 89)  # #183C59, site brand colour
-COVER_TEXT_COLOR = (255, 255, 255)
+COVER_BACKGROUND = (20, 20, 30)  # near-black, lets the purple accent read clearly
+ACCENT_PURPLE = (112, 102, 224)  # #7066E0 — NOTHS's actual brand purple
+TEXT_COLOR = (255, 255, 255)
+MUTED_COLOR = (180, 178, 210)
 FONT_PATHS_BOLD = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
     "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
@@ -304,12 +306,16 @@ def _load_font(paths: list[str], size: int):
     return ImageFont.load_default()
 
 
-def _centered_text(draw, y, text, font, canvas_width, fill):
+def _text_size(draw, text, font):
     bbox = draw.textbbox((0, 0), text, font=font)
-    text_width = bbox[2] - bbox[0]
-    x = (canvas_width - text_width) / 2
+    return bbox[2] - bbox[0], bbox[3] - bbox[1]
+
+
+def _centered_text(draw, y, text, font, canvas_width, fill):
+    w, h = _text_size(draw, text, font)
+    x = (canvas_width - w) / 2
     draw.text((x, y), text, font=font, fill=fill)
-    return bbox[3] - bbox[1]  # text height, for stacking the next line
+    return h
 
 
 def format_month_label(month: str) -> str:
@@ -325,34 +331,158 @@ def build_cover_image(month: str, total_reviews: int, out_path: Path) -> bool:
     draw = ImageDraw.Draw(canvas)
     width, height = COVER_SIZE
 
-    y = 90
+    month_font = _load_font(FONT_PATHS_BOLD, 84)
+    tagline_font = _load_font(FONT_PATHS_BOLD, 40)
+    reviews_number_font = _load_font(FONT_PATHS_BOLD, 56)
+    reviews_label_font = _load_font(FONT_PATHS_REGULAR, 28)
 
-    # Logo, if available
+    month_text = format_month_label(month)
+    tagline_text = "TOP 10 MOST REVIEWED PRODUCTS"
+    reviews_number_text = f"{total_reviews:,}"
+    reviews_label_text = "REVIEWS ANALYSED"
+
+    # Logo card sizing
+    logo = None
+    card_height = 0
+    card_width = 0
     if LOGO_PATH.exists():
         try:
             logo = Image.open(LOGO_PATH).convert("RGBA")
-            logo_width = 420
+            logo_width = 380
             ratio = logo_width / logo.width
             logo = logo.resize((logo_width, int(logo.height * ratio)))
-            canvas.paste(logo, (int((width - logo_width) / 2), y), logo)
-            y += logo.height + 60
+            card_padding = 30
+            card_height = logo.height + card_padding * 2
+            card_width = logo.width + card_padding * 2
         except Exception:
-            pass
+            logo = None
 
-    month_font = _load_font(FONT_PATHS_BOLD, 80)
-    tagline_font = _load_font(FONT_PATHS_BOLD, 46)
-    reviews_font = _load_font(FONT_PATHS_REGULAR, 34)
+    gap_after_card = 70 if logo else 0
+    month_h = _text_size(draw, month_text, month_font)[1]
+    gap_after_month = 30
+    tagline_h = _text_size(draw, tagline_text, tagline_font)[1]
+    gap_after_tagline = 45
+    divider_height = 4
+    gap_after_divider = 45
+    reviews_number_h = _text_size(draw, reviews_number_text, reviews_number_font)[1]
+    gap_after_number = 10
+    reviews_label_h = _text_size(draw, reviews_label_text, reviews_label_font)[1]
 
-    y += _centered_text(draw, y, format_month_label(month), month_font, width, COVER_TEXT_COLOR)
-    y += 40
+    total_content_height = (
+        card_height + gap_after_card +
+        month_h + gap_after_month +
+        tagline_h + gap_after_tagline +
+        divider_height + gap_after_divider +
+        reviews_number_h + gap_after_number +
+        reviews_label_h
+    )
 
-    y += _centered_text(draw, y, "Top 10 Most Reviewed Products on NOTHS", tagline_font, width, COVER_TEXT_COLOR)
-    y += 30
+    y = (height - total_content_height) / 2 - 40
 
-    _centered_text(draw, y, f"{total_reviews:,} reviews analysed", reviews_font, width, COVER_TEXT_COLOR)
+    if logo:
+        card_padding = 30
+        card_x = (width - card_width) / 2
+        draw.rounded_rectangle(
+            [card_x, y, card_x + card_width, y + card_height],
+            radius=24,
+            fill=(255, 255, 255),
+        )
+        canvas.paste(logo, (int(card_x + card_padding), int(y + card_padding)), logo)
+        y += card_height + gap_after_card
+
+    y += _centered_text(draw, y, month_text, month_font, width, TEXT_COLOR)
+    y += gap_after_month
+
+    y += _centered_text(draw, y, tagline_text, tagline_font, width, ACCENT_PURPLE)
+    y += gap_after_tagline
+
+    divider_width = 80
+    draw.rectangle(
+        [(width - divider_width) / 2, y, (width + divider_width) / 2, y + divider_height],
+        fill=ACCENT_PURPLE,
+    )
+    y += divider_height + gap_after_divider
+
+    y += _centered_text(draw, y, reviews_number_text, reviews_number_font, width, ACCENT_PURPLE)
+    y += gap_after_number
+
+    _centered_text(draw, y, reviews_label_text, reviews_label_font, width, MUTED_COLOR)
+
+    bar_height = 18
+    draw.rectangle([0, height - bar_height, width, height], fill=ACCENT_PURPLE)
 
     canvas.save(out_path, "JPEG", quality=92)
     return True
+
+
+# -----------------------------------------------------------------------------
+# Product image overlay (rank badge + name/seller/reviews banner)
+# -----------------------------------------------------------------------------
+def _truncate_text(draw, text, font, max_width):
+    if draw.textbbox((0, 0), text, font=font)[2] <= max_width:
+        return text
+    while text and draw.textbbox((0, 0), text + "…", font=font)[2] > max_width:
+        text = text[:-1]
+    return text + "…"
+
+
+def add_product_overlay(image_path: Path, rank: int, product: dict) -> None:
+    """Overlay a rank badge (top-left) and an info banner (bottom) directly
+    onto the saved product image, so nothing needs adding manually before
+    posting."""
+    if not PIL_OK:
+        return
+
+    try:
+        canvas = Image.open(image_path).convert("RGBA")
+    except Exception:
+        return
+
+    width, height = canvas.size
+    draw = ImageDraw.Draw(canvas)
+
+    # --- Rank badge ---
+    badge_size = max(70, int(width * 0.083))
+    badge_margin = int(width * 0.028)
+    draw.ellipse(
+        [badge_margin, badge_margin, badge_margin + badge_size, badge_margin + badge_size],
+        fill=ACCENT_PURPLE,
+    )
+    rank_font = _load_font(FONT_PATHS_BOLD, int(badge_size * 0.5))
+    rank_text = f"#{rank}"
+    bbox = draw.textbbox((0, 0), rank_text, font=rank_font)
+    rw, rh = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    draw.text(
+        (badge_margin + (badge_size - rw) / 2, badge_margin + (badge_size - rh) / 2 - bbox[1]),
+        rank_text, font=rank_font, fill=TEXT_COLOR,
+    )
+
+    # --- Bottom info banner ---
+    banner_height = int(height * 0.176)
+    banner = Image.new("RGBA", (width, banner_height), (20, 20, 30, 235))
+    banner_draw = ImageDraw.Draw(banner)
+
+    name_font = _load_font(FONT_PATHS_BOLD, int(banner_height * 0.22))
+    detail_font = _load_font(FONT_PATHS_REGULAR, int(banner_height * 0.17))
+
+    padding = int(width * 0.037)
+    max_text_width = width - padding * 2
+
+    name = product.get("name") or f"Product {product.get('sku', '')}"
+    name_display = _truncate_text(banner_draw, name, name_font, max_text_width)
+    banner_draw.text((padding, int(banner_height * 0.13)), name_display, font=name_font, fill=TEXT_COLOR)
+
+    seller_name = product.get("seller_name")
+    if seller_name:
+        seller_display = _truncate_text(banner_draw, f"by {seller_name}", detail_font, max_text_width)
+        banner_draw.text((padding, int(banner_height * 0.42)), seller_display, font=detail_font, fill=MUTED_COLOR)
+
+    review_count = product.get("review_count_month", 0)
+    review_text = f"{review_count:,} reviews this month"
+    banner_draw.text((padding, int(banner_height * 0.68)), review_text, font=detail_font, fill=ACCENT_PURPLE)
+
+    canvas.paste(banner, (0, height - banner_height), banner)
+    canvas.convert("RGB").save(image_path, "JPEG", quality=90)
 
 
 # -----------------------------------------------------------------------------
@@ -400,6 +530,7 @@ def build_month_assets(month: str, cache: dict) -> None:
         ok = get_product_image(product, out_path)
 
         if ok:
+            add_product_overlay(out_path, rank, product)
             print(f"  ✅ {rank:02d}. {product.get('name') or product['sku']} → {filename}", flush=True)
         else:
             print(f"  ❌ {rank:02d}. {product.get('name') or product['sku']} — no image found", flush=True)
