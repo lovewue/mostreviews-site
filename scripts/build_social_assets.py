@@ -314,16 +314,27 @@ def extract_image_url_from_html(html: str) -> str | None:
     return None
 
 
-def _image_looks_like_logo_or_blank(im: "Image.Image", threshold: float = 0.88) -> bool:
+def _image_looks_like_logo_or_blank(im: "Image.Image", threshold: float = 0.85) -> bool:
     """Second layer of defense beyond the URL/alt-text filter: if an image
-    is almost entirely near-white, it's very likely a logo graphic on a
-    blank background rather than real product photography (which, even
-    when shot on white, usually has the product filling most of the frame).
+    is overwhelmingly one dominant flat colour — regardless of which colour,
+    white, black, or a brand colour — it's very likely a logo graphic rather
+    than real product photography (which, even on a plain background,
+    normally has much more colour variation from the product itself,
+    shadows, and texture).
     """
     sample = im.convert("RGB").resize((100, 100))
     pixels = list(sample.getdata())
-    near_white = sum(1 for r, g, b in pixels if r > 235 and g > 235 and b > 235)
-    return (near_white / len(pixels)) >= threshold
+
+    # Bucket similar colours together (round to nearest 16) rather than
+    # requiring exact matches, so JPEG compression noise / subtle gradients
+    # in a flat-coloured background still count as "the same" colour.
+    buckets: dict[tuple[int, int, int], int] = {}
+    for r, g, b in pixels:
+        key = (r // 16 * 16, g // 16 * 16, b // 16 * 16)
+        buckets[key] = buckets.get(key, 0) + 1
+
+    dominant_count = max(buckets.values())
+    return (dominant_count / len(pixels)) >= threshold
 
 
 def download_and_save(image_url: str, out_path: Path) -> bool:
@@ -351,6 +362,33 @@ def download_and_save(image_url: str, out_path: Path) -> bool:
         return False
 
 
+def extract_seller_name_from_title(html: str) -> str | None:
+    """NOTHS product page titles follow the pattern
+    '{Product Name} By {Real Brand Name}' — this is a more reliable source
+    for the proper display name than the cache's seller_name field, which
+    sometimes falls back to a title-cased version of the slug (e.g.
+    'Butlerandgrace' instead of the real 'Butler & Grace')."""
+    soup = BeautifulSoup(html, "html.parser")
+    title_tag = soup.find("title")
+    if not title_tag or not title_tag.text:
+        return None
+
+    title = title_tag.text.strip()
+    # Titles are typically "{Product} By {Brand} | Not On The High Street"
+    # or similar — split on " By " and take what follows, trimming any
+    # trailing site name after a pipe/dash if present.
+    if " By " not in title:
+        return None
+
+    seller_part = title.split(" By ", 1)[1]
+    for sep in ("|", " - ", " – "):
+        if sep in seller_part:
+            seller_part = seller_part.split(sep, 1)[0]
+
+    seller_part = seller_part.strip()
+    return seller_part or None
+
+
 def get_product_image(product: dict, out_path: Path) -> bool:
     """Try local Product_Images/ first, then scrape from the NOTHS page."""
     local = local_image_path(product["sku"])
@@ -365,6 +403,21 @@ def get_product_image(product: dict, out_path: Path) -> bool:
     page = fetch_with_retries(noths_url)
     if not page:
         return False
+
+    # If the product was delisted, NOTHS may redirect the product URL to the
+    # seller's storefront page rather than returning a 404. Scraping an
+    # image from that page would be a real image, just from the wrong page
+    # (the seller's banner/logo, not the product) — so bail out if we're no
+    # longer actually on a product page after following redirects.
+    final_url = str(page.url or "")
+    if "/product/" not in final_url:
+        return False
+
+    # Correct the seller name from the cache's slug-based fallback using
+    # the real brand name from the page title, while we're already here.
+    real_seller_name = extract_seller_name_from_title(page.text)
+    if real_seller_name:
+        product["seller_name"] = real_seller_name
 
     image_url = extract_image_url_from_html(page.text)
     if not image_url:
