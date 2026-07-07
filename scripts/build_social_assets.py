@@ -314,6 +314,89 @@ def extract_image_url_from_html(html: str) -> str | None:
     return None
 
 
+def _looks_like_logo_or_banner(src: str, alt: str) -> bool:
+    """Filter out seller shop logos/banners, which sometimes appear earlier
+    in a product page's HTML than the actual product photo and would
+    otherwise get grabbed by mistake."""
+    haystack = f"{src} {alt}".lower()
+    return any(
+        term in haystack
+        for term in ("logo", "banner", "storefront", "header", "brand-image", "shop-image")
+    )
+
+
+def _normalise_for_match(text: str) -> str:
+    return " ".join(text.lower().split())
+
+
+def _alt_matches_product_name(alt: str, product_name: str) -> bool:
+    """NOTHS product images typically have alt text like
+    '{Product Name}, 1 of 10' — matching on this directly ties the image to
+    this specific product, which is far more reliable than og:image (which
+    can point to something else entirely on out-of-stock or otherwise
+    unusual listings)."""
+    if not alt or not product_name:
+        return False
+
+    alt_norm = _normalise_for_match(alt)
+    name_norm = _normalise_for_match(product_name)
+
+    if alt_norm.startswith(name_norm):
+        return True
+
+    name_words = set(name_norm.split())
+    alt_words = set(alt_norm.split())
+    if not name_words:
+        return False
+    overlap = len(name_words & alt_words) / len(name_words)
+    return overlap >= 0.8
+
+
+def extract_image_url_from_html(html: str, product_name: str | None = None) -> str | None:
+    soup = BeautifulSoup(html, "html.parser")
+
+    # Primary strategy: find the <img> whose alt text matches the actual
+    # product name — this ties the image directly to this specific product,
+    # sidestepping issues with og:image pointing elsewhere (e.g. on
+    # out-of-stock listings) or picking up the wrong product entirely.
+    if product_name:
+        for img in soup.find_all("img"):
+            src = img.get("src") or img.get("data-src") or ""
+            alt = img.get("alt") or ""
+
+            if not src:
+                continue
+            if "cdn.notonthehighstreet.com" not in src and "/fs/" not in src:
+                continue
+            if _alt_matches_product_name(alt, product_name):
+                return src
+
+    # Fallback: og:image / twitter:image / first plausible CDN image,
+    # filtering out anything that looks like a seller logo or banner.
+    og = soup.find("meta", property="og:image")
+    if og and og.get("content") and not _looks_like_logo_or_banner(og["content"], ""):
+        return og["content"].strip()
+
+    tw = soup.find("meta", attrs={"name": "twitter:image"})
+    if tw and tw.get("content") and not _looks_like_logo_or_banner(tw["content"], ""):
+        return tw["content"].strip()
+
+    for img in soup.find_all("img"):
+        src = img.get("src") or img.get("data-src") or ""
+        alt = img.get("alt") or ""
+
+        if not src:
+            continue
+        if "cdn.notonthehighstreet.com" not in src and "/fs/" not in src:
+            continue
+        if _looks_like_logo_or_banner(src, alt):
+            continue
+
+        return src
+
+    return None
+
+
 def _image_looks_like_logo_or_blank(im: "Image.Image", threshold: float = 0.85) -> bool:
     """Second layer of defense beyond the URL/alt-text filter: if an image
     is overwhelmingly one dominant flat colour — regardless of which colour,
@@ -325,9 +408,6 @@ def _image_looks_like_logo_or_blank(im: "Image.Image", threshold: float = 0.85) 
     sample = im.convert("RGB").resize((100, 100))
     pixels = list(sample.getdata())
 
-    # Bucket similar colours together (round to nearest 16) rather than
-    # requiring exact matches, so JPEG compression noise / subtle gradients
-    # in a flat-coloured background still count as "the same" colour.
     buckets: dict[tuple[int, int, int], int] = {}
     for r, g, b in pixels:
         key = (r // 16 * 16, g // 16 * 16, b // 16 * 16)
@@ -374,9 +454,6 @@ def extract_seller_name_from_title(html: str) -> str | None:
         return None
 
     title = title_tag.text.strip()
-    # Titles are typically "{Product} By {Brand} | Not On The High Street"
-    # or similar — split on " By " and take what follows, trimming any
-    # trailing site name after a pipe/dash if present.
     if " By " not in title:
         return None
 
@@ -404,22 +481,15 @@ def get_product_image(product: dict, out_path: Path) -> bool:
     if not page:
         return False
 
-    # If the product was delisted, NOTHS may redirect the product URL to the
-    # seller's storefront page rather than returning a 404. Scraping an
-    # image from that page would be a real image, just from the wrong page
-    # (the seller's banner/logo, not the product) — so bail out if we're no
-    # longer actually on a product page after following redirects.
     final_url = str(page.url or "")
     if "/product/" not in final_url:
         return False
 
-    # Correct the seller name from the cache's slug-based fallback using
-    # the real brand name from the page title, while we're already here.
     real_seller_name = extract_seller_name_from_title(page.text)
     if real_seller_name:
         product["seller_name"] = real_seller_name
 
-    image_url = extract_image_url_from_html(page.text)
+    image_url = extract_image_url_from_html(page.text, product.get("name"))
     if not image_url:
         return False
 
