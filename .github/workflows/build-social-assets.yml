@@ -1,0 +1,54 @@
+name: Build Social Media Assets
+
+# Builds a folder per month (social_media/{month}/) containing the top 10
+# products (+ ties) by review count that month: product images plus a
+# captions.json with name, seller, review count, and product URL for each —
+# everything needed to put together an Instagram post without extra lookup.
+#
+# Runs across ALL months every time and skips any month that already has a
+# captions.json, so it naturally backfills your historical backlog on first
+# run, then only does new work each month after that.
+#
+# Deliberately a separate workflow from site-build-publish.yml — this only
+# writes to social_media/, never to docs/, so it can never affect the live
+# site even if a run here is slow or fails partway through.
+
+on:
+  schedule:
+    - cron: '0 8 1 * *'   # 1st of the month, 08:00 UTC — after site-build-publish
+  workflow_dispatch:        # trigger manually any time, e.g. to backfill
+
+jobs:
+  build-social-assets:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4 Pillow
+
+      - name: Build social media assets
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: python scripts/build_social_assets.py
+
+      - name: Commit social media assets
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add social_media/
+          timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          git commit -m "Build social media assets for $timestamp" || echo "No changes to commit"
+          git push
