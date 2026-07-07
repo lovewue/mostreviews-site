@@ -469,9 +469,10 @@ def build_cover_image(month: str, bg_color: tuple[int, int, int], total_reviews:
 # -----------------------------------------------------------------------------
 # Product slide generation (cutout on branded background, matching the cover)
 # -----------------------------------------------------------------------------
-def _wrap_text(draw, text, font, max_width, max_lines=2):
-    """Simple word-wrap, truncating with an ellipsis if it still doesn't fit
-    within max_lines."""
+def _wrap_text_no_truncate(draw, text, font, max_width, max_lines):
+    """Word-wrap without truncating — returns None if the text genuinely
+    doesn't fit in max_lines at this font size, so the caller can try a
+    smaller size instead of settling for an ellipsis."""
     words = text.split()
     lines = []
     current = ""
@@ -484,24 +485,62 @@ def _wrap_text(draw, text, font, max_width, max_lines=2):
             if current:
                 lines.append(current)
             current = word
-            if len(lines) == max_lines - 1:
-                break
+            if len(lines) >= max_lines:
+                return None  # doesn't fit — caller should try a smaller size
 
     if current:
         lines.append(current)
 
     if len(lines) > max_lines:
-        lines = lines[:max_lines]
-
-    # Truncate last line with ellipsis if any words were dropped
-    consumed = " ".join(lines)
-    if len(consumed) < len(text) and lines:
-        last = lines[-1]
-        while last and draw.textbbox((0, 0), last + "…", font=font)[2] > max_width:
-            last = last[:-1].rstrip()
-        lines[-1] = last + "…"
+        return None
 
     return lines
+
+
+def fit_product_name(draw, text, font_paths, max_width, max_font_size, min_font_size=32, max_lines=2):
+    """Find the largest font size that fits the full product name within
+    max_lines with no truncation. Shrinking the text is much better than
+    cutting it off with "..." — only truncates as a last resort if even the
+    minimum size and an extra line still can't fit (very long names)."""
+    size = max_font_size
+
+    while size >= min_font_size:
+        font = _load_font(font_paths, size)
+        lines = _wrap_text_no_truncate(draw, text, font, max_width, max_lines)
+        if lines is not None:
+            return font, lines
+        size -= 4
+
+    # Last resort: minimum size, one extra line, truncate only if it still
+    # doesn't fit even then.
+    font = _load_font(font_paths, min_font_size)
+    lines = _wrap_text_no_truncate(draw, text, font, max_width, max_lines + 1)
+    if lines is not None:
+        return font, lines
+
+    words = text.split()
+    lines = []
+    current = ""
+    for word in words:
+        candidate = f"{current} {word}".strip()
+        if draw.textbbox((0, 0), candidate, font=font)[2] <= max_width:
+            current = candidate
+        else:
+            if current:
+                lines.append(current)
+            current = word
+            if len(lines) == max_lines:
+                break
+    if current:
+        lines.append(current)
+    lines = lines[:max_lines + 1]
+
+    last = lines[-1]
+    while last and draw.textbbox((0, 0), last + "…", font=font)[2] > max_width:
+        last = last[:-1].rstrip()
+    lines[-1] = last + "…"
+
+    return font, lines
 
 
 def remove_background(image_path: Path) -> "Image.Image | None":
@@ -562,8 +601,10 @@ def build_product_slide(raw_image_path: Path, product: dict, bg_color: tuple[int
     y = paste_y + max_product_height + round(50 * _SCALE)
 
     name = product.get("name") or f"Product {product.get('sku', '')}"
-    name_font = _load_font(FONT_PATHS_SERIF_BOLD, round(62 * _SCALE))
-    name_lines = _wrap_text(draw, name, name_font, max_text_width, max_lines=2)
+    name_font, name_lines = fit_product_name(
+        draw, name, FONT_PATHS_SERIF_BOLD, max_text_width,
+        max_font_size=round(62 * _SCALE), min_font_size=round(32 * _SCALE),
+    )
 
     for line in name_lines:
         bbox = draw.textbbox((0, 0), line, font=name_font)
