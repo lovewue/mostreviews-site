@@ -1,0 +1,107 @@
+{
+  "month": "2026-01",
+  "generated_at": "2026-07-07T08:32:43+00:00",
+  "cover_image": "00_cover.jpg",
+  "total_reviews_month": 4238,
+  "products": [
+    {
+      "rank": 1,
+      "sku": "469358",
+      "image_file": "01_469358.jpg",
+      "name": "Family Birthstone Link Bracelet",
+      "seller_name": "Joy by Corrine Smith",
+      "review_count_month": 19,
+      "product_url": "https://www.notonthehighstreet.com/joybycorrinesmith/product/family-birthstone-link-bracelet"
+    },
+    {
+      "rank": 2,
+      "sku": "1345877",
+      "image_file": "02_1345877.jpg",
+      "name": "Ladies Sterling Silver Or Gold Mesh Bracelet",
+      "seller_name": "Hurleyburley",
+      "review_count_month": 17,
+      "product_url": "https://www.notonthehighstreet.com/hurleyburley/product/ladies-sterling-silver-mesh-bracelet"
+    },
+    {
+      "rank": 2,
+      "sku": "621809",
+      "image_file": "02_621809.jpg",
+      "name": "Friendship Knot Bangle",
+      "seller_name": "Joy by Corrine Smith",
+      "review_count_month": 17,
+      "product_url": "https://www.notonthehighstreet.com/joybycorrinesmith/product/friendship-knot-bangle"
+    },
+    {
+      "rank": 4,
+      "sku": "1431678",
+      "image_file": "04_1431678.jpg",
+      "name": "Gift Boxed Cashmere Tree Of Life Scarf",
+      "seller_name": "My Posh Shop",
+      "review_count_month": 16,
+      "product_url": "https://www.notonthehighstreet.com/myposhshop/product/gift-boxed-cashmere-tree-of-life-scarf"
+    },
+    {
+      "rank": 5,
+      "sku": "1249874",
+      "image_file": "05_1249874.jpg",
+      "name": "Personalised Birth Year Football Club Print",
+      "seller_name": "The Word Shack",
+      "review_count_month": 14,
+      "product_url": "https://www.notonthehighstreet.com/thewordshack/product/personalised-birth-year-football-club-print"
+    },
+    {
+      "rank": 6,
+      "sku": "905169",
+      "image_file": "06_905169.jpg",
+      "name": "Birthstone Bracelet",
+      "seller_name": "attic",
+      "review_count_month": 13,
+      "product_url": "https://www.notonthehighstreet.com/attic/product/birthstone-bracelet"
+    },
+    {
+      "rank": 7,
+      "sku": "999592",
+      "image_file": "07_999592.jpg",
+      "name": "Personalised Rose Gold Foil Birth Flower Scarf",
+      "seller_name": "Studio Hop",
+      "review_count_month": 11,
+      "product_url": "https://www.notonthehighstreet.com/studiohop/product/personalised-rose-gold-foil-birth-flower-scarf"
+    },
+    {
+      "rank": 8,
+      "sku": "1184330",
+      "image_file": "08_1184330.jpg",
+      "name": "Family Eternal Ring And Birthstone Personalised Necklace",
+      "seller_name": "Bloom Boutique",
+      "review_count_month": 10,
+      "product_url": "https://www.notonthehighstreet.com/bloomboutique/product/family-eternal-ring-birthstone-necklace"
+    },
+    {
+      "rank": 9,
+      "sku": "1561674",
+      "image_file": "09_1561674.jpg",
+      "name": "The Signature Savoury Cheese Box",
+      "seller_name": "The Mouse House Cheese Co",
+      "review_count_month": 9,
+      "product_url": "https://www.notonthehighstreet.com/themousehousecheeseco/product/the-signature-savoury-cheese-box"
+    },
+    {
+      "rank": 9,
+      "sku": "1508457",
+      "image_file": "09_1508457.jpg",
+      "name": "Personalised Sofa Snacks Enamel Bowl",
+      "seller_name": "Sophia Victoria Joy",
+      "review_count_month": 9,
+      "product_url": "https://www.notonthehighstreet.com/sophiavictoriajoy/product/personalised-sofa-snacks-enamel-bowl"
+    },
+    {
+      "rank": 9,
+      "sku": "1491886",
+      "image_file": "09_1491886.jpg",
+      "name": "Custom Jewelry Box, Travel Jewellery Box",
+      "seller_name": "Awristo",
+      "review_count_month": 9,
+      "product_url": "https://www.notonthehighstreet.com/lineamasks/product/custom-jewelry-box-travel-jewellery-box"
+    }
+  ]
+}
