@@ -16,6 +16,12 @@ try:
 except Exception:
     PIL_OK = False
 
+try:
+    from rembg import remove as rembg_remove, new_session as rembg_new_session
+    REMBG_OK = True
+except Exception:
+    REMBG_OK = False
+
 
 # -----------------------------------------------------------------------------
 # Paths
@@ -30,16 +36,37 @@ CACHE_FILE = DATA_DIR / "cache" / "products_cache.json"
 
 LOCAL_PRODUCT_IMAGES_DIR = PROJECT_ROOT / "Product_Images"
 SOCIAL_MEDIA_DIR = PROJECT_ROOT / "social_media"
-LOGO_PATH = PROJECT_ROOT / "static" / "img" / "The-Trend-List-Logo.jpg"
 
 TOP_N = 10
 
-# --- Cover image design ---
-COVER_SIZE = (1080, 1080)
-COVER_BACKGROUND = (20, 20, 30)  # near-black, lets the purple accent read clearly
-ACCENT_PURPLE = (112, 102, 224)  # #7066E0 — NOTHS's actual brand purple
+# --- Cover image design (editorial style: bold left-aligned stacked text,
+# highlighter-marker emphasis, textured background, colour rotates by month
+# so the Instagram grid doesn't look repetitive) ---
+COVER_SIZE = (1080, 1350)  # Instagram's standard 4:5 carousel ratio
+# All the fixed pixel values below (font sizes, margins, gaps) were tuned
+# against a 1080-tall canvas. This scales them proportionally so the layout
+# doesn't leave a large empty gap if COVER_SIZE's height ever changes again.
+_SCALE = COVER_SIZE[1] / 1080
+ACCENT_PURPLE = (112, 102, 224)  # #7066E0 — NOTHS's actual brand purple, constant across all months
+HIGHLIGHT_COLOR = (255, 240, 200)  # warm cream "highlighter" block behind the month
 TEXT_COLOR = (255, 255, 255)
-MUTED_COLOR = (180, 178, 210)
+MUTED_COLOR = (210, 208, 220)
+
+# Deep, saturated backgrounds — rotates by calendar month (6 colours, so
+# across 12 months each one repeats exactly twice, keeping the cycle clean).
+COVER_PALETTE = [
+    (72, 40, 110),   # vivid purple
+    (18, 82, 88),    # vivid teal
+    (36, 92, 58),    # vivid green
+    (145, 66, 40),   # vivid rust/terracotta
+    (34, 48, 110),   # vivid navy/blue
+    (110, 30, 55),   # vivid burgundy
+]
+
+FONT_PATHS_SERIF_BOLD = [
+    "/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-Bold.ttf",
+    "/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf",
+]
 FONT_PATHS_BOLD = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
     "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
@@ -98,6 +125,25 @@ def get_headers() -> dict:
         "Accept-Language": "en-GB,en;q=0.9",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     }
+
+
+def month_bg_color(month: str) -> tuple[int, int, int]:
+    """Shared by the cover and every product slide that month, so the whole
+    carousel reads as one cohesive set."""
+    month_number = int(month.split("-")[1])
+    return COVER_PALETTE[month_number % len(COVER_PALETTE)]
+
+
+_REMBG_SESSION = None
+
+
+def _get_rembg_session():
+    """Create the background-removal model session once and reuse it across
+    every image in a run, rather than reloading the model per product."""
+    global _REMBG_SESSION
+    if _REMBG_SESSION is None and REMBG_OK:
+        _REMBG_SESSION = rembg_new_session()
+    return _REMBG_SESSION
 
 
 def load_months() -> list[str]:
@@ -311,178 +357,195 @@ def _text_size(draw, text, font):
     return bbox[2] - bbox[0], bbox[3] - bbox[1]
 
 
-def _centered_text(draw, y, text, font, canvas_width, fill):
-    w, h = _text_size(draw, text, font)
-    x = (canvas_width - w) / 2
-    draw.text((x, y), text, font=font, fill=fill)
-    return h
-
-
 def format_month_label(month: str) -> str:
     dt = datetime.strptime(month, "%Y-%m")
     return dt.strftime("%B %Y")
 
 
-def build_cover_image(month: str, total_reviews: int, out_path: Path) -> bool:
+def _add_grain(canvas: "Image.Image", opacity: int = 18) -> "Image.Image":
+    """Subtle noise texture so the background doesn't read as flat digital
+    colour — matches the textured-paper look of the reference style."""
+    noise = Image.effect_noise(canvas.size, 40).convert("L")
+    noise = noise.point(lambda p: p if p > 128 else 255 - p)
+    noise_rgba = Image.merge("RGBA", (noise, noise, noise, noise.point(lambda p: opacity)))
+    canvas.paste(Image.new("RGB", canvas.size, (255, 255, 255)), (0, 0), noise_rgba)
+    return canvas
+
+
+def build_cover_image(month: str, bg_color: tuple[int, int, int], total_reviews: int, out_path: Path) -> bool:
     if not PIL_OK:
         return False
 
-    canvas = Image.new("RGB", COVER_SIZE, COVER_BACKGROUND)
+    canvas = Image.new("RGB", COVER_SIZE, bg_color)
+    canvas = _add_grain(canvas)
     draw = ImageDraw.Draw(canvas)
     width, height = COVER_SIZE
 
-    month_font = _load_font(FONT_PATHS_BOLD, 84)
-    tagline_font = _load_font(FONT_PATHS_BOLD, 40)
-    reviews_number_font = _load_font(FONT_PATHS_BOLD, 56)
-    reviews_label_font = _load_font(FONT_PATHS_REGULAR, 28)
+    margin_left = round(70 * _SCALE)
+    y = round(150 * _SCALE)
 
-    month_text = format_month_label(month)
-    tagline_text = "TOP 10 MOST REVIEWED PRODUCTS"
-    reviews_number_text = f"{total_reviews:,}"
-    reviews_label_text = "REVIEWS ANALYSED"
+    month_label = format_month_label(month)
 
-    # Logo card sizing
-    logo = None
-    card_height = 0
-    card_width = 0
-    if LOGO_PATH.exists():
-        try:
-            logo = Image.open(LOGO_PATH).convert("RGBA")
-            logo_width = 380
-            ratio = logo_width / logo.width
-            logo = logo.resize((logo_width, int(logo.height * ratio)))
-            card_padding = 30
-            card_height = logo.height + card_padding * 2
-            card_width = logo.width + card_padding * 2
-        except Exception:
-            logo = None
+    lines = [
+        (month_label, round(100 * _SCALE), (20, 20, 20), HIGHLIGHT_COLOR),
+        ("These Were the", round(60 * _SCALE), TEXT_COLOR, None),
+        ("Top 10", round(100 * _SCALE), ACCENT_PURPLE, None),
+        ("Most Reviewed", round(72 * _SCALE), TEXT_COLOR, None),
+        ("Products on NOTHS", round(60 * _SCALE), TEXT_COLOR, None),
+    ]
 
-    gap_after_card = 70 if logo else 0
-    month_h = _text_size(draw, month_text, month_font)[1]
-    gap_after_month = 30
-    tagline_h = _text_size(draw, tagline_text, tagline_font)[1]
-    gap_after_tagline = 45
-    divider_height = 4
-    gap_after_divider = 45
-    reviews_number_h = _text_size(draw, reviews_number_text, reviews_number_font)[1]
-    gap_after_number = 10
-    reviews_label_h = _text_size(draw, reviews_label_text, reviews_label_font)[1]
+    for text, size, color, highlight in lines:
+        font = _load_font(FONT_PATHS_SERIF_BOLD, size)
+        bbox = draw.textbbox((0, 0), text, font=font)
+        text_h = bbox[3] - bbox[1]
+        text_w = bbox[2] - bbox[0]
 
-    total_content_height = (
-        card_height + gap_after_card +
-        month_h + gap_after_month +
-        tagline_h + gap_after_tagline +
-        divider_height + gap_after_divider +
-        reviews_number_h + gap_after_number +
-        reviews_label_h
+        if highlight:
+            pad_x, pad_y = round(14 * _SCALE), round(8 * _SCALE)
+            # NOTE: previously subtracted bbox[1] from both the top and
+            # bottom here, which cut the bottom of the highlight box short
+            # by roughly bbox[1] pixels — the box needs to simply span
+            # [y - pad_y, y + text_h + pad_y] since text_h is already
+            # bbox[3] - bbox[1] (the true rendered height).
+            draw.rectangle(
+                [margin_left - pad_x, y - pad_y, margin_left + text_w + pad_x, y + text_h + pad_y],
+                fill=highlight,
+            )
+
+        draw.text((margin_left, y - bbox[1]), text, font=font, fill=color)
+        y += text_h + round(22 * _SCALE)
+
+    # Footer: small wordmark + review count, bottom-left
+    y_footer = height - round(130 * _SCALE)
+    footer_font = _load_font(FONT_PATHS_BOLD, round(30 * _SCALE))
+    draw.text((margin_left, y_footer), "THE TREND LIST", font=footer_font, fill=ACCENT_PURPLE)
+
+    sub_font = _load_font(FONT_PATHS_BOLD, round(24 * _SCALE))
+    draw.text(
+        (margin_left, y_footer + round(42 * _SCALE)),
+        f"{total_reviews:,} reviews analysed",
+        font=sub_font, fill=MUTED_COLOR,
     )
-
-    y = (height - total_content_height) / 2 - 40
-
-    if logo:
-        card_padding = 30
-        card_x = (width - card_width) / 2
-        draw.rounded_rectangle(
-            [card_x, y, card_x + card_width, y + card_height],
-            radius=24,
-            fill=(255, 255, 255),
-        )
-        canvas.paste(logo, (int(card_x + card_padding), int(y + card_padding)), logo)
-        y += card_height + gap_after_card
-
-    y += _centered_text(draw, y, month_text, month_font, width, TEXT_COLOR)
-    y += gap_after_month
-
-    y += _centered_text(draw, y, tagline_text, tagline_font, width, ACCENT_PURPLE)
-    y += gap_after_tagline
-
-    divider_width = 80
-    draw.rectangle(
-        [(width - divider_width) / 2, y, (width + divider_width) / 2, y + divider_height],
-        fill=ACCENT_PURPLE,
-    )
-    y += divider_height + gap_after_divider
-
-    y += _centered_text(draw, y, reviews_number_text, reviews_number_font, width, ACCENT_PURPLE)
-    y += gap_after_number
-
-    _centered_text(draw, y, reviews_label_text, reviews_label_font, width, MUTED_COLOR)
-
-    bar_height = 18
-    draw.rectangle([0, height - bar_height, width, height], fill=ACCENT_PURPLE)
 
     canvas.save(out_path, "JPEG", quality=92)
     return True
 
 
 # -----------------------------------------------------------------------------
-# Product image overlay (rank badge + name/seller/reviews banner)
+# Product slide generation (cutout on branded background, matching the cover)
 # -----------------------------------------------------------------------------
-def _truncate_text(draw, text, font, max_width):
-    if draw.textbbox((0, 0), text, font=font)[2] <= max_width:
-        return text
-    while text and draw.textbbox((0, 0), text + "…", font=font)[2] > max_width:
-        text = text[:-1]
-    return text + "…"
+def _wrap_text(draw, text, font, max_width, max_lines=2):
+    """Simple word-wrap, truncating with an ellipsis if it still doesn't fit
+    within max_lines."""
+    words = text.split()
+    lines = []
+    current = ""
+
+    for word in words:
+        candidate = f"{current} {word}".strip()
+        if draw.textbbox((0, 0), candidate, font=font)[2] <= max_width:
+            current = candidate
+        else:
+            if current:
+                lines.append(current)
+            current = word
+            if len(lines) == max_lines - 1:
+                break
+
+    if current:
+        lines.append(current)
+
+    if len(lines) > max_lines:
+        lines = lines[:max_lines]
+
+    # Truncate last line with ellipsis if any words were dropped
+    consumed = " ".join(lines)
+    if len(consumed) < len(text) and lines:
+        last = lines[-1]
+        while last and draw.textbbox((0, 0), last + "…", font=font)[2] > max_width:
+            last = last[:-1].rstrip()
+        lines[-1] = last + "…"
+
+    return lines
 
 
-def add_product_overlay(image_path: Path, rank: int, product: dict) -> None:
-    """Overlay a rank badge (top-left) and an info banner (bottom) directly
-    onto the saved product image, so nothing needs adding manually before
-    posting."""
-    if not PIL_OK:
-        return
+def remove_background(image_path: Path) -> "Image.Image | None":
+    """Cut the product out from its original photo background using rembg.
+    Returns an RGBA image with transparent background, or None if rembg
+    isn't available or the removal fails."""
+    if not REMBG_OK:
+        return None
 
     try:
-        canvas = Image.open(image_path).convert("RGBA")
+        session = _get_rembg_session()
+        with open(image_path, "rb") as f:
+            input_bytes = f.read()
+        output_bytes = rembg_remove(input_bytes, session=session)
+        return Image.open(BytesIO(output_bytes)).convert("RGBA")
     except Exception:
-        return
+        return None
 
-    width, height = canvas.size
+
+def build_product_slide(raw_image_path: Path, product: dict, bg_color: tuple[int, int, int], out_path: Path) -> bool:
+    """Build a branded product slide: the product cut out from its original
+    background, placed on this month's colour, with bold product/seller name
+    text below. No rank number shown — with lots of tied review counts,
+    numbering looks wrong more often than it looks right."""
+    if not PIL_OK:
+        return False
+
+    canvas = Image.new("RGB", COVER_SIZE, bg_color)
+    canvas = _add_grain(canvas)
+
+    cutout = remove_background(raw_image_path)
+
+    if cutout is None:
+        # Fallback: no background removal available — place the original
+        # photo, uncut, rather than failing the whole slide.
+        try:
+            cutout = Image.open(raw_image_path).convert("RGBA")
+        except Exception:
+            return False
+
+    # Fit the product into the upper ~62% of the canvas, preserving aspect ratio
+    width, height = COVER_SIZE
+    max_product_width = int(width * 0.72)
+    max_product_height = int(height * 0.58)
+
+    ratio = min(max_product_width / cutout.width, max_product_height / cutout.height)
+    new_size = (int(cutout.width * ratio), int(cutout.height * ratio))
+    cutout = cutout.resize(new_size, Image.LANCZOS)
+
+    paste_x = (width - cutout.width) // 2
+    paste_y = round(90 * _SCALE)
+    canvas.paste(cutout, (paste_x, paste_y), cutout)
+
     draw = ImageDraw.Draw(canvas)
+    margin_left = round(70 * _SCALE)
+    max_text_width = width - margin_left * 2
 
-    # --- Rank badge ---
-    badge_size = max(70, int(width * 0.083))
-    badge_margin = int(width * 0.028)
-    draw.ellipse(
-        [badge_margin, badge_margin, badge_margin + badge_size, badge_margin + badge_size],
-        fill=ACCENT_PURPLE,
-    )
-    rank_font = _load_font(FONT_PATHS_BOLD, int(badge_size * 0.5))
-    rank_text = f"#{rank}"
-    bbox = draw.textbbox((0, 0), rank_text, font=rank_font)
-    rw, rh = bbox[2] - bbox[0], bbox[3] - bbox[1]
-    draw.text(
-        (badge_margin + (badge_size - rw) / 2, badge_margin + (badge_size - rh) / 2 - bbox[1]),
-        rank_text, font=rank_font, fill=TEXT_COLOR,
-    )
-
-    # --- Bottom info banner ---
-    banner_height = int(height * 0.176)
-    banner = Image.new("RGBA", (width, banner_height), (20, 20, 30, 235))
-    banner_draw = ImageDraw.Draw(banner)
-
-    name_font = _load_font(FONT_PATHS_BOLD, int(banner_height * 0.22))
-    detail_font = _load_font(FONT_PATHS_REGULAR, int(banner_height * 0.17))
-
-    padding = int(width * 0.037)
-    max_text_width = width - padding * 2
+    y = paste_y + max_product_height + round(50 * _SCALE)
 
     name = product.get("name") or f"Product {product.get('sku', '')}"
-    name_display = _truncate_text(banner_draw, name, name_font, max_text_width)
-    banner_draw.text((padding, int(banner_height * 0.13)), name_display, font=name_font, fill=TEXT_COLOR)
+    name_font = _load_font(FONT_PATHS_SERIF_BOLD, round(62 * _SCALE))
+    name_lines = _wrap_text(draw, name, name_font, max_text_width, max_lines=2)
+
+    for line in name_lines:
+        bbox = draw.textbbox((0, 0), line, font=name_font)
+        line_h = bbox[3] - bbox[1]
+        draw.text((margin_left, y - bbox[1]), line, font=name_font, fill=TEXT_COLOR)
+        y += line_h + round(12 * _SCALE)
 
     seller_name = product.get("seller_name")
     if seller_name:
-        seller_display = _truncate_text(banner_draw, f"by {seller_name}", detail_font, max_text_width)
-        banner_draw.text((padding, int(banner_height * 0.42)), seller_display, font=detail_font, fill=MUTED_COLOR)
+        y += round(14 * _SCALE)
+        seller_font = _load_font(FONT_PATHS_BOLD, round(34 * _SCALE))
+        seller_text = f"by {seller_name}"
+        bbox = draw.textbbox((0, 0), seller_text, font=seller_font)
+        draw.text((margin_left, y - bbox[1]), seller_text, font=seller_font, fill=ACCENT_PURPLE)
 
-    review_count = product.get("review_count_month", 0)
-    review_text = f"{review_count:,} reviews this month"
-    banner_draw.text((padding, int(banner_height * 0.68)), review_text, font=detail_font, fill=ACCENT_PURPLE)
-
-    canvas.paste(banner, (0, height - banner_height), banner)
-    canvas.convert("RGB").save(image_path, "JPEG", quality=90)
+    canvas.convert("RGB").save(out_path, "JPEG", quality=92)
+    return True
 
 
 # -----------------------------------------------------------------------------
@@ -503,14 +566,18 @@ def build_month_assets(month: str, cache: dict) -> None:
         return
 
     out_dir.mkdir(parents=True, exist_ok=True)
+    bg_color = month_bg_color(month)
 
     total_reviews = month_total_reviews(month)
     cover_path = out_dir / "00_cover.jpg"
-    cover_ok = build_cover_image(month, total_reviews, cover_path)
+    cover_ok = build_cover_image(month, bg_color, total_reviews, cover_path)
     if cover_ok:
         print(f"  🖼️  Cover image → 00_cover.jpg ({total_reviews:,} reviews)", flush=True)
     else:
-        print("  ⚠️  Could not build cover image (Pillow unavailable or logo missing)", flush=True)
+        print("  ⚠️  Could not build cover image (Pillow unavailable)", flush=True)
+
+    if not REMBG_OK:
+        print("  ⚠️  rembg not installed — product cutouts will fall back to uncut photos", flush=True)
 
     captions = []
     rank = 0
@@ -524,21 +591,30 @@ def build_month_assets(month: str, cache: dict) -> None:
             rank = idx
             last_count = count
 
+        # Filenames still carry the rank prefix so carousel upload order is
+        # correct — we just don't display "#N" on the image itself, since
+        # ties mean multiple products share the same rank.
         filename = f"{rank:02d}_{product['sku']}.jpg"
         out_path = out_dir / filename
+        raw_path = out_dir / f"_raw_{product['sku']}.jpg"
 
-        ok = get_product_image(product, out_path)
+        got_raw = get_product_image(product, raw_path)
 
-        if ok:
-            add_product_overlay(out_path, rank, product)
-            print(f"  ✅ {rank:02d}. {product.get('name') or product['sku']} → {filename}", flush=True)
+        if got_raw:
+            styled = build_product_slide(raw_path, product, bg_color, out_path)
+            raw_path.unlink(missing_ok=True)
+            if styled:
+                print(f"  ✅ {rank:02d}. {product.get('name') or product['sku']} → {filename}", flush=True)
+            else:
+                print(f"  ❌ {rank:02d}. {product.get('name') or product['sku']} — styling failed", flush=True)
+                got_raw = False
         else:
             print(f"  ❌ {rank:02d}. {product.get('name') or product['sku']} — no image found", flush=True)
 
         captions.append({
             "rank": rank,
             "sku": product["sku"],
-            "image_file": filename if ok else None,
+            "image_file": filename if got_raw else None,
             "name": product.get("name"),
             "seller_name": product.get("seller_name"),
             "review_count_month": count,
