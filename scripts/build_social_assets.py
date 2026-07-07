@@ -276,23 +276,54 @@ def fetch_with_retries(url: str) -> requests.Response | None:
     return None
 
 
+def _looks_like_logo_or_banner(src: str, alt: str) -> bool:
+    """Filter out seller shop logos/banners, which sometimes appear earlier
+    in a product page's HTML than the actual product photo and would
+    otherwise get grabbed by mistake."""
+    haystack = f"{src} {alt}".lower()
+    return any(
+        term in haystack
+        for term in ("logo", "banner", "storefront", "header", "brand-image", "shop-image")
+    )
+
+
 def extract_image_url_from_html(html: str) -> str | None:
     soup = BeautifulSoup(html, "html.parser")
 
     og = soup.find("meta", property="og:image")
-    if og and og.get("content"):
+    if og and og.get("content") and not _looks_like_logo_or_banner(og["content"], ""):
         return og["content"].strip()
 
     tw = soup.find("meta", attrs={"name": "twitter:image"})
-    if tw and tw.get("content"):
+    if tw and tw.get("content") and not _looks_like_logo_or_banner(tw["content"], ""):
         return tw["content"].strip()
 
     for img in soup.find_all("img"):
         src = img.get("src") or img.get("data-src") or ""
-        if "cdn.notonthehighstreet.com" in src or "/fs/" in src:
-            return src
+        alt = img.get("alt") or ""
+
+        if not src:
+            continue
+        if "cdn.notonthehighstreet.com" not in src and "/fs/" not in src:
+            continue
+        if _looks_like_logo_or_banner(src, alt):
+            continue
+
+        return src
 
     return None
+
+
+def _image_looks_like_logo_or_blank(im: "Image.Image", threshold: float = 0.88) -> bool:
+    """Second layer of defense beyond the URL/alt-text filter: if an image
+    is almost entirely near-white, it's very likely a logo graphic on a
+    blank background rather than real product photography (which, even
+    when shot on white, usually has the product filling most of the frame).
+    """
+    sample = im.convert("RGB").resize((100, 100))
+    pixels = list(sample.getdata())
+    near_white = sum(1 for r, g, b in pixels if r > 235 and g > 235 and b > 235)
+    return (near_white / len(pixels)) >= threshold
 
 
 def download_and_save(image_url: str, out_path: Path) -> bool:
@@ -303,6 +334,10 @@ def download_and_save(image_url: str, out_path: Path) -> bool:
     if PIL_OK:
         try:
             im = Image.open(BytesIO(res.content)).convert("RGB")
+
+            if _image_looks_like_logo_or_blank(im):
+                return False
+
             im.save(out_path, "JPEG", quality=90, optimize=True)
             return True
         except Exception:
