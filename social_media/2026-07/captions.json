@@ -1,0 +1,98 @@
+{
+  "month": "2026-07",
+  "generated_at": "2026-08-01T09:57:31+00:00",
+  "cover_image": "00_cover.jpg",
+  "total_reviews_month": 2730,
+  "products": [
+    {
+      "rank": 1,
+      "sku": "1491899",
+      "image_file": "01_1491899.jpg",
+      "name": "Personalized Jewellery Name Box",
+      "seller_name": "Awristo",
+      "review_count_month": 11,
+      "product_url": "https://www.notonthehighstreet.com/lineamasks/product/personalized-name-box"
+    },
+    {
+      "rank": 2,
+      "sku": "1529093",
+      "image_file": "02_1529093.jpg",
+      "name": "'Difference Maker' Dictionary Definition Personalised Notebook",
+      "seller_name": "Betsy Benn",
+      "review_count_month": 10,
+      "product_url": "https://www.notonthehighstreet.com/betsybenn/product/difference-maker-dictionary-definition-personalised-notebook"
+    },
+    {
+      "rank": 3,
+      "sku": "621809",
+      "image_file": "03_621809.jpg",
+      "name": "Friendship Knot Bangle",
+      "seller_name": "Joy by Corrine Smith",
+      "review_count_month": 9,
+      "product_url": "https://www.notonthehighstreet.com/joybycorrinesmith/product/friendship-knot-bangle"
+    },
+    {
+      "rank": 4,
+      "sku": "764151",
+      "image_file": "04_764151.jpg",
+      "name": "Personalised Olive Wood Wedding Gift Chopping Board",
+      "seller_name": "The Rustic Dish®",
+      "review_count_month": 7,
+      "product_url": "https://www.notonthehighstreet.com/therusticdish/product/personalised-couples-cheese-chopping-board"
+    },
+    {
+      "rank": 4,
+      "sku": "1603180",
+      "image_file": "04_1603180.jpg",
+      "name": "1966: What A Year To Be Born | 60th Birthday Gift Book",
+      "seller_name": "Emersive Books",
+      "review_count_month": 7,
+      "product_url": "https://www.notonthehighstreet.com/emersivebooks/product/1966-what-a-year-to-be-born-60th-birthday-gift-book"
+    },
+    {
+      "rank": 4,
+      "sku": "242415",
+      "image_file": "04_242415.jpg",
+      "name": "White Cotton Sleeveless Victorian Nightdress Chemise",
+      "seller_name": "Mini Lunn",
+      "review_count_month": 7,
+      "product_url": "https://www.notonthehighstreet.com/minilunn/product/chemise-maternity-nightdress"
+    },
+    {
+      "rank": 7,
+      "sku": "1047473",
+      "image_file": "07_1047473.jpg",
+      "name": "Personalised Brilliant Teacher Notebook Journal",
+      "seller_name": "Betsy Benn",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/betsybenn/product/personalised-brilliant-teacher-notebook-journal"
+    },
+    {
+      "rank": 7,
+      "sku": "1307555",
+      "image_file": "07_1307555.jpg",
+      "name": "Personalised Graduation Pebble Picture",
+      "seller_name": "La de da! Living",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/ladedaliving/product/personalised-graduation-pebble-picture"
+    },
+    {
+      "rank": 7,
+      "sku": "1500483",
+      "image_file": "07_1500483.jpg",
+      "name": "Personalised Granddaughter Charm Bracelet, Great Granddaughter Gift",
+      "seller_name": "Nameitwhatyoulike",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/nameitwhatyoulike/product/personalised-granddaughter-charm-bracelet"
+    },
+    {
+      "rank": 7,
+      "sku": "915286",
+      "image_file": "07_915286.jpg",
+      "name": "Engraved Birth Flower Plant Pot Birthday Gift For Her",
+      "seller_name": "Letterfest",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/letterfest/product/engraved-birthflower-plant-pot"
+    }
+  ]
+}
