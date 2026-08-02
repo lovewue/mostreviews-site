@@ -77,7 +77,11 @@ jobs:
         run: python topup_products_cache.py
 
       # --- 3. Second pass: recover unresolved products via Feefo (Selenium) --
+      # Best-effort gap-filling via a headless browser, so it is the flakiest
+      # step in the pipeline. It must never block publishing — the script
+      # already swallows its own errors, and this is the second line of defence.
       - name: Recover unresolved products via Feefo
+        continue-on-error: true
         env:
           PYTHONUNBUFFERED: "1"
         run: python scripts/recover_cache_feefo_selenium.py

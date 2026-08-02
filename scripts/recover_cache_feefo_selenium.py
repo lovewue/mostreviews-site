@@ -49,6 +49,8 @@ SAVE_EVERY = 10
 MAX_RECOVERY_ATTEMPTS = 4     # after this many failed passes, back off
 RETRY_AFTER_DAYS = 90         # ...and only re-check exhausted records this often
 PAGE_WAIT_SECONDS = 15
+PAGE_LOAD_TIMEOUT = 30        # must stay comfortably under Selenium's 120s client timeout
+MAX_CONSECUTIVE_FAILURES = 15 # Feefo blocking us / Chrome wedged — stop wasting the job
 HEADLESS = True
 MIN_SLEEP = 1.0
 MAX_SLEEP = 2.0
@@ -294,9 +296,19 @@ def make_driver() -> webdriver.Chrome:
 
     if CHROMEDRIVER_PATH:
         service = Service(CHROMEDRIVER_PATH)
-        return webdriver.Chrome(service=service, options=chrome_options)
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+    else:
+        driver = webdriver.Chrome(options=chrome_options)
 
-    return webdriver.Chrome(options=chrome_options)
+    # Without an explicit page load timeout, a hung page leaves driver.get()
+    # blocking until Selenium's own HTTP client to chromedriver gives up at
+    # 120s — which raises urllib3.ReadTimeoutError, NOT the WebDriverException
+    # the callers catch. That killed the whole run on 2026-08-02. Cap the page
+    # load well below the client timeout so we get a catchable TimeoutException.
+    driver.set_page_load_timeout(PAGE_LOAD_TIMEOUT)
+    driver.set_script_timeout(PAGE_LOAD_TIMEOUT)
+
+    return driver
 
 
 # -----------------------------------------------------------------------------
@@ -376,7 +388,13 @@ def get_feefo_data_selenium(driver: webdriver.Chrome, sku: str) -> dict:
             "seller_slug": None,
         }
 
-    except TimeoutException:
+    # Deliberately broad. Selenium leaks non-WebDriverException failures from
+    # its HTTP transport (urllib3 ReadTimeoutError, ProtocolError, socket
+    # errors) when chromedriver stops responding. Letting any of those escape
+    # aborts the whole build, which is far worse than skipping one SKU — this
+    # step is best-effort enrichment, not something worth failing a run over.
+    except (TimeoutException, WebDriverException) as e:
+        print(f"   ↳ {sku}: {type(e).__name__}")
         return {
             "status": "error",
             "source": "feefo_selenium",
@@ -384,7 +402,8 @@ def get_feefo_data_selenium(driver: webdriver.Chrome, sku: str) -> dict:
             "product_url": None,
             "seller_slug": None,
         }
-    except WebDriverException:
+    except Exception as e:
+        print(f"   ↳ {sku}: unexpected {type(e).__name__}: {e}")
         return {
             "status": "error",
             "source": "feefo_selenium",
@@ -601,6 +620,7 @@ def main() -> None:
         return
 
     driver = make_driver()
+    consecutive_failures = 0
 
     try:
         for i, sku in enumerate(to_process, 1):
@@ -616,6 +636,24 @@ def main() -> None:
                 f"avail={meta.get('available')})"
             )
 
+            # A long unbroken run of failures means Feefo is rate-limiting us or
+            # Chrome has wedged — not that these particular SKUs are missing.
+            # Pressing on just burns job minutes and inflates lookup_attempts on
+            # products that were never actually checked.
+            if meta.get("lookup_status") == "not_found_selenium":
+                consecutive_failures += 1
+            else:
+                consecutive_failures = 0
+
+            if consecutive_failures >= MAX_CONSECUTIVE_FAILURES:
+                print()
+                print(
+                    f"🛑 {MAX_CONSECUTIVE_FAILURES} consecutive failures — "
+                    f"stopping early after {i} of {len(to_process)}. "
+                    f"Remaining SKUs will be retried on the next run."
+                )
+                break
+
             if i % SAVE_EVERY == 0:
                 save_cache(cache)
                 print(f"💾 Progress saved ({i} items)")
@@ -627,8 +665,19 @@ def main() -> None:
         print()
         print(f"✅ Saved updated cache → {CACHE_FILE}")
         print("🏁 Selenium recovery complete.")
-        driver.quit()
+        try:
+            driver.quit()
+        except Exception:
+            pass
 
 
 if __name__ == "__main__":
-    main()
+    # This step is best-effort: it fills gaps NOTHS could not resolve. If it
+    # fails outright the site should still build and publish from whatever the
+    # cache already holds, so never propagate a non-zero exit to the workflow.
+    try:
+        main()
+    except Exception as e:
+        print()
+        print(f"⚠️ Feefo recovery aborted: {type(e).__name__}: {e}")
+        print("⚠️ Continuing — the build will use existing cached metadata.")
