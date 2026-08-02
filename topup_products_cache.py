@@ -26,7 +26,11 @@ DATA_DIR = PROJECT_ROOT / "data"
 MONTHLY_ROOT = DATA_DIR / "monthly"
 MONTHLY_INDEX_FILE = MONTHLY_ROOT / "index.json"
 CACHE_FILE = DATA_DIR / "cache" / "products_cache.json"
-PARTNERS_JSON = PROJECT_ROOT / "partners_search.json"  # optional helper file
+# NOTE: this used to point at PROJECT_ROOT / "partners_search.json", but the
+# file actually lives in data/. The lookup silently loaded zero partners, so
+# every newly-scraped product fell back to the title-cased slug ("Emersivebooks"
+# instead of "Emersive Books"). build_leaderboards.py always used the data/ path.
+PARTNERS_JSON = DATA_DIR / "partners_search.json"  # optional helper file
 
 
 # -----------------------------------------------------------------------------

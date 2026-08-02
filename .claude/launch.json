@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "bruce-site",
+      "runtimeExecutable": "C:/Users/richa/AppData/Local/Python/bin/python.exe",
+      "runtimeArgs": ["-m", "http.server", "8123", "--directory", "C:/Users/richa/OneDrive - Wue/Tiff/Bruce Greenhalgh Website/site"],
+      "port": 8123
+    }
+  ]
+}

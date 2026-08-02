@@ -1,10 +1,12 @@
 {
-  "generated_at": "2026-08-01T08:27:48+00:00",
+  "generated_at": "2026-08-02T10:47:26+00:00",
   "total_reviews_month": 5233,
   "product_count_with_reviews": 4003,
-  "seller_count_with_reviews": 1022,
+  "seller_count_with_reviews": 1021,
   "products_with_5_plus_reviews": 68,
   "average_reviews_per_product": 1.31,
   "top_100_share_of_reviews": 0.1257,
-  "top_review_count": 21
+  "top_review_count": 21,
+  "products_without_seller": 1,
+  "reviews_without_seller": 1
 }

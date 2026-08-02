@@ -22,7 +22,10 @@ PROJECT_ROOT = SCRIPT_DIR.parent
 
 DATA_DIR = PROJECT_ROOT / "data"
 CACHE_FILE = DATA_DIR / "cache" / "products_cache.json"
-PARTNERS_JSON = PROJECT_ROOT / "partners_search.json"  # optional helper file
+# NOTE: this used to point at PROJECT_ROOT / "partners_search.json", but the
+# file lives in data/. The lookup silently loaded zero partners, so recovered
+# products fell back to a title-cased slug instead of the real brand name.
+PARTNERS_JSON = DATA_DIR / "partners_search.json"  # optional helper file
 MONTHLY_ROOT = DATA_DIR / "monthly"
 MONTHLY_INDEX_FILE = MONTHLY_ROOT / "index.json"
 
@@ -35,8 +38,16 @@ FEEFO_PRODUCT_URL = (
     "?sku={sku}&displayFeedbackType=PRODUCT&timeFrame=ALL"
 )
 
-MAX_TO_PROCESS = 200          # capped per run — backlog clears gradually over successive months
+MAX_TO_PROCESS = 200          # capped per run — see queue ordering notes below
 SAVE_EVERY = 10
+
+# Give-up policy for products Feefo simply has no record of (long-dead SKUs).
+# Without this, every permanently-unresolvable product is retried on every run,
+# forever, and — because the queue used to be a plain sorted()[:200] — the same
+# low-numbered dead SKUs consumed the whole cap every month while genuinely
+# recoverable products further down the list were never reached.
+MAX_RECOVERY_ATTEMPTS = 4     # after this many failed passes, back off
+RETRY_AFTER_DAYS = 90         # ...and only re-check exhausted records this often
 PAGE_WAIT_SECONDS = 15
 HEADLESS = True
 MIN_SLEEP = 1.0
@@ -65,6 +76,23 @@ def clean_text(value: str | None) -> str | None:
         return None
     value = re.sub(r"\s+", " ", str(value)).strip()
     return value or None
+
+
+def parse_iso_datetime(value: str | None):
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except Exception:
+        return None
+
+
+def days_since(value: str | None) -> float:
+    """Age in days of an ISO timestamp. Returns a large number if unknown."""
+    parsed = parse_iso_datetime(value)
+    if not parsed:
+        return float("inf")
+    return (datetime.now(timezone.utc) - parsed).total_seconds() / 86400
 
 
 def clean_url(url: str | None) -> str | None:
@@ -416,6 +444,7 @@ def merge_with_existing(existing: dict | None, fresh: dict) -> dict:
 # Recovery helpers
 # -----------------------------------------------------------------------------
 def record_needs_recovery(record: dict | None) -> bool:
+    """Does this record still have gaps worth trying to fill?"""
     if not record:
         return True
 
@@ -424,6 +453,47 @@ def record_needs_recovery(record: dict | None) -> bool:
         or is_placeholder(record.get("seller_slug"))
         or is_placeholder(record.get("seller_name"))
     )
+
+
+def is_due_for_recovery(record: dict | None) -> bool:
+    """
+    Whether an incomplete record should be attempted on this run.
+
+    Records that have already failed MAX_RECOVERY_ATTEMPTS times are almost
+    always products Feefo has no page for at all. They are backed off to once
+    every RETRY_AFTER_DAYS instead of being retried every single month, so they
+    stop crowding out recoverable products under the MAX_TO_PROCESS cap.
+    """
+    if not record:
+        return True
+
+    attempts = int(record.get("lookup_attempts", 0) or 0)
+    if attempts < MAX_RECOVERY_ATTEMPTS:
+        return True
+
+    return days_since(record.get("last_checked_at") or record.get("updated_at")) >= RETRY_AFTER_DAYS
+
+
+def recovery_priority(item: tuple[str, dict]) -> tuple:
+    """
+    Queue ordering for the capped recovery run.
+
+    Previously this was a plain sorted(...)[:MAX_TO_PROCESS], i.e. the 200
+    numerically-lowest SKUs every single run. Dead SKUs at the low end of the
+    range therefore blocked the same 200 slots month after month and the
+    backlog behind them never cleared.
+
+    Now: fewest attempts first, then least-recently-checked. Fresh products get
+    a go immediately, and repeatedly-failing ones rotate to the back.
+    """
+    sku, record = item
+    record = record or {}
+
+    attempts = int(record.get("lookup_attempts", 0) or 0)
+    age = days_since(record.get("last_checked_at") or record.get("updated_at"))
+
+    # Negative age so the oldest (largest age) sorts first.
+    return (attempts, -age, sku)
 
 
 def build_meta_with_selenium(
@@ -498,16 +568,32 @@ def main() -> None:
     # NOTE: previously only checked the latest month's SKUs, missing anything
     # unresolved from earlier months. Now checks every SKU currently in the
     # cache, so the full backlog gets a chance at Feefo recovery each run.
-    to_process = sorted(
-        sku
+    incomplete = [
+        (sku, record)
         for sku, record in cache.items()
         if record_needs_recovery(record)
-    )
+    ]
+
+    due = [item for item in incomplete if is_due_for_recovery(item[1])]
+    backed_off = len(incomplete) - len(due)
+
+    due.sort(key=recovery_priority)
+    to_process = [sku for sku, _ in due]
 
     if MAX_TO_PROCESS:
         to_process = to_process[:MAX_TO_PROCESS]
 
+    print(f"🔧 Incomplete records: {len(incomplete)}")
+    if backed_off:
+        print(
+            f"😴 Backed off:         {backed_off} "
+            f"(≥{MAX_RECOVERY_ATTEMPTS} failed attempts, retried every {RETRY_AFTER_DAYS} days)"
+        )
     print(f"🔧 SKUs to recover:    {len(to_process)}")
+
+    remaining = len(due) - len(to_process)
+    if remaining:
+        print(f"⏭️ Deferred to next run: {remaining} (capped at {MAX_TO_PROCESS} per run)")
     print()
 
     if not to_process:

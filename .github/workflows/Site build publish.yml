@@ -11,15 +11,23 @@ name: Site Build & Publish
 # June/July sitting unrendered), running this will catch it up automatically.
 #
 # Steps:
-# 1. Top up the product cache with any new products found in the data
+# 1. Rebuild monthly JSON from all xlsx files present
+# 2. Top up the product cache with any new products found in the data
 #    (NOTHS search only — some products won't resolve this way)
-# 2. Second pass: recover still-unresolved products via Feefo (Selenium)
-# 3. Rebuild monthly JSON from all xlsx files present
+# 3. Second pass: recover still-unresolved products via Feefo (Selenium)
 # 4. Build enriched monthly datasets (adds product/seller metadata from cache)
-# 5. Render the /noths/ subpages and about-the-data page (render.py)
-# 6. Render the homepage, archive, top-products, and about pages (render_site.py)
-# 7. Commit — GitHub Pages serves trendlist.co.uk directly from this repo's
+# 5. Build leaderboards (all-time / last-12-months product stats)
+# 6. Render the /noths/ subpages and about-the-data page (render.py)
+# 7. Render the homepage, archive, top-products, and about pages (render_site.py)
+# 8. Commit — GitHub Pages serves trendlist.co.uk directly from this repo's
 #    /docs folder, so this commit is the final step; no second repo involved.
+#
+# ORDER MATTERS: build_monthly_json.py is what writes data/monthly/index.json,
+# and topup_products_cache.py reads that index to decide which SKUs to look up.
+# This used to run the other way round, so the newest month's brand-new SKUs
+# were never scraped — they landed in the site with no seller metadata and were
+# all lumped together as a single fake "Unknown brand" partner topping the
+# brand leaderboard. Do not move the top-up back above the JSON build.
 
 on:
   schedule:
@@ -48,21 +56,23 @@ jobs:
           pip install -r requirements.txt
           pip install pandas openpyxl requests beautifulsoup4 jinja2 selenium
 
-      # --- 1. Fill in missing product details (NOTHS search) ------------------
+      # --- 1. Rebuild monthly JSON from all xlsx files present --------------
+      # MUST run before the cache top-up: this writes data/monthly/index.json,
+      # which the top-up reads to work out which SKUs need looking up.
+      - name: Build monthly JSON
+        run: python build_monthly_json.py
+
+      # --- 2. Fill in missing product details (NOTHS search) ------------------
       - name: Top up product cache
         env:
           PYTHONUNBUFFERED: "1"
         run: python topup_products_cache.py
 
-      # --- 2. Second pass: recover unresolved products via Feefo (Selenium) --
+      # --- 3. Second pass: recover unresolved products via Feefo (Selenium) --
       - name: Recover unresolved products via Feefo
         env:
           PYTHONUNBUFFERED: "1"
         run: python scripts/recover_cache_feefo_selenium.py
-
-      # --- 3. Rebuild monthly JSON from all xlsx files present --------------
-      - name: Build monthly JSON
-        run: python build_monthly_json.py
 
       # --- 4. Build enriched monthly datasets (needed by render_site.py) ----
       - name: Build enriched monthly data

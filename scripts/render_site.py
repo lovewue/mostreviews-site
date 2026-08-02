@@ -441,11 +441,29 @@ def render_products(products, limit=None, show_last_month=False):
 """
 
 
+def is_unresolved_brand(p) -> bool:
+    """
+    True for partner rows that do not represent a real NOTHS brand.
+
+    build_enriched_monthly.py now drops these before they reach the summary,
+    but older derived files still on disk may contain the synthetic
+    slug="unknown" / name="Unknown brand" bucket. Rendering that produced a
+    fake #1 brand linking to a dead /partners/unknown page, so filter it here
+    too rather than relying on the data being freshly rebuilt.
+    """
+    placeholders = {"", "none", "null", "unknown", "unknown brand", "unknown seller"}
+    slug = str(p.get("seller_slug") or "").strip().lower()
+    name = str(p.get("seller_name") or "").strip().lower()
+    return (not slug) or slug in placeholders or name in placeholders
+
+
 def render_partners(partners, limit=10):
     rows = []
 
+    partners = [p for p in partners if not is_unresolved_brand(p)]
+
     for i, p in enumerate(partners[:limit], start=1):
-        seller_name = p.get("seller_name") or p.get("seller_slug") or "Unknown brand"
+        seller_name = p.get("seller_name") or p.get("seller_slug")
         seller_slug = p.get("seller_slug") or slugify_brand_name(seller_name)
         reviews = p.get("total_reviews_month") or 0
 
