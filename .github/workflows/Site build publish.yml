@@ -34,6 +34,14 @@ on:
     - cron: '0 6 1 * *'   # 1st of the month, 06:00 UTC — well after the data-pull agents
   workflow_dispatch:        # lets you trigger it manually any time, e.g. to catch up
 
+# The build takes a long time (the cache top-up scrapes every new SKU) and ends
+# by committing to main. Two overlapping runs will therefore race each other to
+# push, and the loser is rejected — throwing away a full rebuild. Queue them
+# instead. cancel-in-progress stays false so an in-flight build always finishes.
+concurrency:
+  group: site-build-publish
+  cancel-in-progress: false
+
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
@@ -93,9 +101,45 @@ jobs:
       # --- 8. Commit build output ---------------------------------------------
       - name: Commit build output
         run: |
+          set -euo pipefail
+
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+
           git add data/ docs/
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
           timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          git commit -m "Site rebuild for $timestamp" || echo "No changes to commit"
-          git push
+          git commit -m "Site rebuild for $timestamp"
+
+          # main can move while the build runs (a push from a laptop, or another
+          # workflow committing). A bare `git push` is rejected in that case and
+          # the whole rebuild is thrown away at the final step — which is exactly
+          # what happened on 2026-08-02. Rebase onto the new tip and retry.
+          #
+          # -X theirs resolves conflicts in favour of the commit being replayed,
+          # i.e. this build's output. That is correct here: everything under
+          # data/ and docs/ is generated from the xlsx sources, so the freshly
+          # built version always wins over whatever was there before.
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+
+            echo "Push attempt $attempt rejected; rebasing onto origin/main..."
+            git fetch origin main
+
+            if ! git rebase --strategy-option=theirs origin/main; then
+              git rebase --abort || true
+              echo "::error::Rebase onto origin/main failed; build output not published."
+              exit 1
+            fi
+          done
+
+          echo "::error::Could not push build output after 3 attempts."
+          exit 1
