@@ -1,0 +1,107 @@
+{
+  "month": "2026-08",
+  "generated_at": "2026-09-01T13:06:29+00:00",
+  "cover_image": "00_cover.jpg",
+  "total_reviews_month": 2362,
+  "products": [
+    {
+      "rank": 1,
+      "sku": "1308378",
+      "image_file": "01_1308378.jpg",
+      "name": "Women's White Cotton Nightdress Sleeveless Pink Lizzie",
+      "seller_name": "Mini Lunn",
+      "review_count_month": 10,
+      "product_url": "https://www.notonthehighstreet.com/minilunn/product/women-s-white-cotton-nightdress-sleeveless-pink-lizzie"
+    },
+    {
+      "rank": 1,
+      "sku": "1491899",
+      "image_file": "01_1491899.jpg",
+      "name": "Personalized Jewellery Name Box",
+      "seller_name": "Awristo",
+      "review_count_month": 10,
+      "product_url": "https://www.notonthehighstreet.com/lineamasks/product/personalized-name-box"
+    },
+    {
+      "rank": 1,
+      "sku": "1586216",
+      "image_file": "01_1586216.jpg",
+      "name": "Adjustable Crossover Cuff Bangle With Sterling Silver Plating",
+      "seller_name": "Songs of Ink and Steel",
+      "review_count_month": 10,
+      "product_url": "https://www.notonthehighstreet.com/songsofinkandsteel/product/silver-plated-twisted-mixed-finish-crossover-cuff-bangle-bracelet"
+    },
+    {
+      "rank": 1,
+      "sku": "255970",
+      "image_file": "01_255970.jpg",
+      "name": "White Sleeveless Cotton Nightdress Lizzie",
+      "seller_name": "Mini Lunn",
+      "review_count_month": 10,
+      "product_url": "https://www.notonthehighstreet.com/minilunn/product/lizzie-cotton-embroidered-nightdress"
+    },
+    {
+      "rank": 5,
+      "sku": "1329122",
+      "image_file": "05_1329122.jpg",
+      "name": "You Did It Silver Plated Star Bracelet",
+      "seller_name": "Letterbox Love",
+      "review_count_month": 7,
+      "product_url": "https://www.notonthehighstreet.com/letterboxlove/product/you-did-it-silver-plated-star-bracelet"
+    },
+    {
+      "rank": 5,
+      "sku": "1602499",
+      "image_file": "05_1602499.jpg",
+      "name": "1946: What A Year To Be Born | 80th Birthday Gift Book",
+      "seller_name": "Emersive Books",
+      "review_count_month": 7,
+      "product_url": "https://www.notonthehighstreet.com/emersivebooks/product/1946-what-a-year-to-be-born-80th-birthday-gift-book"
+    },
+    {
+      "rank": 5,
+      "sku": "764151",
+      "image_file": "05_764151.jpg",
+      "name": "Personalised Olive Wood Wedding Gift Chopping Board",
+      "seller_name": "The Rustic Dish®",
+      "review_count_month": 7,
+      "product_url": "https://www.notonthehighstreet.com/therusticdish/product/personalised-couples-cheese-chopping-board"
+    },
+    {
+      "rank": 8,
+      "sku": "1602612",
+      "image_file": "08_1602612.jpg",
+      "name": "1956: What A Year To Be Born | 70th Birthday Gift Book",
+      "seller_name": "Emersive Books",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/emersivebooks/product/1956-what-a-year-to-be-born-70th-birthday-gift-book"
+    },
+    {
+      "rank": 8,
+      "sku": "621809",
+      "image_file": "08_621809.jpg",
+      "name": "Friendship Knot Bangle",
+      "seller_name": "Joy by Corrine Smith",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/joybycorrinesmith/product/friendship-knot-bangle"
+    },
+    {
+      "rank": 8,
+      "sku": "1049381",
+      "image_file": null,
+      "name": "Personalised Special Year Gin With Music",
+      "seller_name": "The Gift Edit",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/mixpixie/product/personalised-special-year-flavoured-gin-with-music"
+    },
+    {
+      "rank": 8,
+      "sku": "545355",
+      "image_file": "08_545355.jpg",
+      "name": "Personalised Swarovski Birthstone And Initial Necklace",
+      "seller_name": "Twenty-Seven",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/twentyseven/product/personalised-swarovski-birthstone-and-initial-necklace"
+    }
+  ]
+}
