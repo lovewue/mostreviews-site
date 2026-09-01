@@ -433,11 +433,18 @@ def base_row(sku, reviews, rating, rank, cache, existing_rows):
             if cache_row.get("available") is not None
             else existing.get("available")
         ),
-        "availability_checked_at": existing.get("availability_checked_at"),
         "reviews": reviews,
         "rating": rating,
         "metadata_source": existing.get("metadata_source") or ("cache" if cache_row else "missing"),
     }
+
+    # Only carried when it actually has a value. This file holds every product
+    # (339k+ rows, ~95MB) and only the top 100 are ever revalidated, so writing
+    # "availability_checked_at": null on every row added ~13MB and pushed the
+    # file past GitHub's 100MB limit, which rejected the whole build.
+    checked_at = existing.get("availability_checked_at")
+    if checked_at:
+        row["availability_checked_at"] = checked_at
 
     if row.get("product_url") and not row.get("seller_slug"):
         row["seller_slug"] = parse_seller_slug_from_product_url(row["product_url"])
