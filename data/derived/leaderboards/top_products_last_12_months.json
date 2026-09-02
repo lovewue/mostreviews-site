@@ -1,6 +1,6 @@
 {
   "leaderboard": "last_12_months",
-  "generated_at": "2026-09-01T11:22:33+00:00",
+  "generated_at": "2026-09-01T20:25:06+00:00",
   "product_count": 28188,
   "total_products_reviewed": 28188,
   "total_reviews": 59423,
@@ -18,7 +18,8 @@
       "available": true,
       "reviews": 212,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 2,
@@ -30,7 +31,8 @@
       "available": true,
       "reviews": 135,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 3,
@@ -42,7 +44,8 @@
       "available": true,
       "reviews": 122,
       "rating": 4.5,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 4,
@@ -54,7 +57,8 @@
       "available": true,
       "reviews": 120,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 5,
@@ -66,7 +70,8 @@
       "available": true,
       "reviews": 106,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 6,
@@ -78,7 +83,8 @@
       "available": true,
       "reviews": 104,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 7,
@@ -90,7 +96,8 @@
       "available": true,
       "reviews": 103,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 8,
@@ -102,7 +109,8 @@
       "available": true,
       "reviews": 100,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 9,
@@ -114,7 +122,8 @@
       "available": true,
       "reviews": 100,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 10,
@@ -126,7 +135,8 @@
       "available": true,
       "reviews": 97,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 11,
@@ -138,7 +148,8 @@
       "available": true,
       "reviews": 96,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 12,
@@ -150,7 +161,8 @@
       "available": true,
       "reviews": 91,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 13,
@@ -162,7 +174,8 @@
       "available": true,
       "reviews": 90,
       "rating": 4.4,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 14,
@@ -174,7 +187,8 @@
       "available": true,
       "reviews": 88,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 15,
@@ -186,7 +200,8 @@
       "available": true,
       "reviews": 88,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 16,
@@ -198,7 +213,8 @@
       "available": true,
       "reviews": 80,
       "rating": 4.4,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 17,
@@ -210,7 +226,8 @@
       "available": true,
       "reviews": 77,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 18,
@@ -222,7 +239,8 @@
       "available": true,
       "reviews": 75,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 19,
@@ -234,7 +252,8 @@
       "available": true,
       "reviews": 70,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 20,
@@ -246,7 +265,8 @@
       "available": true,
       "reviews": 68,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 21,
@@ -258,7 +278,8 @@
       "available": true,
       "reviews": 67,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 22,
@@ -270,7 +291,8 @@
       "available": true,
       "reviews": 65,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 23,
@@ -282,7 +304,8 @@
       "available": true,
       "reviews": 64,
       "rating": 4.4,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 24,
@@ -294,7 +317,8 @@
       "available": true,
       "reviews": 61,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 25,
@@ -306,7 +330,8 @@
       "available": true,
       "reviews": 59,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 26,
@@ -318,7 +343,8 @@
       "available": true,
       "reviews": 58,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 27,
@@ -330,7 +356,8 @@
       "available": true,
       "reviews": 57,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 28,
@@ -342,7 +369,8 @@
       "available": true,
       "reviews": 51,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 29,
@@ -354,7 +382,8 @@
       "available": true,
       "reviews": 51,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 30,
@@ -366,7 +395,8 @@
       "available": true,
       "reviews": 50,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 31,
@@ -378,7 +408,8 @@
       "available": true,
       "reviews": 49,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 32,
@@ -390,7 +421,8 @@
       "available": true,
       "reviews": 49,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 33,
@@ -402,7 +434,8 @@
       "available": true,
       "reviews": 49,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 34,
@@ -414,7 +447,8 @@
       "available": true,
       "reviews": 49,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 35,
@@ -426,7 +460,8 @@
       "available": true,
       "reviews": 48,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 36,
@@ -438,7 +473,8 @@
       "available": true,
       "reviews": 48,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 37,
@@ -450,7 +486,8 @@
       "available": true,
       "reviews": 48,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 38,
@@ -462,7 +499,8 @@
       "available": true,
       "reviews": 48,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 39,
@@ -474,7 +512,8 @@
       "available": true,
       "reviews": 47,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 40,
@@ -486,7 +525,8 @@
       "available": true,
       "reviews": 46,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 41,
@@ -498,7 +538,8 @@
       "available": true,
       "reviews": 45,
       "rating": 4.5,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 42,
@@ -510,7 +551,8 @@
       "available": true,
       "reviews": 45,
       "rating": 4.2,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 43,
@@ -522,7 +564,8 @@
       "available": true,
       "reviews": 44,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 44,
@@ -534,7 +577,8 @@
       "available": true,
       "reviews": 44,
       "rating": 4.5,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 45,
@@ -546,7 +590,8 @@
       "available": true,
       "reviews": 44,
       "rating": 4.5,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 46,
@@ -558,7 +603,8 @@
       "available": true,
       "reviews": 43,
       "rating": 5.0,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 47,
@@ -570,7 +616,8 @@
       "available": true,
       "reviews": 43,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 48,
@@ -582,7 +629,8 @@
       "available": true,
       "reviews": 43,
       "rating": 4.4,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 49,
@@ -594,7 +642,8 @@
       "available": true,
       "reviews": 42,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 50,
@@ -606,7 +655,8 @@
       "available": true,
       "reviews": 41,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 51,
@@ -618,7 +668,8 @@
       "available": true,
       "reviews": 41,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 52,
@@ -630,7 +681,8 @@
       "available": true,
       "reviews": 40,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 53,
@@ -642,7 +694,8 @@
       "available": true,
       "reviews": 40,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 54,
@@ -654,7 +707,8 @@
       "available": true,
       "reviews": 40,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 55,
@@ -666,7 +720,8 @@
       "available": true,
       "reviews": 39,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 56,
@@ -678,7 +733,8 @@
       "available": true,
       "reviews": 39,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 57,
@@ -690,7 +746,8 @@
       "available": true,
       "reviews": 39,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 58,
@@ -702,7 +759,8 @@
       "available": true,
       "reviews": 39,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 59,
@@ -714,7 +772,8 @@
       "available": true,
       "reviews": 38,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 60,
@@ -726,7 +785,8 @@
       "available": true,
       "reviews": 38,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 61,
@@ -738,7 +798,8 @@
       "available": true,
       "reviews": 38,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 62,
@@ -750,7 +811,8 @@
       "available": true,
       "reviews": 38,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 63,
@@ -762,7 +824,8 @@
       "available": true,
       "reviews": 38,
       "rating": 4.5,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 64,
@@ -774,7 +837,8 @@
       "available": true,
       "reviews": 38,
       "rating": 4.5,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 65,
@@ -786,7 +850,8 @@
       "available": true,
       "reviews": 37,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 66,
@@ -798,7 +863,8 @@
       "available": true,
       "reviews": 37,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 67,
@@ -810,7 +876,8 @@
       "available": true,
       "reviews": 37,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 68,
@@ -822,7 +889,8 @@
       "available": true,
       "reviews": 37,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 69,
@@ -834,7 +902,8 @@
       "available": true,
       "reviews": 37,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 70,
@@ -846,7 +915,8 @@
       "available": true,
       "reviews": 37,
       "rating": 4.5,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 71,
@@ -858,7 +928,8 @@
       "available": true,
       "reviews": 36,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 72,
@@ -870,7 +941,8 @@
       "available": true,
       "reviews": 36,
       "rating": 4.5,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 73,
@@ -882,7 +954,8 @@
       "available": true,
       "reviews": 35,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 74,
@@ -894,7 +967,8 @@
       "available": true,
       "reviews": 35,
       "rating": 4.2,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 75,
@@ -906,7 +980,8 @@
       "available": true,
       "reviews": 34,
       "rating": 5.0,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 76,
@@ -918,7 +993,8 @@
       "available": true,
       "reviews": 34,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 77,
@@ -930,7 +1006,8 @@
       "available": true,
       "reviews": 34,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 78,
@@ -942,7 +1019,8 @@
       "available": true,
       "reviews": 34,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 79,
@@ -954,7 +1032,8 @@
       "available": true,
       "reviews": 34,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 80,
@@ -966,7 +1045,8 @@
       "available": true,
       "reviews": 34,
       "rating": 4.4,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 81,
@@ -978,7 +1058,8 @@
       "available": true,
       "reviews": 33,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 82,
@@ -990,7 +1071,8 @@
       "available": true,
       "reviews": 33,
       "rating": 4.5,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 83,
@@ -1002,7 +1084,8 @@
       "available": true,
       "reviews": 33,
       "rating": 3.2,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 84,
@@ -1011,10 +1094,11 @@
       "seller_slug": "uniques",
       "seller_name": "Unique's Co.",
       "product_url": "https://www.notonthehighstreet.com/uniques/product/boho-jewellery-gift-set-layered-earrings-necklace",
-      "available": true,
+      "available": false,
       "reviews": 32,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 85,
@@ -1026,7 +1110,8 @@
       "available": true,
       "reviews": 32,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 86,
@@ -1038,7 +1123,8 @@
       "available": true,
       "reviews": 32,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 87,
@@ -1050,7 +1136,8 @@
       "available": true,
       "reviews": 32,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 88,
@@ -1062,7 +1149,8 @@
       "available": true,
       "reviews": 32,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 89,
@@ -1074,7 +1162,8 @@
       "available": true,
       "reviews": 32,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 90,
@@ -1086,7 +1175,8 @@
       "available": true,
       "reviews": 32,
       "rating": 4.4,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 91,
@@ -1098,7 +1188,8 @@
       "available": true,
       "reviews": 31,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 92,
@@ -1110,7 +1201,8 @@
       "available": true,
       "reviews": 31,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 93,
@@ -1122,7 +1214,8 @@
       "available": true,
       "reviews": 31,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 94,
@@ -1134,7 +1227,8 @@
       "available": true,
       "reviews": 31,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 95,
@@ -1146,7 +1240,8 @@
       "available": true,
       "reviews": 31,
       "rating": 4.6,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 96,
@@ -1158,7 +1253,8 @@
       "available": true,
       "reviews": 30,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 97,
@@ -1170,7 +1266,8 @@
       "available": true,
       "reviews": 30,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 98,
@@ -1182,7 +1279,8 @@
       "available": true,
       "reviews": 30,
       "rating": 4.9,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 99,
@@ -1194,7 +1292,8 @@
       "available": true,
       "reviews": 30,
       "rating": 4.8,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 100,
@@ -1206,7 +1305,8 @@
       "available": true,
       "reviews": 30,
       "rating": 4.7,
-      "metadata_source": "cache"
+      "metadata_source": "cache",
+      "availability_checked_at": "2026-09-01T20:25:06+00:00"
     },
     {
       "rank": 101,
@@ -36435,7 +36535,7 @@
       "seller_slug": "holmeandmoss",
       "seller_name": "Holme & Moss",
       "product_url": "https://www.notonthehighstreet.com/holmeandmoss/product/liberty-print-eye-pillow-with-lavender-and-chamomile",
-      "available": false,
+      "available": true,
       "reviews": 3,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -68895,7 +68995,7 @@
       "seller_slug": "theneweden",
       "seller_name": "The New Eden",
       "product_url": "https://www.notonthehighstreet.com/theneweden/product/copper-coloured-hanging-bird-feeder",
-      "available": false,
+      "available": true,
       "reviews": 2,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -69555,7 +69655,7 @@
       "seller_slug": "personalisedbee",
       "seller_name": "Personalised Bee",
       "product_url": "https://www.notonthehighstreet.com/personalisedbee/product/personalised-wedding-gift-from-bridesmaids-custom-bridal-party-print",
-      "available": false,
+      "available": true,
       "reviews": 2,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -103095,7 +103195,7 @@
       "seller_slug": "duncanstewarttextiles",
       "seller_name": "Duncan Stewart",
       "product_url": "https://www.notonthehighstreet.com/duncanstewarttextiles/product/personalised-gardening-enamel-mug",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -152127,7 +152227,7 @@
       "seller_slug": "hardjelly",
       "seller_name": "Hard Jelly",
       "product_url": "https://www.notonthehighstreet.com/hardjelly/product/hard-jelly-15-alcohol-jelly-pots-naturally-flavoured",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -155235,7 +155335,7 @@
       "seller_slug": "katemoby",
       "seller_name": "Kate Moby",
       "product_url": "https://www.notonthehighstreet.com/katemoby/product/inky-blue-tit-chopping-board",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -156459,7 +156559,7 @@
       "seller_slug": "acquagarden",
       "seller_name": "Acqua Garden",
       "product_url": "https://www.notonthehighstreet.com/acquagarden/product/asparagus-guelph-millennium-one-x-3l-plant",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -171003,7 +171103,7 @@
       "seller_slug": "globall",
       "seller_name": "Globall",
       "product_url": "https://www.notonthehighstreet.com/globall/product/personalised-england-rugby-ball-light",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -175827,7 +175927,7 @@
       "seller_slug": "lunella",
       "seller_name": "Lunella",
       "product_url": "https://www.notonthehighstreet.com/lunella/product/thank-you-for-everything-card",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -177843,7 +177943,7 @@
       "seller_slug": "lunella",
       "seller_name": "Lunella",
       "product_url": "https://www.notonthehighstreet.com/lunella/product/personalised-new-baby-boy-footprints-card",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -183507,7 +183607,7 @@
       "seller_slug": "myposhshop",
       "seller_name": "My Posh Shop",
       "product_url": "https://www.notonthehighstreet.com/myposhshop/product/merry-little-christmas-sterling-silver-robin-bird-earrings",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -194259,7 +194359,7 @@
       "seller_slug": "hoy",
       "seller_name": "Hoy",
       "product_url": "https://www.notonthehighstreet.com/hoy/product/hoy-daily-backpack-teal",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -199899,7 +199999,7 @@
       "seller_slug": "pennyrosehomeandgifts",
       "seller_name": "Penny Rose Home & Gifts",
       "product_url": "https://www.notonthehighstreet.com/pennyrosehomeandgifts/product/hello-sunshine-plant-pot-with-3d-sunflower",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -224151,7 +224251,7 @@
       "seller_slug": "petiquette",
       "seller_name": "Petiquette Collars",
       "product_url": "https://www.notonthehighstreet.com/petiquette/product/custom-message-soft-leather-keyring",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -230955,7 +231055,7 @@
       "seller_slug": "nataliecassart",
       "seller_name": "Natalie Cass Art",
       "product_url": "https://www.notonthehighstreet.com/nataliecassart/product/personalised-hand-drawn-wedding-venue-art-print",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -234699,7 +234799,7 @@
       "seller_slug": "silverrainsilver",
       "seller_name": "Silver Rain Silver",
       "product_url": "https://www.notonthehighstreet.com/silverrainsilver/product/snowdrop-flower-drop-earrings-and-pendant-necklace-in-sterling-silver",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -237471,7 +237571,7 @@
       "seller_slug": "refinedspaces",
       "seller_name": "Refined Spaces",
       "product_url": "https://www.notonthehighstreet.com/refinedspaces/product/the-early-bird-print",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -237699,7 +237799,7 @@
       "seller_slug": "hayleyandco",
       "seller_name": "Hayley & Co",
       "product_url": "https://www.notonthehighstreet.com/hayleyandco/product/pink-and-blue-floral-block-print-cotton-washbag-make-up-bag-with-waterproof-lining-set-of-three",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -243243,7 +243343,7 @@
       "seller_slug": "mysticpearlsjewelry",
       "seller_name": "Mystic Pearls Jewelry",
       "product_url": "https://www.notonthehighstreet.com/mysticpearlsjewelry/product/white-fire-opal-earrings-sterling-silver-dangle-drop",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -244275,7 +244375,7 @@
       "seller_slug": "hopeandlove",
       "seller_name": "Hope and Love",
       "product_url": "https://www.notonthehighstreet.com/hopeandlove/product/personalised-birthday-balloon-card-for-wife",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -244455,7 +244555,7 @@
       "seller_slug": "everwild",
       "seller_name": "Everwild",
       "product_url": "https://www.notonthehighstreet.com/everwild/product/personalised-20th-china-anniversary-gift-indoor-pot-add-plant",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -245235,7 +245335,7 @@
       "seller_slug": "robinsroom",
       "seller_name": "Robin's Room",
       "product_url": "https://www.notonthehighstreet.com/robinsroom/product/bespoke-pair-of-fennel-print-pillows-reworked-from-lampshade",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -251055,7 +251155,7 @@
       "seller_slug": "carriagetrade",
       "seller_name": "The Carriage Trade Company Ltd",
       "product_url": "https://www.notonthehighstreet.com/carriagetrade/product/tiny-gold-heart-necklace",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -259875,7 +259975,7 @@
       "seller_slug": "karriebarroncards",
       "seller_name": "Karrie Barron",
       "product_url": "https://www.notonthehighstreet.com/karriebarroncards/product/mum-bear-cooking",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -265359,7 +265459,7 @@
       "seller_slug": "minilunn",
       "seller_name": "Mini Lunn",
       "product_url": "https://www.notonthehighstreet.com/minilunn/product/girl-s-personalised-bridesmaid-flower-girl-gown",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -265467,7 +265567,7 @@
       "seller_slug": "mollybrownlondon",
       "seller_name": "Molly Brown London",
       "product_url": "https://www.notonthehighstreet.com/mollybrownlondon/product/by-the-inch-holy-communion-cross-bracelet",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -266715,7 +266815,7 @@
       "seller_slug": "welovetocreate",
       "seller_name": "We Love To Create",
       "product_url": "https://www.notonthehighstreet.com/welovetocreate/product/rugby-ball-keyring",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -272331,7 +272431,7 @@
       "seller_slug": "dibor",
       "seller_name": "Dibor",
       "product_url": "https://www.notonthehighstreet.com/dibor/product/double-metal-heart-planter-buckets",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -273387,7 +273487,7 @@
       "seller_slug": "snugglefeet",
       "seller_name": "The Laser Engraving Company",
       "product_url": "https://www.notonthehighstreet.com/snugglefeet/product/personalised-wooden-wedding-ring-box",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -285015,7 +285115,7 @@
       "seller_slug": "netalternative",
       "seller_name": "Warner's End",
       "product_url": "https://www.notonthehighstreet.com/netalternative/product/personalised-18th-21st-birthday-jewellery-box",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -285411,7 +285511,7 @@
       "seller_slug": "kindredfires",
       "seller_name": "Kindred Fires",
       "product_url": "https://www.notonthehighstreet.com/kindredfires/product/personalised-wedding-date-anniversary-candle",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -291615,7 +291715,7 @@
       "seller_slug": "attic",
       "seller_name": "attic",
       "product_url": "https://www.notonthehighstreet.com/attic/product/happiness-bracelet",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -300651,7 +300751,7 @@
       "seller_slug": "beanandbemble",
       "seller_name": "Bean and Bemble",
       "product_url": "https://www.notonthehighstreet.com/beanandbemble/product/heat-resistant-retro-large-round-chopping-board",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 4.0,
       "metadata_source": "cache"
@@ -300795,7 +300895,7 @@
       "seller_slug": "vintagelane",
       "seller_name": "Vintage Lane",
       "product_url": "https://www.notonthehighstreet.com/vintagelane/product/pearl-bar-drop-earrings-non-tarnish",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 4.0,
       "metadata_source": "cache"
@@ -319647,7 +319747,7 @@
       "seller_slug": "collectionsbyhayley",
       "seller_name": "Indisa Jewellery",
       "product_url": "https://www.notonthehighstreet.com/collectionsbyhayley/product/gold-upper-arm-celestial-cuff",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 3.0,
       "metadata_source": "cache"
@@ -331791,7 +331891,7 @@
       "seller_slug": "mattify",
       "seller_name": "Mattify",
       "product_url": "https://www.notonthehighstreet.com/mattify/product/scandi-star-doormat-mocha",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 1.0,
       "metadata_source": "cache"
@@ -333471,7 +333571,7 @@
       "seller_slug": "acquagarden",
       "seller_name": "Acqua Garden",
       "product_url": "https://www.notonthehighstreet.com/acquagarden/product/lemongrass-plants",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 1.0,
       "metadata_source": "cache"
@@ -333639,7 +333739,7 @@
       "seller_slug": "acquagarden",
       "seller_name": "Acqua Garden",
       "product_url": "https://www.notonthehighstreet.com/acquagarden/product/nectarine-tree-humboldt",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 1.0,
       "metadata_source": "cache"
@@ -336135,7 +336235,7 @@
       "seller_slug": "karriebarroncards",
       "seller_name": "Karrie Barron",
       "product_url": "https://www.notonthehighstreet.com/karriebarroncards/product/babies-crib",
-      "available": false,
+      "available": true,
       "reviews": 1,
       "rating": 1.0,
       "metadata_source": "cache"
