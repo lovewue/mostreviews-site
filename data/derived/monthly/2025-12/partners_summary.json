@@ -498,12 +498,6 @@
     "total_reviews_month": 41
   },
   {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 12,
-    "total_reviews_month": 41
-  },
-  {
     "seller_slug": "wue",
     "seller_name": "Wue",
     "product_count_month": 17,
@@ -531,6 +525,12 @@
     "seller_slug": "nameitwhatyoulike",
     "seller_name": "Nameitwhatyoulike",
     "product_count_month": 7,
+    "total_reviews_month": 39
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 11,
     "total_reviews_month": 39
   },
   {
@@ -912,12 +912,6 @@
     "total_reviews_month": 22
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 12,
-    "total_reviews_month": 22
-  },
-  {
     "seller_slug": "whiskytastingcompany",
     "seller_name": "Whisky Tasting Company",
     "product_count_month": 6,
@@ -1170,6 +1164,12 @@
     "total_reviews_month": 16
   },
   {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 11,
+    "total_reviews_month": 16
+  },
+  {
     "seller_slug": "saabunsoap",
     "seller_name": "Saabuni",
     "product_count_month": 1,
@@ -1392,6 +1392,12 @@
     "total_reviews_month": 13
   },
   {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 9,
+    "total_reviews_month": 13
+  },
+  {
     "seller_slug": "thelittlepinco",
     "seller_name": "The Little Pin Co.",
     "product_count_month": 11,
@@ -1605,12 +1611,6 @@
     "seller_slug": "swootsy",
     "seller_name": "Swootsy",
     "product_count_month": 10,
-    "total_reviews_month": 11
-  },
-  {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 8,
     "total_reviews_month": 11
   },
   {
@@ -2547,6 +2547,12 @@
     "seller_slug": "katherineswaine",
     "seller_name": "Katherine Swaine",
     "product_count_month": 4,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 1,
     "total_reviews_month": 6
   },
   {

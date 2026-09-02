@@ -738,12 +738,6 @@
     "total_reviews_month": 5
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 4,
-    "total_reviews_month": 5
-  },
-  {
     "seller_slug": "rosiemadeathing",
     "seller_name": "Rosie Made A Thing",
     "product_count_month": 5,
@@ -951,6 +945,12 @@
     "seller_slug": "placesandspacesartco",
     "seller_name": "Places & Spaces Art Co.",
     "product_count_month": 2,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 3,
     "total_reviews_month": 4
   },
   {
@@ -1742,6 +1742,12 @@
   {
     "seller_slug": "kokoblossom",
     "seller_name": "Koko Blossom",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
     "product_count_month": 2,
     "total_reviews_month": 2
   },
@@ -3176,12 +3182,6 @@
   {
     "seller_slug": "lindsaypearson",
     "seller_name": "LINDSAY PEARSON",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

@@ -60,12 +60,6 @@
     "total_reviews_month": 26
   },
   {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 18,
-    "total_reviews_month": 26
-  },
-  {
     "seller_slug": "oakdenedesigns",
     "seller_name": "Oakdene Designs",
     "product_count_month": 18,
@@ -87,6 +81,12 @@
     "seller_slug": "gaamaa",
     "seller_name": "Gaamaa",
     "product_count_month": 13,
+    "total_reviews_month": 22
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 16,
     "total_reviews_month": 22
   },
   {
@@ -702,12 +702,6 @@
     "total_reviews_month": 5
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 5,
-    "total_reviews_month": 5
-  },
-  {
     "seller_slug": "simplycolors",
     "seller_name": "Simply Colors",
     "product_count_month": 3,
@@ -954,6 +948,12 @@
     "total_reviews_month": 4
   },
   {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
     "seller_slug": "simonseabright",
     "seller_name": "Seabright Designs",
     "product_count_month": 4,
@@ -975,6 +975,12 @@
     "seller_slug": "carriagetrade",
     "seller_name": "The Carriage Trade Company Ltd",
     "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 2,
     "total_reviews_month": 4
   },
   {
@@ -3074,6 +3080,12 @@
   {
     "seller_slug": "ladidasweettreats",
     "seller_name": "La Mira Sweet Treats",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

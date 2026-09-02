@@ -852,12 +852,6 @@
     "total_reviews_month": 8
   },
   {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 6,
-    "total_reviews_month": 8
-  },
-  {
     "seller_slug": "thegluttonousgardener",
     "seller_name": "The Gluttonous Gardener",
     "product_count_month": 7,
@@ -1116,12 +1110,6 @@
     "total_reviews_month": 6
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 5,
-    "total_reviews_month": 6
-  },
-  {
     "seller_slug": "qwertybeerbox",
     "seller_name": "QWERTY Beer Box",
     "product_count_month": 3,
@@ -1149,6 +1137,12 @@
     "seller_slug": "thedepartmentofgifting",
     "seller_name": "The Department Of Gifting",
     "product_count_month": 4,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 5,
     "total_reviews_month": 6
   },
   {
@@ -1430,6 +1424,12 @@
   {
     "seller_slug": "carriagetrade",
     "seller_name": "The Carriage Trade Company Ltd",
+    "product_count_month": 4,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
     "product_count_month": 4,
     "total_reviews_month": 5
   },
@@ -1718,6 +1718,12 @@
   {
     "seller_slug": "popsanddudes",
     "seller_name": "Pops and Dudes",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 4,
     "total_reviews_month": 4
   },
@@ -2358,12 +2364,6 @@
     "total_reviews_month": 3
   },
   {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 3,
-    "total_reviews_month": 3
-  },
-  {
     "seller_slug": "thelittlepicturecompany",
     "seller_name": "The Little Picture Company",
     "product_count_month": 3,
@@ -2846,6 +2846,12 @@
   {
     "seller_slug": "lafillecreative",
     "seller_name": "La Fille Créative",
+    "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
     "product_count_month": 1,
     "total_reviews_month": 2
   },

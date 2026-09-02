@@ -378,7 +378,7 @@
     "total_reviews_month": 8
   },
   {
-    "seller_slug": "mixpixie",
+    "seller_slug": "thegiftedit",
     "seller_name": "The Gift Edit",
     "product_count_month": 3,
     "total_reviews_month": 8
@@ -645,6 +645,12 @@
     "seller_slug": "lottieshaws",
     "seller_name": "LOTTIE SHAW'S",
     "product_count_month": 5,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 4,
     "total_reviews_month": 5
   },
   {
@@ -1184,12 +1190,6 @@
   {
     "seller_slug": "landmbespokedesigns",
     "seller_name": "L&M Bespoke Designs",
-    "product_count_month": 3,
-    "total_reviews_month": 3
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
     "product_count_month": 3,
     "total_reviews_month": 3
   },
@@ -1845,12 +1845,6 @@
     "seller_slug": "plantsbypost",
     "seller_name": "Plants By Post",
     "product_count_month": 2,
-    "total_reviews_month": 2
-  },
-  {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 1,
     "total_reviews_month": 2
   },
   {
@@ -3600,7 +3594,7 @@
     "total_reviews_month": 1
   },
   {
-    "seller_slug": "thegiftedit",
+    "seller_slug": "mixpixie",
     "seller_name": "The Gift Edit",
     "product_count_month": 1,
     "total_reviews_month": 1

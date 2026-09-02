@@ -426,12 +426,6 @@
     "total_reviews_month": 9
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 6,
-    "total_reviews_month": 9
-  },
-  {
     "seller_slug": "claireclose",
     "seller_name": "So Close",
     "product_count_month": 9,
@@ -726,6 +720,12 @@
     "total_reviews_month": 6
   },
   {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 5,
+    "total_reviews_month": 6
+  },
+  {
     "seller_slug": "rosiemadeathing",
     "seller_name": "Rosie Made A Thing",
     "product_count_month": 5,
@@ -819,6 +819,12 @@
     "seller_slug": "julietreevesdesigns",
     "seller_name": "Juliet Reeves Designs",
     "product_count_month": 5,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 3,
     "total_reviews_month": 5
   },
   {
@@ -1166,6 +1172,12 @@
   {
     "seller_slug": "thebestroom",
     "seller_name": "The Best Room",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
     "product_count_month": 4,
     "total_reviews_month": 4
   },
@@ -1568,12 +1580,6 @@
   {
     "seller_slug": "thecraftykitcompany",
     "seller_name": "The Crafty Kit Company",
-    "product_count_month": 3,
-    "total_reviews_month": 3
-  },
-  {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
     "product_count_month": 3,
     "total_reviews_month": 3
   },
@@ -2004,12 +2010,6 @@
     "total_reviews_month": 2
   },
   {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 2,
-    "total_reviews_month": 2
-  },
-  {
     "seller_slug": "lapislondon",
     "seller_name": "Lapis London",
     "product_count_month": 2,
@@ -2306,12 +2306,6 @@
   {
     "seller_slug": "thedanes",
     "seller_name": "The Danes",
-    "product_count_month": 2,
-    "total_reviews_month": 2
-  },
-  {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
     "product_count_month": 2,
     "total_reviews_month": 2
   },
@@ -4148,6 +4142,12 @@
   {
     "seller_slug": "thecornishlarder",
     "seller_name": "The Cornish Larder",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

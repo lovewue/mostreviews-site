@@ -492,12 +492,6 @@
     "total_reviews_month": 14
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 7,
-    "total_reviews_month": 14
-  },
-  {
     "seller_slug": "twistedpendant",
     "seller_name": "Twisted Pendant",
     "product_count_month": 14,
@@ -1020,6 +1014,12 @@
     "total_reviews_month": 7
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 1,
+    "total_reviews_month": 7
+  },
+  {
     "seller_slug": "littlefoundry",
     "seller_name": "Little Foundry",
     "product_count_month": 6,
@@ -1041,6 +1041,12 @@
     "seller_slug": "oliviamorgan",
     "seller_name": "Olivia Morgan Ltd",
     "product_count_month": 5,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 6,
     "total_reviews_month": 7
   },
   {

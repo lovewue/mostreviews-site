@@ -426,6 +426,12 @@
     "total_reviews_month": 21
   },
   {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 13,
+    "total_reviews_month": 21
+  },
+  {
     "seller_slug": "nameyourball",
     "seller_name": "We Print Balls",
     "product_count_month": 4,
@@ -492,12 +498,6 @@
     "total_reviews_month": 19
   },
   {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 12,
-    "total_reviews_month": 19
-  },
-  {
     "seller_slug": "thewordshack",
     "seller_name": "The Word Shack",
     "product_count_month": 9,
@@ -561,12 +561,6 @@
     "seller_slug": "sparksanddaughters",
     "seller_name": "Sparks And Daughters",
     "product_count_month": 14,
-    "total_reviews_month": 17
-  },
-  {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 8,
     "total_reviews_month": 17
   },
   {
@@ -639,6 +633,12 @@
     "seller_slug": "taylorcutco",
     "seller_name": "Taylor Cut Co",
     "product_count_month": 10,
+    "total_reviews_month": 15
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 7,
     "total_reviews_month": 15
   },
   {
@@ -849,12 +849,6 @@
     "seller_slug": "pogofandango",
     "seller_name": "Pogofandango",
     "product_count_month": 9,
-    "total_reviews_month": 11
-  },
-  {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 8,
     "total_reviews_month": 11
   },
   {
@@ -1335,6 +1329,12 @@
     "seller_slug": "personalisednpretty",
     "seller_name": "Personalisednpretty",
     "product_count_month": 5,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 7,
     "total_reviews_month": 7
   },
   {
@@ -1995,6 +1995,12 @@
     "seller_slug": "kokoblossom",
     "seller_name": "Koko Blossom",
     "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 1,
     "total_reviews_month": 4
   },
   {

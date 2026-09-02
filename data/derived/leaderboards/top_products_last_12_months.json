@@ -1,6 +1,6 @@
 {
   "leaderboard": "last_12_months",
-  "generated_at": "2026-09-01T20:25:06+00:00",
+  "generated_at": "2026-09-02T08:29:44+00:00",
   "product_count": 28188,
   "total_products_reviewed": 28188,
   "total_reviews": 59423,
@@ -1094,7 +1094,7 @@
       "seller_slug": "uniques",
       "seller_name": "Unique's Co.",
       "product_url": "https://www.notonthehighstreet.com/uniques/product/boho-jewellery-gift-set-layered-earrings-necklace",
-      "available": false,
+      "available": true,
       "reviews": 32,
       "rating": 4.9,
       "metadata_source": "cache",
@@ -94483,7 +94483,7 @@
       "seller_slug": "lineamasks",
       "seller_name": "Awristo",
       "product_url": "https://www.notonthehighstreet.com/lineamasks/product/organic-lavender-and-flax-seed-eye-pillow",
-      "available": true,
+      "available": false,
       "reviews": 2,
       "rating": 3.5,
       "metadata_source": "cache"

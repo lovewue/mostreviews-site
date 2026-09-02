@@ -402,6 +402,12 @@
     "total_reviews_month": 10
   },
   {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 4,
+    "total_reviews_month": 10
+  },
+  {
     "seller_slug": "uniques",
     "seller_name": "Unique's Co.",
     "product_count_month": 6,
@@ -471,12 +477,6 @@
     "seller_slug": "thatsnicethat",
     "seller_name": "That's Nice That",
     "product_count_month": 9,
-    "total_reviews_month": 9
-  },
-  {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 3,
     "total_reviews_month": 9
   },
   {
@@ -873,12 +873,6 @@
     "seller_slug": "pinkpineapple",
     "seller_name": "Pink Pineapple Home & Gifts",
     "product_count_month": 5,
-    "total_reviews_month": 5
-  },
-  {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 3,
     "total_reviews_month": 5
   },
   {
@@ -1311,6 +1305,12 @@
     "seller_slug": "karriebarroncards",
     "seller_name": "Karrie Barron",
     "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 1,
     "total_reviews_month": 3
   },
   {
@@ -2118,6 +2118,12 @@
     "total_reviews_month": 2
   },
   {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
     "seller_slug": "postboxparty",
     "seller_name": "Postbox Party",
     "product_count_month": 2,
@@ -2301,12 +2307,6 @@
     "seller_slug": "thedanes",
     "seller_name": "The Danes",
     "product_count_month": 1,
-    "total_reviews_month": 2
-  },
-  {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 2,
     "total_reviews_month": 2
   },
   {
@@ -4286,6 +4286,12 @@
   {
     "seller_slug": "thedesigndealership",
     "seller_name": "The Design Dealership",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

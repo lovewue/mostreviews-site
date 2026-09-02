@@ -1650,12 +1650,6 @@
     "total_reviews_month": 4
   },
   {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 4,
-    "total_reviews_month": 4
-  },
-  {
     "seller_slug": "thisisnessie",
     "seller_name": "This Is Nessie",
     "product_count_month": 4,
@@ -2084,6 +2078,12 @@
   {
     "seller_slug": "thedepartmentofgifting",
     "seller_name": "The Department Of Gifting",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
     "product_count_month": 3,
     "total_reviews_month": 3
   },
@@ -2949,6 +2949,12 @@
     "seller_slug": "thefizzbizz",
     "seller_name": "The Fizz Bizz",
     "product_count_month": 1,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 2,
     "total_reviews_month": 2
   },
   {
@@ -5186,12 +5192,6 @@
   {
     "seller_slug": "thedeadseaco",
     "seller_name": "The Dead Sea Co.",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

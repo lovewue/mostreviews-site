@@ -38,8 +38,8 @@
   {
     "seller_slug": "mixpixie",
     "seller_name": "The Gift Edit",
-    "product_count_month": 25,
-    "total_reviews_month": 36
+    "product_count_month": 24,
+    "total_reviews_month": 33
   },
   {
     "seller_slug": "selections",
@@ -492,12 +492,6 @@
     "total_reviews_month": 7
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 6,
-    "total_reviews_month": 7
-  },
-  {
     "seller_slug": "qwertybeerbox",
     "seller_name": "QWERTY Beer Box",
     "product_count_month": 6,
@@ -608,6 +602,12 @@
   {
     "seller_slug": "oliviamorgan",
     "seller_name": "Olivia Morgan Ltd",
+    "product_count_month": 5,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 5,
     "total_reviews_month": 6
   },
@@ -1311,6 +1311,12 @@
     "seller_slug": "thedogscollarsuk",
     "seller_name": "The Dogs Collars UK",
     "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 1,
     "total_reviews_month": 3
   },
   {
@@ -3212,6 +3218,12 @@
   {
     "seller_slug": "ladidasweettreats",
     "seller_name": "La Mira Sweet Treats",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

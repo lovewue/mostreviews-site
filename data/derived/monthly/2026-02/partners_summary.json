@@ -276,12 +276,6 @@
     "total_reviews_month": 20
   },
   {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 7,
-    "total_reviews_month": 20
-  },
-  {
     "seller_slug": "pogofandango",
     "seller_name": "Pogofandango",
     "product_count_month": 18,
@@ -477,6 +471,12 @@
     "seller_slug": "alphabetinteriors",
     "seller_name": "Solesmith",
     "product_count_month": 13,
+    "total_reviews_month": 14
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 5,
     "total_reviews_month": 14
   },
   {
@@ -822,12 +822,6 @@
     "total_reviews_month": 9
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 2,
-    "total_reviews_month": 9
-  },
-  {
     "seller_slug": "rossandross",
     "seller_name": "Ross & Ross Gifts",
     "product_count_month": 3,
@@ -837,6 +831,12 @@
     "seller_slug": "sparksanddaughters",
     "seller_name": "Sparks And Daughters",
     "product_count_month": 9,
+    "total_reviews_month": 9
+  },
+  {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 5,
     "total_reviews_month": 9
   },
   {
@@ -1332,6 +1332,12 @@
     "total_reviews_month": 5
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 2,
+    "total_reviews_month": 5
+  },
+  {
     "seller_slug": "luckandluck",
     "seller_name": "Luck and Luck",
     "product_count_month": 5,
@@ -1377,6 +1383,12 @@
     "seller_slug": "personalisedbee",
     "seller_name": "Personalised Bee",
     "product_count_month": 5,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 1,
     "total_reviews_month": 5
   },
   {
@@ -2132,12 +2144,6 @@
   {
     "seller_slug": "talesfromtheearth",
     "seller_name": "Tales From The Earth",
-    "product_count_month": 3,
-    "total_reviews_month": 3
-  },
-  {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
     "product_count_month": 3,
     "total_reviews_month": 3
   },
@@ -4232,12 +4238,6 @@
   {
     "seller_slug": "lovajewellery",
     "seller_name": "LOVA JEWELLERY",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

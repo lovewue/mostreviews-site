@@ -774,12 +774,6 @@
     "total_reviews_month": 10
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 6,
-    "total_reviews_month": 10
-  },
-  {
     "seller_slug": "thecolourfulaura",
     "seller_name": "Sparkling Aura",
     "product_count_month": 7,
@@ -1356,6 +1350,12 @@
     "total_reviews_month": 5
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 1,
+    "total_reviews_month": 5
+  },
+  {
     "seller_slug": "littlesilverleaf",
     "seller_name": "Little Silverleaf",
     "product_count_month": 3,
@@ -1376,6 +1376,12 @@
   {
     "seller_slug": "morganfrench",
     "seller_name": "Morgan & French",
+    "product_count_month": 5,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 5,
     "total_reviews_month": 5
   },

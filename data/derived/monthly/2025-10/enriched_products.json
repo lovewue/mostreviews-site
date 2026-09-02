@@ -5262,9 +5262,9 @@
   {
     "sku": "1049381",
     "name": "Personalised Special Year Gin With Music",
-    "seller_slug": "mixpixie",
+    "seller_slug": "thegiftedit",
     "seller_name": "The Gift Edit",
-    "product_url": "https://www.notonthehighstreet.com/mixpixie/product/personalised-special-year-flavoured-gin-with-music",
+    "product_url": "https://www.notonthehighstreet.com/thegiftedit/product/personalised-special-year-flavoured-gin-with-music",
     "available": true,
     "review_count_month": 2,
     "rating_month": 4.5
@@ -5902,9 +5902,9 @@
   {
     "sku": "1290730",
     "name": "Personalised Vintage Map Picture With Stitched Heart",
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_url": "https://www.notonthehighstreet.com/poshtottydesignscreates/product/personalised-vintage-map-picture-with-stitched-heart",
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_url": "https://www.notonthehighstreet.com/labouroflove/product/personalised-vintage-map-picture-with-stitched-heart",
     "available": true,
     "review_count_month": 2,
     "rating_month": 3.5
@@ -37195,7 +37195,7 @@
     "seller_slug": "lineamasks",
     "seller_name": "Awristo",
     "product_url": "https://www.notonthehighstreet.com/lineamasks/product/organic-lavender-and-flax-seed-eye-pillow",
-    "available": true,
+    "available": false,
     "review_count_month": 1,
     "rating_month": 2.0
   },

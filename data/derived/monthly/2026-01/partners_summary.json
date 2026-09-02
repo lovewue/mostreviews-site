@@ -882,12 +882,6 @@
     "total_reviews_month": 7
   },
   {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 5,
-    "total_reviews_month": 7
-  },
-  {
     "seller_slug": "wordupcreative",
     "seller_name": "Word Up Creative",
     "product_count_month": 6,
@@ -1155,6 +1149,12 @@
     "seller_slug": "thedepartmentofgifting",
     "seller_name": "The Department Of Gifting",
     "product_count_month": 5,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 4,
     "total_reviews_month": 5
   },
   {
@@ -1551,6 +1551,12 @@
     "seller_slug": "sosilver",
     "seller_name": "So Silver",
     "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 3,
     "total_reviews_month": 4
   },
   {
@@ -2660,12 +2666,6 @@
   {
     "seller_slug": "thedanes",
     "seller_name": "The Danes",
-    "product_count_month": 2,
-    "total_reviews_month": 2
-  },
-  {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
     "product_count_month": 2,
     "total_reviews_month": 2
   },

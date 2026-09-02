@@ -150,12 +150,6 @@
     "total_reviews_month": 28
   },
   {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 14,
-    "total_reviews_month": 27
-  },
-  {
     "seller_slug": "therusticdish",
     "seller_name": "The Rustic Dish®",
     "product_count_month": 19,
@@ -189,6 +183,12 @@
     "seller_slug": "letterfest",
     "seller_name": "Letterfest",
     "product_count_month": 12,
+    "total_reviews_month": 24
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 13,
     "total_reviews_month": 24
   },
   {
@@ -747,12 +747,6 @@
     "seller_slug": "pinkpineapple",
     "seller_name": "Pink Pineapple Home & Gifts",
     "product_count_month": 8,
-    "total_reviews_month": 8
-  },
-  {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 5,
     "total_reviews_month": 8
   },
   {
@@ -1476,6 +1470,12 @@
     "total_reviews_month": 4
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 1,
+    "total_reviews_month": 4
+  },
+  {
     "seller_slug": "littlecherubdesign",
     "seller_name": "Little Cherub Design",
     "product_count_month": 4,
@@ -1551,6 +1551,12 @@
     "seller_slug": "plumandivory",
     "seller_name": "Plum & Ivory",
     "product_count_month": 1,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 4,
     "total_reviews_month": 4
   },
   {
@@ -2151,6 +2157,12 @@
     "seller_slug": "thecottonbuntingcompany",
     "seller_name": "The Cotton Bunting Company",
     "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 1,
     "total_reviews_month": 3
   },
   {
