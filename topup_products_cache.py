@@ -65,6 +65,21 @@ GOOD_STATUSES = {
     "ok",
 }
 
+# -----------------------------------------------------------------------------
+# Stale-URL revalidation
+# -----------------------------------------------------------------------------
+# When a seller renames its NOTHS shop, every cached product_url keeps pointing
+# at the old /<old-slug>/product/... path. NOTHS does not 404 that path - it
+# 302s to the homepage - so the row still looks healthy, should_retry_record()
+# skips it forever, and the affiliate link lands on a blank page.
+#
+# These settings drive a cheap liveness sweep over the most recent month(s).
+# -----------------------------------------------------------------------------
+REVALIDATE_URL_MONTHS = 1      # how many of the most recent months to sweep
+REVALIDATE_URL_DAYS = 30       # per-SKU cooldown between liveness checks
+MAX_URL_REVALIDATIONS = 500    # hard cap on checks per run
+MAX_DEAD_SHARE = 0.5           # abort the sweep if more than this reads dead
+
 UA_POOL = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15",
@@ -522,6 +537,94 @@ def is_product_live(url: str | None) -> bool:
         return False
 
 
+def url_check_due(record: dict | None) -> bool:
+    """Whether this record's product_url is due a liveness check."""
+    if not record or not clean_url(record.get("product_url")):
+        return False
+
+    last_checked = parse_iso_datetime(record.get("url_checked_at"))
+    if not last_checked:
+        return True
+
+    return (datetime.now(timezone.utc) - last_checked).days >= REVALIDATE_URL_DAYS
+
+
+def recent_months(months: list, count: int = REVALIDATE_URL_MONTHS) -> set:
+    """Return the N most recent month keys from the monthly index."""
+    keys = sorted({m.get("month") for m in months if m.get("month")})
+    return set(keys[-count:]) if keys else set()
+
+
+def revalidate_product_urls(cache: dict, sku_months: dict, months: list) -> set:
+    """
+    Liveness-check cached product URLs for SKUs in the most recent month(s).
+
+    Returns the set of SKUs whose URL no longer resolves to a product page, so
+    the caller can force a fresh NOTHS lookup even though should_retry_record()
+    would skip the row.
+
+    Every checked row is stamped with url_checked_at so later runs skip it. The
+    stamp is only ever written with a value, never as null - writing a null key
+    onto every row is what pushed the leaderboard file past GitHub's 100MB
+    limit and broke the push step.
+    """
+    target = recent_months(months)
+    if not target:
+        return set()
+
+    candidates = sorted(
+        sku
+        for sku, seen in sku_months.items()
+        if (seen & target) and url_check_due(cache.get(sku))
+    )[:MAX_URL_REVALIDATIONS]
+
+    if not candidates:
+        print("\N{LINK SYMBOL} URL revalidation: nothing due.")
+        return set()
+
+    print(f"\N{LINK SYMBOL} URL revalidation: checking {len(candidates)} product URLs...")
+
+    results: dict[str, bool] = {}
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        futures = {
+            executor.submit(is_product_live, cache[sku].get("product_url")): sku
+            for sku in candidates
+        }
+
+        for fut in as_completed(futures):
+            sku = futures[fut]
+            try:
+                results[sku] = fut.result()
+            except Exception as e:
+                # A failed request is not evidence of a dead product.
+                print(f"\N{WARNING SIGN} URL check errored for {sku}: {e}")
+                results[sku] = True
+
+    dead = {sku for sku, live in results.items() if not live}
+    dead_share = len(dead) / len(results) if results else 0.0
+
+    # is_product_live() cannot tell "delisted" from "NOTHS blocked us", so a
+    # throttled run comes back as a wall of False. Discard the whole pass
+    # rather than re-resolving hundreds of perfectly healthy rows.
+    if dead_share > MAX_DEAD_SHARE:
+        print(
+            f"\N{OCTAGONAL SIGN} URL revalidation discarded: {len(dead)}/{len(results)} "
+            f"({dead_share:.0%}) read dead - assuming we were blocked."
+        )
+        return set()
+
+    ts = now_iso()
+    for sku in results:
+        cache[sku]["url_checked_at"] = ts
+
+    print(
+        f"\N{LINK SYMBOL} URL revalidation: {len(dead)} stale of {len(results)} checked."
+    )
+
+    return dead
+
+
 # -----------------------------------------------------------------------------
 # Metadata build / merge logic
 # -----------------------------------------------------------------------------
@@ -627,19 +730,11 @@ def main() -> None:
     sku_months, all_skus = load_monthly_sku_map()
     months = load_monthly_index()
 
-    to_process = sorted(
-        [
-            sku
-            for sku in all_skus
-            if sku not in cache or should_retry_record(cache.get(sku))
-        ]
-    )
-
-    print(f"📦 Cache SKUs:      {len(cache)}")
-    print(f"🗓️ Monthly SKUs:    {len(all_skus)}")
-    print(f"🔄 To process:      {len(to_process)}")
-    print(f"🗂️ Months scanned:   {len(months)}")
-    print()
+    needs_lookup = {
+        sku
+        for sku in all_skus
+        if sku not in cache or should_retry_record(cache.get(sku))
+    }
 
     # Update existing cache records based on observed month appearances
     ts = now_iso()
@@ -654,6 +749,22 @@ def main() -> None:
         cache[sku]["first_seen_month"] = cache[sku].get("first_seen_month") or first_seen
         cache[sku]["last_seen_month"] = last_seen
         cache[sku]["updated_at"] = ts
+
+    # A row with a name and a good lookup_status is skipped by
+    # should_retry_record() forever, so a seller rename silently freezes its
+    # product_url. Sweep the current month for URLs that no longer resolve
+    # and push those back through the NOTHS lookup, which re-derives the
+    # seller slug from a fresh SKU search.
+    stale_url_skus = revalidate_product_urls(cache, sku_months, months)
+
+    to_process = sorted(needs_lookup | stale_url_skus)
+
+    print(f"📦 Cache SKUs:      {len(cache)}")
+    print(f"🗓️ Monthly SKUs:    {len(all_skus)}")
+    print(f"🔄 To process:      {len(to_process)}")
+    print(f"   ↳ stale URLs:   {len(stale_url_skus)}")
+    print(f"🗂️ Months scanned:   {len(months)}")
+    print()
 
     if not to_process:
         save_cache(cache)
