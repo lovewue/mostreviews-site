@@ -29,6 +29,7 @@ LAST_12_MONTHS_PATTERN = "feefo_product_ratings_year_*.xlsx"
 OUT_DIR = DATA_DIR / "derived" / "leaderboards"
 OUT_ALL_TIME = OUT_DIR / "top_products_all_time.json"
 OUT_LAST_12 = OUT_DIR / "top_products_last_12_months.json"
+OUT_BRANDS_LAST_12 = OUT_DIR / "top_brands_last_12_months.json"
 
 ARCHIVE_ALL_TIME = OUT_DIR / "top_products_all_time_archive.json"
 ARCHIVE_LAST_12 = OUT_DIR / "top_products_last_12_months_archive.json"
@@ -529,6 +530,126 @@ def build_leaderboard(path: Path, label: str, cache: dict) -> dict:
 
 
 # -----------------------------------------------------------------------------
+# Brand leaderboard
+# -----------------------------------------------------------------------------
+SELLER_PLACEHOLDERS = {"", "none", "null", "unknown", "unknown brand", "unknown seller"}
+
+NOTHS_BASE_URL = "https://www.notonthehighstreet.com"
+
+
+def is_unresolved_seller(item: dict) -> bool:
+    """True for product rows that carry no real NOTHS seller."""
+    slug = str(item.get("seller_slug") or "").strip().lower()
+    name = str(item.get("seller_name") or "").strip().lower()
+    return slug in SELLER_PLACEHOLDERS or name in SELLER_PLACEHOLDERS
+
+
+def build_brand_leaderboard(product_leaderboard: dict, label: str) -> dict:
+    """
+    Aggregate an already-built product leaderboard into a brand leaderboard.
+
+    Every product row already carries seller_slug / seller_name resolved from
+    the cache, the previous leaderboard or the archive fallback, so this does
+    no scraping of its own and adds no runtime to the build.
+
+    Rows with no resolvable seller are counted separately rather than bucketed
+    into an "Unknown brand" row - that bucket previously rendered as a fake #1
+    brand linking to a dead partner page.
+    """
+    items = product_leaderboard.get("items", [])
+
+    brands = {}
+    unresolved_rows = 0
+    unresolved_reviews = 0
+
+    for item in items:
+        reviews = safe_int(item.get("reviews"))
+
+        if is_unresolved_seller(item):
+            unresolved_rows += 1
+            unresolved_reviews += reviews
+            continue
+
+        slug = str(item.get("seller_slug")).strip().lower()
+
+        brand = brands.setdefault(
+            slug,
+            {
+                "seller_slug": slug,
+                "seller_name": clean_text(item.get("seller_name")) or slug,
+                "total_reviews": 0,
+                "product_count": 0,
+                "reviewed_product_count": 0,
+                "top_product_reviews": 0,
+                "_rating_weight": 0.0,
+            },
+        )
+
+        brand["total_reviews"] += reviews
+        brand["product_count"] += 1
+
+        if reviews > 0:
+            brand["reviewed_product_count"] += 1
+
+        if reviews > brand["top_product_reviews"]:
+            brand["top_product_reviews"] = reviews
+
+        rating = safe_float(item.get("rating"))
+        if rating and reviews:
+            brand["_rating_weight"] += rating * reviews
+
+    ordered = sorted(
+        brands.values(),
+        key=lambda b: (-b["total_reviews"], -b["product_count"], b["seller_slug"]),
+    )
+
+    # Competition ranks - brands on equal review totals share a rank, so the
+    # renderer can mark them with "=" exactly like the product leaderboards.
+    rows = []
+    previous_total = None
+    current_rank = 0
+
+    for idx, brand in enumerate(ordered, start=1):
+        if brand["total_reviews"] != previous_total:
+            current_rank = idx
+            previous_total = brand["total_reviews"]
+
+        weight = brand.pop("_rating_weight")
+
+        brand["average_rating"] = (
+            round(weight / brand["total_reviews"], 2)
+            if brand["total_reviews"] and weight
+            else None
+        )
+        brand["rank"] = current_rank
+        brand["brand_url"] = NOTHS_BASE_URL + "/" + brand["seller_slug"]
+
+        rows.append(brand)
+
+    total_reviews = sum(b["total_reviews"] for b in rows)
+    top_100_reviews = sum(b["total_reviews"] for b in rows[:100])
+
+    return {
+        "leaderboard": label,
+        "generated_at": now_iso(),
+        "brand_count": len(rows),
+        "total_reviews": total_reviews,
+        "unresolved_product_rows": unresolved_rows,
+        "unresolved_reviews": unresolved_reviews,
+        "brands_with_100_plus_reviews": sum(
+            1 for b in rows if b["total_reviews"] >= 100
+        ),
+        "average_reviews_per_brand": (
+            round(total_reviews / len(rows), 2) if rows else 0
+        ),
+        "top_100_share_of_reviews": (
+            round(top_100_reviews / total_reviews, 4) if total_reviews else 0
+        ),
+        "items": rows,
+    }
+
+
+# -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 def main():
@@ -546,8 +667,12 @@ def main():
     last_12 = build_leaderboard(last_12_months_file, "last_12_months", cache)
     save_json(OUT_LAST_12, last_12)
 
+    brands_last_12 = build_brand_leaderboard(last_12, "brands_last_12_months")
+    save_json(OUT_BRANDS_LAST_12, brands_last_12)
+
     print(f"✅ All-time leaderboard written → {OUT_ALL_TIME}")
     print(f"✅ Last-12-months leaderboard written → {OUT_LAST_12}")
+    print(f"✅ Last-12-months brand leaderboard written → {OUT_BRANDS_LAST_12}")
     print("🏁 Leaderboards built safely.")
 
 

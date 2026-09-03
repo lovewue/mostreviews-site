@@ -458,14 +458,38 @@ def is_unresolved_brand(p) -> bool:
 
 
 def render_partners(partners, limit=10):
-    rows = []
-
+    # Brands are ranked exactly like products: filter out the placeholder
+    # "Unknown brand" bucket first, then take the top N *including ties* so the
+    # list never cuts arbitrarily through a block of brands on equal reviews.
     partners = [p for p in partners if not is_unresolved_brand(p)]
 
-    for i, p in enumerate(partners[:limit], start=1):
+    if limit:
+        partners = top_n_with_ties(
+            partners, limit, value_key="total_reviews_month"
+        )
+
+    if partners:
+        partners = add_dense_ranks(partners, value_key="total_reviews_month")
+
+    rows = []
+
+    for idx, p in enumerate(partners):
         seller_name = p.get("seller_name") or p.get("seller_slug")
         seller_slug = p.get("seller_slug") or slugify_brand_name(seller_name)
         reviews = p.get("total_reviews_month") or 0
+
+        same_as_prev = (
+            idx > 0
+            and reviews == (partners[idx - 1].get("total_reviews_month") or 0)
+        )
+
+        same_as_next = (
+            idx < len(partners) - 1
+            and reviews == (partners[idx + 1].get("total_reviews_month") or 0)
+        )
+
+        rank_num = p.get("rank", "")
+        rank_display = f"{rank_num}=" if (same_as_prev or same_as_next) else str(rank_num)
 
         # NOTE: previously linked to the retired internal /brands/{slug}/
         # page. Now links straight to the real NOTHS seller page via the
@@ -476,7 +500,7 @@ def render_partners(partners, limit=10):
         rows.append(
             f"""
 <tr>
-    <td class="rank">{i}</td>
+    <td class="rank">{rank_display}</td>
     <td>{seller_html}</td>
     <td class="reviews">{reviews:,}</td>
 </tr>
@@ -581,6 +605,66 @@ def render_leaderboard_products(items, limit=100, last_month=False, link_only_if
 """
 
 
+def render_brands_leaderboard(items, limit=100):
+    # Same shape as render_leaderboard_products: top N *including ties*, dense
+    # ranks, "=" on any brand sharing a review total with its neighbour.
+    items = clean_product_list(items)
+
+    if limit:
+        items = top_n_with_ties(items, limit, value_key="total_reviews")
+
+    if items:
+        items = add_dense_ranks(items, value_key="total_reviews")
+
+    rows = []
+
+    for idx, b in enumerate(items):
+        seller_name = b.get("seller_name") or b.get("seller_slug")
+        seller_slug = b.get("seller_slug") or slugify_brand_name(seller_name)
+        reviews = b.get("total_reviews") or 0
+        products = b.get("reviewed_product_count") or b.get("product_count") or 0
+
+        same_as_prev = (
+            idx > 0 and reviews == (items[idx - 1].get("total_reviews") or 0)
+        )
+
+        same_as_next = (
+            idx < len(items) - 1
+            and reviews == (items[idx + 1].get("total_reviews") or 0)
+        )
+
+        rank_num = b.get("rank", "")
+        rank_display = f"{rank_num}=" if (same_as_prev or same_as_next) else str(rank_num)
+
+        awin_url = build_awin_link(seller_slug)
+        seller_html = f'<a href="{awin_url}" target="_blank" rel="sponsored noopener">{seller_name}</a>'
+
+        rows.append(
+            f"""
+<tr>
+    <td class="rank">{rank_display}</td>
+    <td>{seller_html}</td>
+    <td class="reviews">{reviews:,}</td>
+    <td class="reviews">{products:,}</td>
+</tr>
+"""
+        )
+
+    return f"""
+<div class="table-scroll">
+<table>
+    <tr>
+        <th>#</th>
+        <th>Brand</th>
+        <th>Reviews</th>
+        <th>Products reviewed</th>
+    </tr>
+    {''.join(rows)}
+</table>
+</div>
+"""
+
+
 # -----------------------------------------------------------------------------
 # Page rendering
 # -----------------------------------------------------------------------------
@@ -641,6 +725,11 @@ def render_month(month, previous_month=None):
 
     title_month = format_month(month)
     top_products = top_n_with_ties(products, 50, value_key="review_count_month")
+    top_brands = top_n_with_ties(
+        [p for p in partners if not is_unresolved_brand(p)],
+        50,
+        value_key="total_reviews_month",
+    )
 
     body = f"""
 <h1>Trending Products – {title_month}</h1>
@@ -659,8 +748,9 @@ Products ranked by number of reviews received during the month.
 <p class="table-note">* Product no longer available on NOTHS</p>
 
 <h2>Brands With Most Reviews</h2>
+<p><small>Showing top 50 including ties ({len(top_brands)} brands shown).</small></p>
 
-{render_partners(partners, 20)}
+{render_partners(partners, 50)}
 
 <p>
     <a href="../index.html">← Back to homepage</a>
@@ -844,6 +934,7 @@ def generate_sitemap(months):
     urls.append(f"{base_url}/")
     urls.append(f"{base_url}/top-products-last-12-months.html")
     urls.append(f"{base_url}/top-products-all-time.html")
+    urls.append(f"{base_url}/top-brands-last-12-months.html")
     urls.append(f"{base_url}/archive.html")
     urls.append(f"{base_url}/about.html")
 
@@ -872,6 +963,68 @@ def generate_sitemap(months):
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
+def render_top_brands_last_12_months():
+    leaderboard_file = LEADERBOARDS_ROOT / "top_brands_last_12_months.json"
+
+    if not leaderboard_file.exists():
+        print("⚠️ top_brands_last_12_months.json not found")
+        return
+
+    data = load_json(leaderboard_file)
+    items = clean_product_list(data.get("items", []))
+    shown = top_n_with_ties(items, 100, value_key="total_reviews")
+
+    brand_count = data.get("brand_count", len(items)) or 0
+    total_reviews = data.get("total_reviews", 0) or 0
+    top_100_share = data.get("top_100_share_of_reviews", 0) or 0
+    hundred_plus = data.get("brands_with_100_plus_reviews", 0) or 0
+
+    body = f"""
+<h1>Top 100 Brands of the Last 12 Months</h1>
+
+<p>
+Brands ranked by the total number of Feefo reviews earned across their whole
+Not On The High Street range over the last 12 months.
+</p>
+
+<div class="stats">
+<p>
+    Brands with reviews: <strong>{brand_count:,}</strong><br>
+    Total reviews: <strong>{total_reviews:,}</strong><br>
+    Brands with 100+ reviews: <strong>{hundred_plus:,}</strong><br>
+    Top 100 share of reviews: <strong>{top_100_share:.1%}</strong>
+</p>
+</div>
+
+<h2>Leaderboard</h2>
+<p><small>Showing top 100 including ties ({len(shown)} brands shown).</small></p>
+
+{render_brands_leaderboard(items, limit=100)}
+
+<p class="table-note">
+This ranks brands on total reviews, so a brand with a large range will tend to
+place higher than a brand with a few very popular products. The
+"Products reviewed" column shows how many of each brand's products picked up at
+least one review.
+</p>
+
+<p>
+    <a href="index.html">← Back to homepage</a>
+</p>
+"""
+
+    html = render_page(
+        "Top 100 Brands of the Last 12 Months",
+        body,
+        "static",
+        "",
+        "The Not On The High Street brands with the most reviews over the last 12 months.",
+    )
+    save_html(OUTPUT_ROOT / "top-brands-last-12-months.html", html)
+
+    print("✅ top-brands-last-12-months rendered")
+
+
 def main():
     months = get_month_dirs()
 
@@ -896,6 +1049,7 @@ def main():
     render_archive(months)
     render_top_products_all_time()
     render_top_products_last_12_months(latest, previous_for_homepage)
+    render_top_brands_last_12_months()
 
     render_about()
     generate_sitemap(months)
