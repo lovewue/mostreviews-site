@@ -348,6 +348,12 @@
     "total_reviews_month": 9
   },
   {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 4,
+    "total_reviews_month": 9
+  },
+  {
     "seller_slug": "xanderkostroma",
     "seller_name": "Xander Kostroma",
     "product_count_month": 8,
@@ -375,12 +381,6 @@
     "seller_slug": "showstoppersupplies",
     "seller_name": "Showstopper Supplies",
     "product_count_month": 7,
-    "total_reviews_month": 8
-  },
-  {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 3,
     "total_reviews_month": 8
   },
   {
@@ -3590,12 +3590,6 @@
   {
     "seller_slug": "thecraftyhen",
     "seller_name": "The Crafty Hen",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

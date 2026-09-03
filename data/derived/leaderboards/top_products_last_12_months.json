@@ -1,6 +1,6 @@
 {
   "leaderboard": "last_12_months",
-  "generated_at": "2026-09-02T08:29:44+00:00",
+  "generated_at": "2026-09-03T07:41:12+00:00",
   "product_count": 28188,
   "total_products_reviewed": 28188,
   "total_reviews": 59423,
@@ -18607,7 +18607,7 @@
       "seller_slug": "mixpixie",
       "seller_name": "The Gift Edit",
       "product_url": "https://www.notonthehighstreet.com/mixpixie/product/make-your-own-land-rover-metal-construction-set",
-      "available": false,
+      "available": true,
       "reviews": 6,
       "rating": 4.3,
       "metadata_source": "cache"

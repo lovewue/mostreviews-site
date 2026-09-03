@@ -330,6 +330,12 @@
     "total_reviews_month": 26
   },
   {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 14,
+    "total_reviews_month": 25
+  },
+  {
     "seller_slug": "madeforyougifts",
     "seller_name": "Made For You Gifts",
     "product_count_month": 10,
@@ -423,12 +429,6 @@
     "seller_slug": "nest",
     "seller_name": "Nest Gifts",
     "product_count_month": 17,
-    "total_reviews_month": 21
-  },
-  {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 13,
     "total_reviews_month": 21
   },
   {
@@ -633,12 +633,6 @@
     "seller_slug": "taylorcutco",
     "seller_name": "Taylor Cut Co",
     "product_count_month": 10,
-    "total_reviews_month": 15
-  },
-  {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 7,
     "total_reviews_month": 15
   },
   {
@@ -861,6 +855,12 @@
     "seller_slug": "stephieann",
     "seller_name": "StephieAnn",
     "product_count_month": 11,
+    "total_reviews_month": 11
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 6,
     "total_reviews_month": 11
   },
   {
