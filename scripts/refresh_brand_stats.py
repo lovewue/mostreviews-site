@@ -67,6 +67,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+import xml.etree.ElementTree as ET
 from urllib.parse import urljoin, urlparse
 
 import requests
@@ -82,6 +83,7 @@ DATA_DIR = PROJECT_ROOT / "data"
 CACHE_FILE = DATA_DIR / "cache" / "brand_stats.json"
 
 SLUGS_CSV = DATA_DIR / "source" / "unique_seller_slugs_latest.csv"
+SLUGS_ARCHIVE_DIR = DATA_DIR / "archive" / "slugs"
 
 # One-off seed so the first run isn't a cold 5,500-page scrape: the retired
 # brand-directory build left a full set of partner stats behind.
@@ -111,6 +113,9 @@ CHECKPOINT_EVERY = 250
 MAX_DEAD_SHARE = 0.5
 # Below this many fetches the share is meaningless, so the gate doesn't apply.
 MIN_CHECKED_FOR_GATE = 40
+
+# Fallback slug route: how far to walk /sitemap{N}.xml.gz before giving up.
+SITEMAP_NUMBERED_MAX = 100
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (compatible; TrendListBot/1.0; +https://trendlist.co.uk/)",
@@ -305,8 +310,15 @@ def parse_partner_page(html: str) -> dict:
 # -----------------------------------------------------------------------------
 # Slug sources
 # -----------------------------------------------------------------------------
-_PRODUCT_SLUG_RE = re.compile(r"https?://[^/]+/([^/\s]+)/product/")
+# Richard's slug regex from "NOTHS Sitemap Process and JSON update.py", kept
+# verbatim: .search() rather than .match() so it doesn't care about protocol or
+# host prefix variations in the sitemap.
+_PRODUCT_SLUG_RE = re.compile(r"notonthehighstreet\.com/([^/]+)/product/")
+
+# Fallback only — the sitemaps are parsed as XML (below), not scraped by regex.
 _SITEMAP_LOC_RE = re.compile(r"<loc>\s*([^<\s]+)\s*</loc>", re.IGNORECASE)
+
+SITEMAP_NS = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
 
 
 def load_slugs_csv() -> set:
@@ -338,68 +350,159 @@ def load_leaderboard_slugs() -> set:
     return slugs
 
 
+def slugs_from_sitemap_bytes(raw: bytes) -> set:
+    """
+    Pull partner slugs out of one sitemap.
+
+    Parsed as XML with the sitemaps namespace, following Richard's
+    "NOTHS Sitemap Process and JSON update.py" — a regex over raw markup will
+    happily match a <loc> inside a comment or a CDATA block, and silently miss
+    anything that gets entity-encoded. Slugs are normalised the same way too:
+    lowercased with spaces stripped.
+
+    Falls back to a regex sweep only if the XML will not parse at all, so a
+    single malformed sitemap degrades instead of failing the run.
+    """
+    if raw[:2] == b"\x1f\x8b":
+        raw = gzip.GzipFile(fileobj=io.BytesIO(raw)).read()
+
+    found = set()
+    locs = []
+
+    try:
+        root = ET.fromstring(raw)
+        locs = [(el.text or "").strip() for el in root.findall(".//sm:loc", SITEMAP_NS)]
+        if not locs:
+            # Some sitemaps are served without the namespace declaration.
+            locs = [(el.text or "").strip() for el in root.iter() if el.tag.endswith("loc")]
+    except ET.ParseError:
+        locs = _SITEMAP_LOC_RE.findall(raw.decode("utf-8", errors="replace"))
+
+    for url in locs:
+        if "/product/" not in url:
+            continue
+        m = _PRODUCT_SLUG_RE.search(url)
+        if m:
+            found.add(m.group(1).lower().replace(" ", ""))
+
+    return found
+
+
+def _sitemap_urls_from_robots() -> list:
+    """Sitemap index URLs as robots.txt declares them."""
+    r = requests.get(f"{BASE}/robots.txt", headers=HEADERS, timeout=(6, 20))
+    r.raise_for_status()
+    return re.findall(r"(?im)^\s*sitemap:\s*(\S+)", r.text)
+
+
+def _fetch(url: str) -> bytes:
+    r = requests.get(url, headers=HEADERS, timeout=(6, 60))
+    r.raise_for_status()
+    return r.content
+
+
 def refresh_slugs_from_sitemap() -> set:
     """
     Re-derive the partner slug list from the NOTHS product sitemaps.
 
     NOTHS publishes no partner sitemap, so slugs come out of the product URLs
-    (/{slug}/product/{name}). The sitemap index is discovered from robots.txt
-    rather than hardcoded, because the index filename has moved before.
+    (/{slug}/product/{name}).
 
-    Best effort: any failure returns an empty set and the caller falls back to
-    the committed slug list.
+    Two ways in, because the site has used both and neither is testable from
+    everywhere:
+
+    1. The sitemap index named in robots.txt. This is what produced the files
+       in data/sitemaps/ — they are named by type
+       (product-details-page-sitemap3-YYYY-MM-DD.xml.gz), which is the index's
+       naming, not a numbered guess.
+    2. Failing that, Richard's numbered walk from
+       "NOTHS Sitemap Processeor From Scratch.py": /sitemap1.xml.gz,
+       /sitemap2.xml.gz, … until a 404. Kept as a fallback for the case where
+       robots.txt names nothing, which would otherwise make this a silent no-op.
+
+    Best effort throughout: any failure returns whatever was gathered so far
+    and the caller falls back to the committed slug list.
     """
     found = set()
+
+    # --- 1. index from robots.txt ------------------------------------------
+    sitemaps = []
     try:
-        r = requests.get(f"{BASE}/robots.txt", headers=HEADERS, timeout=(6, 20))
-        r.raise_for_status()
-        indexes = re.findall(r"(?im)^\s*sitemap:\s*(\S+)", r.text)
+        for index_url in _sitemap_urls_from_robots():
+            try:
+                body = _fetch(index_url)
+                if body[:2] == b"\x1f\x8b":
+                    body = gzip.GzipFile(fileobj=io.BytesIO(body)).read()
+                text = body.decode("utf-8", errors="replace")
+            except Exception as e:  # noqa: BLE001
+                print(f"⚠️  slug refresh: {index_url} failed ({type(e).__name__})")
+                continue
+            for loc in _SITEMAP_LOC_RE.findall(text):
+                # Only the product sitemaps carry /{slug}/product/ URLs; the
+                # department/inspiration/campaign ones have no slugs in them.
+                if "product-details-page" in loc or "/product" in loc:
+                    sitemaps.append(loc)
     except Exception as e:  # noqa: BLE001
         print(f"⚠️  slug refresh: could not read robots.txt ({type(e).__name__})")
+
+    if sitemaps:
+        print(f"   slug refresh: {len(sitemaps)} product sitemaps from the index")
+        for sm in sitemaps:
+            try:
+                found |= slugs_from_sitemap_bytes(_fetch(sm))
+            except Exception as e:  # noqa: BLE001
+                print(f"⚠️  slug refresh: {sm} failed ({type(e).__name__})")
+
+    # --- 2. numbered fallback ----------------------------------------------
+    if not found:
+        print("   slug refresh: index gave nothing, trying /sitemap{N}.xml.gz")
+        for i in range(1, SITEMAP_NUMBERED_MAX + 1):
+            url = f"{BASE}/sitemap{i}.xml.gz"
+            try:
+                r = requests.get(url, headers=HEADERS, timeout=(6, 60))
+                if r.status_code == 404:
+                    break
+                r.raise_for_status()
+                found |= slugs_from_sitemap_bytes(r.content)
+            except Exception as e:  # noqa: BLE001
+                print(f"⚠️  slug refresh: {url} failed ({type(e).__name__})")
+                break
+
+    if not found:
+        print("⚠️  slug refresh: no slugs found by either route")
         return found
-
-    if not indexes:
-        print("⚠️  slug refresh: robots.txt named no sitemap")
-        return found
-
-    sitemaps = []
-    for index_url in indexes:
-        try:
-            body = _get_maybe_gzip(index_url)
-        except Exception as e:  # noqa: BLE001
-            print(f"⚠️  slug refresh: {index_url} failed ({type(e).__name__})")
-            continue
-        for loc in _SITEMAP_LOC_RE.findall(body):
-            if "product-details-page" in loc:
-                sitemaps.append(loc)
-
-    if not sitemaps:
-        print("⚠️  slug refresh: no product sitemaps found in the index")
-        return found
-
-    print(f"   slug refresh: {len(sitemaps)} product sitemaps")
-    for sm in sitemaps:
-        try:
-            body = _get_maybe_gzip(sm)
-        except Exception as e:  # noqa: BLE001
-            print(f"⚠️  slug refresh: {sm} failed ({type(e).__name__})")
-            continue
-        for loc in _SITEMAP_LOC_RE.findall(body):
-            m = _PRODUCT_SLUG_RE.match(loc)
-            if m:
-                found.add(m.group(1).strip().lower())
 
     print(f"   slug refresh: {len(found):,} partner slugs from sitemap")
+    write_slug_csv(found)
     return found
 
 
-def _get_maybe_gzip(url: str) -> str:
-    r = requests.get(url, headers=HEADERS, timeout=(6, 60))
-    r.raise_for_status()
-    raw = r.content
-    if raw[:2] == b"\x1f\x8b":
-        raw = gzip.GzipFile(fileobj=io.BytesIO(raw)).read()
-    return raw.decode("utf-8", errors="replace")
+def write_slug_csv(slugs: set):
+    """
+    Update data/source/unique_seller_slugs_latest.csv and drop a dated copy in
+    data/archive/slugs/, exactly as Richard's processor does — atomically, via
+    a .tmp then replace, so an interrupted run can't leave a half-written CSV
+    that the rest of the pipeline then reads.
+
+    Deliberate deviation: the downloaded .xml.gz files are NOT kept. His local
+    process archives them, but that is ~7MB per run and this one commits to a
+    repo whose top_products_all_time.json is already within 1MB of GitHub's
+    hard 100MB limit. The dated slug CSV (~150KB) is the part worth keeping.
+    """
+    ordered = sorted(slugs)
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+    for target in (SLUGS_CSV, SLUGS_ARCHIVE_DIR / f"unique_seller_slugs_{stamp}.csv"):
+        target.parent.mkdir(parents=True, exist_ok=True)
+        tmp = target.with_suffix(".csv.tmp")
+        with open(tmp, "w", encoding="utf-8", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(["slug"])
+            for slug in ordered:
+                w.writerow([slug])
+        tmp.replace(target)
+
+    print(f"   slug refresh: wrote {SLUGS_CSV.name} and the {stamp} archive copy")
 
 
 # -----------------------------------------------------------------------------
