@@ -30,6 +30,16 @@ OUT_DIR = DATA_DIR / "derived" / "leaderboards"
 OUT_ALL_TIME = OUT_DIR / "top_products_all_time.json"
 OUT_LAST_12 = OUT_DIR / "top_products_last_12_months.json"
 OUT_BRANDS_LAST_12 = OUT_DIR / "top_brands_last_12_months.json"
+OUT_BRANDS_ALL_TIME_ORDERS = OUT_DIR / "top_brands_all_time_orders.json"
+
+# Written by scripts/refresh_brand_stats.py on its own schedule, not here.
+BRAND_STATS_CACHE = DATA_DIR / "cache" / "brand_stats.json"
+
+# Only the top slice is rendered, and top_products_all_time.json is already
+# within a few MB of GitHub's hard 100MB push limit, so this file stays small
+# on purpose: the long tail of 5,500 brands is in the cache, not in a derived
+# file that gets recommitted on every build.
+BRAND_ORDERS_KEEP_ROWS = 250
 
 ARCHIVE_ALL_TIME = OUT_DIR / "top_products_all_time_archive.json"
 ARCHIVE_LAST_12 = OUT_DIR / "top_products_last_12_months_archive.json"
@@ -649,6 +659,117 @@ def build_brand_leaderboard(product_leaderboard: dict, label: str) -> dict:
     }
 
 
+def build_brand_orders_leaderboard(brand_review_leaderboard: dict) -> dict:
+    """
+    Rank brands by lifetime orders, as published on their NOTHS partner page.
+
+    Source is data/cache/brand_stats.json, written by
+    scripts/refresh_brand_stats.py. Nothing is scraped here, so a missing or
+    stale cache costs the site build nothing but the page.
+
+    A caveat worth keeping in mind when reading the output: NOTHS publishes
+    orders rounded to two significant figures with a "+" ("690K+", "1.4M+"),
+    so the ranking is only as precise as the band. Brands that land in the
+    same band are genuinely tied as far as the public data goes, and are
+    marked as such rather than separated by an arbitrary tiebreak.
+    """
+    if not BRAND_STATS_CACHE.exists():
+        print(f"⚠️  {BRAND_STATS_CACHE.name} not found — skipping brand orders leaderboard")
+        return {}
+
+    try:
+        cache = load_json(BRAND_STATS_CACHE)
+    except Exception as e:  # noqa: BLE001
+        print(f"⚠️  {BRAND_STATS_CACHE.name} unreadable ({type(e).__name__}) — skipping")
+        return {}
+
+    brands = cache.get("brands", {}) or {}
+
+    # Review totals from the 12-month brand leaderboard, so the page can show
+    # sales volume and current review activity side by side.
+    reviews_by_slug = {
+        str(b.get("seller_slug") or "").lower(): safe_int(b.get("total_reviews"))
+        for b in (brand_review_leaderboard.get("items") or [])
+    }
+
+    rows = []
+    for slug, row in brands.items():
+        orders = safe_int(row.get("orders"))
+        if orders <= 0:
+            continue
+
+        slug = str(slug).strip().lower()
+        if slug in SELLER_PLACEHOLDERS:
+            continue
+
+        years = safe_int(row.get("years_on_noths"))
+        months = safe_int(row.get("months_on_noths")) or (years * 12)
+
+        rows.append(
+            {
+                "seller_slug": slug,
+                "seller_name": clean_text(row.get("name")) or slug,
+                "orders": orders,
+                "orders_label": clean_text(row.get("orders_label")) or "",
+                "orders_tier": clean_text(row.get("orders_tier")) or "",
+                # Orders per year of trading, so a 16-year-old brand doesn't
+                # automatically outrank a fast-growing newer one when the
+                # reader wants to sort that way. Needs at least a year of
+                # trading to mean anything.
+                "orders_per_year": (
+                    round(orders / (months / 12), 0) if months >= 12 else None
+                ),
+                "brand_rating": safe_float(row.get("brand_rating")) or None,
+                "years_on_noths": years,
+                "months_on_noths": months,
+                "tenure_label": clean_text(row.get("tenure_label")) or "",
+                "product_count": safe_int(row.get("product_count")),
+                "reviews_last_12_months": reviews_by_slug.get(slug, 0),
+                "brand_url": f"{NOTHS_BASE_URL}/partners/{slug}",
+                "checked_at": clean_text(row.get("checked_at")) or "",
+            }
+        )
+
+    ordered = sorted(
+        rows,
+        key=lambda b: (-b["orders"], -b["years_on_noths"], b["seller_slug"]),
+    )
+
+    # Competition ranks on the banded order figure, matching the review
+    # leaderboards: brands in the same band share a rank.
+    previous_orders = None
+    current_rank = 0
+    for idx, brand in enumerate(ordered, start=1):
+        if brand["orders"] != previous_orders:
+            current_rank = idx
+            previous_orders = brand["orders"]
+        brand["rank"] = current_rank
+
+    total_orders = sum(b["orders"] for b in ordered)
+    top_100_orders = sum(b["orders"] for b in ordered[:100])
+
+    kept = ordered[:BRAND_ORDERS_KEEP_ROWS]
+
+    return {
+        "leaderboard": "brands_all_time_orders",
+        "generated_at": now_iso(),
+        "source_generated_at": cache.get("generated_at", ""),
+        "brands_known": safe_int(cache.get("brand_count")) or len(brands),
+        "brand_count": len(ordered),
+        "rows_kept": len(kept),
+        "total_orders": total_orders,
+        "brands_with_100k_plus_orders": sum(1 for b in ordered if b["orders"] >= 100_000),
+        "brands_with_1m_plus_orders": sum(1 for b in ordered if b["orders"] >= 1_000_000),
+        "average_orders_per_brand": (
+            round(total_orders / len(ordered), 0) if ordered else 0
+        ),
+        "top_100_share_of_orders": (
+            round(top_100_orders / total_orders, 4) if total_orders else 0
+        ),
+        "items": kept,
+    }
+
+
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
@@ -670,9 +791,20 @@ def main():
     brands_last_12 = build_brand_leaderboard(last_12, "brands_last_12_months")
     save_json(OUT_BRANDS_LAST_12, brands_last_12)
 
+    # Orders come from the partner-page cache, refreshed by its own workflow.
+    # A missing cache means no page, never a failed build.
+    brands_orders = build_brand_orders_leaderboard(brands_last_12)
+    if brands_orders:
+        save_json(OUT_BRANDS_ALL_TIME_ORDERS, brands_orders)
+
     print(f"✅ All-time leaderboard written → {OUT_ALL_TIME}")
     print(f"✅ Last-12-months leaderboard written → {OUT_LAST_12}")
     print(f"✅ Last-12-months brand leaderboard written → {OUT_BRANDS_LAST_12}")
+    if brands_orders:
+        print(
+            f"✅ All-time brand orders leaderboard written → {OUT_BRANDS_ALL_TIME_ORDERS} "
+            f"({brands_orders['brand_count']:,} brands ranked, {brands_orders['rows_kept']:,} kept)"
+        )
     print("🏁 Leaderboards built safely.")
 
 

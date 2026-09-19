@@ -605,6 +605,83 @@ def render_leaderboard_products(items, limit=100, last_month=False, link_only_if
 """
 
 
+def render_brand_orders_leaderboard(items, limit=100):
+    """
+    Brands ranked by lifetime orders taken on NOTHS.
+
+    Same tie handling as every other leaderboard here, but the tie block is
+    doing more work: NOTHS publishes orders rounded to two significant figures
+    ("690K+"), so brands that share a band really are indistinguishable in the
+    public data and all get "=".
+    """
+    items = clean_product_list(items)
+
+    if limit:
+        items = top_n_with_ties(items, limit, value_key="orders")
+
+    if items:
+        items = add_dense_ranks(items, value_key="orders")
+
+    rows = []
+
+    for idx, b in enumerate(items):
+        seller_name = b.get("seller_name") or b.get("seller_slug")
+        seller_slug = b.get("seller_slug") or slugify_brand_name(seller_name)
+
+        orders = b.get("orders") or 0
+        orders_label = b.get("orders_label") or f"{orders:,}"
+        years = b.get("years_on_noths") or 0
+        tenure = b.get("tenure_label") or (f"{years} years" if years else "—")
+        rating = b.get("brand_rating")
+        per_year = b.get("orders_per_year")
+        reviews = b.get("reviews_last_12_months") or 0
+
+        same_as_prev = idx > 0 and orders == (items[idx - 1].get("orders") or 0)
+        same_as_next = (
+            idx < len(items) - 1 and orders == (items[idx + 1].get("orders") or 0)
+        )
+
+        rank_num = b.get("rank", "")
+        rank_display = f"{rank_num}=" if (same_as_prev or same_as_next) else str(rank_num)
+
+        awin_url = build_awin_link(seller_slug)
+        seller_html = f'<a href="{awin_url}" target="_blank" rel="sponsored noopener">{seller_name}</a>'
+
+        rating_html = f"{rating:.1f}" if rating else "—"
+        per_year_html = f"{int(per_year):,}" if per_year else "—"
+
+        rows.append(
+            f"""
+<tr>
+    <td class="rank">{rank_display}</td>
+    <td>{seller_html}</td>
+    <td class="reviews">{orders_label}</td>
+    <td class="reviews">{per_year_html}</td>
+    <td class="reviews">{tenure}</td>
+    <td class="reviews">{rating_html}</td>
+    <td class="reviews">{reviews:,}</td>
+</tr>
+"""
+        )
+
+    return f"""
+<div class="table-scroll">
+<table>
+    <tr>
+        <th>#</th>
+        <th>Brand</th>
+        <th>Orders</th>
+        <th>Orders / year</th>
+        <th>On NOTHS</th>
+        <th>Rating</th>
+        <th>Reviews (12m)</th>
+    </tr>
+    {''.join(rows)}
+</table>
+</div>
+"""
+
+
 def render_brands_leaderboard(items, limit=100):
     # Same shape as render_leaderboard_products: top N *including ties*, dense
     # ranks, "=" on any brand sharing a review total with its neighbour.
@@ -935,6 +1012,7 @@ def generate_sitemap(months):
     urls.append(f"{base_url}/top-products-last-12-months.html")
     urls.append(f"{base_url}/top-products-all-time.html")
     urls.append(f"{base_url}/top-brands-last-12-months.html")
+    urls.append(f"{base_url}/top-brands-all-time.html")
     urls.append(f"{base_url}/archive.html")
     urls.append(f"{base_url}/about.html")
 
@@ -1025,6 +1103,77 @@ least one review.
     print("✅ top-brands-last-12-months rendered")
 
 
+def render_top_brands_all_time_orders():
+    leaderboard_file = LEADERBOARDS_ROOT / "top_brands_all_time_orders.json"
+
+    if not leaderboard_file.exists():
+        print("⚠️ top_brands_all_time_orders.json not found")
+        return
+
+    data = load_json(leaderboard_file)
+    items = clean_product_list(data.get("items", []))
+    shown = top_n_with_ties(items, 100, value_key="orders")
+
+    brand_count = data.get("brand_count", len(items)) or 0
+    total_orders = data.get("total_orders", 0) or 0
+    hundred_k_plus = data.get("brands_with_100k_plus_orders", 0) or 0
+    million_plus = data.get("brands_with_1m_plus_orders", 0) or 0
+    top_100_share = data.get("top_100_share_of_orders", 0) or 0
+    source_date = (data.get("source_generated_at") or "")[:10]
+
+    source_note = f" Partner pages last read {source_date}." if source_date else ""
+
+    body = f"""
+<h1>Top 100 Brands by All-Time Orders</h1>
+
+<p>
+Every Not On The High Street partner page publishes the number of orders that
+brand has taken over its lifetime on the marketplace. This ranks them on that
+figure — the closest thing NOTHS gives to a public sales league table, and a
+different question from the review-based lists elsewhere on this site.
+</p>
+
+<div class="stats">
+<p>
+    Brands with published order counts: <strong>{brand_count:,}</strong><br>
+    Orders between them: <strong>{total_orders:,}</strong><br>
+    Brands past 100K orders: <strong>{hundred_k_plus:,}</strong><br>
+    Brands past 1M orders: <strong>{million_plus:,}</strong><br>
+    Top 100 share of orders: <strong>{top_100_share:.1%}</strong>
+</p>
+</div>
+
+<h2>Leaderboard</h2>
+<p><small>Showing top 100 including ties ({len(shown)} brands shown).</small></p>
+
+{render_brand_orders_leaderboard(items, limit=100)}
+
+<p class="table-note">
+NOTHS rounds these figures to two significant figures and adds a "+", so
+"690K+" means somewhere between 690,000 and 700,000 orders. Brands sharing a
+band are marked "=" because the public data genuinely cannot separate them.
+Lifetime orders also reward age, so the "Orders / year" column divides by time
+on the marketplace; "Reviews (12m)" is the same brand's Feefo review total over
+the last 12 months, for current activity rather than lifetime total.{source_note}
+</p>
+
+<p>
+    <a href="index.html">← Back to homepage</a>
+</p>
+"""
+
+    html = render_page(
+        "Top 100 Brands by All-Time Orders",
+        body,
+        "static",
+        "",
+        "The Not On The High Street brands with the most orders of all time.",
+    )
+    save_html(OUTPUT_ROOT / "top-brands-all-time.html", html)
+
+    print("✅ top-brands-all-time rendered")
+
+
 def main():
     months = get_month_dirs()
 
@@ -1050,6 +1199,7 @@ def main():
     render_top_products_all_time()
     render_top_products_last_12_months(latest, previous_for_homepage)
     render_top_brands_last_12_months()
+    render_top_brands_all_time_orders()
 
     render_about()
     generate_sitemap(months)
