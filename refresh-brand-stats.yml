@@ -1,0 +1,126 @@
+name: Refresh Brand Stats
+
+# Re-reads the stats strip on every NOTHS partner page — lifetime orders,
+# brand rating, years on NOTHS — into data/cache/brand_stats.json. That cache
+# is what data/derived/leaderboards/top_brands_all_time_orders.json and the
+# /top-brands-all-time.html page are built from.
+#
+# Deliberately NOT a step inside Site Build & Publish. This is thousands of
+# requests against a site that throttles; Site Build & Publish already runs
+# 15+ minutes and ends by committing to main, and a slow or blocked scrape
+# must never be able to stop the site publishing. So: separate workflow,
+# separate schedule, commits only the cache. The site build reads whatever is
+# there and skips the page entirely if the cache is missing.
+#
+# Runs on the 25th rather than the 1st, for two reasons: it puts the scrape
+# well clear of the 1st-of-month pile-up (data agents at 00:00, site build at
+# 06:00, social assets at 08:00 — all of which Actions fires hours late), and
+# it means the cache is already fresh when the site build comes to render it.
+#
+# refresh_brand_stats.py is incremental by default: a brand checked within the
+# last 25 days is skipped, so a normal run only picks up what has gone stale.
+
+on:
+  schedule:
+    - cron: '0 3 25 * *'   # 25th of the month, 03:00 UTC
+  workflow_dispatch:
+    inputs:
+      full:
+        description: 'Re-check every brand, ignoring checked_at'
+        type: boolean
+        default: false
+      refresh_slugs:
+        description: 'Re-derive the brand list from the NOTHS sitemap first'
+        type: boolean
+        default: true
+      limit:
+        description: 'Max partner pages to fetch this run'
+        default: '6000'
+
+# Two overlapping runs would both rewrite the same cache file and race to push.
+concurrency:
+  group: refresh-brand-stats
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      # The script's own sanity gate (over half the fetched pages coming back
+      # dead ⇒ assume NOTHS blocked us, change nothing) exits non-zero, which
+      # is what should fail this run — a blocked scrape is worth seeing.
+      - name: Refresh brand stats
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: |
+          set -euo pipefail
+
+          args=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            [ "${{ inputs.full }}" = "true" ] && args="$args --full"
+            [ "${{ inputs.refresh_slugs }}" = "true" ] && args="$args --refresh-slugs"
+            args="$args --limit ${{ inputs.limit }}"
+          else
+            args="--refresh-slugs"
+          fi
+
+          echo "Running: python scripts/refresh_brand_stats.py $args"
+          python scripts/refresh_brand_stats.py $args
+
+      - name: Commit brand stats cache
+        run: |
+          set -euo pipefail
+
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+          git add data/cache/brand_stats.json
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          git commit -m "Refresh brand stats for $timestamp"
+
+          # Same problem the site build hit on 2026-08-02: main can move while
+          # this runs. Rebase onto the new tip and retry rather than throwing
+          # away an hours-long scrape. -X theirs keeps this run's cache, which
+          # is correct — it is regenerated data, and this run's copy is newer.
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+
+            echo "Push attempt $attempt rejected; rebasing onto origin/main..."
+            git fetch origin main
+
+            if ! git rebase --strategy-option=theirs origin/main; then
+              git rebase --abort || true
+              echo "::error::Rebase onto origin/main failed; brand stats not committed."
+              exit 1
+            fi
+          done
+
+          echo "::error::Could not push brand stats after 3 attempts."
+          exit 1
