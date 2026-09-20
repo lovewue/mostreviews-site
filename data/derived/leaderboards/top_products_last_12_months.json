@@ -1,6 +1,6 @@
 {
   "leaderboard": "last_12_months",
-  "generated_at": "2026-09-20T08:07:23+00:00",
+  "generated_at": "2026-09-20T08:23:41+00:00",
   "product_count": 28188,
   "total_products_reviewed": 28188,
   "total_reviews": 59423,
@@ -50659,7 +50659,7 @@
       "seller_slug": "getlabelled",
       "seller_name": "Get Labelled Personalised Alcohol Gifts",
       "product_url": "https://www.notonthehighstreet.com/getlabelled/product/personalised-champagne",
-      "available": true,
+      "available": false,
       "reviews": 3,
       "rating": 3.7,
       "metadata_source": "cache"
@@ -82111,7 +82111,7 @@
       "seller_slug": "ruthspringerdesign",
       "seller_name": "Ruth Springer Design",
       "product_url": "https://www.notonthehighstreet.com/ruthspringerdesign/product/exploding-box-personalised-wedding-anniversary-card",
-      "available": true,
+      "available": false,
       "reviews": 2,
       "rating": 5.0,
       "metadata_source": "cache"
