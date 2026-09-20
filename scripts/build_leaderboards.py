@@ -726,14 +726,31 @@ def build_brand_orders_leaderboard(brand_review_leaderboard: dict) -> dict:
                 "product_count": safe_int(row.get("product_count")),
                 "reviews_last_12_months": reviews_by_slug.get(slug, 0),
                 "brand_url": f"{NOTHS_BASE_URL}/partners/{slug}",
-                # Whether the partner page still resolved on the last scrape.
-                # Closed brands keep their lifetime orders — they really did
-                # take them — but the renderer must not send anyone to a dead
-                # storefront, so it asterisks them and drops the link, the same
-                # convention the product leaderboards use for delisted items.
-                # Only a scrape that actually reached the page can say a brand
-                # is closed, so a row never checked is treated as open.
+                # Two different things, kept apart on purpose.
+                #
+                # "active" is only whether the partner page still resolves.
+                # That turns out to be a poor test of whether a brand is still
+                # selling: the Sep 2026 scrape found just 13 pages gone from
+                # the May cohort, but 902 brands whose page is up with zero
+                # products on it. A NOTHS seller that stops trading leaves the
+                # storefront standing and empty far more often than it deletes
+                # it — so "active" alone would link 900 brands to a shop with
+                # nothing to buy.
+                #
+                # "trading" is the one the renderer uses: page up AND at least
+                # one product listed. Lifetime orders are kept either way —
+                # they really did happen — but a non-trading brand is
+                # asterisked and unlinked, the same convention the product
+                # leaderboards use for delisted items.
+                #
+                # Only a scrape that reached the page can say either way, so a
+                # row never checked is treated as trading.
                 "active": bool(row.get("active")) if row.get("checked_at") else True,
+                "trading": (
+                    bool(row.get("active")) and safe_int(row.get("product_count")) > 0
+                    if row.get("checked_at")
+                    else True
+                ),
                 "checked_at": clean_text(row.get("checked_at")) or "",
             }
         )
@@ -755,7 +772,8 @@ def build_brand_orders_leaderboard(brand_review_leaderboard: dict) -> dict:
 
     total_orders = sum(b["orders"] for b in ordered)
     top_100_orders = sum(b["orders"] for b in ordered[:100])
-    closed = sum(1 for b in ordered if not b["active"])
+    closed = sum(1 for b in ordered if not b["trading"])
+    page_gone = sum(1 for b in ordered if not b["active"])
 
     kept = ordered[:BRAND_ORDERS_KEEP_ROWS]
 
@@ -766,8 +784,11 @@ def build_brand_orders_leaderboard(brand_review_leaderboard: dict) -> dict:
         "brands_known": safe_int(cache.get("brand_count")) or len(brands),
         "brand_count": len(ordered),
         "rows_kept": len(kept),
-        "closed_brand_count": closed,
-        "closed_in_top_100": sum(1 for b in ordered[:100] if not b["active"]),
+        # not_trading = page up but empty, or page gone. page_gone is the
+        # subset whose storefront has actually been removed.
+        "not_trading_count": closed,
+        "page_gone_count": page_gone,
+        "not_trading_in_top_100": sum(1 for b in ordered[:100] if not b["trading"]),
         "total_orders": total_orders,
         "brands_with_100k_plus_orders": sum(1 for b in ordered if b["orders"] >= 100_000),
         "brands_with_1m_plus_orders": sum(1 for b in ordered if b["orders"] >= 1_000_000),

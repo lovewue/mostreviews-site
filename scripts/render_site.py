@@ -644,11 +644,12 @@ def render_brand_orders_leaderboard(items, limit=100):
         rank_num = b.get("rank", "")
         rank_display = f"{rank_num}=" if (same_as_prev or same_as_next) else str(rank_num)
 
-        # A brand that has closed keeps its lifetime orders but must not be
-        # linked — same convention as the product leaderboards, where a
-        # delisted item gets an asterisk and no link rather than sending
-        # someone to a page NOTHS now 302s to its homepage.
-        is_open = b.get("active") is not False
+        # A brand that has stopped trading keeps its lifetime orders but must
+        # not be linked — same convention as the product leaderboards. Note
+        # this tests "trading", not "active": most brands that stop selling on
+        # NOTHS leave the storefront up and empty rather than removing it, so
+        # linking on "the page still loads" sends buyers to an empty shop.
+        is_open = b.get("trading") is not False
 
         if is_open:
             awin_url = build_awin_link(seller_slug)
@@ -1114,6 +1115,9 @@ least one review.
     print("✅ top-brands-last-12-months rendered")
 
 
+BRAND_ORDERS_PAGE_LIMIT = 200
+
+
 def render_top_brands_all_time_orders():
     leaderboard_file = LEADERBOARDS_ROOT / "top_brands_all_time_orders.json"
 
@@ -1123,25 +1127,31 @@ def render_top_brands_all_time_orders():
 
     data = load_json(leaderboard_file)
     items = clean_product_list(data.get("items", []))
-    shown = top_n_with_ties(items, 100, value_key="orders")
+    shown = top_n_with_ties(items, BRAND_ORDERS_PAGE_LIMIT, value_key="orders")
 
     brand_count = data.get("brand_count", len(items)) or 0
     total_orders = data.get("total_orders", 0) or 0
     hundred_k_plus = data.get("brands_with_100k_plus_orders", 0) or 0
     million_plus = data.get("brands_with_1m_plus_orders", 0) or 0
     top_100_share = data.get("top_100_share_of_orders", 0) or 0
+    top_200_share = data.get("top_200_share_of_orders", 0) or 0
     source_date = (data.get("source_generated_at") or "")[:10]
 
     source_note = f" Partner pages last read {source_date}." if source_date else ""
 
     body = f"""
-<h1>Top 100 Brands by All-Time Orders</h1>
+<h1>Top 200 Brands by All-Time Orders</h1>
 
 <p>
 Every Not On The High Street partner page publishes the number of orders that
-brand has taken over its lifetime on the marketplace. This ranks them on that
-figure — the closest thing NOTHS gives to a public sales league table, and a
-different question from the review-based lists elsewhere on this site.
+brand has taken over its lifetime on the marketplace. Collected here, they rank
+{brand_count:,} brands by total orders — the closest thing NOTHS has to a
+public sales league table.
+</p>
+
+<p>
+The top 100 brands account for {top_100_share:.0%} of every order on record;
+the top 200, {top_200_share:.0%}.
 </p>
 
 <div class="stats">
@@ -1150,18 +1160,19 @@ different question from the review-based lists elsewhere on this site.
     Orders between them: <strong>{total_orders:,}</strong><br>
     Brands past 100K orders: <strong>{hundred_k_plus:,}</strong><br>
     Brands past 1M orders: <strong>{million_plus:,}</strong><br>
-    Top 100 share of orders: <strong>{top_100_share:.1%}</strong>
+    Top 100 share of orders: <strong>{top_100_share:.1%}</strong><br>
+    Top 200 share of orders: <strong>{top_200_share:.1%}</strong>
 </p>
 </div>
 
 <h2>Leaderboard</h2>
-<p><small>Showing top 100 including ties ({len(shown)} brands shown).</small></p>
+<p><small>Showing top {BRAND_ORDERS_PAGE_LIMIT} including ties ({len(shown)} brands shown).</small></p>
 
-{render_brand_orders_leaderboard(items, limit=100)}
+{render_brand_orders_leaderboard(items, limit=BRAND_ORDERS_PAGE_LIMIT)}
 
-<p class="table-note">* No longer trading on NOTHS. Lifetime orders are kept — the brand
-really did take them — but the name isn't linked, because the partner page
-is gone.</p>
+<p class="table-note">* No longer trading on NOTHS — the storefront is empty or gone.
+Lifetime orders are kept, because the brand really did take them, but the
+name isn't linked since there's nothing there to buy.</p>
 
 <p class="table-note">
 NOTHS rounds these figures to two significant figures and adds a "+", so
@@ -1178,7 +1189,7 @@ the last 12 months, for current activity rather than lifetime total.{source_note
 """
 
     html = render_page(
-        "Top 100 Brands by All-Time Orders",
+        "Top 200 Brands by All-Time Orders",
         body,
         "static",
         "",
