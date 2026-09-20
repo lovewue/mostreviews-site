@@ -644,8 +644,19 @@ def render_brand_orders_leaderboard(items, limit=100):
         rank_num = b.get("rank", "")
         rank_display = f"{rank_num}=" if (same_as_prev or same_as_next) else str(rank_num)
 
-        awin_url = build_awin_link(seller_slug)
-        seller_html = f'<a href="{awin_url}" target="_blank" rel="sponsored noopener">{seller_name}</a>'
+        # A brand that has closed keeps its lifetime orders but must not be
+        # linked — same convention as the product leaderboards, where a
+        # delisted item gets an asterisk and no link rather than sending
+        # someone to a page NOTHS now 302s to its homepage.
+        is_open = b.get("active") is not False
+
+        if is_open:
+            awin_url = build_awin_link(seller_slug)
+            seller_html = (
+                f'<a href="{awin_url}" target="_blank" rel="sponsored noopener">{seller_name}</a>'
+            )
+        else:
+            seller_html = f"{seller_name}*"
 
         rating_html = f"{rating:.1f}" if rating else "—"
         per_year_html = f"{int(per_year):,}" if per_year else "—"
@@ -1147,6 +1158,10 @@ different question from the review-based lists elsewhere on this site.
 <p><small>Showing top 100 including ties ({len(shown)} brands shown).</small></p>
 
 {render_brand_orders_leaderboard(items, limit=100)}
+
+<p class="table-note">* No longer trading on NOTHS. Lifetime orders are kept — the brand
+really did take them — but the name isn't linked, because the partner page
+is gone.</p>
 
 <p class="table-note">
 NOTHS rounds these figures to two significant figures and adds a "+", so
