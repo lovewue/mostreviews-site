@@ -1575,7 +1575,7 @@
     "seller_slug": "thelyndoncompany",
     "seller_name": "Deyongs Ltd",
     "product_url": "https://www.notonthehighstreet.com/thelyndoncompany/product/cozy-clowder-comfort-supersoft-throw-with-240gsm",
-    "available": true,
+    "available": false,
     "review_count_month": 2,
     "rating_month": 5.0
   },
@@ -20605,7 +20605,7 @@
     "seller_slug": "thelyndoncompany",
     "seller_name": "Deyongs Ltd",
     "product_url": "https://www.notonthehighstreet.com/thelyndoncompany/product/luxury-sakura-sunshade-printed-soft-throw",
-    "available": true,
+    "available": false,
     "review_count_month": 1,
     "rating_month": 4.0
   },
@@ -22875,7 +22875,7 @@
     "seller_slug": "thelyndoncompany",
     "seller_name": "Deyongs Ltd",
     "product_url": "https://www.notonthehighstreet.com/thelyndoncompany/product/cozy-great-outdoors-camping-comfort-throw-240gsm",
-    "available": true,
+    "available": false,
     "review_count_month": 1,
     "rating_month": 1.0
   },

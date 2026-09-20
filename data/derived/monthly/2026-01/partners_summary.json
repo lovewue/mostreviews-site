@@ -3474,12 +3474,6 @@
     "total_reviews_month": 1
   },
   {
-    "seller_slug": "fromthepapermill",
-    "seller_name": "From The Paper Mill",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
     "seller_slug": "geople",
     "seller_name": "GEOPLE Home & Baby",
     "product_count_month": 1,
@@ -4532,6 +4526,12 @@
   {
     "seller_slug": "jacquelinehammondsmartdeco",
     "seller_name": "Smart Deco Style",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "smittengiftco",
+    "seller_name": "Smittengiftco",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

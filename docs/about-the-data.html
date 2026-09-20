@@ -33,6 +33,11 @@
     </a>
   </div>
 
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+  <label for="nav-toggle" class="nav-burger" aria-label="Open menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </label>
+
   <nav class="site-nav">
     <a href="index.html">Home</a>
 
@@ -45,7 +50,13 @@
       </div>
     </div>
 
-    <a href="top-brands-last-12-months.html">Brands</a>
+    <div class="nav-item has-dropdown">
+      <a href="top-brands-last-12-months.html">Brands</a>
+      <div class="dropdown">
+        <a href="top-brands-last-12-months.html">Most Reviews (12 Months)</a>
+        <a href="top-brands-all-time.html">Most Orders (All Time)</a>
+      </div>
+    </div>
 
     <a href="archive.html">Archive</a>
     <a href="about.html">About</a>
@@ -97,7 +108,7 @@
 
   
   <p class="last-updated">
-    <em>Last updated: 03.09.2026</em>
+    <em>Last updated: 20.09.2026</em>
   </p>
   
 </section>

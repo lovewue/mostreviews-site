@@ -1296,12 +1296,6 @@
     "total_reviews_month": 5
   },
   {
-    "seller_slug": "fromthepapermill",
-    "seller_name": "From The Paper Mill",
-    "product_count_month": 4,
-    "total_reviews_month": 5
-  },
-  {
     "seller_slug": "greyfoxdesign",
     "seller_name": "Greyfox Design",
     "product_count_month": 2,
@@ -1538,6 +1532,12 @@
   {
     "seller_slug": "florencelondon",
     "seller_name": "Florence London",
+    "product_count_month": 3,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "fromthepapermill",
+    "seller_name": "From The Paper Mill",
     "product_count_month": 3,
     "total_reviews_month": 4
   },
@@ -4946,6 +4946,12 @@
   {
     "seller_slug": "smalldots",
     "seller_name": "Small Dots",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "smittengiftco",
+    "seller_name": "Smittengiftco",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
