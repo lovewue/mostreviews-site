@@ -525,7 +525,7 @@ Mobile navigation
 
 The nav used to stack every link vertically with all dropdowns expanded, which
 pushed the page content most of a screen down. Below 768px it collapses behind
-a button instead.
+a button sitting to the left of the logo instead.
 
 Deliberately CSS-only, using a hidden checkbox: the site is static pages with
 no JavaScript anywhere else, and a menu that needs a script to open is a menu
@@ -537,30 +537,56 @@ that breaks when the script doesn't load.
 }
 
 @media (max-width: 768px) {
+  /* Header becomes a row: burger, then logo, with the nav dropping full-width
+     underneath when it is open. Flex order does the arranging so the checkbox
+     can stay next to its label in the markup. */
+  .site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+  }
+
   .nav-burger {
+    order: 1;
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    width: 46px;
-    height: 40px;
-    margin: 14px auto 0;
-    padding: 8px 9px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    width: 26px;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    background: none;
     cursor: pointer;
-    background: #fff;
+    flex: none;
   }
 
   .nav-burger span {
     display: block;
     height: 2px;
+    width: 100%;
     background: #333;
     border-radius: 2px;
+    transition: transform .18s ease, opacity .18s ease;
+  }
+
+  .header-logo {
+    order: 2;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .header-logo img {
+    max-width: 190px;
   }
 
   .site-header .site-nav {
+    order: 3;
+    flex-basis: 100%;
     display: none;
+    margin-top: 4px;
   }
 
   .nav-toggle:checked ~ .site-nav {
@@ -580,13 +606,22 @@ that breaks when the script doesn't load.
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  .nav-burger span {
-    transition: transform .18s ease, opacity .18s ease;
+  .site-nav {
+    align-items: flex-start;
   }
 
   .site-nav a {
     display: block;
     padding: 6px 0;
+  }
+
+  .nav-item {
+    width: 100%;
+    text-align: left;
+  }
+
+  .dropdown {
+    text-align: left;
   }
 }
 
