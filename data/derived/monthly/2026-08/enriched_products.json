@@ -2015,7 +2015,7 @@
     "seller_slug": "thelyndoncompany",
     "seller_name": "Deyongs Ltd",
     "product_url": "https://www.notonthehighstreet.com/thelyndoncompany/product/cozy-great-outdoors-camping-comfort-throw-240gsm",
-    "available": true,
+    "available": false,
     "review_count_month": 2,
     "rating_month": 3.0
   },
@@ -10012,9 +10012,9 @@
   {
     "sku": "1529026",
     "name": "Personalised Wedding Day Card With Initial Stamp Hearts",
-    "seller_slug": "fromthepapermill",
-    "seller_name": "From The Paper Mill",
-    "product_url": "https://www.notonthehighstreet.com/fromthepapermill/product/personalised-wedding-day-card-with-initial-stamp-hearts",
+    "seller_slug": "smittengiftco",
+    "seller_name": "Smittengiftco",
+    "product_url": "https://www.notonthehighstreet.com/smittengiftco/product/personalised-wedding-day-card-with-initial-stamp-hearts",
     "available": true,
     "review_count_month": 1,
     "rating_month": 5.0
@@ -10022,9 +10022,9 @@
   {
     "sku": "1529050",
     "name": "Personalised Pottery 9th Anniversary Card Husband/Wife",
-    "seller_slug": "fromthepapermill",
-    "seller_name": "From The Paper Mill",
-    "product_url": "https://www.notonthehighstreet.com/fromthepapermill/product/personalised-pottery-9th-anniversary-card-husband-wife",
+    "seller_slug": "smittengiftco",
+    "seller_name": "Smittengiftco",
+    "product_url": "https://www.notonthehighstreet.com/smittengiftco/product/personalised-pottery-9th-anniversary-card-husband-wife",
     "available": true,
     "review_count_month": 1,
     "rating_month": 5.0
@@ -11585,7 +11585,7 @@
     "seller_slug": "therosepressgarden",
     "seller_name": "The Rose Press Garden",
     "product_url": "https://www.notonthehighstreet.com/therosepressgarden/product/trachelospermum-star-of-tuscany-yellow-star-jasmine",
-    "available": true,
+    "available": false,
     "review_count_month": 1,
     "rating_month": 5.0
   },
@@ -17832,9 +17832,9 @@
   {
     "sku": "1518086",
     "name": "Tarnish Free Two Tone Knot Bangle – Open Cuff Rope Bracelet In Gold, Silver, Or Two Tone Metal | Meaningful Gift, Modern Minimalist Jewellery",
-    "seller_slug": "luminouspretties",
-    "seller_name": "Luminous Pretties Jewellery",
-    "product_url": "https://www.notonthehighstreet.com/luminouspretties/product/tarnish-free-two-tone-knot-bangle-open-cuff-rope-bracelet-in-gold-silver-or-two-tone-metal-meaningful-gift-modern-minimalist-jewellery",
+    "seller_slug": "zolaijewellery",
+    "seller_name": "Zolaijewellery",
+    "product_url": "https://www.notonthehighstreet.com/zolaijewellery/product/tarnish-free-two-tone-knot-bangle-open-cuff-rope-bracelet-in-gold-silver-or-two-tone-metal-meaningful-gift-modern-minimalist-jewellery",
     "available": true,
     "review_count_month": 1,
     "rating_month": 4.0
@@ -19395,7 +19395,7 @@
     "seller_slug": "thelyndoncompany",
     "seller_name": "Deyongs Ltd",
     "product_url": "https://www.notonthehighstreet.com/thelyndoncompany/product/cozy-clowder-comfort-supersoft-throw-with-240gsm",
-    "available": true,
+    "available": false,
     "review_count_month": 1,
     "rating_month": 2.0
   },
@@ -20012,9 +20012,9 @@
   {
     "sku": "1544016",
     "name": "Personalised Wedding Anniversary Card For Husband Or Wife 'I Love You More'",
-    "seller_slug": "fromthepapermill",
-    "seller_name": "From The Paper Mill",
-    "product_url": "https://www.notonthehighstreet.com/fromthepapermill/product/personalised-wedding-anniversary-card-for-husband-or-wife",
+    "seller_slug": "smittengiftco",
+    "seller_name": "Smittengiftco",
+    "product_url": "https://www.notonthehighstreet.com/smittengiftco/product/personalised-wedding-anniversary-card-for-husband-or-wife",
     "available": true,
     "review_count_month": 1,
     "rating_month": 1.0
@@ -20145,7 +20145,7 @@
     "seller_slug": "thelyndoncompany",
     "seller_name": "Deyongs Ltd",
     "product_url": "https://www.notonthehighstreet.com/thelyndoncompany/product/luxury-sakura-sunshade-printed-soft-throw",
-    "available": true,
+    "available": false,
     "review_count_month": 1,
     "rating_month": 1.0
   },

@@ -1314,6 +1314,12 @@
     "total_reviews_month": 3
   },
   {
+    "seller_slug": "smittengiftco",
+    "seller_name": "Smittengiftco",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
     "seller_slug": "sperolondon",
     "seller_name": "Spero London",
     "product_count_month": 3,
@@ -1575,12 +1581,6 @@
     "seller_slug": "florencelondon",
     "seller_name": "Florence London",
     "product_count_month": 1,
-    "total_reviews_month": 2
-  },
-  {
-    "seller_slug": "fromthepapermill",
-    "seller_name": "From The Paper Mill",
-    "product_count_month": 2,
     "total_reviews_month": 2
   },
   {
@@ -2060,12 +2060,6 @@
   {
     "seller_slug": "sliceofpiedesigns",
     "seller_name": "Slice of Pie Designs",
-    "product_count_month": 2,
-    "total_reviews_month": 2
-  },
-  {
-    "seller_slug": "smittengiftco",
-    "seller_name": "Smittengiftco",
     "product_count_month": 2,
     "total_reviews_month": 2
   },
@@ -2816,6 +2810,12 @@
   {
     "seller_slug": "forgetmenotbyjade",
     "seller_name": "ForgetMeNotByJade",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "fromthepapermill",
+    "seller_name": "From The Paper Mill",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

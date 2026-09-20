@@ -954,6 +954,12 @@
     "total_reviews_month": 4
   },
   {
+    "seller_slug": "smittengiftco",
+    "seller_name": "Smittengiftco",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
     "seller_slug": "thebestroom",
     "seller_name": "The Best Room",
     "product_count_month": 3,
@@ -1148,12 +1154,6 @@
   {
     "seller_slug": "florencelondon",
     "seller_name": "Florence London",
-    "product_count_month": 3,
-    "total_reviews_month": 3
-  },
-  {
-    "seller_slug": "fromthepapermill",
-    "seller_name": "From The Paper Mill",
     "product_count_month": 3,
     "total_reviews_month": 3
   },
@@ -1724,12 +1724,6 @@
   {
     "seller_slug": "lovejodesigns",
     "seller_name": "Love Jo Designs",
-    "product_count_month": 2,
-    "total_reviews_month": 2
-  },
-  {
-    "seller_slug": "luminouspretties",
-    "seller_name": "Luminous Pretties Jewellery",
     "product_count_month": 2,
     "total_reviews_month": 2
   },
@@ -2952,6 +2946,12 @@
     "total_reviews_month": 1
   },
   {
+    "seller_slug": "luminouspretties",
+    "seller_name": "Luminous Pretties Jewellery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
     "seller_slug": "catsprintshop",
     "seller_name": "Luna Studio Designs",
     "product_count_month": 1,
@@ -3438,12 +3438,6 @@
     "total_reviews_month": 1
   },
   {
-    "seller_slug": "smittengiftco",
-    "seller_name": "Smittengiftco",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
     "seller_slug": "snugtoes",
     "seller_name": "SnugToes",
     "product_count_month": 1,
@@ -3884,6 +3878,12 @@
   {
     "seller_slug": "zooniversedesigns",
     "seller_name": "ZOONIVERSE DESIGNS",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "zolaijewellery",
+    "seller_name": "Zolaijewellery",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

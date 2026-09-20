@@ -4248,12 +4248,6 @@
     "total_reviews_month": 3
   },
   {
-    "seller_slug": "luminouspretties",
-    "seller_name": "Luminous Pretties Jewellery",
-    "product_count_month": 2,
-    "total_reviews_month": 3
-  },
-  {
     "seller_slug": "luxetones",
     "seller_name": "Luxe Tones",
     "product_count_month": 3,
@@ -5319,6 +5313,12 @@
     "seller_slug": "lumberjaxefoodcompany",
     "seller_name": "Lumberjaxe Seasonings and Sauces",
     "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "luminouspretties",
+    "seller_name": "Luminous Pretties Jewellery",
+    "product_count_month": 1,
     "total_reviews_month": 2
   },
   {
@@ -6984,12 +6984,6 @@
     "total_reviews_month": 1
   },
   {
-    "seller_slug": "fromthepapermill",
-    "seller_name": "From The Paper Mill",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
     "seller_slug": "fudgekitchen",
     "seller_name": "Fudge Kitchen",
     "product_count_month": 1,
@@ -8268,6 +8262,12 @@
     "total_reviews_month": 1
   },
   {
+    "seller_slug": "smittengiftco",
+    "seller_name": "Smittengiftco",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
     "seller_slug": "snapswing",
     "seller_name": "SnapSwing",
     "product_count_month": 1,
@@ -9026,6 +9026,12 @@
   {
     "seller_slug": "evoozeet",
     "seller_name": "ZEET",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "zolaijewellery",
+    "seller_name": "Zolaijewellery",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
