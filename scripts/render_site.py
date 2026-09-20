@@ -104,6 +104,32 @@ def save_html(path: Path, html: str):
     path.write_text(html, encoding="utf-8")
 
 
+def format_long_date(value: str) -> str:
+    """
+    '2026-09-19' -> '19th September 2026'.
+
+    Returns the input unchanged if it isn't a date we recognise, so a missing
+    or malformed timestamp degrades to whatever was there rather than raising
+    mid-render.
+    """
+    value = (value or "").strip()[:10]
+    if not value:
+        return ""
+
+    try:
+        dt = datetime.strptime(value, "%Y-%m-%d")
+    except ValueError:
+        return value
+
+    day = dt.day
+    if 11 <= day <= 13:
+        suffix = "th"
+    else:
+        suffix = {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
+
+    return f"{day}{suffix} {dt.strftime('%B %Y')}"
+
+
 def format_month(month: str) -> str:
     dt = datetime.strptime(month, "%Y-%m")
     return dt.strftime("%B %Y")
@@ -605,6 +631,99 @@ def render_leaderboard_products(items, limit=100, last_month=False, link_only_if
 """
 
 
+# -----------------------------------------------------------------------------
+# Sortable table
+# -----------------------------------------------------------------------------
+# Self-contained: scoped <style> plus a small vanilla sorter, both emitted with
+# the table rather than added to the global stylesheet, so nothing else on the
+# site is affected. The page is static HTML on GitHub Pages — there is no
+# framework here and no reason to introduce one for 200 rows.
+#
+# The rank column deliberately keeps its by-orders value when you sort by
+# something else, so a row reads "ranked 143rd overall, but look where it sits
+# on orders per year". Same for the "=" tie markers: they state a fact about
+# order bands, which stays true whatever the row order.
+TABLE_SORT_ASSETS = """
+<style>
+table.sortable th[data-sort] { cursor: pointer; user-select: none; white-space: nowrap; }
+table.sortable th[data-sort]:hover { text-decoration: underline; }
+table.sortable th[data-sort]::after { content: " \\2195"; opacity: .35; font-size: .85em; }
+table.sortable th[aria-sort="ascending"]::after { content: " \\2191"; opacity: 1; }
+table.sortable th[aria-sort="descending"]::after { content: " \\2193"; opacity: 1; }
+</style>
+
+<script>
+(function () {
+  var table = document.getElementById("brand-orders");
+  if (!table) return;
+
+  var headerRow = table.rows[0];
+  var headers = Array.prototype.slice.call(headerRow.cells);
+
+  function sortBy(index, kind, descending) {
+    var rows = Array.prototype.slice.call(table.rows, 1);
+
+    rows.sort(function (a, b) {
+      var x = a.cells[index], y = b.cells[index];
+      var av = x ? x.getAttribute("data-v") : null;
+      var bv = y ? y.getAttribute("data-v") : null;
+
+      if (kind === "num") {
+        // Missing values (-1) always sink, whichever way the column is sorted,
+        // so a brand with no rating never outranks one that has one.
+        var an = parseFloat(av), bn = parseFloat(bv);
+        if (isNaN(an)) an = -1;
+        if (isNaN(bn)) bn = -1;
+        if (an < 0 && bn >= 0) return 1;
+        if (bn < 0 && an >= 0) return -1;
+        return descending ? bn - an : an - bn;
+      }
+
+      av = av || ""; bv = bv || "";
+      return descending ? bv.localeCompare(av) : av.localeCompare(bv);
+    });
+
+    var frag = document.createDocumentFragment();
+    rows.forEach(function (r) { frag.appendChild(r); });
+    table.appendChild(frag);
+
+    headers.forEach(function (h) { h.removeAttribute("aria-sort"); });
+    headers[index].setAttribute("aria-sort", descending ? "descending" : "ascending");
+  }
+
+  headers.forEach(function (header, index) {
+    var kind = header.getAttribute("data-sort");
+    if (!kind) return;
+
+    header.setAttribute("tabindex", "0");
+    header.setAttribute("role", "button");
+
+    // Which way a column should go on its FIRST click. Numbers are almost
+    // always most useful high-to-low, but rank is the exception — rank 1 is
+    // the best rank, so it leads ascending. Declared per column via
+    // data-first rather than guessed from the type.
+    var firstDescending = header.getAttribute("data-first") !== "asc" && kind === "num";
+
+    function activate() {
+      // Clicking the column that is already sorted flips it; clicking a new
+      // one starts in that column's natural direction.
+      var current = header.getAttribute("aria-sort");
+      var descending = current === "descending" ? false
+                     : current === "ascending" ? true
+                     : firstDescending;
+      sortBy(index, kind, descending);
+    }
+
+    header.addEventListener("click", activate);
+    header.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(); }
+    });
+  });
+})();
+</script>
+"""
+
+
 def render_brand_orders_leaderboard(items, limit=100):
     """
     Brands ranked by lifetime orders taken on NOTHS.
@@ -631,6 +750,7 @@ def render_brand_orders_leaderboard(items, limit=100):
         orders = b.get("orders") or 0
         orders_label = b.get("orders_label") or f"{orders:,}"
         years = b.get("years_on_noths") or 0
+        months = b.get("months_on_noths") or (years * 12)
         tenure = b.get("tenure_label") or (f"{years} years" if years else "—")
         rating = b.get("brand_rating")
         per_year = b.get("orders_per_year")
@@ -662,35 +782,41 @@ def render_brand_orders_leaderboard(items, limit=100):
         rating_html = f"{rating:.1f}" if rating else "—"
         per_year_html = f"{int(per_year):,}" if per_year else "—"
 
+        # data-v carries the raw number for every sortable cell. The visible
+        # text is a rounded band ("690K+"), a formatted count or an em dash,
+        # none of which sort correctly as strings — "1.4M+" would land between
+        # "130K+" and "22K+". The sorter reads data-v and never the text.
         rows.append(
             f"""
 <tr>
-    <td class="rank">{rank_display}</td>
-    <td>{seller_html}</td>
-    <td class="reviews">{orders_label}</td>
-    <td class="reviews">{per_year_html}</td>
-    <td class="reviews">{tenure}</td>
-    <td class="reviews">{rating_html}</td>
-    <td class="reviews">{reviews:,}</td>
+    <td class="rank" data-v="{rank_num or 0}">{rank_display}</td>
+    <td data-v="{(seller_name or '').lower()}">{seller_html}</td>
+    <td class="reviews" data-v="{orders}">{orders_label}</td>
+    <td class="reviews" data-v="{int(per_year) if per_year else -1}">{per_year_html}</td>
+    <td class="reviews" data-v="{months if months else -1}">{tenure}</td>
+    <td class="reviews" data-v="{rating if rating else -1}">{rating_html}</td>
+    <td class="reviews" data-v="{reviews}">{reviews:,}</td>
 </tr>
 """
         )
 
     return f"""
 <div class="table-scroll">
-<table>
+<table id="brand-orders" class="sortable">
     <tr>
-        <th>#</th>
-        <th>Brand</th>
-        <th>Orders</th>
-        <th>Orders / year</th>
-        <th>On NOTHS</th>
-        <th>Rating</th>
-        <th>Reviews (12m)</th>
+        <th data-sort="num" data-first="asc" title="Rank by total orders">#</th>
+        <th data-sort="text">Brand</th>
+        <th data-sort="num" aria-sort="descending">Orders</th>
+        <th data-sort="num">Orders / year</th>
+        <th data-sort="num">On NOTHS</th>
+        <th data-sort="num">Rating</th>
+        <th data-sort="num">Reviews (last 12 months)</th>
     </tr>
     {''.join(rows)}
 </table>
 </div>
+
+{TABLE_SORT_ASSETS}
 """
 
 
@@ -1137,7 +1263,11 @@ def render_top_brands_all_time_orders():
     top_200_share = data.get("top_200_share_of_orders", 0) or 0
     source_date = (data.get("source_generated_at") or "")[:10]
 
-    source_note = f" Partner pages last read {source_date}." if source_date else ""
+    source_note = (
+        f" Partner pages last read {format_long_date(source_date)}."
+        if source_date
+        else ""
+    )
 
     body = f"""
 <h1>Top 200 Brands by All-Time Orders</h1>
@@ -1179,8 +1309,10 @@ NOTHS rounds these figures to two significant figures and adds a "+", so
 "690K+" means somewhere between 690,000 and 700,000 orders. Brands sharing a
 band are marked "=" because the public data genuinely cannot separate them.
 Lifetime orders also reward age, so the "Orders / year" column divides by time
-on the marketplace; "Reviews (12m)" is the same brand's Feefo review total over
-the last 12 months, for current activity rather than lifetime total.{source_note}
+on the marketplace. "Reviews (last 12 months)" is the same brand's Feefo review
+total over that period, for current activity rather than lifetime total. Click
+any column heading to sort by it; the # column always shows rank by total
+orders.{source_note}
 </p>
 
 <p>

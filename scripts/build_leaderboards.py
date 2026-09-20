@@ -39,7 +39,9 @@ BRAND_STATS_CACHE = DATA_DIR / "cache" / "brand_stats.json"
 # within a few MB of GitHub's hard 100MB push limit, so this file stays small
 # on purpose: the long tail of 5,500 brands is in the cache, not in a derived
 # file that gets recommitted on every build.
-BRAND_ORDERS_KEEP_ROWS = 250
+# The page shows the top 200 including ties (201 rows on the Sep 2026 data),
+# so keep comfortably more than that for headroom as bands shift.
+BRAND_ORDERS_KEEP_ROWS = 400
 
 ARCHIVE_ALL_TIME = OUT_DIR / "top_products_all_time_archive.json"
 ARCHIVE_LAST_12 = OUT_DIR / "top_products_last_12_months_archive.json"
@@ -772,6 +774,7 @@ def build_brand_orders_leaderboard(brand_review_leaderboard: dict) -> dict:
 
     total_orders = sum(b["orders"] for b in ordered)
     top_100_orders = sum(b["orders"] for b in ordered[:100])
+    top_200_orders = sum(b["orders"] for b in ordered[:200])
     closed = sum(1 for b in ordered if not b["trading"])
     page_gone = sum(1 for b in ordered if not b["active"])
 
@@ -789,11 +792,15 @@ def build_brand_orders_leaderboard(brand_review_leaderboard: dict) -> dict:
         "not_trading_count": closed,
         "page_gone_count": page_gone,
         "not_trading_in_top_100": sum(1 for b in ordered[:100] if not b["trading"]),
+        "not_trading_in_top_200": sum(1 for b in ordered[:200] if not b["trading"]),
         "total_orders": total_orders,
         "brands_with_100k_plus_orders": sum(1 for b in ordered if b["orders"] >= 100_000),
         "brands_with_1m_plus_orders": sum(1 for b in ordered if b["orders"] >= 1_000_000),
         "average_orders_per_brand": (
             round(total_orders / len(ordered), 0) if ordered else 0
+        ),
+        "top_200_share_of_orders": (
+            round(top_200_orders / total_orders, 4) if total_orders else 0
         ),
         "top_100_share_of_orders": (
             round(top_100_orders / total_orders, 4) if total_orders else 0
