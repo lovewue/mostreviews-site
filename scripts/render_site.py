@@ -792,10 +792,10 @@ def render_brand_orders_leaderboard(items, limit=100):
     <td class="rank" data-v="{rank_num or 0}">{rank_display}</td>
     <td data-v="{(seller_name or '').lower()}">{seller_html}</td>
     <td class="reviews" data-v="{orders}">{orders_label}</td>
-    <td class="reviews" data-v="{int(per_year) if per_year else -1}">{per_year_html}</td>
-    <td class="reviews" data-v="{months if months else -1}">{tenure}</td>
-    <td class="reviews" data-v="{rating if rating else -1}">{rating_html}</td>
-    <td class="reviews" data-v="{reviews}">{reviews:,}</td>
+    <td class="reviews col-peryear" data-v="{int(per_year) if per_year else -1}">{per_year_html}</td>
+    <td class="reviews col-tenure" data-v="{months if months else -1}">{tenure}</td>
+    <td class="reviews col-rating" data-v="{rating if rating else -1}">{rating_html}</td>
+    <td class="reviews col-reviews" data-v="{reviews}">{reviews:,}</td>
 </tr>
 """
         )
@@ -807,10 +807,10 @@ def render_brand_orders_leaderboard(items, limit=100):
         <th data-sort="num" data-first="asc" title="Rank by total orders">#</th>
         <th data-sort="text">Brand</th>
         <th data-sort="num" aria-sort="descending">Orders</th>
-        <th data-sort="num">Orders / year</th>
-        <th data-sort="num">On NOTHS</th>
-        <th data-sort="num">Rating</th>
-        <th data-sort="num">Reviews (last 12 months)</th>
+        <th data-sort="num" class="col-peryear">Orders / year</th>
+        <th data-sort="num" class="col-tenure">On NOTHS</th>
+        <th data-sort="num" class="col-rating">Rating</th>
+        <th data-sort="num" class="col-reviews">Reviews (last 12 months)</th>
     </tr>
     {''.join(rows)}
 </table>
@@ -1275,7 +1275,7 @@ def render_top_brands_all_time_orders():
 <p>
 Every Not On The High Street partner page publishes the number of orders that
 brand has taken over its lifetime on the marketplace. Collected here, they rank
-{brand_count:,} brands by total orders — the closest thing NOTHS has to a
+{brand_count:,} brands by total orders, the closest thing NOTHS has to a
 public sales league table.
 </p>
 
@@ -1300,7 +1300,7 @@ the top 200, {top_200_share:.0%}.
 
 {render_brand_orders_leaderboard(items, limit=BRAND_ORDERS_PAGE_LIMIT)}
 
-<p class="table-note">* No longer trading on NOTHS — the storefront is empty or gone.
+<p class="table-note">* No longer trading on NOTHS. The storefront is empty or gone.
 Lifetime orders are kept, because the brand really did take them, but the
 name isn't linked since there's nothing there to buy.</p>
 
