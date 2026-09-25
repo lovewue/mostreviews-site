@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-09-19T07:51:59+00:00",
- "brand_count": 5613,
- "brands_with_orders": 3585,
+ "generated_at": "2026-09-25T08:29:46+00:00",
+ "brand_count": 5615,
+ "brands_with_orders": 3586,
  "brands": {
   "122group": {
    "slug": "122group",
@@ -53553,6 +53553,21 @@
    "http_status": 200,
    "checked_at": "2026-09-19T07:24:24+00:00"
   },
+  "palettelondon": {
+   "slug": "palettelondon",
+   "name": "Palette London",
+   "orders_label": "200+",
+   "orders": 200,
+   "orders_tier": "100+",
+   "brand_rating": 4.7,
+   "years_on_noths": 9,
+   "months_on_noths": 108,
+   "tenure_label": "9 years",
+   "product_count": 1,
+   "active": true,
+   "http_status": 200,
+   "checked_at": "2026-09-25T08:29:46+00:00"
+  },
   "palmsinthewild": {
    "slug": "palmsinthewild",
    "name": "Palms In The Wild",
@@ -81077,6 +81092,21 @@
    "active": true,
    "http_status": 200,
    "checked_at": "2026-09-19T07:49:12+00:00"
+  },
+  "westerdistillery": {
+   "slug": "westerdistillery",
+   "name": "",
+   "orders_label": "",
+   "orders": 0,
+   "orders_tier": "",
+   "brand_rating": 0.0,
+   "years_on_noths": 0,
+   "months_on_noths": 0,
+   "tenure_label": "",
+   "product_count": 0,
+   "active": false,
+   "http_status": 200,
+   "checked_at": "2026-09-25T08:29:46+00:00"
   },
   "westergaarddesigns": {
    "slug": "westergaarddesigns",
