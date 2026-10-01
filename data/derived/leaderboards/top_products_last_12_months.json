@@ -1,6 +1,6 @@
 {
   "leaderboard": "last_12_months",
-  "generated_at": "2026-10-01T06:44:23+00:00",
+  "generated_at": "2026-10-01T12:51:15+00:00",
   "product_count": 27333,
   "total_products_reviewed": 27333,
   "total_reviews": 56806,
@@ -77052,11 +77052,11 @@
     {
       "rank": 6412,
       "sku": "769547",
-      "name": null,
-      "seller_slug": null,
-      "seller_name": null,
-      "product_url": null,
-      "available": false,
+      "name": "Personalised Charcuterie Board",
+      "seller_slug": "therusticdish",
+      "seller_name": "The Rustic Dish®",
+      "product_url": "https://www.notonthehighstreet.com/therusticdish/product/personalised-eating-well-together-board",
+      "available": true,
       "reviews": 2,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -126420,11 +126420,11 @@
     {
       "rank": 10526,
       "sku": "1238620",
-      "name": null,
-      "seller_slug": null,
-      "seller_name": null,
-      "product_url": null,
-      "available": false,
+      "name": "Happy Place Sunset Wave Necklace",
+      "seller_slug": "cassiopi",
+      "seller_name": "Cassiopi",
+      "product_url": "https://www.notonthehighstreet.com/cassiopi/product/happy-place-sunset-wave-necklace",
+      "available": true,
       "reviews": 1,
       "rating": 5.0,
       "metadata_source": "cache"
@@ -314632,7 +314632,7 @@
       "seller_slug": "uniqueful",
       "seller_name": "Uniqueful",
       "product_url": "https://www.notonthehighstreet.com/uniqueful/product/personalised-photo-upload-framed-print",
-      "available": true,
+      "available": false,
       "reviews": 1,
       "rating": 2.0,
       "metadata_source": "cache"
