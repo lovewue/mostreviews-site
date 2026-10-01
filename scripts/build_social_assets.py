@@ -47,33 +47,42 @@ COVER_SIZE = (1080, 1350)  # Instagram's standard 4:5 carousel ratio
 # against a 1080-tall canvas. This scales them proportionally so the layout
 # doesn't leave a large empty gap if COVER_SIZE's height ever changes again.
 _SCALE = COVER_SIZE[1] / 1080
-ACCENT_PURPLE = (112, 102, 224)  # #7066E0 — NOTHS's actual brand purple, constant across all months
-HIGHLIGHT_COLOR = (255, 240, 200)  # warm cream "highlighter" block behind the month
-TEXT_COLOR = (255, 255, 255)
-MUTED_COLOR = (210, 208, 220)
+# Trend List house style, matching the brand-orders carousel (Sep 2026).
+#
+# Black and white is the Trend List; the purple is NOTHS's, so the one colour
+# on the page belongs to the marketplace the list is about. Black appears only
+# in the wordmark and its rule — everything carrying information is purple, so
+# nothing competes with the ranking itself.
+BG_COLOR = (255, 255, 255)
+PURPLE = (81, 40, 95)        # #51285F — NOTHS's current brand purple
+INK = (17, 17, 17)           # #111111 — wordmark and footer rule only
+MUTED = (87, 80, 92)         # #57505C — a purple-leaning grey; a neutral one
+                             # looks dirty next to the aubergine
+RULE = (228, 225, 230)
 
-# Deep, saturated backgrounds — rotates by calendar month (6 colours, so
-# across 12 months each one repeats exactly twice, keeping the cycle clean).
-COVER_PALETTE = [
-    (72, 40, 110),   # vivid purple
-    (18, 82, 88),    # vivid teal
-    (36, 92, 58),    # vivid green
-    (145, 66, 40),   # vivid rust/terracotta
-    (34, 48, 110),   # vivid navy/blue
-    (110, 30, 55),   # vivid burgundy
-]
+# Kept so existing callers still resolve; the per-month background rotation is
+# gone. A recognisable house style does more for a feed than six rotating
+# backgrounds did, and the carousel is now the same look as the website.
+ACCENT_PURPLE = PURPLE
+HIGHLIGHT_COLOR = PURPLE
+TEXT_COLOR = INK
+MUTED_COLOR = MUTED
 
-FONT_PATHS_SERIF_BOLD = [
-    "/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-Bold.ttf",
-    "/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf",
+# Anton is the logo's own face, so it is vendored into the repo rather than
+# relying on it being installed — GitHub runners do not have it, and a silent
+# fallback to DejaVu would quietly undo the whole restyle.
+FONT_PATHS_DISPLAY = [
+    str(PROJECT_ROOT / "static" / "fonts" / "Anton.ttf"),
+    "/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf",
 ]
+FONT_PATHS_SERIF_BOLD = FONT_PATHS_DISPLAY  # legacy alias
 FONT_PATHS_BOLD = [
-    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
     "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
 ]
 FONT_PATHS_REGULAR = [
-    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
 ]
 
 
@@ -128,10 +137,16 @@ def get_headers() -> dict:
 
 
 def month_bg_color(month: str) -> tuple[int, int, int]:
-    """Shared by the cover and every product slide that month, so the whole
-    carousel reads as one cohesive set."""
-    month_number = int(month.split("-")[1])
-    return COVER_PALETTE[month_number % len(COVER_PALETTE)]
+    """
+    Every month now uses the same white background.
+
+    This used to rotate through six saturated colours so the Instagram grid
+    did not look repetitive. That is the opposite of what a house style wants:
+    the posts are more recognisable as a set when they look identical, and the
+    carousel now matches the website. The signature is the typography and the
+    purple, not a different backdrop each month.
+    """
+    return BG_COLOR
 
 
 _REMBG_SESSION = None
@@ -520,70 +535,125 @@ def format_month_label(month: str) -> str:
     return dt.strftime("%B %Y")
 
 
-def _add_grain(canvas: "Image.Image", opacity: int = 18) -> "Image.Image":
-    """Subtle noise texture so the background doesn't read as flat digital
-    colour — matches the textured-paper look of the reference style."""
-    noise = Image.effect_noise(canvas.size, 40).convert("L")
-    noise = noise.point(lambda p: p if p > 128 else 255 - p)
-    noise_rgba = Image.merge("RGBA", (noise, noise, noise, noise.point(lambda p: opacity)))
-    canvas.paste(Image.new("RGB", canvas.size, (255, 255, 255)), (0, 0), noise_rgba)
-    return canvas
+def _draw_tracked(draw, xy, text, font, fill, tracking):
+    """
+    Draw text with extra letter-spacing, which Pillow has no setting for.
+
+    The small uppercase labels need generous tracking to read as labels rather
+    than shouting, so they are drawn a character at a time.
+    """
+    x, y = xy
+    for ch in text:
+        draw.text((x, y), ch, font=font, fill=fill)
+        x += draw.textlength(ch, font=font) + tracking
+    return x
+
+
+def _draw_block_line(draw, x, y, text, font, pad_x, pad_y):
+    """A line of white type knocked out of a solid purple block.
+
+    #51285F is too dark to work as a highlight colour against black text, so
+    the emphasis is carried by a filled field instead. It is the one device
+    that repeats across every slide.
+    """
+    bbox = draw.textbbox((0, 0), text, font=font)
+    text_w, text_h = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    draw.rectangle(
+        [x - pad_x, y - pad_y, x + text_w + pad_x, y + text_h + pad_y],
+        fill=PURPLE,
+    )
+    draw.text((x, y - bbox[1]), text, font=font, fill=(255, 255, 255))
+    return text_h
+
+
+def _draw_footer(draw, width, height, margin, right_label="SWIPE \u2192"):
+    """The wordmark lockup that closes every slide: black rule, black
+    'THE TREND LIST' with the asterisk in purple, and a purple right label."""
+    y_rule = height - round(150 * _SCALE)
+    draw.rectangle(
+        [margin, y_rule, width - margin, y_rule + round(5 * _SCALE)],
+        fill=INK,
+    )
+
+    y = y_rule + round(32 * _SCALE)
+    mark_font = _load_font(FONT_PATHS_DISPLAY, round(34 * _SCALE))
+    draw.text((margin, y), "THE TREND LIST", font=mark_font, fill=INK)
+    mark_w = draw.textlength("THE TREND LIST", font=mark_font)
+    draw.text((margin + mark_w, y), "*", font=mark_font, fill=PURPLE)
+
+    label_font = _load_font(FONT_PATHS_BOLD, round(28 * _SCALE))
+    label_w = draw.textlength(right_label, font=label_font)
+    draw.text((width - margin - label_w, y + round(4 * _SCALE)),
+              right_label, font=label_font, fill=PURPLE)
 
 
 def build_cover_image(month: str, bg_color: tuple[int, int, int], total_reviews: int, out_path: Path) -> bool:
+    """
+    Cover slide, same shape as the brand-orders carousel: a label, one very
+    large number, a statement with its key line knocked out of a purple block,
+    then the wordmark lockup.
+
+    The number leads because it is the thing worth stopping for. The old cover
+    opened with the month, which tells a scrolling reader nothing.
+    """
     if not PIL_OK:
         return False
 
-    canvas = Image.new("RGB", COVER_SIZE, bg_color)
-    canvas = _add_grain(canvas)
-    draw = ImageDraw.Draw(canvas)
     width, height = COVER_SIZE
+    canvas = Image.new("RGB", COVER_SIZE, BG_COLOR)
+    draw = ImageDraw.Draw(canvas)
 
-    margin_left = round(70 * _SCALE)
-    y = round(150 * _SCALE)
+    margin = round(76 * _SCALE)
 
-    month_label = format_month_label(month)
+    # Kicker
+    kicker_font = _load_font(FONT_PATHS_BOLD, round(24 * _SCALE))
+    _draw_tracked(draw, (margin, round(84 * _SCALE)),
+                  "NOT ON THE HIGH STREET", kicker_font, MUTED, round(4.5 * _SCALE))
 
-    lines = [
-        (month_label, round(100 * _SCALE), (20, 20, 20), HIGHLIGHT_COLOR),
-        ("These Were the", round(60 * _SCALE), TEXT_COLOR, None),
-        ("Top 10", round(100 * _SCALE), ACCENT_PURPLE, None),
-        ("Most Reviewed", round(72 * _SCALE), TEXT_COLOR, None),
-        ("Products on NOTHS", round(60 * _SCALE), TEXT_COLOR, None),
-    ]
+    # Hero number — the month's review count
+    hero_font = _load_font(FONT_PATHS_DISPLAY, round(300 * _SCALE))
+    hero_text = f"{total_reviews:,}"
+    bbox = draw.textbbox((0, 0), hero_text, font=hero_font)
+    y = round(140 * _SCALE)
+    draw.text((margin, y - bbox[1]), hero_text, font=hero_font, fill=PURPLE)
+    y += (bbox[3] - bbox[1]) + round(44 * _SCALE)
 
-    for text, size, color, highlight in lines:
-        font = _load_font(FONT_PATHS_SERIF_BOLD, size)
-        bbox = draw.textbbox((0, 0), text, font=font)
-        text_h = bbox[3] - bbox[1]
-        text_w = bbox[2] - bbox[0]
+    # Statement, with the middle line reversed out of a purple block
+    month_label = format_month_label(month).upper()
+    sub_font = _load_font(FONT_PATHS_DISPLAY, round(70 * _SCALE))
+    line_gap = round(26 * _SCALE)
 
-        if highlight:
-            pad_x, pad_y = round(14 * _SCALE), round(8 * _SCALE)
-            # NOTE: previously subtracted bbox[1] from both the top and
-            # bottom here, which cut the bottom of the highlight box short
-            # by roughly bbox[1] pixels — the box needs to simply span
-            # [y - pad_y, y + text_h + pad_y] since text_h is already
-            # bbox[3] - bbox[1] (the true rendered height).
-            draw.rectangle(
-                [margin_left - pad_x, y - pad_y, margin_left + text_w + pad_x, y + text_h + pad_y],
-                fill=highlight,
-            )
+    for text, blocked in [
+        (f"REVIEWS IN {month_label}.", False),
+        ("THE TOP 10 MOST REVIEWED", True),
+        ("PRODUCTS ON NOTHS", False),
+    ]:
+        if blocked:
+            h = _draw_block_line(draw, margin, y, text, sub_font,
+                                 round(14 * _SCALE), round(12 * _SCALE))
+            y += h + line_gap + round(10 * _SCALE)
+        else:
+            b = draw.textbbox((0, 0), text, font=sub_font)
+            draw.text((margin, y - b[1]), text, font=sub_font, fill=PURPLE)
+            y += (b[3] - b[1]) + line_gap
 
-        draw.text((margin_left, y - bbox[1]), text, font=font, fill=color)
-        y += text_h + round(22 * _SCALE)
+    # Supporting line, wrapped to the text column
+    note_font = _load_font(FONT_PATHS_REGULAR, round(30 * _SCALE))
+    y += round(18 * _SCALE)
+    note = "Ranked by the reviews each product picked up during the month."
+    words, line = note.split(), ""
+    for word in words:
+        trial = f"{line} {word}".strip()
+        if draw.textlength(trial, font=note_font) > (width - margin * 2):
+            draw.text((margin, y), line, font=note_font, fill=MUTED)
+            y += round(44 * _SCALE)
+            line = word
+        else:
+            line = trial
+    if line:
+        draw.text((margin, y), line, font=note_font, fill=MUTED)
 
-    # Footer: small wordmark + review count, bottom-left
-    y_footer = height - round(130 * _SCALE)
-    footer_font = _load_font(FONT_PATHS_BOLD, round(30 * _SCALE))
-    draw.text((margin_left, y_footer), "THE TREND LIST", font=footer_font, fill=ACCENT_PURPLE)
-
-    sub_font = _load_font(FONT_PATHS_BOLD, round(24 * _SCALE))
-    draw.text(
-        (margin_left, y_footer + round(42 * _SCALE)),
-        f"{total_reviews:,} reviews analysed",
-        font=sub_font, fill=MUTED_COLOR,
-    )
+    _draw_footer(draw, width, height, margin)
 
     canvas.save(out_path, "JPEG", quality=92)
     return True
@@ -684,15 +754,18 @@ def remove_background(image_path: Path) -> "Image.Image | None":
 
 
 def build_product_slide(raw_image_path: Path, product: dict, bg_color: tuple[int, int, int], out_path: Path) -> bool:
-    """Build a branded product slide: the product cut out from its original
-    background, placed on this month's colour, with bold product/seller name
-    text below. No rank number shown — with lots of tied review counts,
-    numbering looks wrong more often than it looks right."""
+    """Product slide in the house style: the cutout on white, product name in
+    Anton purple, seller underneath, wordmark lockup at the foot.
+
+    Still no rank number on the image — with this many tied review counts,
+    numbering looks wrong more often than it looks right. The filename keeps
+    the rank so the carousel uploads in order.
+    """
     if not PIL_OK:
         return False
 
-    canvas = Image.new("RGB", COVER_SIZE, bg_color)
-    canvas = _add_grain(canvas)
+    width, height = COVER_SIZE
+    canvas = Image.new("RGB", COVER_SIZE, BG_COLOR)
 
     cutout = remove_background(raw_image_path)
 
@@ -704,44 +777,44 @@ def build_product_slide(raw_image_path: Path, product: dict, bg_color: tuple[int
         except Exception:
             return False
 
-    # Fit the product into the upper ~62% of the canvas, preserving aspect ratio
-    width, height = COVER_SIZE
+    # Fit the product into the upper portion, preserving aspect ratio.
     max_product_width = int(width * 0.72)
-    max_product_height = int(height * 0.58)
+    max_product_height = int(height * 0.52)
 
     ratio = min(max_product_width / cutout.width, max_product_height / cutout.height)
     new_size = (int(cutout.width * ratio), int(cutout.height * ratio))
     cutout = cutout.resize(new_size, Image.LANCZOS)
 
     paste_x = (width - cutout.width) // 2
-    paste_y = round(90 * _SCALE)
+    paste_y = round(96 * _SCALE)
     canvas.paste(cutout, (paste_x, paste_y), cutout)
 
     draw = ImageDraw.Draw(canvas)
-    margin_left = round(70 * _SCALE)
-    max_text_width = width - margin_left * 2
+    margin = round(76 * _SCALE)
+    max_text_width = width - margin * 2
 
-    y = paste_y + max_product_height + round(50 * _SCALE)
+    y = paste_y + max_product_height + round(54 * _SCALE)
 
-    name = product.get("name") or f"Product {product.get('sku', '')}"
+    name = (product.get("name") or f"Product {product.get('sku', '')}").upper()
     name_font, name_lines = fit_product_name(
-        draw, name, FONT_PATHS_SERIF_BOLD, max_text_width,
-        max_font_size=round(62 * _SCALE), min_font_size=round(32 * _SCALE),
+        draw, name, FONT_PATHS_DISPLAY, max_text_width,
+        max_font_size=round(62 * _SCALE), min_font_size=round(34 * _SCALE),
     )
 
     for line in name_lines:
         bbox = draw.textbbox((0, 0), line, font=name_font)
-        line_h = bbox[3] - bbox[1]
-        draw.text((margin_left, y - bbox[1]), line, font=name_font, fill=TEXT_COLOR)
-        y += line_h + round(12 * _SCALE)
+        draw.text((margin, y - bbox[1]), line, font=name_font, fill=PURPLE)
+        y += (bbox[3] - bbox[1]) + round(14 * _SCALE)
 
     seller_name = product.get("seller_name")
     if seller_name:
-        y += round(14 * _SCALE)
-        seller_font = _load_font(FONT_PATHS_BOLD, round(34 * _SCALE))
+        y += round(12 * _SCALE)
+        seller_font = _load_font(FONT_PATHS_REGULAR, round(32 * _SCALE))
         seller_text = f"by {seller_name}"
         bbox = draw.textbbox((0, 0), seller_text, font=seller_font)
-        draw.text((margin_left, y - bbox[1]), seller_text, font=seller_font, fill=ACCENT_PURPLE)
+        draw.text((margin, y - bbox[1]), seller_text, font=seller_font, fill=MUTED)
+
+    _draw_footer(draw, width, height, margin)
 
     canvas.convert("RGB").save(out_path, "JPEG", quality=92)
     return True
