@@ -36,15 +36,15 @@
     "total_reviews_month": 36
   },
   {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 24,
-    "total_reviews_month": 33
-  },
-  {
     "seller_slug": "selections",
     "seller_name": "Garden Selections",
     "product_count_month": 18,
+    "total_reviews_month": 32
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 23,
     "total_reviews_month": 32
   },
   {
@@ -966,6 +966,12 @@
     "total_reviews_month": 4
   },
   {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 2,
+    "total_reviews_month": 4
+  },
+  {
     "seller_slug": "thegiftologist",
     "seller_name": "The Giftologist",
     "product_count_month": 2,
@@ -1311,12 +1317,6 @@
     "seller_slug": "thedogscollarsuk",
     "seller_name": "The Dogs Collars UK",
     "product_count_month": 3,
-    "total_reviews_month": 3
-  },
-  {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 1,
     "total_reviews_month": 3
   },
   {

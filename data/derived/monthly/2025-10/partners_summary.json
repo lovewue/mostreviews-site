@@ -852,6 +852,12 @@
     "total_reviews_month": 8
   },
   {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 6,
+    "total_reviews_month": 8
+  },
+  {
     "seller_slug": "thegluttonousgardener",
     "seller_name": "The Gluttonous Gardener",
     "product_count_month": 7,
@@ -1140,12 +1146,6 @@
     "total_reviews_month": 6
   },
   {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 5,
-    "total_reviews_month": 6
-  },
-  {
     "seller_slug": "thegourmetchocolatepizzaco",
     "seller_name": "The Gourmet Chocolate Pizza Co.",
     "product_count_month": 5,
@@ -1424,12 +1424,6 @@
   {
     "seller_slug": "carriagetrade",
     "seller_name": "The Carriage Trade Company Ltd",
-    "product_count_month": 4,
-    "total_reviews_month": 5
-  },
-  {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
     "product_count_month": 4,
     "total_reviews_month": 5
   },
@@ -2360,6 +2354,12 @@
   {
     "seller_slug": "thecornishcompany",
     "seller_name": "The Cornish Company",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
     "product_count_month": 3,
     "total_reviews_month": 3
   },

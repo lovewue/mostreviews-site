@@ -264,6 +264,12 @@
     "total_reviews_month": 32
   },
   {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 16,
+    "total_reviews_month": 32
+  },
+  {
     "seller_slug": "feelsilkstudio",
     "seller_name": "Feel Silk Studio",
     "product_count_month": 23,
@@ -328,12 +334,6 @@
     "seller_name": "The Rustic Dish®",
     "product_count_month": 16,
     "total_reviews_month": 26
-  },
-  {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 14,
-    "total_reviews_month": 25
   },
   {
     "seller_slug": "madeforyougifts",
@@ -858,12 +858,6 @@
     "total_reviews_month": 11
   },
   {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 6,
-    "total_reviews_month": 11
-  },
-  {
     "seller_slug": "thisisnessie",
     "seller_name": "This Is Nessie",
     "product_count_month": 11,
@@ -1332,12 +1326,6 @@
     "total_reviews_month": 7
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 7,
-    "total_reviews_month": 7
-  },
-  {
     "seller_slug": "puzzlepostuk",
     "seller_name": "Puzzle Post UK",
     "product_count_month": 5,
@@ -1542,6 +1530,12 @@
     "total_reviews_month": 6
   },
   {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 6,
+    "total_reviews_month": 6
+  },
+  {
     "seller_slug": "rarebirdsbookclub",
     "seller_name": "Rare Birds Books",
     "product_count_month": 1,
@@ -1743,6 +1737,12 @@
     "seller_slug": "kittyandfin",
     "seller_name": "Kitty and Fin",
     "product_count_month": 4,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 2,
     "total_reviews_month": 5
   },
   {
@@ -1998,12 +1998,6 @@
     "total_reviews_month": 4
   },
   {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 1,
-    "total_reviews_month": 4
-  },
-  {
     "seller_slug": "ladykdesigns",
     "seller_name": "Lady K Designs",
     "product_count_month": 2,
@@ -2162,6 +2156,12 @@
   {
     "seller_slug": "sweetcecilys",
     "seller_name": "Sweet Cecily's",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
     "product_count_month": 4,
     "total_reviews_month": 4
   },

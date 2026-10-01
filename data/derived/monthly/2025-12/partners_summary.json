@@ -528,12 +528,6 @@
     "total_reviews_month": 39
   },
   {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 11,
-    "total_reviews_month": 39
-  },
-  {
     "seller_slug": "therusticdish",
     "seller_name": "The Rustic Dish®",
     "product_count_month": 18,
@@ -585,6 +579,12 @@
     "seller_slug": "madeforyougifts",
     "seller_name": "Made For You Gifts",
     "product_count_month": 11,
+    "total_reviews_month": 36
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 10,
     "total_reviews_month": 36
   },
   {
@@ -1194,6 +1194,12 @@
     "total_reviews_month": 16
   },
   {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 10,
+    "total_reviews_month": 16
+  },
+  {
     "seller_slug": "thegourmetchocolatepizzaco",
     "seller_name": "The Gourmet Chocolate Pizza Co.",
     "product_count_month": 8,
@@ -1389,12 +1395,6 @@
     "seller_slug": "thecornishcompany",
     "seller_name": "The Cornish Company",
     "product_count_month": 6,
-    "total_reviews_month": 13
-  },
-  {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 9,
     "total_reviews_month": 13
   },
   {

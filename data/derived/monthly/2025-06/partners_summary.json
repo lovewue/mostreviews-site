@@ -186,12 +186,6 @@
     "total_reviews_month": 24
   },
   {
-    "seller_slug": "mixpixie",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 13,
-    "total_reviews_month": 24
-  },
-  {
     "seller_slug": "jomanda",
     "seller_name": "Jomanda Soft Plush Toys, Gifts & Accessories #SofterThanASoftThing CE/UKCA",
     "product_count_month": 8,
@@ -261,6 +255,12 @@
     "seller_slug": "looppa",
     "seller_name": "Pomchick",
     "product_count_month": 14,
+    "total_reviews_month": 20
+  },
+  {
+    "seller_slug": "mixpixie",
+    "seller_name": "The Gift Edit",
+    "product_count_month": 12,
     "total_reviews_month": 20
   },
   {
@@ -872,6 +872,12 @@
   {
     "seller_slug": "rossandross",
     "seller_name": "Ross & Ross Gifts",
+    "product_count_month": 2,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "thegiftedit",
+    "seller_name": "The Gift Edit",
     "product_count_month": 2,
     "total_reviews_month": 7
   },
@@ -2157,12 +2163,6 @@
     "seller_slug": "thecottonbuntingcompany",
     "seller_name": "The Cotton Bunting Company",
     "product_count_month": 3,
-    "total_reviews_month": 3
-  },
-  {
-    "seller_slug": "thegiftedit",
-    "seller_name": "The Gift Edit",
-    "product_count_month": 1,
     "total_reviews_month": 3
   },
   {
