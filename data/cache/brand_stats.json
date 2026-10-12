@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-10-01T06:13:21+00:00",
- "brand_count": 5616,
+ "generated_at": "2026-10-12T19:29:05+00:00",
+ "brand_count": 5619,
  "brands_with_orders": 3586,
  "brands": {
   "122group": {
@@ -25578,6 +25578,21 @@
    "http_status": 200,
    "checked_at": "2026-09-19T06:59:01+00:00"
   },
+  "givable": {
+   "slug": "givable",
+   "name": "",
+   "orders_label": "",
+   "orders": 0,
+   "orders_tier": "",
+   "brand_rating": 0.0,
+   "years_on_noths": 0,
+   "months_on_noths": 0,
+   "tenure_label": "",
+   "product_count": 0,
+   "active": false,
+   "http_status": 200,
+   "checked_at": "2026-10-12T19:29:05+00:00"
+  },
   "giveyourselfkindness": {
    "slug": "giveyourselfkindness",
    "name": "Give Yourself Kindness",
@@ -43802,6 +43817,21 @@
    "active": true,
    "http_status": 200,
    "checked_at": "2026-09-19T07:15:32+00:00"
+  },
+  "mabelshomeaccessories": {
+   "slug": "mabelshomeaccessories",
+   "name": "",
+   "orders_label": "",
+   "orders": 0,
+   "orders_tier": "",
+   "brand_rating": 0.0,
+   "years_on_noths": 0,
+   "months_on_noths": 0,
+   "tenure_label": "",
+   "product_count": 0,
+   "active": false,
+   "http_status": 200,
+   "checked_at": "2026-10-12T19:29:05+00:00"
   },
   "macandlilly": {
    "slug": "macandlilly",
@@ -81827,6 +81857,21 @@
    "active": true,
    "http_status": 200,
    "checked_at": "2026-09-19T07:49:50+00:00"
+  },
+  "wildrootpantry": {
+   "slug": "wildrootpantry",
+   "name": "",
+   "orders_label": "",
+   "orders": 0,
+   "orders_tier": "",
+   "brand_rating": 0.0,
+   "years_on_noths": 0,
+   "months_on_noths": 0,
+   "tenure_label": "",
+   "product_count": 0,
+   "active": false,
+   "http_status": 200,
+   "checked_at": "2026-10-12T19:29:04+00:00"
   },
   "wildswans": {
    "slug": "wildswans",
