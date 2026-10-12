@@ -1154,6 +1154,10 @@ def generate_sitemap(months):
     urls.append(f"{base_url}/archive.html")
     urls.append(f"{base_url}/about.html")
 
+    # Curated theme pages (Sara Davies' Christmas picks etc.)
+    for slug in theme_page_slugs():
+        urls.append(f"{base_url}/{slug}.html")
+
     # Monthly pages
     for m in months:
         urls.append(f"{base_url}/months/{m}.html")
@@ -1332,6 +1336,277 @@ orders.{source_note}
     print("✅ top-brands-all-time rendered")
 
 
+# -----------------------------------------------------------------------------
+# Curated NOTHS theme pages (e.g. Sara Davies' Christmas picks)
+# -----------------------------------------------------------------------------
+# The product list comes from data/derived/themes/<slug>.json, written weekly
+# by scripts/build_theme_picks.py. Review counts are joined here, by SKU, from
+# the current leaderboard files, so both the weekly scrape and the monthly
+# site build produce an up-to-date page.
+THEMES_DATA_ROOT = DATA_DIR / "derived" / "themes"
+
+
+def load_review_lookups():
+    """SKU -> leaderboard row, for all-time and last-12-months."""
+    lookups = {}
+    for key, filename in (
+        ("all_time", "top_products_all_time.json"),
+        ("last_12", "top_products_last_12_months.json"),
+    ):
+        path = LEADERBOARDS_ROOT / filename
+        if not path.exists():
+            print(f"⚠️ {filename} not found; theme pages will show no {key} reviews")
+            lookups[key] = ({}, "")
+            continue
+
+        data = load_json(path)
+        rows = {
+            str(r.get("sku")): r
+            for r in clean_product_list(data.get("items", []))
+            if r.get("sku")
+        }
+        lookups[key] = (rows, data.get("generated_at") or "")
+
+    return lookups
+
+
+def rank_theme_products(products, lookups):
+    """
+    Join review counts by SKU and order the list.
+
+    Ranked: every product with at least one all-time review, most first. Ties
+    on all-time share a rank and are ordered by last-12-months reviews, then
+    by NOTHS's own page order.
+
+    Unranked: products with no reviews in our data. They are not "tied for
+    last", so they get no rank number; they follow in NOTHS's page order.
+    """
+    all_time_rows, _ = lookups["all_time"]
+    last_12_rows, _ = lookups["last_12"]
+
+    ranked, unranked = [], []
+
+    for p in products:
+        item = dict(p)
+        at = all_time_rows.get(item["sku"]) or {}
+        l12 = last_12_rows.get(item["sku"]) or {}
+
+        item["reviews_all_time"] = int(at.get("reviews") or 0)
+        item["reviews_last_12"] = int(l12.get("reviews") or 0)
+        item["rating"] = at.get("rating")
+
+        # Reviewed on NOTHS after our latest data snapshot: NOTHS shows a
+        # rating but we have no count yet. Show their rating, leave it unranked.
+        item["counts_pending"] = (
+            item["reviews_all_time"] == 0 and bool(item.get("noths_rating"))
+        )
+        if item["counts_pending"]:
+            item["rating"] = item.get("noths_rating")
+
+        (ranked if item["reviews_all_time"] > 0 else unranked).append(item)
+
+    ranked.sort(key=lambda p: (-p["reviews_all_time"], -p["reviews_last_12"], p["position"]))
+    ranked = add_dense_ranks(ranked, value_key="reviews_all_time")
+
+    for idx, p in enumerate(ranked):
+        same_prev = idx > 0 and ranked[idx - 1]["reviews_all_time"] == p["reviews_all_time"]
+        same_next = idx < len(ranked) - 1 and ranked[idx + 1]["reviews_all_time"] == p["reviews_all_time"]
+        p["rank_display"] = f"{p['rank']}=" if (same_prev or same_next) else str(p["rank"])
+
+    unranked.sort(key=lambda p: p["position"])
+    for p in unranked:
+        p["rank_display"] = "–"
+
+    return ranked, unranked
+
+
+def render_theme_table(rows):
+    html_rows = []
+
+    for p in rows:
+        name = p.get("name") or f"Product {p.get('sku')}"
+        seller = p.get("seller_name") or ""
+        url = p.get("product_url") or ""
+
+        # Every product is linked, including out-of-stock ones: NOTHS is still
+        # featuring them on the theme, and the Awin cookie covers whatever
+        # else the shopper buys on that visit.
+        awin_url = build_awin_product_link(url, clickref="TrendListTheme")
+        name_html = (
+            f'<a href="{awin_url}" target="_blank" rel="sponsored noopener">{name}</a>'
+            if awin_url else name
+        )
+
+        tags = []
+        if p.get("is_new"):
+            tags.append('<span class="theme-tag theme-tag-new">NEW</span>')
+        if not p.get("in_stock", True):
+            tags.append('<span class="theme-tag theme-tag-oos">Out of stock</span>')
+        tags_html = f' {" ".join(tags)}' if tags else ""
+
+        if p.get("counts_pending"):
+            all_time_html = last_12_html = "–"
+        elif p["reviews_all_time"] == 0:
+            all_time_html = last_12_html = "–"
+        else:
+            all_time_html = f'{p["reviews_all_time"]:,}'
+            last_12_html = f'{p["reviews_last_12"]:,}'
+
+        rating = p.get("rating")
+        rating_html = f"{float(rating):.1f}" if rating else "–"
+
+        html_rows.append(
+            f"""
+<tr>
+    <td class="rank">{p["rank_display"]}</td>
+    <td>
+        {name_html}{tags_html}
+        <div class="partner">{seller}</div>
+    </td>
+    <td class="reviews">{all_time_html}</td>
+    <td class="reviews">{last_12_html}</td>
+    <td class="reviews col-rating">{rating_html}</td>
+</tr>
+"""
+        )
+
+    return f"""
+<div class="table-scroll">
+<table class="theme-picks">
+    <tr>
+        <th>#</th>
+        <th>Product</th>
+        <th class="reviews">All time</th>
+        <th class="reviews"><span class="label-long">Last 12 months</span><span class="label-short">12 mths</span></th>
+        <th class="reviews col-rating">Rating</th>
+    </tr>
+    {''.join(html_rows)}
+</table>
+</div>
+"""
+
+
+def render_theme_page(slug, theme, snapshot, lookups):
+    products = [p for p in snapshot.get("products", []) if isinstance(p, dict) and p.get("sku")]
+    if not products:
+        print(f"⚠️ theme {slug}: snapshot has no products, skipped")
+        return
+
+    ranked, unranked = rank_theme_products(products, lookups)
+    rows = ranked + unranked
+
+    curator = theme.get("curator", "")
+    label = theme.get("label") or theme["title"]
+    theme_url = snapshot.get("theme_url") or ""
+    theme_link = build_awin_product_link(theme_url, clickref="TrendListTheme")
+
+    total = len(rows)
+    reviewed = len(ranked)
+    not_reviewed = len(unranked)
+    total_reviews = sum(p["reviews_all_time"] for p in ranked)
+    reviews_12 = sum(p["reviews_last_12"] for p in ranked)
+    new_count = sum(1 for p in rows if p.get("is_new"))
+
+    checked = format_long_date(snapshot.get("checked_at") or "")
+    data_date = format_long_date(lookups["all_time"][1] or "")
+
+    not_reviewed_sentence = (
+        f" {not_reviewed} haven't been reviewed yet"
+        + (f", including {new_count} NOTHS has tagged as new" if new_count else "")
+        + ", so they sit at the bottom without a rank."
+        if not_reviewed else ""
+    )
+
+    body = f"""
+<h1>{theme["title"]}</h1>
+
+<p>
+Every product in <a href="{theme_link}" target="_blank" rel="sponsored noopener">{label} on Not On The High Street</a>,
+ranked by how many customer reviews it has collected. The NOTHS page shows a
+star rating for each product but not how many people have reviewed it, so this
+list adds the numbers.
+</p>
+
+<p>
+{reviewed} of the {total} products have reviews.{not_reviewed_sentence}
+</p>
+
+<div class="stats">
+<p>
+    Products in the selection: <strong>{total:,}</strong><br>
+    Products with reviews: <strong>{reviewed:,}</strong><br>
+    Reviews between them (all time): <strong>{total_reviews:,}</strong><br>
+    Reviews in the last 12 months: <strong>{reviews_12:,}</strong>
+</p>
+</div>
+
+{render_theme_table(rows)}
+
+<p class="table-note">
+Ranked by all-time Feefo reviews on NOTHS. Products with the same number share
+a rank, marked "=". "Last 12 months" shows which picks are selling now rather
+than over their lifetime. "–" in the rank column means no reviews yet; those
+products are listed in the order NOTHS shows them. NEW is NOTHS's own label.
+</p>
+
+<p class="table-note">
+Product list last checked {checked}. Review counts from Feefo data updated {data_date}.
+The Trend List is independent and not connected with {curator or "the curator"} or
+NOTHS. Product links are affiliate links, so we may earn a commission if you buy,
+at no extra cost to you.
+</p>
+
+<p>
+    <a href="index.html">← Back to homepage</a>
+</p>
+"""
+
+    html = render_page(
+        theme["title"],
+        body,
+        "static",
+        "",
+        theme.get("description", theme["title"]),
+    )
+    save_html(OUTPUT_ROOT / f"{slug}.html", html)
+
+    print(
+        f"✅ {slug} rendered ({reviewed} ranked, {not_reviewed} not yet reviewed)"
+    )
+
+
+def render_theme_pages():
+    # Imported here rather than at the top: build_theme_picks imports this
+    # module, and the theme config lives with the scraper.
+    from build_theme_picks import THEMES
+
+    if not THEMES_DATA_ROOT.exists():
+        print("ℹ️ no theme snapshots yet, theme pages skipped")
+        return
+
+    lookups = None
+
+    for slug, theme in THEMES.items():
+        path = THEMES_DATA_ROOT / f"{slug}.json"
+        if not path.exists():
+            print(f"ℹ️ theme {slug}: no snapshot yet, skipped")
+            continue
+
+        if lookups is None:
+            lookups = load_review_lookups()
+
+        render_theme_page(slug, theme, load_json(path), lookups)
+
+
+def theme_page_slugs():
+    """Theme pages that have been rendered, for the sitemap."""
+    try:
+        from build_theme_picks import THEMES
+    except Exception:
+        return []
+    return [s for s in THEMES if (THEMES_DATA_ROOT / f"{s}.json").exists()]
+
+
 def main():
     months = get_month_dirs()
 
@@ -1358,6 +1633,7 @@ def main():
     render_top_products_last_12_months(latest, previous_for_homepage)
     render_top_brands_last_12_months()
     render_top_brands_all_time_orders()
+    render_theme_pages()
 
     render_about()
     generate_sitemap(months)

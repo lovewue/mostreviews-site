@@ -1,0 +1,107 @@
+name: Refresh Theme Picks
+
+# Re-reads curated NOTHS theme pages (Sara Davies' Christmas picks etc.) and
+# re-renders their ranked-by-reviews pages on trendlist.co.uk.
+#
+# Weekly because NOTHS edits these selections during the season: on 12 Oct
+# 2026 the Sara Davies page went from 46 to 51 products in a single day. The
+# review counts come from the leaderboard JSONs already in the repo, so this
+# is one or two requests to NOTHS per theme, not a scrape of every product.
+#
+# Separate from Site Build & Publish for the same reason as Refresh Brand
+# Stats: a blocked or slow NOTHS request must never stop the site publishing.
+# The site build also re-renders these pages (render_theme_pages() in
+# render_site.py), so the monthly build picks up new review counts on its own.
+#
+# The script's sanity gate exits non-zero and leaves the old snapshot alone if
+# NOTHS returns nothing, or under half of last week's products. That failing
+# this run is deliberate: a blocked fetch is worth seeing.
+#
+# Mondays, 05:23 UTC: clear of the 1st-of-month pile-up and of the brand
+# stats run on the 25th.
+
+on:
+  schedule:
+    - cron: '23 5 * * 1'
+  workflow_dispatch:
+    inputs:
+      theme:
+        description: 'Only refresh this theme slug (blank = all)'
+        default: ''
+
+concurrency:
+  group: refresh-theme-picks
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Refresh theme picks
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: |
+          set -euo pipefail
+
+          args=""
+          if [ -n "${{ inputs.theme }}" ]; then
+            args="--theme ${{ inputs.theme }}"
+          fi
+
+          python scripts/build_theme_picks.py $args
+
+      - name: Commit snapshot and pages
+        run: |
+          set -euo pipefail
+
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+          git add data/derived/themes docs/*.html docs/static
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          git commit -m "Refresh theme picks for $timestamp"
+
+          # main can move while this runs (site build, data agents). Rebase
+          # and retry, keeping this run's regenerated files on conflict.
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+
+            echo "Push attempt $attempt rejected; rebasing onto origin/main..."
+            git fetch origin main
+
+            if ! git rebase --strategy-option=theirs origin/main; then
+              git rebase --abort || true
+              echo "::error::Rebase onto origin/main failed; theme picks not committed."
+              exit 1
+            fi
+          done
+
+          echo "::error::Could not push theme picks after 3 attempts."
+          exit 1
