@@ -652,3 +652,52 @@ DOM, so the column sorter keeps working on whatever is visible.
     padding: 8px 4px;
   }
 }
+
+/* ----------------------------------------------------
+Curated theme pages (e.g. Sara Davies' Christmas picks)
+
+Small labels after the product name: NOTHS's own NEW tag, and out of stock.
+Out-of-stock products stay linked, since NOTHS is still featuring them.
+---------------------------------------------------- */
+
+.theme-tag {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+
+.theme-tag-new {
+  background: #e7f6ec;
+  color: #0a6b2e;
+}
+
+.theme-tag-oos {
+  background: #f3f3f3;
+  color: #666;
+}
+
+.theme-picks .label-short {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .theme-picks .col-rating,
+  .theme-picks .label-long {
+    display: none;
+  }
+
+  .theme-picks .label-short {
+    display: inline;
+  }
+
+  .theme-picks th,
+  .theme-picks td {
+    padding: 8px 4px;
+  }
+}
