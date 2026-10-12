@@ -1741,11 +1741,11 @@
   },
   {
     "sku": "769547",
-    "name": null,
-    "seller_slug": null,
-    "seller_name": null,
-    "product_url": null,
-    "available": false,
+    "name": "Personalised Charcuterie Board",
+    "seller_slug": "therusticdish",
+    "seller_name": "The Rustic Dish®",
+    "product_url": "https://www.notonthehighstreet.com/therusticdish/product/personalised-eating-well-together-board",
+    "available": true,
     "review_count_month": 2,
     "rating_month": 5.0
   },
@@ -4621,11 +4621,11 @@
   },
   {
     "sku": "1238620",
-    "name": null,
-    "seller_slug": null,
-    "seller_name": null,
-    "product_url": null,
-    "available": false,
+    "name": "Happy Place Sunset Wave Necklace",
+    "seller_slug": "cassiopi",
+    "seller_name": "Cassiopi",
+    "product_url": "https://www.notonthehighstreet.com/cassiopi/product/happy-place-sunset-wave-necklace",
+    "available": true,
     "review_count_month": 1,
     "rating_month": 5.0
   },
@@ -21545,7 +21545,7 @@
     "seller_slug": "uniqueful",
     "seller_name": "Uniqueful",
     "product_url": "https://www.notonthehighstreet.com/uniqueful/product/personalised-photo-upload-framed-print",
-    "available": true,
+    "available": false,
     "review_count_month": 1,
     "rating_month": 2.0
   },

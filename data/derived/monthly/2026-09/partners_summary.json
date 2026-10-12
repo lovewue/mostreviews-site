@@ -44,8 +44,8 @@
   {
     "seller_slug": "therusticdish",
     "seller_name": "The Rustic Dish®",
-    "product_count_month": 14,
-    "total_reviews_month": 24
+    "product_count_month": 15,
+    "total_reviews_month": 26
   },
   {
     "seller_slug": "looppa",
@@ -2576,6 +2576,12 @@
   {
     "seller_slug": "carolinerees",
     "seller_name": "Caroline Rees",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "cassiopi",
+    "seller_name": "Cassiopi",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
