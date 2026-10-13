@@ -96,6 +96,16 @@ THEMES = {
             "Street, ranked by customer reviews."
         ),
     },
+    "lottie-lauras-christmas-picks": {
+        "path": "/themes/lifestyle/lottie-lauras-top-christmas-picks",
+        "title": "Lottie & Laura's Christmas Picks, Ranked by Reviews",
+        "label": "Lottie & Laura's top Christmas picks",
+        "curator": "Lottie & Laura",
+        "description": (
+            "Every product in Lottie & Laura's top Christmas picks on Not On "
+            "The High Street, ranked by customer reviews."
+        ),
+    },
 }
 
 
