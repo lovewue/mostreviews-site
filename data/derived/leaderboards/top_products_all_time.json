@@ -1,6 +1,6 @@
 {
   "leaderboard": "all_time",
-  "generated_at": "2026-10-01T12:51:13+00:00",
+  "generated_at": "2026-10-13T04:48:08+00:00",
   "product_count": 340415,
   "total_products_reviewed": 340415,
   "total_reviews": 2262736,
@@ -19,7 +19,7 @@
       "reviews": 4034,
       "rating": 4.7,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 2,
@@ -32,7 +32,7 @@
       "reviews": 3412,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 3,
@@ -45,7 +45,7 @@
       "reviews": 2801,
       "rating": 5.0,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 4,
@@ -54,11 +54,11 @@
       "seller_slug": "marvlingbros",
       "seller_name": "Marvling Bros Ltd.",
       "product_url": "https://www.notonthehighstreet.com/marvlingbros/product/hot-stuff-in-a-matchbox",
-      "available": false,
+      "available": true,
       "reviews": 2774,
       "rating": 4.7,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 5,
@@ -71,7 +71,7 @@
       "reviews": 2595,
       "rating": 4.7,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 6,
@@ -84,7 +84,7 @@
       "reviews": 2519,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 7,
@@ -109,7 +109,7 @@
       "reviews": 2446,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 9,
@@ -122,7 +122,7 @@
       "reviews": 2352,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 10,
@@ -135,7 +135,7 @@
       "reviews": 2340,
       "rating": 4.7,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 11,
@@ -148,7 +148,7 @@
       "reviews": 2288,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 12,
@@ -161,7 +161,7 @@
       "reviews": 2104,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 13,
@@ -186,7 +186,7 @@
       "reviews": 2021,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 15,
@@ -199,7 +199,7 @@
       "reviews": 2010,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 16,
@@ -212,7 +212,7 @@
       "reviews": 1994,
       "rating": 4.9,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 17,
@@ -225,7 +225,7 @@
       "reviews": 1933,
       "rating": 4.7,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 18,
@@ -238,7 +238,7 @@
       "reviews": 1926,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 19,
@@ -251,7 +251,7 @@
       "reviews": 1916,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 20,
@@ -264,7 +264,7 @@
       "reviews": 1894,
       "rating": 4.7,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 21,
@@ -277,7 +277,7 @@
       "reviews": 1876,
       "rating": 4.6,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 22,
@@ -290,7 +290,7 @@
       "reviews": 1867,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 23,
@@ -303,7 +303,7 @@
       "reviews": 1864,
       "rating": 4.7,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 24,
@@ -316,7 +316,7 @@
       "reviews": 1857,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 25,
@@ -329,7 +329,7 @@
       "reviews": 1715,
       "rating": 4.7,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 26,
@@ -342,7 +342,7 @@
       "reviews": 1710,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 27,
@@ -355,7 +355,7 @@
       "reviews": 1683,
       "rating": 4.7,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 28,
@@ -368,7 +368,7 @@
       "reviews": 1680,
       "rating": 4.5,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 29,
@@ -381,7 +381,7 @@
       "reviews": 1668,
       "rating": 4.7,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 30,
@@ -390,11 +390,11 @@
       "seller_slug": "bloomboutique",
       "seller_name": "Bloom Boutique",
       "product_url": "https://www.notonthehighstreet.com/bloomboutique/product/personalised-birthstone-and-bar-bracelet",
-      "available": true,
+      "available": false,
       "reviews": 1662,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 31,
@@ -407,7 +407,7 @@
       "reviews": 1655,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 32,
@@ -420,7 +420,7 @@
       "reviews": 1636,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 33,
@@ -433,7 +433,7 @@
       "reviews": 1628,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 34,
@@ -446,7 +446,7 @@
       "reviews": 1625,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 35,
@@ -459,7 +459,7 @@
       "reviews": 1599,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 36,
@@ -472,7 +472,7 @@
       "reviews": 1598,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 37,
@@ -485,7 +485,7 @@
       "reviews": 1569,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 38,
@@ -498,7 +498,7 @@
       "reviews": 1563,
       "rating": 4.7,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 39,
@@ -511,7 +511,7 @@
       "reviews": 1558,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 40,
@@ -524,7 +524,7 @@
       "reviews": 1535,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 41,
@@ -537,7 +537,7 @@
       "reviews": 1526,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 42,
@@ -550,7 +550,7 @@
       "reviews": 1522,
       "rating": 4.7,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 43,
@@ -563,7 +563,7 @@
       "reviews": 1514,
       "rating": 4.5,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 44,
@@ -576,7 +576,7 @@
       "reviews": 1505,
       "rating": 4.7,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 45,
@@ -589,7 +589,7 @@
       "reviews": 1499,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 46,
@@ -602,7 +602,7 @@
       "reviews": 1488,
       "rating": 4.9,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 47,
@@ -615,7 +615,7 @@
       "reviews": 1480,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 48,
@@ -628,7 +628,7 @@
       "reviews": 1477,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 49,
@@ -641,7 +641,7 @@
       "reviews": 1460,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 50,
@@ -654,7 +654,7 @@
       "reviews": 1454,
       "rating": 4.7,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 51,
@@ -679,7 +679,7 @@
       "reviews": 1427,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 53,
@@ -692,7 +692,7 @@
       "reviews": 1414,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 54,
@@ -705,7 +705,7 @@
       "reviews": 1410,
       "rating": 4.7,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 55,
@@ -718,7 +718,7 @@
       "reviews": 1404,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 56,
@@ -731,7 +731,7 @@
       "reviews": 1395,
       "rating": 4.7,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 57,
@@ -744,7 +744,7 @@
       "reviews": 1391,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 58,
@@ -757,7 +757,7 @@
       "reviews": 1302,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 59,
@@ -766,11 +766,11 @@
       "seller_slug": "bloomboutique",
       "seller_name": "Bloom Boutique",
       "product_url": "https://www.notonthehighstreet.com/bloomboutique/product/personalised-initial-birthstone-necklace",
-      "available": true,
+      "available": false,
       "reviews": 1295,
       "rating": 4.7,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 60,
@@ -783,7 +783,7 @@
       "reviews": 1286,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 61,
@@ -792,11 +792,11 @@
       "seller_slug": "brambler",
       "seller_name": "Brambler",
       "product_url": "https://www.notonthehighstreet.com/brambler/product/giclee-bespoke-treasured-location",
-      "available": true,
+      "available": false,
       "reviews": 1282,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 62,
@@ -809,7 +809,7 @@
       "reviews": 1264,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 63,
@@ -822,7 +822,7 @@
       "reviews": 1259,
       "rating": 4.5,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 64,
@@ -835,7 +835,7 @@
       "reviews": 1249,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 65,
@@ -848,7 +848,7 @@
       "reviews": 1241,
       "rating": 4.6,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 66,
@@ -861,7 +861,7 @@
       "reviews": 1233,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 67,
@@ -874,7 +874,7 @@
       "reviews": 1233,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 68,
@@ -887,7 +887,7 @@
       "reviews": 1222,
       "rating": 4.5,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 69,
@@ -900,7 +900,7 @@
       "reviews": 1220,
       "rating": 4.7,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 70,
@@ -913,7 +913,7 @@
       "reviews": 1194,
       "rating": 4.7,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 71,
@@ -926,7 +926,7 @@
       "reviews": 1189,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 72,
@@ -939,7 +939,7 @@
       "reviews": 1184,
       "rating": 4.6,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 73,
@@ -948,11 +948,11 @@
       "seller_slug": "bloomboutique",
       "seller_name": "Bloom Boutique",
       "product_url": "https://www.notonthehighstreet.com/bloomboutique/product/esme-personalised-initial-birthstone-necklace",
-      "available": true,
+      "available": false,
       "reviews": 1175,
       "rating": 4.7,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 74,
@@ -965,7 +965,7 @@
       "reviews": 1164,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 75,
@@ -990,7 +990,7 @@
       "reviews": 1124,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 77,
@@ -1003,7 +1003,7 @@
       "reviews": 1122,
       "rating": 4.5,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 78,
@@ -1016,7 +1016,7 @@
       "reviews": 1112,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 79,
@@ -1029,7 +1029,7 @@
       "reviews": 1107,
       "rating": 4.9,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 80,
@@ -1042,7 +1042,7 @@
       "reviews": 1106,
       "rating": 4.9,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 81,
@@ -1055,7 +1055,7 @@
       "reviews": 1077,
       "rating": 4.3,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 82,
@@ -1068,7 +1068,7 @@
       "reviews": 1055,
       "rating": 4.6,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 83,
@@ -1081,7 +1081,7 @@
       "reviews": 1054,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 84,
@@ -1094,7 +1094,7 @@
       "reviews": 1046,
       "rating": 4.7,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 85,
@@ -1103,11 +1103,11 @@
       "seller_slug": "bloomboutique",
       "seller_name": "Bloom Boutique",
       "product_url": "https://www.notonthehighstreet.com/bloomboutique/product/personalised-initial-disc-birthstone-bracelet",
-      "available": true,
+      "available": false,
       "reviews": 1029,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 86,
@@ -1120,7 +1120,7 @@
       "reviews": 1028,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 87,
@@ -1145,7 +1145,7 @@
       "reviews": 1023,
       "rating": 4.6,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 89,
@@ -1158,7 +1158,7 @@
       "reviews": 1021,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 90,
@@ -1171,7 +1171,7 @@
       "reviews": 1021,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 91,
@@ -1184,7 +1184,7 @@
       "reviews": 1015,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 92,
@@ -1197,7 +1197,7 @@
       "reviews": 1013,
       "rating": 4.7,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 93,
@@ -1210,7 +1210,7 @@
       "reviews": 1012,
       "rating": 4.9,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 94,
@@ -1223,7 +1223,7 @@
       "reviews": 1011,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 95,
@@ -1236,7 +1236,7 @@
       "reviews": 1008,
       "rating": 4.8,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 96,
@@ -1249,7 +1249,7 @@
       "reviews": 1005,
       "rating": 4.7,
       "metadata_source": "missing",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 97,
@@ -1262,7 +1262,7 @@
       "reviews": 1000,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 98,
@@ -1275,7 +1275,7 @@
       "reviews": 997,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 99,
@@ -1288,7 +1288,7 @@
       "reviews": 987,
       "rating": 4.5,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 100,
@@ -1301,7 +1301,7 @@
       "reviews": 983,
       "rating": 4.8,
       "metadata_source": "cache",
-      "availability_checked_at": "2026-09-01T20:24:26+00:00"
+      "availability_checked_at": "2026-10-13T04:48:08+00:00"
     },
     {
       "rank": 101,
