@@ -1164,12 +1164,6 @@
     "total_reviews_month": 16
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 11,
-    "total_reviews_month": 16
-  },
-  {
     "seller_slug": "saabunsoap",
     "seller_name": "Saabuni",
     "product_count_month": 1,
@@ -1233,6 +1227,12 @@
     "seller_slug": "makingmeadows",
     "seller_name": "Making Meadows",
     "product_count_month": 13,
+    "total_reviews_month": 15
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 10,
     "total_reviews_month": 15
   },
   {
@@ -2262,6 +2262,12 @@
     "total_reviews_month": 7
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 2,
+    "total_reviews_month": 7
+  },
+  {
     "seller_slug": "laurastanleydesigns",
     "seller_name": "Laura Stanley Designs",
     "product_count_month": 5,
@@ -2547,12 +2553,6 @@
     "seller_slug": "katherineswaine",
     "seller_name": "Katherine Swaine",
     "product_count_month": 4,
-    "total_reviews_month": 6
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 1,
     "total_reviews_month": 6
   },
   {

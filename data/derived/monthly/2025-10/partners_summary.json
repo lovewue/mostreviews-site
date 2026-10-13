@@ -1716,12 +1716,6 @@
     "total_reviews_month": 4
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 4,
-    "total_reviews_month": 4
-  },
-  {
     "seller_slug": "poshtottydesignsinteriors",
     "seller_name": "Posh Totty Designs Interiors",
     "product_count_month": 4,
@@ -2154,6 +2148,12 @@
     "total_reviews_month": 3
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 2,
+    "total_reviews_month": 3
+  },
+  {
     "seller_slug": "laialondon",
     "seller_name": "Laia London",
     "product_count_month": 1,
@@ -2294,6 +2294,12 @@
   {
     "seller_slug": "petiquette",
     "seller_name": "Petiquette Collars",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 3,
     "total_reviews_month": 3
   },
@@ -2846,12 +2852,6 @@
   {
     "seller_slug": "lafillecreative",
     "seller_name": "La Fille Créative",
-    "product_count_month": 1,
-    "total_reviews_month": 2
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
     "product_count_month": 1,
     "total_reviews_month": 2
   },

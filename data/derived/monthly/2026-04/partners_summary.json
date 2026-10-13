@@ -1044,6 +1044,12 @@
     "total_reviews_month": 4
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 2,
+    "total_reviews_month": 4
+  },
+  {
     "seller_slug": "lunella",
     "seller_name": "Lunella",
     "product_count_month": 3,
@@ -1305,12 +1311,6 @@
     "seller_slug": "karriebarroncards",
     "seller_name": "Karrie Barron",
     "product_count_month": 2,
-    "total_reviews_month": 3
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 1,
     "total_reviews_month": 3
   },
   {
@@ -2114,12 +2114,6 @@
   {
     "seller_slug": "popsanddudes",
     "seller_name": "Pops and Dudes",
-    "product_count_month": 2,
-    "total_reviews_month": 2
-  },
-  {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 2,
     "total_reviews_month": 2
   },
@@ -3920,6 +3914,12 @@
   {
     "seller_slug": "poppyk",
     "seller_name": "PoppyK",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

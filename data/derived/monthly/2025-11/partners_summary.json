@@ -1452,6 +1452,12 @@
     "total_reviews_month": 6
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 3,
+    "total_reviews_month": 6
+  },
+  {
     "seller_slug": "laurastanleydesigns",
     "seller_name": "Laura Stanley Designs",
     "product_count_month": 6,
@@ -1527,12 +1533,6 @@
     "seller_slug": "pinkstrawberry",
     "seller_name": "Pink Strawberry",
     "product_count_month": 5,
-    "total_reviews_month": 6
-  },
-  {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 6,
     "total_reviews_month": 6
   },
   {
@@ -1740,12 +1740,6 @@
     "total_reviews_month": 5
   },
   {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 2,
-    "total_reviews_month": 5
-  },
-  {
     "seller_slug": "lawrencestudio",
     "seller_name": "Lawrencestudio",
     "product_count_month": 5,
@@ -1785,6 +1779,12 @@
     "seller_slug": "petiquette",
     "seller_name": "Petiquette Collars",
     "product_count_month": 3,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 5,
     "total_reviews_month": 5
   },
   {

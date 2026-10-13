@@ -588,6 +588,12 @@
     "total_reviews_month": 7
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 5,
+    "total_reviews_month": 7
+  },
+  {
     "seller_slug": "livingroots",
     "seller_name": "Living Roots",
     "product_count_month": 6,
@@ -720,12 +726,6 @@
     "total_reviews_month": 6
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 5,
-    "total_reviews_month": 6
-  },
-  {
     "seller_slug": "rosiemadeathing",
     "seller_name": "Rosie Made A Thing",
     "product_count_month": 5,
@@ -819,12 +819,6 @@
     "seller_slug": "julietreevesdesigns",
     "seller_name": "Juliet Reeves Designs",
     "product_count_month": 5,
-    "total_reviews_month": 5
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 3,
     "total_reviews_month": 5
   },
   {
@@ -1137,6 +1131,12 @@
     "seller_slug": "popsanddudes",
     "seller_name": "Pops and Dudes",
     "product_count_month": 2,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 3,
     "total_reviews_month": 4
   },
   {

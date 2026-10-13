@@ -888,12 +888,6 @@
     "total_reviews_month": 8
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 8,
-    "total_reviews_month": 8
-  },
-  {
     "seller_slug": "rockonruby",
     "seller_name": "Rock On Ruby",
     "product_count_month": 6,
@@ -1077,6 +1071,12 @@
     "seller_slug": "plantsbypost",
     "seller_name": "Plants By Post",
     "product_count_month": 6,
+    "total_reviews_month": 7
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 7,
     "total_reviews_month": 7
   },
   {
@@ -1428,6 +1428,12 @@
     "total_reviews_month": 5
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 2,
+    "total_reviews_month": 5
+  },
+  {
     "seller_slug": "letterboxgifts",
     "seller_name": "Letterbox Gifts",
     "product_count_month": 3,
@@ -1671,12 +1677,6 @@
     "seller_slug": "jamielondon",
     "seller_name": "Jamie London",
     "product_count_month": 4,
-    "total_reviews_month": 4
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 1,
     "total_reviews_month": 4
   },
   {
