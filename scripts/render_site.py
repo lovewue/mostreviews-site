@@ -1513,7 +1513,7 @@ def render_theme_page(slug, theme, snapshot, lookups):
     not_reviewed_sentence = (
         f" {not_reviewed} haven't been reviewed yet"
         + (f", including {new_count} NOTHS has tagged as new" if new_count else "")
-        + ", so they sit at the bottom without a rank."
+        + "."
         if not_reviewed else ""
     )
 
