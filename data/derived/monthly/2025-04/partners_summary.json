@@ -606,12 +606,6 @@
     "total_reviews_month": 6
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 5,
-    "total_reviews_month": 6
-  },
-  {
     "seller_slug": "sliceofpiedesigns",
     "seller_name": "Slice of Pie Designs",
     "product_count_month": 6,
@@ -735,6 +729,12 @@
     "seller_slug": "looppa",
     "seller_name": "Pomchick",
     "product_count_month": 2,
+    "total_reviews_month": 5
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 4,
     "total_reviews_month": 5
   },
   {
@@ -1748,6 +1748,12 @@
   {
     "seller_slug": "lafillecreative",
     "seller_name": "La Fille Créative",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
     "product_count_month": 2,
     "total_reviews_month": 2
   },
@@ -3218,12 +3224,6 @@
   {
     "seller_slug": "ladidasweettreats",
     "seller_name": "La Mira Sweet Treats",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

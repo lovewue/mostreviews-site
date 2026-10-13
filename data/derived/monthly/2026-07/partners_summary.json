@@ -648,6 +648,12 @@
     "total_reviews_month": 6
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 5,
+    "total_reviews_month": 6
+  },
+  {
     "seller_slug": "lifecharmsjewellery",
     "seller_name": "Lifecharmsjewellery",
     "product_count_month": 6,
@@ -807,12 +813,6 @@
     "seller_slug": "landmbespokedesigns",
     "seller_name": "L&M Bespoke Designs",
     "product_count_month": 5,
-    "total_reviews_month": 5
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 4,
     "total_reviews_month": 5
   },
   {
@@ -1088,12 +1088,6 @@
   {
     "seller_slug": "poppyk",
     "seller_name": "PoppyK",
-    "product_count_month": 4,
-    "total_reviews_month": 4
-  },
-  {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 4,
     "total_reviews_month": 4
   },
@@ -1430,6 +1424,12 @@
   {
     "seller_slug": "placesandspacesartco",
     "seller_name": "Places & Spaces Art Co.",
+    "product_count_month": 3,
+    "total_reviews_month": 3
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 3,
     "total_reviews_month": 3
   },

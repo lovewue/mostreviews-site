@@ -462,6 +462,12 @@
     "total_reviews_month": 8
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 6,
+    "total_reviews_month": 8
+  },
+  {
     "seller_slug": "mygivenname",
     "seller_name": "MY GIVEN NAME",
     "product_count_month": 4,
@@ -996,12 +1002,6 @@
     "total_reviews_month": 4
   },
   {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 3,
-    "total_reviews_month": 4
-  },
-  {
     "seller_slug": "librafinearts",
     "seller_name": "Libra Fine Arts",
     "product_count_month": 4,
@@ -1059,12 +1059,6 @@
     "seller_slug": "parsy",
     "seller_name": "Parsy Designs",
     "product_count_month": 4,
-    "total_reviews_month": 4
-  },
-  {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 3,
     "total_reviews_month": 4
   },
   {
