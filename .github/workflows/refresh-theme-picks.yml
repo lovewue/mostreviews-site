@@ -1,7 +1,8 @@
 name: Refresh Theme Picks
 
-# Re-reads curated NOTHS theme pages (Sara Davies' Christmas picks etc.) and
-# re-renders their ranked-by-reviews pages on trendlist.co.uk.
+# Re-reads curated NOTHS theme pages (Sara Davies' Christmas picks etc.),
+# re-renders their ranked-by-reviews pages on trendlist.co.uk, and rebuilds
+# the social carousel for each one in social_media/themes/<slug>/.
 #
 # Weekly because NOTHS edits these selections during the season: on 12 Oct
 # 2026 the Sara Davies page went from 46 to 51 products in a single day. The
@@ -53,7 +54,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install requests Pillow beautifulsoup4
 
       - name: Refresh theme picks
         env:
@@ -68,6 +69,20 @@ jobs:
 
           python scripts/build_theme_picks.py $args
 
+      # Instagram/TikTok carousel per theme, into social_media/themes/<slug>/.
+      # Runs after the pages and never blocks them: if the image CDN or
+      # anything else fails, the pages still get committed below.
+      - name: Build theme carousels
+        continue-on-error: true
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: |
+          args=""
+          if [ -n "${{ inputs.theme }}" ]; then
+            args="--theme ${{ inputs.theme }}"
+          fi
+          python scripts/build_theme_social.py $args
+
       - name: Commit snapshot and pages
         run: |
           set -euo pipefail
@@ -76,6 +91,12 @@ jobs:
           git config --global user.email "github-actions@github.com"
 
           git add data/derived/themes docs/*.html docs/static
+
+          # The carousel folders only exist if that step got far enough;
+          # git add fails on a missing path, which would sink the commit.
+          for p in social_media/themes data/social; do
+            if [ -e "$p" ]; then git add "$p"; fi
+          done
 
           if git diff --cached --quiet; then
             echo "No changes to commit."

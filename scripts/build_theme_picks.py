@@ -155,6 +155,11 @@ def clean_product(raw: dict, position: int) -> dict:
     exponent = price.get("exponent", 2)
     price_gbp = round(amount / (10 ** exponent), 2) if isinstance(amount, (int, float)) else None
 
+    # images[] are templates like ".../{size}_name.jpg"; "original" is the
+    # 1024px master (checked Oct 2026), used for the social carousel.
+    images = [i for i in (raw.get("images") or []) if isinstance(i, str)]
+    image_url = images[0].replace("{size}", "original") if images else ""
+
     return {
         "position": position,
         "sku": str(raw.get("code") or ""),
@@ -168,6 +173,7 @@ def clean_product(raw: dict, position: int) -> dict:
         "in_stock": raw.get("purchasable") is not False and raw.get("available") is not False,
         "noths_rating": raw.get("averageRating"),
         "price_gbp": price_gbp,
+        "image_url": image_url,
     }
 
 
