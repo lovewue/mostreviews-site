@@ -1,0 +1,95 @@
+{
+  "theme": "lottie-lauras-christmas-picks",
+  "generated_at": "2026-10-13T05:32:52+00:00",
+  "product_list_checked_at": "2026-10-13T05:32:48+00:00",
+  "slides": [
+    "00_cover.jpg",
+    "01_175347.jpg",
+    "02_717918.jpg",
+    "03_564911.jpg",
+    "04_722986.jpg",
+    "05_980283.jpg",
+    "06_full_list.jpg"
+  ],
+  "caption": "Lottie & Laura picked 21 Christmas gifts for Not On The High Street. We ranked every one by real customer reviews.\n\nThe most reviewed:\n1. Personalised Pet Portrait by Lucy Sheeran (206 reviews)\n2. Personalised Family Door Bauble by No Ordinary Gift (172 reviews)\n3. Chocolate Cheese And Crackers by Choc on Choc (134 reviews)\n4. Dear Dad, Luxury Harback Guided Life Story Journal by FROM YOU TO ME (33 reviews)\n5. Personalised Velvet Christmas Stocking by By Alex (20 reviews)\n\nAll 21 picks, ranked: link in bio (trendlist.co.uk)\n\n@notonthehighstreet\n\n#notonthehighstreet #christmasgifts #christmasgiftideas #giftideas #giftguide #shopsmall #smallbusinessuk",
+  "products": [
+    {
+      "rank_display": "1",
+      "sku": "175347",
+      "name": "Personalised Pet Portrait",
+      "seller_name": "Lucy Sheeran",
+      "seller_slug": "lucysheeran",
+      "reviews_all_time": 206,
+      "reviews_last_12": 5,
+      "rating": 5.0,
+      "product_url": "https://www.notonthehighstreet.com/lucysheeran/product/your-pet-illustrated"
+    },
+    {
+      "rank_display": "2",
+      "sku": "717918",
+      "name": "Personalised Family Door Bauble",
+      "seller_name": "No Ordinary Gift",
+      "seller_slug": "noordinarygiftcompany",
+      "reviews_all_time": 172,
+      "reviews_last_12": 1,
+      "rating": 4.7,
+      "product_url": "https://www.notonthehighstreet.com/noordinarygiftcompany/product/personalised-family-door-bauble"
+    },
+    {
+      "rank_display": "3",
+      "sku": "564911",
+      "name": "Chocolate Cheese And Crackers",
+      "seller_name": "Choc on Choc",
+      "seller_slug": "chocolateonchocolate",
+      "reviews_all_time": 134,
+      "reviews_last_12": 1,
+      "rating": 4.5,
+      "product_url": "https://www.notonthehighstreet.com/chocolateonchocolate/product/chocolate-cheese-and-crackers"
+    },
+    {
+      "rank_display": "4",
+      "sku": "722986",
+      "name": "Dear Dad, Luxury Harback Guided Life Story Journal",
+      "seller_name": "FROM YOU TO ME",
+      "seller_slug": "fromyoutome",
+      "reviews_all_time": 33,
+      "reviews_last_12": 7,
+      "rating": 4.5,
+      "product_url": "https://www.notonthehighstreet.com/fromyoutome/product/timeless-collection-dear-dad-memory-journal"
+    },
+    {
+      "rank_display": "5",
+      "sku": "980283",
+      "name": "Personalised Velvet Christmas Stocking",
+      "seller_name": "By Alex",
+      "seller_slug": "byalex",
+      "reviews_all_time": 20,
+      "reviews_last_12": 4,
+      "rating": 5.0,
+      "product_url": "https://www.notonthehighstreet.com/byalex/product/personalised-velvet-christmas-stocking"
+    }
+  ],
+  "this_year": [],
+  "missing_handles": [
+    {
+      "seller_slug": "lucysheeran",
+      "seller_name": "Lucy Sheeran"
+    },
+    {
+      "seller_slug": "noordinarygiftcompany",
+      "seller_name": "No Ordinary Gift"
+    },
+    {
+      "seller_slug": "chocolateonchocolate",
+      "seller_name": "Choc on Choc"
+    },
+    {
+      "seller_slug": "fromyoutome",
+      "seller_name": "FROM YOU TO ME"
+    },
+    {
+      "seller_slug": "byalex",
+      "seller_name": "By Alex"
+    }
+  ]
+}

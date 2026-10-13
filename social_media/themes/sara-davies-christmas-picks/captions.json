@@ -1,0 +1,139 @@
+{
+  "theme": "sara-davies-christmas-picks",
+  "generated_at": "2026-10-13T05:32:52+00:00",
+  "product_list_checked_at": "2026-10-13T05:32:47+00:00",
+  "slides": [
+    "00_cover.jpg",
+    "01_148725.jpg",
+    "02_663976.jpg",
+    "03_799432.jpg",
+    "04_1152259.jpg",
+    "05_739910.jpg",
+    "06_this_year.jpg",
+    "07_full_list.jpg"
+  ],
+  "caption": "Sara Davies picked 51 Christmas gifts for Not On The High Street. We ranked every one by real customer reviews.\n\nThe most reviewed:\n1. Personalised Christmas Sack by Harrow & Green (1,499 reviews)\n2. Personalised Metal Photo Keyring With Leather Case by Create Gift Love (773 reviews)\n3. Personalised Football Ball, Customise With Any Name by We Print Balls (234 reviews)\n4. Personalised Stainless Steel Pizza Cutter by Oakdene Designs (217 reviews)\n5. Personalised Christmas Eve Children's Book by FromLucy&Co (164 reviews)\n\nMost reviewed in the last 12 months: Steak And Chips Dinner Kit by Ross & Ross Gifts (88).\n\nAll 51 picks, ranked: link in bio (trendlist.co.uk)\n\n@notonthehighstreet\n\n#notonthehighstreet #christmasgifts #christmasgiftideas #giftideas #giftguide #shopsmall #smallbusinessuk",
+  "products": [
+    {
+      "rank_display": "1",
+      "sku": "148725",
+      "name": "Personalised Christmas Sack",
+      "seller_name": "Harrow & Green",
+      "seller_slug": "harrowandgreen",
+      "reviews_all_time": 1499,
+      "reviews_last_12": 6,
+      "rating": 4.9,
+      "product_url": "https://www.notonthehighstreet.com/harrowandgreen/product/personalised-christmas-sack-letterpress"
+    },
+    {
+      "rank_display": "2",
+      "sku": "663976",
+      "name": "Personalised Metal Photo Keyring With Leather Case",
+      "seller_name": "Create Gift Love",
+      "seller_slug": "creategiftlove",
+      "reviews_all_time": 773,
+      "reviews_last_12": 20,
+      "rating": 4.8,
+      "product_url": "https://www.notonthehighstreet.com/creategiftlove/product/personalised-metal-photo-keyring-with-leather-case"
+    },
+    {
+      "rank_display": "3",
+      "sku": "799432",
+      "name": "Personalised Football Ball, Customise With Any Name",
+      "seller_name": "We Print Balls",
+      "seller_slug": "nameyourball",
+      "reviews_all_time": 234,
+      "reviews_last_12": 61,
+      "rating": 4.7,
+      "product_url": "https://www.notonthehighstreet.com/nameyourball/product/personalised-football-ball-style-v4"
+    },
+    {
+      "rank_display": "4",
+      "sku": "1152259",
+      "name": "Personalised Stainless Steel Pizza Cutter",
+      "seller_name": "Oakdene Designs",
+      "seller_slug": "oakdenedesigns",
+      "reviews_all_time": 217,
+      "reviews_last_12": 36,
+      "rating": 4.7,
+      "product_url": "https://www.notonthehighstreet.com/oakdenedesigns/product/personalised-stainless-steel-pizza-cutter"
+    },
+    {
+      "rank_display": "5",
+      "sku": "739910",
+      "name": "Personalised Christmas Eve Children's Book",
+      "seller_name": "FromLucy&Co",
+      "seller_slug": "lucysworld",
+      "reviews_all_time": 164,
+      "reviews_last_12": 18,
+      "rating": 4.8,
+      "product_url": "https://www.notonthehighstreet.com/lucysworld/product/personalised-christmas-eve-children-s-book"
+    }
+  ],
+  "this_year": [
+    {
+      "sku": "1181236",
+      "name": "Steak And Chips Dinner Kit",
+      "seller_name": "Ross & Ross Gifts",
+      "reviews_last_12": 88
+    },
+    {
+      "sku": "895147",
+      "name": "Personalised Silky Women's Christmas Embroidered Luxury Pyjama",
+      "seller_name": "Mini Lunn",
+      "reviews_last_12": 78
+    },
+    {
+      "sku": "799432",
+      "name": "Personalised Football Ball, Customise With Any Name",
+      "seller_name": "We Print Balls",
+      "reviews_last_12": 61
+    },
+    {
+      "sku": "1152259",
+      "name": "Personalised Stainless Steel Pizza Cutter",
+      "seller_name": "Oakdene Designs",
+      "reviews_last_12": 36
+    },
+    {
+      "sku": "1062124",
+      "name": "Colour Block Chunky Squares Check Blanket Scarf",
+      "seller_name": "Studio Hop",
+      "reviews_last_12": 27
+    }
+  ],
+  "missing_handles": [
+    {
+      "seller_slug": "harrowandgreen",
+      "seller_name": "Harrow & Green"
+    },
+    {
+      "seller_slug": "creategiftlove",
+      "seller_name": "Create Gift Love"
+    },
+    {
+      "seller_slug": "nameyourball",
+      "seller_name": "We Print Balls"
+    },
+    {
+      "seller_slug": "oakdenedesigns",
+      "seller_name": "Oakdene Designs"
+    },
+    {
+      "seller_slug": "lucysworld",
+      "seller_name": "FromLucy&Co"
+    },
+    {
+      "seller_slug": "rossandross",
+      "seller_name": "Ross & Ross Gifts"
+    },
+    {
+      "seller_slug": "minilunn",
+      "seller_name": "Mini Lunn"
+    },
+    {
+      "seller_slug": "studiohop",
+      "seller_name": "Studio Hop"
+    }
+  ]
+}

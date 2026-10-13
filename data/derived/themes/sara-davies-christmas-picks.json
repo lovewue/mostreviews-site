@@ -1,7 +1,7 @@
 {
   "slug": "sara-davies-christmas-picks",
   "theme_url": "https://www.notonthehighstreet.com/themes/sara-davies-christmas-picks",
-  "checked_at": "2026-10-13T04:41:12+00:00",
+  "checked_at": "2026-10-13T05:32:47+00:00",
   "product_count": 51,
   "added_since_last_check": [],
   "removed_since_last_check": [],
@@ -16,7 +16,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.5,
-      "price_gbp": 25.0
+      "price_gbp": 25.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/a5/b4/c9f0-9edb-499c-ade5-ee4f14cf739c/original_steak-chips-kit.jpg"
     },
     {
       "position": 2,
@@ -28,7 +29,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.8,
-      "price_gbp": 35.0
+      "price_gbp": 35.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/7d/fa/bd17-879d-4ff1-aeae-eb59ca65b1e0/original_magic-spells-potion-making-kit.jpg"
     },
     {
       "position": 3,
@@ -40,7 +42,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.6,
-      "price_gbp": 53.98
+      "price_gbp": 53.98,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/50/0d/fef9-bcdd-4080-8421-96f94a9d7465/original_navy-satin-embroidered-personalised-women-s-pyjama.jpg"
     },
     {
       "position": 4,
@@ -52,7 +55,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 33.0
+      "price_gbp": 33.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/76/6f/1209-1b1e-4c3e-afd3-bebec5016717/original_luxury-personalised-stripe-christmas-sack.jpg"
     },
     {
       "position": 5,
@@ -64,7 +68,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.6,
-      "price_gbp": 25.0
+      "price_gbp": 25.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/bb/bd/64a5-1031-4df7-83a2-3fa0bc351068/original_perfume-blending-kit.jpg"
     },
     {
       "position": 6,
@@ -76,7 +81,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.3,
-      "price_gbp": 14.99
+      "price_gbp": 14.99,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/f7/fc/3e37-1c7c-44f7-b841-773080de1fa1/original_build-your-own-wallace-gromit-gromit.jpg"
     },
     {
       "position": 7,
@@ -88,7 +94,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.2,
-      "price_gbp": 28.0
+      "price_gbp": 28.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/84/31/caf0-4dbf-48f5-acd8-195064d805c4/original_personalised-photo-glass-bauble.jpg"
     },
     {
       "position": 8,
@@ -100,7 +107,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 25.99
+      "price_gbp": 25.99,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/84/2e/ec1f-0e8f-4f53-b86d-bfe4ed08f000/original_personalised-lego-brick-group-minifig-set-for-couples-and-family-novelty-custom-gift.jpg"
     },
     {
       "position": 9,
@@ -112,7 +120,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.9,
-      "price_gbp": 24.95
+      "price_gbp": 24.95,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/e0/20/6f6f-0573-465d-af7a-a6bdeb5bc655/original_personalised-christmas-sack-letterpress.jpg"
     },
     {
       "position": 10,
@@ -124,7 +133,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 52.0
+      "price_gbp": 52.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/6c/83/7803-402e-48f3-a2b5-dceae12b0a18/original_week-of-necklaces-mix-and-match-charm-gingham-necklace.jpg"
     },
     {
       "position": 11,
@@ -136,7 +146,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 120.0
+      "price_gbp": 120.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/02/4b/cd79-889c-4064-b304-d3e39512a104/original_starry-night-advent-calendar.jpg"
     },
     {
       "position": 12,
@@ -148,7 +159,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.9,
-      "price_gbp": 32.0
+      "price_gbp": 32.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/b2/8b/a99e-920c-4046-818e-b831fcc90731/original_sterling-silver-name-necklace-with-heart-birthstone.jpg"
     },
     {
       "position": 13,
@@ -160,7 +172,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.7,
-      "price_gbp": 26.0
+      "price_gbp": 26.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/fe/6a/f178-1a37-4846-996a-a3a5b09361c7/original_colour-block-chunky-squares-blanket-scarf.jpg"
     },
     {
       "position": 14,
@@ -172,7 +185,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4,
-      "price_gbp": 269.99
+      "price_gbp": 269.99,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/14/3f/d47a-7606-4238-b47a-ac43c399bec1/original_mechanical-watchmaking-kit-timecraft-journeyman.jpg"
     },
     {
       "position": 15,
@@ -184,7 +198,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 65.0
+      "price_gbp": 65.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/0c/15/9913-b38c-4a94-92c5-9965c9fd2b29/original_gymkana-girl-giant-padded-polka-dot-decorative-bow.jpg"
     },
     {
       "position": 16,
@@ -196,7 +211,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 25.0
+      "price_gbp": 25.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/f7/0e/9a95-1400-4539-b785-bf00991c4c8e/original_personalised-childrens-drawing-christmas-decoration.jpg"
     },
     {
       "position": 17,
@@ -208,7 +224,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 10.0
+      "price_gbp": 10.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/95/79/113c-cd34-4df2-9c14-d0f9507321cf/original_girl-crush-house-blend-medium-roast-coffee.jpg"
     },
     {
       "position": 18,
@@ -220,7 +237,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 5,
-      "price_gbp": 79.99
+      "price_gbp": 79.99,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/36/41/21a0-29f4-4cf6-954b-9dd58edf5538/original_real-ale-advent-calendar.jpg"
     },
     {
       "position": 19,
@@ -232,7 +250,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 12.0
+      "price_gbp": 12.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/23/e0/7187-38a1-4ef1-87ee-4464c2bcb33c/original_vintage-christmas-bunting-with-15-christmas-jumper-flag-design.jpg"
     },
     {
       "position": 20,
@@ -244,7 +263,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.8,
-      "price_gbp": 30.0
+      "price_gbp": 30.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/fb/63/73d7-6e2c-486a-b51b-a0ba5955178f/original_personalised-metal-photo-keyring-with-leather-case.jpg"
     },
     {
       "position": 21,
@@ -256,7 +276,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.7,
-      "price_gbp": 29.99
+      "price_gbp": 29.99,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/ea/a0/6d58-3092-432f-bd0a-12000b48b105/original_personalised-football-ball-style-v4.jpg"
     },
     {
       "position": 22,
@@ -268,7 +289,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 5,
-      "price_gbp": 25.6
+      "price_gbp": 25.6,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/80/b6/2f2c-1665-44f2-9b54-ede002dafa85/original_personalised-men-s-vegan-leather-washbag.jpg"
     },
     {
       "position": 23,
@@ -280,7 +302,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 5,
-      "price_gbp": 11.95
+      "price_gbp": 11.95,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/f8/b7/3079-7dc8-4698-a070-512e6d35c77e/original_make-your-own-fairy-wooden-peg-doll-kit.jpg"
     },
     {
       "position": 24,
@@ -292,7 +315,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.1,
-      "price_gbp": 34.0
+      "price_gbp": 34.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/c4/15/a239-955c-489b-ac95-ffded7c932bf/original_personalised-baby-and-toddler-sherpa-vest.jpg"
     },
     {
       "position": 25,
@@ -304,7 +328,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.7,
-      "price_gbp": 13.5
+      "price_gbp": 13.5,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/e3/b9/81b7-f713-4dcc-9949-52777e266e0a/original_footy-fantastic-matchday-diary-and-training-journal.jpg"
     },
     {
       "position": 26,
@@ -316,7 +341,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.7,
-      "price_gbp": 19.0
+      "price_gbp": 19.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/81/21/8371-98f6-4005-8f6c-9511d0352236/original_personalised-stainless-steel-pizza-cutter.jpg"
     },
     {
       "position": 27,
@@ -328,7 +354,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 5,
-      "price_gbp": 28.0
+      "price_gbp": 28.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/f2/96/716a-d8a4-4503-9e1c-899545f9fa09/original_lucky-dip-sheepskin-handmade-mule-slippers.jpg"
     },
     {
       "position": 28,
@@ -340,7 +367,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.7,
-      "price_gbp": 25.0
+      "price_gbp": 25.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/1e/32/8f8d-611a-483b-95d9-2bd6313ef3fd/original_make-your-own-formula-one-car-construction-set.jpg"
     },
     {
       "position": 29,
@@ -352,7 +380,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.8,
-      "price_gbp": 24.5
+      "price_gbp": 24.5,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/d3/c2/a078-cf04-4084-bbaf-ae133d579307/original_personalised-christmas-eve-children-s-book.jpg"
     },
     {
       "position": 30,
@@ -364,7 +393,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 5,
-      "price_gbp": 55.0
+      "price_gbp": 55.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/8f/b6/01d4-964f-47ef-b39b-cb4b1c1d076d/original_personalised-led-christmas-tree-advent-calendar.jpg"
     },
     {
       "position": 31,
@@ -376,7 +406,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 60.0
+      "price_gbp": 60.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/1c/8f/3ed1-0f1c-41c6-8438-bb134ac74f00/original_family-christmas-hanging-pennant-flag-banner.jpg"
     },
     {
       "position": 32,
@@ -388,7 +419,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.6,
-      "price_gbp": 65.0
+      "price_gbp": 65.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/e3/4c/dcd6-5f3b-4554-9734-5c1e853c0558/original_personalised-panoramic-welly-boot-family-print.jpg"
     },
     {
       "position": 33,
@@ -400,7 +432,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 59.99
+      "price_gbp": 59.99,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/d2/4a/71c9-495f-4c55-85b9-ce6b1914f307/original_personalised-pink-red-stripe-christmas-tree-stocking.jpg"
     },
     {
       "position": 34,
@@ -412,7 +445,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4,
-      "price_gbp": 30.0
+      "price_gbp": 30.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/2d/d5/96bd-5d60-49f5-8867-3f673adc49f2/original_men-s-blue-stripe-rectangular-travel-jewellery-case.jpg"
     },
     {
       "position": 35,
@@ -424,7 +458,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 1,
-      "price_gbp": 35.0
+      "price_gbp": 35.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/fd/81/249a-e317-491f-8fb5-4d256941d17d/original_your-own-personalised-whisky.jpg"
     },
     {
       "position": 36,
@@ -436,7 +471,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 28.0
+      "price_gbp": 28.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/b2/98/6af7-89ec-4394-bb6c-3f39633d9bf8/original_personalised-initial-leopard-print-tote-bag.jpg"
     },
     {
       "position": 37,
@@ -448,7 +484,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.6,
-      "price_gbp": 9.99
+      "price_gbp": 9.99,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/4d/1e/b306-928a-45a5-9a4f-a476c463542f/original_personalised-plantable-carrot-children-s-story-book.jpg"
     },
     {
       "position": 38,
@@ -460,7 +497,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 105.0
+      "price_gbp": 105.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/1d/4b/c0a4-6202-4c7e-bb2f-23db1ffd46ef/original_natural-autumn-dried-flower-wreath.jpg"
     },
     {
       "position": 39,
@@ -472,7 +510,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 84.99
+      "price_gbp": 84.99,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/53/26/004d-d1ab-4dd4-a411-5c0f453f9f3c/original_12-days-of-kids-books-advent-calendar.jpg"
     },
     {
       "position": 40,
@@ -484,7 +523,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 5,
-      "price_gbp": 55.95
+      "price_gbp": 55.95,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/6d/28/7c62-3371-4d00-bc42-ef01c37d8eb0/original_personalised-mens-holdall-weekend-bag.jpg"
     },
     {
       "position": 41,
@@ -496,7 +536,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 24.99
+      "price_gbp": 24.99,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/b2/96/b59b-5021-411d-9097-3b9d12313f89/original_personalised-lego-brick-puzzle-christmas-bauble-decoration.jpg"
     },
     {
       "position": 42,
@@ -508,7 +549,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 67.0
+      "price_gbp": 67.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/04/02/1edd-c8d4-45c6-a1fd-e041854b513d/original_personalised-week-of-charms-necklace.jpg"
     },
     {
       "position": 43,
@@ -520,7 +562,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 100.0
+      "price_gbp": 100.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/9e/a8/bfac-64d1-4b12-b25e-d2902e4b74b4/original_custom-stripe-christmas-stocking.jpg"
     },
     {
       "position": 44,
@@ -532,7 +575,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 130.0
+      "price_gbp": 130.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/3b/19/2106-bfca-47de-b3c0-0280fbd566f2/original_12-days-of-christmas-felt-advent-calendar-with-craft-activities.jpg"
     },
     {
       "position": 45,
@@ -544,7 +588,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 5,
-      "price_gbp": 27.0
+      "price_gbp": 27.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/a4/b4/8055-c906-4009-8196-aa83bdaca853/original_personalised-family-photograph-print.jpg"
     },
     {
       "position": 46,
@@ -556,7 +601,8 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 24.0
+      "price_gbp": 24.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/0b/9c/375c-eca0-465d-ab0e-a563b88bb234/original_only-here-for-the-pigs-in-blankets-slogan-cap.jpg"
     },
     {
       "position": 47,
@@ -568,7 +614,8 @@
       "is_new": true,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 15.0
+      "price_gbp": 15.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/8b/1c/b4a6-ab9e-4a71-96f9-53b77c6e698e/original_decorate-your-own-gingerbread-house-kit.jpg"
     },
     {
       "position": 48,
@@ -580,7 +627,8 @@
       "is_new": true,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 19.99
+      "price_gbp": 19.99,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/70/17/7ebe-6686-49aa-9327-e1e3ea6235fc/original_willsow-rhs-2027-a4-plantable-veg-herb-desk-calendar.jpg"
     },
     {
       "position": 49,
@@ -592,7 +640,8 @@
       "is_new": true,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 31.0
+      "price_gbp": 31.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/db/d2/18b0-40b5-4001-b416-050fc9cfd89a/original_personalised-bread-baking-apron.jpg"
     },
     {
       "position": 50,
@@ -604,7 +653,8 @@
       "is_new": true,
       "in_stock": true,
       "noths_rating": null,
-      "price_gbp": 89.0
+      "price_gbp": 89.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/9c/3c/9135-1a59-40ad-8302-2e0e2a7ef938/original_pink-merino-wool-fleece-vest-boxy-snap-button-gilet-hope.jpg"
     },
     {
       "position": 51,
@@ -616,7 +666,8 @@
       "is_new": false,
       "in_stock": false,
       "noths_rating": 4.4,
-      "price_gbp": 20.0
+      "price_gbp": 20.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/65/26/7414-dcf2-49b9-a81a-3f78f0a8a9d9/original_chilli-kit.jpg"
     }
   ]
 }
