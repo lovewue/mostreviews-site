@@ -1,7 +1,7 @@
 {
   "slug": "lottie-lauras-christmas-picks",
   "theme_url": "https://www.notonthehighstreet.com/themes/lifestyle/lottie-lauras-top-christmas-picks",
-  "checked_at": "2026-10-13T05:32:48+00:00",
+  "checked_at": "2026-10-19T10:59:34+00:00",
   "product_count": 21,
   "added_since_last_check": [],
   "removed_since_last_check": [],
@@ -86,19 +86,6 @@
     },
     {
       "position": 7,
-      "sku": "175347",
-      "name": "Personalised Pet Portrait",
-      "seller_name": "Lucy Sheeran",
-      "seller_slug": "lucysheeran",
-      "product_url": "https://www.notonthehighstreet.com/lucysheeran/product/your-pet-illustrated",
-      "is_new": false,
-      "in_stock": true,
-      "noths_rating": 5,
-      "price_gbp": 36.0,
-      "image_url": "https://cdn.notonthehighstreet.com/fs/7c/2a/d792-f4a5-4fcc-b9d1-2a48e472f053/original_your-pet-illustrated.jpg"
-    },
-    {
-      "position": 8,
       "sku": "1072054",
       "name": "Set Of Two Gold Rimmed Champagne Coupes",
       "seller_name": "The Best Room",
@@ -111,7 +98,7 @@
       "image_url": "https://cdn.notonthehighstreet.com/fs/e1/fd/0cd2-f9a9-4fa7-bcc2-00bce93cc626/original_set-of-two-gold-rimmed-champagne-coupes.jpg"
     },
     {
-      "position": 9,
+      "position": 8,
       "sku": "1438038",
       "name": "Pink And Red 3D Bow Garland Two.5m",
       "seller_name": "Little Big Party Co.",
@@ -124,7 +111,7 @@
       "image_url": "https://cdn.notonthehighstreet.com/fs/b6/dd/f4e6-e3da-42da-be85-9fba70178bc0/original_pink-red-3d-bow-christmas-garland-two-5m.jpg"
     },
     {
-      "position": 10,
+      "position": 9,
       "sku": "1374285",
       "name": "Decorative Hanging Fabric Door Bow",
       "seller_name": "'By Alex'",
@@ -137,7 +124,7 @@
       "image_url": "https://cdn.notonthehighstreet.com/fs/f1/a0/711a-f0be-4ae5-a185-c6225c5da587/original_the-bow-collection.jpg"
     },
     {
-      "position": 11,
+      "position": 10,
       "sku": "564911",
       "name": "Chocolate Cheese And Crackers",
       "seller_name": "Choc on Choc",
@@ -150,20 +137,20 @@
       "image_url": "https://cdn.notonthehighstreet.com/fs/78/fb/578e-f2fe-4e75-90fc-9462c83f20ff/original_chocolate-cheese-and-crackers.jpg"
     },
     {
-      "position": 12,
-      "sku": "1031068",
-      "name": "18ct Gold Plated Or Silver Heart Link Slider Bracelet",
-      "seller_name": "Hurleyburley",
-      "seller_slug": "hurleyburley",
-      "product_url": "https://www.notonthehighstreet.com/hurleyburley/product/18ct-gold-or-sterling-silver-heart-link-slider-bracelet",
+      "position": 11,
+      "sku": "175347",
+      "name": "Personalised Pet Portrait",
+      "seller_name": "Lucy Sheeran",
+      "seller_slug": "lucysheeran",
+      "product_url": "https://www.notonthehighstreet.com/lucysheeran/product/your-pet-illustrated",
       "is_new": false,
       "in_stock": true,
-      "noths_rating": 4.8,
-      "price_gbp": 66.0,
-      "image_url": "https://cdn.notonthehighstreet.com/fs/f5/78/16d2-e1ce-4399-9ca9-489c7689d9ee/original_18ct-gold-or-sterling-silver-heart-link-slider-bracelet.jpg"
+      "noths_rating": 5,
+      "price_gbp": 36.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/2c/cb/1cec-e171-4ec7-af95-55cc6e2a6a0b/original_your-pet-illustrated.jpg"
     },
     {
-      "position": 13,
+      "position": 12,
       "sku": "1428111",
       "name": "Luxurious Christmas Wreath Making Kit",
       "seller_name": "Florence and Flowers",
@@ -174,6 +161,19 @@
       "noths_rating": 5,
       "price_gbp": 68.0,
       "image_url": "https://cdn.notonthehighstreet.com/fs/12/db/3d55-988f-4c73-a4e8-257c6f48eb58/original_luxurious-christmas-wreath-making-kit.jpg"
+    },
+    {
+      "position": 13,
+      "sku": "1031068",
+      "name": "18ct Gold Plated Or Silver Heart Link Slider Bracelet",
+      "seller_name": "Hurleyburley",
+      "seller_slug": "hurleyburley",
+      "product_url": "https://www.notonthehighstreet.com/hurleyburley/product/18ct-gold-or-sterling-silver-heart-link-slider-bracelet",
+      "is_new": false,
+      "in_stock": true,
+      "noths_rating": 4.8,
+      "price_gbp": 66.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/f5/78/16d2-e1ce-4399-9ca9-489c7689d9ee/original_18ct-gold-or-sterling-silver-heart-link-slider-bracelet.jpg"
     },
     {
       "position": 14,
