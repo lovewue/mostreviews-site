@@ -1,7 +1,7 @@
 {
   "slug": "lottie-lauras-christmas-picks",
   "theme_url": "https://www.notonthehighstreet.com/themes/lifestyle/lottie-lauras-top-christmas-picks",
-  "checked_at": "2026-10-19T10:59:34+00:00",
+  "checked_at": "2026-10-26T11:18:42+00:00",
   "product_count": 21,
   "added_since_last_check": [],
   "removed_since_last_check": [],
@@ -55,37 +55,11 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 5,
-      "price_gbp": 55.95,
+      "price_gbp": 48.95,
       "image_url": "https://cdn.notonthehighstreet.com/fs/6f/a4/1d7e-0a97-4dfa-a029-16890e5a89f1/original_personalised-mens-holdall-weekend-bag-for-travelling.jpg"
     },
     {
       "position": 5,
-      "sku": "980283",
-      "name": "Personalised Velvet Christmas Stocking",
-      "seller_name": "'By Alex'",
-      "seller_slug": "byalex",
-      "product_url": "https://www.notonthehighstreet.com/byalex/product/personalised-velvet-christmas-stocking",
-      "is_new": false,
-      "in_stock": true,
-      "noths_rating": 5,
-      "price_gbp": 52.99,
-      "image_url": "https://cdn.notonthehighstreet.com/fs/3a/77/6ba1-2860-4e7d-8e17-9d1503ce7f0d/original_personalised-velvet-christmas-stocking.jpg"
-    },
-    {
-      "position": 6,
-      "sku": "737621",
-      "name": "Christmas Personalised Wooden Chopping Board",
-      "seller_name": "Sophia Victoria Joy",
-      "seller_slug": "sophiavictoriajoy",
-      "product_url": "https://www.notonthehighstreet.com/sophiavictoriajoy/product/christmas-personalised-wooden-chopping-board",
-      "is_new": false,
-      "in_stock": true,
-      "noths_rating": 4.8,
-      "price_gbp": 25.6,
-      "image_url": "https://cdn.notonthehighstreet.com/fs/bf/f3/332c-7e7f-48e8-9122-8d96721d6940/original_christmas-personalised-wooden-chopping-board.jpg"
-    },
-    {
-      "position": 7,
       "sku": "1072054",
       "name": "Set Of Two Gold Rimmed Champagne Coupes",
       "seller_name": "The Best Room",
@@ -98,7 +72,7 @@
       "image_url": "https://cdn.notonthehighstreet.com/fs/e1/fd/0cd2-f9a9-4fa7-bcc2-00bce93cc626/original_set-of-two-gold-rimmed-champagne-coupes.jpg"
     },
     {
-      "position": 8,
+      "position": 6,
       "sku": "1438038",
       "name": "Pink And Red 3D Bow Garland Two.5m",
       "seller_name": "Little Big Party Co.",
@@ -109,6 +83,32 @@
       "noths_rating": 5,
       "price_gbp": 9.99,
       "image_url": "https://cdn.notonthehighstreet.com/fs/b6/dd/f4e6-e3da-42da-be85-9fba70178bc0/original_pink-red-3d-bow-christmas-garland-two-5m.jpg"
+    },
+    {
+      "position": 7,
+      "sku": "737621",
+      "name": "Christmas Personalised Wooden Chopping Board",
+      "seller_name": "Sophia Victoria Joy",
+      "seller_slug": "sophiavictoriajoy",
+      "product_url": "https://www.notonthehighstreet.com/sophiavictoriajoy/product/christmas-personalised-wooden-chopping-board",
+      "is_new": false,
+      "in_stock": true,
+      "noths_rating": 4.8,
+      "price_gbp": 32.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/bf/f3/332c-7e7f-48e8-9122-8d96721d6940/original_christmas-personalised-wooden-chopping-board.jpg"
+    },
+    {
+      "position": 8,
+      "sku": "980283",
+      "name": "Personalised Velvet Christmas Stocking",
+      "seller_name": "'By Alex'",
+      "seller_slug": "byalex",
+      "product_url": "https://www.notonthehighstreet.com/byalex/product/personalised-velvet-christmas-stocking",
+      "is_new": false,
+      "in_stock": true,
+      "noths_rating": 5,
+      "price_gbp": 52.99,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/3a/77/6ba1-2860-4e7d-8e17-9d1503ce7f0d/original_personalised-velvet-christmas-stocking.jpg"
     },
     {
       "position": 9,
@@ -138,19 +138,6 @@
     },
     {
       "position": 11,
-      "sku": "175347",
-      "name": "Personalised Pet Portrait",
-      "seller_name": "Lucy Sheeran",
-      "seller_slug": "lucysheeran",
-      "product_url": "https://www.notonthehighstreet.com/lucysheeran/product/your-pet-illustrated",
-      "is_new": false,
-      "in_stock": true,
-      "noths_rating": 5,
-      "price_gbp": 36.0,
-      "image_url": "https://cdn.notonthehighstreet.com/fs/2c/cb/1cec-e171-4ec7-af95-55cc6e2a6a0b/original_your-pet-illustrated.jpg"
-    },
-    {
-      "position": 12,
       "sku": "1428111",
       "name": "Luxurious Christmas Wreath Making Kit",
       "seller_name": "Florence and Flowers",
@@ -161,6 +148,19 @@
       "noths_rating": 5,
       "price_gbp": 68.0,
       "image_url": "https://cdn.notonthehighstreet.com/fs/12/db/3d55-988f-4c73-a4e8-257c6f48eb58/original_luxurious-christmas-wreath-making-kit.jpg"
+    },
+    {
+      "position": 12,
+      "sku": "175347",
+      "name": "Personalised Pet Portrait",
+      "seller_name": "Lucy Sheeran",
+      "seller_slug": "lucysheeran",
+      "product_url": "https://www.notonthehighstreet.com/lucysheeran/product/your-pet-illustrated",
+      "is_new": false,
+      "in_stock": true,
+      "noths_rating": 5,
+      "price_gbp": 36.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/2c/cb/1cec-e171-4ec7-af95-55cc6e2a6a0b/original_your-pet-illustrated.jpg"
     },
     {
       "position": 13,
@@ -177,19 +177,6 @@
     },
     {
       "position": 14,
-      "sku": "1321256",
-      "name": "Pistachio Crisp Christmas Tree",
-      "seller_name": "RD House of Chocolate",
-      "seller_slug": "rdhouseofchocolate",
-      "product_url": "https://www.notonthehighstreet.com/rdhouseofchocolate/product/pistachio-crisp-christmas-tree",
-      "is_new": false,
-      "in_stock": true,
-      "noths_rating": null,
-      "price_gbp": 30.0,
-      "image_url": "https://cdn.notonthehighstreet.com/fs/cb/b5/5919-2ea1-4e5f-b745-3dbf7ec6eade/original_pistachio-crisp-christmas-tree.jpg"
-    },
-    {
-      "position": 15,
       "sku": "1404130",
       "name": "Design Your Own Lovey Dovey Classic Seven Charm Necklace",
       "seller_name": "Lovey Dovey",
@@ -200,6 +187,19 @@
       "noths_rating": 4,
       "price_gbp": 67.0,
       "image_url": "https://cdn.notonthehighstreet.com/fs/b7/70/3b33-b53a-4398-bc2a-187fe7895e46/original_lovey-dovey-classic-charm-necklace.jpg"
+    },
+    {
+      "position": 15,
+      "sku": "1321256",
+      "name": "Pistachio Crisp Christmas Tree",
+      "seller_name": "RD House of Chocolate",
+      "seller_slug": "rdhouseofchocolate",
+      "product_url": "https://www.notonthehighstreet.com/rdhouseofchocolate/product/pistachio-crisp-christmas-tree",
+      "is_new": false,
+      "in_stock": true,
+      "noths_rating": null,
+      "price_gbp": 30.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/cb/b5/5919-2ea1-4e5f-b745-3dbf7ec6eade/original_pistachio-crisp-christmas-tree.jpg"
     },
     {
       "position": 16,
