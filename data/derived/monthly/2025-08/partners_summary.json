@@ -1248,12 +1248,6 @@
     "total_reviews_month": 6
   },
   {
-    "seller_slug": "bysamjewellery",
-    "seller_name": "Sending Love",
-    "product_count_month": 3,
-    "total_reviews_month": 6
-  },
-  {
     "seller_slug": "socktalk",
     "seller_name": "Sock Talk",
     "product_count_month": 6,
@@ -1725,6 +1719,12 @@
     "seller_slug": "simonseabright",
     "seller_name": "Seabright Designs",
     "product_count_month": 2,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "sendinglovegifts",
+    "seller_name": "Sendinglovegifts",
+    "product_count_month": 1,
     "total_reviews_month": 4
   },
   {
@@ -3020,6 +3020,12 @@
   {
     "seller_slug": "scaramanga",
     "seller_name": "Scaramanga",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "bysamjewellery",
+    "seller_name": "Sending Love",
     "product_count_month": 2,
     "total_reviews_month": 2
   },

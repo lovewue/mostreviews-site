@@ -2124,6 +2124,12 @@
     "total_reviews_month": 2
   },
   {
+    "seller_slug": "zolaijewellery",
+    "seller_name": "Zolaijewellery",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
     "seller_slug": "aliroo",
     "seller_name": "aliroo",
     "product_count_month": 2,
@@ -2942,12 +2948,6 @@
   {
     "seller_slug": "lucianleathergoods",
     "seller_name": "Lucianleathergoods",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
-    "seller_slug": "luminouspretties",
-    "seller_name": "Luminous Pretties Jewellery",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
@@ -3878,12 +3878,6 @@
   {
     "seller_slug": "zooniversedesigns",
     "seller_name": "ZOONIVERSE DESIGNS",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
-    "seller_slug": "zolaijewellery",
-    "seller_name": "Zolaijewellery",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
