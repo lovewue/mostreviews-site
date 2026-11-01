@@ -660,6 +660,12 @@
     "total_reviews_month": 10
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 3,
+    "total_reviews_month": 10
+  },
+  {
     "seller_slug": "laurastanleydesigns",
     "seller_name": "Laura Stanley Designs",
     "product_count_month": 5,
@@ -729,12 +735,6 @@
     "seller_slug": "julietreevesdesigns",
     "seller_name": "Juliet Reeves Designs",
     "product_count_month": 9,
-    "total_reviews_month": 9
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 2,
     "total_reviews_month": 9
   },
   {
@@ -1404,12 +1404,6 @@
     "total_reviews_month": 5
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 5,
-    "total_reviews_month": 5
-  },
-  {
     "seller_slug": "pushka",
     "seller_name": "Pushka Home",
     "product_count_month": 5,
@@ -1694,6 +1688,12 @@
   {
     "seller_slug": "pepperprintshop",
     "seller_name": "Pepper Print Shop",
+    "product_count_month": 4,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 4,
     "total_reviews_month": 4
   },

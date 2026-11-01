@@ -402,6 +402,12 @@
     "total_reviews_month": 11
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 9,
+    "total_reviews_month": 11
+  },
+  {
     "seller_slug": "nameitwhatyoulike",
     "seller_name": "Nameitwhatyoulike",
     "product_count_month": 7,
@@ -453,12 +459,6 @@
     "seller_slug": "jomanda",
     "seller_name": "Jomanda Soft Plush Toys, Gifts & Accessories #SofterThanASoftThing CE/UKCA",
     "product_count_month": 10,
-    "total_reviews_month": 10
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 8,
     "total_reviews_month": 10
   },
   {
@@ -4082,12 +4082,6 @@
   {
     "seller_slug": "poshtotty",
     "seller_name": "Posh Totty Designs",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
