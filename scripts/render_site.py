@@ -161,6 +161,36 @@ def clean_product_list(products):
     return [p for p in products if isinstance(p, dict)]
 
 
+UNKNOWN_BRAND_NAMES = {"", "none", "null", "nan", "unknown", "unknown brand", "unknown seller"}
+
+
+def is_unidentified_product(p) -> bool:
+    """
+    A row we can say nothing useful about: no product name AND no brand.
+    Those are dropped from every product table and the ranks re-flowed, since
+    "Product 112189 / Unknown brand" tells a reader nothing. A row with a name
+    but no brand (old delisted products named from Feefo) is kept.
+    """
+    sku = str(p.get("sku") or "").strip()
+    name = (p.get("name") or "").strip()
+    seller = (p.get("seller_name") or "").strip()
+    no_name = not name or name.lower() in ("none", "null", "nan") or name == f"Product {sku}"
+    no_brand = seller.lower() in UNKNOWN_BRAND_NAMES
+    return no_name and no_brand
+
+
+def drop_unidentified(products):
+    """Remove unidentified rows and clear stored ranks so they re-flow."""
+    kept = []
+    for p in clean_product_list(products):
+        if is_unidentified_product(p):
+            continue
+        item = dict(p)
+        item.pop("rank", None)
+        kept.append(item)
+    return kept
+
+
 def top_n_with_ties(products, limit, value_key="reviews"):
     clean_products = clean_product_list(products)
 
@@ -453,7 +483,7 @@ def render_leaderboard_stats(
 
 
 def render_products(products, limit=None, show_last_month=False):
-    products = clean_product_list(products)
+    products = drop_unidentified(products)
 
     if limit:
         products = top_n_with_ties(products, limit, value_key="review_count_month")
@@ -476,7 +506,9 @@ def render_products(products, limit=None, show_last_month=False):
             rank_display = f"{rank_num}=" if same_as_prev else str(rank_num)
 
             name = p.get("name") or f"Product {p.get('sku')}"
-            seller = p.get("seller_name") or "Unknown brand"
+            seller = p.get("seller_name") or ""
+            if seller.strip().lower() in UNKNOWN_BRAND_NAMES:
+                seller = ""
             reviews = p.get("review_count_month") or 0
             url = p.get("product_url")
             available = p.get("available", True)
@@ -624,7 +656,7 @@ def render_partners(partners, limit=10):
 
 
 def render_leaderboard_products(items, limit=100, last_month=False, link_only_if_available=False):
-    items = clean_product_list(items)
+    items = drop_unidentified(items)
 
     if limit:
         items = top_n_with_ties(items, limit, value_key="reviews")
@@ -655,7 +687,9 @@ def render_leaderboard_products(items, limit=100, last_month=False, link_only_if
             rank_display = f"{rank_num}=" if is_tied else str(rank_num)
 
             name = p.get("name") or f"Product {p.get('sku')}"
-            seller = p.get("seller_name") or "Unknown brand"
+            seller = p.get("seller_name") or ""
+            if seller.strip().lower() in UNKNOWN_BRAND_NAMES:
+                seller = ""
             reviews = p.get("reviews") or 0
             url = p.get("product_url")
             available = p.get("available")

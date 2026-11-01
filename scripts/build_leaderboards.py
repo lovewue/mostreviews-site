@@ -467,6 +467,107 @@ def base_row(sku, reviews, rating, rank, cache, existing_rows):
     return row
 
 
+# -----------------------------------------------------------------------------
+# Product names from Feefo (for SKUs nothing else can name)
+# -----------------------------------------------------------------------------
+# Some of the most-reviewed products of all time were delisted years ago. They
+# are in neither products_cache.json (built from monthly data since Apr 2025)
+# nor the archive, so they rendered as "Product 112189 / Unknown brand".
+# Feefo still has their reviews — but only when asked with since_period=all;
+# the default window returns nothing for a product last reviewed in 2017.
+# Feefo gives the product title but no seller (its product URL is just a NOTHS
+# search for the SKU), so this fills `name` only.
+#
+# Results, misses included, are cached in data/cache/feefo_product_names.json
+# so each SKU costs one request ever (a miss is retried after
+# FEEFO_NAME_RETRY_DAYS). Only the top FEEFO_NAME_TOP_N rows are looked up.
+FEEFO_NAMES_CACHE = DATA_DIR / "cache" / "feefo_product_names.json"
+FEEFO_REVIEWS_URL = "https://api.feefo.com/api/20/reviews/product"
+FEEFO_MERCHANT = "notonthehighstreet-com"
+FEEFO_NAME_TOP_N = 250
+FEEFO_NAME_RETRY_DAYS = 90
+
+
+def is_placeholder_name(name, sku=None) -> bool:
+    n = (name or "").strip()
+    if not n or n.lower() in ("none", "null", "nan", "unknown"):
+        return True
+    return bool(sku) and n == f"Product {sku}"
+
+
+def fetch_feefo_product_name(sku: str):
+    """Title Feefo holds for this SKU, or None. Retries Feefo's plain-text
+    'Rate Limited' response a few times with backoff."""
+    params = {
+        "merchant_identifier": FEEFO_MERCHANT,
+        "product_sku": sku,
+        "page_size": 1,
+        "since_period": "all",
+    }
+    for attempt in range(4):
+        try:
+            r = session.get(FEEFO_REVIEWS_URL, params=params, timeout=20)
+            if r.status_code == 429 or r.text.startswith("Rate"):
+                time.sleep(3 * (attempt + 1))
+                continue
+            if r.status_code != 200:
+                return None
+            data = r.json()
+            for review in data.get("reviews") or []:
+                for p in review.get("products") or []:
+                    title = clean_text((p.get("product") or {}).get("title"))
+                    if title:
+                        return title
+            return None
+        except Exception:  # noqa: BLE001
+            time.sleep(2)
+    return None
+
+
+def fill_names_from_feefo(items: list, label: str) -> int:
+    try:
+        names = json.loads(FEEFO_NAMES_CACHE.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        names = {}
+
+    retry_cutoff = datetime.now(timezone.utc) - timedelta(days=FEEFO_NAME_RETRY_DAYS)
+    filled = looked_up = 0
+
+    for item in items[:FEEFO_NAME_TOP_N]:
+        sku = item.get("sku")
+        if not sku or not is_placeholder_name(item.get("name"), sku):
+            continue
+
+        entry = names.get(sku) or {}
+        stale_miss = False
+        if entry and not entry.get("name"):
+            try:
+                stale_miss = datetime.fromisoformat(entry.get("checked_at")) < retry_cutoff
+            except Exception:  # noqa: BLE001
+                stale_miss = True
+
+        if not entry or stale_miss:
+            looked_up += 1
+            entry = {"name": fetch_feefo_product_name(sku), "checked_at": now_iso()}
+            names[sku] = entry
+            time.sleep(0.7)
+
+        if entry.get("name"):
+            item["name"] = entry["name"]
+            item["metadata_source"] = "feefo"
+            filled += 1
+
+    if looked_up:
+        FEEFO_NAMES_CACHE.parent.mkdir(parents=True, exist_ok=True)
+        FEEFO_NAMES_CACHE.write_text(
+            json.dumps(dict(sorted(names.items())), ensure_ascii=False, indent=1),
+            encoding="utf-8",
+        )
+
+    print(f"🏷️  {label}: {filled} unnamed products named from Feefo ({looked_up} new lookups)")
+    return filled
+
+
 def build_leaderboard(path: Path, label: str, cache: dict) -> dict:
     df = pd.read_excel(path)
 
@@ -525,6 +626,7 @@ def build_leaderboard(path: Path, label: str, cache: dict) -> dict:
         items.append(item)
 
     revalidate_availability(items, label)
+    fill_names_from_feefo(items, label)
 
     output = {
         "leaderboard": label,
