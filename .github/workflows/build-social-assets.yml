@@ -50,5 +50,28 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add social_media/
           timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          git commit -m "Build social media assets for $timestamp" || echo "No changes to commit"
-          git push
+          if ! git commit -m "Build social media assets for $timestamp"; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          # main can move while this runs — on 1 Nov 2026 the site build
+          # pushed 8 seconds before this did, and the whole October carousel
+          # was rejected. This job only touches social_media/, so replaying
+          # its commit on the new tip can't conflict: rebase and retry.
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push attempt $attempt rejected; rebasing onto origin/main..."
+            git fetch origin main
+            if ! git rebase origin/main; then
+              git rebase --abort || true
+              echo "::error::Rebase onto origin/main failed; social assets not committed."
+              exit 1
+            fi
+          done
+
+          echo "::error::Could not push social assets after 3 attempts."
+          exit 1
