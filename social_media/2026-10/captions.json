@@ -1,0 +1,98 @@
+{
+  "month": "2026-10",
+  "generated_at": "2026-11-01T14:44:17+00:00",
+  "cover_image": "00_cover.jpg",
+  "total_reviews_month": 3380,
+  "products": [
+    {
+      "rank": 1,
+      "sku": "1602499",
+      "image_file": "01_1602499.jpg",
+      "name": "1946: What A Year To Be Born | 80th Birthday Gift Book",
+      "seller_name": "Emersivebooks",
+      "review_count_month": 19,
+      "product_url": "https://www.notonthehighstreet.com/emersivebooks/product/1946-what-a-year-to-be-born-80th-birthday-gift-book"
+    },
+    {
+      "rank": 2,
+      "sku": "469358",
+      "image_file": "02_469358.jpg",
+      "name": "Family Birthstone Link Bracelet",
+      "seller_name": "Joy by Corrine Smith",
+      "review_count_month": 12,
+      "product_url": "https://www.notonthehighstreet.com/joybycorrinesmith/product/family-birthstone-link-bracelet"
+    },
+    {
+      "rank": 3,
+      "sku": "764151",
+      "image_file": "03_764151.jpg",
+      "name": "Personalised Olive Wood Wedding Gift Chopping Board",
+      "seller_name": "The Rustic Dish®",
+      "review_count_month": 9,
+      "product_url": "https://www.notonthehighstreet.com/therusticdish/product/personalised-couples-cheese-chopping-board"
+    },
+    {
+      "rank": 4,
+      "sku": "786481",
+      "image_file": "04_786481.jpg",
+      "name": "Sterling Silver Birthstone Sliding Bracelet",
+      "seller_name": "Gaamaa",
+      "review_count_month": 8,
+      "product_url": "https://www.notonthehighstreet.com/gaamaa/product/sterling-silver-birthstone-sliding-bracelet"
+    },
+    {
+      "rank": 5,
+      "sku": "1491899",
+      "image_file": "05_1491899.jpg",
+      "name": "Personalized Jewellery Name Box",
+      "seller_name": "Awristo",
+      "review_count_month": 7,
+      "product_url": "https://www.notonthehighstreet.com/lineamasks/product/personalized-name-box"
+    },
+    {
+      "rank": 5,
+      "sku": "566057",
+      "image_file": "05_566057.jpg",
+      "name": "Personalised Girls Hair Bobble And Brush Bag",
+      "seller_name": "Red Berry Apple",
+      "review_count_month": 7,
+      "product_url": "https://www.notonthehighstreet.com/redberryapple/product/personalised-girls-hair-bobble-and-brush-bag"
+    },
+    {
+      "rank": 5,
+      "sku": "1602612",
+      "image_file": "05_1602612.jpg",
+      "name": "1956: What A Year To Be Born | 70th Birthday Gift Book",
+      "seller_name": "Emersivebooks",
+      "review_count_month": 7,
+      "product_url": "https://www.notonthehighstreet.com/emersivebooks/product/1956-what-a-year-to-be-born-70th-birthday-gift-book"
+    },
+    {
+      "rank": 5,
+      "sku": "963254",
+      "image_file": "05_963254.jpg",
+      "name": "Personalised Hooded Sherpa Blanket",
+      "seller_name": "Duncan Stewart",
+      "review_count_month": 7,
+      "product_url": "https://www.notonthehighstreet.com/duncanstewarttextiles/product/personalised-hooded-sherpa-blanket"
+    },
+    {
+      "rank": 9,
+      "sku": "752970",
+      "image_file": "09_752970.jpg",
+      "name": "Personalised Italian Leather Message Keyring",
+      "seller_name": "Hurleyburley man",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/hurleyburleyman/product/personalised-leather-message-keyring"
+    },
+    {
+      "rank": 9,
+      "sku": "991747",
+      "image_file": "09_991747.jpg",
+      "name": "Personalised Swarovski Birthstone Earrings",
+      "seller_name": "Twenty-Seven",
+      "review_count_month": 6,
+      "product_url": "https://www.notonthehighstreet.com/twentyseven/product/personalised-swarovski-birthstone-earrings"
+    }
+  ]
+}
