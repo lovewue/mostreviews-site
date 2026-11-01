@@ -741,7 +741,10 @@ def build_cover_grid(month: str, tiles: list, out_path: Path) -> bool:
     y += h + 40
 
     note_font = _load_font(FONT_PATHS_REGULAR, 30)
-    draw.text((margin, y), "The 10 most-reviewed products this month.", font=note_font, fill=MUTED)
+    # Name the month: the carousel is posted the month after the data, so
+    # "this month" would be wrong by the time anyone reads it.
+    month_name = format_month_label(month).split(" ")[0]
+    draw.text((margin, y), f"The 10 most-reviewed products in {month_name}.", font=note_font, fill=MUTED)
 
     _draw_footer(draw, width, height, margin)
 
