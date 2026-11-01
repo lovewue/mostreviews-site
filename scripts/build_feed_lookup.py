@@ -61,6 +61,9 @@ MONTH_DEPTH = 200
 # download or an error page, not a real feed.
 MIN_FEED_ROWS = 100_000
 
+LEGACY_IMAGE_HOST = "assets-notonthehighstreet-com.s3.eu-west-1.amazonaws.com"
+CURRENT_IMAGE_HOST = "cdn.notonthehighstreet.com"
+
 csv.field_size_limit(10**8)
 
 
@@ -161,6 +164,7 @@ def build(feed_path: str | None) -> int:
 
     products: dict[str, dict] = {}
     rows = 0
+    legacy_fixed = 0
     try:
         reader = csv.DictReader(text)
         for d in reader:
@@ -174,6 +178,18 @@ def build(feed_path: str | None) -> int:
             image = (d.get("merchant_image_url") or "").strip()
             if not (thumb or image):
                 continue
+            # ~0.8% of the feed (2,141 of 255k on 1 Nov 2026 — older listings,
+            # Wue's Friendship Knot Earrings among them) still carries NOTHS's
+            # retired S3 image host. That host is dead, so Awin's resizer
+            # serves a 70×70 "no image" placeholder, which is also why those
+            # products show no picture in the Awin dashboard. The same path
+            # is live on NOTHS's CDN. Awin's thumbnail URLs are signed, so the
+            # host can't be swapped inside them; use the CDN original instead
+            # (shown at 64px, lazy-loaded).
+            if LEGACY_IMAGE_HOST in image:
+                image = image.replace(LEGACY_IMAGE_HOST, CURRENT_IMAGE_HOST)
+                thumb = image
+                legacy_fixed += 1
             products[sku] = {
                 "thumb": thumb,
                 "image": image,
@@ -205,6 +221,8 @@ def build(feed_path: str | None) -> int:
     os.replace(tmp, OUT_PATH)
 
     print(f"🖼️  {len(products):,} of {len(skus):,} SKUs matched in a {rows:,}-row feed → {OUT_PATH.relative_to(PROJECT_ROOT)}")
+    if legacy_fixed:
+        print(f"   ↳ {legacy_fixed:,} used NOTHS's retired S3 image host — switched to the CDN original")
     return 0
 
 

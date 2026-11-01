@@ -315,6 +315,11 @@ def html_attr(value: str) -> str:
     )
 
 
+# Shown after the name in place of the old "*" + footnote. Same pill style as
+# the theme pages' "Out of stock" tag.
+UNAVAILABLE_TAG = ' <span class="theme-tag theme-tag-oos">No longer available</span>'
+
+
 def render_product_cell(p, name_html, seller, link_url="", show_image=True, extra_html=""):
     """
     The Product cell: thumbnail (when the feed has one and the product is
@@ -478,7 +483,7 @@ def render_products(products, limit=None, show_last_month=False):
 
             awin_url = build_awin_product_link(url, clickref="TrendListProduct")
 
-            display_name = name + ("*" if available is False else "")
+            display_name = name
 
             linked = bool(awin_url and available)
             if linked:
@@ -490,6 +495,7 @@ def render_products(products, limit=None, show_last_month=False):
                 p, name_html, seller,
                 link_url=awin_url if linked else "",
                 show_image=available is not False,
+                extra_html=UNAVAILABLE_TAG if available is False else "",
             )
 
             last_month_cell = ""
@@ -657,9 +663,7 @@ def render_leaderboard_products(items, limit=100, last_month=False, link_only_if
             should_link = bool(url and available is True) if link_only_if_available else bool(url)
             awin_url = build_awin_product_link(url, clickref="TrendListProduct")
 
-            display_name = name + ("*" if available is not True else "")
-
-            should_link = bool(url and available is True) if link_only_if_available else bool(url)
+            display_name = name
 
             linked = bool(should_link and awin_url)
             if linked:
@@ -668,12 +672,13 @@ def render_leaderboard_products(items, limit=100, last_month=False, link_only_if
                 name_html = display_name
 
             # Thumbnail only for products the site believes are live. A row
-            # marked unavailable keeps its asterisk and gets no picture, even
-            # if the feed still lists it.
+            # not known to be available gets the "No longer available" tag and
+            # no picture, even if the feed still lists it.
             product_cell = render_product_cell(
                 p, name_html, seller,
                 link_url=awin_url if linked else "",
                 show_image=available is True,
+                extra_html=UNAVAILABLE_TAG if available is not True else "",
             )
 
             last_month_cell = ""
@@ -1039,7 +1044,6 @@ Products ranked by number of reviews received during the month.
 
 {render_products(products, limit=50, show_last_month=bool(previous_month))}
 
-<p class="table-note">* Product no longer available on NOTHS</p>
 
 <h2>Brands With Most Reviews</h2>
 <p><small>Showing top 50 including ties ({len(top_brands)} brands shown).</small></p>
@@ -1129,7 +1133,6 @@ The products with the highest recorded Feefo review counts on Not On The High St
 
 {render_leaderboard_products(items, limit=100, last_month=False, link_only_if_available=True)}
 
-<p class="table-note">* No longer available on NOTHS</p>
 
 <p>
     <a href="index.html">← Back to homepage</a>
