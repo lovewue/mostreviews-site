@@ -283,6 +283,70 @@ def build_awin_product_link(product_url: str, clickref: str = "TrendListProduct"
     )
 
 
+# -----------------------------------------------------------------------------
+# Product thumbnails (Awin feed)
+# -----------------------------------------------------------------------------
+# data/cache/feed_products.json is written by scripts/build_feed_lookup.py from
+# the Awin NOTHS product feed. Images are linked from Awin's image server, never
+# copied into docs/ (the Pages artifact is already over 1 GB). A missing or
+# unreadable lookup just means no thumbnails — never a failed build.
+FEED_LOOKUP_PATH = DATA_DIR / "cache" / "feed_products.json"
+_FEED_PRODUCTS = None
+
+
+def feed_products() -> dict:
+    global _FEED_PRODUCTS
+    if _FEED_PRODUCTS is None:
+        try:
+            with open(FEED_LOOKUP_PATH, "r", encoding="utf-8") as f:
+                _FEED_PRODUCTS = json.load(f).get("products") or {}
+        except Exception:  # noqa: BLE001
+            _FEED_PRODUCTS = {}
+    return _FEED_PRODUCTS
+
+
+def html_attr(value: str) -> str:
+    return (
+        (value or "")
+        .replace("&", "&amp;")
+        .replace('"', "&quot;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+    )
+
+
+def render_product_cell(p, name_html, seller, link_url="", show_image=True, extra_html=""):
+    """
+    The Product cell: thumbnail (when the feed has one and the product is
+    live) beside the name and brand. Rows without an image get an empty slot
+    of the same width so names stay aligned down the table.
+
+    The image links to the same Awin URL as the name when the name is linked.
+    """
+    entry = feed_products().get(str(p.get("sku") or "").strip()) if show_image else None
+    thumb = (entry or {}).get("thumb") or ""
+
+    if thumb:
+        alt = html_attr(p.get("name") or "")
+        img = (
+            f'<img src="{html_attr(thumb)}" alt="{alt}" width="64" height="64" '
+            f'loading="lazy" decoding="async">'
+        )
+        if link_url:
+            img = f'<a href="{link_url}" tabindex="-1" aria-hidden="true">{img}</a>'
+        thumb_html = f'<div class="product-thumb">{img}</div>'
+    else:
+        thumb_html = '<div class="product-thumb product-thumb-empty"></div>'
+
+    return f"""<div class="product-cell">
+        {thumb_html}
+        <div class="product-text">
+            {name_html}{extra_html}
+            <div class="partner">{seller}</div>
+        </div>
+    </div>"""
+
+
 def slugify_brand_name(name: str) -> str:
     return (
         (name or "").strip().lower()
@@ -416,10 +480,17 @@ def render_products(products, limit=None, show_last_month=False):
 
             display_name = name + ("*" if available is False else "")
 
-            if awin_url and available:
+            linked = bool(awin_url and available)
+            if linked:
                 name_html = f'<a href="{awin_url}">{display_name}</a>'
             else:
                 name_html = display_name
+
+            product_cell = render_product_cell(
+                p, name_html, seller,
+                link_url=awin_url if linked else "",
+                show_image=available is not False,
+            )
 
             last_month_cell = ""
             if show_last_month:
@@ -441,8 +512,7 @@ def render_products(products, limit=None, show_last_month=False):
 <tr>
     <td class="rank">{rank_display}</td>
     <td>
-        {name_html}
-        <div class="partner">{seller}</div>
+        {product_cell}
     </td>
     <td class="reviews">{reviews:,}</td>
     {last_month_cell}
@@ -591,10 +661,20 @@ def render_leaderboard_products(items, limit=100, last_month=False, link_only_if
 
             should_link = bool(url and available is True) if link_only_if_available else bool(url)
 
-            if should_link and awin_url:
+            linked = bool(should_link and awin_url)
+            if linked:
                 name_html = f'<a href="{awin_url}">{display_name}</a>'
             else:
                 name_html = display_name
+
+            # Thumbnail only for products the site believes are live. A row
+            # marked unavailable keeps its asterisk and gets no picture, even
+            # if the feed still lists it.
+            product_cell = render_product_cell(
+                p, name_html, seller,
+                link_url=awin_url if linked else "",
+                show_image=available is True,
+            )
 
             last_month_cell = ""
             if last_month:
@@ -607,8 +687,7 @@ def render_leaderboard_products(items, limit=100, last_month=False, link_only_if
 <tr>
     <td class="rank">{rank_display}</td>
     <td>
-        {name_html}
-        <div class="partner">{seller}</div>
+        {product_cell}
     </td>
     <td class="reviews">{reviews:,}</td>
     {last_month_cell}
@@ -1460,8 +1539,7 @@ def render_theme_table(rows):
 <tr>
     <td class="rank">{p["rank_display"]}</td>
     <td>
-        {name_html}{tags_html}
-        <div class="partner">{seller}</div>
+        {render_product_cell(p, name_html, seller, link_url=awin_url, show_image=bool(p.get("in_stock", True)), extra_html=tags_html)}
     </td>
     <td class="reviews">{all_time_html}</td>
     <td class="reviews">{last_12_html}</td>

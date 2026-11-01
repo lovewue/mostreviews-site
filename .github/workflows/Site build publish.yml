@@ -94,6 +94,18 @@ jobs:
       - name: Build leaderboards
         run: python scripts/build_leaderboards.py
 
+      # --- 5b. Product thumbnails from the Awin NOTHS feed -------------------
+      # Writes data/cache/feed_products.json (SKU → Awin-hosted image, price)
+      # for only the SKUs the site renders. AWIN_FEED_URL is the Create-a-Feed
+      # download URL and contains the Awin API key, so it lives in a secret.
+      # A failed or truncated download keeps the previous lookup and exits 0;
+      # continue-on-error is a second guard — thumbnails must never stop a build.
+      - name: Build product thumbnail lookup
+        continue-on-error: true
+        env:
+          AWIN_FEED_URL: ${{ secrets.AWIN_FEED_URL }}
+        run: python scripts/build_feed_lookup.py
+
       # --- 6. Render /noths/ subpages + about-the-data page ------------------
       - name: Render noths subpages
         run: python render.py
