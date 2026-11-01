@@ -2634,12 +2634,6 @@
     "total_reviews_month": 2
   },
   {
-    "seller_slug": "luminouspretties",
-    "seller_name": "Luminous Pretties Jewellery",
-    "product_count_month": 2,
-    "total_reviews_month": 2
-  },
-  {
     "seller_slug": "monoscape",
     "seller_name": "MONOSCAPE",
     "product_count_month": 2,
@@ -4368,6 +4362,12 @@
     "total_reviews_month": 1
   },
   {
+    "seller_slug": "luminouspretties",
+    "seller_name": "Luminous Pretties Jewellery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
     "seller_slug": "catsprintshop",
     "seller_name": "Luna Studio Designs",
     "product_count_month": 1,
@@ -5522,6 +5522,12 @@
   {
     "seller_slug": "yvonnehendersonjewellery",
     "seller_name": "Yvonne Henderson Jewellery",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "zolaijewellery",
+    "seller_name": "Zolaijewellery",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

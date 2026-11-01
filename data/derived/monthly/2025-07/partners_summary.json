@@ -2190,12 +2190,6 @@
     "total_reviews_month": 3
   },
   {
-    "seller_slug": "bysamjewellery",
-    "seller_name": "Sending Love",
-    "product_count_month": 3,
-    "total_reviews_month": 3
-  },
-  {
     "seller_slug": "simplycolors",
     "seller_name": "Simply Colors",
     "product_count_month": 2,
@@ -2924,6 +2918,12 @@
   {
     "seller_slug": "secretcreation",
     "seller_name": "Secret Creation",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "bysamjewellery",
+    "seller_name": "Sending Love",
     "product_count_month": 2,
     "total_reviews_month": 2
   },
@@ -4500,12 +4500,6 @@
     "total_reviews_month": 1
   },
   {
-    "seller_slug": "luminouspretties",
-    "seller_name": "Luminous Pretties Jewellery",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
     "seller_slug": "luxetones",
     "seller_name": "Luxe Tones",
     "product_count_month": 1,
@@ -5066,6 +5060,12 @@
   {
     "seller_slug": "seedtube",
     "seller_name": "Seed Tube",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "sendinglovegifts",
+    "seller_name": "Sendinglovegifts",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
@@ -5708,6 +5708,12 @@
   {
     "seller_slug": "zoesblooms",
     "seller_name": "Zoe’s Blooms",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "zolaijewellery",
+    "seller_name": "Zolaijewellery",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

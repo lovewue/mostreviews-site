@@ -1530,12 +1530,6 @@
     "total_reviews_month": 5
   },
   {
-    "seller_slug": "bysamjewellery",
-    "seller_name": "Sending Love",
-    "product_count_month": 5,
-    "total_reviews_month": 5
-  },
-  {
     "seller_slug": "sliceofpiedesigns",
     "seller_name": "Slice of Pie Designs",
     "product_count_month": 4,
@@ -1761,6 +1755,12 @@
     "seller_slug": "saabunsoap",
     "seller_name": "Saabuni",
     "product_count_month": 1,
+    "total_reviews_month": 4
+  },
+  {
+    "seller_slug": "bysamjewellery",
+    "seller_name": "Sending Love",
+    "product_count_month": 4,
     "total_reviews_month": 4
   },
   {
@@ -5300,6 +5300,12 @@
   {
     "seller_slug": "selfieclothingco",
     "seller_name": "Selfie Craft Co",
+    "product_count_month": 1,
+    "total_reviews_month": 1
+  },
+  {
+    "seller_slug": "sendinglovegifts",
+    "seller_name": "Sendinglovegifts",
     "product_count_month": 1,
     "total_reviews_month": 1
   },
