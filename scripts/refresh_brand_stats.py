@@ -198,7 +198,24 @@ _ORDERS_RE = re.compile(r"([0-9][0-9.,]*\s*[KMB]?)\s*\+?\s*ORDERS\b")
 _RATING_RE = re.compile(r"([0-5](?:\.[0-9])?)\s*/\s*5\s*BRAND RATING\b")
 _YEARS_RE = re.compile(r"([0-9]+)\s*YEARS?\s+ON\s+NOTHS\b")
 _MONTHS_RE = re.compile(r"([0-9]+)\s*MONTHS?\s+ON\s+NOTHS\b")
-_PRODUCTS_RE = re.compile(r"SHOWING\s+([0-9,]+)\s+PRODUCTS?\b")
+# Product count. NOTHS changed the partner page in late Oct 2026: the old
+# "SHOWING 267 PRODUCTS" line went, and /partners/{slug}/products now
+# redirects to /partners/{slug}. The 25 Oct scrape matched nothing and wrote
+# product_count 0 for every brand, which would have asterisked the whole
+# orders leaderboard as "not trading".
+#
+# Order of preference:
+#   1. "totalProducts" in __NEXT_DATA__ — a plain number, and genuinely 0 for
+#      an emptied shop (Ginger Ray), so it tells "empty" from "not found".
+#   2. On-page text, newest wording first: "VIEWED 60 OF 267 PRODUCTS",
+#      then the old "SHOWING 267 PRODUCTS".
+# The bare "267 PRODUCTS" under the brand name is deliberately not used — it
+# would also match "LOAD MORE PRODUCTS"-adjacent copy and product titles.
+_NEXT_TOTAL_PRODUCTS_RE = re.compile(r'"totalProducts"\s*:\s*([0-9]+)')
+_PRODUCTS_TEXT_RES = (
+    re.compile(r"VIEWED\s+[0-9,]+\s+OF\s+([0-9,]+)\s+PRODUCTS?\b"),
+    re.compile(r"SHOWING\s+([0-9,]+)\s+PRODUCTS?\b"),
+)
 _H1_RE = re.compile(r"<h1\b[^>]*>(.*?)</h1>", re.IGNORECASE | re.DOTALL)
 
 
@@ -289,10 +306,17 @@ def parse_partner_page(html: str) -> dict:
             months = int(m.group(1))
             tenure_label = "1 month" if months == 1 else f"{months} months"
 
-    product_count = 0
-    m = _PRODUCTS_RE.search(upper)
+    # None = could not find a count. Callers must not treat that as 0.
+    product_count = None
+    m = _NEXT_TOTAL_PRODUCTS_RE.search(html or "")
     if m:
-        product_count = int(m.group(1).replace(",", ""))
+        product_count = int(m.group(1))
+    else:
+        for rx in _PRODUCTS_TEXT_RES:
+            m = rx.search(upper)
+            if m:
+                product_count = int(m.group(1).replace(",", ""))
+                break
 
     return {
         "name": name,
@@ -639,9 +663,14 @@ def check_brand(slug: str, row: dict):
         "years_on_noths",
         "months_on_noths",
         "tenure_label",
-        "product_count",
     ):
         updated[key] = parsed[key]
+
+    # A missing count is a parsing failure, not an empty shop — keep the last
+    # good value rather than flagging the brand as not trading.
+    if parsed["product_count"] is not None:
+        updated["product_count"] = parsed["product_count"]
+        updated["product_count_checked_at"] = updated["checked_at"]
 
     updated["active"] = True
     updated["_dead"] = False
