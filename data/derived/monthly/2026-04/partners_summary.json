@@ -840,6 +840,12 @@
     "total_reviews_month": 5
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 3,
+    "total_reviews_month": 5
+  },
+  {
     "seller_slug": "lollyrocket",
     "seller_name": "Lollyrocket Candle Co",
     "product_count_month": 5,
@@ -1041,12 +1047,6 @@
     "seller_slug": "liga",
     "seller_name": "LIGA",
     "product_count_month": 4,
-    "total_reviews_month": 4
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 2,
     "total_reviews_month": 4
   },
   {
@@ -3914,12 +3914,6 @@
   {
     "seller_slug": "poppyk",
     "seller_name": "PoppyK",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

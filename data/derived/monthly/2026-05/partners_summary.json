@@ -906,6 +906,12 @@
     "total_reviews_month": 4
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 3,
+    "total_reviews_month": 4
+  },
+  {
     "seller_slug": "lovetreedesign",
     "seller_name": "Lovetree Design",
     "product_count_month": 4,
@@ -945,12 +951,6 @@
     "seller_slug": "placesandspacesartco",
     "seller_name": "Places & Spaces Art Co.",
     "product_count_month": 2,
-    "total_reviews_month": 4
-  },
-  {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 3,
     "total_reviews_month": 4
   },
   {
@@ -1746,12 +1746,6 @@
     "total_reviews_month": 2
   },
   {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 2,
-    "total_reviews_month": 2
-  },
-  {
     "seller_slug": "letterboxhamper",
     "seller_name": "Letter Box Hamper",
     "product_count_month": 2,
@@ -1964,6 +1958,12 @@
   {
     "seller_slug": "poshtotty",
     "seller_name": "Posh Totty Designs",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 2,
     "total_reviews_month": 2
   },

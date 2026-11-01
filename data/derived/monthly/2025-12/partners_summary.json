@@ -1230,12 +1230,6 @@
     "total_reviews_month": 15
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 10,
-    "total_reviews_month": 15
-  },
-  {
     "seller_slug": "spincollective",
     "seller_name": "Spin Collective",
     "product_count_month": 9,
@@ -1554,6 +1548,12 @@
     "total_reviews_month": 11
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 4,
+    "total_reviews_month": 11
+  },
+  {
     "seller_slug": "limetreedesign",
     "seller_name": "Lime Tree Design",
     "product_count_month": 7,
@@ -1575,6 +1575,12 @@
     "seller_slug": "petiquette",
     "seller_name": "Petiquette Collars",
     "product_count_month": 5,
+    "total_reviews_month": 11
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
+    "product_count_month": 8,
     "total_reviews_month": 11
   },
   {
@@ -2259,12 +2265,6 @@
     "seller_slug": "kindredfires",
     "seller_name": "Kindred Fires",
     "product_count_month": 7,
-    "total_reviews_month": 7
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 2,
     "total_reviews_month": 7
   },
   {

@@ -552,6 +552,12 @@
     "total_reviews_month": 7
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 6,
+    "total_reviews_month": 7
+  },
+  {
     "seller_slug": "luckandluck",
     "seller_name": "Luck and Luck",
     "product_count_month": 7,
@@ -644,12 +650,6 @@
   {
     "seller_slug": "lottieshaws",
     "seller_name": "LOTTIE SHAW'S",
-    "product_count_month": 5,
-    "total_reviews_month": 6
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
     "product_count_month": 5,
     "total_reviews_month": 6
   },
@@ -1428,12 +1428,6 @@
     "total_reviews_month": 3
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 3,
-    "total_reviews_month": 3
-  },
-  {
     "seller_slug": "sandyleaffarm",
     "seller_name": "Sandy Leaf Farm",
     "product_count_month": 2,
@@ -1982,6 +1976,12 @@
   {
     "seller_slug": "poshtotty",
     "seller_name": "Posh Totty Designs",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 2,
     "total_reviews_month": 2
   },

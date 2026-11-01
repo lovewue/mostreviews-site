@@ -414,6 +414,12 @@
     "total_reviews_month": 9
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 6,
+    "total_reviews_month": 9
+  },
+  {
     "seller_slug": "lisamariedesigns",
     "seller_name": "Lisa Marie Designs",
     "product_count_month": 7,
@@ -585,12 +591,6 @@
     "seller_slug": "kittyandfin",
     "seller_name": "Kitty and Fin",
     "product_count_month": 7,
-    "total_reviews_month": 7
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 5,
     "total_reviews_month": 7
   },
   {
@@ -1131,12 +1131,6 @@
     "seller_slug": "popsanddudes",
     "seller_name": "Pops and Dudes",
     "product_count_month": 2,
-    "total_reviews_month": 4
-  },
-  {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 3,
     "total_reviews_month": 4
   },
   {
@@ -2192,6 +2186,12 @@
   {
     "seller_slug": "poshtotty",
     "seller_name": "Posh Totty Designs",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 2,
     "total_reviews_month": 2
   },

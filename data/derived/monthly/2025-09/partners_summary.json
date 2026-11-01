@@ -1074,12 +1074,6 @@
     "total_reviews_month": 7
   },
   {
-    "seller_slug": "poshtottydesignscreates",
-    "seller_name": "Posh Totty Designs Creates",
-    "product_count_month": 7,
-    "total_reviews_month": 7
-  },
-  {
     "seller_slug": "prettylittlepresents",
     "seller_name": "Pretty Little Presents",
     "product_count_month": 5,
@@ -1194,6 +1188,12 @@
     "total_reviews_month": 6
   },
   {
+    "seller_slug": "labouroflove",
+    "seller_name": "Labouroflove",
+    "product_count_month": 3,
+    "total_reviews_month": 6
+  },
+  {
     "seller_slug": "luckandluck",
     "seller_name": "Luck and Luck",
     "product_count_month": 6,
@@ -1232,6 +1232,12 @@
   {
     "seller_slug": "ottiedesign",
     "seller_name": "Ottie Design",
+    "product_count_month": 6,
+    "total_reviews_month": 6
+  },
+  {
+    "seller_slug": "poshtottydesignscreates",
+    "seller_name": "Posh Totty Designs Creates",
     "product_count_month": 6,
     "total_reviews_month": 6
   },
@@ -1425,12 +1431,6 @@
     "seller_slug": "lhgdesigns",
     "seller_name": "LHG Designs",
     "product_count_month": 4,
-    "total_reviews_month": 5
-  },
-  {
-    "seller_slug": "labouroflove",
-    "seller_name": "Labouroflove",
-    "product_count_month": 2,
     "total_reviews_month": 5
   },
   {
