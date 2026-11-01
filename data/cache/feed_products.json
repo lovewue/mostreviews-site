@@ -1,9 +1,35 @@
 {
- "generated_at": "2026-11-01T13:41:20+00:00",
+ "generated_at": "2026-11-01T14:13:06+00:00",
  "source": "awin:18484:37219",
  "feed_rows": 255266,
  "skus_wanted": 2117,
- "skus_matched": 1830,
+ "skus_matched": 1832,
+ "bestsellers": [
+  "469358",
+  "1232243",
+  "1490581",
+  "1249874",
+  "545355",
+  "1345877",
+  "1181236",
+  "999592",
+  "1353406",
+  "621809",
+  "786481",
+  "895147",
+  "1344943",
+  "1491886",
+  "1500484",
+  "876141",
+  "937471",
+  "1443796",
+  "1413835",
+  "824644",
+  "960885",
+  "1084121",
+  "1561674",
+  "352545"
+ ],
  "products": {
   "10051": {
    "thumb": "https://images2.productserve.com/?w=200&h=200&bg=white&trim=5&t=letterbox&url=ssl%3Acdn.notonthehighstreet.com%2Ffs%2Fce%2Fa7%2F8448-a8a9-42c5-acf8-d0d339c15f1c%2Foriginal_51_the_anniversary_book.jpg&feedId=37219&k=a67aa56ea7dede6a77e416dbcbff99ef7554f016",
@@ -1332,6 +1358,14 @@
    "currency": "GBP",
    "name": "Personalised Leather Triple Wrap Symbolic Bracelet",
    "url": "https://www.notonthehighstreet.com/hurleyburley/product/personalised-leathertriple-wrap-infinity-bracelet"
+  },
+  "483777": {
+   "thumb": "https://images2.productserve.com/?w=200&h=200&bg=white&trim=5&t=letterbox&url=ssl%3Acdn.notonthehighstreet.com%2Ffs%2Fb6%2F60%2F52ea-1274-47f6-93ce-cfd217c048f9%2Foriginal_chunky-hand-knitted-christmas-stocking.jpg&feedId=37219&k=cf8f6758468d21aec4a8b5898a02a41d48fbd8a0",
+   "image": "https://cdn.notonthehighstreet.com/fs/b6/60/52ea-1274-47f6-93ce-cfd217c048f9/original_chunky-hand-knitted-christmas-stocking.jpg",
+   "price": 99.0,
+   "currency": "GBP",
+   "name": "Personalised Jumbo Hand Knitted Christmas Stocking",
+   "url": "https://www.notonthehighstreet.com/laurenaston/product/chunky-hand-knitted-christmas-stocking"
   },
   "484197": {
    "thumb": "https://images2.productserve.com/?w=200&h=200&bg=white&trim=5&t=letterbox&url=ssl%3Acdn.notonthehighstreet.com%2Ffs%2Ff2%2F04%2F3185-6d2e-416c-be01-470201e19242%2Foriginal_elizabeth-hem-stitch-duvet.jpg&feedId=37219&k=13b44ef37c77d462aaf64d0cd14cc249c45c91aa",
@@ -14644,6 +14678,14 @@
    "currency": "GBP",
    "name": "Willsow Rhs 2027 A4 Plantable Veg And Herb Desk Calendar",
    "url": "https://www.notonthehighstreet.com/willsow/product/willsow-rhs-2027-a4-plantable-veg-herb-desk-calendar"
+  },
+  "1646930": {
+   "thumb": "https://images2.productserve.com/?w=200&h=200&bg=white&trim=5&t=letterbox&url=ssl%3Acdn.notonthehighstreet.com%2Ffs%2F06%2Fbe%2F8085-5b83-4643-bc30-8dd3d3ead199%2Foriginal_heirloom-every-time-a-bell-rings-christmas-tree-decoration.jpg&feedId=37219&k=2cf99fe58b431a926a87bc00135cb0a0a64e93b7",
+   "image": "https://cdn.notonthehighstreet.com/fs/06/be/8085-5b83-4643-bc30-8dd3d3ead199/original_heirloom-every-time-a-bell-rings-christmas-tree-decoration.jpg",
+   "price": 21.5,
+   "currency": "GBP",
+   "name": "Heirloom ‘Every Time A Bell Rings’ Christmas Tree Decoration",
+   "url": "https://www.notonthehighstreet.com/claraandmacy/product/heirloom-every-time-a-bell-rings-christmas-tree-decoration"
   }
  }
 }
