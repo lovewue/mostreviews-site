@@ -1001,6 +1001,177 @@ def render_brands_leaderboard(items, limit=100):
 # -----------------------------------------------------------------------------
 # Page rendering
 # -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Gift picks (homepage) — three tabs in one block
+# -----------------------------------------------------------------------------
+#   Rising this month  — automatic: biggest jump in reviews vs last month,
+#                        excluding the top-10 rows already shown in the table.
+#   NOTHS bestsellers  — automatic: NOTHS's own bestseller feed (Awin datafeed
+#                        100570), ordered by our 12-month review counts.
+#   Our picks          — Richard's hand-picked products in data/picks.json.
+#
+# Images, names and prices all come from the Awin feed (feed_products.json),
+# so every card is a live, in-stock product. A tab with fewer than
+# PICKS_MIN_CARDS products is dropped; the block disappears if no tab is left.
+# Our picks also hide after picks.json's `expires` date.
+PICKS_PATH = DATA_DIR / "picks.json"
+PICKS_PER_TAB = 4
+PICKS_MIN_CARDS = 2
+RISING_SKIP_TOP = 10
+RISING_MIN_REVIEWS = 3
+
+
+def _product_path(url: str) -> str:
+    u = (url or "").split("?")[0].split("#")[0].strip()
+    if "notonthehighstreet.com/" in u:
+        u = u.split("notonthehighstreet.com/", 1)[1]
+    return u.strip("/").lower()
+
+
+def _pick_card(entry: dict, url: str, clickref: str, note: str = "") -> str:
+    img = entry.get("thumb") or entry.get("image")
+    name = entry.get("name") or ""
+    price = entry.get("price")
+    price_html = f'<div class="pick-price">£{price:,.2f}</div>' if isinstance(price, (int, float)) else ""
+    note_html = f'<p class="pick-blurb">{html_attr(note)}</p>' if note else ""
+    href = build_awin_product_link(url, clickref=clickref)
+    return f"""
+<a class="pick-card" href="{href}" rel="sponsored noopener" target="_blank">
+    <img src="{html_attr(img)}" alt="{html_attr(name)}" width="200" height="200" loading="lazy" decoding="async">
+    <div class="pick-name">{html_attr(name)}</div>
+    {price_html}
+    {note_html}
+</a>"""
+
+
+def picks_rising(month_products) -> list:
+    """Cards for products climbing fastest this month. month_products must
+    already carry previous_reviews (apply_rank_movement)."""
+    feed = feed_products()
+    ranked = add_dense_ranks(
+        sorted(drop_unidentified(month_products), key=lambda p: -(p.get("review_count_month") or 0)),
+        value_key="review_count_month",
+    )
+    candidates = []
+    for p in ranked:
+        if (p.get("rank") or 0) <= RISING_SKIP_TOP:
+            continue
+        if p.get("available") is False:
+            continue
+        entry = feed.get(str(p.get("sku") or "").strip())
+        if not entry or not (entry.get("thumb") or entry.get("image")):
+            continue
+        now = p.get("review_count_month") or 0
+        before = p.get("previous_reviews") or 0
+        if now < RISING_MIN_REVIEWS or now <= before:
+            continue
+        candidates.append((now - before, now, p, entry))
+    candidates.sort(key=lambda x: (-x[0], -x[1]))
+
+    cards = []
+    for growth, now, p, entry in candidates[:PICKS_PER_TAB]:
+        before = p.get("previous_reviews") or 0
+        note = f"{now} reviews this month, up from {before}"
+        cards.append(_pick_card(entry, entry.get("url") or p.get("product_url") or "", "TrendListRising", note))
+    return cards
+
+
+def picks_bestsellers() -> list:
+    try:
+        with open(FEED_LOOKUP_PATH, "r", encoding="utf-8") as f:
+            order = json.load(f).get("bestsellers") or []
+    except Exception:  # noqa: BLE001
+        return []
+    feed = feed_products()
+    cards = []
+    for sku in order:
+        entry = feed.get(sku)
+        if entry and (entry.get("thumb") or entry.get("image")) and entry.get("url"):
+            cards.append(_pick_card(entry, entry["url"], "TrendListBestsellers"))
+        if len(cards) == PICKS_PER_TAB:
+            break
+    return cards
+
+
+def picks_ours(today=None) -> list:
+    try:
+        with open(PICKS_PATH, "r", encoding="utf-8") as f:
+            picks = json.load(f)
+    except Exception:  # noqa: BLE001
+        return []
+    today = today or datetime.now().strftime("%Y-%m-%d")
+    expires = str(picks.get("expires") or "").strip()
+    if expires and today > expires:
+        print(f"ℹ️  our picks expired {expires} — tab hidden")
+        return []
+    by_path = {_product_path(v.get("url")): v for v in feed_products().values() if v.get("url")}
+    cards = []
+    for item in picks.get("items") or []:
+        url = (item.get("url") or "").split("?")[0].strip()
+        entry = by_path.get(_product_path(url))
+        if not entry or not (entry.get("thumb") or entry.get("image")):
+            continue
+        cards.append(_pick_card(entry, url, "TrendListPicks", (item.get("blurb") or "").strip()))
+        if len(cards) == PICKS_PER_TAB:
+            break
+    return cards
+
+
+def render_gift_picks(month_products, today=None) -> str:
+    tabs = [
+        ("rising", "Rising this month",
+         "Climbing fastest in reviews since last month, beyond the top 10 below.",
+         picks_rising(month_products)),
+        ("bestsellers", "NOTHS bestsellers",
+         "From Not On The High Street's own bestseller list, ordered by reviews over the last 12 months.",
+         picks_bestsellers()),
+        ("ours", "Our picks",
+         "Chosen by The Trend List.",
+         picks_ours(today)),
+    ]
+    tabs = [t for t in tabs if len(t[3]) >= PICKS_MIN_CARDS]
+    if not tabs:
+        return ""
+
+    buttons = "".join(
+        f'<button type="button" role="tab" id="pt-{key}" aria-controls="pp-{key}" '
+        f'aria-selected="{"true" if i == 0 else "false"}" class="picks-tab{" active" if i == 0 else ""}">{label}</button>'
+        for i, (key, label, _, _) in enumerate(tabs)
+    )
+    panels = "".join(
+        f'<div role="tabpanel" id="pp-{key}" aria-labelledby="pt-{key}" class="picks-panel"{"" if i == 0 else " hidden"}>'
+        f'<p class="note">{note}</p><div class="picks-grid">{"".join(cards)}</div></div>'
+        for i, (key, _, note, cards) in enumerate(tabs)
+    )
+    tablist = f'<div class="picks-tabs" role="tablist">{buttons}</div>' if len(tabs) > 1 else ""
+    script = """
+<script>
+(function () {
+  var root = document.querySelector('.gift-picks');
+  if (!root) return;
+  root.querySelectorAll('.picks-tab').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      root.querySelectorAll('.picks-tab').forEach(function (b) {
+        var on = b === btn;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+        document.getElementById(b.getAttribute('aria-controls')).hidden = !on;
+      });
+    });
+  });
+})();
+</script>""" if len(tabs) > 1 else ""
+
+    print(f"🎁 gift picks: {', '.join(f'{label} ({len(cards)})' for _, label, _, cards in tabs)}")
+    return f"""
+<section class="gift-picks">
+    <h2>Gift picks</h2>
+    {tablist}
+    {panels}
+</section>{script}
+"""
+
+
 def render_homepage(latest_month, previous_month=None):
     month_dir = DERIVED_ROOT / latest_month
 
@@ -1028,6 +1199,7 @@ def render_homepage(latest_month, previous_month=None):
         render_products(products, limit=20, show_last_month=bool(previous_month))
     )
     body = body.replace("{{TOP_BRANDS}}", render_partners(partners, 10))
+    body = body.replace("{{FEATURED_PICKS}}", render_gift_picks(products))
 
     html = render_page(
         "Trending Products on NOTHS",

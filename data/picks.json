@@ -1,0 +1,11 @@
+{
+ "_how_to_update": "Your hand-picked products for the homepage 'Our picks' tab. Add NOTHS product links (www.notonthehighstreet.com/<brand>/product/<name>) to items, with an optional one-line blurb. Set expires a few weeks out: after that date the tab hides itself. Image, name and price come from the Awin feed on the next site build; out-of-stock products are skipped. The tab only shows with 2 or more products.",
+ "title": "Our picks",
+ "updated": "2026-11-01",
+ "expires": "2026-12-31",
+ "items": [],
+ "_example_item": {
+  "url": "https://www.notonthehighstreet.com/wue/product/friendship-knot-silver-earrings",
+  "blurb": "Optional one-liner shown under the price."
+ }
+}

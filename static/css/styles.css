@@ -772,3 +772,112 @@ td.last-month {
     height: 48px;
   }
 }
+
+/* ----------------------------------------------------
+Gift picks (homepage)
+
+Three tabs in one block: Rising this month, NOTHS bestsellers, Our picks.
+Images and prices from the Awin feed. Four cards across on desktop, two on
+mobile. Tabs only appear when more than one tab has products.
+---------------------------------------------------- */
+
+.gift-picks {
+  margin: 28px 0 8px;
+}
+
+.picks-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 2px;
+}
+
+.picks-tab {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  background: #fff;
+  color: #444;
+  cursor: pointer;
+}
+
+.picks-tab:hover {
+  border-color: #cfc6d4;
+}
+
+.picks-tab.active {
+  background: #51285f;
+  border-color: #51285f;
+  color: #fff;
+}
+
+.picks-panel .note {
+  margin: 10px 0 0;
+}
+
+
+.picks-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.pick-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.pick-card:hover {
+  border-color: #cfc6d4;
+}
+
+.pick-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.pick-name {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.pick-card:hover .pick-name {
+  text-decoration: underline;
+}
+
+.pick-price {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: #51285f;
+  font-weight: 600;
+}
+
+.pick-blurb {
+  margin: 6px 0 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #777;
+}
+
+@media (max-width: 768px) {
+  .picks-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
