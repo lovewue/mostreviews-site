@@ -348,6 +348,30 @@ def html_attr(value: str) -> str:
 # Shown after the name in place of the old "*" + footnote. Same pill style as
 # the theme pages' "Out of stock" tag.
 UNAVAILABLE_TAG = ' <span class="theme-tag theme-tag-oos">No longer available</span>'
+NOT_IN_FEED_TAG = ' <span class="theme-tag theme-tag-oos">Currently unavailable</span>'
+
+
+def availability_tag(p, available_is_live: bool) -> str:
+    """
+    Tag after the product name.
+      - not live                               -> "No longer available"
+      - believed live, but missing from the feed -> "Currently unavailable"
+    The Awin feed lists only in-stock, listed products, and every SKU the site
+    renders is looked up in it. A product the availability check still thinks
+    is live but the feed leaves out is either sold out or delisted since the
+    last check (1 Nov 2026: Becky Broome x2 and Letterfest sold out; four Bloom
+    Boutique products and a Brambler print delisted — their URLs now bounce to
+    the homepage). The feed can't tell those apart, so the wording covers
+    both; the next availability revalidation turns delisted ones into
+    "No longer available". Only applied when the feed lookup loaded, so a
+    missing lookup never tags everything.
+    """
+    if not available_is_live:
+        return UNAVAILABLE_TAG
+    feed = feed_products()
+    if feed and str(p.get("sku") or "").strip() not in feed:
+        return NOT_IN_FEED_TAG
+    return ""
 
 
 def render_product_cell(p, name_html, seller, link_url="", show_image=True, extra_html=""):
@@ -527,7 +551,7 @@ def render_products(products, limit=None, show_last_month=False):
                 p, name_html, seller,
                 link_url=awin_url if linked else "",
                 show_image=available is not False,
-                extra_html=UNAVAILABLE_TAG if available is False else "",
+                extra_html=availability_tag(p, available is not False),
             )
 
             last_month_cell = ""
@@ -712,7 +736,7 @@ def render_leaderboard_products(items, limit=100, last_month=False, link_only_if
                 p, name_html, seller,
                 link_url=awin_url if linked else "",
                 show_image=available is True,
-                extra_html=UNAVAILABLE_TAG if available is not True else "",
+                extra_html=availability_tag(p, available is True),
             )
 
             last_month_cell = ""

@@ -10,7 +10,7 @@ import requests
 from bs4 import BeautifulSoup
 
 try:
-    from PIL import Image, ImageDraw, ImageFont
+    from PIL import Image, ImageDraw, ImageFont, ImageOps
     from io import BytesIO
     PIL_OK = True
 except Exception:
@@ -481,8 +481,32 @@ def extract_seller_name_from_title(html: str) -> str | None:
     return seller_part or None
 
 
+FEED_LOOKUP_PATH = PROJECT_ROOT / "data" / "cache" / "feed_products.json"
+_FEED = None
+
+
+def feed_image_url(sku: str) -> str | None:
+    """Full-size product image from the Awin NOTHS feed (data/cache/
+    feed_products.json, built by scripts/build_feed_lookup.py). Preferred over
+    scraping NOTHS pages: the feed is supplied to affiliates for promoting the
+    products, so the permission is clear, and it needs no page scraping."""
+    global _FEED
+    if _FEED is None:
+        try:
+            _FEED = json.loads(FEED_LOOKUP_PATH.read_text(encoding="utf-8")).get("products") or {}
+        except Exception:  # noqa: BLE001
+            _FEED = {}
+    entry = _FEED.get(str(sku).strip()) or {}
+    return entry.get("image") or None
+
+
 def get_product_image(product: dict, out_path: Path) -> bool:
-    """Try local Product_Images/ first, then scrape from the NOTHS page."""
+    """Awin feed image first, then local Product_Images/, then scrape the
+    NOTHS page as a last resort."""
+    feed_url = feed_image_url(product["sku"])
+    if feed_url and download_and_save(feed_url, out_path):
+        return True
+
     local = local_image_path(product["sku"])
     if local:
         shutil.copy2(local, out_path)
@@ -652,6 +676,72 @@ def build_cover_image(month: str, bg_color: tuple[int, int, int], total_reviews:
             line = trial
     if line:
         draw.text((margin, y), line, font=note_font, fill=MUTED)
+
+    _draw_footer(draw, width, height, margin)
+
+    canvas.save(out_path, "JPEG", quality=92)
+    return True
+
+
+def _rank_badge(draw, x, y, rank, radius):
+    font = _load_font(FONT_PATHS_DISPLAY, round(radius * 1.2))
+    draw.ellipse([x, y, x + 2 * radius, y + 2 * radius], fill=PURPLE)
+    text = str(rank)
+    b = draw.textbbox((0, 0), text, font=font)
+    draw.text(
+        (x + radius - (b[2] - b[0]) / 2 - b[0], y + radius - (b[3] - b[1]) / 2 - b[1]),
+        text, font=font, fill=(255, 255, 255),
+    )
+
+
+def build_cover_grid(month: str, tiles: list, out_path: Path) -> bool:
+    """
+    Cover slide, product-led (Nov 2026): the month's top four products as a
+    full-bleed 2×2 grid with rank badges, then the headline knocked out of a
+    purple block, then the wordmark lockup.
+
+    Replaces the number-led cover for posts whose job is sending gift shoppers
+    to NOTHS: shoppers stop for products, not a review total. `tiles` is
+    [(raw_photo_path, rank), ...] — exactly four. The photos are the raw
+    product shots (not the cutouts used on the product slides).
+    """
+    if not PIL_OK or len(tiles) < 4:
+        return False
+
+    width, height = COVER_SIZE
+    canvas = Image.new("RGB", COVER_SIZE, BG_COLOR)
+    draw = ImageDraw.Draw(canvas)
+
+    gap = 10
+    tile_w = (width - gap) // 2
+    tile_h = round(height * 0.304)  # 410px at 1350 — leaves room for the text block
+
+    for i, (photo_path, rank) in enumerate(tiles[:4]):
+        try:
+            photo = Image.open(photo_path).convert("RGB")
+        except Exception:
+            return False
+        photo = ImageOps.fit(photo, (tile_w, tile_h), Image.LANCZOS, centering=(0.5, 0.5))
+        x = (i % 2) * (tile_w + gap)
+        y = (i // 2) * (tile_h + gap)
+        canvas.paste(photo, (x, y))
+        _rank_badge(draw, x + 22, y + 22, rank, 38)
+
+    margin = round(76 * _SCALE)
+    y = 2 * tile_h + gap + 44
+
+    kicker_font = _load_font(FONT_PATHS_BOLD, 26)
+    _draw_tracked(draw, (margin, y),
+                  f"{format_month_label(month).upper()} \u00b7 NOT ON THE HIGH STREET",
+                  kicker_font, MUTED, 4)
+    y += 50
+
+    headline_font = _load_font(FONT_PATHS_DISPLAY, 80)
+    h = _draw_block_line(draw, margin, y, "THE GIFTS EVERYONE'S BUYING", headline_font, 14, 12)
+    y += h + 40
+
+    note_font = _load_font(FONT_PATHS_REGULAR, 30)
+    draw.text((margin, y), "The 10 most-reviewed products this month.", font=note_font, fill=MUTED)
 
     _draw_footer(draw, width, height, margin)
 
@@ -842,11 +932,7 @@ def build_month_assets(month: str, cache: dict) -> None:
 
     total_reviews = month_total_reviews(month)
     cover_path = out_dir / "00_cover.jpg"
-    cover_ok = build_cover_image(month, bg_color, total_reviews, cover_path)
-    if cover_ok:
-        print(f"  🖼️  Cover image → 00_cover.jpg ({total_reviews:,} reviews)", flush=True)
-    else:
-        print("  ⚠️  Could not build cover image (Pillow unavailable)", flush=True)
+    cover_tiles = []  # (raw photo, rank) for the first four products with images
 
     if not REMBG_OK:
         print("  ⚠️  rembg not installed — product cutouts will fall back to uncut photos", flush=True)
@@ -874,7 +960,10 @@ def build_month_assets(month: str, cache: dict) -> None:
 
         if got_raw:
             styled = build_product_slide(raw_path, product, bg_color, out_path)
-            raw_path.unlink(missing_ok=True)
+            if styled and len(cover_tiles) < 4:
+                cover_tiles.append((raw_path, rank))
+            else:
+                raw_path.unlink(missing_ok=True)
             if styled:
                 print(f"  ✅ {rank:02d}. {product.get('name') or product['sku']} → {filename}", flush=True)
             else:
@@ -892,6 +981,20 @@ def build_month_assets(month: str, cache: dict) -> None:
             "review_count_month": count,
             "product_url": product.get("product_url"),
         })
+
+    # Cover: the 2×2 product grid when four product photos exist, otherwise
+    # the older number-led cover so a month never ships without one.
+    cover_ok = build_cover_grid(month, cover_tiles, cover_path)
+    if cover_ok:
+        print("  🖼️  Cover image → 00_cover.jpg (2×2 product grid)", flush=True)
+    else:
+        cover_ok = build_cover_image(month, bg_color, total_reviews, cover_path)
+        if cover_ok:
+            print(f"  🖼️  Cover image → 00_cover.jpg (fallback: {total_reviews:,} reviews)", flush=True)
+        else:
+            print("  ⚠️  Could not build cover image (Pillow unavailable)", flush=True)
+    for raw, _ in cover_tiles:
+        raw.unlink(missing_ok=True)
 
     save_json(captions_path, {
         "month": month,
