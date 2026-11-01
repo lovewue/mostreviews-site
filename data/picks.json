@@ -3,9 +3,26 @@
  "title": "Our picks",
  "updated": "2026-11-01",
  "expires": "2026-12-31",
- "items": [],
+ "items": [
+  {
+   "url": "https://www.notonthehighstreet.com/claraandmacy/product/heirloom-every-time-a-bell-rings-christmas-tree-decoration",
+   "blurb": ""
+  },
+  {
+   "url": "https://www.notonthehighstreet.com/laurenaston/product/chunky-hand-knitted-christmas-stocking",
+   "blurb": ""
+  },
+  {
+   "url": "https://www.notonthehighstreet.com/harrowandgreen/product/personalised-christmas-sack-letterpress",
+   "blurb": ""
+  },
+  {
+   "url": "https://www.notonthehighstreet.com/noordinarygiftcompany/product/personalised-family-door-bauble",
+   "blurb": ""
+  }
+ ],
  "_example_item": {
-  "url": "https://www.notonthehighstreet.com/wue/product/friendship-knot-silver-earrings",
+  "url": "https://www.notonthehighstreet.com/<brand>/product/<product>",
   "blurb": "Optional one-liner shown under the price."
  }
 }
