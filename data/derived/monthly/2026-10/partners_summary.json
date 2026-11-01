@@ -732,6 +732,12 @@
     "total_reviews_month": 7
   },
   {
+    "seller_slug": "pennyrosehomeandgifts",
+    "seller_name": "Penny Rose Home & Gifts",
+    "product_count_month": 7,
+    "total_reviews_month": 7
+  },
+  {
     "seller_slug": "sundaysdaughter",
     "seller_name": "Sunday's Daughter",
     "product_count_month": 7,
@@ -860,12 +866,6 @@
   {
     "seller_slug": "mollymae",
     "seller_name": "Molly Mae®",
-    "product_count_month": 6,
-    "total_reviews_month": 6
-  },
-  {
-    "seller_slug": "pennyrosehomeandgifts",
-    "seller_name": "Penny Rose Home & Gifts",
     "product_count_month": 6,
     "total_reviews_month": 6
   },
@@ -2546,6 +2546,12 @@
   {
     "seller_slug": "spottynstripy",
     "seller_name": "Spotty N Stripy",
+    "product_count_month": 2,
+    "total_reviews_month": 2
+  },
+  {
+    "seller_slug": "stitchandsmile",
+    "seller_name": "Stitchandsmile",
     "product_count_month": 2,
     "total_reviews_month": 2
   },
@@ -4340,12 +4346,6 @@
   {
     "seller_slug": "stiffeditgolf",
     "seller_name": "Stiffed It Golf",
-    "product_count_month": 1,
-    "total_reviews_month": 1
-  },
-  {
-    "seller_slug": "stitchandsmile",
-    "seller_name": "Stitchandsmile",
     "product_count_month": 1,
     "total_reviews_month": 1
   },

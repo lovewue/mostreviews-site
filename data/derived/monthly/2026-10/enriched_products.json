@@ -10455,7 +10455,7 @@
     "seller_slug": "graceandvalour",
     "seller_name": "Grace & Valour",
     "product_url": "https://www.notonthehighstreet.com/graceandvalour/product/scarf-ring-in-silver-gold-or-rosegold",
-    "available": true,
+    "available": false,
     "review_count_month": 1,
     "rating_month": 5.0
   },
@@ -14861,11 +14861,11 @@
   },
   {
     "sku": "1541197",
-    "name": "404",
-    "seller_slug": null,
-    "seller_name": null,
-    "product_url": null,
-    "available": false,
+    "name": "Book Shaped Locket Necklace In Gift Box",
+    "seller_slug": "pennyrosehomeandgifts",
+    "seller_name": "Penny Rose Home & Gifts",
+    "product_url": "https://www.notonthehighstreet.com/pennyrosehomeandgifts/product/book-shaped-locket-necklace-in-gift-box",
+    "available": true,
     "review_count_month": 1,
     "rating_month": 5.0
   },
@@ -14921,10 +14921,10 @@
   },
   {
     "sku": "1542932",
-    "name": null,
-    "seller_slug": null,
-    "seller_name": null,
-    "product_url": null,
+    "name": "Stars Hollow Spring Icons Embroidered Sweatshirt",
+    "seller_slug": "stitchandsmile",
+    "seller_name": "Stitchandsmile",
+    "product_url": "https://www.notonthehighstreet.com/stitchandsmile/product/stars-hollow-spring-icons-embroidered-sweatshirt",
     "available": false,
     "review_count_month": 1,
     "rating_month": 5.0

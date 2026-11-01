@@ -705,3 +705,70 @@ Out-of-stock products stay linked, since NOTHS is still featuring them.
     padding: 8px 4px;
   }
 }
+
+/* ----------------------------------------------------
+Product thumbnails
+
+Images come from the Awin NOTHS feed (data/cache/feed_products.json, built by
+scripts/build_feed_lookup.py) and are hotlinked from Awin's image server — the
+square letterboxed 200px version, shown at 64px (2x for retina). Rows with no
+image keep an empty slot so names line up down the table.
+---------------------------------------------------- */
+
+.product-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.product-thumb {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+}
+
+.product-thumb a,
+.product-thumb img {
+  display: block;
+  width: 64px;
+  height: 64px;
+}
+
+.product-thumb img {
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+
+.product-thumb-empty {
+  background: #f6f4f7;
+  border-radius: 6px;
+}
+
+.product-text {
+  min-width: 0;
+}
+
+td.rank {
+  vertical-align: middle;
+}
+
+td.reviews,
+td.last-month {
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .product-cell {
+    gap: 10px;
+  }
+
+  .product-thumb,
+  .product-thumb a,
+  .product-thumb img {
+    flex-basis: 48px;
+    width: 48px;
+    height: 48px;
+  }
+}
