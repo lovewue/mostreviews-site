@@ -160,9 +160,10 @@ def cover_slide(theme, total, out):
     kicker(draw, "Not on the High Street")
     y = hero(draw, round(140 * S), str(total))
     curator = theme.get("curator", "").upper()
-    y = statement(draw, y, [
-        ("CHRISTMAS PICKS FROM", False),
-        (f"{curator}.", False),
+    # A theme can override the two lines under the number (THEMES
+    # "cover_lines") — e.g. NOTHS's own Christmas film isn't anyone's "picks".
+    top_lines = theme.get("cover_lines") or ["CHRISTMAS PICKS FROM", f"{curator}."]
+    y = statement(draw, y, [(line, False) for line in top_lines] + [
         ("RANKED BY REAL REVIEWS", True),
     ])
     note = (f"Every product in {theme.get('label', 'the selection')} on Not On The "
@@ -382,9 +383,11 @@ def update_handles_file(handles, slugs_names):
 
 def build_caption(theme, total, top, this_year, handles):
     curator = theme.get("curator", "")
+    intro = theme.get("caption_intro") or (
+        f"{curator} picked {total} Christmas gifts for Not On The High Street."
+    )
     lines = [
-        f"{curator} picked {total} Christmas gifts for Not On The High Street. "
-        "We ranked every one by real customer reviews.",
+        intro.format(total=total) + " We ranked every one by real customer reviews.",
         "",
         "The most reviewed:",
     ]

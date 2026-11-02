@@ -96,6 +96,20 @@ THEMES = {
             "Street, ranked by customer reviews."
         ),
     },
+    "noths-christmas-film": {
+        "path": "/themes/shop-the-christmas-ad",
+        "title": "Shop NOTHS's Christmas Film, Ranked by Reviews",
+        "label": "the \u2018Shop the Christmas film\u2019 collection",
+        "curator": "NOTHS",
+        "description": (
+            "Every product from Not On The High Street's 2026 Christmas film, "
+            "ranked by customer reviews."
+        ),
+        # Social carousel wording (build_theme_social.py) — the default
+        # "Christmas picks from <curator>" doesn't fit NOTHS's own film.
+        "cover_lines": ["PRODUCTS FROM THE", "NOTHS CHRISTMAS FILM."],
+        "caption_intro": "{total} products from Not On The High Street's Christmas film.",
+    },
     "lottie-lauras-christmas-picks": {
         "path": "/themes/lifestyle/lottie-lauras-top-christmas-picks",
         "title": "Lottie & Laura's Christmas Picks, Ranked by Reviews",
