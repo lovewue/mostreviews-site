@@ -113,6 +113,8 @@ jobs:
       # --- 7. Render homepage, archive, top-products, about ------------------
       - name: Render homepage and core pages
         run: python scripts/render_site.py
+      - name: Build brand pages
+        run: python scripts/build_brand_pages.py
 
       # --- 8. Commit build output ---------------------------------------------
       - name: Commit build output
