@@ -33,6 +33,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
+import shutil
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -53,6 +55,13 @@ RANK_SHOW_MAX = 300          # brand ranks shown only when inside this
 PRODUCT_RANK_SHOW_MAX = 100  # product ranks (all-time / 12m) shown only inside this
 TOP_12M = 6
 TOP_ALL_TIME = 6
+
+# Must match build_feed_lookup.py's compact format.
+AW_THUMB_PREFIX = (
+    "https://images2.productserve.com/?w=200&h=200&bg=white&trim=5&t=letterbox"
+    "&url=ssl%3Acdn.notonthehighstreet.com%2Ffs%2F"
+)
+AW_THUMB_MIDDLE = "&feedId=37219&k="
 
 
 def load(path: Path, default):
@@ -116,7 +125,19 @@ class Data:
                 if p.get("seller_slug"):
                     self.month_products[p["seller_slug"]].append(p)
 
-        self.feed = rs.feed_products()
+        # Main lookup plus the compact brand-page thumbnails (build_feed_lookup.py).
+        self.feed = dict(rs.feed_products())
+        for sku, (kind, part, price) in (load(DATA / "cache" / "feed_brand_thumbs.json", {}) or {}).items():
+            if sku in self.feed:
+                continue
+            if kind == "a":
+                path, k = part.split("|", 1)
+                thumb = f"{AW_THUMB_PREFIX}{path}{AW_THUMB_MIDDLE}{k}"
+            elif kind == "c":
+                thumb = f"https://cdn.notonthehighstreet.com/fs/{part}"
+            else:
+                thumb = part
+            self.feed[sku] = {"thumb": thumb, "price": price}
 
     def display_name(self, slug: str) -> str:
         for source in (self.rank_12m.get(slug), self.rank_orders.get(slug)):
@@ -309,14 +330,84 @@ rating and years are from the brand's NOTHS page; NOTHS rounds orders (e.g.
     return html, indexable
 
 
+def build_directory(pages: list) -> None:
+    """A–Z of every trading brand: docs/brands.html (brand-index.html is kept
+    as a copy so old links still land somewhere current)."""
+    groups: dict[str, list] = {}
+    for slug, name, indexable, orders_label in sorted(pages, key=lambda x: x[1].lower()):
+        first = name[:1].upper()
+        letter = first if first.isalpha() else "#"
+        groups.setdefault(letter, []).append((slug, name, orders_label))
+
+    letters = sorted(groups, key=lambda l: (l == "#", l))
+    jump = " ".join(f'<a href="#letter-{l}">{l}</a>' for l in letters)
+    sections = []
+    for l in letters:
+        items = "".join(
+            f'<li><a href="brands/{slug}/">{rs.html_attr(name)}</a>'
+            + (f' <span class="dir-orders">{rs.html_attr(o)}</span>' if o else "")
+            + "</li>"
+            for slug, name, o in groups[l]
+        )
+        sections.append(f'<h2 id="letter-{l}">{l}</h2><ul class="brand-dir">{items}</ul>')
+
+    body = f"""
+<h1>All Brands on Not On The High Street</h1>
+<p>Every independent brand currently selling on NOTHS — {len(pages):,} of them —
+with their most-reviewed products. Figures after a name are lifetime orders
+from the brand's NOTHS page.</p>
+<p class="brand-jump">{jump}</p>
+{"".join(sections)}
+"""
+    html = rs.render_page(
+        "All Brands on Not On The High Street",
+        body, "static", "",
+        "Every independent brand selling on Not On The High Street, A to Z, with their most-reviewed products.",
+        f"{SITE}/brands.html",
+    )
+    for name in ("brands.html", "brand-index.html"):
+        (rs.OUTPUT_ROOT / name).write_text(html, encoding="utf-8")
+
+
+def update_sitemap(indexable_slugs: list) -> None:
+    """Add indexable brand pages (and the directory) to docs/sitemap.xml,
+    which render_site.py writes earlier in the build. Idempotent."""
+    path = rs.OUTPUT_ROOT / "sitemap.xml"
+    try:
+        xml = path.read_text(encoding="utf-8")
+    except Exception:  # noqa: BLE001
+        return
+    xml = re.sub(r"\s*<url>\s*<loc>[^<]*/brands(/[^<]*|\.html)</loc>\s*</url>", "", xml)
+    urls = [f"{SITE}/brands.html"] + [f"{SITE}/brands/{s}/" for s in sorted(indexable_slugs)]
+    block = "".join(f"\n  <url>\n    <loc>{u}</loc>\n  </url>" for u in urls)
+    xml = xml.replace("</urlset>", block + "\n</urlset>")
+    path.write_text(xml, encoding="utf-8")
+
+
+def remove_stale(keep: set) -> int:
+    """Delete docs/brands/<slug>/ for brands that no longer get a page (not
+    trading), so May-era pages stop being served. Only directories holding
+    nothing but an index.html are touched."""
+    removed = 0
+    if not OUT_ROOT.exists():
+        return 0
+    for d in OUT_ROOT.iterdir():
+        if not d.is_dir() or d.name in keep:
+            continue
+        if {p.name for p in d.iterdir()} <= {"index.html"}:
+            shutil.rmtree(d)
+            removed += 1
+    return removed
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--only", nargs="*", help="build just these brand slugs")
+    ap.add_argument("--only", nargs="*", help="build just these brand slugs (no directory, sitemap or cleanup)")
     args = ap.parse_args()
 
     d = Data()
     slugs = args.only or sorted(s for s, b in d.stats.items() if is_trading(b))
-    built = indexed = 0
+    pages = []
     for slug in slugs:
         result = build_page(slug, d)
         if not result:
@@ -326,9 +417,20 @@ def main() -> int:
         out = OUT_ROOT / slug / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(html, encoding="utf-8")
-        built += 1
-        indexed += indexable
-    print(f"🏷️  brand pages: {built:,} built, {indexed:,} indexable, {built - indexed:,} noindex")
+        pages.append((slug, d.display_name(slug), indexable, (d.stats.get(slug) or {}).get("orders_label") or ""))
+
+    indexed = [p[0] for p in pages if p[2]]
+    print(f"🏷️  brand pages: {len(pages):,} built, {len(indexed):,} indexable, {len(pages) - len(indexed):,} noindex")
+
+    if not args.only:
+        # Safety: a broken brand_stats.json would otherwise delete thousands of pages.
+        if len(pages) < 1000:
+            print(f"⚠️  only {len(pages)} pages built — skipping directory, sitemap and cleanup")
+            return 0
+        build_directory(pages)
+        update_sitemap(indexed)
+        removed = remove_stale({p[0] for p in pages})
+        print(f"🗂️  directory + sitemap updated; {removed:,} stale brand pages removed")
     return 0
 
 

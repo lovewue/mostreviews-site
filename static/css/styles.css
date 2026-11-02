@@ -939,3 +939,29 @@ Product cards reuse .picks-grid / .pick-card from Gift picks.
   background: #f6f4f7;
   border-radius: 6px;
 }
+
+/* Brand directory (docs/brands.html) */
+.brand-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  font-weight: 600;
+}
+
+.brand-dir {
+  columns: 3 220px;
+  column-gap: 28px;
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 18px;
+}
+
+.brand-dir li {
+  break-inside: avoid;
+  padding: 3px 0;
+}
+
+.dir-orders {
+  color: #888;
+  font-size: 0.8rem;
+}

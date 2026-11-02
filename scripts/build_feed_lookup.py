@@ -88,6 +88,56 @@ def product_path(url: str) -> str:
     return u.strip("/").lower()
 
 
+# -----------------------------------------------------------------------------
+# Brand pages (scripts/build_brand_pages.py)
+# -----------------------------------------------------------------------------
+# Brand pages show up to 12 products for each of ~3,400 trading brands: ~15k
+# SKUs beyond the rest of the site. Full entries would add ~9 MB, so these go
+# in a separate compact file: only the parts of the Awin thumbnail URL that
+# vary, plus the price. ~2 MB. Rebuilt with the main lookup; kept unchanged
+# when the feed fails.
+BRAND_THUMBS_PATH = DATA_DIR / "cache" / "feed_brand_thumbs.json"
+BRAND_STATS_PATH = DATA_DIR / "cache" / "brand_stats.json"
+BRAND_PRODUCTS_PER_LIST = 12
+AW_THUMB_PREFIX = (
+    "https://images2.productserve.com/?w=200&h=200&bg=white&trim=5&t=letterbox"
+    "&url=ssl%3Acdn.notonthehighstreet.com%2Ffs%2F"
+)
+AW_THUMB_MIDDLE = "&feedId=37219&k="
+
+
+def wanted_brand_skus() -> set[str]:
+    stats = (_load(BRAND_STATS_PATH) or {}).get("brands") or {}
+    trading = {s for s, b in stats.items() if b.get("active") and (b.get("product_count") or 0) > 0}
+    want: set[str] = set()
+    for name in ("top_products_last_12_months.json", "top_products_all_time.json"):
+        per_brand: dict[str, int] = {}
+        for i in (_load(LEADERBOARD_DIR / name) or {}).get("items") or []:
+            slug = i.get("seller_slug")
+            if slug not in trading or not i.get("sku") or not (i.get("reviews") or 0):
+                continue
+            n = per_brand.get(slug, 0)
+            if n >= BRAND_PRODUCTS_PER_LIST:
+                continue
+            per_brand[slug] = n + 1
+            want.add(str(i["sku"]).strip())
+    return want
+
+
+def compact_thumb(entry: dict):
+    """[kind, part, price]: kind 'a' = Awin thumb (part = '<path>|<k>'),
+    'c' = NOTHS CDN original (part = path after /fs/)."""
+    thumb = entry.get("thumb") or ""
+    price = entry.get("price")
+    if thumb.startswith(AW_THUMB_PREFIX) and AW_THUMB_MIDDLE in thumb:
+        path, k = thumb[len(AW_THUMB_PREFIX):].split(AW_THUMB_MIDDLE, 1)
+        return ["a", f"{path}|{k}", price]
+    cdn = f"https://{CURRENT_IMAGE_HOST}/fs/"
+    if thumb.startswith(cdn):
+        return ["c", thumb[len(cdn):], price]
+    return ["u", thumb, price]
+
+
 def wanted_pick_paths() -> set[str]:
     """Product paths listed in data/picks.json (the homepage 'Featured by
     NOTHS' strip). Those products are looked up by URL, since picks.json holds
@@ -260,13 +310,16 @@ def build_bestsellers(feed_path: str | None):
 def build(feed_path: str | None, bestsellers_path: str | None = None) -> int:
     skus = wanted_skus()
     pick_paths = wanted_pick_paths()
-    print(f"🔎 {len(skus):,} SKUs rendered by the site, {len(pick_paths)} featured picks")
+    brand_skus = wanted_brand_skus() - skus
+    print(f"🔎 {len(skus):,} SKUs rendered by the site, {len(pick_paths)} featured picks, "
+          f"{len(brand_skus):,} more for brand pages")
 
     text = open_feed(feed_path)
     if text is None:
         return 0
 
     products: dict[str, dict] = {}
+    brand_thumbs: dict[str, list] = {}
     rows = 0
     legacy_fixed = 0
     try:
@@ -274,6 +327,11 @@ def build(feed_path: str | None, bestsellers_path: str | None = None) -> int:
         for d in reader:
             rows += 1
             sku = (d.get("merchant_product_id") or "").strip()
+            if sku in brand_skus:
+                entry, _ = row_to_entry(d)
+                if entry:
+                    brand_thumbs[sku] = compact_thumb(entry)
+                continue
             if sku not in skus and (
                 not pick_paths or product_path(d.get("merchant_deep_link")) not in pick_paths
             ):
@@ -320,7 +378,13 @@ def build(feed_path: str | None, bestsellers_path: str | None = None) -> int:
     tmp.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
     os.replace(tmp, OUT_PATH)
 
+    BRAND_THUMBS_PATH.write_text(
+        json.dumps(dict(sorted(brand_thumbs.items())), ensure_ascii=False, separators=(",", ":")),
+        encoding="utf-8",
+    )
+
     print(f"🖼️  {len(products):,} of {len(skus):,} SKUs matched in a {rows:,}-row feed → {OUT_PATH.relative_to(PROJECT_ROOT)}")
+    print(f"   ↳ brand pages: {len(brand_thumbs):,} of {len(brand_skus):,} extra SKUs → {BRAND_THUMBS_PATH.relative_to(PROJECT_ROOT)}")
     if legacy_fixed:
         print(f"   ↳ {legacy_fixed:,} used NOTHS's retired S3 image host — switched to the CDN original")
     return 0
