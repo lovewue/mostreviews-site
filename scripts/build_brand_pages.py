@@ -94,10 +94,22 @@ class Data:
                 self.products_12m[i["seller_slug"]].append(i)
 
         # The all-time file is ~96 MB; keep only what pages use.
+        # Review counts by SKU for both windows, so every card can show
+        # "N in 12 months · N all time" whichever section it sits in.
+        self.reviews_12m = {
+            str(i.get("sku")): (i.get("reviews") or 0)
+            for items in self.products_12m.values() for i in items
+        }
+        self.reviews_all = {}
+
         self.products_all = defaultdict(list)
         for i in (load(LB / "top_products_all_time.json", {}) or {}).get("items") or []:
+            sku = str(i.get("sku"))
+            if sku in self.reviews_12m:
+                self.reviews_all[sku] = i.get("reviews") or 0
             slug = i.get("seller_slug")
             if slug and (i.get("reviews") or 0) > 0 and len(self.products_all[slug]) < TOP_ALL_TIME * 3:
+                self.reviews_all[sku] = i.get("reviews") or 0
                 self.products_all[slug].append({
                     k: i.get(k) for k in ("rank", "sku", "name", "product_url", "available", "reviews", "rating")
                 })
@@ -154,6 +166,19 @@ class Data:
 # -----------------------------------------------------------------------------
 # Page
 # -----------------------------------------------------------------------------
+def review_note(sku, d: "Data") -> str:
+    """'17 reviews in 12 months · 3,414 all time' — whichever counts exist."""
+    sku = str(sku)
+    n12 = d.reviews_12m.get(sku) or 0
+    nall = d.reviews_all.get(sku) or 0
+    parts = []
+    if n12:
+        parts.append(f'{n12:,} review{"s" if n12 != 1 else ""} in 12 months')
+    if nall and nall != n12:
+        parts.append(f'{nall:,} all time' if n12 else f'{nall:,} review{"s" if nall != 1 else ""} all time')
+    return " · ".join(parts)
+
+
 def product_card(p: dict, feed: dict, note: str) -> str:
     entry = feed.get(str(p.get("sku") or "").strip()) or {}
     live = p.get("available") is True and bool(entry)
@@ -257,7 +282,7 @@ def build_page(slug: str, d: Data) -> tuple[str, bool] | None:
     sections = []
     if top12:
         cards = "".join(
-            product_card(p, d.feed, f'{p.get("reviews") or 0:,} review{"s" if (p.get("reviews") or 0) != 1 else ""} in 12 months')
+            product_card(p, d.feed, review_note(p.get("sku"), d))
             for p in top12[:TOP_12M]
         )
         sections.append(f"""
@@ -270,7 +295,7 @@ def build_page(slug: str, d: Data) -> tuple[str, bool] | None:
     all_rest = live_first([p for p in topall if str(p.get("sku")) not in shown])[:TOP_ALL_TIME]
     if all_rest:
         cards = "".join(
-            product_card(p, d.feed, f'{p.get("reviews") or 0:,} reviews all time')
+            product_card(p, d.feed, review_note(p.get("sku"), d))
             for p in all_rest
         )
         sections.append(f"""

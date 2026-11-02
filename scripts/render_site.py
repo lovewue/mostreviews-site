@@ -404,6 +404,23 @@ def brand_link_html(p, seller: str) -> str:
     return seller
 
 
+def brand_name_html(seller_name: str, seller_slug: str) -> str:
+    """
+    Brand name in the brand lists (monthly brands, top brands 12 months,
+    most orders). Brands with a Trendlist page: name -> brand page, plus a
+    small "Shop" link straight to NOTHS via Awin for people ready to buy.
+    Brands without a page keep the direct Awin link on the name.
+    """
+    awin_url = build_awin_link(seller_slug)
+    if seller_slug and seller_slug in brand_page_slugs():
+        return (
+            f'<a href="/brands/{seller_slug}/">{seller_name}</a> '
+            f'<a class="shop-direct" href="{awin_url}" target="_blank" rel="sponsored noopener" '
+            f'title="Shop {html_attr(seller_name)} on NOTHS">Shop&nbsp;&#8599;</a>'
+        )
+    return f'<a href="{awin_url}" target="_blank" rel="sponsored noopener">{seller_name}</a>'
+
+
 def render_product_cell(p, name_html, seller, link_url="", show_image=True, extra_html=""):
     """
     The Product cell: thumbnail (when the feed has one and the product is
@@ -682,8 +699,7 @@ def render_partners(partners, limit=10):
         # NOTE: previously linked to the retired internal /brands/{slug}/
         # page. Now links straight to the real NOTHS seller page via the
         # existing AWIN affiliate link builder.
-        awin_url = build_awin_link(seller_slug)
-        seller_html = f'<a href="{awin_url}" target="_blank" rel="sponsored noopener">{seller_name}</a>'
+        seller_html = brand_name_html(seller_name, seller_slug)
 
         rows.append(
             f"""
@@ -944,10 +960,7 @@ def render_brand_orders_leaderboard(items, limit=100):
         is_open = b.get("trading") is not False
 
         if is_open:
-            awin_url = build_awin_link(seller_slug)
-            seller_html = (
-                f'<a href="{awin_url}" target="_blank" rel="sponsored noopener">{seller_name}</a>'
-            )
+            seller_html = brand_name_html(seller_name, seller_slug)
         else:
             seller_html = f"{seller_name}*"
 
@@ -1023,8 +1036,7 @@ def render_brands_leaderboard(items, limit=100):
         rank_num = b.get("rank", "")
         rank_display = f"{rank_num}=" if (same_as_prev or same_as_next) else str(rank_num)
 
-        awin_url = build_awin_link(seller_slug)
-        seller_html = f'<a href="{awin_url}" target="_blank" rel="sponsored noopener">{seller_name}</a>'
+        seller_html = brand_name_html(seller_name, seller_slug)
 
         rows.append(
             f"""
