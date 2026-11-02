@@ -881,3 +881,61 @@ mobile. Tabs only appear when more than one tab has products.
     gap: 10px;
   }
 }
+
+/* ----------------------------------------------------
+Brand pages (docs/brands/<slug>/) — built by scripts/build_brand_pages.py.
+Product cards reuse .picks-grid / .pick-card from Gift picks.
+---------------------------------------------------- */
+
+.brand-crumb {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.brand-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 14px 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.brand-facts strong {
+  color: #51285f;
+}
+
+.brand-highlights {
+  margin: 10px 0 16px;
+  padding-left: 18px;
+}
+
+.brand-highlights li {
+  margin: 4px 0;
+}
+
+.brand-shop {
+  display: inline-block;
+  margin: 6px 0 4px;
+  padding: 9px 16px;
+  background: #51285f;
+  color: #fff;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.brand-shop:hover {
+  background: #3d1e48;
+}
+
+.pick-card-static {
+  cursor: default;
+}
+
+.brand-card-noimg {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #f6f4f7;
+  border-radius: 6px;
+}
