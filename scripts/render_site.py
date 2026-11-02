@@ -374,6 +374,36 @@ def availability_tag(p, available_is_live: bool) -> str:
     return ""
 
 
+# Brand names under products link to the brand's page (scripts/
+# build_brand_pages.py builds one for every trading brand). Root-relative
+# URLs, so the same link works from docs/ and docs/months/. Only brands that
+# get a page are linked, using the same "trading" rule as the brand builder.
+BRAND_STATS_PATH = DATA_DIR / "cache" / "brand_stats.json"
+_BRAND_PAGE_SLUGS = None
+
+
+def brand_page_slugs() -> set:
+    global _BRAND_PAGE_SLUGS
+    if _BRAND_PAGE_SLUGS is None:
+        try:
+            with open(BRAND_STATS_PATH, "r", encoding="utf-8") as f:
+                brands = json.load(f).get("brands") or {}
+            _BRAND_PAGE_SLUGS = {
+                s for s, b in brands.items()
+                if b.get("active") and (b.get("product_count") or 0) > 0
+            }
+        except Exception:  # noqa: BLE001
+            _BRAND_PAGE_SLUGS = set()
+    return _BRAND_PAGE_SLUGS
+
+
+def brand_link_html(p, seller: str) -> str:
+    slug = str(p.get("seller_slug") or "").strip()
+    if seller and slug and slug in brand_page_slugs():
+        return f'<a class="brand-link" href="/brands/{slug}/">{seller}</a>'
+    return seller
+
+
 def render_product_cell(p, name_html, seller, link_url="", show_image=True, extra_html=""):
     """
     The Product cell: thumbnail (when the feed has one and the product is
@@ -401,7 +431,7 @@ def render_product_cell(p, name_html, seller, link_url="", show_image=True, extr
         {thumb_html}
         <div class="product-text">
             {name_html}{extra_html}
-            <div class="partner">{seller}</div>
+            <div class="partner">{brand_link_html(p, seller)}</div>
         </div>
     </div>"""
 
