@@ -1,7 +1,7 @@
 {
   "theme": "sara-davies-christmas-picks",
-  "generated_at": "2026-10-26T11:18:50+00:00",
-  "product_list_checked_at": "2026-10-26T11:18:41+00:00",
+  "generated_at": "2026-11-02T11:55:30+00:00",
+  "product_list_checked_at": "2026-11-02T11:55:21+00:00",
   "slides": [
     "00_cover.jpg",
     "01_148725.jpg",
@@ -12,7 +12,7 @@
     "06_this_year.jpg",
     "07_full_list.jpg"
   ],
-  "caption": "Sara Davies picked 51 Christmas gifts for Not On The High Street. We ranked every one by real customer reviews.\n\nThe most reviewed:\n1. Personalised Christmas Sack by Harrow & Green (1,499 reviews)\n2. Personalised Metal Photo Keyring With Leather Case by Create Gift Love (773 reviews)\n3. Personalised Football Ball, Customise With Any Name by We Print Balls (234 reviews)\n4. Personalised Stainless Steel Pizza Cutter by Oakdene Designs (217 reviews)\n5. Personalised Christmas Eve Children's Book by FromLucy&Co (164 reviews)\n\nMost reviewed in the last 12 months: Steak Lover's Gift Set, Steak And Chips Cooking Kit by Ross & Ross Gifts (88).\n\nAll 51 picks, ranked: link in bio (trendlist.co.uk)\n\n@notonthehighstreet\n\n#notonthehighstreet #christmasgifts #christmasgiftideas #giftideas #giftguide #shopsmall #smallbusinessuk",
+  "caption": "Sara Davies picked 51 Christmas gifts for Not On The High Street. We ranked every one by real customer reviews.\n\nThe most reviewed:\n1. Personalised Christmas Sack by Harrow & Green (1,501 reviews)\n2. Personalised Metal Photo Keyring With Leather Case by Create Gift Love (776 reviews)\n3. Personalised Football Ball, Customise With Any Name by We Print Balls (234 reviews)\n4. Personalised Stainless Steel Pizza Cutter by Oakdene Designs (218 reviews)\n5. Personalised Christmas Eve Children's Book by FromLucy&Co (164 reviews)\n\nMost reviewed in the last 12 months: Steak Lover's Gift Set, Steak And Chips Cooking Kit by Ross & Ross Gifts (89).\n\nAll 51 picks, ranked: link in bio (trendlist.co.uk)\n\n@notonthehighstreet\n\n#notonthehighstreet #christmasgifts #christmasgiftideas #giftideas #giftguide #shopsmall #smallbusinessuk",
   "products": [
     {
       "rank_display": "1",
@@ -20,7 +20,7 @@
       "name": "Personalised Christmas Sack",
       "seller_name": "Harrow & Green",
       "seller_slug": "harrowandgreen",
-      "reviews_all_time": 1499,
+      "reviews_all_time": 1501,
       "reviews_last_12": 6,
       "rating": 4.9,
       "product_url": "https://www.notonthehighstreet.com/harrowandgreen/product/personalised-christmas-sack-letterpress"
@@ -31,7 +31,7 @@
       "name": "Personalised Metal Photo Keyring With Leather Case",
       "seller_name": "Create Gift Love",
       "seller_slug": "creategiftlove",
-      "reviews_all_time": 773,
+      "reviews_all_time": 776,
       "reviews_last_12": 20,
       "rating": 4.8,
       "product_url": "https://www.notonthehighstreet.com/creategiftlove/product/personalised-metal-photo-keyring-with-leather-case"
@@ -43,7 +43,7 @@
       "seller_name": "We Print Balls",
       "seller_slug": "nameyourball",
       "reviews_all_time": 234,
-      "reviews_last_12": 61,
+      "reviews_last_12": 55,
       "rating": 4.7,
       "product_url": "https://www.notonthehighstreet.com/nameyourball/product/personalised-football-ball-style-v4"
     },
@@ -53,8 +53,8 @@
       "name": "Personalised Stainless Steel Pizza Cutter",
       "seller_name": "Oakdene Designs",
       "seller_slug": "oakdenedesigns",
-      "reviews_all_time": 217,
-      "reviews_last_12": 36,
+      "reviews_all_time": 218,
+      "reviews_last_12": 35,
       "rating": 4.7,
       "product_url": "https://www.notonthehighstreet.com/oakdenedesigns/product/personalised-stainless-steel-pizza-cutter"
     },
@@ -65,7 +65,7 @@
       "seller_name": "FromLucy&Co",
       "seller_slug": "lucysworld",
       "reviews_all_time": 164,
-      "reviews_last_12": 18,
+      "reviews_last_12": 17,
       "rating": 4.8,
       "product_url": "https://www.notonthehighstreet.com/lucysworld/product/personalised-christmas-eve-children-s-book"
     }
@@ -75,31 +75,31 @@
       "sku": "1181236",
       "name": "Steak Lover's Gift Set, Steak And Chips Cooking Kit",
       "seller_name": "Ross & Ross Gifts",
-      "reviews_last_12": 88
+      "reviews_last_12": 89
     },
     {
       "sku": "895147",
       "name": "Personalised Silky Women's Christmas Embroidered Luxury Pyjama",
       "seller_name": "Mini Lunn",
-      "reviews_last_12": 78
+      "reviews_last_12": 75
     },
     {
       "sku": "799432",
       "name": "Personalised Football Ball, Customise With Any Name",
       "seller_name": "We Print Balls",
-      "reviews_last_12": 61
+      "reviews_last_12": 55
     },
     {
       "sku": "1152259",
       "name": "Personalised Stainless Steel Pizza Cutter",
       "seller_name": "Oakdene Designs",
-      "reviews_last_12": 36
+      "reviews_last_12": 35
     },
     {
       "sku": "1062124",
       "name": "Colour Block Chunky Squares Check Blanket Scarf",
       "seller_name": "Studio Hop",
-      "reviews_last_12": 27
+      "reviews_last_12": 22
     }
   ],
   "missing_handles": [

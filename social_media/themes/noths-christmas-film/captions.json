@@ -1,0 +1,95 @@
+{
+  "theme": "noths-christmas-film",
+  "generated_at": "2026-11-02T11:55:34+00:00",
+  "product_list_checked_at": "2026-11-02T11:55:22+00:00",
+  "slides": [
+    "00_cover.jpg",
+    "01_254548.jpg",
+    "02_1279089.jpg",
+    "03_62154.jpg",
+    "04_530577.jpg",
+    "05_986777.jpg",
+    "06_full_list.jpg"
+  ],
+  "caption": "30 products from Not On The High Street's Christmas film. We ranked every one by real customer reviews.\n\nThe most reviewed:\n1. Woodland Robin Christmas Wrapping Paper by Laura Crow (49 reviews)\n2. Personalised Cashmere Blend Robin Bird Jacquard Scarf by Studio Hop (37 reviews)\n3. Personalised Name Tea Pot Cosy Gift For Him Or Her by milly and pip gifts and cards (23 reviews)\n4. Handmade Felt Mr. Snowman Christmas Decoration by Felt so good (4 reviews)\n5. British Birds Illustrated Print by Charlotte Jones Design (2 reviews)\n\nAll 30 picks, ranked: link in bio (trendlist.co.uk)\n\n@notonthehighstreet\n\n#notonthehighstreet #christmasgifts #christmasgiftideas #giftideas #giftguide #shopsmall #smallbusinessuk",
+  "products": [
+    {
+      "rank_display": "1",
+      "sku": "254548",
+      "name": "Woodland Robin Christmas Wrapping Paper",
+      "seller_name": "Laura Crow",
+      "seller_slug": "lauracrow",
+      "reviews_all_time": 49,
+      "reviews_last_12": 0,
+      "rating": 4.8,
+      "product_url": "https://www.notonthehighstreet.com/lauracrow/product/woodland-robin-christmas-wrapping-paper"
+    },
+    {
+      "rank_display": "2",
+      "sku": "1279089",
+      "name": "Personalised Cashmere Blend Robin Bird Jacquard Scarf",
+      "seller_name": "Studio Hop",
+      "seller_slug": "studiohop",
+      "reviews_all_time": 37,
+      "reviews_last_12": 12,
+      "rating": 4.8,
+      "product_url": "https://www.notonthehighstreet.com/studiohop/product/personalised-cashmere-blend-robin-bird-scarf"
+    },
+    {
+      "rank_display": "3",
+      "sku": "62154",
+      "name": "Personalised Name Tea Pot Cosy Gift For Him Or Her",
+      "seller_name": "milly and pip gifts and cards",
+      "seller_slug": "millyandpip",
+      "reviews_all_time": 23,
+      "reviews_last_12": 0,
+      "rating": 4.9,
+      "product_url": "https://www.notonthehighstreet.com/millyandpip/product/personalised_tea_cosy"
+    },
+    {
+      "rank_display": "4",
+      "sku": "530577",
+      "name": "Handmade Felt Mr. Snowman Christmas Decoration",
+      "seller_name": "Felt so good",
+      "seller_slug": "feltsogood",
+      "reviews_all_time": 4,
+      "reviews_last_12": 0,
+      "rating": 5.0,
+      "product_url": "https://www.notonthehighstreet.com/feltsogood/product/handmade-felt-mr-snowman"
+    },
+    {
+      "rank_display": "5",
+      "sku": "986777",
+      "name": "British Birds Illustrated Print",
+      "seller_name": "Charlotte Jones Design",
+      "seller_slug": "charlottejonesdesign",
+      "reviews_all_time": 2,
+      "reviews_last_12": 0,
+      "rating": 5.0,
+      "product_url": "https://www.notonthehighstreet.com/charlottejonesdesign/product/british-birds-illustrated-print"
+    }
+  ],
+  "this_year": [],
+  "missing_handles": [
+    {
+      "seller_slug": "lauracrow",
+      "seller_name": "Laura Crow"
+    },
+    {
+      "seller_slug": "studiohop",
+      "seller_name": "Studio Hop"
+    },
+    {
+      "seller_slug": "millyandpip",
+      "seller_name": "milly and pip gifts and cards"
+    },
+    {
+      "seller_slug": "feltsogood",
+      "seller_name": "Felt so good"
+    },
+    {
+      "seller_slug": "charlottejonesdesign",
+      "seller_name": "Charlotte Jones Design"
+    }
+  ]
+}
