@@ -977,3 +977,19 @@ Product cards reuse .picks-grid / .pick-card from Gift picks.
   color: #51285f;
   border-bottom-color: #51285f;
 }
+
+/* "Shop ↗" beside a brand name in the brand lists: straight to NOTHS. */
+.shop-direct {
+  margin-left: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #51285f;
+  white-space: nowrap;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.shop-direct:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
