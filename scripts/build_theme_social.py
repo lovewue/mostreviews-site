@@ -304,12 +304,12 @@ def this_year_slide(rows, out):
     canvas.save(out, "JPEG", quality=92)
 
 
-def cta_slide(total, out):
+def cta_slide(total, out, line="CHRISTMAS PICKS RANKED"):
     canvas, draw = new_canvas()
     kicker(draw, "The full list")
     y = hero(draw, round(140 * S), f"ALL {total}")
     y = statement(draw, y, [
-        ("CHRISTMAS PICKS RANKED", False),
+        (line, False),
         (f"AT {SITE.upper()}", True),
     ])
     draw_wrapped(draw, MARGIN, y + round(18 * S),
@@ -482,7 +482,7 @@ def build_theme(slug, theme, lookups, handles):
         n += 1
 
     name = f"{n:02d}_full_list.jpg"
-    cta_slide(total, out_dir / name)
+    cta_slide(total, out_dir / name, theme.get("cta_line") or "CHRISTMAS PICKS RANKED")
     files.append(name)
 
     caption, featured, missing = build_caption(theme, total, top, this_year, handles)

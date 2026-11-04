@@ -110,6 +110,19 @@ THEMES = {
         "cover_lines": ["PRODUCTS FROM THE", "NOTHS CHRISTMAS FILM."],
         "caption_intro": "{total} products from Not On The High Street's Christmas film.",
     },
+    "robin-gifts": {
+        "path": "/themes/gifts/robin-gifts",
+        "title": "NOTHS Robin Gifts, Ranked by Reviews",
+        "label": "the Robin gifts collection",
+        "curator": "NOTHS",
+        "description": (
+            "Every product in Not On The High Street's Robin gifts collection, "
+            "ranked by customer reviews."
+        ),
+        "cover_lines": ["ROBIN GIFTS FROM", "NOT ON THE HIGH STREET."],
+        "caption_intro": "{total} robin gifts from Not On The High Street.",
+        "cta_line": "ROBIN GIFTS RANKED",
+    },
     "lottie-lauras-christmas-picks": {
         "path": "/themes/lifestyle/lottie-lauras-top-christmas-picks",
         "title": "Lottie & Laura's Christmas Picks, Ranked by Reviews",
