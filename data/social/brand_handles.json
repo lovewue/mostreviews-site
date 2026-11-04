@@ -1,12 +1,14 @@
 {
   "_readme": "Instagram handle per NOTHS seller slug, without the @. Leave blank if unknown; blanks are listed in each carousel's captions.json.",
   "byalex": "",
+  "chameleonwallart": "",
   "charlottejonesdesign": "",
   "chocolateonchocolate": "",
   "creategiftlove": "",
   "feltsogood": "",
   "fromyoutome": "",
   "harrowandgreen": "",
+  "idyllhome": "",
   "lauracrow": "",
   "lucysheeran": "",
   "lucysworld": "",
@@ -15,6 +17,9 @@
   "nameyourball": "",
   "noordinarygiftcompany": "",
   "oakdenedesigns": "",
+  "paperhigh": "",
   "rossandross": "",
-  "studiohop": ""
+  "studiohop": "",
+  "theforestandco": "",
+  "wue": ""
 }

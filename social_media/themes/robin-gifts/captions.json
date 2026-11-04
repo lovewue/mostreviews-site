@@ -1,0 +1,131 @@
+{
+  "theme": "robin-gifts",
+  "generated_at": "2026-11-04T07:17:37+00:00",
+  "product_list_checked_at": "2026-11-04T07:17:23+00:00",
+  "slides": [
+    "00_cover.jpg",
+    "01_528491.jpg",
+    "02_841587.jpg",
+    "03_960222.jpg",
+    "04_971145.jpg",
+    "05_1301141.jpg",
+    "06_this_year.jpg",
+    "07_full_list.jpg"
+  ],
+  "caption": "81 robin gifts from Not On The High Street. We ranked every one by real customer reviews.\n\nThe most reviewed:\n1. Personalised Robin Print Scarf by The Forest & Co (296 reviews)\n2. Robin Christmas Decoration by Chameleon and Co (116 reviews)\n3. Robin Earrings In Sterling Silver by Wue (92 reviews)\n4. Robin Light In Copper Or Gold by Idyll Home (53 reviews)\n5. Set Of Two Wire Robin Decorative Ornament by Paper High (47 reviews)\n\nMost reviewed in the last 12 months: Set Of Two Wire Robin Decorative Ornament by Paper High (40).\n\nAll 81 picks, ranked: link in bio (trendlist.co.uk)\n\n@notonthehighstreet\n\n#notonthehighstreet #christmasgifts #christmasgiftideas #giftideas #giftguide #shopsmall #smallbusinessuk",
+  "products": [
+    {
+      "rank_display": "1",
+      "sku": "528491",
+      "name": "Personalised Robin Print Scarf",
+      "seller_name": "The Forest & Co",
+      "seller_slug": "theforestandco",
+      "reviews_all_time": 296,
+      "reviews_last_12": 13,
+      "rating": 4.7,
+      "product_url": "https://www.notonthehighstreet.com/theforestandco/product/peronalised-muted-bird-print-scarf"
+    },
+    {
+      "rank_display": "2",
+      "sku": "841587",
+      "name": "Robin Christmas Decoration",
+      "seller_name": "Chameleon and Co",
+      "seller_slug": "chameleonwallart",
+      "reviews_all_time": 116,
+      "reviews_last_12": 17,
+      "rating": 4.7,
+      "product_url": "https://www.notonthehighstreet.com/chameleonwallart/product/robin-christmas-decoration"
+    },
+    {
+      "rank_display": "3",
+      "sku": "960222",
+      "name": "Robin Earrings In Sterling Silver",
+      "seller_name": "Wue",
+      "seller_slug": "wue",
+      "reviews_all_time": 92,
+      "reviews_last_12": 8,
+      "rating": 4.9,
+      "product_url": "https://www.notonthehighstreet.com/wue/product/robins-appear-silver-earrings"
+    },
+    {
+      "rank_display": "4",
+      "sku": "971145",
+      "name": "Robin Light In Copper Or Gold",
+      "seller_name": "Idyll Home",
+      "seller_slug": "idyllhome",
+      "reviews_all_time": 53,
+      "reviews_last_12": 6,
+      "rating": 4.9,
+      "product_url": "https://www.notonthehighstreet.com/idyllhome/product/robin-christmas-light"
+    },
+    {
+      "rank_display": "5",
+      "sku": "1301141",
+      "name": "Set Of Two Wire Robin Decorative Ornament",
+      "seller_name": "Paper High",
+      "seller_slug": "paperhigh",
+      "reviews_all_time": 47,
+      "reviews_last_12": 40,
+      "rating": 4.9,
+      "product_url": "https://www.notonthehighstreet.com/paperhigh/product/set-of-two-wire-robin-decorative-ornament"
+    }
+  ],
+  "this_year": [
+    {
+      "sku": "1301141",
+      "name": "Set Of Two Wire Robin Decorative Ornament",
+      "seller_name": "Paper High",
+      "reviews_last_12": 40
+    },
+    {
+      "sku": "841587",
+      "name": "Robin Christmas Decoration",
+      "seller_name": "Chameleon and Co",
+      "reviews_last_12": 17
+    },
+    {
+      "sku": "528491",
+      "name": "Personalised Robin Print Scarf",
+      "seller_name": "The Forest & Co",
+      "reviews_last_12": 13
+    },
+    {
+      "sku": "1279089",
+      "name": "Personalised Cashmere Blend Robin Bird Jacquard Scarf",
+      "seller_name": "Studio Hop",
+      "reviews_last_12": 12
+    },
+    {
+      "sku": "960222",
+      "name": "Robin Earrings In Sterling Silver",
+      "seller_name": "Wue",
+      "reviews_last_12": 8
+    }
+  ],
+  "missing_handles": [
+    {
+      "seller_slug": "theforestandco",
+      "seller_name": "The Forest & Co"
+    },
+    {
+      "seller_slug": "chameleonwallart",
+      "seller_name": "Chameleon and Co"
+    },
+    {
+      "seller_slug": "wue",
+      "seller_name": "Wue"
+    },
+    {
+      "seller_slug": "idyllhome",
+      "seller_name": "Idyll Home"
+    },
+    {
+      "seller_slug": "paperhigh",
+      "seller_name": "Paper High"
+    },
+    {
+      "seller_slug": "studiohop",
+      "seller_name": "Studio Hop"
+    }
+  ]
+}
