@@ -1,25 +1,23 @@
 {
   "slug": "lottie-lauras-christmas-picks",
   "theme_url": "https://www.notonthehighstreet.com/themes/lifestyle/lottie-lauras-top-christmas-picks",
-  "checked_at": "2026-11-16T13:50:57+00:00",
+  "checked_at": "2026-11-23T16:13:59+00:00",
   "product_count": 22,
-  "added_since_last_check": [
-    "1352996"
-  ],
+  "added_since_last_check": [],
   "removed_since_last_check": [],
   "products": [
     {
       "position": 1,
-      "sku": "980283",
-      "name": "Personalised Velvet Christmas Stocking",
-      "seller_name": "'By Alex'",
-      "seller_slug": "byalex",
-      "product_url": "https://www.notonthehighstreet.com/byalex/product/personalised-velvet-christmas-stocking",
+      "sku": "1369578",
+      "name": "Personalised Mens Holdall Weekend Bag For Travelling",
+      "seller_name": "Jessica Hollie Gifts",
+      "seller_slug": "jessicaholliegifts",
+      "product_url": "https://www.notonthehighstreet.com/jessicaholliegifts/product/personalised-mens-holdall-weekend-bag-for-travelling",
       "is_new": false,
       "in_stock": true,
       "noths_rating": 5,
-      "price_gbp": 52.99,
-      "image_url": "https://cdn.notonthehighstreet.com/fs/3a/77/6ba1-2860-4e7d-8e17-9d1503ce7f0d/original_personalised-velvet-christmas-stocking.jpg"
+      "price_gbp": 44.95,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/6f/a4/1d7e-0a97-4dfa-a029-16890e5a89f1/original_personalised-mens-holdall-weekend-bag-for-travelling.jpg"
     },
     {
       "position": 2,
@@ -36,19 +34,6 @@
     },
     {
       "position": 3,
-      "sku": "1369578",
-      "name": "Personalised Mens Holdall Weekend Bag For Travelling",
-      "seller_name": "Jessica Hollie Gifts",
-      "seller_slug": "jessicaholliegifts",
-      "product_url": "https://www.notonthehighstreet.com/jessicaholliegifts/product/personalised-mens-holdall-weekend-bag-for-travelling",
-      "is_new": false,
-      "in_stock": true,
-      "noths_rating": 5,
-      "price_gbp": 44.95,
-      "image_url": "https://cdn.notonthehighstreet.com/fs/6f/a4/1d7e-0a97-4dfa-a029-16890e5a89f1/original_personalised-mens-holdall-weekend-bag-for-travelling.jpg"
-    },
-    {
-      "position": 4,
       "sku": "717918",
       "name": "Personalised Family Door Bauble",
       "seller_name": "No Ordinary Gift",
@@ -57,8 +42,21 @@
       "is_new": false,
       "in_stock": true,
       "noths_rating": 4.7,
-      "price_gbp": 30.0,
+      "price_gbp": 27.0,
       "image_url": "https://cdn.notonthehighstreet.com/fs/5b/05/d7bb-8d49-4ddb-be63-73c181354ca0/original_personalised-family-door-bauble.jpg"
+    },
+    {
+      "position": 4,
+      "sku": "980283",
+      "name": "Personalised Velvet Christmas Stocking",
+      "seller_name": "'By Alex'",
+      "seller_slug": "byalex",
+      "product_url": "https://www.notonthehighstreet.com/byalex/product/personalised-velvet-christmas-stocking",
+      "is_new": false,
+      "in_stock": true,
+      "noths_rating": 5,
+      "price_gbp": 52.99,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/3a/77/6ba1-2860-4e7d-8e17-9d1503ce7f0d/original_personalised-velvet-christmas-stocking.jpg"
     },
     {
       "position": 5,
@@ -88,16 +86,16 @@
     },
     {
       "position": 7,
-      "sku": "1072054",
-      "name": "Set Of Two Gold Rimmed Champagne Coupes",
-      "seller_name": "The Best Room",
-      "seller_slug": "thebestroom",
-      "product_url": "https://www.notonthehighstreet.com/thebestroom/product/set-of-two-gold-rimmed-champagne-coupes",
+      "sku": "175347",
+      "name": "Personalised Pet Portrait",
+      "seller_name": "Lucy Sheeran",
+      "seller_slug": "lucysheeran",
+      "product_url": "https://www.notonthehighstreet.com/lucysheeran/product/your-pet-illustrated",
       "is_new": false,
       "in_stock": true,
-      "noths_rating": 4.6,
-      "price_gbp": 34.95,
-      "image_url": "https://cdn.notonthehighstreet.com/fs/f3/24/964b-dd7f-4db5-bb0a-c7782789ebc4/original_set-of-two-gold-rimmed-champagne-coupes.jpg"
+      "noths_rating": 5,
+      "price_gbp": 36.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/2c/cb/1cec-e171-4ec7-af95-55cc6e2a6a0b/original_your-pet-illustrated.jpg"
     },
     {
       "position": 8,
@@ -114,6 +112,19 @@
     },
     {
       "position": 9,
+      "sku": "1072054",
+      "name": "Set Of Two Gold Rimmed Champagne Coupes",
+      "seller_name": "The Best Room",
+      "seller_slug": "thebestroom",
+      "product_url": "https://www.notonthehighstreet.com/thebestroom/product/set-of-two-gold-rimmed-champagne-coupes",
+      "is_new": false,
+      "in_stock": true,
+      "noths_rating": 4.6,
+      "price_gbp": 34.95,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/f3/24/964b-dd7f-4db5-bb0a-c7782789ebc4/original_set-of-two-gold-rimmed-champagne-coupes.jpg"
+    },
+    {
+      "position": 10,
       "sku": "1031068",
       "name": "18ct Gold Plated Or Silver Heart Link Slider Bracelet",
       "seller_name": "Hurleyburley",
@@ -124,19 +135,6 @@
       "noths_rating": 4.8,
       "price_gbp": 44.0,
       "image_url": "https://cdn.notonthehighstreet.com/fs/f5/78/16d2-e1ce-4399-9ca9-489c7689d9ee/original_18ct-gold-or-sterling-silver-heart-link-slider-bracelet.jpg"
-    },
-    {
-      "position": 10,
-      "sku": "175347",
-      "name": "Personalised Pet Portrait",
-      "seller_name": "Lucy Sheeran",
-      "seller_slug": "lucysheeran",
-      "product_url": "https://www.notonthehighstreet.com/lucysheeran/product/your-pet-illustrated",
-      "is_new": false,
-      "in_stock": true,
-      "noths_rating": 5,
-      "price_gbp": 36.0,
-      "image_url": "https://cdn.notonthehighstreet.com/fs/2c/cb/1cec-e171-4ec7-af95-55cc6e2a6a0b/original_your-pet-illustrated.jpg"
     },
     {
       "position": 11,
@@ -153,6 +151,19 @@
     },
     {
       "position": 12,
+      "sku": "1404130",
+      "name": "Design Your Own Lovey Dovey Classic Seven Charm Necklace",
+      "seller_name": "Lovey Dovey",
+      "seller_slug": "loveydovey",
+      "product_url": "https://www.notonthehighstreet.com/loveydovey/product/design-your-own-lovey-dovey-classic-7-charm-necklace",
+      "is_new": false,
+      "in_stock": true,
+      "noths_rating": 4,
+      "price_gbp": 67.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/b7/70/3b33-b53a-4398-bc2a-187fe7895e46/original_lovey-dovey-classic-charm-necklace.jpg"
+    },
+    {
+      "position": 13,
       "sku": "1321256",
       "name": "Pistachio Crisp Christmas Tree",
       "seller_name": "RD House of Chocolate",
@@ -165,7 +176,20 @@
       "image_url": "https://cdn.notonthehighstreet.com/fs/cb/b5/5919-2ea1-4e5f-b745-3dbf7ec6eade/original_pistachio-crisp-christmas-tree.jpg"
     },
     {
-      "position": 13,
+      "position": 14,
+      "sku": "737621",
+      "name": "Christmas Personalised Wooden Chopping Board",
+      "seller_name": "Sophia Victoria Joy",
+      "seller_slug": "sophiavictoriajoy",
+      "product_url": "https://www.notonthehighstreet.com/sophiavictoriajoy/product/christmas-personalised-wooden-chopping-board",
+      "is_new": false,
+      "in_stock": true,
+      "noths_rating": 4.8,
+      "price_gbp": 27.2,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/bf/f3/332c-7e7f-48e8-9122-8d96721d6940/original_christmas-personalised-wooden-chopping-board.jpg"
+    },
+    {
+      "position": 15,
       "sku": "1438038",
       "name": "Pink And Red 3D Bow Garland Two.5m",
       "seller_name": "Little Big Party Co.",
@@ -178,7 +202,7 @@
       "image_url": "https://cdn.notonthehighstreet.com/fs/b6/dd/f4e6-e3da-42da-be85-9fba70178bc0/original_pink-red-3d-bow-christmas-garland-two-5m.jpg"
     },
     {
-      "position": 14,
+      "position": 16,
       "sku": "1356574",
       "name": "Oversize Bow Earrings",
       "seller_name": "Wynter Studio",
@@ -189,32 +213,6 @@
       "noths_rating": null,
       "price_gbp": 14.4,
       "image_url": "https://cdn.notonthehighstreet.com/fs/42/48/8a4c-c149-461b-a0ae-44888ba37fc8/original_oversize-bow-earrings.jpg"
-    },
-    {
-      "position": 15,
-      "sku": "737621",
-      "name": "Christmas Personalised Wooden Chopping Board",
-      "seller_name": "Sophia Victoria Joy",
-      "seller_slug": "sophiavictoriajoy",
-      "product_url": "https://www.notonthehighstreet.com/sophiavictoriajoy/product/christmas-personalised-wooden-chopping-board",
-      "is_new": false,
-      "in_stock": true,
-      "noths_rating": 4.8,
-      "price_gbp": 32.0,
-      "image_url": "https://cdn.notonthehighstreet.com/fs/bf/f3/332c-7e7f-48e8-9122-8d96721d6940/original_christmas-personalised-wooden-chopping-board.jpg"
-    },
-    {
-      "position": 16,
-      "sku": "1404130",
-      "name": "Design Your Own Lovey Dovey Classic Seven Charm Necklace",
-      "seller_name": "Lovey Dovey",
-      "seller_slug": "loveydovey",
-      "product_url": "https://www.notonthehighstreet.com/loveydovey/product/design-your-own-lovey-dovey-classic-7-charm-necklace",
-      "is_new": false,
-      "in_stock": true,
-      "noths_rating": 4,
-      "price_gbp": 67.0,
-      "image_url": "https://cdn.notonthehighstreet.com/fs/b7/70/3b33-b53a-4398-bc2a-187fe7895e46/original_lovey-dovey-classic-charm-necklace.jpg"
     },
     {
       "position": 17,
@@ -231,19 +229,6 @@
     },
     {
       "position": 18,
-      "sku": "1300156",
-      "name": "Bespoke Animal/ Pet Portrait Iced Biscuit",
-      "seller_name": "Coy Biscuit",
-      "seller_slug": "coybiscuit",
-      "product_url": "https://www.notonthehighstreet.com/coybiscuit/product/bespoke-animal-portrait-iced-biscuit",
-      "is_new": false,
-      "in_stock": true,
-      "noths_rating": 5,
-      "price_gbp": 34.0,
-      "image_url": "https://cdn.notonthehighstreet.com/fs/33/58/0d54-e463-401e-8860-194920c87c79/original_bespoke-animal-portrait-iced-biscuit.jpg"
-    },
-    {
-      "position": 19,
       "sku": "1352996",
       "name": "Christmas Wreath Macaron Box",
       "seller_name": "Anna Cake Couture",
@@ -254,6 +239,19 @@
       "noths_rating": null,
       "price_gbp": 49.5,
       "image_url": "https://cdn.notonthehighstreet.com/fs/2a/6c/ffac-973c-47c2-8bc1-d635e15d1775/original_christmas-wreath-macaron-box.jpg"
+    },
+    {
+      "position": 19,
+      "sku": "1300156",
+      "name": "Bespoke Animal/ Pet Portrait Iced Biscuit",
+      "seller_name": "Coy Biscuit",
+      "seller_slug": "coybiscuit",
+      "product_url": "https://www.notonthehighstreet.com/coybiscuit/product/bespoke-animal-portrait-iced-biscuit",
+      "is_new": false,
+      "in_stock": true,
+      "noths_rating": 5,
+      "price_gbp": 34.0,
+      "image_url": "https://cdn.notonthehighstreet.com/fs/33/58/0d54-e463-401e-8860-194920c87c79/original_bespoke-animal-portrait-iced-biscuit.jpg"
     },
     {
       "position": 20,
